@@ -1,0 +1,17 @@
+language: php
+
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+
+env:
+  - SYMFONY_VERSION=origin/master
+
+before_script:
+  - composer install --dev --prefer-source
+
+script: phpunit
+
+notifications:
+    webhooks: http://sonata-project.org/bundles/core/master/travis
