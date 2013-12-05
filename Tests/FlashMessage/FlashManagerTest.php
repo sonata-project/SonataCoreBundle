@@ -43,6 +43,35 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test the flash manager getSession() method
+     */
+    public function testGetSession()
+    {
+        // When
+        $session = $this->flashManager->getSession();
+
+        // Then
+        $this->assertInstanceOf('\Symfony\Component\HttpFoundation\Session\Session', $session);
+    }
+
+    /**
+     * Test the flash manager getTypes() method
+     */
+    public function testGetTypes()
+    {
+        // When
+        $types = $this->flashManager->getTypes();
+
+        // Then
+        $this->assertCount(3, $types);
+        $this->assertEquals(array(
+            'success' => array('my_bundle_success', 'my_second_bundle_success'),
+            'notice'  => array('my_bundle_notice', 'my_second_bundle_notice'),
+            'error'   => array('my_bundle_error', 'my_second_bundle_error'),
+        ), $types);
+    }
+
+    /**
      * Test the flash manager handle() method with registered types
      */
     public function testHandlingRegisteredTypes()

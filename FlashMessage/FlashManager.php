@@ -95,6 +95,8 @@ class FlashManager
      *
      * @param string $type  Sonata core flash message type
      * @param string $value Original flash message type
+     *
+     * @return void
      */
     protected function rename($type, $value)
     {
