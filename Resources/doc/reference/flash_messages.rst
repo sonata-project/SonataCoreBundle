@@ -2,7 +2,7 @@ Flash Messages
 ==============
 
 The bundle comes with a ``FlashManager`` to handle some session flash messages types you can specify in the configuration
-to be returned as a ``success``, ``notice`` or ``error`` type.
+to be returned as a ``success``, ``warning`` or ``error`` type.
 
 Configuration
 ^^^^^^^^^^^^^
@@ -14,9 +14,9 @@ Configuration
             success:
                 - a_bundle_success
                 - other_bundle_success
-            notice:
-                - a_bundle_notice
-                - other_bundle_notice
+            warning:
+                - a_bundle_warning
+                - other_bundle_warning
             error:
                 - a_bundle_error
                 - other_bundle_error

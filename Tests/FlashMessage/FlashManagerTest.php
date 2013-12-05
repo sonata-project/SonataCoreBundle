@@ -37,7 +37,7 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
         $this->session      = $this->getSession();
         $this->flashManager = $this->getFlashManager(array(
             'success' => array('my_bundle_success', 'my_second_bundle_success'),
-            'notice'  => array('my_bundle_notice', 'my_second_bundle_notice'),
+            'warning' => array('my_bundle_warning', 'my_second_bundle_warning'),
             'error'   => array('my_bundle_error', 'my_second_bundle_error'),
         ));
     }
@@ -66,7 +66,7 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(3, $types);
         $this->assertEquals(array(
             'success' => array('my_bundle_success', 'my_second_bundle_success'),
-            'notice'  => array('my_bundle_notice', 'my_second_bundle_notice'),
+            'warning' => array('my_bundle_warning', 'my_second_bundle_warning'),
             'error'   => array('my_bundle_error', 'my_second_bundle_error'),
         ), $types);
     }
@@ -80,15 +80,15 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
         $this->session->getFlashBag()->set('my_bundle_success', 'hey, success dude!');
         $this->session->getFlashBag()->set('my_second_bundle_success', 'hey, success dude!');
 
-        $this->session->getFlashBag()->set('my_bundle_notice', 'hey, notice dude!');
-        $this->session->getFlashBag()->set('my_second_bundle_notice', 'hey, notice dude!');
+        $this->session->getFlashBag()->set('my_bundle_warning', 'hey, warning dude!');
+        $this->session->getFlashBag()->set('my_second_bundle_warning', 'hey, warning dude!');
 
         $this->session->getFlashBag()->set('my_bundle_error', 'hey, error dude!');
         $this->session->getFlashBag()->set('my_second_bundle_error', 'hey, error dude!');
 
         // When
         $successMessages = $this->flashManager->get('success');
-        $noticeMessages = $this->flashManager->get('notice');
+        $warningMessages = $this->flashManager->get('warning');
         $errorMessages = $this->flashManager->get('error');
 
         // Then
@@ -98,10 +98,10 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals($message, 'hey, success dude!');
         }
 
-        $this->assertCount(2, $noticeMessages);
+        $this->assertCount(2, $warningMessages);
 
-        foreach ($noticeMessages as $message) {
-            $this->assertEquals($message, 'hey, notice dude!');
+        foreach ($warningMessages as $message) {
+            $this->assertEquals($message, 'hey, warning dude!');
         }
 
         $this->assertCount(2, $errorMessages);

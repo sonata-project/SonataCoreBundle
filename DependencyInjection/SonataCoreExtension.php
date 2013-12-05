@@ -56,7 +56,7 @@ class SonataCoreExtension extends Extension
     {
         $types = array(
             'success' => $config['flashmessage']['success'],
-            'notice'  => $config['flashmessage']['notice'],
+            'warning'  => $config['flashmessage']['warning'],
             'error'   => $config['flashmessage']['error'],
         );
 

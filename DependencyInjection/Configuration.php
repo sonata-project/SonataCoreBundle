@@ -56,7 +56,7 @@ class Configuration implements ConfigurationInterface
                             ->isRequired()
                             ->prototype('scalar')->end()
                         ->end()
-                        ->arrayNode('notice')
+                        ->arrayNode('warning')
                             ->isRequired()
                             ->prototype('scalar')->end()
                         ->end()
