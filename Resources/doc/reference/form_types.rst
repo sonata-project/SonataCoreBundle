@@ -138,7 +138,7 @@ This can be done by declaring a new service:
 
     .. code-block:: xml
 
-        <service id="sonata.order.form.status_type" class="Sonata\AdminBundle\Form\Type\StatusType">
+        <service id="sonata.order.form.status_type" class="Sonata\CoreBundle\Form\Type\StatusType">
             <argument>%sonata.order.order.class%</argument>
             <argument>getStatusList</argument>
             <argument>sonata_order_status</argument>
