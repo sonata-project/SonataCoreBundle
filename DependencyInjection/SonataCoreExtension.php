@@ -46,45 +46,6 @@ class SonataCoreExtension extends Extension
     }
 
     /**
-     * Registers flash message types defined in configuration to flash manager
-     *
-     * @param  \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param  array                                                   $config
-     *
-     * @return void
-     */
-    public function registerFlashTypes(ContainerBuilder $container, array $config)
-    {
-        $types = array(
-            'success' => array(
-                array_merge($config['flashmessage']['success'], array(
-                    'sonata_flash_success',
-                    'sonata_user_success',
-                    'fos_user_success'
-                ))
-            ),
-            'warning' => array(
-                array_merge($config['flashmessage']['warning'], array(
-                    'sonata_flash_info'
-                ))
-            ),
-            'error' => array(
-                array_merge($config['flashmessage']['error'], array(
-                    'sonata_flash_error',
-                    'sonata_user_error'
-                ))
-            ),
-        );
-
-        $identifier = 'sonata.core.flashmessage.manager';
-
-        $definition = $container->getDefinition($identifier);
-        $definition->replaceArgument(1, $types);
-
-        $container->setDefinition($identifier, $definition);
-    }
-    
-    /**
      * Add classes to compile
      *
      * @return void
@@ -100,5 +61,29 @@ class SonataCoreExtension extends Extension
             "Sonata\\CoreBundle\\Form\\Type\\ImmutableArrayType",
             "Sonata\\CoreBundle\\Form\\Type\\TranslatableChoiceType",
         ));
+    }
+
+    /**
+     * Registers flash message types defined in configuration to flash manager
+     *
+     * @param  \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param  array                                                   $config
+     *
+     * @return void
+     */
+    public function registerFlashTypes(ContainerBuilder $container, array $config)
+    {
+        $types = array(
+            'success' => $config['flashmessage']['success'],
+            'notice'  => $config['flashmessage']['notice'],
+            'error'   => $config['flashmessage']['error'],
+        );
+
+        $identifier = 'sonata.core.flashmessage.manager';
+
+        $definition = $container->getDefinition($identifier);
+        $definition->replaceArgument(1, $types);
+
+        $container->setDefinition($identifier, $definition);
     }
 }
