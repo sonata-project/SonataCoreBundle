@@ -32,28 +32,6 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('sonata_core');
 
-        $supportedManagerTypes = array('orm', 'mongodb');
-
-
-        $rootNode
-            ->children()
-                ->scalarNode('manager_type')
-                    ->defaultValue('orm')
-                    ->validate()
-                        ->ifNotInArray($supportedManagerTypes)
-                        ->thenInvalid('The manager type %s is not supported. Please choose one of '.json_encode($supportedManagerTypes))
-                    ->end()
-                ->end()
-                ->arrayNode('class')
-                    ->children()
-                        ->scalarNode('component')->cannotBeEmpty()->end()
-                        ->scalarNode('actionComponent')->cannotBeEmpty()->end()
-                        ->scalarNode('action')->cannotBeEmpty()->end()
-                        ->scalarNode('core')->cannotBeEmpty()->end()
-                    ->end()
-                ->end()
-            ->end();
-
         return $treeBuilder;
     }
 }

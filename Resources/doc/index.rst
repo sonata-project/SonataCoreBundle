@@ -12,3 +12,4 @@ Reference Guide
    :numbered:
 
    reference/installation
+   reference/form_types

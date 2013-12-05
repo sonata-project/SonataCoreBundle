@@ -38,6 +38,6 @@ class SonataCoreExtension extends Extension
         $config = $processor->processConfiguration($configuration, $configs);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('core.xml');
+        $loader->load('form_types.xml');
     }
 }
