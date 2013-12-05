@@ -39,5 +39,20 @@ class SonataCoreExtension extends Extension
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('form_types.xml');
+        
+        $this->configureClassesToCompile();
+    }
+    
+    public function configureClassesToCompile()
+    {
+        $this->addClassesToCompile(array(
+            "Sonata\\CoreBundle\\Form\\Type\\BooleanType",
+            "Sonata\\CoreBundle\\Form\\Type\\CollectionType",
+            "Sonata\\CoreBundle\\Form\\Type\\DateRangeType",
+            "Sonata\\CoreBundle\\Form\\Type\\DateTimeRangeType",
+            "Sonata\\CoreBundle\\Form\\Type\\EqualType",
+            "Sonata\\CoreBundle\\Form\\Type\\ImmutableArrayType",
+            "Sonata\\CoreBundle\\Form\\Type\\TranslatableChoiceType",
+        ));
     }
 }
