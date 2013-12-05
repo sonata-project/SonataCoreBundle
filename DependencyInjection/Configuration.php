@@ -11,6 +11,7 @@
 
 namespace Sonata\CoreBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -20,7 +21,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
  *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
- * @author Alexander <iam.asm89@gmail.com>
+ * @author Vincent Composieux <composieux@ekino.com>
  */
 class Configuration implements ConfigurationInterface
 {
@@ -32,6 +33,40 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('sonata_core');
 
+        $this->addFlashMessageSection($rootNode);
+
         return $treeBuilder;
+    }
+
+    /**
+     * Returns configuration for flash messages
+     *
+     * @param ArrayNodeDefinition $node
+     *
+     * @return void
+     */
+    private function addFlashMessageSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('flashmessage')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('success')
+                            ->isRequired()
+                            ->prototype('scalar')->end()
+                        ->end()
+                        ->arrayNode('notice')
+                            ->isRequired()
+                            ->prototype('scalar')->end()
+                        ->end()
+                        ->arrayNode('error')
+                            ->isRequired()
+                            ->prototype('scalar')->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
     }
 }

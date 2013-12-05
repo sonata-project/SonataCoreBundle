@@ -39,5 +39,32 @@ class SonataCoreExtension extends Extension
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('form_types.xml');
+        $loader->load('flash.xml');
+
+        $this->registerFlashTypes($container, $config);
+    }
+
+    /**
+     * Registers flash message types defined in configuration to flash manager
+     *
+     * @param  \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param  array                                                   $config
+     *
+     * @return void
+     */
+    public function registerFlashTypes(ContainerBuilder $container, array $config)
+    {
+        $types = array(
+            'success' => $config['flashmessage']['success'],
+            'notice'  => $config['flashmessage']['notice'],
+            'error'   => $config['flashmessage']['error'],
+        );
+
+        $identifier = 'sonata.core.flashmessage.manager';
+
+        $definition = $container->getDefinition($identifier);
+        $definition->replaceArgument(1, $types);
+
+        $container->setDefinition($identifier, $definition);
     }
 }
