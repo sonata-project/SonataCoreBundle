@@ -16,7 +16,8 @@
         }
     ],
     "require": {
-
+        "symfony/form": "~2.2",
+        "symfony/translation": "~2.2"
     },
     "autoload": {
         "psr-0": { "Sonata\\CoreBundle": "" }
