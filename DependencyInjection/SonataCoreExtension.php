@@ -55,9 +55,24 @@ class SonataCoreExtension extends Extension
     public function registerFlashTypes(ContainerBuilder $container, array $config)
     {
         $types = array(
-            'success' => $config['flashmessage']['success'],
-            'warning'  => $config['flashmessage']['warning'],
-            'error'   => $config['flashmessage']['error'],
+            'success' => array(
+                array_merge($config['flashmessage']['success'], array(
+                    'sonata_flash_success',
+                    'sonata_user_success',
+                    'fos_user_success'
+                ))
+            ),
+            'warning' => array(
+                array_merge($config['flashmessage']['warning'], array(
+                    'sonata_flash_info'
+                ))
+            ),
+            'error' => array(
+                array_merge($config['flashmessage']['error'], array(
+                    'sonata_flash_error',
+                    'sonata_user_error'
+                ))
+            ),
         );
 
         $identifier = 'sonata.core.flashmessage.manager';

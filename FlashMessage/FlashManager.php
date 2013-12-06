@@ -81,7 +81,7 @@ class FlashManager
      *
      * @return void
      */
-    public function handle()
+    protected function handle()
     {
         foreach ($this->getTypes() as $type => $values) {
             foreach ($values as $value) {
