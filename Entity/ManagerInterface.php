@@ -11,12 +11,14 @@
 
 namespace Sonata\CoreBundle\Entity;
 
+use Doctrine\ORM\EntityRepository;
+
 /**
  * Class BaseManager.
  *
  * @author Sylvain Deloux <sylvain.deloux@fullsix.com>
  */
-interface BaseManagerInterface
+interface ManagerInterface
 {
     /**
      * Set the Entity class name.
@@ -66,7 +68,7 @@ interface BaseManagerInterface
      *
      * @return object
      */
-    public function doCreate();
+    public function create();
 
     /**
      * Save an Entity.
@@ -74,7 +76,7 @@ interface BaseManagerInterface
      * @param object  $entity   The Entity to save
      * @param boolean $andFlush Flush the EntityManager after saving the object?
      */
-    public function doSave($entity, $andFlush = true);
+    public function save($entity, $andFlush = true);
 
     /**
      * Delete an Entity.
@@ -82,5 +84,5 @@ interface BaseManagerInterface
      * @param object  $entity   The Entity to delete
      * @param boolean $andFlush Flush the EntityManager after deleting the object?
      */
-    public function doDelete($entity, $andFlush = true);
+    public function delete($entity, $andFlush = true);
 }

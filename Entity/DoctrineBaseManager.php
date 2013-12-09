@@ -19,17 +19,12 @@ use Doctrine\ORM\EntityRepository;
  *
  * @author Sylvain Deloux <sylvain.deloux@fullsix.com>
  */
-abstract class BaseManager implements BaseManagerInterface
+abstract class DoctrineBaseManager implements ManagerInterface
 {
     /**
      * @var EntityManager
      */
     protected $em;
-
-    /**
-     * @var EntityRepository
-     */
-    protected $repository;
 
     /**
      * @var string
@@ -46,8 +41,6 @@ abstract class BaseManager implements BaseManagerInterface
     {
         $this->em    = $em;
         $this->class = $class;
-
-        $this->repository = $this->em->getRepository($this->class);
     }
 
     /**
@@ -71,7 +64,7 @@ abstract class BaseManager implements BaseManagerInterface
      */
     public function findAll()
     {
-        return $this->repository->findAll();
+        return $this->getRepository()->findAll();
     }
 
     /**
@@ -79,7 +72,7 @@ abstract class BaseManager implements BaseManagerInterface
      */
     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
     {
-        return $this->repository->findBy($criteria, $orderBy, $limit, $offset);
+        return $this->getRepository()->findBy($criteria, $orderBy, $limit, $offset);
     }
 
     /**
@@ -87,13 +80,13 @@ abstract class BaseManager implements BaseManagerInterface
      */
     public function findOneBy(array $criteria, array $orderBy = null)
     {
-        return $this->repository->findOneBy($criteria, $orderBy);
+        return $this->getRepository()->findOneBy($criteria, $orderBy);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function doCreate()
+    public function create()
     {
         return new $this->class;
     }
@@ -101,7 +94,7 @@ abstract class BaseManager implements BaseManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function doSave($entity, $andFlush = true)
+    public function save($entity, $andFlush = true)
     {
         $this->em->persist($entity);
 
@@ -113,12 +106,22 @@ abstract class BaseManager implements BaseManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function doDelete($entity, $andFlush = true)
+    public function delete($entity, $andFlush = true)
     {
         $this->em->remove($entity);
 
         if ($andFlush) {
             $this->em->flush();
         }
+    }
+
+    /**
+     * Return the related Entity Repository.
+     *
+     * @return EntityRepository
+     */
+    protected function getRepository()
+    {
+        return $this->em->getRepository($this->class);
     }
 }
