@@ -34,12 +34,15 @@ class SonataCoreExtension extends Extension
     {
         $processor = new Processor();
         $configuration = new Configuration();
-        $processor->processConfiguration($configuration, $configs);
+        $config = $processor->processConfiguration($configuration, $configs);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('flash.xml');
         $loader->load('form_types.xml');
         $loader->load('twig.xml');
-        
+
+        $this->registerFlashTypes($container, $config);
+
         $this->configureClassesToCompile();
     }
     
@@ -54,5 +57,44 @@ class SonataCoreExtension extends Extension
             "Sonata\\CoreBundle\\Form\\Type\\ImmutableArrayType",
             "Sonata\\CoreBundle\\Form\\Type\\TranslatableChoiceType",
         ));
+    }
+
+    /**
+     * Registers flash message types defined in configuration to flash manager
+     *
+     * @param  \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param  array                                                   $config
+     *
+     * @return void
+     */
+    public function registerFlashTypes(ContainerBuilder $container, array $config)
+    {
+        $types = array(
+            'success' => array(
+                array_merge($config['flashmessage']['success'], array(
+                    'sonata_flash_success',
+                    'sonata_user_success',
+                    'fos_user_success'
+                ))
+            ),
+            'warning' => array(
+                array_merge($config['flashmessage']['warning'], array(
+                    'sonata_flash_info'
+                ))
+            ),
+            'error' => array(
+                array_merge($config['flashmessage']['error'], array(
+                    'sonata_flash_error',
+                    'sonata_user_error'
+                ))
+            ),
+        );
+
+        $identifier = 'sonata.core.flashmessage.manager';
+
+        $definition = $container->getDefinition($identifier);
+        $definition->replaceArgument(1, $types);
+
+        $container->setDefinition($identifier, $definition);
     }
 }
