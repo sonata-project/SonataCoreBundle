@@ -24,21 +24,21 @@ use Symfony\Component\Config\Definition\Processor;
  */
 class SonataCoreExtension extends Extension
 {
-
     /**
      * Loads the url shortener configuration.
      *
-     * @param array            $config    An array of configuration settings
+     * @param array            $configs   An array of configuration settings
      * @param ContainerBuilder $container A ContainerBuilder instance
      */
     public function load(array $configs, ContainerBuilder $container)
     {
         $processor = new Processor();
         $configuration = new Configuration();
-        $config = $processor->processConfiguration($configuration, $configs);
+        $processor->processConfiguration($configuration, $configs);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('form_types.xml');
+        $loader->load('twig.xml');
         
         $this->configureClassesToCompile();
     }

@@ -12,7 +12,15 @@
 namespace Sonata\CoreBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
 
 class SonataCoreBundle extends Bundle
 {
+    public function build(ContainerBuilder $container)
+    {
+        parent::build($container);
+
+        $container->addCompilerPass(new StatusRendererCompilerPass());
+    }
 }
