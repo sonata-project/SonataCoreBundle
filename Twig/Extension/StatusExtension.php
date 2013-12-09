@@ -40,7 +40,7 @@ class StatusExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'status_class' => new \Twig_Filter_Method($this, 'statusClass'),
+            'sonata_status_class' => new \Twig_Filter_Method($this, 'statusClass'),
         );
     }
 
