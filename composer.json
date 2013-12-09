@@ -16,6 +16,7 @@
         }
     ],
     "require": {
+        "symfony/http-foundation": "~2.2",
         "symfony/form": "~2.2",
         "symfony/translation": "~2.2",
         "symfony/twig-bridge": "~2.2"
