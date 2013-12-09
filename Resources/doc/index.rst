@@ -13,3 +13,4 @@ Reference Guide
 
    reference/installation
    reference/form_types
+   reference/status_helper
