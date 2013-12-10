@@ -19,7 +19,7 @@
         "symfony/http-foundation": "~2.2",
         "symfony/form": "~2.2",
         "symfony/translation": "~2.2",
-        "symfony/twig-bridge": "~2.2"
+        "twig/twig": "~1.12"
     },
     "autoload": {
         "psr-0": { "Sonata\\CoreBundle": "" }

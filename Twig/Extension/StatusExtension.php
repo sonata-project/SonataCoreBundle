@@ -68,6 +68,6 @@ class StatusExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'sonata_status';
+        return 'sonata_core_status';
     }
 }

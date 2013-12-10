@@ -18,7 +18,7 @@ class StatusExtensionTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
         $extension = new StatusExtension();
-        $this->assertEquals('sonata_status', $extension->getName());
+        $this->assertEquals('sonata_core_status', $extension->getName());
     }
 
     public function testGetFilters()
