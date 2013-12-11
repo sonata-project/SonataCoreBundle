@@ -35,7 +35,7 @@ Installation
 
     sonata_core: ~
 
-* import the ``sonata_timelize.yml`` file in the ``config.yml`` file ::
+* import the ``sonata_core.yml`` file in the ``config.yml`` file ::
 
 .. code-block:: yaml
 
