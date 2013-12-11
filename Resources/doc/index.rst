@@ -16,3 +16,4 @@ Reference Guide
    reference/status_helper
    reference/flash_messages
    reference/twig_helpers
+   reference/doctrine_base_manager
