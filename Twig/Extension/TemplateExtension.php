@@ -26,6 +26,16 @@ class TemplateExtension extends \Twig_Extension
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function getFilters()
+    {
+        return array(
+            'sonata_slugify' => new \Twig_Filter_Method($this, 'slugify'),
+        );
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getTokenParsers()
@@ -33,6 +43,35 @@ class TemplateExtension extends \Twig_Extension
         return array(
             new TemplateBoxTokenParser($this->debug),
         );
+    }
+
+    /**
+     * Slugify a text
+     *
+     * @param $text
+     *
+     * @return string
+     */
+    public function slugify($text)
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\\pL\d]+~u', '-', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // transliterate
+        if (function_exists('iconv')) {
+            $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+        }
+
+        // lowercase
+        $text = strtolower($text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        return $text;
     }
 
     /**

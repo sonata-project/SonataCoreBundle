@@ -15,3 +15,4 @@ Reference Guide
    reference/form_types
    reference/status_helper
    reference/flash_messages
+   reference/twig_helpers
