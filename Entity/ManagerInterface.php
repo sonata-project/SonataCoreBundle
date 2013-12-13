@@ -85,4 +85,11 @@ interface ManagerInterface
      * @param boolean $andFlush Flush the EntityManager after deleting the object?
      */
     public function delete($entity, $andFlush = true);
+
+    /**
+     * Get the related table name.
+     *
+     * @return string
+     */
+    public function getTableName();
 }
