@@ -129,6 +129,14 @@ abstract class DoctrineBaseManager implements ManagerInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getConnection()
+    {
+        return $this->em->getConnection();
+    }
+
+    /**
      * Return the related Entity Repository.
      *
      * @return EntityRepository
