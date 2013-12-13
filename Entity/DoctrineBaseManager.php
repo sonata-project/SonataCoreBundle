@@ -32,6 +32,11 @@ abstract class DoctrineBaseManager implements ManagerInterface
     protected $class;
 
     /**
+     * @var EntityRepository
+     */
+    protected $repository;
+
+    /**
      * Constructor.
      *
      * @param string        $class
@@ -122,6 +127,10 @@ abstract class DoctrineBaseManager implements ManagerInterface
      */
     protected function getRepository()
     {
-        return $this->em->getRepository($this->class);
+        if (!$this->repository) {
+            $this->repository = $this->em->getRepository($this->class);
+        }
+
+        return $this->repository;
     }
 }
