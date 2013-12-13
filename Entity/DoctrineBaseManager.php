@@ -121,6 +121,14 @@ abstract class DoctrineBaseManager implements ManagerInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getTableName()
+    {
+        return $this->em->getClassMetadata($this->class)->table['name'];
+    }
+
+    /**
      * Return the related Entity Repository.
      *
      * @return EntityRepository
