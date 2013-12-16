@@ -18,6 +18,7 @@
     "require": {
         "symfony/http-foundation": "~2.2",
         "symfony/form": "~2.2",
+        "symfony/config": "~2.0",
         "symfony/translation": "~2.2",
         "twig/twig": "~1.12"
     },
