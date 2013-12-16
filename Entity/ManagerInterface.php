@@ -11,7 +11,7 @@
 
 namespace Sonata\CoreBundle\Entity;
 
-use Doctrine\ORM\EntityRepository;
+use Doctrine\DBAL\Connection;
 
 /**
  * Class BaseManager.
@@ -92,4 +92,11 @@ interface ManagerInterface
      * @return string
      */
     public function getTableName();
+
+    /**
+     * Get the DB driver connection.
+     *
+     * @return Connection
+     */
+    public function getConnection();
 }
