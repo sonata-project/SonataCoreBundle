@@ -50,6 +50,7 @@ class Configuration implements ConfigurationInterface
         $node
             ->children()
                 ->arrayNode('flashmessage')
+                ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('success')
                             ->useAttributeAsKey('type')
