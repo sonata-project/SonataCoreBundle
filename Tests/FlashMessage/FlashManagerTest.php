@@ -7,9 +7,10 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
+use Symfony\Component\Translation\Loader\ArrayLoader;
+use Symfony\Component\Translation\Translator;
 
 use Sonata\CoreBundle\FlashMessage\FlashManager;
-use Symfony\Component\Translation\Translator;
 
 /**
  * Class FlashManagerTest
@@ -155,6 +156,38 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
 
         foreach ($nonRegisteredMessages as $message) {
             $this->assertEquals($message, 'hey, success dude!');
+        }
+    }
+
+    /**
+     * Test the flash manager get() method with a specified domain
+     */
+    public function testFlashMessageWithCustomDomain()
+    {
+        // Given
+        $translator = $this->flashManager->getTranslator();
+        $translator->addLoader('array', new ArrayLoader());
+        $translator->addResource('array', array(
+            'my_bundle_success_message' => 'My bundle success message!'
+        ), 'en', 'MyCustomDomain');
+
+        // When
+        $this->session->getFlashBag()->set('my_bundle_success', 'my_bundle_success_message');
+        $messages = $this->flashManager->get('success', 'MyCustomDomain');
+
+        $this->session->getFlashBag()->set('my_bundle_success', 'my_bundle_success_message');
+        $messagesWithoutDomain = $this->flashManager->get('success');
+
+        // Then
+        $this->assertCount(1, $messages);
+        $this->assertCount(1, $messagesWithoutDomain);
+
+        foreach ($messages as $message) {
+            $this->assertEquals($message, 'My bundle success message!');
+        }
+
+        foreach ($messagesWithoutDomain as $message) {
+            $this->assertEquals($message, 'my_bundle_success_message');
         }
     }
 

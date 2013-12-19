@@ -71,14 +71,17 @@ class SonataCoreExtension extends Extension
     {
         $types = array(
             'success' => array_merge($config['flashmessage']['success'], array(
+                'success' => array('domain' => 'SonataCoreBundle'),
                 'sonata_flash_success' => array('domain' => 'SonataAdminBundle'),
                 'sonata_user_success'  => array('domain' => 'SonataUserBundle'),
                 'fos_user_success'     => array('domain' => 'FOSUserBundle'),
             )),
             'warning' => array_merge($config['flashmessage']['warning'], array(
+                'warning' => array('domain' => 'SonataCoreBundle'),
                 'sonata_flash_info' => array('domain' => 'SonataAdminBundle'),
             )),
             'error' => array_merge($config['flashmessage']['error'], array(
+                'error' => array('domain' => 'SonataCoreBundle'),
                 'sonata_flash_error' => array('domain' => 'SonataAdminBundle'),
                 'sonata_user_error'  => array('domain' => 'SonataUserBundle'),
             )),

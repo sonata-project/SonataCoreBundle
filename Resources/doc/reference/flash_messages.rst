@@ -39,3 +39,9 @@ To use this feature in your templates, simply include the following template (wi
 .. code-block:: twig
 
     {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+
+Please note that if necessary, you can also specify a translation domain to override configuration here:
+
+.. code-block:: twig
+
+    {% include 'SonataCoreBundle:FlashMessage:render.html.twig' with {domain: 'MyCustomBundle'} %}

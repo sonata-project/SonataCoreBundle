@@ -83,13 +83,14 @@ class FlashManager
     /**
      * Returns flash bag messages for correct type after renaming with Sonata core type
      *
-     * @param string $type
+     * @param string $type   Type of flash message
+     * @param string $domain Translation domain to use
      *
      * @return array
      */
-    public function get($type)
+    public function get($type, $domain = null)
     {
-        $this->handle();
+        $this->handle($domain);
 
         return $this->getSession()->getFlashBag()->get($type);
     }
@@ -97,13 +98,16 @@ class FlashManager
     /**
      * Handles flash bag types renaming
      *
+     * @param string $domain
+     *
      * @return void
      */
-    protected function handle()
+    protected function handle($domain = null)
     {
         foreach ($this->getTypes() as $type => $values) {
             foreach ($values as $value => $options) {
-                $this->rename($type, $value, $options['domain']);
+                $domainType = $domain ?: $options['domain'];
+                $this->rename($type, $value, $domainType);
             }
         }
     }

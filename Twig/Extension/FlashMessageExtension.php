@@ -50,13 +50,14 @@ class FlashMessageExtension extends \Twig_Extension
     /**
      * Returns flash messages handled by Sonata core flash manager
      *
-     * @param string $type
+     * @param string $type   Type of flash message
+     * @param string $domain Translation domain to use
      *
      * @return string
      */
-    public function getFlashMessages($type)
+    public function getFlashMessages($type, $domain = null)
     {
-        return $this->flashManager->get($type);
+        return $this->flashManager->get($type, $domain);
     }
 
     /**
