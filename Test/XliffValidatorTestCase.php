@@ -36,7 +36,7 @@ abstract class XliffValidatorTestCase extends \PHPUnit_Framework_TestCase
     {
         try {
             $this->loader->load($file, 'en');
-            $this->assertTrue(true, sprintf("Succefull loading file: %s", $file));
+            $this->assertTrue(true, sprintf("Successful loading file: %s", $file));
         } catch (InvalidResourceException $e) {
             $this->errors[] = sprintf("%s => %s", $file, $e->getMessage());
         }

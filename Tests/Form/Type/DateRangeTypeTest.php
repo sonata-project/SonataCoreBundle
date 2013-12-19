@@ -16,7 +16,6 @@ use Sonata\CoreBundle\Form\Type\DateRangeType;
 use Symfony\Component\Form\Tests\Extension\Core\Type\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
 class DateRangeTypeTest extends TypeTestCase
 {
     public function testGetDefaultOptions()
