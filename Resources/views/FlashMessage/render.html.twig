@@ -9,7 +9,8 @@ file that was distributed with this source code.
 
 #}
 {% for type in ['success', 'error', 'warning'] %}
-    {% for message in sonata_flashmessages_get(type) %}
+    {% set domain = domain is defined ? domain : null %}
+    {% for message in sonata_flashmessages_get(type, domain) %}
         <div class="alert alert-{{ type }}">
             {{ message|raw }}
         </div>
