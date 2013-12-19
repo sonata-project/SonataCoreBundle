@@ -12,14 +12,13 @@ Configuration
     sonata_core:
         flashmessage:
             success:
-                - a_bundle_success
-                - other_bundle_success
+                - my_custom_bundle_success: { domain: MyCustomBundle }
+                - my_other_bundle_success: { domain: MyOtherBundle }
             warning:
-                - a_bundle_warning
-                - other_bundle_warning
+                - my_custom_bundle_warning: { domain: MyCustomBundle }
+                - my_other_bundle_warning: # if nothing is specified, sets SonataCoreBundle by default
             error:
-                - a_bundle_error
-                - other_bundle_error
+                - my_custom_bundle: { domain: MyCustomBundle }
 
 You can specify multiple flash messages types you want to manage here.
 
@@ -35,14 +34,8 @@ To use this feature in your PHP classes/controllers, you can use, for example:
     $this->get('sonata.core.flashmessage.manager')
     $messages = $flashManager->get('success');
 
-To use this feature in your templates, simply use the following Twig function:
+To use this feature in your templates, simply include the following template (with an optional domain parameter):
 
 .. code-block:: twig
 
-    {% for type in ['success', 'error', 'warning'] %}
-        {% for message in sonata_flashmessages_get(type) %}
-            <div class="alert alert-{{ type }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endfor %}
+    {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}

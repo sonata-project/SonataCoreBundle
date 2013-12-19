@@ -11,7 +11,8 @@
 
 namespace Sonata\CoreBundle\FlashMessage;
 
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Class FlashManager
@@ -21,9 +22,14 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class FlashManager
 {
     /**
-     * @var Session
+     * @var SessionInterface
      */
     protected $session;
+
+    /**
+     * @var TranslatorInterface
+     */
+    protected $translator;
 
     /**
      * @var array
@@ -33,13 +39,15 @@ class FlashManager
     /**
      * Constructor
      *
-     * @param Session $session Symfony session service
-     * @param array   $types   Sonata core types array (defined in configuration)
+     * @param SessionInterface    $session    Symfony session service
+     * @param TranslatorInterface $translator Symfony translator service
+     * @param array               $types      Sonata core types array (defined in configuration)
      */
-    public function __construct(Session $session, array $types)
+    public function __construct(SessionInterface $session, TranslatorInterface $translator, array $types)
     {
-        $this->session = $session;
-        $this->types   = $types;
+        $this->session    = $session;
+        $this->translator = $translator;
+        $this->types      = $types;
     }
 
     /**
@@ -55,11 +63,21 @@ class FlashManager
     /**
      * Returns Symfony session service
      *
-     * @return Session
+     * @return SessionInterface
      */
     public function getSession()
     {
         return $this->session;
+    }
+
+    /**
+     * Returns Symfony translator service
+     *
+     * @return TranslatorInterface
+     */
+    public function getTranslator()
+    {
+        return $this->translator;
     }
 
     /**
@@ -84,8 +102,8 @@ class FlashManager
     protected function handle()
     {
         foreach ($this->getTypes() as $type => $values) {
-            foreach ($values as $value) {
-                $this->rename($type, $value);
+            foreach ($values as $value => $options) {
+                $this->rename($type, $value, $options['domain']);
             }
         }
     }
@@ -93,16 +111,18 @@ class FlashManager
     /**
      * Process flash message type rename
      *
-     * @param string $type  Sonata core flash message type
-     * @param string $value Original flash message type
+     * @param string $type   Sonata core flash message type
+     * @param string $value  Original flash message type
+     * @param string $domain Translation domain to use
      *
      * @return void
      */
-    protected function rename($type, $value)
+    protected function rename($type, $value, $domain)
     {
         $flashBag = $this->getSession()->getFlashBag();
 
         foreach ($flashBag->get($value) as $message) {
+            $message = $this->getTranslator()->trans($message, array(), $domain);
             $flashBag->add($type, $message);
         }
     }

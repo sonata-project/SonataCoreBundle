@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 use Sonata\CoreBundle\FlashMessage\FlashManager;
+use Symfony\Component\Translation\Translator;
 
 /**
  * Class FlashManagerTest
@@ -25,6 +26,11 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
     protected $session;
 
     /**
+     * @var TranslatorInterface
+     */
+    protected $translator;
+
+    /**
      * @var FlashManager
      */
     protected $flashManager;
@@ -35,10 +41,20 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->session      = $this->getSession();
+        $this->translator   = $this->getTranslator();
         $this->flashManager = $this->getFlashManager(array(
-            'success' => array('my_bundle_success', 'my_second_bundle_success'),
-            'warning' => array('my_bundle_warning', 'my_second_bundle_warning'),
-            'error'   => array('my_bundle_error', 'my_second_bundle_error'),
+            'success' => array(
+                'my_bundle_success' => array('domain' => 'MySuccessBundle'),
+                'my_second_bundle_success' => array('domain' => 'SonataCoreBundle'),
+            ),
+            'warning' => array(
+                'my_bundle_warning' => array('domain' => 'MyWarningBundle'),
+                'my_second_bundle_warning' => array('domain' => 'SonataCoreBundle'),
+            ),
+            'error' => array(
+                'my_bundle_error' => array('domain' => 'MyErrorBundle'),
+                'my_second_bundle_error' => array('domain' => 'SonataCoreBundle'),
+            ),
         ));
     }
 
@@ -65,9 +81,18 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
         // Then
         $this->assertCount(3, $types);
         $this->assertEquals(array(
-            'success' => array('my_bundle_success', 'my_second_bundle_success'),
-            'warning' => array('my_bundle_warning', 'my_second_bundle_warning'),
-            'error'   => array('my_bundle_error', 'my_second_bundle_error'),
+            'success' => array(
+                'my_bundle_success' => array('domain' => 'MySuccessBundle'),
+                'my_second_bundle_success' => array('domain' => 'SonataCoreBundle'),
+            ),
+            'warning' => array(
+                'my_bundle_warning' => array('domain' => 'MyWarningBundle'),
+                'my_second_bundle_warning' => array('domain' => 'SonataCoreBundle'),
+            ),
+            'error' => array(
+                'my_bundle_error' => array('domain' => 'MyErrorBundle'),
+                'my_second_bundle_error' => array('domain' => 'SonataCoreBundle'),
+            ),
         ), $types);
     }
 
@@ -144,6 +169,16 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Returns a Symfony translator service
+     *
+     * @return \Symfony\Component\Translation\Translator
+     */
+    protected function getTranslator()
+    {
+        return new Translator('en');
+    }
+
+    /**
      * Returns Sonata core flash manager
      *
      * @param array $types
@@ -152,6 +187,6 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
      */
     protected function getFlashManager(array $types)
     {
-        return new FlashManager($this->session, $types);
+        return new FlashManager($this->session, $this->translator, $types);
     }
 }
