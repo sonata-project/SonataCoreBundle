@@ -70,30 +70,24 @@ class SonataCoreExtension extends Extension
     public function registerFlashTypes(ContainerBuilder $container, array $config)
     {
         $types = array(
-            'success' => array(
-                array_merge($config['flashmessage']['success'], array(
-                    'sonata_flash_success',
-                    'sonata_user_success',
-                    'fos_user_success'
-                ))
-            ),
-            'warning' => array(
-                array_merge($config['flashmessage']['warning'], array(
-                    'sonata_flash_info'
-                ))
-            ),
-            'error' => array(
-                array_merge($config['flashmessage']['error'], array(
-                    'sonata_flash_error',
-                    'sonata_user_error'
-                ))
-            ),
+            'success' => array_merge($config['flashmessage']['success'], array(
+                'sonata_flash_success' => array('domain' => 'SonataAdminBundle'),
+                'sonata_user_success'  => array('domain' => 'SonataUserBundle'),
+                'fos_user_success'     => array('domain' => 'FOSUserBundle'),
+            )),
+            'warning' => array_merge($config['flashmessage']['warning'], array(
+                'sonata_flash_info' => array('domain' => 'SonataAdminBundle'),
+            )),
+            'error' => array_merge($config['flashmessage']['error'], array(
+                'sonata_flash_error' => array('domain' => 'SonataAdminBundle'),
+                'sonata_user_error'  => array('domain' => 'SonataUserBundle'),
+            )),
         );
 
         $identifier = 'sonata.core.flashmessage.manager';
 
         $definition = $container->getDefinition($identifier);
-        $definition->replaceArgument(1, $types);
+        $definition->replaceArgument(2, $types);
 
         $container->setDefinition($identifier, $definition);
     }
