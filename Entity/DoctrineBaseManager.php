@@ -34,7 +34,7 @@ abstract class DoctrineBaseManager implements ManagerInterface
     /**
      * @var EntityRepository
      */
-    protected $repository;
+    private $repository;
 
     /**
      * Constructor.
