@@ -16,7 +16,6 @@ use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
 use Symfony\Component\Form\Tests\Extension\Core\Type\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
 class ImmutableArrayTypeTest extends TypeTestCase
 {
     public function testGetDefaultOptions()
