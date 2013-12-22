@@ -6,6 +6,14 @@
                 <source>link_add</source>
                 <target>添加</target>
             </trans-unit>
+            <trans-unit id="label_type_yes">
+                <source>label_type_yes</source>
+                <target>是</target>
+            </trans-unit>
+            <trans-unit id="label_type_no">
+                <source>label_type_no</source>
+                <target>否</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

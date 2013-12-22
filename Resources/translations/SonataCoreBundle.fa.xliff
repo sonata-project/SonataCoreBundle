@@ -6,6 +6,14 @@
                 <source>link_add</source>
                 <target>اضافه کردن جدید</target>
             </trans-unit>
+            <trans-unit id="label_type_yes">
+                <source>label_type_yes</source>
+                <target>بله</target>
+            </trans-unit>
+            <trans-unit id="label_type_no">
+                <source>label_type_no</source>
+                <target>خیر</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

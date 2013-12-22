@@ -6,6 +6,14 @@
                 <source>link_add</source>
                 <target>追加</target>
             </trans-unit>
+            <trans-unit id="label_type_yes">
+                <source>label_type_yes</source>
+                <target>はい</target>
+            </trans-unit>
+            <trans-unit id="label_type_no">
+                <source>label_type_no</source>
+                <target>いいえ</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

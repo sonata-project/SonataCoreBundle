@@ -6,6 +6,14 @@
                 <source>link_add</source>
                 <target>Добавяне</target>
             </trans-unit>
+            <trans-unit id="label_type_yes">
+                <source>label_type_yes</source>
+                <target>да</target>
+            </trans-unit>
+            <trans-unit id="label_type_no">
+                <source>label_type_no</source>
+                <target>не</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

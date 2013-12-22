@@ -6,6 +6,14 @@
                 <source>link_add</source>
                 <target>Pridať nový</target>
             </trans-unit>
+            <trans-unit id="label_type_yes">
+              <source>label_type_yes</source>
+              <target>áno</target>
+            </trans-unit>
+            <trans-unit id="label_type_no">
+              <source>label_type_no</source>
+              <target>nie</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

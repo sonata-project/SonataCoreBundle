@@ -6,6 +6,14 @@
                 <source>link_add</source>
                 <target>Додати новий</target>
             </trans-unit>
+            <trans-unit id="label_type_yes">
+                <source>label_type_yes</source>
+                <target>так</target>
+            </trans-unit>
+            <trans-unit id="label_type_no">
+                <source>label_type_no</source>
+                <target>немає</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

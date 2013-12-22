@@ -6,6 +6,14 @@
                 <source>link_add</source>
                 <target>Novi unos</target>
             </trans-unit>
+            <trans-unit id="label_type_yes">
+                <source>label_type_yes</source>
+                <target>da</target>
+            </trans-unit>
+            <trans-unit id="label_type_no">
+                <source>label_type_no</source>
+                <target>ne</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
