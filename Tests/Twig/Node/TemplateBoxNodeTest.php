@@ -37,7 +37,7 @@ class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
         return array(
             array($node, <<<EOF
 // line 1
-echo "<div class='alert alert-default'>
+echo "<div class='alert alert-default alert-info'>
     <strong>This is the default message</strong>
     <div>This file can be found in <code>{\$this->getTemplateName()}</code>.</div>
 </div>";

@@ -71,6 +71,16 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\Symfony\Component\HttpFoundation\Session\Session', $session);
     }
 
+    public function testGetHandledTypes()
+    {
+        $this->assertEquals(array('success', 'warning', 'error'), $this->flashManager->getHandledTypes());
+    }
+
+    public function testGetStatus()
+    {
+        $this->assertEquals("danger", $this->flashManager->getStatusClass('error'));
+    }
+
     /**
      * Test the flash manager getTypes() method
      */
@@ -220,6 +230,7 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
      */
     protected function getFlashManager(array $types)
     {
-        return new FlashManager($this->session, $this->translator, $types);
+        $classes = array('error' => 'danger');
+        return new FlashManager($this->session, $this->translator, $types, $classes);
     }
 }

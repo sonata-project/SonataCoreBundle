@@ -45,7 +45,7 @@ class SonataCoreExtension extends Extension
 
         $this->configureClassesToCompile();
     }
-    
+
     public function configureClassesToCompile()
     {
         $this->addClassesToCompile(array(
@@ -69,28 +69,36 @@ class SonataCoreExtension extends Extension
      */
     public function registerFlashTypes(ContainerBuilder $container, array $config)
     {
-        $types = array(
-            'success' => array_merge($config['flashmessage']['success'], array(
+        $mergedConfig = array_merge_recursive($config['flashmessage'], array(
+            'success' => array('types' => array(
                 'success' => array('domain' => 'SonataCoreBundle'),
                 'sonata_flash_success' => array('domain' => 'SonataAdminBundle'),
                 'sonata_user_success'  => array('domain' => 'SonataUserBundle'),
                 'fos_user_success'     => array('domain' => 'FOSUserBundle'),
             )),
-            'warning' => array_merge($config['flashmessage']['warning'], array(
+            'warning' => array('types' => array(
                 'warning' => array('domain' => 'SonataCoreBundle'),
                 'sonata_flash_info' => array('domain' => 'SonataAdminBundle'),
             )),
-            'error' => array_merge($config['flashmessage']['error'], array(
+            'error' => array('types' => array(
                 'error' => array('domain' => 'SonataCoreBundle'),
                 'sonata_flash_error' => array('domain' => 'SonataAdminBundle'),
                 'sonata_user_error'  => array('domain' => 'SonataUserBundle'),
             )),
-        );
+        ));
+
+        $types = $cssClasses = array();
+
+        foreach ($mergedConfig as $typeKey => $typeConfig) {
+            $types[$typeKey] = $typeConfig['types'];
+            $cssClasses[$typeKey] = array_key_exists('css_class', $typeConfig) ? $typeConfig['css_class'] : $typeKey;
+        }
 
         $identifier = 'sonata.core.flashmessage.manager';
 
         $definition = $container->getDefinition($identifier);
         $definition->replaceArgument(2, $types);
+        $definition->replaceArgument(3, $cssClasses);
 
         $container->setDefinition($identifier, $definition);
     }

@@ -44,6 +44,7 @@ class FlashMessageExtension extends \Twig_Extension
     {
         return array(
             'sonata_flashmessages_get' => new \Twig_Function_Method($this, 'getFlashMessages'),
+            'sonata_flashmessages_types' => new \Twig_Function_Method($this, 'getFlashMessagesTypes'),
         );
     }
 
@@ -58,6 +59,19 @@ class FlashMessageExtension extends \Twig_Extension
     public function getFlashMessages($type, $domain = null)
     {
         return $this->flashManager->get($type, $domain);
+    }
+
+    /**
+     * Returns flash messages types handled by Sonata core flash manager
+     *
+     * @param string $type   Type of flash message
+     * @param string $domain Translation domain to use
+     *
+     * @return string
+     */
+    public function getFlashMessagesTypes()
+    {
+        return $this->flashManager->getHandledTypes();
     }
 
     /**
