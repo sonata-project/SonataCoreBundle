@@ -42,7 +42,7 @@ class TemplateBoxNode extends \Twig_Node
         }
 
         $message = <<<CODE
-"<div class='alert alert-default'>
+"<div class='alert alert-default alert-info'>
     <strong>{$this->getNode('message')->getAttribute('value')}</strong>
     <div>This file can be found in <code>{\$this->getTemplateName()}</code>.</div>
 </div>"
