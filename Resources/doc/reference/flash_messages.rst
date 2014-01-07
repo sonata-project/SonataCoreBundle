@@ -2,7 +2,9 @@ Flash Messages
 ==============
 
 The bundle comes with a ``FlashManager`` to handle some session flash messages types you can specify in the configuration
-to be returned as a ``success``, ``warning`` or ``error`` type.
+to be returned as a ``success``, ``warning`` or ``error`` type (or even all your custom types you want to add).
+
+Additionally, you can also add a ``css_class`` section for each flash messages that will be displayed on rendering.
 
 Configuration
 ^^^^^^^^^^^^^
@@ -12,13 +14,20 @@ Configuration
     sonata_core:
         flashmessage:
             success:
-                - my_custom_bundle_success: { domain: MyCustomBundle }
-                - my_other_bundle_success: { domain: MyOtherBundle }
+                types:
+                    - { type: my_custom_bundle_success, domain: MyCustomBundle }
+                    - { type: my_other_bundle_success, domain: MyOtherBundle }
             warning:
-                - my_custom_bundle_warning: { domain: MyCustomBundle }
-                - my_other_bundle_warning: # if nothing is specified, sets SonataCoreBundle by default
+                types:
+                    - { type: my_custom_bundle_warning, domain: MyCustomBundle }
+                    - { type: my_other_bundle_warning } # if nothing is specified, sets SonataCoreBundle by default
             error:
-                - my_custom_bundle: { domain: MyCustomBundle }
+                css_class: danger # optionally, a CSS class can be defined
+                types:
+                    - { type: my_custom_bundle, domain: MyCustomBundle }
+            custom_type: # You can add custom types too
+                types:
+                    - { type: custom_bundle_type, domain: MyCustomBundle }
 
 You can specify multiple flash messages types you want to manage here.
 
