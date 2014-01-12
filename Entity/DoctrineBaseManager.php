@@ -13,6 +13,7 @@ namespace Sonata\CoreBundle\Entity;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Sonata\CoreBundle\Model\ManagerInterface;
 
 /**
  * Class BaseManager.
