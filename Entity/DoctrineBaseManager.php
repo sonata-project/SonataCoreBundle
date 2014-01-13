@@ -18,7 +18,7 @@ use Sonata\CoreBundle\Model\ManagerInterface;
 /**
  * Class BaseManager.
  *
- * @author Sylvain Deloux <sylvain.deloux@fullsix.com>
+ * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */
 abstract class DoctrineBaseManager implements ManagerInterface
 {

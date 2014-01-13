@@ -16,7 +16,7 @@ use Doctrine\DBAL\Connection;
 /**
  * Class BaseManager.
  *
- * @author Sylvain Deloux <sylvain.deloux@fullsix.com>
+ * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */
 interface ManagerInterface
 {
