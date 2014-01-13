@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Entity;
+namespace Sonata\CoreBundle\Model;
 
 use Doctrine\DBAL\Connection;
 
