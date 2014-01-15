@@ -1,7 +1,7 @@
 Installation
 ============
 
-* Add SonataNewsBundle to your vendor/bundles dir with the deps file::
+* Add ``SonataCoreBundle`` to your ``vendor/bundles`` directory with the deps file::
 
 .. code-block:: json
 
@@ -13,7 +13,7 @@ Installation
     }
 
 
-* Add SonataCoreBundle to your application kernel::
+* Add ``SonataCoreBundle`` to your application kernel::
 
 .. code-block:: php
 
@@ -29,13 +29,13 @@ Installation
         );
     }
 
-* Create a configuration file : ``sonata_core.yml``::
+* Create a configuration file ``sonata_core.yml`` with this content::
 
 .. code-block:: yaml
 
     sonata_core: ~
 
-* import the ``sonata_core.yml`` file in the ``config.yml`` file ::
+* Update the ``config.yml`` with the new resource to import::
 
 .. code-block:: yaml
 

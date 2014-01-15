@@ -1,7 +1,7 @@
 Flash Messages
 ==============
 
-The bundle comes with a ``FlashManager`` to handle some session flash messages types you can specify in the configuration
+The bundle comes with a ``FlashManager`` to handle some *session flash messages types* that you can specify in the configuration
 to be returned as a ``success``, ``warning`` or ``error`` type (or even all your custom types you want to add).
 
 Additionally, you can also add a ``css_class`` section for each flash messages that will be displayed on rendering.
@@ -29,14 +29,14 @@ Configuration
                 types:
                     - { type: custom_bundle_type, domain: MyCustomBundle }
 
-You can specify multiple flash messages types you want to manage here.
+You can specify multiple *flash messages types* you want to manage here.
 
 How-to use
 ^^^^^^^^^^
 
-To use this feature in your PHP classes/controllers, you can use, for example:
+To use this feature in your PHP classes/controllers, you can use for example:
 
-.. code-block: php
+.. code-block:: php
 
     <?php
 

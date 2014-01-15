@@ -10,14 +10,14 @@ The ``Immutable Array`` allows you to edit an array property by defining a type
 per key.
 
 The type has a ``keys`` parameter which contains the definition for each key.
-A definition is an array with 3 options :
+A definition is an array with 3 options:
 
 * key name
-* type : a type name or a ``FormType`` instance
-* related type parameters : please refer to the related form documentation.
+* type: a type name or a ``FormType`` instance
+* related type parameters: please refer to the related form documentation.
 
-Let's say a ``Page`` have options property with some fixed key-pair values, each
-value has a different type : integer, url, or string for instance.
+Let's say a ``Page`` have options property with some fixed key-value pairs, each
+value has a different type: integer, url, or string for instance.
 
 .. code-block:: php
 
@@ -40,7 +40,7 @@ value has a different type : integer, url, or string for instance.
         }
     }
 
-Now, the property can be edited by setting a type for each type
+Now, the property can be edited by setting a type for each type:
 
 .. code-block:: php
 
@@ -56,10 +56,10 @@ Now, the property can be edited by setting a type for each type
 sonata_type_boolean
 ^^^^^^^^^^^^^^^^^^^
 
-The ``boolean`` type is a specialized ``ChoiceType`` where the choices list is
-locked to 'yes' and 'no'.
+The ``boolean`` type is a specialized ``ChoiceType``, where the list of choices is
+locked to *no* and *no*.
 
-Note that for backward compatibility reasons, it will set your value to '1' for 'yes' and to '2' for 'no'.
+Note that for backward compatibility reasons, it will set your value to *1* for *yes* and to *2* for *no*.
 If you want to map to a boolean value, just set the option ``transform`` to true. For instance, you need
 to do so when mapping to a doctrine boolean.
 
@@ -67,14 +67,14 @@ to do so when mapping to a doctrine boolean.
 sonata_type_translatable_choice
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Deprecated: use ChoiceType with the translation_domain option instead.
+**Deprecated**: use ``ChoiceType`` with the ``translation_domain`` option instead.
 
 The translatable type is a specialized ``ChoiceType`` where the choices values
 are translated with the Symfony Translator component.
 
-The type has one extra parameter :
+The type has one extra parameter:
 
- * ``catalogue`` : the catalogue name to translate the value
+ * ``catalogue``: the catalogue name to translate the value
 
 
 .. code-block:: php
@@ -107,7 +107,7 @@ The type has one extra parameter :
 StatusType
 ^^^^^^^^^^
 
-The ``StatusType`` is not available as a service, however you can use it to declare your own type to render a choice of
+The ``StatusType`` is not available as a service. However, you can use it to declare your own type to render a choice of
 status.
 
 Let's say, you have a ``Delivery::getStatusList`` method which return a list of status, now you want to create a form type
