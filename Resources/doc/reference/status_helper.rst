@@ -1,11 +1,11 @@
 Twig status helper
 ==================
 
-The bundle comes with a Twig helper allowing to generate CSS class names depending on an entity field.
+The bundle comes with a Twig helper allowing you to generate CSS class names depending on an entity field.
 
 Define a service
 ----------------
-Each service you want to define must implement the ``Sonata\CoreBundle\Component\Status\StatusClassRendererInterface`` interface. For instance :
+Each service you want to define must implement the ``Sonata\CoreBundle\Component\Status\StatusClassRendererInterface`` interface. For instance:
 
 .. code-block:: php
 
@@ -28,7 +28,7 @@ Each service you want to define must implement the ``Sonata\CoreBundle\Component
         }
     }
 
-Now that we have defined our service, we will add it using the ``sonata.status.renderer`` tag, just as follow :
+Now that we have defined our service, we will add it using the ``sonata.status.renderer`` tag, just as follow:
 
 .. code-block:: xml
 
@@ -38,4 +38,4 @@ Now that we have defined our service, we will add it using the ``sonata.status.r
 
 Use the service
 ---------------
-You can now call your helper in your twig views using the following code : ``{{ my_object|status_class(status_name, 'default_value') }}``
+You can now call your helper in your twig views using the following code: ``{{ my_object|status_class(status_name, 'default_value') }}``
