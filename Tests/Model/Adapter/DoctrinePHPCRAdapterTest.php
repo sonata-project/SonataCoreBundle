@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Form\DataTransformer;
+namespace Sonata\CoreBundle\Tests\Model\Adapter;
 
 use Doctrine\ODM\PHPCR\Mapping\ClassMetadata;
 use Sonata\CoreBundle\Model\Adapter\DoctrinePHPCRAdapter;
@@ -75,9 +75,9 @@ class DoctrinePHPCRAdapterTest extends \PHPUnit_Framework_TestCase
         $unitOfWork = $this->getMockBuilder('Doctrine\ODM\PHPCR\UnitOfWork')->disableOriginalConstructor()->getMock();
         $unitOfWork->expects($this->any())->method('getDocumentById')->will($this->returnValue(true));
 
-        $metadata = new ClassMetadata('Sonata\CoreBundle\Tests\Form\DataTransformer\MyDocument');
+        $metadata = new ClassMetadata('Sonata\CoreBundle\Tests\Model\Adapter\MyDocument');
         $metadata->identifier = 'path';
-        $metadata->reflFields['path'] = new \ReflectionProperty('Sonata\CoreBundle\Tests\Form\DataTransformer\MyDocument', 'path');
+        $metadata->reflFields['path'] = new \ReflectionProperty('Sonata\CoreBundle\Tests\Model\Adapter\MyDocument', 'path');
 
         $manager = $this->getMockBuilder('Doctrine\ODM\PHPCR\DocumentManager')->disableOriginalConstructor()->getMock();
         $manager->expects($this->any())->method('getUnitOfWork')->will($this->returnValue($unitOfWork));

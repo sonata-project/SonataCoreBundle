@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Form\DataTransformer;
+namespace Sonata\CoreBundle\Tests\Model\Adapter;
 
 use Sonata\CoreBundle\Model\Adapter\DoctrineORMAdapter;
 
@@ -18,7 +18,6 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class DoctrineORMAdapterTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @expectedException \RunTimeException
      */
