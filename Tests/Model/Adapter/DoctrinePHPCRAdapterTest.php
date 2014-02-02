@@ -22,6 +22,13 @@ class MyDocument
 class DoctrinePHPCRAdapterTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function setUp()
+    {
+        if (!class_exists('Doctrine\ODM\PHPCR\UnitOfWork')) {
+            $this->markTestSkipped("Doctrine PHPCR not installed");
+        }
+    }
+
     /**
      * @expectedException \RunTimeException
      */

@@ -18,6 +18,13 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class DoctrineORMAdapterTest extends \PHPUnit_Framework_TestCase
 {
+    public function setUp()
+    {
+        if (!class_exists('Doctrine\ORM\UnitOfWork')) {
+            $this->markTestSkipped("Doctrine ORM not installed");
+        }
+    }
+
     /**
      * @expectedException \RunTimeException
      */
