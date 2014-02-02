@@ -13,6 +13,7 @@
             <tag name="twig.extension" />
 
             <argument>%kernel.debug%</argument>
+            <argument type="service" id="sonata.core.model.adapter.chain" />
         </service>
     </services>
 </container>
