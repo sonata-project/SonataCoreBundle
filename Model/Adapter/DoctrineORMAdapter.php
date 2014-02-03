@@ -44,7 +44,7 @@ class DoctrineORMAdapter implements AdapterInterface
             return null;
         }
 
-        $manager = $this->registry->getManagerForClass($entity);
+        $manager = $this->registry->getManagerForClass(get_class($entity));
 
         if (!$manager instanceof EntityManagerInterface) {
             return null;
