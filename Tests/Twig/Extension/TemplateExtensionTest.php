@@ -17,7 +17,10 @@ class TemplateExtensionTest extends \PHPUnit_Framework_TestCase
 {
     public function testSlugify()
     {
-        $extension = new TemplateExtension(true);
+        $adapter = $this->getMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface');
+        $adapter->expects($this->never())->method('getUrlsafeIdentifier');
+
+        $extension = new TemplateExtension(true, $adapter);
 
         $this->assertEquals($extension->slugify('test'), 'test');
         $this->assertEquals($extension->slugify('S§!@@#$#$alut'), 's-alut');
@@ -25,5 +28,16 @@ class TemplateExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($extension->slugify('test'), 'test');
         $this->assertEquals($extension->slugify('c\'est bientôt l\'été'), 'c-est-bientot-l-ete');
         $this->assertEquals($extension->slugify(urldecode('%2Fc\'est+bientôt+l\'été')), 'c-est-bientot-l-ete');
+    }
+
+    public function testSafeUrl()
+    {
+        $adapter = $this->getMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface');
+        $adapter->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue("safe-parameter"));
+
+        $extension = new TemplateExtension(true, $adapter);
+
+        $this->assertEquals("safe-parameter", $extension->getUrlsafeIdentifier(new \stdClass()));
+
     }
 }

@@ -11,18 +11,22 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
+use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
 use Sonata\CoreBundle\Twig\TokenParser\TemplateBoxTokenParser;
 
 class TemplateExtension extends \Twig_Extension
 {
     protected $debug;
 
+    protected $modelAdapter;
+
     /**
      * @param bool $debug
      */
-    public function __construct($debug)
+    public function __construct($debug, AdapterInterface $modelAdapter)
     {
         $this->debug = $debug;
+        $this->modelAdapter = $modelAdapter;
     }
 
     /**
@@ -31,7 +35,8 @@ class TemplateExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'sonata_slugify' => new \Twig_Filter_Method($this, 'slugify'),
+            'sonata_slugify'    => new \Twig_Filter_Method($this, 'slugify'),
+            'sonata_urlsafeid'  => new \Twig_Filter_Method($this, 'getUrlsafeIdentifier'),
         );
     }
 
@@ -72,6 +77,16 @@ class TemplateExtension extends \Twig_Extension
         $text = preg_replace('~[^-\w]+~', '', $text);
 
         return $text;
+    }
+
+    /**
+     * @param $model
+     *
+     * @return string
+     */
+    public function getUrlsafeIdentifier($model)
+    {
+        return $this->modelAdapter->getUrlsafeIdentifier($model);
     }
 
     /**
