@@ -50,7 +50,7 @@ class DoctrinePHPCRAdapter implements AdapterInterface
             return null;
         }
 
-        if (!$manager->getUnitOfWork()->getDocumentById($document)) {
+        if (!$manager->contains($document)) {
             return null;
         }
 

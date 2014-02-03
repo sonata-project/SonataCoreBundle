@@ -87,7 +87,7 @@ class DoctrinePHPCRAdapterTest extends \PHPUnit_Framework_TestCase
         $metadata->reflFields['path'] = new \ReflectionProperty('Sonata\CoreBundle\Tests\Model\Adapter\MyDocument', 'path');
 
         $manager = $this->getMockBuilder('Doctrine\ODM\PHPCR\DocumentManager')->disableOriginalConstructor()->getMock();
-        $manager->expects($this->any())->method('getUnitOfWork')->will($this->returnValue($unitOfWork));
+        $manager->expects($this->once())->method('contains')->will($this->returnValue(true));
         $manager->expects($this->any())->method('getClassMetadata')->will($this->returnValue($metadata));
 
         $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
