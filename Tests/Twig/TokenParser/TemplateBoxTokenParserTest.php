@@ -21,8 +21,10 @@ class TemplateBoxTokenParserTest extends \PHPUnit_Framework_TestCase
      */
     public function testCompile($enabled, $source, $expected)
     {
+        $translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+
         $env = new \Twig_Environment(new \Twig_Loader_String(), array('cache' => false, 'autoescape' => false, 'optimizations' => 0));
-        $env->addTokenParser(new TemplateBoxTokenParser($enabled));
+        $env->addTokenParser(new TemplateBoxTokenParser($enabled, $translator));
         $stream = $env->tokenize($source);
         $parser = new \Twig_Parser($env);
 
@@ -31,13 +33,17 @@ class TemplateBoxTokenParserTest extends \PHPUnit_Framework_TestCase
 
     public function getTestsForRender()
     {
+        $translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+
         return array(
             array(
                 true,
                 '{% sonata_template_box %}',
                 new TemplateBoxNode(
                     new \Twig_Node_Expression_Constant('Template information', 1),
+                    null,
                     true,
+                    $translator,
                     1,
                     'sonata_template_box'
                 )
@@ -47,7 +53,9 @@ class TemplateBoxTokenParserTest extends \PHPUnit_Framework_TestCase
                 '{% sonata_template_box "This is the basket delivery address step page" %}',
                 new TemplateBoxNode(
                     new \Twig_Node_Expression_Constant('This is the basket delivery address step page', 1),
+                    null,
                     true,
+                    $translator,
                     1,
                     'sonata_template_box'
                 )
@@ -57,7 +65,9 @@ class TemplateBoxTokenParserTest extends \PHPUnit_Framework_TestCase
                 '{% sonata_template_box "This is the basket delivery address step page" %}',
                 new TemplateBoxNode(
                     new \Twig_Node_Expression_Constant('This is the basket delivery address step page', 1),
+                    null,
                     false,
+                    $translator,
                     1,
                     'sonata_template_box'
                 )

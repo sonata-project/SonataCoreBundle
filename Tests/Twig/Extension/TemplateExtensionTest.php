@@ -17,10 +17,12 @@ class TemplateExtensionTest extends \PHPUnit_Framework_TestCase
 {
     public function testSlugify()
     {
+        $translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+
         $adapter = $this->getMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface');
         $adapter->expects($this->never())->method('getUrlsafeIdentifier');
 
-        $extension = new TemplateExtension(true, $adapter);
+        $extension = new TemplateExtension(true, $translator, $adapter);
 
         $this->assertEquals($extension->slugify('test'), 'test');
         $this->assertEquals($extension->slugify('S§!@@#$#$alut'), 's-alut');
@@ -32,10 +34,12 @@ class TemplateExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testSafeUrl()
     {
+        $translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+
         $adapter = $this->getMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface');
         $adapter->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue("safe-parameter"));
 
-        $extension = new TemplateExtension(true, $adapter);
+        $extension = new TemplateExtension(true, $translator, $adapter);
 
         $this->assertEquals("safe-parameter", $extension->getUrlsafeIdentifier(new \stdClass()));
 

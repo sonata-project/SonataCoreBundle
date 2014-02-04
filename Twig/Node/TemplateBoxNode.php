@@ -11,21 +11,36 @@
 
 namespace Sonata\CoreBundle\Twig\Node;
 
+use Symfony\Component\Translation\TranslatorInterface;
+
 class TemplateBoxNode extends \Twig_Node
 {
+    /**
+     * @var int
+     */
     protected $enabled;
 
     /**
-     * @param \Twig_Node_Expression $message
-     * @param int                   $enabled
-     * @param null|string           $lineno
-     * @param null                  $tag
+     * @var TranslatorInterface
      */
-    public function __construct(\Twig_Node_Expression $message, $enabled, $lineno, $tag = null)
-    {
-        $this->enabled = $enabled;
+    protected $translator;
 
-        parent::__construct(array('message' => $message), array(), $lineno, $tag);
+    /**
+     * Constructor
+     *
+     * @param \Twig_Node_Expression $message           Node message to display
+     * @param \Twig_Node_Expression $translationBundle Node translation bundle to use for display
+     * @param int                   $enabled           Is Symfony debug enabled?
+     * @param TranslatorInterface   $translator        Symfony Translator service
+     * @param null|string           $lineno            Symfony template line number
+     * @param null                  $tag               Symfony tag name
+     */
+    public function __construct(\Twig_Node_Expression $message, \Twig_Node_Expression $translationBundle = null, $enabled, TranslatorInterface $translator, $lineno, $tag = null)
+    {
+        $this->enabled    = $enabled;
+        $this->translator = $translator;
+
+        parent::__construct(array('message' => $message, 'translationBundle' => $translationBundle), array(), $lineno, $tag);
     }
 
     /**
@@ -41,10 +56,18 @@ class TemplateBoxNode extends \Twig_Node
             return;
         }
 
+        $value = $this->getNode('message')->getAttribute('value');
+
+        $translationBundle = $this->getNode('translationBundle');
+
+        if ($translationBundle) {
+            $translationBundle = $translationBundle->getAttribute('value');
+        }
+
         $message = <<<CODE
 "<div class='alert alert-default alert-info'>
-    <strong>{$this->getNode('message')->getAttribute('value')}</strong>
-    <div>This file can be found in <code>{\$this->getTemplateName()}</code>.</div>
+    <strong>{$this->translator->trans($value, array(), $translationBundle)}</strong>
+    <div>{$this->translator->trans('sonata_core_template_box_file_found_in', array(), 'SonataCoreBundle')} <code>{\$this->getTemplateName()}</code>.</div>
 </div>"
 CODE;
 
