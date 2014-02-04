@@ -13,19 +13,36 @@ namespace Sonata\CoreBundle\Twig\Extension;
 
 use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
 use Sonata\CoreBundle\Twig\TokenParser\TemplateBoxTokenParser;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class TemplateExtension extends \Twig_Extension
 {
+    /**
+     * @var bool
+     */
     protected $debug;
 
+    /**
+     * @var AdapterInterface
+     */
     protected $modelAdapter;
 
     /**
-     * @param bool $debug
+     * @var TranslatorInterface
      */
-    public function __construct($debug, AdapterInterface $modelAdapter)
+    protected $translator;
+
+    /**
+     * Constructor
+     *
+     * @param bool                $debug        Is Symfony debug enabled?
+     * @param TranslatorInterface $translator   Symfony Translator service
+     * @param AdapterInterface    $modelAdapter A Sonata model adapter
+     */
+    public function __construct($debug, TranslatorInterface $translator, AdapterInterface $modelAdapter)
     {
-        $this->debug = $debug;
+        $this->debug        = $debug;
+        $this->translator   = $translator;
         $this->modelAdapter = $modelAdapter;
     }
 
@@ -46,7 +63,7 @@ class TemplateExtension extends \Twig_Extension
     public function getTokenParsers()
     {
         return array(
-            new TemplateBoxTokenParser($this->debug),
+            new TemplateBoxTokenParser($this->debug, $this->translator),
         );
     }
 

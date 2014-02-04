@@ -12,18 +12,30 @@
 namespace Sonata\CoreBundle\Twig\TokenParser;
 
 use Sonata\CoreBundle\Twig\Node\TemplateBoxNode;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class TemplateBoxTokenParser extends \Twig_TokenParser
 {
-
+    /**
+     * @var bool
+     */
     protected $enabled;
 
     /**
-     * @param bool $enabled
+     * @var TranslatorInterface
      */
-    public function __construct($enabled)
+    protected $translator;
+
+    /**
+     * Constructor
+     *
+     * @param bool                $enabled    Is Symfony debug enabled?
+     * @param TranslatorInterface $translator Symfony Translator service
+     */
+    public function __construct($enabled, TranslatorInterface $translator)
     {
-        $this->enabled = $enabled;
+        $this->enabled    = $enabled;
+        $this->translator = $translator;
     }
 
     /**
@@ -37,9 +49,15 @@ class TemplateBoxTokenParser extends \Twig_TokenParser
             $message = new \Twig_Node_Expression_Constant('Template information', $token->getLine());
         }
 
+        if ($this->parser->getStream()->test(\Twig_Token::STRING_TYPE)) {
+            $translationBundle = $this->parser->getExpressionParser()->parseExpression();
+        } else {
+            $translationBundle = null;
+        }
+
         $this->parser->getStream()->expect(\Twig_Token::BLOCK_END_TYPE);
 
-        return new TemplateBoxNode($message, $this->enabled, $token->getLine(), $this->getTag());
+        return new TemplateBoxNode($message, $translationBundle, $this->enabled, $this->translator, $token->getLine(), $this->getTag());
     }
 
     /**
