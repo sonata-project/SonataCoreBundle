@@ -17,11 +17,13 @@ use Sonata\CoreBundle\Model\BaseManager;
 use Sonata\CoreBundle\Model\ManagerInterface;
 
 /**
- * Class BaseManager.
+ * Class DocumentBaseManager
  *
- * @author Sylvain Deloux <sylvain.deloux@ekino.com>
+ * @package Sonata\CoreBundle\Entity
+ *
+ * @author  Hugo Briand <briand@ekino.com>
  */
-abstract class DoctrineBaseManager extends BaseManager
+abstract class DocumentBaseManager extends BaseManager
 {
     /**
      * {@inheritdoc}
