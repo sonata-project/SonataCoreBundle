@@ -60,11 +60,8 @@ class DoctrinePHPCRAdapterTest extends \PHPUnit_Framework_TestCase
 
     public function testNormalizedIdentifierWithNotManaged()
     {
-        $unitOfWork = $this->getMockBuilder('Doctrine\ODM\PHPCR\UnitOfWork')->disableOriginalConstructor()->getMock();
-        $unitOfWork->expects($this->once())->method('getDocumentById')->will($this->returnValue(false));
-
         $manager = $this->getMockBuilder('Doctrine\ODM\PHPCR\DocumentManager')->disableOriginalConstructor()->getMock();
-        $manager->expects($this->any())->method('getUnitOfWork')->will($this->returnValue($unitOfWork));
+        $manager->expects($this->once())->method('contains')->will($this->returnValue(false));
 
         $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($manager));
@@ -79,15 +76,12 @@ class DoctrinePHPCRAdapterTest extends \PHPUnit_Framework_TestCase
      */
     public function testNormalizedIdentifierWithValidObject($data, $expected)
     {
-        $unitOfWork = $this->getMockBuilder('Doctrine\ODM\PHPCR\UnitOfWork')->disableOriginalConstructor()->getMock();
-        $unitOfWork->expects($this->any())->method('getDocumentById')->will($this->returnValue(true));
-
         $metadata = new ClassMetadata('Sonata\CoreBundle\Tests\Model\Adapter\MyDocument');
         $metadata->identifier = 'path';
         $metadata->reflFields['path'] = new \ReflectionProperty('Sonata\CoreBundle\Tests\Model\Adapter\MyDocument', 'path');
 
         $manager = $this->getMockBuilder('Doctrine\ODM\PHPCR\DocumentManager')->disableOriginalConstructor()->getMock();
-        $manager->expects($this->once())->method('contains')->will($this->returnValue(true));
+        $manager->expects($this->any())->method('contains')->will($this->returnValue(true));
         $manager->expects($this->any())->method('getClassMetadata')->will($this->returnValue($metadata));
 
         $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
