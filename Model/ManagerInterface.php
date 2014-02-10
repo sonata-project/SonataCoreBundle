@@ -21,13 +21,6 @@ use Doctrine\DBAL\Connection;
 interface ManagerInterface
 {
     /**
-     * Set the Entity class name.
-     *
-     * @param string $class
-     */
-    public function setClass($class);
-
-    /**
      * Return the Entity class name.
      *
      * @return string

@@ -11,23 +11,23 @@
 
 namespace Sonata\CoreBundle\Model;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
-
 
 /**
  * Class BaseManager
  *
- * @package Sonata\CoreBundle\Entity
+ * @package Sonata\CoreBundle\Model
  *
  * @author  Hugo Briand <briand@ekino.com>
  */
 abstract class BaseManager implements ManagerInterface
 {
     /**
-     * @var ObjectManager
+     * @var ManagerRegistry
      */
-    protected $om;
+    protected $registry;
 
     /**
      * @var string
@@ -35,28 +35,21 @@ abstract class BaseManager implements ManagerInterface
     protected $class;
 
     /**
-     * @var ObjectRepository
+     * @param string          $class
+     * @param ManagerRegistry $registry
      */
-    private $repository;
-
-    /**
-     * Constructor.
-     *
-     * @param string        $class
-     * @param ObjectManager $om
-     */
-    public function __construct($class, ObjectManager $om)
+    public function __construct($class, ManagerRegistry $registry)
     {
-        $this->om    = $om;
-        $this->class = $class;
+        $this->registry = $registry;
+        $this->class    = $class;
     }
 
     /**
-     * {@inheritdoc}
+     * @return ObjectManager
      */
-    public function setClass($class)
+    public function getObjectManager()
     {
-        $this->class = $class;
+        return $this->registry->getManagerForClass($this->class);
     }
 
     /**
@@ -104,10 +97,12 @@ abstract class BaseManager implements ManagerInterface
      */
     public function save($entity, $andFlush = true)
     {
-        $this->om->persist($entity);
+        $this->checkObject($entity);
+
+        $this->getObjectManager()->persist($entity);
 
         if ($andFlush) {
-            $this->om->flush();
+            $this->getObjectManager()->flush();
         }
     }
 
@@ -116,10 +111,12 @@ abstract class BaseManager implements ManagerInterface
      */
     public function delete($entity, $andFlush = true)
     {
-        $this->om->remove($entity);
+        $this->checkObject($entity);
+
+        $this->getObjectManager()->remove($entity);
 
         if ($andFlush) {
-            $this->om->flush();
+            $this->getObjectManager()->flush();
         }
     }
 
@@ -128,7 +125,7 @@ abstract class BaseManager implements ManagerInterface
      */
     public function getTableName()
     {
-        return $this->om->getClassMetadata($this->class)->table['name'];
+        return $this->getObjectManager()->getClassMetadata($this->class)->table['name'];
     }
 
     /**
@@ -138,10 +135,21 @@ abstract class BaseManager implements ManagerInterface
      */
     protected function getRepository()
     {
-        if (!$this->repository) {
-            $this->repository = $this->om->getRepository($this->class);
-        }
+        return $this->getObjectManager()->getRepository($this->class);
+    }
 
-        return $this->repository;
+    /**
+     * @param $entity
+     *
+     * @throws \InvalidArgumentException
+     */
+    protected function checkObject($entity)
+    {
+        if (!$entity instanceof $this->class) {
+            throw new \InvalidArgumentException(sprintf(
+                'Entity must be instance of %s, %s given',
+                $this->class, is_object($entity)? get_class($entity) : gettype($entity)
+            ));
+        }
     }
 }

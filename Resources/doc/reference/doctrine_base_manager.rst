@@ -13,9 +13,9 @@ You just have to extends ``Sonata\CoreBundle\Entity\DoctrineBaseManager` in your
 
     namespace Acme\Bundle\Entity;
 
-    use Sonata\CoreBundle\Entity\DoctrineBaseManager;
+    use Sonata\CoreBundle\Model\BaseEntityManager;
 
-    class ProductManager extends DoctrineBaseManager
+    class ProductManager extends BaseEntityManager
     {
 
     }
