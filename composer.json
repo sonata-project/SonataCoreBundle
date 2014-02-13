@@ -28,9 +28,8 @@
         "doctrine/phpcr-odm": "~1.0"
     },
     "autoload": {
-        "psr-0": { "Sonata\\CoreBundle": "" }
+        "psr-4": { "Sonata\\CoreBundle\\": "" }
     },
-    "target-dir": "Sonata/CoreBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "2.2.x-dev"
