@@ -139,16 +139,16 @@ abstract class BaseManager implements ManagerInterface
     }
 
     /**
-     * @param $entity
+     * @param $object
      *
      * @throws \InvalidArgumentException
      */
-    protected function checkObject($entity)
+    protected function checkObject($object)
     {
-        if (!$entity instanceof $this->class) {
+        if (!$object instanceof $this->class) {
             throw new \InvalidArgumentException(sprintf(
-                'Entity must be instance of %s, %s given',
-                $this->class, is_object($entity)? get_class($entity) : gettype($entity)
+                'Object must be instance of %s, %s given',
+                $this->class, is_object($object)? get_class($object) : gettype($object)
             ));
         }
     }
