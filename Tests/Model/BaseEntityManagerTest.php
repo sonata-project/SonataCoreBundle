@@ -35,6 +35,7 @@ class BaseEntityManagerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \RuntimeException
+     * @expectedExceptionMessage The property exception does not exists
      */
     public function testException()
     {
