@@ -17,3 +17,4 @@ Reference Guide
    reference/flash_messages
    reference/twig_helpers
    reference/doctrine_base_manager
+   reference/serialization
