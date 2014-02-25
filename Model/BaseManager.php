@@ -87,6 +87,14 @@ abstract class BaseManager implements ManagerInterface
     /**
      * {@inheritdoc}
      */
+    public function find($id)
+    {
+        return $this->getRepository()->find($id);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function create()
     {
         return new $this->class;
