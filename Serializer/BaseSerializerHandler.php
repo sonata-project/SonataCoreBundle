@@ -14,7 +14,7 @@ namespace Sonata\CoreBundle\Serializer;
 use JMS\Serializer\Context;
 use JMS\Serializer\VisitorInterface;
 use JMS\Serializer\GraphNavigator;
-use Sonata\CoreBundle\Model\ManagerInterface;
+use Sonata\CoreBundle\Model\BaseManagerInterface;
 
 /**
  * @author Sylvain Deloux <sylvain.deloux@ekino.com>
@@ -26,7 +26,7 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
      */
     protected $manager;
 
-    public function __construct(ManagerInterface $manager)
+    public function __construct(BaseManagerInterface $manager)
     {
         $this->manager = $manager;
     }
