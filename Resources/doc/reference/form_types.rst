@@ -3,6 +3,34 @@ Form Types
 
 The bundle comes with some handy form types.
 
+DoctrineORMSerializationType
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This form type reads ``JMSSerializer`` serialization class metadata and uses ``Doctrine`` ORM entity metadata
+to generate form fields and correct types.
+
+All you have to do is to define a form type service for each entity for which you want to use a form type, like this:
+
+.. code-block:: xml
+
+    <service id="my.custom.form.type.post" class="Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType">
+        <tag name="form.type" alias="my_custom_form_type_comment" />
+
+        <argument type="service" id="jms_serializer.metadata_factory" />
+        <argument type="service" id="doctrine" />
+        <argument>my_custom_form_type_comment</argument>
+        <argument>My\CustomBundle\Entity\Comment</argument>
+        <argument>a_serialization_group</argument>
+    </service>
+
+The service definition should contain the following arguments:
+
+* The JMSSerializer metadata factory,
+* The Doctrine ORM entity manager,
+* The form type name,
+* The entity class name for which you want to build form,
+* The serialization group you want serialization fields have.
+
 sonata_type_immutable_array
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
