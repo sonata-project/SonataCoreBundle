@@ -89,10 +89,12 @@ class DoctrineORMSerializationType extends AbstractType
                 continue;
             }
 
+            $type = null;
             $nullable = true;
 
             if (isset($doctrineMetadata->fieldMappings[$name])) {
                 $fieldMetadata = $doctrineMetadata->fieldMappings[$name];
+                $type = isset($fieldMetadata['type']) ? $fieldMetadata['type'] : null;
                 $nullable = isset($fieldMetadata['nullable']) ? $fieldMetadata['nullable'] : false;
             } else if (isset($doctrineMetadata->associationMappings[$name])) {
                 $associationMetadata = $doctrineMetadata->associationMappings[$name];
@@ -104,7 +106,15 @@ class DoctrineORMSerializationType extends AbstractType
                 }
             }
 
-            $builder->add($name, null, array('required' => !$nullable));
+            switch ($type) {
+                case 'datetime':
+                    $builder->add($name, $type, array('required' => !$nullable, 'widget' => 'single_text'));
+                    break;
+
+                default:
+                    $builder->add($name, null, array('required' => !$nullable));
+                    break;
+            }
         }
     }
 
