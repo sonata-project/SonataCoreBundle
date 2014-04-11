@@ -40,4 +40,17 @@ interface MetadataInterface
      * @return string
      */
     public function getDomain();
+
+    /**
+     * @return array
+     */
+    public function getOptions();
+
+    /**
+     * @param string $name    The option key
+     * @param mixed  $default The default value if option not found
+     *
+     * @return mixed
+     */
+    public function getOption($name, $default = null);
 }

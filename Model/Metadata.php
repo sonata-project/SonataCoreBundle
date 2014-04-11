@@ -42,17 +42,24 @@ class Metadata implements MetadataInterface
     protected $domain;
 
     /**
+     * @var array
+     */
+    protected $options;
+
+    /**
      * @param string $title
      * @param string $description
      * @param mixed  $image
      * @param string $domain
+     * @param array  $options
      */
-    public function __construct($title, $description, $image, $domain = "")
+    public function __construct($title, $description, $image, $domain = null, array $options = array())
     {
         $this->title       = $title;
         $this->description = $description;
         $this->image       = $image;
         $this->domain      = $domain;
+        $this->options     = $options;
     }
 
     /**
@@ -85,5 +92,45 @@ class Metadata implements MetadataInterface
     public function getDomain()
     {
         return $this->domain;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
+     * @param string $name    The option key
+     * @param mixed  $default The default value if option not found
+     *
+     * @return mixed
+     */
+    public function getOption($name, $default = null)
+    {
+        return array_key_exists($name, $this->options) ? $this->options[$name] : $default;
+    }
+
+    /**
+     * Sets an option
+     *
+     * @param $name
+     * @param $option
+     */
+    public function setOption($name, $option)
+    {
+        $this->options[$name] = $option;
+    }
+
+    /**
+     * Sets all options
+     *
+     * @param array $options
+     */
+    public function setOptions(array $options)
+    {
+        $this->options = $options;
     }
 }
