@@ -1,3 +1,7 @@
+.. index::
+    single: Doctrine
+    single: Managers
+
 Doctrine base entity manager
 ============================
 

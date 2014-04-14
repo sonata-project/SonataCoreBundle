@@ -1,3 +1,6 @@
+.. index::
+    double: Custom Handlers; Definition
+
 Serialization
 =============
 
@@ -6,7 +9,7 @@ Custom handlers
 
 The bundle comes with a ``BaseSerializerHandler`` to let you customize your serialized entities; this handler is used to serialize/deserialize an entity to/from its id, but you remain free to create your own handler for your specific needs.
 
-Just override ``Sonata\CoreBundle\Serializer\BaseSerializerHandler`` to create a JMS Serializer handler.
+Just override ``Sonata\CoreBundle\Serializer\BaseSerializerHandler`` to create a `JMS Serializer` handler.
 
 You can define your handler like this:
 
@@ -17,7 +20,7 @@ You can define your handler like this:
             <argument type="service" id="acme.manager.my_entity" />
         </service>
 
-To call your handler, you can use a custom type used by JMS Serializer, like this:
+To call your handler, you can use a custom type used by `JMS Serializer`, like this:
 
 .. code-block:: xml
 
