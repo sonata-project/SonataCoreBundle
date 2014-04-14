@@ -1,3 +1,6 @@
+.. index::
+    double: Form Type; Definition
+
 Form Types
 ==========
 
@@ -6,8 +9,7 @@ The bundle comes with some handy form types.
 DoctrineORMSerializationType
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This form type reads ``JMSSerializer`` serialization class metadata and uses ``Doctrine`` ORM entity metadata
-to generate form fields and correct types.
+This form type reads ``JMSSerializer`` serialization class metadata and uses ``Doctrine`` ORM entity metadata to generate form fields and correct types.
 
 All you have to do is to define a form type service for each entity for which you want to use a form type, like this:
 
@@ -34,18 +36,17 @@ The service definition should contain the following arguments:
 sonata_type_immutable_array
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``Immutable Array`` allows you to edit an array property by defining a type
-per key.
+The ``Immutable Array`` allows you to edit an array property by defining a type per key.
 
 The type has a ``keys`` parameter which contains the definition for each key.
 A definition is an array with 3 options:
 
-* key name
-* type: a type name or a ``FormType`` instance
+* key name,
+* type: a type name or a ``FormType`` instance,
 * related type parameters: please refer to the related form documentation.
 
-Let's say a ``Page`` have options property with some fixed key-value pairs, each
-value has a different type: integer, url, or string for instance.
+Let's say a ``Page`` has options property with some fixed key-value pairs.
+Each value has a different type: `integer`, `url`, or `string` for instance.
 
 .. code-block:: php
 
@@ -84,25 +85,24 @@ Now, the property can be edited by setting a type for each type:
 sonata_type_boolean
 ^^^^^^^^^^^^^^^^^^^
 
-The ``boolean`` type is a specialized ``ChoiceType``, where the list of choices is
-locked to *no* and *no*.
+The ``boolean`` type is a specialized ``ChoiceType``, where the list of choices is locked to *no* and *no*.
 
 Note that for backward compatibility reasons, it will set your value to *1* for *yes* and to *2* for *no*.
-If you want to map to a boolean value, just set the option ``transform`` to true. For instance, you need
-to do so when mapping to a doctrine boolean.
+If you want to map to a boolean value, just set the option ``transform`` to true. For instance, you need to do so when mapping to a doctrine boolean.
 
 
 sonata_type_translatable_choice
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Deprecated**: use ``ChoiceType`` with the ``translation_domain`` option instead.
+.. warning::
 
-The translatable type is a specialized ``ChoiceType`` where the choices values
-are translated with the Symfony Translator component.
+    ``sonata_type_translatable_choice`` is deprecated,  use ``ChoiceType`` with the ``translation_domain`` option instead!
+
+The translatable type is a specialized ``ChoiceType`` where the choices values are translated with the Symfony Translator component.
 
 The type has one extra parameter:
 
- * ``catalogue``: the catalogue name to translate the value
+ * ``catalogue``: the catalogue name to translate the value.
 
 
 .. code-block:: php
@@ -131,15 +131,16 @@ The type has one extra parameter:
         'catalogue' => 'SonataOrderBundle'
     ))
 
+.. note::
+
+    For more information, you can check the official `ChoiceType documentation <http://symfony.com/doc/current/reference/forms/types/choice.html>`_.
 
 StatusType
 ^^^^^^^^^^
 
-The ``StatusType`` is not available as a service. However, you can use it to declare your own type to render a choice of
-status.
+The ``StatusType`` is not available as a service. However, you can use it to declare your own type to render a choice of status.
 
-Let's say, you have a ``Delivery::getStatusList`` method which return a list of status, now you want to create a form type
-to expose those values.
+Let's say, you have a ``Delivery::getStatusList`` method which returns a list of status. Now, you want to create a form type to expose those values.
 
 .. code-block:: php
 

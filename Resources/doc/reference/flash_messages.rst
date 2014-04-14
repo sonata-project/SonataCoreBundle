@@ -1,3 +1,6 @@
+.. index::
+    double: Flash Message; Definition
+
 Flash Messages
 ==============
 
