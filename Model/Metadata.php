@@ -53,7 +53,7 @@ class Metadata implements MetadataInterface
      * @param string $domain
      * @param array  $options
      */
-    public function __construct($title, $description, $image, $domain = null, array $options = array())
+    public function __construct($title, $description = null, $image = null, $domain = null, array $options = array())
     {
         $this->title       = $title;
         $this->description = $description;
