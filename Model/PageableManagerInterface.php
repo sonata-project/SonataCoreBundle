@@ -15,7 +15,7 @@ namespace Sonata\CoreBundle\Model;
  *
  * @author Raphaël Benitte <benitteraphael@gmail.com>
  */
-interface PageableManagerInterface extends ManagerInterface
+interface PageableManagerInterface
 {
     /**
      * @param array   $criteria
