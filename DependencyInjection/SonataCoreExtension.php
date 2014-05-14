@@ -81,7 +81,7 @@ class SonataCoreExtension extends Extension
                 'warning' => array('domain' => 'SonataCoreBundle'),
                 'sonata_flash_info' => array('domain' => 'SonataAdminBundle'),
             )),
-            'error' => array('types' => array(
+            'danger' => array('types' => array(
                 'error' => array('domain' => 'SonataCoreBundle'),
                 'sonata_flash_error' => array('domain' => 'SonataAdminBundle'),
                 'sonata_user_error'  => array('domain' => 'SonataUserBundle'),
