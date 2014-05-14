@@ -37,6 +37,7 @@ class SonataCoreExtension extends Extension
         $config = $processor->processConfiguration($configuration, $configs);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('date.xml');
         $loader->load('flash.xml');
         $loader->load('form_types.xml');
         $loader->load('twig.xml');
