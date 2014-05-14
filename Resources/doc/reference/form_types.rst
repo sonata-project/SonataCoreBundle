@@ -182,3 +182,54 @@ And the type can now be used:
     <?php
     $form->add('deliveryStatus', 'sonata_order_status')
 
+sonata_type_date_picker and sonata_type_datetime_picker
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Those types integrate `Eonasdan's Bootstrap datetimepicker <https://github.com/Eonasdan/bootstrap-datetimepicke>`_ into a Symfony2 form. They both are available as services, and inherit from ``date`` and ``datetime`` default form types.
+
+.. note::
+
+    These form types require you to have bootstrap and jquery assets available in your project.
+
+They will allow you to have a JS date picker onto your form fields as follows:
+
+.. image:: ../images/datepicker.png
+
+In order to use them, you'll need to perform a bit of setup:
+
+.. code-block:: yaml
+
+    # app/config.yml
+    twig:
+        # ...
+        form:
+            resources:
+                # ...
+                - 'SonataCoreBundle:Form:datepicker.html.twig'
+
+In your layout, you'll need to add the assets dependencies (feel free to adapt this to your needs, for instance to use with assetic):
+
+.. code-block:: html
+
+    <head>
+        <!-- ... -->
+        <script type="text/javascript" src="path_to_jquery.min.js"></script>
+        <script type="text/javascript" src="/bundles/sonatacore/public/vendor/moment/min/moment.min.js"></script>
+        <script type="text/javascript" src="path_to_bootstrap.min.js"></script>
+        <script type="text/javascript" src="/bundles/sonatacore/public/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+        <link rel="stylesheet" href="path_to_bootstrap.min.css" />
+        <link rel="stylesheet" href="/bundles/sonatacore/public/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+    </head>
+
+Finally, in your form, you may use the form type as follows:
+
+.. code-block:: php
+
+    <?php
+
+    // ...
+        $builder
+            ->add('publicationDateStart', 'sonata_type_datetime_picker')    // Or sonata_type_date_picker if you don't need the time
+            // ...
+        ;
+
