@@ -1,6 +1,6 @@
 .idea
 .DS_Store
-build
+/build
 phpunit.xml
 Resources/doc/_build/*
 nbproject
