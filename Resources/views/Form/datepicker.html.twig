@@ -42,3 +42,20 @@ file that was distributed with this source code.
     {% endspaceless %}
 {% endblock sonata_type_datetime_picker_widget %}
 
+
+{% block sonata_type_time_picker_widget %}
+    {% spaceless %}
+        <div class="form-group">
+            <div class='input-group date' id='{{ id }}' data-date-format="{{ moment_format }}">
+                {{ block('time_widget') }}
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <script type="text/javascript">
+            jQuery(function ($) {
+                $('#{{ id }}').datetimepicker({{ dp_options|json_encode|raw }});
+            });
+        </script>
+    {% endspaceless %}
+{% endblock sonata_type_time_picker_widget %}
