@@ -18,7 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
 /**
- * Class DatePickerType
+ * Class TimePickerType
  *
  * @package Sonata\CoreBundle\Form\Type
  *
