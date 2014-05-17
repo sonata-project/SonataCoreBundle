@@ -12,6 +12,8 @@
 namespace Sonata\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
@@ -34,6 +36,16 @@ class TimePickerType extends BasePickerType
         $resolver->setDefaults(array_merge($this->getCommonDefaults(), array(
             'dp_pick_date' => false,
         )));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function finishView(FormView $view, FormInterface $form, array $options)
+    {
+        $options['dp_use_seconds'] = $options['with_seconds'];
+
+        parent::finishView($view, $form, $options);
     }
 
     /**

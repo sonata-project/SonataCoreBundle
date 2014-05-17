@@ -31,6 +31,7 @@ class MomentFormatConverter
     private $phpMomentMapping = array(
         "yyyy-MM-dd'T'HH:mm:ssZZZZZ" => 'YYYY-MM-DDTHH:mm:ssZZ', // 2014-05-14T13:55:01+02:00
         "yyyy-MM-dd"                 => 'YYYY-MM-DD',            // 2014-05-14
+        "HH:mm:ss"                   => 'HH:mm:ss',
     );
 
     /**
