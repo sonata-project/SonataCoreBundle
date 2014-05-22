@@ -53,7 +53,7 @@ class DateTimeRangeType extends AbstractType
     {
         $resolver->setDefaults(array(
             'field_options'    => array(),
-            'field_type'       => 'sonata_type_datetime_range'
+            'field_type'       => 'datetime',
         ));
     }
 }
