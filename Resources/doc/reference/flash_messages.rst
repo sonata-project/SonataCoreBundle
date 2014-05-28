@@ -43,7 +43,7 @@ To use this feature in your PHP classes/controllers, you can use for example:
 
     <?php
 
-    $this->get('sonata.core.flashmessage.manager')
+    $flashManager = $this->get('sonata.core.flashmessage.manager');
     $messages = $flashManager->get('success');
 
 To use this feature in your templates, simply include the following template (with an optional domain parameter):
