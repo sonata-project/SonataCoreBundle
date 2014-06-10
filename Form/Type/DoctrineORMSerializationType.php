@@ -12,6 +12,7 @@
 
 namespace Sonata\CoreBundle\Form\Type;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 use Symfony\Component\Form\AbstractType;
@@ -54,12 +55,12 @@ class DoctrineORMSerializationType extends AbstractType
      * Constructor
      *
      * @param MetadataFactoryInterface $metadataFactory Serializer metadata factory
-     * @param RegistryInterface        $registry        Doctrine registry
+     * @param ManagerRegistry          $registry        Doctrine registry
      * @param string                   $name            Form type name
      * @param string                   $class           Data class name
      * @param string                   $group           Serialization group name
      */
-    public function __construct(MetadataFactoryInterface $metadataFactory, RegistryInterface $registry, $name, $class, $group)
+    public function __construct(MetadataFactoryInterface $metadataFactory, ManagerRegistry $registry, $name, $class, $group)
     {
         $this->metadataFactory = $metadataFactory;
         $this->registry = $registry;
