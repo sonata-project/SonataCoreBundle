@@ -174,7 +174,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $entityManager = $this->getMock('Doctrine\ORM\EntityManagerInterface');
         $entityManager->expects($this->once())->method('getClassMetadata')->will($this->returnValue($classMetadata));
 
-        $registry = $this->getMock('Symfony\Bridge\Doctrine\RegistryInterface');
+        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($entityManager));
 
         return $registry;
