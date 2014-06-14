@@ -44,7 +44,7 @@ class BaseEntityManagerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \RuntimeException
-     * @expectedExceptionMessage Unable to found the mapping information for the class classname. Please check the 'auto_mapping' option (http://symfony.com/doc/current/reference/configuration/doctrine.html#configuration-overview) or add the bundle to the 'mappings' section in the doctrine configuration
+     * @expectedExceptionMessage Unable to find the mapping information for the class classname. Please check the 'auto_mapping' option (http://symfony.com/doc/current/reference/configuration/doctrine.html#configuration-overview) or add the bundle to the 'mappings' section in the doctrine configuration
      */
     public function testExceptionOnNonMappedEntity()
     {
