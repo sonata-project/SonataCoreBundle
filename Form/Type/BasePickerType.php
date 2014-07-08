@@ -69,6 +69,8 @@ abstract class BasePickerType extends AbstractType
         }
 
         $view->vars['dp_options'] = $dpOptions;
+        if (isset($view->vars['data']))
+            $view->vars['value'] = $view->vars['data']->format($format);
     }
 
     /**
