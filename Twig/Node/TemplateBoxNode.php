@@ -52,7 +52,7 @@ class TemplateBoxNode extends \Twig_Node
             ->addDebugInfo($this);
 
         if (!$this->enabled) {
-            $compiler->write("// token for sonata_template_box, however the box is disabled");
+            $compiler->write("// token for sonata_template_box, however the box is disabled\n");
             return;
         }
 
