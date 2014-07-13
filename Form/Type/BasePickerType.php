@@ -82,7 +82,7 @@ abstract class BasePickerType extends AbstractType
     {
         return array(
             'widget'                   => 'single_text',
-            'dp_picker_date'           => true,
+            'dp_pick_date'             => true,
             'dp_pick_time'             => true,
             'dp_use_current'           => true,
             'dp_min_date'              => '1/1/1900',
