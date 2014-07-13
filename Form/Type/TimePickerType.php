@@ -15,7 +15,6 @@ use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransf
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
@@ -28,7 +27,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class TimePickerType extends BasePickerType
 {
-    const FORMAT = 'h:m:s A';
+    const FORMAT = 'h:i:s A';
 
     /**
      * {@inheritdoc}
@@ -36,10 +35,10 @@ class TimePickerType extends BasePickerType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array_merge($this->getCommonDefaults(), array(
-            'time_format' => $this->getDefaultFormat(),
-            'dp_pick_date' => false,
             'model_timezone' => null,
             'view_timezone'  => null,
+            'time_format'    => $this->getDefaultFormat(),
+            'dp_pick_date'   => false,
         )));
     }
 
