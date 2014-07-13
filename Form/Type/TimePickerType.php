@@ -11,14 +11,15 @@
 
 namespace Sonata\CoreBundle\Form\Type;
 
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
 /**
- * Class TimePickerType
+ * Class DatePickerType
  *
  * @package Sonata\CoreBundle\Form\Type
  *
@@ -26,7 +27,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class TimePickerType extends BasePickerType
 {
-    const HTML5_FORMAT = 'HH:mm:ss';
+    const FORMAT = 'h:m:s A';
 
     /**
      * {@inheritdoc}
@@ -34,8 +35,19 @@ class TimePickerType extends BasePickerType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array_merge($this->getCommonDefaults(), array(
+            'time_format' => $this->getDefaultFormat(),
             'dp_pick_date' => false,
+            'model_timezone' => null,
+            'view_timezone'  => null,
         )));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->addViewTransformer(new DateTimeToStringTransformer($options['model_timezone'], $options['view_timezone'], $options['time_format']));
     }
 
     /**
@@ -43,17 +55,15 @@ class TimePickerType extends BasePickerType
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        $options['dp_use_seconds'] = $options['with_seconds'];
+        $format = $options['time_format'];
+
+        // figure out use_seconds based on format
+        $options['dp_use_seconds'] = strpos($format, 's') !== false;
+
+        // we override format so BasePickerType properly formats the time
+        $options['format'] = $format;
 
         parent::finishView($view, $form, $options);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
-    {
-        return 'time';
     }
 
     /**
@@ -69,6 +79,14 @@ class TimePickerType extends BasePickerType
      */
     protected function getDefaultFormat()
     {
-        return self::HTML5_FORMAT;
+        return self::FORMAT;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getParent()
+    {
+        return 'text';
     }
 }
