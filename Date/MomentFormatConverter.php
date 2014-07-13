@@ -30,8 +30,38 @@ class MomentFormatConverter
      */
     private $phpMomentMapping = array(
         "yyyy-MM-dd'T'HH:mm:ssZZZZZ" => 'YYYY-MM-DDTHH:mm:ssZZ', // 2014-05-14T13:55:01+02:00
+        "Y-m-d\TH:i:sO"              => 'YYYY-MM-DDTHH:mm:ssZZ', // 2014-05-14T13:55:01+0200
+        "dd.MM.yyyy, HH:mm"          => 'DD.MM.YYYY, HH:mm',     // german format without seconds: 14.05.2014, 13:55
+        "d.m.Y, H:i"                 => 'DD.MM.YYYY, HH:mm',     // german format without seconds: 14.05.2014, 13:55
+        "dd.MM.yyyy, HH:mm:ss"       => 'DD.MM.YYYY, HH:mm:ss',  // german format: 14.05.2014, 13:55:01
+        "d.m.Y, H:i:s"               => 'DD.MM.YYYY, HH:mm:ss',  // german format: 14.05.2014, 13:55:01
         "yyyy-MM-dd"                 => 'YYYY-MM-DD',            // 2014-05-14
-        "HH:mm:ss"                   => 'HH:mm:ss',
+        "Y-m-d"                      => 'YYYY-MM-DD',            // 2014-05-14
+
+        // 24 hour format
+        'G:m'                        => 'H:mm',
+        'G:m:s'                      => 'H:mm:ss',
+        'H:m'                        => 'HH:mm',
+        'H:m:s'                      => 'HH:mm:ss',
+
+        // 12 hour format
+        'g:m'                        => 'h:mm',
+        'g:m:s'                      => 'h:mm:ss',
+        "h:m"                        => 'hh:mm',
+        "h:m:s"                      => 'hh:mm:ss',
+
+        // am/pm suffix only makes sense with 12 hour format
+        'g:m a'                      => 'h:mm a',
+        'g:m:s a'                    => 'h:mm:ss a',
+
+        'g:m A'                      => 'h:mm A',
+        'g:m:s A'                    => 'h:mm:ss A',
+
+        "h:m a"                      => 'hh:mm a',
+        "h:m:s a"                    => 'hh:mm:ss a',
+
+        "h:m A"                      => 'hh:mm A',
+        "h:m:s A"                    => 'hh:mm:ss A',
     );
 
     /**

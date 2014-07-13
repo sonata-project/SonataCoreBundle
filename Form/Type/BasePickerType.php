@@ -11,32 +11,43 @@
 
 namespace Sonata\CoreBundle\Form\Type;
 
-use Sonata\CoreBundle\Date\MomentFormatConverter;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
 /**
- * Class BasePickerType (to factorize DatePickerType and DateTimePickerType code
+ * Class DatePickerType
  *
  * @package Sonata\CoreBundle\Form\Type
  *
- * @author Hugo Briand <briand@ekino.com>
+ * @author Hussein Jafferjee <hussein@jafferjee.ca>
  */
-abstract class BasePickerType extends AbstractType
+class TimePickerType extends BasePickerType
 {
-    /**
-     * @var MomentFormatConverter
-     */
-    private $formatConverter;
+    const FORMAT = 'h:m:s A';
 
     /**
-     * @param MomentFormatConverter $formatConverter
+     * {@inheritdoc}
      */
-    public function __construct(MomentFormatConverter $formatConverter)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $this->formatConverter = $formatConverter;
+        $resolver->setDefaults(array_merge($this->getCommonDefaults(), array(
+            'time_format' => $this->getDefaultFormat(),
+            'dp_pick_date' => false,
+            'model_timezone' => null,
+            'view_timezone'  => null,
+        )));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->addViewTransformer(new DateTimeToStringTransformer($options['model_timezone'], $options['view_timezone'], $options['time_format']));
     }
 
     /**
@@ -44,69 +55,38 @@ abstract class BasePickerType extends AbstractType
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        $format = $this->getDefaultFormat();
-        if (isset($options['date_format']) && is_string($options['date_format'])) {
-            $format = $options['date_format'];
-        } else if (isset($options['format']) && is_string($options['format'])) {
-            $format = $options['format'];
-        }
+        $format = $options['time_format'];
 
-        $view->vars['moment_format'] = $this->formatConverter->convert($format);
+        // figure out use_seconds based on format
+        $options['dp_use_seconds'] = strpos($format, 's') !== false;
 
-        $view->vars['type'] = 'text';
+        // we override format so BasePickerType properly formats the time
+        $options['format'] = $format;
 
-        $dpOptions = array();
-        foreach ($options as $key => $value) {
-            if (false !== strpos($key, "dp_")) {
-                // We remove 'dp_' and camelize the options names
-                $dpKey = substr($key, 3);
-                $dpKey = preg_replace_callback('/_([a-z])/', function ($c) {
-                    return strtoupper($c[1]);
-                }, $dpKey);
-
-                $dpOptions[$dpKey] = $value;
-            }
-        }
-
-        $view->vars['dp_options'] = $dpOptions;
+        parent::finishView($view, $form, $options);
     }
 
     /**
-     * Gets base default options for the date pickers
-     *
-     * @return array
+     * {@inheritdoc}
      */
-    protected function getCommonDefaults()
+    public function getName()
     {
-        return array(
-            'widget'                   => 'single_text',
-            'dp_picker_date'           => true,
-            'dp_pick_time'             => true,
-            'dp_use_current'           => true,
-            'dp_min_date'              => '1/1/1900',
-            'dp_max_date'              => '',
-            'dp_show_today'            => true,
-            'dp_language'              => 'en',
-            'dp_default_date'          => '',
-            'dp_disabled_dates'        => array(),
-            'dp_enabled_dates'         => array(),
-            'dp_icons'                 => array(
-                'time' => 'glyphicon glyphicon-time',
-                'date' => 'glyphicon glyphicon-calendar',
-                'up'   => 'glyphicon glyphicon-chevron-up',
-                'down' => 'glyphicon glyphicon-chevron-down'
-            ),
-            'dp_use_strict'            => false,
-            'dp_side_by_side'          => false,
-            'dp_days_of_week_disabled' => array(),
-            'dp_use_seconds'           => false,
-        );
+        return 'sonata_type_time_picker';
     }
 
     /**
-     * Returns default format for type
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    protected abstract function getDefaultFormat();
+    protected function getDefaultFormat()
+    {
+        return self::FORMAT;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getParent()
+    {
+        return 'text';
+    }
 }
