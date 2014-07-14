@@ -37,6 +37,7 @@ class MomentFormatConverter
         "d.m.Y, H:i:s"               => 'DD.MM.YYYY, HH:mm:ss',  // german format: 14.05.2014, 13:55:01
         "yyyy-MM-dd"                 => 'YYYY-MM-DD',            // 2014-05-14
         "Y-m-d"                      => 'YYYY-MM-DD',            // 2014-05-14
+        "d-m-Y, H:i"                 => 'DD-MM-YYYY, HH:mm',     // german format without seconds: 14-05-2014, 13:55
     );
 
     /**
