@@ -44,7 +44,7 @@ class DoctrinePHPCRAdapter implements AdapterInterface
             return null;
         }
 
-        $manager = $this->registry->getManagerForClass($document);
+        $manager = $this->registry->getManagerForClass(ClassUtils::getClass($document));
 
         if (!$manager instanceof DocumentManager) {
             return null;
