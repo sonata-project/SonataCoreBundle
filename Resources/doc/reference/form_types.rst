@@ -185,7 +185,7 @@ And the type can now be used:
 sonata_type_date_picker and sonata_type_datetime_picker
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Those types integrate `Eonasdan's Bootstrap datetimepicker <https://github.com/Eonasdan/bootstrap-datetimepicke>`_ into a Symfony2 form. They both are available as services, and inherit from ``date`` and ``datetime`` default form types.
+Those types integrate `Eonasdan's Bootstrap datetimepicker <https://github.com/Eonasdan/bootstrap-datetimepicker>`_ into a Symfony2 form. They both are available as services, and inherit from ``date`` and ``datetime`` default form types.
 
 .. note::
 
