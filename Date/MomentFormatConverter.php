@@ -37,6 +37,31 @@ class MomentFormatConverter
         "d.m.Y, H:i:s"               => 'DD.MM.YYYY, HH:mm:ss',  // german format: 14.05.2014, 13:55:01
         "yyyy-MM-dd"                 => 'YYYY-MM-DD',            // 2014-05-14
         "Y-m-d"                      => 'YYYY-MM-DD',            // 2014-05-14
+
+        // 24 hour format
+        'G:i'                        => 'H:mm',
+        'G:i:s'                      => 'H:mm:ss',
+        'H:i'                        => 'HH:mm',
+        'H:i:s'                      => 'HH:mm:ss',
+
+        // 12 hour format
+        'g:i'                        => 'h:mm',
+        'g:i:s'                      => 'h:mm:ss',
+        "h:i"                        => 'hh:mm',
+        "h:i:s"                      => 'hh:mm:ss',
+
+        // am/pm suffix only makes sense with 12 hour format
+        'g:i a'                      => 'h:mm a',
+        'g:i:s a'                    => 'h:mm:ss a',
+
+        'g:i A'                      => 'h:mm A',
+        'g:i:s A'                    => 'h:mm:ss A',
+
+        "h:i a"                      => 'hh:mm a',
+        "h:i:s a"                    => 'hh:mm:ss a',
+
+        "h:i A"                      => 'hh:mm A',
+        "h:i:s A"                    => 'hh:mm:ss A',
     );
 
     /**
