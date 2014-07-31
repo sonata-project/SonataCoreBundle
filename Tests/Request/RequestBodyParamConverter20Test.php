@@ -11,19 +11,18 @@
 
 namespace Sonata\CoreBundle\Tests\Request;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sonata\CoreBundle\Request\RequestBodyParamConverter;
+use Sonata\CoreBundle\Request\RequestBodyParamConverter20;
 use Symfony\Component\HttpFoundation\Request;
 
-abstract class MyAbstractModel {
+abstract class MyAbstractModel20 {
 
 }
 
-class MyModel extends MyAbstractModel {
+class MyModel20 extends MyAbstractModel20 {
 
 }
 
-class MyInvalidModel {
+class MyInvalidModel20 {
 
 }
 
@@ -35,19 +34,19 @@ class MyInvalidModel {
  *
  * @author Vincent Composieux <vincent.composieux@gmail.com>
  */
-class RequestBodyParamConverterTest extends \PHPUnit_Framework_TestCase
+class RequestBodyParamConverter20Test extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
         // skip the test if the installed version of SensioFrameworkExtraBundle
-        // is not compatible with the RequestBodyParamConverter class
+        // is not compatible with the RequestBodyParamConverter20 class
         $parameter = new \ReflectionParameter(array(
             'Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface',
             'supports',
         ), 'configuration' );
 
-        if ('Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter' != $parameter->getClass()->getName()) {
-            $this->markTestSkipped('skipping RequestBodyParamConverterTest due to an incompatible version of the SensioFrameworkExtraBundle');
+        if ('Sensio\Bundle\FrameworkExtraBundle\Configuration\ConfigurationInterface' != $parameter->getClass()->getName()) {
+            $this->markTestSkipped('skipping RequestBodyParamConverter20Test due to an incompatible version of the SensioFrameworkExtraBundle');
         }
     }
 
@@ -62,19 +61,14 @@ class RequestBodyParamConverterTest extends \PHPUnit_Framework_TestCase
         $request = new Request();
         $serializer = $this->getMock('JMS\Serializer\SerializerInterface');
 
-        $configuration = new ParamConverter(array(
-            'class' => 'Sonata\CoreBundle\Tests\Request\MyAbstractModel'
-        ));
+        $configuration = $this->getMock('Sensio\Bundle\FrameworkExtraBundle\Configuration\ConfigurationInterface');
 
-        $classes = array('Sonata\CoreBundle\Tests\Request\MyModel');
+        $classes = array('Sonata\CoreBundle\Tests\Request\MyModel20');
 
-        $service = new RequestBodyParamConverter($serializer, null, null, null, null, $classes);
+        $service = new RequestBodyParamConverter20($serializer, null, null, null, null, $classes);
 
         // When
         $service->apply($request, $configuration);
-
-        // Then
-        $this->assertEquals('Sonata\CoreBundle\Tests\Request\MyModel', $configuration->getClass());
     }
 
     /**
@@ -88,18 +82,16 @@ class RequestBodyParamConverterTest extends \PHPUnit_Framework_TestCase
         $request = new Request();
         $serializer = $this->getMock('JMS\Serializer\SerializerInterface');
 
-        $configuration = new ParamConverter(array(
-            'class' => 'Sonata\CoreBundle\Tests\Request\MyAbstractModel'
-        ));
+        $configuration = $this->getMock('Sensio\Bundle\FrameworkExtraBundle\Configuration\ConfigurationInterface');
 
-        $classes = array('Sonata\CoreBundle\Tests\Request\MyInvalidModel');
+        $classes = array('Sonata\CoreBundle\Tests\Request\MyInvalidModel20');
 
-        $service = new RequestBodyParamConverter($serializer, null, null, null, null, $classes);
+        $service = new RequestBodyParamConverter20($serializer, null, null, null, null, $classes);
 
         // When
         $service->apply($request, $configuration);
 
         // Then
-        $this->assertEquals('Sonata\CoreBundle\Tests\Request\MyAbstractModel', $configuration->getClass());
+        $this->assertEquals('Sonata\CoreBundle\Tests\Request\MyAbstractModel20', $configuration->getClass());
     }
 }

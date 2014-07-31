@@ -11,16 +11,18 @@
 
 namespace Sonata\CoreBundle\Request;
 
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\ValidatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ConfigurationInterface;
 
 /**
  * Defines correct class to use (entity or document) in param converter configuration
  *
  * @author Vincent Composieux <vincent.composieux@gmail.com>
  */
-class RequestBodyParamConverter extends \FOS\RestBundle\Request\RequestBodyParamConverter
+class RequestBodyParamConverter20 extends \FOS\RestBundle\Request\RequestBodyParamConverter20
 {
     /**
      * @var array
@@ -50,7 +52,7 @@ class RequestBodyParamConverter extends \FOS\RestBundle\Request\RequestBodyParam
     /**
      * {@inheritDoc}
      */
-    public function apply(Request $request, ParamConverter $configuration)
+    public function apply(Request $request, ConfigurationInterface $configuration)
     {
         $this->setConfigurationClass($configuration);
 
@@ -60,9 +62,9 @@ class RequestBodyParamConverter extends \FOS\RestBundle\Request\RequestBodyParam
     /**
      * Sets correct configuration class depending on available classes
      *
-     * @param ParamConverter $configuration
+     * @param ConfigurationInterface $configuration
      */
-    protected function setConfigurationClass(ParamConverter $configuration)
+    protected function setConfigurationClass(ConfigurationInterface $configuration)
     {
         foreach ($this->classes as $class) {
             $reflectionClass = new \ReflectionClass($class);
