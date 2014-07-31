@@ -8,7 +8,7 @@ Request Body Param Converter
 Introduction
 ------------
 
-``SonataCoreBundle`` comes with a ``RequestBodyParamConverter`` which is extending the ``FOS\RestBundle\Request\RequestBodyParamConverter20`` one.
+``SonataCoreBundle`` comes with a ``RequestBodyParamConverter20`` which is extending the ``FOS\RestBundle\Request\RequestBodyParamConverter20`` and ``RequestBodyParamConverter`` which is extending the ``FOS\RestBundle\Request\RequestBodyParamConverter``
 
 The main reason of why this class is overrided is that our model serialized classes are marked as ``abstract`` and cannot be instanciated.
 
