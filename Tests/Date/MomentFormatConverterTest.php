@@ -35,6 +35,15 @@ class MomentFormatConverterTest extends \PHPUnit_Framework_TestCase
         
         $phpFormat = "dd.MM.yyyy, HH:mm:ss";
         $this->assertEquals("DD.MM.YYYY, HH:mm:ss", $mfc->convert($phpFormat));
+
+        $phpFormat = "dd/MM/yyyy";
+        $this->assertEquals("DD/MM/YYYY", $mfc->convert($phpFormat));
+
+        $phpFormat = "dd/MM/yyyy HH:mm";
+        $this->assertEquals("DD/MM/YYYY HH:mm", $mfc->convert($phpFormat));
+
+        $phpFormat = "EE, dd/MM/yyyy HH:mm";
+        $this->assertEquals("ddd, DD/MM/YYYY HH:mm", $mfc->convert($phpFormat));
     }
 
     /**
