@@ -85,7 +85,7 @@ Now, the property can be edited by setting a type for each type:
 sonata_type_boolean
 ^^^^^^^^^^^^^^^^^^^
 
-The ``boolean`` type is a specialized ``ChoiceType``, where the list of choices is locked to *no* and *no*.
+The ``boolean`` type is a specialized ``ChoiceType``, where the list of choices is locked to *yes* and *no*.
 
 Note that for backward compatibility reasons, it will set your value to *1* for *yes* and to *2* for *no*.
 If you want to map to a boolean value, just set the option ``transform`` to true. For instance, you need to do so when mapping to a doctrine boolean.
