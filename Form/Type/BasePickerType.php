@@ -68,7 +68,7 @@ abstract class BasePickerType extends AbstractType
             }
         }
 
-        $view->vars['datepicker_use_button'] = $options['datepicker_use_button'];
+        $view->vars['datepicker_use_button'] = empty($options['datepicker_use_button']) ? false : true;
         $view->vars['dp_options'] = $dpOptions;
     }
 
