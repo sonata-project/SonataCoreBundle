@@ -27,7 +27,8 @@ class MomentFormatConverter
 {
     /**
      * @var array This defines the mapping between PHP ICU date format (key) and moment.js date format (value)
-     *            For ICU formats: http://userguide.icu-project.org/formatparse/datetime#TOC-Date-Time-Format-Syntax
+     * For ICU formats see http://userguide.icu-project.org/formatparse/datetime#TOC-Date-Time-Format-Syntax
+     * For Moment formats see http://momentjs.com/docs/#/displaying/format/
      */
     private $phpMomentMapping = array(
         "yyyy-MM-dd'T'HH:mm:ssZZZZZ" => 'YYYY-MM-DDTHH:mm:ssZZ', // 2014-05-14T13:55:01+02:00
