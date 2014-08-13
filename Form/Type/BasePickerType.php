@@ -68,6 +68,7 @@ abstract class BasePickerType extends AbstractType
             }
         }
 
+        $view->vars['datepicker_use_button'] = $options['datepicker_use_button'];
         $view->vars['dp_options'] = $dpOptions;
     }
 
@@ -80,6 +81,7 @@ abstract class BasePickerType extends AbstractType
     {
         return array(
             'widget'                   => 'single_text',
+            'datepicker_use_button'    => true,
             'dp_pick_time'             => true,
             'dp_use_current'           => true,
             'dp_min_date'              => '1/1/1900',
