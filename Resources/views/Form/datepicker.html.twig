@@ -13,6 +13,8 @@ file that was distributed with this source code.
         <div class="form-group">
             {% if datepicker_use_button %}
                 <div class='input-group date' id='{{ id }}' data-date-format="{{ moment_format }}">
+            {% else %}
+                {% set attr = attr|merge({'data-date-format': moment_format}) %}
             {% endif %}
             {{ block('date_widget') }}
             {% if datepicker_use_button %}
@@ -33,6 +35,8 @@ file that was distributed with this source code.
         <div class="form-group">
             {% if datepicker_use_button %}
                 <div class='input-group date' id='{{ id }}' data-date-format="{{ moment_format }}">
+            {% else %}
+                {% set attr = attr|merge({'data-date-format': moment_format}) %}
             {% endif %}
             {{ block('datetime_widget') }}
             {% if datepicker_use_button %}
