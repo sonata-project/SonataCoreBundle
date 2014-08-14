@@ -33,6 +33,7 @@ class MomentFormatConverter
     private $phpMomentMapping = array(
         "yyyy-MM-dd'T'HH:mm:ssZZZZZ" => 'YYYY-MM-DDTHH:mm:ssZZ', // 2014-05-14T13:55:01+02:00
         "yyyy-MM-dd"                 => 'YYYY-MM-DD',            // 2014-05-14
+        "dd.MM.yyyy"                 => 'DD.MM.YYYY',            // 14.05.2014, German date format
         "dd.MM.yyyy, HH:mm"          => 'DD.MM.YYYY, HH:mm',     // 14.05.2014, 13:55, German format without seconds
         "dd.MM.yyyy, HH:mm:ss"       => 'DD.MM.YYYY, HH:mm:ss',  // 14.05.2014, 13:55:01, German format with seconds
         "dd/MM/yyyy"                 => 'DD/MM/YYYY',            // 14/05/2014, British ascending format
