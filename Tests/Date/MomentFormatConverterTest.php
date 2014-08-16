@@ -30,6 +30,15 @@ class MomentFormatConverterTest extends \PHPUnit_Framework_TestCase
         $phpFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ";
         $this->assertEquals("YYYY-MM-DDTHH:mm:ssZZ", $mfc->convert($phpFormat));
         
+        $phpFormat = "yyyy-MM-dd HH:mm:ss";
+        $this->assertEquals("YYYY-MM-DD HH:mm:ss", $mfc->convert($phpFormat));
+        
+        $phpFormat = "yyyy-MM-dd HH:mm";
+        $this->assertEquals("YYYY-MM-DD HH:mm", $mfc->convert($phpFormat));
+        
+        $phpFormat = "yyyy-MM-dd";
+        $this->assertEquals("YYYY-MM-DD", $mfc->convert($phpFormat));
+        
         $phpFormat = "dd.MM.yyyy, HH:mm";
         $this->assertEquals("DD.MM.YYYY, HH:mm", $mfc->convert($phpFormat));
         
