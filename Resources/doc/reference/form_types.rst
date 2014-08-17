@@ -233,7 +233,7 @@ Finally, in your form, you may use the form type as follows:
             // ...
         ;
 
-Many of the `standard date picker options<http://eonasdan.github.io/bootstrap-datetimepicker/#options>`_ are available by adding options with a ``dp_`` prefix:
+Many of the `standard date picker options <http://eonasdan.github.io/bootstrap-datetimepicker/#options>`_ are available by adding options with a ``dp_`` prefix:
 
 
 .. code-block:: php
