@@ -233,3 +233,23 @@ Finally, in your form, you may use the form type as follows:
             // ...
         ;
 
+Many of the `standard date picker options<http://eonasdan.github.io/bootstrap-datetimepicker/#options>`_ are available by adding options with a ``dp_`` prefix:
+
+
+.. code-block:: php
+
+    <?php
+
+    // ...
+        $builder
+            ->add('publicationDateStart', 'sonata_type_datetime_picker', array(
+                    'dp_side_by_side'       => true,
+                    'dp_use_current'        => false,
+                    'dp_use_seconds'        => false,
+            ))    // Or sonata_type_date_picker if you don't need the time
+            // ...
+        ;
+
+If you look in the classes ``DateTimePickerType.php`` and ``BasePickerType.php`` you can see all the currently available options.
+
+In addition to these standard options, there is also the option `datepicker_use_button` which, when used, will change the widget so that the datepicker icon is not shown and the pop-up datepicker is invoked simply by clicking on the date input.
