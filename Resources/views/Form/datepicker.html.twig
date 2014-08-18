@@ -11,11 +11,16 @@ file that was distributed with this source code.
 {% block sonata_type_date_picker_widget %}
     {% spaceless %}
         <div class="form-group">
-            <div class='input-group date' id='{{ id }}' data-date-format="{{ moment_format }}">
-                {{ block('date_widget') }}
-                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
+            {% if datepicker_use_button %}
+                <div class='input-group date' id='{{ id }}' data-date-format="{{ moment_format }}">
+            {% else %}
+                {% set attr = attr|merge({'data-date-format': moment_format}) %}
+            {% endif %}
+            {{ block('date_widget') }}
+            {% if datepicker_use_button %}
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+            {% endif %}
         </div>
         <script type="text/javascript">
             jQuery(function ($) {
@@ -28,11 +33,16 @@ file that was distributed with this source code.
 {% block sonata_type_datetime_picker_widget %}
     {% spaceless %}
         <div class="form-group">
-            <div class='input-group date' id='{{ id }}' data-date-format="{{ moment_format }}">
-                {{ block('datetime_widget') }}
-                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
+            {% if datepicker_use_button %}
+                <div class='input-group date' id='{{ id }}' data-date-format="{{ moment_format }}">
+            {% else %}
+                {% set attr = attr|merge({'data-date-format': moment_format}) %}
+            {% endif %}
+            {{ block('datetime_widget') }}
+            {% if datepicker_use_button %}
+                  <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+            {% endif %}
         </div>
         <script type="text/javascript">
             jQuery(function ($) {
