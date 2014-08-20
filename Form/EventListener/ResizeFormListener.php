@@ -13,7 +13,6 @@ namespace Sonata\CoreBundle\Form\EventListener;
 
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -24,11 +23,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class ResizeFormListener implements EventSubscriberInterface
 {
-    /**
-     * @var FormFactoryInterface
-     */
-    private $factory;
-
     /**
      * @var string
      */
@@ -44,17 +38,22 @@ class ResizeFormListener implements EventSubscriberInterface
     private $removed = array();
 
     /**
-     * @param \Symfony\Component\Form\FormFactoryInterface $factory
-     * @param string                                       $type
-     * @param array                                        $typeOptions
-     * @param bool                                         $resizeOnBind
+     * @var \Closure
      */
-    public function __construct(FormFactoryInterface $factory, $type, array $typeOptions = array(), $resizeOnBind = false)
+    private $preBindDataClosure;
+
+    /**
+     * @param string        $type
+     * @param array         $typeOptions
+     * @param bool          $resizeOnBind
+     * @param \Closure|null $preBindDataClosure
+     */
+    public function __construct($type, array $typeOptions = array(), $resizeOnBind = false, $preBindDataClosure = null)
     {
-        $this->factory      = $factory;
-        $this->type         = $type;
-        $this->resizeOnBind = $resizeOnBind;
-        $this->typeOptions  = $typeOptions;
+        $this->type               = $type;
+        $this->resizeOnBind       = $resizeOnBind;
+        $this->typeOptions        = $typeOptions;
+        $this->preBindDataClosure = $preBindDataClosure;
     }
 
     /**
@@ -96,9 +95,10 @@ class ResizeFormListener implements EventSubscriberInterface
         foreach ($data as $name => $value) {
             $options = array_merge($this->typeOptions, array(
                 'property_path' => '[' . $name . ']',
+                'data'          => $value
             ));
 
-            $form->add($this->factory->createNamed($name, $this->type, $value, $options));
+            $form->add($name, $this->type, $options);
         }
     }
 
@@ -133,11 +133,17 @@ class ResizeFormListener implements EventSubscriberInterface
         // Add all additional rows
         foreach ($data as $name => $value) {
             if (!$form->has($name)) {
-                $options = array_merge($this->typeOptions, array(
+                $buildOptions = array(
                     'property_path' => '[' . $name . ']',
-                ));
+                );
 
-                $form->add($this->factory->createNamed($name, $this->type, null, $options));
+                if ($this->preBindDataClosure) {
+                    $buildOptions['data'] = call_user_func($this->preBindDataClosure, $value);
+                }
+
+                $options = array_merge($this->typeOptions, $buildOptions);
+
+                $form->add($name, $this->type, $options);
             }
 
             if (isset($value['_delete'])) {
