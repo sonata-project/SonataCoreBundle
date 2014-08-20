@@ -29,10 +29,10 @@ class CollectionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $listener = new ResizeFormListener(
-            $builder->getFormFactory(),
             $options['type'],
             $options['type_options'],
-            $options['modifiable']
+            $options['modifiable'],
+            $options['pre_bind_data_closure']
         );
 
         $builder->addEventSubscriber($listener);
@@ -53,11 +53,12 @@ class CollectionType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'modifiable'    => false,
-            'type'          => 'text',
-            'type_options'  => array(),
-            'btn_add'       => 'link_add',
-            'btn_catalogue' => 'SonataCoreBundle'
+            'modifiable'            => false,
+            'type'                  => 'text',
+            'type_options'          => array(),
+            'pre_bind_data_closure' => null,
+            'btn_add'               => 'link_add',
+            'btn_catalogue'         => 'SonataCoreBundle'
         ));
     }
 

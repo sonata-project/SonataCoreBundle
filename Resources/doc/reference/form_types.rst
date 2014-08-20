@@ -135,6 +135,52 @@ The type has one extra parameter:
 
     For more information, you can check the official `ChoiceType documentation <http://symfony.com/doc/current/reference/forms/types/choice.html>`_.
 
+sonata_type_collection
+^^^^^^^^^^^^^^^^^^^^^^
+
+The ``Collection Type`` is meant to handle creation and editing of model
+collections. Rows can be added and deleted, and your model abstraction layer may
+allow you to edit fields inline. You can use ``type_options`` to pass values
+to the underlying forms.
+
+.. code-block:: php
+
+    class AcmeProductAdmin extends Admin
+    {
+        protected function configureFormFields(FormMapper $formMapper)
+        {
+            $formMapper
+                ->add('sales', 'sonata_type_collection', array(
+                    // Prevents the "Delete" option from being displayed
+                    'type_options' => array('delete' => false)
+                ), array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'sortable' => 'position',
+                ))
+            ;
+        }
+    }
+
+The available options (which can be passed as a third parameter to ``FormMapper::add()``) are:
+
+btn_add and btn_catalogue:
+  The label on the ``add`` button can be customized
+  with this parameters. Setting it to ``false`` will hide the
+  corresponding button. You can also specify a custom translation catalogue
+  for this label, which defaults to ``SonataAdminBundle``.
+
+type_options:
+  This array is passed to the underlying forms.
+
+pre_bind_data_closure:
+  This closure will be executed during the preBind method (``FormEvent::PRE_BIND`` | ``FormEvent::PRE_SUBMIT``)
+  to build the data given to the form based on the value retrieved. Use this if you need to generate your forms based
+  on the submitted data.
+
+**TIP**: A jQuery event is fired after a row has been added (``sonata-admin-append-form-element``).
+You can listen to this event to trigger custom javascript (eg: add a calendar widget to a newly added date field)
+
 StatusType
 ^^^^^^^^^^
 
