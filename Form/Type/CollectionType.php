@@ -32,7 +32,7 @@ class CollectionType extends AbstractType
             $options['type'],
             $options['type_options'],
             $options['modifiable'],
-            $options['pre_bind_data_closure']
+            $options['pre_bind_data_callback']
         );
 
         $builder->addEventSubscriber($listener);
@@ -53,12 +53,12 @@ class CollectionType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'modifiable'            => false,
-            'type'                  => 'text',
-            'type_options'          => array(),
-            'pre_bind_data_closure' => null,
-            'btn_add'               => 'link_add',
-            'btn_catalogue'         => 'SonataCoreBundle'
+            'modifiable'             => false,
+            'type'                   => 'text',
+            'type_options'           => array(),
+            'pre_bind_data_callback' => null,
+            'btn_add'                => 'link_add',
+            'btn_catalogue'          => 'SonataCoreBundle'
         ));
     }
 
