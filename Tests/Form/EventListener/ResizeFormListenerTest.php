@@ -32,7 +32,7 @@ class ResizeFormListenerTest extends \PHPUnit_Framework_TestCase
 
         $event = new FormEvent($form, $data);
 
-        $closure = function ($listenerValue) {
+        $closure = function ($listenerValue) use ($value) {
             $this->assertEquals($value, $listenerValue);
         };
 
