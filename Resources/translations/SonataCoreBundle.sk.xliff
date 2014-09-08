@@ -14,6 +14,18 @@
               <source>label_type_no</source>
               <target>nie</target>
             </trans-unit>
+            <trans-unit id="sonata_core_template_box_file_found_in">
+                <source>sonata_core_template_box_file_found_in</source>
+                <target>Tento súbor možno nájsť v</target>
+            </trans-unit>
+            <trans-unit id="label_type_equals">
+                <source>label_type_equals</source>
+                <target>sa rovná</target>
+            </trans-unit>
+            <trans-unit id="label_type_not_equals">
+                <source>label_type_not_equals</source>
+                <target>sa nerovná</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
