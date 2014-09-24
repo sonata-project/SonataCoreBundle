@@ -4,7 +4,7 @@
 Api
 ===
 
-The bundle comes with an handy ``FormHelper::removeField`` method which can be used to remove form's fields
+The bundle comes with a handy ``FormHelper::removeField`` method which can be used to remove form's fields
 if the related submitted data is not provided. The Form Component's default behavior is to set ``null`` if a form
 field is defined but no data submitted for this particular field. This is quite annoying while building an API and the
 client only sent partial data to update an entity.
