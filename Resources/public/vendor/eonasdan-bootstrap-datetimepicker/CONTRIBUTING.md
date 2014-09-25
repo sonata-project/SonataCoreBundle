@@ -1,6 +1,32 @@
-Contributions guidelines:
+Submitting Issues
+=================
 
-- Use 2 spaces indentation
-- If it is a bug, please read open issues to avoid duplicates
-- If it is a new feature, please provide a use case. E.g. Why this feature should be added and what you are using it for
-- If possible, please provide example code and/or a jdfiddle and a DETAILED example of what is not working
+If you are submitting a bug, please test and/or fork [this jsfiddle](http://jsfiddle.net/kmbo576p/) demonstrating the issue. Code issues and fringe case bugs that do not include a jsfiddle (or similar) will be closed.
+
+Contributing code
+=================
+
+To contribute, fork the library and install grunt and dependencies. You need [node](http://nodejs.org/); use [nvm](https://github.com/creationix/nvm) or [nenv](https://github.com/ryuone/nenv) to install it.
+
+```bash
+git clone https://github.com/Eonasdan/bootstrap-datetimepicker.git
+cd bootstrap-datetimepicker
+npm install -g grunt-cli
+npm install
+git checkout development  # all patches against development branch, please!
+grunt                 # this runs tests and jshint
+```
+
+Very important notes
+====================
+
+ * **Pull requests to the `master` branch will be closed.** Please submit all pull requests to the `development` branch.
+ * **Do not include the minified files in your pull request.** Don't worry, we'll build them when we cut a release.
+
+Grunt tasks
+===========
+
+We use Grunt for managing the build. Here are some useful Grunt tasks:
+
+  * `grunt` The default task lints the code and runs the tests. You should make sure you do this before submitting a PR.
+  * `grunt build` Compiles the less stylesheet and minifies the javascript source in build directory.

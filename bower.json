@@ -5,7 +5,9 @@
         "Thomas Rabaix <thomas.rabaix@gmail.com>"
     ],
     "dependencies": {
-        "eonasdan-bootstrap-datetimepicker": "latest"
+        "eonasdan-bootstrap-datetimepicker": "latest",
+        "select2": "https://github.com/ivaynberg/select2.git#3.5.1",
+        "moment": "latest"
     },
     "license": "MIT",
     "private": true,
