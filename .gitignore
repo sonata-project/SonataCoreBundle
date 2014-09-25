@@ -7,3 +7,5 @@ nbproject
 coverage
 composer.lock
 /vendor
+
+Resources/public/vendor/ionicons/png
