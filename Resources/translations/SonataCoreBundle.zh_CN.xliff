@@ -14,6 +14,14 @@
                 <source>label_type_no</source>
                 <target>否</target>
             </trans-unit>
+            <trans-unit id="label_type_equals">
+                <source>label_type_equals</source>
+                <target>label_type_equals</target>
+            </trans-unit>
+            <trans-unit id="label_type_not_equals">
+                <source>label_type_not_equals</source>
+                <target>label_type_not_equals</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -15,9 +15,17 @@
                 <target>non</target>
             </trans-unit>
             <trans-unit id="sonata_core_template_box_file_found_in">
-            <source>sonata_core_template_box_file_found_in</source>
-            <target>Ce fichier est localisé à l'emplacement</target>
-        </trans-unit>
+                <source>sonata_core_template_box_file_found_in</source>
+                <target>Ce fichier est localisé à l'emplacement</target>
+            </trans-unit>
+            <trans-unit id="label_type_equals">
+                <source>label_type_equals</source>
+                <target>Est égal à</target>
+            </trans-unit>
+            <trans-unit id="label_type_not_equals">
+                <source>label_type_not_equals</source>
+                <target>Ne contient pas</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
