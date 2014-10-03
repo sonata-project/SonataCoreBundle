@@ -16,11 +16,11 @@
             </trans-unit>
             <trans-unit id="label_type_equals">
                 <source>label_type_equals</source>
-                <target>label_type_equals</target>
+                <target>egyenlő</target>
             </trans-unit>
             <trans-unit id="label_type_not_equals">
                 <source>label_type_not_equals</source>
-                <target>label_type_not_equals</target>
+                <target>nem egyenlő</target>
             </trans-unit>
         </body>
     </file>
