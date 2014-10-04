@@ -14,13 +14,17 @@
                 <source>label_type_no</source>
                 <target>нет</target>
             </trans-unit>
+            <trans-unit id="sonata_core_template_box_file_found_in">
+                <source>sonata_core_template_box_file_found_in</source>
+                <target>sonata_core_template_box_file_found_in</target>
+            </trans-unit>
             <trans-unit id="label_type_equals">
                 <source>label_type_equals</source>
-                <target>label_type_equals</target>
+                <target>равен</target>
             </trans-unit>
             <trans-unit id="label_type_not_equals">
                 <source>label_type_not_equals</source>
-                <target>label_type_not_equals</target>
+                <target>не равен</target>
             </trans-unit>
         </body>
     </file>
