@@ -4,15 +4,15 @@
         <body>
             <trans-unit id="link_add">
                 <source>link_add</source>
-                <target>Adicionar novo</target>
+                <target>إضافة جديدة</target>
             </trans-unit>
             <trans-unit id="label_type_yes">
                 <source>label_type_yes</source>
-                <target>sim</target>
+                <target>نعم</target>
             </trans-unit>
             <trans-unit id="label_type_no">
                 <source>label_type_no</source>
-                <target>não</target>
+                <target>لا يحتوي</target>
             </trans-unit>
             <trans-unit id="sonata_core_template_box_file_found_in">
                 <source>sonata_core_template_box_file_found_in</source>
@@ -20,11 +20,11 @@
             </trans-unit>
             <trans-unit id="label_type_equals">
                 <source>label_type_equals</source>
-                <target>é igual a</target>
+                <target>يساوي</target>
             </trans-unit>
             <trans-unit id="label_type_not_equals">
                 <source>label_type_not_equals</source>
-                <target>não é igual a</target>
+                <target>لا تساوي</target>
             </trans-unit>
         </body>
     </file>

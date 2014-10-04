@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="lt" datatype="plaintext" original="" >
+    <file source-language="en" datatype="plaintext" original="" >
         <body>
             <trans-unit id="link_add">
                 <source>link_add</source>
@@ -14,13 +14,17 @@
                 <source>label_type_no</source>
                 <target>ne</target>
             </trans-unit>
+            <trans-unit id="sonata_core_template_box_file_found_in">
+                <source>sonata_core_template_box_file_found_in</source>
+                <target>sonata_core_template_box_file_found_in</target>
+            </trans-unit>
             <trans-unit id="label_type_equals">
                 <source>label_type_equals</source>
-                <target>label_type_equals</target>
+                <target>yra lygus</target>
             </trans-unit>
             <trans-unit id="label_type_not_equals">
                 <source>label_type_not_equals</source>
-                <target>label_type_not_equals</target>
+                <target>nelygus</target>
             </trans-unit>
         </body>
     </file>
