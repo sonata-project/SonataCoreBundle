@@ -5,6 +5,10 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="sonata.core.twig.extension.wrapping" class="Sonata\CoreBundle\Twig\Extension\FormTypeExtension">
+            <tag name="twig.extension"/>
+            <argument>%sonata.core.form_type%</argument>
+        </service>
         <service id="sonata.core.twig.extension.text" class="Twig_Extensions_Extension_Text">
             <tag name="twig.extension"/>
         </service>

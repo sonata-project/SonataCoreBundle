@@ -44,6 +44,7 @@ class SonataCoreExtension extends Extension
         $loader->load('model_adapter.xml');
 
         $this->registerFlashTypes($container, $config);
+        $container->setParameter('sonata.core.form_type', $config['form_type']);
 
         $this->configureClassesToCompile();
     }

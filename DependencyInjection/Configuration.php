@@ -49,6 +49,17 @@ class Configuration implements ConfigurationInterface
     {
         $node
             ->children()
+                ->scalarNode('form_type')
+                    ->defaultValue('standard')
+                    ->validate()
+                    ->ifNotInArray($validFormTypes = array('standard', 'horizontal'))
+                        ->thenInvalid(sprintf(
+                            'The form_type option value must be one of %s',
+                            $validFormTypesString = implode(', ', $validFormTypes)
+                        ))
+                    ->end()
+                    ->info(sprintf('Must be one of %s', $validFormTypesString))
+                ->end()
                 ->arrayNode('flashmessage')
                     ->useAttributeAsKey('message')
                     ->prototype('array')
