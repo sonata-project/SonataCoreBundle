@@ -85,7 +85,7 @@ abstract class BasePickerType extends AbstractType
             'dp_pick_time'             => true,
             'dp_use_current'           => true,
             'dp_min_date'              => '1/1/1900',
-            'dp_max_date'              => '',
+            'dp_max_date'              => null,
             'dp_show_today'            => true,
             'dp_language'              => 'en',
             'dp_default_date'          => '',
