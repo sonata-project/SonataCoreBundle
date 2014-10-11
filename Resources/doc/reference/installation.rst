@@ -34,6 +34,9 @@ Installation
         );
     }
 
+Configuration
+=============
+
 * Create a configuration file ``sonata_core.yml`` with this content:
 
 .. code-block:: yaml
@@ -47,3 +50,19 @@ Installation
     imports:
         #...
         - { resource: sonata_core.yml }
+
+When using bootstrap, some widgets need to be wrapped in a special ``div`` element
+depending on whether you are using the standard style for your forms or the
+horizontal style.
+
+If you are using the horizontal style, you will need to configure the
+corresponding configuration node accordingly:
+
+.. code-block:: yaml
+
+    sonata_core:
+        form_type: horizontal
+
+Please note that if you are using the admin bundle, this is actually optional:
+Thee core bundle extension will detect if the configuration node that deals with
+the form style in the admin bundle is set and will configure the core bundle for you.
