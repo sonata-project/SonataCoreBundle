@@ -23,6 +23,7 @@
         "twig/twig": "~1.16"
     },
     "require-dev": {
+        "matthiasnoback/symfony-config-test": "~0.4",
         "doctrine/orm": "~2.4",
         "doctrine/phpcr-odm": "~1.0",
         "jackalope/jackalope-doctrine-dbal": "~1.0",
