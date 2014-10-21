@@ -87,7 +87,7 @@ abstract class BasePickerType extends AbstractType
             'dp_min_date'              => '1/1/1900',
             'dp_max_date'              => null,
             'dp_show_today'            => true,
-            'dp_language'              => 'en',
+            'dp_language'              => \Locale::getDefault(),
             'dp_default_date'          => '',
             'dp_disabled_dates'        => array(),
             'dp_enabled_dates'         => array(),
