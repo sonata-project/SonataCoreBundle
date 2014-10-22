@@ -13,9 +13,8 @@ file that was distributed with this source code.
         <div class="form-group">
             {% if datepicker_use_button %}
                 <div class='input-group date' id='{{ id }}' data-date-format="{{ moment_format }}">
-            {% else %}
-                {% set attr = attr|merge({'data-date-format': moment_format}) %}
             {% endif %}
+            {% set attr = attr|merge({'data-date-format': moment_format}) %}
             {{ block('date_widget') }}
             {% if datepicker_use_button %}
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -35,9 +34,8 @@ file that was distributed with this source code.
         <div class="form-group">
             {% if datepicker_use_button %}
                 <div class='input-group date' id='{{ id }}' data-date-format="{{ moment_format }}">
-            {% else %}
-                {% set attr = attr|merge({'data-date-format': moment_format}) %}
             {% endif %}
+            {% set attr = attr|merge({'data-date-format': moment_format}) %}
             {{ block('datetime_widget') }}
             {% if datepicker_use_button %}
                   <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
