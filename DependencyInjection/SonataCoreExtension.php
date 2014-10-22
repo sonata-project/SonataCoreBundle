@@ -42,6 +42,7 @@ class SonataCoreExtension extends Extension
         $loader->load('form_types.xml');
         $loader->load('twig.xml');
         $loader->load('model_adapter.xml');
+        $loader->load('core.xml');
 
         $this->registerFlashTypes($container, $config);
 

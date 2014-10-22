@@ -20,7 +20,8 @@
         "symfony/form": "~2.3",
         "symfony/config": "~2.3",
         "symfony/translation": "~2.3",
-        "twig/twig": "~1.16"
+        "twig/twig": "~1.16",
+        "cocur/slugify": "*"
     },
     "require-dev": {
         "doctrine/orm": "~2.4",
