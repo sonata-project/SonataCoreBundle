@@ -8,20 +8,28 @@ For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 
 #}
+{% block sonata_type_date_picker_widget_html %}
+    {% if datepicker_use_button %}
+        <div class='input-group date' id='{{ id }}' data-date-format="{{ moment_format }}">
+    {% else %}
+        {% set attr = attr|merge({'data-date-format': moment_format}) %}
+    {% endif %}
+    {{ block('date_widget') }}
+    {% if datepicker_use_button %}
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+        </div>
+    {% endif %}
+{% endblock sonata_type_date_picker_widget_html %}
+
 {% block sonata_type_date_picker_widget %}
     {% spaceless %}
-        <div class="form-group">
-            {% if datepicker_use_button %}
-                <div class='input-group date' id='{{ id }}' data-date-format="{{ moment_format }}">
-            {% else %}
-                {% set attr = attr|merge({'data-date-format': moment_format}) %}
-            {% endif %}
-            {{ block('date_widget') }}
-            {% if datepicker_use_button %}
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                </div>
-            {% endif %}
-        </div>
+        {% if wrap_fields_with_addons %}
+            <div class="form-group">
+                {{ block('sonata_type_date_picker_widget_html') }}
+            </div>
+        {% else %}
+            {{ block('sonata_type_date_picker_widget_html') }}
+        {% endif %}
         <script type="text/javascript">
             jQuery(function ($) {
                 $('#{{ id }}').datetimepicker({{ dp_options|json_encode|raw }});
@@ -30,20 +38,28 @@ file that was distributed with this source code.
     {% endspaceless %}
 {% endblock sonata_type_date_picker_widget %}
 
+{% block sonata_type_datetime_picker_widget_html %}
+    {% if datepicker_use_button %}
+        <div class='input-group date' id='{{ id }}' data-date-format="{{ moment_format }}">
+    {% else %}
+        {% set attr = attr|merge({'data-date-format': moment_format}) %}
+    {% endif %}
+    {{ block('datetime_widget') }}
+    {% if datepicker_use_button %}
+          <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+        </div>
+    {% endif %}
+{% endblock sonata_type_datetime_picker_widget_html %}
+
 {% block sonata_type_datetime_picker_widget %}
     {% spaceless %}
-        <div class="form-group">
-            {% if datepicker_use_button %}
-                <div class='input-group date' id='{{ id }}' data-date-format="{{ moment_format }}">
-            {% else %}
-                {% set attr = attr|merge({'data-date-format': moment_format}) %}
-            {% endif %}
-            {{ block('datetime_widget') }}
-            {% if datepicker_use_button %}
-                  <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                </div>
-            {% endif %}
-        </div>
+        {% if wrap_fields_with_addons %}
+            <div class="form-group">
+                {{ block('sonata_type_datetime_picker_widget_html') }}
+            </div>
+        {% else %}
+            {{ block('sonata_type_datetime_picker_widget_html') }}
+        {% endif %}
         <script type="text/javascript">
             jQuery(function ($) {
                 $('#{{ id }}').datetimepicker({{ dp_options|json_encode|raw }});

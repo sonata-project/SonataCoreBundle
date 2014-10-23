@@ -16,14 +16,27 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
 /**
  * SonataCoreExtension
  *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class SonataCoreExtension extends Extension
+class SonataCoreExtension extends Extension implements PrependExtensionInterface
 {
+    public function prepend(ContainerBuilder $container)
+    {
+        $configs = $container->getExtensionConfig('sonata_admin');
+
+        if (isset($configs[0]['options']['form_type'])) {
+            $container->prependExtensionConfig(
+                $this->getAlias(),
+                array('form_type' => $configs[0]['options']['form_type'])
+            );
+        }
+    }
+
     /**
      * Loads the url shortener configuration.
      *
@@ -45,6 +58,7 @@ class SonataCoreExtension extends Extension
         $loader->load('core.xml');
 
         $this->registerFlashTypes($container, $config);
+        $container->setParameter('sonata.core.form_type', $config['form_type']);
 
         $this->configureClassesToCompile();
     }
