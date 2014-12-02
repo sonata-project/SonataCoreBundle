@@ -35,6 +35,7 @@ class MomentFormatConverter
         "yyyy-MM-dd"                 => 'YYYY-MM-DD',            // 2014-05-14
         "dd.MM.yyyy, HH:mm"          => 'DD.MM.YYYY, HH:mm',     // 14.05.2014, 13:55, German format without seconds
         "dd.MM.yyyy, HH:mm:ss"       => 'DD.MM.YYYY, HH:mm:ss',  // 14.05.2014, 13:55:01, German format with seconds
+        "dd.MM.yyyy"                 => 'DD.MM.YYYY',            // 14.05.2014, German format without time
         "dd/MM/yyyy"                 => 'DD/MM/YYYY',            // 14/05/2014, British ascending format
         "dd/MM/yyyy HH:mm"           => 'DD/MM/YYYY HH:mm',      // 14/05/2014 13:55, British ascending format with time
         "EE, dd/MM/yyyy HH:mm"       => 'ddd, DD/MM/YYYY HH:mm', // Wed, 14/05/2014 13:55, includes day of week in British format
