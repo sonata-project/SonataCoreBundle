@@ -64,5 +64,5 @@ corresponding configuration node accordingly:
         form_type: horizontal
 
 Please note that if you are using the admin bundle, this is actually optional:
-Thee core bundle extension will detect if the configuration node that deals with
+The core bundle extension will detect if the configuration node that deals with
 the form style in the admin bundle is set and will configure the core bundle for you.
