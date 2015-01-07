@@ -34,8 +34,14 @@ class DateRangeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('start', $options['field_type'], array_merge(array('required' => false), $options['field_options']));
-        $builder->add('end', $options['field_type'], array_merge(array('required' => false), $options['field_options']));
+        $labelStart = isset($options['field_options']['label_start']) ? $options['field_options']['label_start'] : $options['label_start'];
+        $labelEnd   = isset($options['field_options']['label_end']) ? $options['field_options']['label_end'] : $options['label_end'];
+
+        unset($options['field_options']['label_start']);
+        unset($options['field_options']['label_end']);
+        
+        $builder->add('start', $options['field_type'], array_merge(array('required' => false, 'label' => $labelStart), $options['field_options']));
+        $builder->add('end', $options['field_type'], array_merge(array('required' => false, 'label' => $labelEnd), $options['field_options']));
     }
 
     /**
@@ -53,7 +59,9 @@ class DateRangeType extends AbstractType
     {
         $resolver->setDefaults(array(
             'field_options'    => array(),
-            'field_type'       => 'date'
+            'field_type'       => 'date',
+            'label_start'      => $this->translator->trans('start'),
+            'label_end'        => $this->translator->trans('end')
         ));
     }
 }
