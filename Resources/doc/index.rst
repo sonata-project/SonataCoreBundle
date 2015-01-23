@@ -20,3 +20,5 @@ Reference Guide
    reference/serialization
    reference/api
    reference/conditional_validation
+   reference/command
+
