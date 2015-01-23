@@ -39,8 +39,9 @@ class MomentFormatConverter
         "dd/MM/yyyy"                 => 'DD/MM/YYYY',            // 14/05/2014, British ascending format
         "dd/MM/yyyy HH:mm"           => 'DD/MM/YYYY HH:mm',      // 14/05/2014 13:55, British ascending format with time
         "EE, dd/MM/yyyy HH:mm"       => 'ddd, DD/MM/YYYY HH:mm', // Wed, 14/05/2014 13:55, includes day of week in British format
-        "dd-MM-yyyy HH:mm"           => 'DD-MM-YYYY HH:mm',      // 14-05-2014 13:55, Dutch format
-        "dd-MM-yyyy HH:mm:ss"        => 'DD-MM-YYYY HH:mm:ss',   // 14-05-2014 13:55:01, Dutch format with seconds
+        "dd-MM-yyyy"                 => 'DD-MM-YYYY',            // 14-05-2014, Dutch format
+        "dd-MM-yyyy HH:mm"           => 'DD-MM-YYYY HH:mm',      // 14-05-2014 13:55, Dutch format with time
+        "dd-MM-yyyy HH:mm:ss"        => 'DD-MM-YYYY HH:mm:ss',   // 14-05-2014 13:55:01, Dutch format with time and seconds
     );
 
     /**
