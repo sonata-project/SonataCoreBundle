@@ -52,6 +52,11 @@ class DoctrineORMSerializationType extends AbstractType
     protected $group;
 
     /**
+     * @var boolean
+     */
+    protected $allowOverride;
+
+    /**
      * Constructor
      *
      * @param MetadataFactoryInterface $metadataFactory Serializer metadata factory
@@ -60,13 +65,14 @@ class DoctrineORMSerializationType extends AbstractType
      * @param string                   $class           Data class name
      * @param string                   $group           Serialization group name
      */
-    public function __construct(MetadataFactoryInterface $metadataFactory, ManagerRegistry $registry, $name, $class, $group)
+    public function __construct(MetadataFactoryInterface $metadataFactory, ManagerRegistry $registry, $name, $class, $group, $allowOverride = false)
     {
         $this->metadataFactory = $metadataFactory;
         $this->registry = $registry;
         $this->name  = $name;
         $this->class = $class;
         $this->group = $group;
+        $this->allowOverride = $allowOverride;
     }
 
     /**
@@ -82,7 +88,7 @@ class DoctrineORMSerializationType extends AbstractType
         foreach ($serializerMetadata->propertyMetadata as $propertyMetadata) {
             $name = $propertyMetadata->name;
 
-            if (in_array($name, $doctrineMetadata->getIdentifierFieldNames())) {
+            if (in_array($name, $doctrineMetadata->getIdentifierFieldNames()) && !$this->allowOverride) {
                 continue;
             }
 
