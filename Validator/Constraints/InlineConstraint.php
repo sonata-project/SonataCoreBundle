@@ -23,7 +23,7 @@ class InlineConstraint extends Constraint
      */
     public function validatedBy()
     {
-        return 'sonata.admin.validator.inline';
+        return 'sonata.core.validator.inline';
     }
 
     /**
