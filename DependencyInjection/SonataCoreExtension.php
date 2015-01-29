@@ -56,6 +56,7 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
         $loader->load('twig.xml');
         $loader->load('model_adapter.xml');
         $loader->load('core.xml');
+        $loader->load('validator.xml');
 
         $this->registerFlashTypes($container, $config);
         $container->setParameter('sonata.core.form_type', $config['form_type']);
