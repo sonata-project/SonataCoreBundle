@@ -19,3 +19,4 @@ Reference Guide
    reference/doctrine_base_manager
    reference/serialization
    reference/api
+   reference/conditional_validation

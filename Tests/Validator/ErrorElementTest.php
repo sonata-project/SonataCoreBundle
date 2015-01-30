@@ -38,7 +38,7 @@ class ErrorElementTest extends \PHPUnit_Framework_TestCase
 
         $this->subject = new Foo();
 
-        $this->errorElement = new ErrorElement($this->subject, $constraintValidatorFactory, $this->context, 'foo_admin');
+        $this->errorElement = new ErrorElement($this->subject, $constraintValidatorFactory, $this->context, 'foo_core');
     }
 
     public function testGetSubject()
@@ -126,7 +126,7 @@ class ErrorElementTest extends \PHPUnit_Framework_TestCase
 
         $this->context->expects($this->any())
             ->method('validateValue')
-            ->with($this->equalTo($this->subject), $this->equalTo($constraint), $this->equalTo(''), $this->equalTo('foo_admin'))
+            ->with($this->equalTo($this->subject), $this->equalTo($constraint), $this->equalTo(''), $this->equalTo('foo_core'))
             ->will($this->returnValue(null));
 
         $this->assertEquals($this->errorElement, $this->errorElement->with('baz'));
