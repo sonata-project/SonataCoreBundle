@@ -10,10 +10,9 @@ file that was distributed with this source code.
 #}
 {% block sonata_type_date_picker_widget_html %}
     {% if datepicker_use_button %}
-        <div class='input-group date' id='dp_{{ id }}' data-date-format="{{ moment_format }}">
-    {% else %}
-        {% set attr = attr|merge({'data-date-format': moment_format}) %}
+        <div class='input-group date' id='dp_{{ id }}'>
     {% endif %}
+    {% set attr = attr|merge({'data-date-format': moment_format}) %}
     {{ block('date_widget') }}
     {% if datepicker_use_button %}
             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -32,7 +31,7 @@ file that was distributed with this source code.
         {% endif %}
         <script type="text/javascript">
             jQuery(function ($) {
-                $('#dp_{{ id }}').datetimepicker({{ dp_options|json_encode|raw }});
+                $('#{{ datepicker_use_button ? 'dp_' : '' }}{{ id }}').datetimepicker({{ dp_options|json_encode|raw }});
             });
         </script>
     {% endspaceless %}
@@ -40,10 +39,9 @@ file that was distributed with this source code.
 
 {% block sonata_type_datetime_picker_widget_html %}
     {% if datepicker_use_button %}
-        <div class='input-group date' id='dtp_{{ id }}' data-date-format="{{ moment_format }}">
-    {% else %}
-        {% set attr = attr|merge({'data-date-format': moment_format}) %}
+        <div class='input-group date' id='dtp_{{ id }}'>
     {% endif %}
+    {% set attr = attr|merge({'data-date-format': moment_format}) %}
     {{ block('datetime_widget') }}
     {% if datepicker_use_button %}
           <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -62,7 +60,7 @@ file that was distributed with this source code.
         {% endif %}
         <script type="text/javascript">
             jQuery(function ($) {
-                $('#dtp_{{ id }}').datetimepicker({{ dp_options|json_encode|raw }});
+                $('#{{ datepicker_use_button ? 'dtp_' : '' }}{{ id }}').datetimepicker({{ dp_options|json_encode|raw }});
             });
         </script>
     {% endspaceless %}
