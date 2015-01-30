@@ -36,12 +36,7 @@ class InlineValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        $errorElement = new ErrorElement(
-            $value,
-            $this->constraintValidatorFactory,
-            $this->context,
-            $this->context->getGroup()
-        );
+        $errorElement = $this->getErrorElement($value);
 
         if ($constraint->isClosure()) {
             $function = $constraint->getClosure();
@@ -56,5 +51,20 @@ class InlineValidator extends ConstraintValidator
         }
 
         call_user_func($function, $errorElement, $value);
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return ErrorElement
+     */
+    protected function getErrorElement($value)
+    {
+        return new ErrorElement(
+            $value,
+            $this->constraintValidatorFactory,
+            $this->context,
+            $this->context->getGroup()
+        );
     }
 }
