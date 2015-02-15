@@ -26,6 +26,14 @@
                 <source>label_type_not_equals</source>
                 <target>sa nerovná</target>
             </trans-unit>
+            <trans-unit id="date_range_start">
+                <source>date_range_start</source>
+                <target>Od</target>
+            </trans-unit>
+            <trans-unit id="date_range_end">
+                <source>date_range_end</source>
+                <target>Do</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
