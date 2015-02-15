@@ -26,6 +26,14 @@
                 <source>label_type_not_equals</source>
                 <target>ez da berdina</target>
             </trans-unit>
+            <trans-unit id="date_range_start">
+                <source>date_range_start</source>
+                <target>date_range_start</target>
+            </trans-unit>
+            <trans-unit id="date_range_end">
+                <source>date_range_end</source>
+                <target>date_range_end</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
