@@ -16,11 +16,11 @@
             </trans-unit>
             <trans-unit id="sonata_core_template_box_file_found_in">
                 <source>sonata_core_template_box_file_found_in</source>
-                <target>sonata_core_template_box_file_found_in</target>
+                <target>This file can be found in</target>
             </trans-unit>
             <trans-unit id="label_type_equals">
                 <source>label_type_equals</source>
-                <target>=</target>
+                <target>等しい</target>
             </trans-unit>
             <trans-unit id="label_type_not_equals">
                 <source>label_type_not_equals</source>
@@ -28,11 +28,11 @@
             </trans-unit>
             <trans-unit id="date_range_start">
                 <source>date_range_start</source>
-                <target>date_range_start</target>
+                <target>From</target>
             </trans-unit>
             <trans-unit id="date_range_end">
                 <source>date_range_end</source>
-                <target>date_range_end</target>
+                <target>To</target>
             </trans-unit>
         </body>
     </file>
