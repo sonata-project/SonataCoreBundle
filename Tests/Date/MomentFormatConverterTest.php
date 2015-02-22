@@ -28,22 +28,34 @@ class MomentFormatConverterTest extends \PHPUnit_Framework_TestCase
         $mfc = new MomentFormatConverter();
 
         $phpFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ";
-        $this->assertEquals("YYYY-MM-DDTHH:mm:ssZZ", $mfc->convert($phpFormat));
-        
+        $this->assertEquals("YYYY-MM-DDTHH:mm:ssZ", $mfc->convert($phpFormat));
+
         $phpFormat = "yyyy-MM-dd HH:mm:ss";
         $this->assertEquals("YYYY-MM-DD HH:mm:ss", $mfc->convert($phpFormat));
-        
+
         $phpFormat = "yyyy-MM-dd HH:mm";
         $this->assertEquals("YYYY-MM-DD HH:mm", $mfc->convert($phpFormat));
-        
+
         $phpFormat = "yyyy-MM-dd";
         $this->assertEquals("YYYY-MM-DD", $mfc->convert($phpFormat));
-        
+
         $phpFormat = "dd.MM.yyyy, HH:mm";
         $this->assertEquals("DD.MM.YYYY, HH:mm", $mfc->convert($phpFormat));
-        
+
         $phpFormat = "dd.MM.yyyy, HH:mm:ss";
         $this->assertEquals("DD.MM.YYYY, HH:mm:ss", $mfc->convert($phpFormat));
+
+        $phpFormat = "dd.MM.yyyy";
+        $this->assertEquals("DD.MM.YYYY", $mfc->convert($phpFormat));
+
+        $phpFormat = "d.M.yyyy";
+        $this->assertEquals("D.M.YYYY", $mfc->convert($phpFormat));
+
+        $phpFormat = "d.M.yyyy HH:mm";
+        $this->assertEquals("D.M.YYYY HH:mm", $mfc->convert($phpFormat));
+
+        $phpFormat = "d.M.yyyy HH:mm:ss";
+        $this->assertEquals("D.M.YYYY HH:mm:ss", $mfc->convert($phpFormat));
 
         $phpFormat = "dd/MM/yyyy";
         $this->assertEquals("DD/MM/YYYY", $mfc->convert($phpFormat));
@@ -53,17 +65,14 @@ class MomentFormatConverterTest extends \PHPUnit_Framework_TestCase
 
         $phpFormat = "EE, dd/MM/yyyy HH:mm";
         $this->assertEquals("ddd, DD/MM/YYYY HH:mm", $mfc->convert($phpFormat));
-    }
 
-    /**
-     * @expectedException        Sonata\CoreBundle\Exception\InvalidParameterException
-     * @expectedExceptionMessage PHP Date format 'unexisting format' is not a convertible moment.js format; please add it to the 'Sonata\CoreBundle\Date\MomentFormatConverter' class by submitting a pull request if you want it supported.
-     */
-    public function testPhpToMomentUnsupported()
-    {
-        $mfc = new MomentFormatConverter();
-        $unexistingFormat = "unexisting format";
+        $phpFormat = "dd-MM-yyyy";
+        $this->assertEquals("DD-MM-YYYY", $mfc->convert($phpFormat));
 
-        $mfc->convert($unexistingFormat);
+        $phpFormat = "dd-MM-yyyy HH:mm";
+        $this->assertEquals("DD-MM-YYYY HH:mm", $mfc->convert($phpFormat));
+
+        $phpFormat = "dd-MM-yyyy HH:mm:ss";
+        $this->assertEquals("DD-MM-YYYY HH:mm:ss", $mfc->convert($phpFormat));
     }
 }
