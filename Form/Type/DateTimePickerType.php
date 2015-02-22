@@ -8,12 +8,10 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Sonata\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
 
 /**
  * Class DatePickerType
@@ -33,6 +31,8 @@ class DateTimePickerType extends BasePickerType
             'dp_use_minutes'     => true,
             'dp_use_seconds'     => true,
             'dp_minute_stepping' => 1,
+            'format'             => DateTimeType::DEFAULT_DATE_FORMAT,
+            'date_format'        => null,
         )));
     }
 
@@ -50,13 +50,5 @@ class DateTimePickerType extends BasePickerType
     public function getName()
     {
         return 'sonata_type_datetime_picker';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getDefaultFormat()
-    {
-        return DateTimeType::HTML5_FORMAT;
     }
 }

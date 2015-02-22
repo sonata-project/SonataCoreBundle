@@ -8,14 +8,13 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Sonata\CoreBundle\Form\Type;
 
 use Sonata\CoreBundle\Date\MomentFormatConverter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
-
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 /**
  * Class BasePickerType (to factorize DatePickerType and DateTimePickerType code
@@ -44,12 +43,18 @@ abstract class BasePickerType extends AbstractType
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        $format = $this->getDefaultFormat();
+        $format = $options['format'];
+
         if (isset($options['date_format']) && is_string($options['date_format'])) {
             $format = $options['date_format'];
-        } else if (isset($options['format']) && is_string($options['format'])) {
-            $format = $options['format'];
+        } elseif (is_int($format)) {
+            $timeFormat = ($options['dp_pick_time']) ? DateTimeType::DEFAULT_TIME_FORMAT : \IntlDateFormatter::NONE;
+            $intlDateFormatter = new \IntlDateFormatter(\Locale::getDefault(), $format, $timeFormat, null, \IntlDateFormatter::GREGORIAN, null);
+            $format = $intlDateFormatter->getPattern();
         }
+
+        // use seconds if it's allowe in format
+        $options['dp_use_seconds'] = strpos($format, 's') !== false;
 
         $view->vars['moment_format'] = $this->formatConverter->convert($format);
 
@@ -87,7 +92,7 @@ abstract class BasePickerType extends AbstractType
             'dp_min_date'              => '1/1/1900',
             'dp_max_date'              => null,
             'dp_show_today'            => true,
-            'dp_language'              => 'en',
+            'dp_language'              => \Locale::getDefault(), // 'en'
             'dp_default_date'          => '',
             'dp_disabled_dates'        => array(),
             'dp_enabled_dates'         => array(),
@@ -95,18 +100,11 @@ abstract class BasePickerType extends AbstractType
                 'time' => 'glyphicon glyphicon-time',
                 'date' => 'glyphicon glyphicon-calendar',
                 'up'   => 'glyphicon glyphicon-chevron-up',
-                'down' => 'glyphicon glyphicon-chevron-down'
+                'down' => 'glyphicon glyphicon-chevron-down',
             ),
             'dp_use_strict'            => false,
             'dp_side_by_side'          => false,
             'dp_days_of_week_disabled' => array(),
         );
     }
-
-    /**
-     * Returns default format for type
-     *
-     * @return string
-     */
-    protected abstract function getDefaultFormat();
 }
