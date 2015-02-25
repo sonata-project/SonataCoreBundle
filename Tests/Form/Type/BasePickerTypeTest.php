@@ -8,7 +8,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Date\MomentFormatConverter;
@@ -30,7 +29,6 @@ class BasePickerTest extends BasePickerType
     }
 }
 
-
 /**
  * Class BasePickerTypeTest
  *
@@ -47,7 +45,7 @@ class BasePickerTypeTest extends \PHPUnit_Framework_TestCase
         $view = new FormView();
         $form = new Form($this->getMock('Symfony\Component\Form\FormConfigInterface'));
 
-        $type->finishView($view, $form, array());
+        $type->finishView($view, $form, array('format' => 'yyyy-MM-dd'));
 
         $this->assertArrayHasKey('moment_format', $view->vars);
         $this->assertArrayHasKey('dp_options', $view->vars);
