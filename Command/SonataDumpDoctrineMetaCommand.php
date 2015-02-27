@@ -39,22 +39,20 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
     {
         $this
             ->setName('sonata:core:dump-doctrine-metadata')
-            ->setDefinition(
-                [
-                    new InputOption(
-                        'entity-name', 'E', InputOption::VALUE_OPTIONAL,
-                        'If entity-name is set, dump will only contain the specified entity and all its extended classes.', null
-                    ),
-                    new InputOption(
-                        'regex', 'r', InputOption::VALUE_OPTIONAL,
-                        'If regex is set, dump will only contain entities which name match the pattern.', null
-                    ),
-                    new InputOption(
-                        'filename', 'f', InputOption::VALUE_OPTIONAL,
-                        'If filename is specified, result will be dumped into this file under json format.', null
-                    ),
-                ]
-            )
+            ->setDefinition(array(
+                new InputOption(
+                    'entity-name', 'E', InputOption::VALUE_OPTIONAL,
+                    'If entity-name is set, dump will only contain the specified entity and all its extended classes.', null
+                ),
+                new InputOption(
+                    'regex', 'r', InputOption::VALUE_OPTIONAL,
+                    'If regex is set, dump will only contain entities which name match the pattern.', null
+                ),
+                new InputOption(
+                    'filename', 'f', InputOption::VALUE_OPTIONAL,
+                    'If filename is specified, result will be dumped into this file under json format.', null
+                ),
+            ))
             ->setDescription(
                 'Get information on the current Doctrine\'s schema'
             );
@@ -176,7 +174,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
      */
     private function normalizeDoctrineORMMeta(ClassMetadata $meta)
     {
-        $normalizedMeta = [];
+        $normalizedMeta = array();
         $fieldMappings = $meta->fieldMappings;
 
         $normalizedMeta['table'] = $meta->table['name'];
