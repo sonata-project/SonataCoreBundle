@@ -9,3 +9,5 @@ composer.lock
 /vendor
 
 Resources/public/vendor/ionicons/png
+Resources/public/vendor/select2-bootstrap-css/*
+!Resources/public/vendor/select2-bootstrap-css/select2-bootstrap.min.css
