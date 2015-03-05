@@ -31,7 +31,7 @@ class MomentFormatConverter
      */
     private static $formatConvertRules = array(
         // year
-        'yyyy' => 'YYYY', 'yy' => 'YY',
+        'yyyy' => 'YYYY', 'yy' => 'YY', 'y' => 'YYYY',
         // month
         // 'MMMM'=>'MMMM', 'MMM'=>'MMM', 'MM'=>'MM',
         // day
