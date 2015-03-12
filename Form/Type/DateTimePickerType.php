@@ -28,9 +28,7 @@ class DateTimePickerType extends BasePickerType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array_merge($this->getCommonDefaults(), array(
-            'dp_use_minutes'     => true,
-            'dp_use_seconds'     => true,
-            'dp_minute_stepping' => 1,
+            'dp_stepping'        => 1,
             'format'             => DateTimeType::DEFAULT_DATE_FORMAT,
             'date_format'        => null,
         )));
