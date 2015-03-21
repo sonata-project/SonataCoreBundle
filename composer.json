@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": "Symfony SonataCoreBundle",
     "keywords": ["sonata"],
-    "homepage": "http://sonata-project.org/bundles/core",
+    "homepage": "https://sonata-project.org/bundles/core",
     "license": "MIT",
     "authors": [
         {
