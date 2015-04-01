@@ -53,7 +53,7 @@ abstract class BasePickerType extends AbstractType
             $format = $intlDateFormatter->getPattern();
         }
 
-        $view->vars['moment_format'] = $this->formatConverter->convert($format);
+        $options['dp_format'] = $this->formatConverter->convert($format);
 
         $view->vars['type'] = 'text';
 
