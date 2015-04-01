@@ -105,6 +105,8 @@ abstract class BasePickerType extends AbstractType
             'dp_use_strict'            => false,
             'dp_side_by_side'          => false,
             'dp_days_of_week_disabled' => array(),
+            'dp_calendar_weeks'        => false,
+            'dp_view_mode'             => 'days', // days,months,years
         );
     }
 }
