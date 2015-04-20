@@ -21,7 +21,8 @@ class EntityManagerMockFactory
      *
      * @return \Doctrine\ORM\EntityManagerInterface
      */
-    static function create(\PHPUnit_Framework_TestCase $test, \Closure $qbCallback, $fields) {
+    static function create(\PHPUnit_Framework_TestCase $test, \Closure $qbCallback, $fields)
+    {
         $query = $test->getMockForAbstractClass('Doctrine\ORM\AbstractQuery', array(), '', false, true, true, array('execute'));
         $query->expects($test->any())->method('execute')->will($test->returnValue(true));
 
@@ -30,6 +31,10 @@ class EntityManagerMockFactory
         $qb = $test->getMockBuilder('Doctrine\ORM\QueryBuilder')->setConstructorArgs(array($entityManager))->getMock();
         $qb->expects($test->any())->method('select')->will($test->returnValue($qb));
         $qb->expects($test->any())->method('getQuery')->will($test->returnValue($query));
+        $qb->expects($test->any())->method('where')->will($test->returnValue($qb));
+        $qb->expects($test->any())->method('orderBy')->will($test->returnValue($qb));
+        $qb->expects($test->any())->method('andWhere')->will($test->returnValue($qb));
+        $qb->expects($test->any())->method('leftJoin')->will($test->returnValue($qb));
 
         $qbCallback($qb);
 
