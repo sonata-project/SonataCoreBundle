@@ -299,3 +299,24 @@ Many of the `standard date picker options <http://eonasdan.github.io/bootstrap-d
 If you look in the classes ``DateTimePickerType.php`` and ``BasePickerType.php`` you can see all the currently available options.
 
 In addition to these standard options, there is also the option `datepicker_use_button` which, when used, will change the widget so that the datepicker icon is not shown and the pop-up datepicker is invoked simply by clicking on the date input.
+
+sonata_type_date_range_picker and sonata_type_datetime_range_picker
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`sonata_type_date_range_picker` and `sonata_type_datetime_range_picker` extends the basic range form field types (`sonata_type_date_range` and `sonata_type_datetime_range`).
+You can use them if you need datetime picker in datetime range filters.
+
+Example with `doctrine_orm_date_range` filter:
+
+.. code-block:: php
+
+    <?php
+
+    // ...
+
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper
+                ->add('createdAt', 'doctrine_orm_date_range', array('field_type'=>'sonata_type_date_range_picker',))
+        ;
+    }
