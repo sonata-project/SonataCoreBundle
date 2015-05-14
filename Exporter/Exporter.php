@@ -60,7 +60,7 @@ class Exporter
 
         return new StreamedResponse($callback, 200, array(
             'Content-Type'        => $contentType,
-            'Content-Disposition' => sprintf('attachment; filename=%s', $filename)
+            'Content-Disposition' => sprintf('attachment; filename="%s"', $filename)
         ));
     }
 }
