@@ -82,11 +82,6 @@ class TemplateExtension extends \Twig_Extension
         // trim
         $text = trim($text, '-');
 
-        // transliterate
-        if (function_exists('iconv')) {
-            $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-        }
-
         // lowercase
         $text = strtolower($text);
 
