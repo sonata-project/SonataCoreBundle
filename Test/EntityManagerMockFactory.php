@@ -27,7 +27,7 @@ class EntityManagerMockFactory
         $query = $test->getMockForAbstractClass('Doctrine\ORM\AbstractQuery', array(), '', false, true, true, array('execute'));
         $query->expects($test->any())->method('execute')->will($test->returnValue(true));
 
-        if (Version::compare('2.5.0') > -1) {
+        if (Version::compare('2.5.0') < 1) {
             $entityManager = $test->getMock('Doctrine\ORM\EntityManagerInterface');
             $qb = $test->getMockBuilder('Doctrine\ORM\QueryBuilder')->setConstructorArgs(array($entityManager))->getMock();
         } else {
