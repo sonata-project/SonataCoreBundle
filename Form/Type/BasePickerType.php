@@ -48,15 +48,13 @@ abstract class BasePickerType extends AbstractType
         if (isset($options['date_format']) && is_string($options['date_format'])) {
             $format = $options['date_format'];
         } elseif (is_int($format)) {
-            $timeFormat = ($options['dp_pick_time']) ? DateTimeType::DEFAULT_TIME_FORMAT : \IntlDateFormatter::NONE;
-            $intlDateFormatter = new \IntlDateFormatter(\Locale::getDefault(), $format, $timeFormat, null, \IntlDateFormatter::GREGORIAN, null);
+            $locale = isset($options['dp_locale']) ? $options['dp_locale'] : \Locale::getDefault();
+            $timeFormat = ($this->getName() == 'sonata_type_datetime_picker') ? DateTimeType::DEFAULT_TIME_FORMAT : \IntlDateFormatter::NONE;
+            $intlDateFormatter = new \IntlDateFormatter($locale, $format, $timeFormat, null, \IntlDateFormatter::GREGORIAN, null);
             $format = $intlDateFormatter->getPattern();
         }
 
-        // use seconds if it's allowe in format
-        $options['dp_use_seconds'] = strpos($format, 's') !== false;
-
-        $view->vars['moment_format'] = $this->formatConverter->convert($format);
+        $options['dp_format'] = $this->formatConverter->convert($format);
 
         $view->vars['type'] = 'text';
 
@@ -85,26 +83,34 @@ abstract class BasePickerType extends AbstractType
     protected function getCommonDefaults()
     {
         return array(
-            'widget'                   => 'single_text',
-            'datepicker_use_button'    => true,
-            'dp_pick_time'             => true,
-            'dp_use_current'           => true,
-            'dp_min_date'              => '1/1/1900',
-            'dp_max_date'              => null,
-            'dp_show_today'            => true,
-            'dp_language'              => \Locale::getDefault(), // 'en'
-            'dp_default_date'          => '',
-            'dp_disabled_dates'        => array(),
-            'dp_enabled_dates'         => array(),
-            'dp_icons'                 => array(
-                'time' => 'glyphicon glyphicon-time',
-                'date' => 'glyphicon glyphicon-calendar',
-                'up'   => 'glyphicon glyphicon-chevron-up',
-                'down' => 'glyphicon glyphicon-chevron-down',
+            'widget'                        => 'single_text',
+            'datepicker_use_button'         => true,
+            'dp_use_current'                => true,
+            'dp_min_date'                   => '1/1/1900',
+            'dp_max_date'                   => false,
+            'dp_show_today_button'          => true,
+            'dp_locale'                     => \Locale::getDefault(), // 'en'
+            'dp_default_date'               => false,
+            'dp_disabled_dates'             => false,
+            'dp_enabled_dates'              => false,
+            'dp_icons'                      => array(
+                'time'      => 'glyphicon glyphicon-time',
+                'date'      => 'glyphicon glyphicon-calendar',
+                'up'        => 'glyphicon glyphicon-chevron-up',
+                'down'      => 'glyphicon glyphicon-chevron-down',
+                'previous'  => 'glyphicon glyphicon-chevron-left',
+                'next'      => 'glyphicon glyphicon-chevron-right',
+                'today'     => 'glyphicon glyphicon-screenshot',
+                'clear'     => 'glyphicon glyphicon-trash',
             ),
-            'dp_use_strict'            => false,
-            'dp_side_by_side'          => false,
-            'dp_days_of_week_disabled' => array(),
+            'dp_use_strict'                 => false,
+            'dp_side_by_side'               => false,
+            'dp_days_of_week_disabled'      => array(),
+            'dp_collapse'                   => true,
+            'dp_toolbar_placement'          => 'default', // default, top, bottom
+            'dp_show_clear'                 => false,
+            'dp_calendar_weeks'             => false,
+            'dp_view_mode'                  => 'days', // days, months, years,
         );
     }
 }

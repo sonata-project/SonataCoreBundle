@@ -47,7 +47,6 @@ class BasePickerTypeTest extends \PHPUnit_Framework_TestCase
 
         $type->finishView($view, $form, array('format' => 'yyyy-MM-dd'));
 
-        $this->assertArrayHasKey('moment_format', $view->vars);
         $this->assertArrayHasKey('dp_options', $view->vars);
         $this->assertArrayHasKey('datepicker_use_button', $view->vars);
 
