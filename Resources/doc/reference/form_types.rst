@@ -260,11 +260,11 @@ In your layout, you'll need to add the assets dependencies (feel free to adapt t
     <head>
         <!-- ... -->
         <script type="text/javascript" src="path_to_jquery.min.js"></script>
-        <script type="text/javascript" src="/bundles/sonatacore/public/vendor/moment/min/moment.min.js"></script>
+        <script type="text/javascript" src="/bundles/sonatacore/vendor/moment/min/moment.min.js"></script>
         <script type="text/javascript" src="path_to_bootstrap.min.js"></script>
-        <script type="text/javascript" src="/bundles/sonatacore/public/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript" src="/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
         <link rel="stylesheet" href="path_to_bootstrap.min.css" />
-        <link rel="stylesheet" href="/bundles/sonatacore/public/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+        <link rel="stylesheet" href="/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
     </head>
 
 Finally, in your form, you may use the form type as follows:
