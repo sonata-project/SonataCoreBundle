@@ -21,6 +21,7 @@
         "symfony/config": "~2.3",
         "symfony/translation": "~2.3",
         "symfony/validator": "~2.3",
+        "symfony/property-access": "~2.3",
         "twig/twig": "~1.16",
         "cocur/slugify": "*"
     },
