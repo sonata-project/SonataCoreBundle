@@ -29,6 +29,27 @@ use Symfony\Component\Form\FormEvents;
  */
 class FixCheckboxDataListener implements EventSubscriberInterface
 {
+    public static function getSubscribedEvents()
+    {
+        return array(FormEvents::PRE_SUBMIT => 'preBind');
+    }
+
+    /**
+     * @param FormEvent $event
+     *
+     * @deprecated Since version 2.3, to be renamed in 3.0.
+     *             Use {@link preSubmit} instead
+     */
+    public function preBind(FormEvent $event)
+    {
+        // BC prevention for class extending this one.
+        if (get_called_class() !== 'Sonata\CoreBundle\Form\EventListener\FixCheckboxDataListener') {
+            trigger_error(__CLASS__.'::'.__METHOD__.' is deprecated since 2.3 and will be renamed in 3.0. Use '.__CLASS__.'::preSubmit instead.', E_USER_DEPRECATED);
+        }
+
+        $this->preSubmit($event);
+    }
+
     /**
      * @param FormEvent $event
      */
@@ -40,23 +61,5 @@ class FixCheckboxDataListener implements EventSubscriberInterface
         if (count($transformers) === 1 && $transformers[0] instanceof BooleanToStringTransformer && $data === '0') {
             $event->setData(null);
         }
-    }
-
-    /**
-     * Alias of {@link preSubmit()}.
-     *
-     * @deprecated Deprecated since version 2.3, to be removed in 3.0. Use
-     *             {@link preSubmit()} instead.
-     *
-     * @param FormEvent $event
-     */
-    public function preBind(FormEvent $event)
-    {
-        $this->preSubmit($event);
-    }
-
-    public static function getSubscribedEvents()
-    {
-        return array(FormEvents::PRE_SUBMIT => 'preSubmit');
     }
 }
