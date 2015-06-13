@@ -103,9 +103,10 @@ class TemplateExtension extends \Twig_Extension
      */
     public function getUrlsafeIdentifier($model)
     {
-        return $this->modelAdapter->getUrlsafeIdentifier($model);
-    }
-
+        $res = $this->modelAdapter->getUrlsafeIdentifier($model);
+        return $res;
+   }
+ 
     /**
      * {@inheritdoc}
      */
