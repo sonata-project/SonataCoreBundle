@@ -11,10 +11,10 @@
 
 namespace Sonata\CoreBundle\Form\EventListener;
 
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\Exception\UnexpectedTypeException;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Resize a collection form element based on the data sent from the client.
@@ -94,8 +94,8 @@ class ResizeFormListener implements EventSubscriberInterface
         // Then add all rows again in the correct order
         foreach ($data as $name => $value) {
             $options = array_merge($this->typeOptions, array(
-                'property_path' => '[' . $name . ']',
-                'data'          => $value
+                'property_path' => '['.$name.']',
+                'data'          => $value,
             ));
 
             $form->add($name, $this->type, $options);
@@ -122,6 +122,7 @@ class ResizeFormListener implements EventSubscriberInterface
      * @param \Symfony\Component\Form\FormEvent $event
      *
      * @return mixed
+     *
      * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
      */
     public function preSubmit(FormEvent $event)
@@ -150,7 +151,7 @@ class ResizeFormListener implements EventSubscriberInterface
         foreach ($data as $name => $value) {
             if (!$form->has($name)) {
                 $buildOptions = array(
-                    'property_path' => '[' . $name . ']',
+                    'property_path' => '['.$name.']',
                 );
 
                 if ($this->preBindDataCallback) {
@@ -188,6 +189,7 @@ class ResizeFormListener implements EventSubscriberInterface
      * @param \Symfony\Component\Form\FormEvent $event
      *
      * @return mixed
+     *
      * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
      */
     public function onSubmit(FormEvent $event)

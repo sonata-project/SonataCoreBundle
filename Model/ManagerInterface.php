@@ -75,16 +75,16 @@ interface ManagerInterface
     /**
      * Save an Entity.
      *
-     * @param object  $entity   The Entity to save
-     * @param boolean $andFlush Flush the EntityManager after saving the object?
+     * @param object $entity   The Entity to save
+     * @param bool   $andFlush Flush the EntityManager after saving the object?
      */
     public function save($entity, $andFlush = true);
 
     /**
      * Delete an Entity.
      *
-     * @param object  $entity   The Entity to delete
-     * @param boolean $andFlush Flush the EntityManager after deleting the object?
+     * @param object $entity   The Entity to delete
+     * @param bool   $andFlush Flush the EntityManager after deleting the object?
      */
     public function delete($entity, $andFlush = true);
 

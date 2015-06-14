@@ -11,8 +11,8 @@
 
 namespace Sonata\CoreBundle\Tests\Form\DataTransformer;
 
-use Sonata\CoreBundle\Form\Type\BooleanType;
 use Sonata\CoreBundle\Form\DataTransformer\BooleanTypeToBooleanTransformer;
+use Sonata\CoreBundle\Form\Type\BooleanType;
 
 class BooleanTypeToBooleanTransformerTest extends \PHPUnit_Framework_TestCase
 {
@@ -40,11 +40,11 @@ class BooleanTypeToBooleanTransformerTest extends \PHPUnit_Framework_TestCase
         return array(
             array(true, BooleanType::TYPE_YES),
             array(false, BooleanType::TYPE_NO),
-            array("wrong", BooleanType::TYPE_NO),
-            array("1", BooleanType::TYPE_YES),
-            array("2", BooleanType::TYPE_NO),
+            array('wrong', BooleanType::TYPE_NO),
+            array('1', BooleanType::TYPE_YES),
+            array('2', BooleanType::TYPE_NO),
 
-            array("3", BooleanType::TYPE_NO), // default value is false ...
+            array('3', BooleanType::TYPE_NO), // default value is false ...
         );
     }
 }

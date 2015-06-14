@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata project.
  *
@@ -10,16 +11,15 @@
 
 namespace Sonata\CoreBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * SonataCoreExtension
+ * SonataCoreExtension.
  *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
@@ -67,39 +67,37 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
     public function configureClassesToCompile()
     {
         $this->addClassesToCompile(array(
-            "Sonata\\CoreBundle\\Form\\Type\\BooleanType",
-            "Sonata\\CoreBundle\\Form\\Type\\CollectionType",
-            "Sonata\\CoreBundle\\Form\\Type\\DateRangeType",
-            "Sonata\\CoreBundle\\Form\\Type\\DateTimeRangeType",
-            "Sonata\\CoreBundle\\Form\\Type\\EqualType",
-            "Sonata\\CoreBundle\\Form\\Type\\ImmutableArrayType",
-            "Sonata\\CoreBundle\\Form\\Type\\TranslatableChoiceType",
+            'Sonata\\CoreBundle\\Form\\Type\\BooleanType',
+            'Sonata\\CoreBundle\\Form\\Type\\CollectionType',
+            'Sonata\\CoreBundle\\Form\\Type\\DateRangeType',
+            'Sonata\\CoreBundle\\Form\\Type\\DateTimeRangeType',
+            'Sonata\\CoreBundle\\Form\\Type\\EqualType',
+            'Sonata\\CoreBundle\\Form\\Type\\ImmutableArrayType',
+            'Sonata\\CoreBundle\\Form\\Type\\TranslatableChoiceType',
         ));
     }
 
     /**
-     * Registers flash message types defined in configuration to flash manager
+     * Registers flash message types defined in configuration to flash manager.
      *
-     * @param  \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param  array                                                   $config
-     *
-     * @return void
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param array                                                   $config
      */
     public function registerFlashTypes(ContainerBuilder $container, array $config)
     {
         $mergedConfig = array_merge_recursive($config['flashmessage'], array(
             'success' => array('types' => array(
-                'success' => array('domain' => 'SonataCoreBundle'),
+                'success'              => array('domain' => 'SonataCoreBundle'),
                 'sonata_flash_success' => array('domain' => 'SonataAdminBundle'),
                 'sonata_user_success'  => array('domain' => 'SonataUserBundle'),
                 'fos_user_success'     => array('domain' => 'FOSUserBundle'),
             )),
             'warning' => array('types' => array(
-                'warning' => array('domain' => 'SonataCoreBundle'),
+                'warning'           => array('domain' => 'SonataCoreBundle'),
                 'sonata_flash_info' => array('domain' => 'SonataAdminBundle'),
             )),
             'danger' => array('types' => array(
-                'error' => array('domain' => 'SonataCoreBundle'),
+                'error'              => array('domain' => 'SonataCoreBundle'),
                 'sonata_flash_error' => array('domain' => 'SonataAdminBundle'),
                 'sonata_user_error'  => array('domain' => 'SonataUserBundle'),
             )),

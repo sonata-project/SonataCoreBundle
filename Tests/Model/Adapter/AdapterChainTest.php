@@ -32,9 +32,9 @@ class AdapterChainTest extends \PHPUnit_Framework_TestCase
 
         $adapter->addAdapter($fake2 = $this->getMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface'));
 
-        $fake2->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue("voila"));
+        $fake2->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue('voila'));
 
-        $this->assertEquals("voila", $adapter->getUrlsafeIdentifier(new \stdClass()));
+        $this->assertEquals('voila', $adapter->getUrlsafeIdentifier(new \stdClass()));
     }
 
     public function testNormalizedIdentifier()
@@ -46,8 +46,8 @@ class AdapterChainTest extends \PHPUnit_Framework_TestCase
 
         $adapter->addAdapter($fake2 = $this->getMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface'));
 
-        $fake2->expects($this->once())->method('getNormalizedIdentifier')->will($this->returnValue("voila"));
+        $fake2->expects($this->once())->method('getNormalizedIdentifier')->will($this->returnValue('voila'));
 
-        $this->assertEquals("voila", $adapter->getNormalizedIdentifier(new \stdClass()));
+        $this->assertEquals('voila', $adapter->getNormalizedIdentifier(new \stdClass()));
     }
 }

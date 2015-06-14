@@ -12,10 +12,7 @@
 namespace Sonata\CoreBundle\Model;
 
 /**
- * Class BasePHPCRManager
- *
- * @package Sonata\CoreBundle\Model
- *
+ * Class BasePHPCRManager.
  */
 abstract class BasePHPCRManager extends BaseManager
 {
@@ -48,7 +45,7 @@ abstract class BasePHPCRManager extends BaseManager
     }
 
     /**
-     * Make sure the code is compatible with legacy code
+     * Make sure the code is compatible with legacy code.
      *
      * @param $name
      *

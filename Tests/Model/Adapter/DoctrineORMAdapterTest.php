@@ -13,15 +13,12 @@ namespace Sonata\CoreBundle\Tests\Model\Adapter;
 
 use Sonata\CoreBundle\Model\Adapter\DoctrineORMAdapter;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ORM\EntityManagerInterface;
-
 class DoctrineORMAdapterTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
         if (!class_exists('Doctrine\ORM\UnitOfWork')) {
-            $this->markTestSkipped("Doctrine ORM not installed");
+            $this->markTestSkipped('Doctrine ORM not installed');
         }
     }
 
@@ -93,8 +90,8 @@ class DoctrineORMAdapterTest extends \PHPUnit_Framework_TestCase
     public static function getFixtures()
     {
         return array(
-            array(array(1), "1"),
-            array(array(1, 2), "1~2"),
+            array(array(1), '1'),
+            array(array(1, 2), '1~2'),
         );
     }
 }

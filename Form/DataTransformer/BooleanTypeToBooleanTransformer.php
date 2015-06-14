@@ -9,11 +9,10 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Sonata\CoreBundle\Form\DataTransformer;
 
-use Symfony\Component\Form\DataTransformerInterface;
 use Sonata\CoreBundle\Form\Type\BooleanType;
+use Symfony\Component\Form\DataTransformerInterface;
 
 class BooleanTypeToBooleanTransformer implements DataTransformerInterface
 {
@@ -22,7 +21,7 @@ class BooleanTypeToBooleanTransformer implements DataTransformerInterface
      */
     public function transform($value)
     {
-        if ($value === true or (int)$value === BooleanType::TYPE_YES) {
+        if ($value === true or (int) $value === BooleanType::TYPE_YES) {
             return BooleanType::TYPE_YES;
         }
 

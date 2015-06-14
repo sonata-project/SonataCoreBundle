@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -10,11 +11,11 @@
 
 namespace Sonata\CoreBundle\Validator;
 
-use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
-use Symfony\Component\Validator\ExecutionContextInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyPath;
 use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
+use Symfony\Component\Validator\ExecutionContextInterface;
 
 class ErrorElement
 {
@@ -101,7 +102,7 @@ class ErrorElement
      */
     public function with($name, $key = false)
     {
-        $key           = $key ? $name . '.' . $key : $name;
+        $key           = $key ? $name.'.'.$key : $name;
         $this->stack[] = $key;
 
         $this->current = implode('.', $this->stack);
@@ -127,8 +128,6 @@ class ErrorElement
 
     /**
      * @param \Symfony\Component\Validator\Constraint $constraint
-     *
-     * @return void
      */
     protected function validate(Constraint $constraint)
     {
@@ -150,7 +149,7 @@ class ErrorElement
     }
 
     /**
-     * Return the value linked to
+     * Return the value linked to.
      *
      * @return mixed
      */
@@ -184,7 +183,7 @@ class ErrorElement
         if (strpos($name, '\\') !== false && class_exists($name)) {
             $className = (string) $name;
         } else {
-            $className = 'Symfony\\Component\\Validator\\Constraints\\' . $name;
+            $className = 'Symfony\\Component\\Validator\\Constraints\\'.$name;
         }
 
         return new $className($options);
@@ -196,7 +195,7 @@ class ErrorElement
     protected function getCurrentPropertyPath()
     {
         if (!isset($this->propertyPaths[$this->current])) {
-            return null; //global error
+            return; //global error
         }
 
         return $this->propertyPaths[$this->current];

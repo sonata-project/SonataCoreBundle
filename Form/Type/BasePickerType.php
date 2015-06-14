@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -12,14 +13,13 @@ namespace Sonata\CoreBundle\Form\Type;
 
 use Sonata\CoreBundle\Date\MomentFormatConverter;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormView;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 
 /**
- * Class BasePickerType (to factorize DatePickerType and DateTimePickerType code
+ * Class BasePickerType (to factorize DatePickerType and DateTimePickerType code.
  *
- * @package Sonata\CoreBundle\Form\Type
  *
  * @author Hugo Briand <briand@ekino.com>
  */
@@ -62,7 +62,7 @@ abstract class BasePickerType extends AbstractType
 
         $dpOptions = array();
         foreach ($options as $key => $value) {
-            if (false !== strpos($key, "dp_")) {
+            if (false !== strpos($key, 'dp_')) {
                 // We remove 'dp_' and camelize the options names
                 $dpKey = substr($key, 3);
                 $dpKey = preg_replace_callback('/_([a-z])/', function ($c) {
@@ -78,7 +78,7 @@ abstract class BasePickerType extends AbstractType
     }
 
     /**
-     * Gets base default options for the date pickers
+     * Gets base default options for the date pickers.
      *
      * @return array
      */

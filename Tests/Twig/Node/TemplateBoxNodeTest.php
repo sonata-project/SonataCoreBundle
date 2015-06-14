@@ -91,7 +91,7 @@ EOF
     }
 
     /**
-     * Returns a Translator instance
+     * Returns a Translator instance.
      *
      * @param string $locale
      *

@@ -15,9 +15,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
- * This is a port of the DoctrineORMAdminBundle / ModelManager class
- *
- * @package Sonata\CoreBundle\Model\Adapter
+ * This is a port of the DoctrineORMAdminBundle / ModelManager class.
  */
 class DoctrineORMAdapter implements AdapterInterface
 {
@@ -41,17 +39,17 @@ class DoctrineORMAdapter implements AdapterInterface
         }
 
         if (!$entity) {
-            return null;
+            return;
         }
 
         $manager = $this->registry->getManagerForClass(get_class($entity));
 
         if (!$manager instanceof EntityManagerInterface) {
-            return null;
+            return;
         }
 
         if (!$manager->getUnitOfWork()->isInIdentityMap($entity)) {
-            return null;
+            return;
         }
 
         return implode(self::ID_SEPARATOR, $manager->getUnitOfWork()->getEntityIdentifier($entity));

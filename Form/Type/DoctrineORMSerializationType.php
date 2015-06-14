@@ -13,18 +13,16 @@
 namespace Sonata\CoreBundle\Form\Type;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Metadata\MetadataFactoryInterface;
 use Sonata\CoreBundle\Form\EventListener\FixCheckboxDataListener;
 use Symfony\Bridge\Doctrine\RegistryInterface;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Metadata\MetadataFactoryInterface;
-
 /**
- * Class DoctrineORMSerializationType
+ * Class DoctrineORMSerializationType.
  *
  * This is a doctrine serialization form type that generates a form type from class serialization metadata
  * and doctrine metadata
@@ -54,12 +52,12 @@ class DoctrineORMSerializationType extends AbstractType
     protected $group;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $identifierOverwrite;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param MetadataFactoryInterface $metadataFactory Serializer metadata factory
      * @param ManagerRegistry          $registry        Doctrine registry
@@ -105,12 +103,12 @@ class DoctrineORMSerializationType extends AbstractType
                 $fieldMetadata = $doctrineMetadata->fieldMappings[$name];
                 $type = isset($fieldMetadata['type']) ? $fieldMetadata['type'] : null;
                 $nullable = isset($fieldMetadata['nullable']) ? $fieldMetadata['nullable'] : false;
-            } else if (isset($doctrineMetadata->associationMappings[$name])) {
+            } elseif (isset($doctrineMetadata->associationMappings[$name])) {
                 $associationMetadata = $doctrineMetadata->associationMappings[$name];
 
                 if (isset($associationMetadata['joinColumns']['nullable'])) {
                     $nullable = $associationMetadata['joinColumns']['nullable'];
-                } else if (isset($associationMetadata['inverseJoinColumns']['nullable'])) {
+                } elseif (isset($associationMetadata['inverseJoinColumns']['nullable'])) {
                     $nullable = $associationMetadata['inverseJoinColumns']['nullable'];
                 }
             }
@@ -157,7 +155,7 @@ class DoctrineORMSerializationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => $this->class
+            'data_class' => $this->class,
         ));
     }
 }

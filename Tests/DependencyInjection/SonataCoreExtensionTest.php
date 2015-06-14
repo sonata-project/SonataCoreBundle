@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata project.
  *
@@ -18,7 +19,7 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
     protected function getContainerExtensions()
     {
         return array(
-            new SonataCoreExtension()
+            new SonataCoreExtension(),
         );
     }
 

@@ -12,18 +12,16 @@
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Doctrine\ORM\Mapping\ClassMetadataInfo as DoctrineMetadata;
-
 use JMS\Serializer\Metadata\ClassMetadata as SerializerMetadata;
 use JMS\Serializer\Metadata\PropertyMetadata;
-
 use Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType;
-
 use Symfony\Component\Form\Test\TypeTestCase;
 
 /**
- * Class FakeMetadataClass
+ * Class FakeMetadataClass.
  */
-class FakeMetadataClass {
+class FakeMetadataClass
+{
     protected $name;
 
     protected $url;
@@ -32,7 +30,7 @@ class FakeMetadataClass {
 }
 
 /**
- * Class DoctrineORMSerializationTypeTest
+ * Class DoctrineORMSerializationTypeTest.
  *
  * @author Vincent Composieux <vincent.composieux@gmail.com>
  */
@@ -44,7 +42,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
     protected $class;
 
     /**
-     * Set up test
+     * Set up test.
      */
     public function setUp()
     {
@@ -58,7 +56,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
     }
 
     /**
-     * Test form type buildForm() method that generates data
+     * Test form type buildForm() method that generates data.
      */
     public function testBuildForm()
     {
@@ -84,7 +82,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
     }
 
     /**
-     * Test form type buildForm() method that generates data with an identifier field
+     * Test form type buildForm() method that generates data with an identifier field.
      */
     public function testBuildFormWithIdentifier()
     {
@@ -104,7 +102,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
     }
 
     /**
-     * Test form type buildForm() method that generates data with an invalid group name
+     * Test form type buildForm() method that generates data with an invalid group name.
      */
     public function testBuildFormWithInvalidGroupName()
     {
@@ -120,7 +118,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
     }
 
     /**
-     * Returns a Serializer MetadataFactory mock
+     * Returns a Serializer MetadataFactory mock.
      *
      * @return \Metadata\MetadataFactoryInterface
      */
@@ -147,7 +145,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
     }
 
     /**
-     * Returns a Doctrine registry mock
+     * Returns a Doctrine registry mock.
      *
      * @param array $identifiers
      *
@@ -164,11 +162,11 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
 
         $classMetadata->associationMappings = array(
             'url' => array(
-                'joinColumns' => array('nullable' => false)
+                'joinColumns' => array('nullable' => false),
             ),
             'comments' => array(
-                'inverseJoinColumns' => array('nullable' => true)
-            )
+                'inverseJoinColumns' => array('nullable' => true),
+            ),
         );
 
         $entityManager = $this->getMock('Doctrine\ORM\EntityManagerInterface');

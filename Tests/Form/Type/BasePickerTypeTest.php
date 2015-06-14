@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -30,9 +31,8 @@ class BasePickerTest extends BasePickerType
 }
 
 /**
- * Class BasePickerTypeTest
+ * Class BasePickerTypeTest.
  *
- * @package Sonata\CoreBundle\Tests\Form\Type
  *
  * @author Hugo Briand <briand@ekino.com>
  */
@@ -52,8 +52,8 @@ class BasePickerTypeTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('datepicker_use_button', $view->vars);
 
         foreach ($view->vars['dp_options'] as $dpKey => $dpValue) {
-            $this->assertFalse(strpos($dpKey, "_"));
-            $this->assertFalse(strpos($dpKey, "dp_"));
+            $this->assertFalse(strpos($dpKey, '_'));
+            $this->assertFalse(strpos($dpKey, 'dp_'));
         }
 
         $this->assertEquals('text', $view->vars['type']);

@@ -11,8 +11,8 @@
 
 namespace Sonata\CoreBundle\Tests\Twig\TokenParser;
 
-use Sonata\CoreBundle\Twig\TokenParser\TemplateBoxTokenParser;
 use Sonata\CoreBundle\Twig\Node\TemplateBoxNode;
+use Sonata\CoreBundle\Twig\TokenParser\TemplateBoxTokenParser;
 
 class TemplateBoxTokenParserTest extends \PHPUnit_Framework_TestCase
 {
@@ -46,7 +46,7 @@ class TemplateBoxTokenParserTest extends \PHPUnit_Framework_TestCase
                     $translator,
                     1,
                     'sonata_template_box'
-                )
+                ),
             ),
             array(
                 true,
@@ -58,7 +58,7 @@ class TemplateBoxTokenParserTest extends \PHPUnit_Framework_TestCase
                     $translator,
                     1,
                     'sonata_template_box'
-                )
+                ),
             ),
             array(
                 false,
@@ -70,7 +70,7 @@ class TemplateBoxTokenParserTest extends \PHPUnit_Framework_TestCase
                     $translator,
                     1,
                     'sonata_template_box'
-                )
+                ),
             ),
         );
     }

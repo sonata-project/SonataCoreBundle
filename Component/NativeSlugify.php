@@ -12,9 +12,10 @@
 namespace Sonata\CoreBundle\Component;
 
 /**
- * Do not use this class, it is only here to be BC
+ * Do not use this class, it is only here to be BC.
  *
  * @deprecated
+ *
  * @author Thomas Rabaix <thomas.rabaix@gmail.com>
  */
 class NativeSlugify

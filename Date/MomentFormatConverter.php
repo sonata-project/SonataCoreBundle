@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -10,14 +11,11 @@
 
 namespace Sonata\CoreBundle\Date;
 
-
-
 /**
- * Handles Moment.js <-> PHP date format conversion
+ * Handles Moment.js <-> PHP date format conversion.
  *
  * Inspired by https://github.com/fightbulc/moment.php/blob/master/src/Moment/CustomFormats/MomentJs.php
  *
- * @package Sonata\CoreBundle\Date
  *
  * @author Hugo Briand <briand@ekino.com>
  * @author Andrej Hudec <pulzarraider@gmail.com>

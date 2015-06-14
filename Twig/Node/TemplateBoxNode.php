@@ -26,7 +26,7 @@ class TemplateBoxNode extends \Twig_Node
     protected $translator;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param \Twig_Node_Expression $message           Node message to display
      * @param \Twig_Node_Expression $translationBundle Node translation bundle to use for display
@@ -53,6 +53,7 @@ class TemplateBoxNode extends \Twig_Node
 
         if (!$this->enabled) {
             $compiler->write("// token for sonata_template_box, however the box is disabled\n");
+
             return;
         }
 
@@ -73,6 +74,5 @@ CODE;
 
         $compiler
             ->write("echo $message;");
-        ;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Sonata\CoreBundle\Tests\FlashMessage;
 
+use Sonata\CoreBundle\FlashMessage\FlashManager;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -10,10 +11,8 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\Translation\Loader\ArrayLoader;
 use Symfony\Component\Translation\Translator;
 
-use Sonata\CoreBundle\FlashMessage\FlashManager;
-
 /**
- * Class FlashManagerTest
+ * Class FlashManagerTest.
  *
  * This is the FlashManager test class
  *
@@ -37,7 +36,7 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
     protected $flashManager;
 
     /**
-     * Set up units tests
+     * Set up units tests.
      */
     public function setUp()
     {
@@ -45,22 +44,22 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
         $this->translator   = $this->getTranslator();
         $this->flashManager = $this->getFlashManager(array(
             'success' => array(
-                'my_bundle_success' => array('domain' => 'MySuccessBundle'),
+                'my_bundle_success'        => array('domain' => 'MySuccessBundle'),
                 'my_second_bundle_success' => array('domain' => 'SonataCoreBundle'),
             ),
             'warning' => array(
-                'my_bundle_warning' => array('domain' => 'MyWarningBundle'),
+                'my_bundle_warning'        => array('domain' => 'MyWarningBundle'),
                 'my_second_bundle_warning' => array('domain' => 'SonataCoreBundle'),
             ),
             'error' => array(
-                'my_bundle_error' => array('domain' => 'MyErrorBundle'),
+                'my_bundle_error'        => array('domain' => 'MyErrorBundle'),
                 'my_second_bundle_error' => array('domain' => 'SonataCoreBundle'),
             ),
         ));
     }
 
     /**
-     * Test the flash manager getSession() method
+     * Test the flash manager getSession() method.
      */
     public function testGetSession()
     {
@@ -78,11 +77,11 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetStatus()
     {
-        $this->assertEquals("danger", $this->flashManager->getStatusClass('error'));
+        $this->assertEquals('danger', $this->flashManager->getStatusClass('error'));
     }
 
     /**
-     * Test the flash manager getTypes() method
+     * Test the flash manager getTypes() method.
      */
     public function testGetTypes()
     {
@@ -93,22 +92,22 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(3, $types);
         $this->assertEquals(array(
             'success' => array(
-                'my_bundle_success' => array('domain' => 'MySuccessBundle'),
+                'my_bundle_success'        => array('domain' => 'MySuccessBundle'),
                 'my_second_bundle_success' => array('domain' => 'SonataCoreBundle'),
             ),
             'warning' => array(
-                'my_bundle_warning' => array('domain' => 'MyWarningBundle'),
+                'my_bundle_warning'        => array('domain' => 'MyWarningBundle'),
                 'my_second_bundle_warning' => array('domain' => 'SonataCoreBundle'),
             ),
             'error' => array(
-                'my_bundle_error' => array('domain' => 'MyErrorBundle'),
+                'my_bundle_error'        => array('domain' => 'MyErrorBundle'),
                 'my_second_bundle_error' => array('domain' => 'SonataCoreBundle'),
             ),
         ), $types);
     }
 
     /**
-     * Test the flash manager handle() method with registered types
+     * Test the flash manager handle() method with registered types.
      */
     public function testHandlingRegisteredTypes()
     {
@@ -148,7 +147,7 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test the flash manager handle() method with non-registered types
+     * Test the flash manager handle() method with non-registered types.
      */
     public function testHandlingNonRegisteredTypes()
     {
@@ -170,7 +169,7 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test the flash manager get() method with a specified domain
+     * Test the flash manager get() method with a specified domain.
      */
     public function testFlashMessageWithCustomDomain()
     {
@@ -178,7 +177,7 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
         $translator = $this->flashManager->getTranslator();
         $translator->addLoader('array', new ArrayLoader());
         $translator->addResource('array', array(
-            'my_bundle_success_message' => 'My bundle success message!'
+            'my_bundle_success_message' => 'My bundle success message!',
         ), 'en', 'MyCustomDomain');
 
         // When
@@ -202,7 +201,7 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Returns a Symfony session service
+     * Returns a Symfony session service.
      *
      * @return \Symfony\Component\HttpFoundation\Session\Session
      */
@@ -212,7 +211,7 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Returns a Symfony translator service
+     * Returns a Symfony translator service.
      *
      * @return \Symfony\Component\Translation\Translator
      */
@@ -222,7 +221,7 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Returns Sonata core flash manager
+     * Returns Sonata core flash manager.
      *
      * @param array $types
      *
@@ -231,6 +230,7 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
     protected function getFlashManager(array $types)
     {
         $classes = array('error' => 'danger');
+
         return new FlashManager($this->session, $this->translator, $types, $classes);
     }
 }

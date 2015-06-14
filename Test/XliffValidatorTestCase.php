@@ -16,7 +16,6 @@ use Symfony\Component\Translation\Loader\XliffFileLoader;
 
 abstract class XliffValidatorTestCase extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @var XliffFileLoader
      */
@@ -36,9 +35,9 @@ abstract class XliffValidatorTestCase extends \PHPUnit_Framework_TestCase
     {
         try {
             $this->loader->load($file, 'en');
-            $this->assertTrue(true, sprintf("Successful loading file: %s", $file));
+            $this->assertTrue(true, sprintf('Successful loading file: %s', $file));
         } catch (InvalidResourceException $e) {
-            $this->errors[] = sprintf("%s => %s", $file, $e->getMessage());
+            $this->errors[] = sprintf('%s => %s', $file, $e->getMessage());
         }
     }
 
@@ -47,7 +46,7 @@ abstract class XliffValidatorTestCase extends \PHPUnit_Framework_TestCase
      */
     protected function validatePath($path)
     {
-        $files = glob(sprintf("%s/*.xliff", $path));
+        $files = glob(sprintf('%s/*.xliff', $path));
 
         foreach ($files as $file) {
             $this->validateXliff($file);
@@ -55,7 +54,6 @@ abstract class XliffValidatorTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *
      * @dataProvider getXliffPaths
      */
     public function testXliff($path)
@@ -63,12 +61,12 @@ abstract class XliffValidatorTestCase extends \PHPUnit_Framework_TestCase
         $this->validatePath($path);
 
         if (count($this->errors) > 0) {
-            $this->fail(sprintf("Unable to parse xliff files: %s", implode(", ", $this->errors)));
+            $this->fail(sprintf('Unable to parse xliff files: %s', implode(', ', $this->errors)));
         }
     }
 
     /**
      * @return array List all path to validate xliff
      */
-    abstract function getXliffPaths();
+    abstract public function getXliffPaths();
 }

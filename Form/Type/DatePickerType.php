@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -15,9 +16,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Class DatePickerType
+ * Class DatePickerType.
  *
- * @package Sonata\CoreBundle\Form\Type
  *
  * @author Hugo Briand <briand@ekino.com>
  */

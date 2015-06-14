@@ -17,7 +17,7 @@ class FormHelper
 {
     /**
      * This function remove fields available if there are not present in the $data array
-     * The data array might come from $request->request->all()
+     * The data array might come from $request->request->all().
      *
      * This can be usefull if you don't want to send all fields will building an api. As missing
      * fields will be threated like null values.
@@ -25,7 +25,7 @@ class FormHelper
      * @param array $data
      * @param Form  $form
      */
-    static function removeFields(array $data, Form $form)
+    public static function removeFields(array $data, Form $form)
     {
         $diff = array_diff(array_keys($form->all()), array_keys($data));
 
@@ -33,7 +33,7 @@ class FormHelper
             $form->remove($key);
         }
 
-        foreach($data as $name => $value) {
+        foreach ($data as $name => $value) {
             if (!is_array($value)) {
                 continue;
             }

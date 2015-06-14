@@ -11,13 +11,12 @@
 
 namespace Sonata\CoreBundle\Tests\Validator;
 
-use Sonata\CoreBundle\Validator\ErrorElement;
-use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
 use Sonata\CoreBundle\Tests\Fixtures\Bundle\Entity\Foo;
+use Sonata\CoreBundle\Validator\ErrorElement;
 use Symfony\Component\Validator\Constraints\NotNull;
 
 /**
- * Test for ErrorElement
+ * Test for ErrorElement.
  *
  * @author Andrej Hudec <pulzarraider@gmail.com>
  */
@@ -53,14 +52,14 @@ class ErrorElementTest extends \PHPUnit_Framework_TestCase
 
     public function testGetErrors()
     {
-        $this->errorElement->addViolation('Foo error message', array('bar_param'=>'bar_param_lvalue'), 'BAR');
-        $this->assertEquals(array(array('Foo error message', array('bar_param'=>'bar_param_lvalue'), 'BAR')), $this->errorElement->getErrors());
+        $this->errorElement->addViolation('Foo error message', array('bar_param' => 'bar_param_lvalue'), 'BAR');
+        $this->assertEquals(array(array('Foo error message', array('bar_param' => 'bar_param_lvalue'), 'BAR')), $this->errorElement->getErrors());
     }
 
     public function testAddViolation()
     {
-        $this->errorElement->addViolation(array('Foo error message', array('bar_param'=>'bar_param_lvalue'), 'BAR'));
-        $this->assertEquals(array(array('Foo error message', array('bar_param'=>'bar_param_lvalue'), 'BAR')), $this->errorElement->getErrors());
+        $this->errorElement->addViolation(array('Foo error message', array('bar_param' => 'bar_param_lvalue'), 'BAR'));
+        $this->assertEquals(array(array('Foo error message', array('bar_param' => 'bar_param_lvalue'), 'BAR')), $this->errorElement->getErrors());
     }
 
     public function testAddConstraint()
@@ -131,7 +130,7 @@ class ErrorElementTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($this->errorElement, $this->errorElement->with('baz'));
         $this->assertEquals($this->errorElement, $this->errorElement->end());
-        $this->assertEquals($this->errorElement, $this->errorElement->addViolation('Foo error message', array('bar_param'=>'bar_param_lvalue'), 'BAR'));
+        $this->assertEquals($this->errorElement, $this->errorElement->addViolation('Foo error message', array('bar_param' => 'bar_param_lvalue'), 'BAR'));
         $this->assertEquals($this->errorElement, $this->errorElement->addConstraint($constraint));
         $this->assertEquals($this->errorElement, $this->errorElement->assertNotNull());
     }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -8,14 +9,11 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Sonata\CoreBundle\Model;
 
-
 /**
- * Class Metadata
+ * Class Metadata.
  *
- * @package Sonata\CoreBundle\Model
  *
  * @author Hugo Briand <briand@ekino.com>
  */
@@ -114,7 +112,7 @@ class Metadata implements MetadataInterface
     }
 
     /**
-     * Sets an option
+     * Sets an option.
      *
      * @param $name
      * @param $option
@@ -125,7 +123,7 @@ class Metadata implements MetadataInterface
     }
 
     /**
-     * Sets all options
+     * Sets all options.
      *
      * @param array $options
      */
