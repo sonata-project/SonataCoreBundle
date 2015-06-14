@@ -12,7 +12,6 @@
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
-
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -31,7 +30,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
         $options = $resolver->resolve();
 
         $expected = array(
-            'keys' => array()
+            'keys' => array(),
         );
 
         $this->assertEquals($expected, $options);
@@ -43,13 +42,13 @@ class ImmutableArrayTypeTest extends TypeTestCase
 
         $builder = $this->getMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->once())->method('add')->with(
-            $this->callback(function($name) {
+            $this->callback(function ($name) {
                 return $name == 'ttl';
             }),
-            $this->callback(function($name) {
+            $this->callback(function ($name) {
                 return $name == 'text';
             }),
-            $this->callback(function($name) {
+            $this->callback(function ($name) {
                 return $name == array(1 => 1);
             })
         );
@@ -66,8 +65,8 @@ class ImmutableArrayTypeTest extends TypeTestCase
 
         $options = array(
             'keys' => array(
-                array('ttl', 'text', $optionsCallback, 'foo', 'bar')
-            )
+                array('ttl', 'text', $optionsCallback, 'foo', 'bar'),
+            ),
         );
 
         $type->buildForm($builder, $options);

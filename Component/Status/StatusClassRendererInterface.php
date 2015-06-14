@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -11,14 +12,14 @@
 namespace Sonata\CoreBundle\Component\Status;
 
 /**
- * Class StatusClassRendererInterface
+ * Class StatusClassRendererInterface.
  *
  * @author Hugo Briand <briand@ekino.com>
  */
 interface StatusClassRendererInterface
 {
     /**
-     * Tells if class may handle $object for status class rendering
+     * Tells if class may handle $object for status class rendering.
      *
      * @param mixed $object
      * @param null  $statusName
@@ -28,7 +29,7 @@ interface StatusClassRendererInterface
     public function handlesObject($object, $statusName = null);
 
     /**
-     * Returns the status CSS class for $object
+     * Returns the status CSS class for $object.
      *
      * @param mixed  $object
      * @param null   $statusName
@@ -36,5 +37,5 @@ interface StatusClassRendererInterface
      *
      * @return string
      */
-    public function getStatusClass($object, $statusName = null, $default = "");
+    public function getStatusClass($object, $statusName = null, $default = '');
 }

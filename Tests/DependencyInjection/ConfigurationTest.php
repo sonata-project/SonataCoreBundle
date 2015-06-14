@@ -25,7 +25,7 @@ class ConfigurationTest extends AbstractConfigurationTestCase
     {
         $this->assertConfigurationIsInvalid(
             array(
-                array('form_type' => '3D')
+                array('form_type' => '3D'),
             ),
             'The form_type option value must be one of'
         );
@@ -35,10 +35,10 @@ class ConfigurationTest extends AbstractConfigurationTestCase
     {
         $this->assertProcessedConfigurationEquals(array(
             array('form_type' => 'horizontal'), // this should be overwritten
-            array('form_type' => 'standard')    // by this during the merge
+            array('form_type' => 'standard'),    // by this during the merge
         ), array(
-            'form_type' => 'standard',
-            'flashmessage' => array()
+            'form_type'    => 'standard',
+            'flashmessage' => array(),
         ));
     }
 }

@@ -47,8 +47,7 @@ class BooleanTypeTest extends TypeTestCase
     }
 
     /**
-     * The default behavior is not to transform to real boolean value .... don't ask
-     *
+     * The default behavior is not to transform to real boolean value .... don't ask.
      */
     public function testDefaultBehavior()
     {

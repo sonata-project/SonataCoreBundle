@@ -13,7 +13,6 @@ namespace Sonata\CoreBundle\Tests\Twig\Extension;
 
 use Sonata\CoreBundle\Twig\Extension\FormTypeExtension;
 
-
 class FormTypeExtensionTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetName()

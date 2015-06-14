@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- * Class FlashManager
+ * Class FlashManager.
  *
  * @author Vincent Composieux <composieux@ekino.com>
  */
@@ -43,7 +43,7 @@ class FlashManager implements StatusClassRendererInterface
     protected $cssClasses;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param SessionInterface    $session    Symfony session service
      * @param TranslatorInterface $translator Symfony translator service
@@ -69,16 +69,15 @@ class FlashManager implements StatusClassRendererInterface
     /**
      * {@inheritdoc}
      */
-    public function getStatusClass($object, $statusName = null, $default = "")
+    public function getStatusClass($object, $statusName = null, $default = '')
     {
         return array_key_exists($object, $this->cssClasses)
             ? $this->cssClasses[$object]
             : $default;
     }
 
-
     /**
-     * Returns Sonata core flash message types
+     * Returns Sonata core flash message types.
      *
      * @return array
      */
@@ -88,7 +87,7 @@ class FlashManager implements StatusClassRendererInterface
     }
 
     /**
-     * Returns Symfony session service
+     * Returns Symfony session service.
      *
      * @return SessionInterface
      */
@@ -98,7 +97,7 @@ class FlashManager implements StatusClassRendererInterface
     }
 
     /**
-     * Returns Symfony translator service
+     * Returns Symfony translator service.
      *
      * @return TranslatorInterface
      */
@@ -108,7 +107,7 @@ class FlashManager implements StatusClassRendererInterface
     }
 
     /**
-     * Returns flash bag messages for correct type after renaming with Sonata core type
+     * Returns flash bag messages for correct type after renaming with Sonata core type.
      *
      * @param string $type   Type of flash message
      * @param string $domain Translation domain to use
@@ -123,7 +122,7 @@ class FlashManager implements StatusClassRendererInterface
     }
 
     /**
-     * Gets handled message types
+     * Gets handled message types.
      *
      * @return array
      */
@@ -133,11 +132,9 @@ class FlashManager implements StatusClassRendererInterface
     }
 
     /**
-     * Handles flash bag types renaming
+     * Handles flash bag types renaming.
      *
      * @param string $domain
-     *
-     * @return void
      */
     protected function handle($domain = null)
     {
@@ -150,13 +147,11 @@ class FlashManager implements StatusClassRendererInterface
     }
 
     /**
-     * Process flash message type rename
+     * Process flash message type rename.
      *
      * @param string $type   Sonata core flash message type
      * @param string $value  Original flash message type
      * @param string $domain Translation domain to use
-     *
-     * @return void
      */
     protected function rename($type, $value, $domain)
     {

@@ -22,7 +22,7 @@ class EntityManagerMockFactory
      *
      * @return \Doctrine\ORM\EntityManagerInterface
      */
-    static function create(\PHPUnit_Framework_TestCase $test, \Closure $qbCallback, $fields)
+    public static function create(\PHPUnit_Framework_TestCase $test, \Closure $qbCallback, $fields)
     {
         $query = $test->getMockForAbstractClass('Doctrine\ORM\AbstractQuery', array(), '', false, true, true, array('execute'));
         $query->expects($test->any())->method('execute')->will($test->returnValue(true));
@@ -57,6 +57,3 @@ class EntityManagerMockFactory
         return $em;
     }
 }
-
-
-

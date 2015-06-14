@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata Connector project.
  *
@@ -10,25 +11,23 @@
 
 namespace Sonata\CoreBundle\Command;
 
-use Gaufrette\Filesystem;
-use Gaufrette\Adapter\Local as LocalAdapter;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Gaufrette\Adapter\Local as LocalAdapter;
+use Gaufrette\Filesystem;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Return useful data on the database schema
+ * Return useful data on the database schema.
  *
  * Class SonataDoctrineUtils
- * @package Sonata\ProductBundle\Command
  */
 class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
 {
     /**
-     * @var array $metadata
+     * @var array
      */
     protected $metadata;
 
@@ -92,7 +91,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
     }
 
     /**
-     * Display the list of entities handled by Doctrine and their fields
+     * Display the list of entities handled by Doctrine and their fields.
      *
      * @param array           $metadata
      * @param InputInterface  $input
@@ -148,7 +147,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
             $allowedMeta = array_filter(
                 $metadata,
                 function ($meta) use ($baseEntity) {
-                    /** @var \Doctrine\ORM\Mapping\ClassMetadata $meta */
+                    /* @var \Doctrine\ORM\Mapping\ClassMetadata $meta */
                     return $meta->rootEntityName === $baseEntity;
                 }
             );
@@ -156,7 +155,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
             $allowedMeta = array_filter(
                 $metadata,
                 function ($meta) use ($regex) {
-                    /** @var \Doctrine\ORM\Mapping\ClassMetadata $meta */
+                    /* @var \Doctrine\ORM\Mapping\ClassMetadata $meta */
                     return preg_match($regex, $meta->rootEntityName);
                 }
             );

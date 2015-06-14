@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -11,12 +12,12 @@
 namespace Sonata\CoreBundle\Twig\Extension;
 
 /**
- * Class FormTypeExtension
+ * Class FormTypeExtension.
  */
 class FormTypeExtension extends \Twig_Extension
 {
     /**
-     * @var boolean
+     * @var bool
      */
     private $wrapFieldsWithAddons;
 
@@ -28,7 +29,7 @@ class FormTypeExtension extends \Twig_Extension
     public function getGlobals()
     {
         return array(
-            'wrap_fields_with_addons' => $this->wrapFieldsWithAddons
+            'wrap_fields_with_addons' => $this->wrapFieldsWithAddons,
         );
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -16,7 +17,6 @@ class NativeSlugifyTest extends \PHPUnit_Framework_TestCase
 {
     public function testSlugify()
     {
-
         $service = new NativeSlugify();
 
         $this->assertEquals($service->slugify('test'), 'test');

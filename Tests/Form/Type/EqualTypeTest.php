@@ -12,7 +12,6 @@
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\Type\EqualType;
-
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -31,7 +30,7 @@ class EqualTypeTest extends TypeTestCase
         $options = $resolver->resolve();
 
         $expected = array(
-            'choices' => array(1 => null, 2 => null)
+            'choices' => array(1 => null, 2 => null),
         );
 
         $this->assertEquals($expected, $options);

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -13,7 +14,7 @@ namespace Sonata\CoreBundle\Twig\Extension;
 use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
 
 /**
- * Class StatusExtension
+ * Class StatusExtension.
  *
  * @author Hugo Briand <briand@ekino.com>
  */
@@ -25,7 +26,7 @@ class StatusExtension extends \Twig_Extension
     protected $statusServices = array();
 
     /**
-     * Adds a renderer to the status services list
+     * Adds a renderer to the status services list.
      *
      * @param StatusClassRendererInterface $renderer
      */
@@ -45,13 +46,13 @@ class StatusExtension extends \Twig_Extension
     }
 
     /**
-     * @param mixed     $object
-     * @param mixed     $statusType
-     * @param string    $default
+     * @param mixed  $object
+     * @param mixed  $statusType
+     * @param string $default
      *
      * @return string
      */
-    public function statusClass($object, $statusType = null, $default = "")
+    public function statusClass($object, $statusType = null, $default = '')
     {
         /** @var StatusClassRendererInterface $statusService */
         foreach ($this->statusServices as $statusService) {

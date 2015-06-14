@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -57,7 +58,7 @@ class InlineConstraint extends Constraint
     {
         return array(
             'service',
-            'method'
+            'method',
         );
     }
 

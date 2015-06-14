@@ -21,11 +21,10 @@ class MyDocument
 
 class DoctrinePHPCRAdapterTest extends \PHPUnit_Framework_TestCase
 {
-
     public function setUp()
     {
         if (!class_exists('Doctrine\ODM\PHPCR\UnitOfWork')) {
-            $this->markTestSkipped("Doctrine PHPCR not installed");
+            $this->markTestSkipped('Doctrine PHPCR not installed');
         }
     }
 
@@ -99,8 +98,8 @@ class DoctrinePHPCRAdapterTest extends \PHPUnit_Framework_TestCase
     public static function getFixtures()
     {
         return array(
-            array("/salut", "salut"),
-            array("/les-gens", "les-gens"),
+            array('/salut', 'salut'),
+            array('/les-gens', 'les-gens'),
         );
     }
 }

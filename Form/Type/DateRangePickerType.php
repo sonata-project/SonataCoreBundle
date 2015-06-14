@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -13,7 +14,7 @@ namespace Sonata\CoreBundle\Form\Type;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * DateRangePickerType
+ * DateRangePickerType.
  *
  * @author Andrej Hudec <pulzarraider@gmail.com>
  */

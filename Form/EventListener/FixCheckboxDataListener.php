@@ -19,13 +19,11 @@ use Symfony\Component\Form\FormEvents;
 /**
  * Using BooleanToStringTransform in a checkbox form type
  * will set false value to '0' instead of null which will end up
- * returning true value when the form is bind
+ * returning true value when the form is bind.
  *
  * Class FixCheckboxDataListener
  *
  * @author  Sylvain Rascar <rascar.sylvain@gmail.com>
- *
- * @package Sonata\CoreBundle\Form\EventListener
  */
 class FixCheckboxDataListener implements EventSubscriberInterface
 {

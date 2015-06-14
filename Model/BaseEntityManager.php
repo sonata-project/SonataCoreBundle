@@ -37,7 +37,7 @@ abstract class BaseEntityManager extends BaseManager
     }
 
     /**
-     * Make sure the code is compatible with legacy code
+     * Make sure the code is compatible with legacy code.
      *
      * @param $name
      *

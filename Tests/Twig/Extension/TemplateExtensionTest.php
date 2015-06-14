@@ -37,11 +37,10 @@ class TemplateExtensionTest extends \PHPUnit_Framework_TestCase
         $translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
 
         $adapter = $this->getMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface');
-        $adapter->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue("safe-parameter"));
+        $adapter->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue('safe-parameter'));
 
         $extension = new TemplateExtension(true, $translator, $adapter);
 
-        $this->assertEquals("safe-parameter", $extension->getUrlsafeIdentifier(new \stdClass()));
-
+        $this->assertEquals('safe-parameter', $extension->getUrlsafeIdentifier(new \stdClass()));
     }
 }

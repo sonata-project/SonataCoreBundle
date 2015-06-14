@@ -33,7 +33,7 @@ class TemplateExtension extends \Twig_Extension
     protected $translator;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param bool                $debug        Is Symfony debug enabled?
      * @param TranslatorInterface $translator   Symfony Translator service
@@ -68,7 +68,7 @@ class TemplateExtension extends \Twig_Extension
     }
 
     /**
-     * Slugify a text
+     * Slugify a text.
      *
      * @param $text
      *

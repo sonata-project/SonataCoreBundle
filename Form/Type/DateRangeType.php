@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -13,10 +14,9 @@ namespace Sonata\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class DateRangeType extends AbstractType
 {
@@ -37,14 +37,14 @@ class DateRangeType extends AbstractType
     {
         $options['field_options_start'] = array_merge(
             array(
-                'label' => $this->translator->trans('date_range_start', array(), 'SonataCoreBundle')
+                'label' => $this->translator->trans('date_range_start', array(), 'SonataCoreBundle'),
             ),
             $options['field_options_start']
         );
 
         $options['field_options_end'] = array_merge(
             array(
-                'label' => $this->translator->trans('date_range_end', array(), 'SonataCoreBundle')
+                'label' => $this->translator->trans('date_range_end', array(), 'SonataCoreBundle'),
             ),
             $options['field_options_end']
         );
@@ -80,7 +80,7 @@ class DateRangeType extends AbstractType
             'field_options'       => array(),
             'field_options_start' => array(),
             'field_options_end'   => array(),
-            'field_type'          => 'date'
+            'field_type'          => 'date',
         ));
     }
 }

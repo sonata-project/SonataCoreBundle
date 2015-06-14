@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata package.
  *
@@ -10,9 +11,9 @@
 
 namespace Sonata\CoreBundle\Tests\Form\EventListener;
 
+use Sonata\CoreBundle\Form\EventListener\FixCheckboxDataListener;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Form\Extension\Core\DataTransformer\BooleanToStringTransformer;
-use Sonata\CoreBundle\Form\EventListener\FixCheckboxDataListener;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Forms;
 
