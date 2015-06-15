@@ -16,7 +16,7 @@ Then, if it appears that it’s a real bug, you may report it using Github by fo
 
 ## Pull requests
 
-#### Matching coding standards
+### Matching coding standards
 
 Before each commit, be sure to match sonata coding standards by running the following command for fix:
 
