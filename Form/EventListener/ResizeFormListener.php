@@ -163,7 +163,7 @@ class ResizeFormListener implements EventSubscriberInterface
                 $form->add($name, $this->type, $options);
             }
 
-            if (isset($value['_delete'])) {
+            if (is_array($value) && isset($value['_delete'])) {
                 $this->removed[] = $name;
             }
         }
