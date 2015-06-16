@@ -182,7 +182,7 @@ class ResizeFormListener implements EventSubscriberInterface
             trigger_error(__CLASS__.'::'.__METHOD__.' is deprecated since 2.3 and will be renamed in 3.0. Use '.__CLASS__.'::onSubmit instead.', E_USER_DEPRECATED);
         }
 
-        $this->preSubmit($event);
+        $this->onSubmit($event);
     }
 
     /**
