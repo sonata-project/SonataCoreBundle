@@ -112,7 +112,7 @@ class ResizeFormListener implements EventSubscriberInterface
     {
         // BC prevention for class extending this one.
         if (get_called_class() !== 'Sonata\CoreBundle\Form\EventListener\ResizeFormListener') {
-            trigger_error(__CLASS__.'::'.__METHOD__.' is deprecated since 2.3 and will be renamed in 3.0. Use '.__CLASS__.'::preSubmit instead.', E_USER_DEPRECATED);
+            trigger_error('The '.__METHOD__.' method is deprecated since 2.3 and will be renamed in 3.0. Use '.__CLASS__.'::preSubmit instead.', E_USER_DEPRECATED);
         }
 
         $this->preSubmit($event);
