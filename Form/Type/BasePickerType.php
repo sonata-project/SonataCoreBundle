@@ -16,6 +16,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Class BasePickerType (to factorize DatePickerType and DateTimePickerType code.
@@ -31,11 +32,30 @@ abstract class BasePickerType extends AbstractType
     private $formatConverter;
 
     /**
-     * @param MomentFormatConverter $formatConverter
+     * @var TranslatorInterface
      */
-    public function __construct(MomentFormatConverter $formatConverter)
+    protected $translator;
+
+    /**
+     * @var string
+     */
+    protected $locale;
+
+    /**
+     * @param MomentFormatConverter $formatConverter
+     * @param TranslatorInterface   $translator
+     */
+    public function __construct(MomentFormatConverter $formatConverter, TranslatorInterface $translator = null)
     {
         $this->formatConverter = $formatConverter;
+        $this->translator = $translator;
+
+        if (null !== $this->translator) {
+            $this->locale = $this->translator->getLocale();
+        } else {
+            @trigger_error('Initializing '.__CLASS__.' without TranslatorInterface is deprecated since 2.4 and will be remove in 3.0.', E_USER_DEPRECATED);
+            $this->locale = \Locale::getDefault();
+        }
     }
 
     /**
@@ -92,7 +112,7 @@ abstract class BasePickerType extends AbstractType
             'dp_min_date'              => '1/1/1900',
             'dp_max_date'              => null,
             'dp_show_today'            => true,
-            'dp_language'              => \Locale::getDefault(), // 'en'
+            'dp_language'              => $this->locale,
             'dp_default_date'          => '',
             'dp_disabled_dates'        => array(),
             'dp_enabled_dates'         => array(),

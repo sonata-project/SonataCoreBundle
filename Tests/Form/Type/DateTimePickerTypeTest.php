@@ -24,6 +24,13 @@ class DateTimePickerTypeTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetName()
     {
+        $type = new DateTimePickerType(new MomentFormatConverter(), $this->getMock('Symfony\Component\Translation\TranslatorInterface'));
+
+        $this->assertEquals('sonata_type_datetime_picker', $type->getName());
+    }
+
+    public function testLegacyConstructor()
+    {
         $type = new DateTimePickerType(new MomentFormatConverter());
 
         $this->assertEquals('sonata_type_datetime_picker', $type->getName());
