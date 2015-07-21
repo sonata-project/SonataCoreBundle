@@ -50,8 +50,8 @@ class BooleanType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'catalogue' => 'SonataCoreBundle',
-            'choices'   => array(
+            'translation_domain' => 'SonataCoreBundle',
+            'choices'            => array(
                 self::TYPE_YES  => 'label_type_yes',
                 self::TYPE_NO   => 'label_type_no',
             ),
