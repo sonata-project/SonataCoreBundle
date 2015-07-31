@@ -32,7 +32,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
     protected $metadata;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function configure()
     {
@@ -58,7 +58,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
@@ -75,7 +75,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {

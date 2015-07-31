@@ -132,7 +132,7 @@ class DoctrineORMSerializationType extends AbstractType
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getName()
     {

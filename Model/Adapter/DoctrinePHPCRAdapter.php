@@ -62,7 +62,7 @@ class DoctrinePHPCRAdapter implements AdapterInterface
      *
      * TODO: do we also have to encode certain characters like spaces or does that happen automatically?
      *
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getUrlsafeIdentifier($document)
     {
