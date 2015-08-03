@@ -6,8 +6,8 @@
     ],
     "dependencies": {
         "eonasdan-bootstrap-datetimepicker": "^3.1",
-        "select2": "^3.5",
-        "select2-bootstrap-css": "^1.4",
+        "select2": "^4.0",
+        "select2-bootstrap-theme": "^0.1",
         "moment": "^2.8",
         "components-font-awesome": "^4.4",
         "ionicons": "^2.0"

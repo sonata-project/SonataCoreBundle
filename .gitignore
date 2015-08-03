@@ -10,5 +10,13 @@ composer.lock
 .php_cs.cache
 
 Resources/public/vendor/ionicons/png
-Resources/public/vendor/select2-bootstrap-css/*
-!Resources/public/vendor/select2-bootstrap-css/select2-bootstrap.min.css
+
+Resources/public/vendor/select2/docs
+Resources/public/vendor/select2/src
+Resources/public/vendor/select2/tests
+Resources/public/vendor/select2/vendor
+Resources/public/vendor/select2/dist/css/*
+!Resources/public/vendor/select2/dist/css/select2.min.css
+Resources/public/vendor/select2/dist/js/*
+!Resources/public/vendor/select2/dist/js/select2.min.js
+!Resources/public/vendor/select2/dist/js/i18n
