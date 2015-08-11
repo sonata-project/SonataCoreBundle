@@ -10,6 +10,8 @@ Check out the documentation on [https://sonata-project.org/bundles/core/master/d
 * [Sonata Users](https://groups.google.com/group/sonata-users): Only for user questions
 * [Sonata Devs](https://groups.google.com/group/sonata-devs): Only for devs
 
+This is a test
+
 License
 -------
 
