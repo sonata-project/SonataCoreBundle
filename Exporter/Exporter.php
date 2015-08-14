@@ -14,7 +14,7 @@ namespace Sonata\CoreBundle\Exporter;
 use Exporter\Source\SourceIteratorInterface;
 use Exporter\Writer\CsvWriter;
 use Exporter\Writer\JsonWriter;
-use Exporter\Writer\XlsWriter;
+use Exporter\Writer\XmlExcelWriter;
 use Exporter\Writer\XmlWriter;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -33,7 +33,7 @@ class Exporter
     {
         switch ($format) {
             case 'xls':
-                $writer      = new XlsWriter('php://output');
+                $writer      = new XmlExcelWriter('php://output');
                 $contentType = 'application/vnd.ms-excel';
                 break;
             case 'xml':
