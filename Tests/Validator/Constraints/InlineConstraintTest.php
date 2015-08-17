@@ -31,7 +31,7 @@ class InlineConstraintTest extends \PHPUnit_Framework_TestCase
         $constraint = new InlineConstraint(array('service' => 'foo', 'method' => 'bar'));
         $this->assertFalse($constraint->isClosure());
 
-        $constraint = new InlineConstraint(array('service' => 'foo', 'method' => function () {}));
+        $constraint = new InlineConstraint(array('service' => 'foo', 'method' => function () {}, 'serializingWarning' => true));
         $this->assertTrue($constraint->isClosure());
     }
 
@@ -39,7 +39,7 @@ class InlineConstraintTest extends \PHPUnit_Framework_TestCase
     {
         $closure = function () {return 'FOO';};
 
-        $constraint = new InlineConstraint(array('service' => 'foo', 'method' => $closure));
+        $constraint = new InlineConstraint(array('service' => 'foo', 'method' => $closure, 'serializingWarning' => true));
         $this->assertEquals($closure, $constraint->getClosure());
     }
 
@@ -65,5 +65,20 @@ class InlineConstraintTest extends \PHPUnit_Framework_TestCase
     {
         $constraint = new InlineConstraint(array('service' => 'foo', 'method' => 'bar'));
         $this->assertEquals('foo', $constraint->getService());
+    }
+
+    public function testClosureSerialization()
+    {
+        $constraint = new InlineConstraint(array('service' => 'foo', 'method' => function () {}, 'serializingWarning' => true));
+
+        $expected = 'O:56:"Sonata\CoreBundle\Validator\Constraints\InlineConstraint":0:{}';
+
+        $this->assertEquals($expected, serialize($constraint));
+
+        $constraint = unserialize($expected);
+
+        $this->assertInstanceOf('Closure', $constraint->getMethod());
+        $this->assertEmpty($constraint->getService());
+        $this->assertTrue($constraint->getSerializingWarning());
     }
 }

@@ -92,6 +92,11 @@ There are two important options:
   - ``service``: the service where the validation method is defined
   - ``method``: the service's method to call
 
+.. note::
+
+    If the ``service`` or ``method`` are not string, you will need to re-attach the validation on each request. Set
+    the ``serializingWarning`` option to ``true`` once it is done.
+
 The method must accept two arguments:
 
  - ``ErrorElement``: the instance where assertion can be checked

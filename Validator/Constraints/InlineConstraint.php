@@ -19,6 +19,22 @@ class InlineConstraint extends Constraint
 
     protected $method;
 
+    protected $serializingWarning;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct($options = null)
+    {
+        parent::__construct($options);
+
+        if ((!is_string($this->service) || !is_string($this->method)) && $this->serializingWarning !== true) {
+            throw new \RuntimeException('You are using a closure with the `InlineConstraint`, this constraint'.
+                ' cannot be serialized. You need to re-attach the `InlineConstraint` on each request.'.
+                ' Once done, you can set the `serializingWarning` option to `true` to avoid this message.');
+        }
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -76,5 +92,32 @@ class InlineConstraint extends Constraint
     public function getService()
     {
         return $this->service;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSerializingWarning()
+    {
+        return $this->serializingWarning;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __sleep()
+    {
+        return array();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __wakeup()
+    {
+        $this->method = function () {
+        };
+
+        $this->serializingWarning = true;
     }
 }
