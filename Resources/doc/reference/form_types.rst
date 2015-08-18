@@ -320,3 +320,35 @@ Example with `doctrine_orm_date_range` filter:
                 ->add('createdAt', 'doctrine_orm_date_range', array('field_type'=>'sonata_type_date_range_picker',))
         ;
     }
+
+sonata_type_color_picker
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+This type a simple color picker from AdminLTE colors. Its available as service, and inherit from ``choice`` default form types.
+
+
+.. image:: ../images/colorpicker.png
+
+In order to use it, you'll need to perform a bit of setup:
+
+.. code-block:: yaml
+
+    # app/config.yml
+    twig:
+        # ...
+        form:
+            resources:
+                # ...
+                - 'SonataCoreBundle:Form:colorpicker.html.twig'
+
+Finally, in your form, you may use the form type as follows:
+
+.. code-block:: php
+
+    <?php
+
+    // ...
+        $builder
+            ->add('color', 'sonata_type_color_picker')
+            // ...
+        ;
