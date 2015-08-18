@@ -111,7 +111,10 @@ class InlineConstraint extends Constraint
             return array();
         }
 
-        return parent::__sleep();
+        // Initialize "groups" option if it is not set
+        $this->groups;
+
+        return array_keys(get_object_vars($this));
     }
 
     /**
