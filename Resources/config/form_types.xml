@@ -61,6 +61,10 @@
             <argument type="service" id="translator" />
         </service>
 
+        <service id="sonata.core.form.type.color_selector" class="Sonata\CoreBundle\Form\Type\ColorSelectorType">
+            <tag name="form.type" alias="sonata_type_color_selector" />
+        </service>
+
     </services>
 
 </container>
