@@ -81,4 +81,17 @@ class InlineConstraintTest extends \PHPUnit_Framework_TestCase
         $this->assertEmpty($constraint->getService());
         $this->assertTrue($constraint->getSerializingWarning());
     }
+
+    public function testStandardSerialization()
+    {
+        $constraint = new InlineConstraint(array('service' => 'foo', 'method' => 'bar'));
+
+        $data = serialize($constraint);
+
+        $constraint = unserialize($data);
+
+        $this->assertEquals($constraint->getService(), 'foo');
+        $this->assertEquals($constraint->getMethod(), 'bar');
+        $this->assertNull($constraint->getSerializingWarning());
+    }
 }

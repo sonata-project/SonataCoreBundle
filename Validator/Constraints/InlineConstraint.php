@@ -107,7 +107,11 @@ class InlineConstraint extends Constraint
      */
     public function __sleep()
     {
-        return array();
+        if (!is_string($this->service) || !is_string($this->method)) {
+            return array();
+        }
+
+        return parent::__sleep();
     }
 
     /**
@@ -115,6 +119,10 @@ class InlineConstraint extends Constraint
      */
     public function __wakeup()
     {
+        if (is_string($this->service) && is_string($this->method)) {
+            return;
+        }
+
         $this->method = function () {
         };
 
