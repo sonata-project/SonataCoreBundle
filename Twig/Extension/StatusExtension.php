@@ -41,7 +41,7 @@ class StatusExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'sonata_status_class' => new \Twig_Filter_Method($this, 'statusClass'),
+            new \Twig_SimpleFilter('sonata_status_class', array($this, 'statusClass')),
         );
     }
 
