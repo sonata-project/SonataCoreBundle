@@ -26,8 +26,7 @@ class StatusExtensionTest extends \PHPUnit_Framework_TestCase
         $extension = new StatusExtension();
         $filters = $extension->getFilters();
 
-        $this->assertTrue(isset($filters['sonata_status_class']));
-        $this->assertInstanceOf('Twig_Filter_Method', $filters['sonata_status_class']);
+        $this->assertContainsOnlyInstancesOf('Twig_SimpleFilter', $filters);
     }
 
     public function testStatusClassDefaultValue()
