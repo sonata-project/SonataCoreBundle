@@ -23,7 +23,7 @@ class TemplateBoxTokenParserTest extends \PHPUnit_Framework_TestCase
     {
         $translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
 
-        $env = new \Twig_Environment(new \Twig_Loader_String(), array('cache' => false, 'autoescape' => false, 'optimizations' => 0));
+        $env = new \Twig_Environment(new \Twig_Loader_Array(array()), array('cache' => false, 'autoescape' => false, 'optimizations' => 0));
         $env->addTokenParser(new TemplateBoxTokenParser($enabled, $translator));
         $stream = $env->tokenize($source);
         $parser = new \Twig_Parser($env);
