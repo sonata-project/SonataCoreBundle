@@ -16,7 +16,7 @@
             </trans-unit>
             <trans-unit id="sonata_core_template_box_file_found_in">
                 <source>sonata_core_template_box_file_found_in</source>
-                <target>sonata_core_template_box_file_found_in</target>
+                <target>Aquest arxiu és pot trobar a</target>
             </trans-unit>
             <trans-unit id="label_type_equals">
                 <source>label_type_equals</source>
@@ -28,11 +28,11 @@
             </trans-unit>
             <trans-unit id="date_range_start">
                 <source>date_range_start</source>
-                <target>date_range_start</target>
+                <target>Data inicial</target>
             </trans-unit>
             <trans-unit id="date_range_end">
                 <source>date_range_end</source>
-                <target>date_range_end</target>
+                <target>Data final</target>
             </trans-unit>
             <trans-unit id="aliceblue">
                 <source>aliceblue</source>
@@ -64,7 +64,7 @@
             </trans-unit>
             <trans-unit id="black">
                 <source>black</source>
-                <target>black</target>
+                <target>Negre</target>
             </trans-unit>
             <trans-unit id="blanchedalmond">
                 <source>blanchedalmond</source>
@@ -72,7 +72,7 @@
             </trans-unit>
             <trans-unit id="blue">
                 <source>blue</source>
-                <target>blue</target>
+                <target>Blau</target>
             </trans-unit>
             <trans-unit id="blueviolet">
                 <source>blueviolet</source>
@@ -80,7 +80,7 @@
             </trans-unit>
             <trans-unit id="brown">
                 <source>brown</source>
-                <target>brown</target>
+                <target>Marró</target>
             </trans-unit>
             <trans-unit id="burlywood">
                 <source>burlywood</source>
@@ -96,11 +96,11 @@
             </trans-unit>
             <trans-unit id="chocolate">
                 <source>chocolate</source>
-                <target>chocolate</target>
+                <target>Xocolata</target>
             </trans-unit>
             <trans-unit id="coral">
                 <source>coral</source>
-                <target>coral</target>
+                <target>Corall</target>
             </trans-unit>
             <trans-unit id="cornflowerblue">
                 <source>cornflowerblue</source>
@@ -120,7 +120,7 @@
             </trans-unit>
             <trans-unit id="darkblue">
                 <source>darkblue</source>
-                <target>darkblue</target>
+                <target>Blau fosc</target>
             </trans-unit>
             <trans-unit id="darkcyan">
                 <source>darkcyan</source>
@@ -132,7 +132,7 @@
             </trans-unit>
             <trans-unit id="darkgray">
                 <source>darkgray</source>
-                <target>darkgray</target>
+                <target>Gris fosc</target>
             </trans-unit>
             <trans-unit id="darkgreen">
                 <source>darkgreen</source>
@@ -160,11 +160,11 @@
             </trans-unit>
             <trans-unit id="darkred">
                 <source>darkred</source>
-                <target>darkred</target>
+                <target>Vermell fosc</target>
             </trans-unit>
             <trans-unit id="darksalmon">
                 <source>darksalmon</source>
-                <target>darksalmon</target>
+                <target>Salmó fosc</target>
             </trans-unit>
             <trans-unit id="darkseagreen">
                 <source>darkseagreen</source>
@@ -184,7 +184,7 @@
             </trans-unit>
             <trans-unit id="darkviolet">
                 <source>darkviolet</source>
-                <target>darkviolet</target>
+                <target>Lila fosc</target>
             </trans-unit>
             <trans-unit id="deeppink">
                 <source>deeppink</source>
@@ -216,7 +216,7 @@
             </trans-unit>
             <trans-unit id="fuchsia">
                 <source>fuchsia</source>
-                <target>fuchsia</target>
+                <target>Fúcsia</target>
             </trans-unit>
             <trans-unit id="gainsboro">
                 <source>gainsboro</source>
@@ -228,7 +228,7 @@
             </trans-unit>
             <trans-unit id="gold">
                 <source>gold</source>
-                <target>gold</target>
+                <target>Or</target>
             </trans-unit>
             <trans-unit id="goldenrod">
                 <source>goldenrod</source>
@@ -236,11 +236,11 @@
             </trans-unit>
             <trans-unit id="gray">
                 <source>gray</source>
-                <target>gray</target>
+                <target>Gris</target>
             </trans-unit>
             <trans-unit id="green">
                 <source>green</source>
-                <target>green</target>
+                <target>Verd</target>
             </trans-unit>
             <trans-unit id="greenyellow">
                 <source>greenyellow</source>
@@ -264,7 +264,7 @@
             </trans-unit>
             <trans-unit id="ivory">
                 <source>ivory</source>
-                <target>ivory</target>
+                <target>Ivori</target>
             </trans-unit>
             <trans-unit id="khaki">
                 <source>khaki</source>
@@ -304,19 +304,19 @@
             </trans-unit>
             <trans-unit id="lightgray">
                 <source>lightgray</source>
-                <target>lightgray</target>
+                <target>Gris clar</target>
             </trans-unit>
             <trans-unit id="lightgreen">
                 <source>lightgreen</source>
-                <target>lightgreen</target>
+                <target>Verd clar</target>
             </trans-unit>
             <trans-unit id="lightpink">
                 <source>lightpink</source>
-                <target>lightpink</target>
+                <target>Rosa clar</target>
             </trans-unit>
             <trans-unit id="lightsalmon">
                 <source>lightsalmon</source>
-                <target>lightsalmon</target>
+                <target>Salmó clar</target>
             </trans-unit>
             <trans-unit id="lightseagreen">
                 <source>lightseagreen</source>
@@ -336,11 +336,11 @@
             </trans-unit>
             <trans-unit id="lightyellow">
                 <source>lightyellow</source>
-                <target>lightyellow</target>
+                <target>Groc clar</target>
             </trans-unit>
             <trans-unit id="lime">
                 <source>lime</source>
-                <target>lime</target>
+                <target>Llima</target>
             </trans-unit>
             <trans-unit id="limegreen">
                 <source>limegreen</source>
@@ -352,11 +352,11 @@
             </trans-unit>
             <trans-unit id="magenta">
                 <source>magenta</source>
-                <target>magenta</target>
+                <target>Magenta</target>
             </trans-unit>
             <trans-unit id="maroon">
                 <source>maroon</source>
-                <target>maroon</target>
+                <target>Granat</target>
             </trans-unit>
             <trans-unit id="mediumaquamarine">
                 <source>mediumaquamarine</source>
@@ -424,7 +424,7 @@
             </trans-unit>
             <trans-unit id="olive">
                 <source>olive</source>
-                <target>olive</target>
+                <target>Oliva</target>
             </trans-unit>
             <trans-unit id="olivedrab">
                 <source>olivedrab</source>
@@ -432,7 +432,7 @@
             </trans-unit>
             <trans-unit id="orange">
                 <source>orange</source>
-                <target>orange</target>
+                <target>Taronja</target>
             </trans-unit>
             <trans-unit id="orangered">
                 <source>orangered</source>
@@ -472,7 +472,7 @@
             </trans-unit>
             <trans-unit id="pink">
                 <source>pink</source>
-                <target>pink</target>
+                <target>Rosa</target>
             </trans-unit>
             <trans-unit id="plum">
                 <source>plum</source>
@@ -484,7 +484,7 @@
             </trans-unit>
             <trans-unit id="purple">
                 <source>purple</source>
-                <target>purple</target>
+                <target>Porpra</target>
             </trans-unit>
             <trans-unit id="rebeccapurple">
                 <source>rebeccapurple</source>
@@ -492,7 +492,7 @@
             </trans-unit>
             <trans-unit id="red">
                 <source>red</source>
-                <target>red</target>
+                <target>Vermell</target>
             </trans-unit>
             <trans-unit id="rosybrown">
                 <source>rosybrown</source>
@@ -508,7 +508,7 @@
             </trans-unit>
             <trans-unit id="salmon">
                 <source>salmon</source>
-                <target>salmon</target>
+                <target>Salmó</target>
             </trans-unit>
             <trans-unit id="sandybrown">
                 <source>sandybrown</source>
@@ -528,7 +528,7 @@
             </trans-unit>
             <trans-unit id="silver">
                 <source>silver</source>
-                <target>silver</target>
+                <target>Plata</target>
             </trans-unit>
             <trans-unit id="skyblue">
                 <source>skyblue</source>
@@ -544,7 +544,7 @@
             </trans-unit>
             <trans-unit id="snow">
                 <source>snow</source>
-                <target>snow</target>
+                <target>Neu</target>
             </trans-unit>
             <trans-unit id="springgreen">
                 <source>springgreen</source>
@@ -572,19 +572,19 @@
             </trans-unit>
             <trans-unit id="turquoise">
                 <source>turquoise</source>
-                <target>turquoise</target>
+                <target>Turquesa</target>
             </trans-unit>
             <trans-unit id="violet">
                 <source>violet</source>
-                <target>violet</target>
+                <target>Violeta</target>
             </trans-unit>
             <trans-unit id="wheat">
                 <source>wheat</source>
-                <target>wheat</target>
+                <target>Blat</target>
             </trans-unit>
             <trans-unit id="white">
                 <source>white</source>
-                <target>white</target>
+                <target>Blanc</target>
             </trans-unit>
             <trans-unit id="whitesmoke">
                 <source>whitesmoke</source>
@@ -592,7 +592,7 @@
             </trans-unit>
             <trans-unit id="yellow">
                 <source>yellow</source>
-                <target>yellow</target>
+                <target>Groc</target>
             </trans-unit>
             <trans-unit id="yellowgreen">
                 <source>yellowgreen</source>
