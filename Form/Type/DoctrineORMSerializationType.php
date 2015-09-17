@@ -44,6 +44,11 @@ class DoctrineORMSerializationType extends AbstractType
     /**
      * @var string
      */
+    protected $name;
+
+    /**
+     * @var string
+     */
     protected $class;
 
     /**
