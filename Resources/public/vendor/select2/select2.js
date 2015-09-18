@@ -1,7 +1,7 @@
 /*
 Copyright 2012 Igor Vaynberg
 
-Version: 3.5.3 Timestamp: Wed Aug 19 21:55:46 EDT 2015
+Version: 3.5.4 Timestamp: Sun Aug 30 13:30:32 EDT 2015
 
 This software is licensed under the Apache License, Version 2.0 (the "Apache License") or the GNU
 General Public License version 2 (the "GPL License"). You may choose either license to govern your
@@ -1023,14 +1023,14 @@ the specific language governing permissions and limitations under the Apache Lic
 
             // data-select2-tags -> data-tags
             if (opts.element.data('tags') != null) {
-                var tags = opts.element.data('tags');
+                var elemTags = opts.element.data('tags');
 
                 // data-tags should actually be a boolean
-                if (!$.isArray(tags)) {
-                    tags = [];
+                if (!$.isArray(elemTags)) {
+                    elemTags = [];
                 }
 
-                opts.element.data('select2Tags', tags);
+                opts.element.data('select2Tags', elemTags);
             }
 
             // sortResults -> sorter
@@ -2745,7 +2745,7 @@ the specific language governing permissions and limitations under the Apache Lic
                 if (data == undefined) data = null;
                 return data;
             } else {
-                if (opts.debug && console && console.warn) {
+                if (this.opts.debug && console && console.warn) {
                     console.warn(
                         'Select2: The `select2("data")` method can no longer set selected values in 4.0.0, ' +
                         'consider using the `.val()` method instead.'
