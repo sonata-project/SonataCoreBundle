@@ -19,6 +19,6 @@
     "commit": "9f414ea289b0db3c6a63e5d5adee448189689bc6"
   },
   "_source": "git://github.com/ivaynberg/select2.git",
-  "_target": "^3.5.4",
+  "_target": "^3.5",
   "_originalSource": "select2"
 }
