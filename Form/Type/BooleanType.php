@@ -64,7 +64,7 @@ class BooleanType extends AbstractType
      */
     public function getParent()
     {
-        return 'sonata_type_translatable_choice';
+        return 'choice';
     }
 
     /**
