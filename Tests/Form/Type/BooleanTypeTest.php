@@ -23,7 +23,7 @@ class BooleanTypeTest extends TypeTestCase
 
         $optionResolver = new OptionsResolver();
 
-        $this->assertEquals('sonata_type_translatable_choice', $type->getParent());
+        $this->assertEquals('choice', $type->getParent());
 
         $type->setDefaultOptions($optionResolver);
 
