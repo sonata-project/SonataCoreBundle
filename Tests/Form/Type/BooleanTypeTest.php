@@ -60,4 +60,52 @@ class BooleanTypeTest extends TypeTestCase
 
         $type->buildForm($builder, $optionResolver->resolve(array()));
     }
+
+    public function testOptions()
+    {
+        $type = new BooleanType();
+
+        $type->setDefaultOptions($optionResolver = new OptionsResolver());
+
+        $builder = $this->getMock('Symfony\Component\Form\Test\FormBuilderInterface');
+        $builder->expects($this->never())->method('addModelTransformer');
+
+        $resolvedOptions = $optionResolver->resolve(array(
+            'translation_domain' => 'fooTrans',
+            'choices'            => array(1 => 'foo_yes', 2 => 'foo_no'),
+        ));
+
+        $type->buildForm($builder, $resolvedOptions);
+
+        $this->assertEquals(array(
+            'transform'          => false,
+            'catalogue'          => 'SonataCoreBundle',
+            'translation_domain' => 'fooTrans',
+            'choices'            => array(1 => 'foo_yes', 2 => 'foo_no'),
+        ), $resolvedOptions);
+    }
+
+    public function testDeprecatedCatalogueOption()
+    {
+        $type = new BooleanType();
+
+        $type->setDefaultOptions($optionResolver = new OptionsResolver());
+
+        $builder = $this->getMock('Symfony\Component\Form\Test\FormBuilderInterface');
+        $builder->expects($this->never())->method('addModelTransformer');
+
+        $resolvedOptions = $optionResolver->resolve(array(
+            'catalogue' => 'fooTrans',
+            'choices'   => array(1 => 'foo_yes', 2 => 'foo_no'),
+        ));
+
+        $type->buildForm($builder, $resolvedOptions);
+
+        $this->assertEquals(array(
+            'transform'          => false,
+            'catalogue'          => 'fooTrans',
+            'translation_domain' => 'fooTrans',
+            'choices'            => array(1 => 'foo_yes', 2 => 'foo_no'),
+        ), $resolvedOptions);
+    }
 }
