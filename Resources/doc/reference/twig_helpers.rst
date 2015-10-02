@@ -11,7 +11,11 @@ Create a slug from a string:
 
 .. code-block:: jinja
 
-    {{ "my string"|sonata_slugify }} => my-string
+    {{ "my string"|sonata_slugify }}
+
+Results in ::
+
+    my-string
 
 sonata_flashmessages_get and sonata_flashmessages_types
 -------------------------------------------------------
