@@ -49,4 +49,5 @@ Now that we have defined our service, we will add it using the ``sonata.status.r
 
 Use the service
 ---------------
+
 You can now call your helper in your twig views using the following code: ``{{ my_object|sonata_status_class(status_name, 'default_value') }}``

@@ -2,7 +2,7 @@ Inline Validation
 =================
 
 The inline validation is about delegating model validation to a dedicated service.
-The current validation implementation built in the Symfony2 framework is very powerful
+The current validation implementation built in the Symfony framework is very powerful
 as it allows to declare validation on a : class, field and getter. However these declarations
 can take a while to code for complex rules. As rules must be a set of a ``Constraint``
 and a ``Validator`` instances.
@@ -13,6 +13,7 @@ object. The object can be used to check assertions against the model :
 .. code-block:: php
 
     <?php
+
     $errorElement
         ->with('settings.url')
             ->assertNotNull(array())
@@ -26,11 +27,20 @@ object. The object can be used to check assertions against the model :
             // for maximum length constraint
             ->assertLength(array('max' => 100))
             ->addViolation('ho yeah!')
-        ->end();
+        ->end()
+    ;
+
+    // ...
 
     if (/* complex rules */) {
-        $errorElement->with('value')->addViolation('Fail to check the complex rules')->end()
+        $errorElement
+            ->with('value')
+                ->addViolation('Fail to check the complex rules')
+            ->end()
+        ;
     }
+
+    // ...
 
     /* conditional validation */
     if ($this->getSubject()->getState() == Post::STATUS_ONLINE) {
@@ -38,7 +48,8 @@ object. The object can be used to check assertions against the model :
             ->with('enabled')
                 ->assertNotNull()
                 ->assertTrue()
-            ->end();
+            ->end()
+        ;
     }
 
 .. note::
@@ -49,22 +60,22 @@ object. The object can be used to check assertions against the model :
 .. tip::
 
     You can also use ``$errorElement->addConstraint(new \Symfony\Component\Validator\Constraints\NotBlank())``
-    instead of calling assertNotBlank().
+    instead of calling ``assertNotBlank()``.
 
     You can also use ``$errorElement->addConstraint(new \Symfony\Component\Validator\Constraints\Length(array('min'=>5, 'max'=>100))``
-    instead of calling assertLength().
+    instead of calling ``assertLength()``.
 
-Using this validator
+Using this Validator
 --------------------
 
 Add the ``InlineConstraint`` class constraint to your bundle's validation configuration, for example:
-
 
 .. configuration-block::
 
     .. code-block:: xml
 
         <!-- src/Application/Sonata/PageBundle/Resources/config/validation.xml -->
+
         <?xml version="1.0" ?>
         <constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -81,6 +92,7 @@ Add the ``InlineConstraint`` class constraint to your bundle's validation config
     .. code-block:: yaml
 
         # src/Application/Sonata/PageBundle/Resources/config/validation.yml
+
         Application\Sonata\PageBundle\Entity\Block:
             constraints:
                 - Sonata\CoreBundle\Validator\Constraints\InlineConstraint:
@@ -102,13 +114,13 @@ The method must accept two arguments:
  - ``ErrorElement``: the instance where assertion can be checked
  - ``value``: the object instance
 
-
 Example from the ``SonataPageBundle``
 -------------------------------------
 
 .. code-block:: php
 
     <?php
+
     namespace Sonata\PageBundle\Block;
 
     use Sonata\PageBundle\Model\PageInterface;
@@ -118,7 +130,7 @@ Example from the ``SonataPageBundle``
 
     class RssBlockService extends BaseBlockService
     {
-        // ... code removed for simplification
+        // ...
 
         public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
         {
@@ -130,11 +142,16 @@ Example from the ``SonataPageBundle``
                 ->with('settings.title')
                     ->assertNotNull(array())
                     ->assertNotBlank()
+
                     // for minimum length constraint
                     ->assertLength(array('min' => 50))
+
                     // for maximum length constraint
                     ->assertLength(array('max' => 100))
                     ->addViolation('ho yeah!')
-                ->end();
+                ->end()
+            ;
         }
+
+        // ...
     }

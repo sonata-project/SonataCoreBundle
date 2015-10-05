@@ -14,13 +14,14 @@ You just have to extend ``Sonata\CoreBundle\Model\BaseEntityManager``, ``Sonata\
 .. code-block:: php
 
     <?php
+    // src/AppBundle/Entity/ProductManager.php
 
-    namespace Acme\Bundle\Entity;
+    namespace AppBundle\Entity;
 
     use Sonata\CoreBundle\Model\BaseEntityManager;
 
     class ProductManager extends BaseEntityManager
     {
-
+        // ...
     }
 
