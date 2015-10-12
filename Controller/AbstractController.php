@@ -11,10 +11,10 @@
 
 namespace Sonata\CoreBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-abstract class Controller extends BaseController
+abstract class AbstractController extends Controller
 {
     /**
      * To keep backwards compatibility with older Sonata code.
