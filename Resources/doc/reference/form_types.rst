@@ -434,7 +434,7 @@ Finally, in your form, you may use the form type as follows:
         protected function configureFormFields(FormMapper $formMapper)
         {
             $formMapper
-                ->add('color', 'sonata_type_color_picker')
+                ->add('color', 'sonata_type_color_selector')
                 // ...
             ;
         }
