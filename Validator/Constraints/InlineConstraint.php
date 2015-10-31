@@ -15,10 +15,19 @@ use Symfony\Component\Validator\Constraint;
 
 class InlineConstraint extends Constraint
 {
+    /**
+     * @var mixed
+     */
     protected $service;
 
+    /**
+     * @var mixed
+     */
     protected $method;
 
+    /**
+     * @var mixed
+     */
     protected $serializingWarning;
 
     /**

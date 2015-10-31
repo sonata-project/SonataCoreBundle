@@ -19,6 +19,9 @@ use Doctrine\ODM\PHPCR\DocumentManager;
  */
 class DoctrinePHPCRAdapter implements AdapterInterface
 {
+    /**
+     * @var ManagerRegistry
+     */
     protected $registry;
 
     /**

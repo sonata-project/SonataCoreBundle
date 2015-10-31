@@ -23,10 +23,13 @@ class EqualType extends AbstractType
 
     const TYPE_IS_NOT_EQUAL = 2;
 
+    /**
+     * @var TranslatorInterface
+     */
     protected $translator;
 
     /**
-     * @param \Symfony\Component\Translation\TranslatorInterface $translator
+     * @param TranslatorInterface $translator
      */
     public function __construct(TranslatorInterface $translator)
     {

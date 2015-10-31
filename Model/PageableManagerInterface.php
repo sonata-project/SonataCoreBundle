@@ -11,6 +11,8 @@
 
 namespace Sonata\CoreBundle\Model;
 
+use Sonata\DatagridBundle\Pager\PagerInterface;
+
 /**
  * Class PageableManagerInterface.
  *
@@ -24,7 +26,7 @@ interface PageableManagerInterface
      * @param int   $limit
      * @param array $sort
      *
-     * @return \Sonata\DatagridBundle\Pager\PagerInterface
+     * @return PagerInterface
      */
     public function getPager(array $criteria, $page, $limit = 10, array $sort = array());
 }

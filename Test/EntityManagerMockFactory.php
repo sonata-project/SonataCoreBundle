@@ -11,16 +11,17 @@
 
 namespace Sonata\CoreBundle\Test;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Version;
 
 class EntityManagerMockFactory
 {
     /**
      * @param \PHPUnit_Framework_TestCase $test
-     * @param callable                    $qbCallback
+     * @param \Closure                    $qbCallback
      * @param                             $fields
      *
-     * @return \Doctrine\ORM\EntityManagerInterface
+     * @return EntityManagerInterface
      */
     public static function create(\PHPUnit_Framework_TestCase $test, \Closure $qbCallback, $fields)
     {

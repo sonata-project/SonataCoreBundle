@@ -17,10 +17,19 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class StatusType extends AbstractType
 {
+    /**
+     * @var string
+     */
     protected $class;
 
+    /**
+     * @var string
+     */
     protected $getter;
 
+    /**
+     * @var string
+     */
     protected $name;
 
     /**

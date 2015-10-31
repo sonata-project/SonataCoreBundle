@@ -18,8 +18,14 @@ use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
 
 class InlineValidator extends ConstraintValidator
 {
+    /**
+     * @var ContainerInterface
+     */
     protected $container;
 
+    /**
+     * @var ConstraintValidatorFactoryInterface
+     */
     protected $constraintValidatorFactory;
 
     /**

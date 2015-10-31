@@ -64,11 +64,12 @@ class DoctrineORMSerializationType extends AbstractType
     /**
      * Constructor.
      *
-     * @param MetadataFactoryInterface $metadataFactory Serializer metadata factory
-     * @param ManagerRegistry          $registry        Doctrine registry
-     * @param string                   $name            Form type name
-     * @param string                   $class           Data class name
-     * @param string                   $group           Serialization group name
+     * @param MetadataFactoryInterface $metadataFactory     Serializer metadata factory
+     * @param ManagerRegistry          $registry            Doctrine registry
+     * @param string                   $name                Form type name
+     * @param string                   $class               Data class name
+     * @param string                   $group               Serialization group name
+     * @param bool|false               $identifierOverwrite
      */
     public function __construct(MetadataFactoryInterface $metadataFactory, ManagerRegistry $registry, $name, $class, $group, $identifierOverwrite = false)
     {
