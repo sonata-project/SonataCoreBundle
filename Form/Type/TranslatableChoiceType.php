@@ -7,8 +7,6 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- *
- * @deprecated - use ChoiceType with the translation_domain option instead
  */
 
 namespace Sonata\CoreBundle\Form\Type;
@@ -20,6 +18,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
+/**
+ * @deprecated Deprecated as of SonataCoreBundle 2.2.0, to be removed in 3.0. Use form type "choice" with "translation_domain" option instead.
+ */
 class TranslatableChoiceType extends AbstractType
 {
     protected $translator;
@@ -29,6 +30,8 @@ class TranslatableChoiceType extends AbstractType
      */
     public function __construct(TranslatorInterface $translator)
     {
+        @trigger_error('Form type "sonata_type_translatable_choice" is deprecated since SonataCoreBundle 2.2.0 and will be removed in 3.0. Use form type "choice" with "translation_domain" option instead.', E_USER_DEPRECATED);
+
         $this->translator = $translator;
     }
 

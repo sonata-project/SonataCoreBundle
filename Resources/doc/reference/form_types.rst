@@ -113,7 +113,7 @@ sonata_type_translatable_choice
 
 .. warning::
 
-    ``sonata_type_translatable_choice`` is deprecated,  use ``ChoiceType`` with the ``translation_domain`` option instead!
+    ``sonata_type_translatable_choice`` is deprecated and will be removed in 3.0. Use form type ``choice`` with ``translation_domain`` option instead!
 
 The translatable type is a specialized ``ChoiceType`` where the choices values are translated with the Symfony Translator component.
 
