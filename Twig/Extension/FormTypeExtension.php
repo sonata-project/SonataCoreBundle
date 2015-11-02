@@ -21,11 +21,17 @@ class FormTypeExtension extends \Twig_Extension
      */
     private $wrapFieldsWithAddons;
 
+    /**
+     * @param $formType
+     */
     public function __construct($formType)
     {
         $this->wrapFieldsWithAddons = ($formType == 'standard');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getGlobals()
     {
         return array(
@@ -33,6 +39,9 @@ class FormTypeExtension extends \Twig_Extension
         );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'sonata_core_wrapping';

@@ -20,10 +20,13 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 class DateRangeType extends AbstractType
 {
+    /**
+     * @var TranslatorInterface
+     */
     protected $translator;
 
     /**
-     * @param \Symfony\Component\Translation\TranslatorInterface $translator
+     * @param TranslatorInterface $translator
      */
     public function __construct(TranslatorInterface $translator)
     {

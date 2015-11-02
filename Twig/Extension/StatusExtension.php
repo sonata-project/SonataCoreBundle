@@ -21,7 +21,7 @@ use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
 class StatusExtension extends \Twig_Extension
 {
     /**
-     * @var array
+     * @var StatusClassRendererInterface[]
      */
     protected $statusServices = array();
 

@@ -30,20 +30,38 @@ class ErrorElement
     protected $group;
 
     /**
-     * @var ConstraintValidationFactoryInterface
+     * @var ConstraintValidatorFactoryInterface
      */
     protected $constraintValidatorFactory;
 
+    /**
+     * @var string[]
+     */
     protected $stack = array();
 
+    /**
+     * @var string[]
+     */
     protected $propertyPaths = array();
 
+    /**
+     * @var mixed
+     */
     protected $subject;
 
+    /**
+     * @var string
+     */
     protected $current;
 
+    /**
+     * @var string
+     */
     protected $basePropertyPath;
 
+    /**
+     * @var array
+     */
     protected $errors = array();
 
     /**

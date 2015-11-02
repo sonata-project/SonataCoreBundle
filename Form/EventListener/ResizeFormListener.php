@@ -29,12 +29,18 @@ class ResizeFormListener implements EventSubscriberInterface
     private $type;
 
     /**
-     * @var Boolean
+     * @var bool
      */
     private $resizeOnBind;
 
+    /**
+     * @var array
+     */
     private $typeOptions;
 
+    /**
+     * @var string[]
+     */
     private $removed = array();
 
     /**
@@ -69,9 +75,9 @@ class ResizeFormListener implements EventSubscriberInterface
     }
 
     /**
-     * @param \Symfony\Component\Form\FormEvent $event
+     * @param FormEvent $event
      *
-     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     * @throws UnexpectedTypeException
      */
     public function preSetData(FormEvent $event)
     {
@@ -119,11 +125,9 @@ class ResizeFormListener implements EventSubscriberInterface
     }
 
     /**
-     * @param \Symfony\Component\Form\FormEvent $event
+     * @param FormEvent $event
      *
-     * @return mixed
-     *
-     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     * @throws UnexpectedTypeException
      */
     public function preSubmit(FormEvent $event)
     {
@@ -186,11 +190,9 @@ class ResizeFormListener implements EventSubscriberInterface
     }
 
     /**
-     * @param \Symfony\Component\Form\FormEvent $event
+     * @param FormEvent $event
      *
-     * @return mixed
-     *
-     * @throws \Symfony\Component\Form\Exception\UnexpectedTypeException
+     * @throws UnexpectedTypeException
      */
     public function onSubmit(FormEvent $event)
     {

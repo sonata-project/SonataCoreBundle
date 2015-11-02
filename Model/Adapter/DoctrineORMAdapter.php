@@ -19,6 +19,9 @@ use Doctrine\ORM\EntityManagerInterface;
  */
 class DoctrineORMAdapter implements AdapterInterface
 {
+    /**
+     * @var ManagerRegistry
+     */
     protected $registry;
 
     /**
