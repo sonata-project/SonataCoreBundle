@@ -22,7 +22,7 @@
         "symfony/translation": "~2.3",
         "symfony/validator": "~2.3",
         "symfony/property-access": "~2.3",
-        "twig/twig": "~1.16",
+        "twig/twig": "~1.23",
         "cocur/slugify": "~1.4"
     },
     "require-dev": {
