@@ -64,7 +64,7 @@
             </trans-unit>
             <trans-unit id="black">
                 <source>black</source>
-                <target>black</target>
+                <target>negro</target>
             </trans-unit>
             <trans-unit id="blanchedalmond">
                 <source>blanchedalmond</source>
@@ -72,7 +72,7 @@
             </trans-unit>
             <trans-unit id="blue">
                 <source>blue</source>
-                <target>blue</target>
+                <target>azul</target>
             </trans-unit>
             <trans-unit id="blueviolet">
                 <source>blueviolet</source>
@@ -80,7 +80,7 @@
             </trans-unit>
             <trans-unit id="brown">
                 <source>brown</source>
-                <target>brown</target>
+                <target>marrón</target>
             </trans-unit>
             <trans-unit id="burlywood">
                 <source>burlywood</source>
@@ -240,7 +240,7 @@
             </trans-unit>
             <trans-unit id="green">
                 <source>green</source>
-                <target>green</target>
+                <target>verde</target>
             </trans-unit>
             <trans-unit id="greenyellow">
                 <source>greenyellow</source>
@@ -432,7 +432,7 @@
             </trans-unit>
             <trans-unit id="orange">
                 <source>orange</source>
-                <target>orange</target>
+                <target>naranja</target>
             </trans-unit>
             <trans-unit id="orangered">
                 <source>orangered</source>
@@ -472,7 +472,7 @@
             </trans-unit>
             <trans-unit id="pink">
                 <source>pink</source>
-                <target>pink</target>
+                <target>rosa</target>
             </trans-unit>
             <trans-unit id="plum">
                 <source>plum</source>
@@ -484,7 +484,7 @@
             </trans-unit>
             <trans-unit id="purple">
                 <source>purple</source>
-                <target>purple</target>
+                <target>púrpura</target>
             </trans-unit>
             <trans-unit id="rebeccapurple">
                 <source>rebeccapurple</source>
@@ -492,7 +492,7 @@
             </trans-unit>
             <trans-unit id="red">
                 <source>red</source>
-                <target>red</target>
+                <target>rojo</target>
             </trans-unit>
             <trans-unit id="rosybrown">
                 <source>rosybrown</source>
@@ -584,7 +584,7 @@
             </trans-unit>
             <trans-unit id="white">
                 <source>white</source>
-                <target>white</target>
+                <target>blanco</target>
             </trans-unit>
             <trans-unit id="whitesmoke">
                 <source>whitesmoke</source>
@@ -592,7 +592,7 @@
             </trans-unit>
             <trans-unit id="yellow">
                 <source>yellow</source>
-                <target>yellow</target>
+                <target>amarillo</target>
             </trans-unit>
             <trans-unit id="yellowgreen">
                 <source>yellowgreen</source>
