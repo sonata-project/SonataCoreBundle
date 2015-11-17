@@ -104,8 +104,8 @@ EOF
 
         $translator->addResource('array', array('sonata_template_box_media_gallery_block' => 'This is the default message'), 'en', 'SonataCoreBundle');
         $translator->addResource('array', array('sonata_template_box_media_gallery_block' => 'Ceci est le message par défaut'), 'fr', 'SonataCoreBundle');
-        $translator->addResource('array', array('sonata_core_template_box_file_found_in' => 'This file can be found in'), 'en', 'SonataCoreBundle');
-        $translator->addResource('array', array('sonata_core_template_box_file_found_in' => "Ce fichier peut être trouvé à l'emplacement"), 'fr', 'SonataCoreBundle');
+        $translator->addResource('array', array('sonata_core_template_box_file_found_in'  => 'This file can be found in'), 'en', 'SonataCoreBundle');
+        $translator->addResource('array', array('sonata_core_template_box_file_found_in'  => "Ce fichier peut être trouvé à l'emplacement"), 'fr', 'SonataCoreBundle');
 
         return $translator;
     }

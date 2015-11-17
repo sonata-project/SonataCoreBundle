@@ -139,8 +139,17 @@ class DoctrineORMSerializationType extends AbstractType
 
     /**
      * {@inheritdoc}
+     * BC for SF < 2.8.
      */
     public function getName()
+    {
+        return $this->getBlockPrefix();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
     {
         return $this->name;
     }

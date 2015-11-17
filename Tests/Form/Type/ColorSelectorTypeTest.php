@@ -12,6 +12,7 @@
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\Type\ColorSelectorType;
+use Sonata\CoreBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,12 +23,16 @@ class ColorSelectorTypeTest extends TypeTestCase
         $type = new ColorSelectorType();
 
         $this->assertEquals('sonata_type_color_selector', $type->getName());
-        $this->assertEquals('choice', $type->getParent());
+        $this->assertEquals(LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\ChoiceType'), $type->getParent());
 
-        $resolver = new OptionsResolver();
-        $type->setDefaultOptions($resolver);
+        $optionResolver = new OptionsResolver();
+        if (LegacyFormHelper::isLegacy()) {
+            $type->setDefaultOptions($optionResolver);
+        } else {
+            $type->configureOptions($optionResolver);
+        }
 
-        $options = $resolver->resolve();
+        $options = $optionResolver->resolve();
 
         $expected = array(
             'choices' => array(

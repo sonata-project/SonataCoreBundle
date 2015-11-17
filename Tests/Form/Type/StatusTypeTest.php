@@ -12,6 +12,7 @@
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\Type\StatusType;
+use Sonata\CoreBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,11 +33,15 @@ class StatusTypeTest extends TypeTestCase
         $type = new StatusType('Sonata\CoreBundle\Tests\Form\Type\Choice', 'getList', 'choice_type');
 
         $this->assertEquals('choice_type', $type->getName());
-        $this->assertEquals('choice', $type->getParent());
+        $this->assertEquals(LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\ChoiceType'), $type->getParent());
 
         $optionResolver = new OptionsResolver();
 
-        $type->setDefaultOptions($optionResolver);
+        if (LegacyFormHelper::isLegacy()) {
+            $type->setDefaultOptions($optionResolver);
+        } else {
+            $type->configureOptions($optionResolver);
+        }
 
         $options = $optionResolver->resolve(array());
 

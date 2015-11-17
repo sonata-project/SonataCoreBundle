@@ -15,12 +15,13 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyPath;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
-use Symfony\Component\Validator\ExecutionContextInterface;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\ExecutionContextInterface as LegacyExecutionContextInterface;
 
 class ErrorElement
 {
     /**
-     * @var ExecutionContextInterface
+     * @var LegacyExecutionContextInterface|ExecutionContextInterface
      */
     protected $context;
 
@@ -65,13 +66,16 @@ class ErrorElement
     protected $errors = array();
 
     /**
-     * @param mixed                               $subject
-     * @param ConstraintValidatorFactoryInterface $constraintValidatorFactory
-     * @param ExecutionContextInterface           $context
-     * @param string                              $group
+     * @param mixed                                                     $subject
+     * @param ConstraintValidatorFactoryInterface                       $constraintValidatorFactory
+     * @param LegacyExecutionContextInterface|ExecutionContextInterface $context
+     * @param string                                                    $group
      */
-    public function __construct($subject, ConstraintValidatorFactoryInterface $constraintValidatorFactory, ExecutionContextInterface $context, $group)
+    public function __construct($subject, ConstraintValidatorFactoryInterface $constraintValidatorFactory, $context, $group)
     {
+        if (!($context instanceof LegacyExecutionContextInterface) && !($context instanceof ExecutionContextInterface)) {
+            throw new \InvalidArgumentException(sprintf('Argument 3 passed to %s::__construct() must be an instance of Symfony\Component\Validator\ExecutionContextInterface or Symfony\Component\Validator\Context\ExecutionContextInterface.', get_class($this)));
+        }
         $this->subject                    = $subject;
         $this->context                    = $context;
         $this->group                      = $group;
@@ -150,8 +154,14 @@ class ErrorElement
     protected function validate(Constraint $constraint)
     {
         $subPath = (string) $this->getCurrentPropertyPath();
-
-        $this->context->validateValue($this->getValue(), $constraint, $subPath, $this->group);
+        if ($this->context instanceof LegacyExecutionContextInterface) {
+            $this->context->validateValue($this->getValue(), $constraint, $subPath, $this->group);
+        } else {
+            $this->context->getValidator()
+                ->inContext($this->context)
+                ->atPath($subPath)
+                ->validate($this->getValue(), $constraint, array($this->group));
+        }
     }
 
     /**
@@ -236,7 +246,15 @@ class ErrorElement
 
         $subPath = (string) $this->getCurrentPropertyPath();
 
-        $this->context->addViolationAt($subPath, $message, $parameters, $value);
+        if ($this->context instanceof LegacyExecutionContextInterface) {
+            $this->context->addViolationAt($subPath, $message, $parameters, $value);
+        } else {
+            $this->context->buildViolation($message)
+               ->atPath($subPath)
+               ->setParameters($parameters)
+               ->setInvalidValue($value)
+               ->addViolation();
+        }
 
         $this->errors[] = array($message, $parameters, $value);
 

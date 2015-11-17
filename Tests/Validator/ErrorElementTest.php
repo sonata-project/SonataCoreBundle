@@ -14,6 +14,8 @@ namespace Sonata\CoreBundle\Tests\Validator;
 use Sonata\CoreBundle\Tests\Fixtures\Bundle\Entity\Foo;
 use Sonata\CoreBundle\Validator\ErrorElement;
 use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\ExecutionContextInterface as LegacyExecutionContextInterface;
 
 /**
  * Test for ErrorElement.
@@ -24,16 +26,42 @@ class ErrorElementTest extends \PHPUnit_Framework_TestCase
 {
     private $errorElement;
     private $context;
+    private $contextualValidator;
     private $subject;
 
     protected function setUp()
     {
         $constraintValidatorFactory = $this->getMock('Symfony\Component\Validator\ConstraintValidatorFactoryInterface');
 
-        $this->context = $this->getMock('Symfony\Component\Validator\ExecutionContextInterface');
+        $this->context = $this->getMock(interface_exists('Symfony\Component\Validator\Context\ExecutionContextInterface') ? 'Symfony\Component\Validator\Context\ExecutionContextInterface' : 'Symfony\Component\Validator\ExecutionContextInterface');
         $this->context->expects($this->once())
                 ->method('getPropertyPath')
                 ->will($this->returnValue('bar'));
+
+        if ($this->context instanceof ExecutionContextInterface) {
+            $builder = $this->getMock('Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface');
+            $builder->expects($this->any())
+                ->method($this->anything())
+                ->will($this->returnSelf());
+
+            $this->context->expects($this->any())
+                ->method('buildViolation')
+                ->willReturn($builder);
+
+            $validator = $this->getMock('Symfony\Component\Validator\Validator\ValidatorInterface');
+
+            $this->contextualValidator = $this->getMock('Symfony\Component\Validator\Validator\ContextualValidatorInterface');
+            $this->contextualValidator->expects($this->any())
+                ->method($this->anything())
+                ->will($this->returnSelf());
+            $validator->expects($this->any())
+                ->method('inContext')
+                ->willReturn($this->contextualValidator);
+
+            $this->context->expects($this->any())
+                ->method('getValidator')
+                ->willReturn($validator);
+        }
 
         $this->subject = new Foo();
 
@@ -65,11 +93,19 @@ class ErrorElementTest extends \PHPUnit_Framework_TestCase
     public function testAddConstraint()
     {
         $constraint = new NotNull();
-
-        $this->context->expects($this->once())
-            ->method('validateValue')
-            ->with($this->equalTo($this->subject), $this->equalTo($constraint), $this->equalTo(''), $this->equalTo('foo_core'))
-            ->will($this->returnValue(null));
+        if ($this->context instanceof LegacyExecutionContextInterface) {
+            $this->context->expects($this->once())
+                ->method('validateValue')
+                ->with($this->equalTo($this->subject), $this->equalTo($constraint), $this->equalTo(''), $this->equalTo('foo_core'))
+                ->will($this->returnValue(null));
+        } else {
+            $this->contextualValidator->expects($this->once())
+                ->method('atPath')
+                ->with('');
+            $this->contextualValidator->expects($this->once())
+                ->method('validate')
+                ->with($this->subject, $constraint, array('foo_core'));
+        }
 
         $this->errorElement->addConstraint($constraint);
     }
@@ -78,10 +114,19 @@ class ErrorElementTest extends \PHPUnit_Framework_TestCase
     {
         $constraint = new NotNull();
 
-        $this->context->expects($this->once())
-            ->method('validateValue')
-            ->with($this->equalTo(null), $this->equalTo($constraint), $this->equalTo('bar'), $this->equalTo('foo_core'))
-            ->will($this->returnValue(null));
+        if ($this->context instanceof LegacyExecutionContextInterface) {
+            $this->context->expects($this->once())
+                ->method('validateValue')
+                ->with($this->equalTo(null), $this->equalTo($constraint), $this->equalTo('bar'), $this->equalTo('foo_core'))
+                ->will($this->returnValue(null));
+        } else {
+            $this->contextualValidator->expects($this->once())
+                ->method('atPath')
+                ->with('bar');
+            $this->contextualValidator->expects($this->once())
+                ->method('validate')
+                ->with(null, $constraint, array('foo_core'));
+        }
 
         $this->errorElement->with('bar');
         $this->errorElement->addConstraint($constraint);
@@ -92,10 +137,19 @@ class ErrorElementTest extends \PHPUnit_Framework_TestCase
     {
         $constraint = new NotNull();
 
-        $this->context->expects($this->once())
-            ->method('validateValue')
-            ->with($this->equalTo(null), $this->equalTo($constraint), $this->equalTo('bar'), $this->equalTo('foo_core'))
-            ->will($this->returnValue(null));
+        if ($this->context instanceof LegacyExecutionContextInterface) {
+            $this->context->expects($this->once())
+                ->method('validateValue')
+                ->with($this->equalTo(null), $this->equalTo($constraint), $this->equalTo('bar'), $this->equalTo('foo_core'))
+                ->will($this->returnValue(null));
+        } else {
+            $this->contextualValidator->expects($this->once())
+                ->method('atPath')
+                ->with('bar');
+            $this->contextualValidator->expects($this->once())
+                ->method('validate')
+                ->with(null, $constraint, array('foo_core'));
+        }
 
         $this->errorElement->with('bar');
         $this->errorElement->assertNotNull();

@@ -12,6 +12,7 @@
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\Type\DateRangeType;
+use Sonata\CoreBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,10 +24,14 @@ class DateRangeTypeTest extends TypeTestCase
 
         $this->assertEquals('sonata_type_date_range', $type->getName());
 
-        $resolver = new OptionsResolver();
-        $type->setDefaultOptions($resolver);
+        $optionResolver = new OptionsResolver();
+        if (LegacyFormHelper::isLegacy()) {
+            $type->setDefaultOptions($optionResolver);
+        } else {
+            $type->configureOptions($optionResolver);
+        }
 
-        $options = $resolver->resolve();
+        $options = $optionResolver->resolve();
 
         $this->assertEquals(
             array(

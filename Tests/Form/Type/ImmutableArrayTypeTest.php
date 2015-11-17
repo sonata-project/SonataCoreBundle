@@ -12,6 +12,7 @@
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
+use Sonata\CoreBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,12 +23,16 @@ class ImmutableArrayTypeTest extends TypeTestCase
         $type = new ImmutableArrayType();
 
         $this->assertEquals('sonata_type_immutable_array', $type->getName());
-        $this->assertEquals('form', $type->getParent());
+        $this->assertEquals(LegacyFormHelper::isLegacy() ? 'form' : 'Symfony\Component\Form\Extension\Core\Type\FormType', $type->getParent());
 
-        $resolver = new OptionsResolver();
-        $type->setDefaultOptions($resolver);
+        $optionResolver = new OptionsResolver();
+        if (LegacyFormHelper::isLegacy()) {
+            $type->setDefaultOptions($optionResolver);
+        } else {
+            $type->configureOptions($optionResolver);
+        }
 
-        $options = $resolver->resolve();
+        $options = $optionResolver->resolve();
 
         $expected = array(
             'keys' => array(),
