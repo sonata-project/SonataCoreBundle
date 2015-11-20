@@ -11,6 +11,7 @@
 
 namespace Sonata\CoreBundle\Form\Type;
 
+use Sonata\CoreBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -52,13 +53,22 @@ class DateTimePickerType extends BasePickerType
      */
     public function getParent()
     {
-        return 'datetime';
+        return LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\DateTimeType');
+    }
+
+    /**
+     * {@inheritdoc}
+     * BC for SF < 2.8.
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'sonata_type_datetime_picker';
     }

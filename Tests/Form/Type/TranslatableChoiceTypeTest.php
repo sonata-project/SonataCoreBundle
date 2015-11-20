@@ -12,12 +12,13 @@
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\Type\TranslatableChoiceType;
+use Sonata\CoreBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TranslatableChoiceTypeTest extends TypeTestCase
 {
-    public function testGetDefaultOptions()
+    public function testLegacyGetDefaultOptions()
     {
         $stub = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
 
@@ -25,9 +26,13 @@ class TranslatableChoiceTypeTest extends TypeTestCase
 
         $optionResolver = new OptionsResolver();
 
-        $this->assertEquals('choice', $type->getParent());
+        $this->assertEquals(LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\ChoiceType'), $type->getParent());
 
-        $type->setDefaultOptions($optionResolver);
+        if (LegacyFormHelper::isLegacy()) {
+            $type->setDefaultOptions($optionResolver);
+        } else {
+            $type->configureOptions($optionResolver);
+        }
 
         $options = $optionResolver->resolve(array('catalogue' => 'foo'));
 

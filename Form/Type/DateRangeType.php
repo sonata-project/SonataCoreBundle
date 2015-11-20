@@ -53,13 +53,22 @@ class DateRangeType extends AbstractType
         );
 
         $builder->add('start', $options['field_type'], array_merge(array('required' => false), $options['field_options'], $options['field_options_start']));
-        $builder->add('end', $options['field_type'], array_merge(array('required' => false), $options['field_options'], $options['field_options_end']));
+        $builder->add('end', $options['field_type'], array_merge(array('required'   => false), $options['field_options'], $options['field_options_end']));
+    }
+
+    /**
+     * {@inheritdoc}
+     * BC for SF < 2.8.
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'sonata_type_date_range';
     }
