@@ -98,7 +98,7 @@ class DoctrineORMSerializationType extends AbstractType
                 continue;
             }
 
-            if (!in_array($this->group, $propertyMetadata->groups)) {
+            if (!$propertyMetadata->groups || !in_array($this->group, $propertyMetadata->groups)) {
                 continue;
             }
 
