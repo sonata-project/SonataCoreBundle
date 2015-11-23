@@ -77,8 +77,16 @@ class TranslatableChoiceType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'sonata_type_translatable_choice';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 }

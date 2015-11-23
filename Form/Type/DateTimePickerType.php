@@ -58,8 +58,16 @@ class DateTimePickerType extends BasePickerType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'sonata_type_datetime_picker';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 }

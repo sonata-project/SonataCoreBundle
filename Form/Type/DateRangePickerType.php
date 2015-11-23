@@ -36,8 +36,16 @@ class DateRangePickerType extends DateRangeType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'sonata_type_date_range_picker';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 }

@@ -11,6 +11,7 @@
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
+use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\TranslatableChoiceType;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,13 +24,11 @@ class TranslatableChoiceTypeTest extends TypeTestCase
 
         $type = new TranslatableChoiceType($stub);
 
-        $optionResolver = new OptionsResolver();
+        FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
         $this->assertEquals('choice', $type->getParent());
 
-        $type->setDefaultOptions($optionResolver);
-
-        $options = $optionResolver->resolve(array('catalogue' => 'foo'));
+        $options = $resolver->resolve(array('catalogue' => 'foo'));
 
         $this->assertEquals('foo', $options['catalogue']);
     }

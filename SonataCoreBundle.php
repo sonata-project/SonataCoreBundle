@@ -12,6 +12,7 @@
 namespace Sonata\CoreBundle;
 
 use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
+use Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -25,5 +26,6 @@ class SonataCoreBundle extends Bundle
     {
         $container->addCompilerPass(new StatusRendererCompilerPass());
         $container->addCompilerPass(new AdapterCompilerPass());
+        $container->addCompilerPass(new FormFactoryCompilerPass());
     }
 }

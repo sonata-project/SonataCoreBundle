@@ -11,6 +11,7 @@
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
+use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\DateTimeRangePickerType;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,8 +24,7 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
 
         $this->assertEquals('sonata_type_datetime_range_picker', $type->getName());
 
-        $resolver = new OptionsResolver();
-        $type->setDefaultOptions($resolver);
+        FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
         $options = $resolver->resolve();
 

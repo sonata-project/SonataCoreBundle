@@ -15,7 +15,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class StatusType extends AbstractType
+abstract class StatusType extends AbstractType
 {
     /**
      * @var string
@@ -55,9 +55,17 @@ class StatusType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return $this->name;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 
     /**

@@ -13,6 +13,7 @@ namespace Sonata\CoreBundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyConfigTest\PhpUnit\AbstractConfigurationTestCase;
 use Sonata\CoreBundle\DependencyInjection\Configuration;
+use Sonata\CoreBundle\Form\FormHelper;
 
 class ConfigurationTest extends AbstractConfigurationTestCase
 {
@@ -37,6 +38,47 @@ class ConfigurationTest extends AbstractConfigurationTestCase
             array('form_type' => 'horizontal'), // this should be overwritten
             array('form_type' => 'standard'),    // by this during the merge
         ), array(
+            'form_type'    => 'standard',
+            'flashmessage' => array(),
+            'form'         => array(
+                'force_mapping'     => true,
+                'type_mapping'      => FormHelper::getFormTypeMapping(),
+                'extension_mapping' => FormHelper::getFormExtensionMapping(),
+            ),
+        ));
+    }
+
+    public function testFormMapping()
+    {
+        $this->assertProcessedConfigurationEquals(array(
+            array('form' => array(
+                'type_mapping' => array(
+                    'foo' => 'Foo\Bar',
+                ),
+            )),
+        ), array(
+            'form'         => array(
+                'force_mapping'     => true,
+                'extension_mapping' => FormHelper::getFormExtensionMapping(),
+                'type_mapping'      => array_merge(FormHelper::getFormTypeMapping(), array(
+                    'foo' => 'Foo\Bar',
+                )),
+            ),
+            'form_type'    => 'standard',
+            'flashmessage' => array(),
+        ));
+    }
+
+    public function testDefault()
+    {
+        $this->assertProcessedConfigurationEquals(array(
+            array(),
+        ), array(
+            'form'         => array(
+                'force_mapping'     => true,
+                'type_mapping'      => FormHelper::getFormTypeMapping(),
+                'extension_mapping' => FormHelper::getFormExtensionMapping(),
+            ),
             'form_type'    => 'standard',
             'flashmessage' => array(),
         ));

@@ -11,6 +11,7 @@
 
 namespace Sonata\CoreBundle\DependencyInjection;
 
+use Sonata\CoreBundle\Form\FormHelper;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -34,6 +35,42 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('sonata_core');
 
         $this->addFlashMessageSection($rootNode);
+
+        $rootNode
+            ->children()
+                ->arrayNode('form')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->booleanNode('force_mapping')
+                            ->defaultValue(true)
+                        ->end()
+                        ->arrayNode('type_mapping')
+                            ->useAttributeAsKey('id')
+                            ->defaultValue(FormHelper::getFormTypeMapping())
+                            ->beforeNormalization()
+                                ->always()
+                                ->then(function ($mapping) {
+                                    return array_merge(FormHelper::getFormTypeMapping(), $mapping);
+                                })
+                            ->end()
+                            ->prototype('scalar')->end()
+                        ->end()
+
+                        ->arrayNode('extension_mapping')
+                            ->useAttributeAsKey('id')
+                            ->defaultValue(FormHelper::getFormExtensionMapping())
+                            ->beforeNormalization()
+                                ->always()
+                                ->then(function ($mapping) {
+                                    return array_merge(FormHelper::getFormExtensionMapping(), $mapping);
+                                })
+                            ->end()
+                            ->prototype('scalar')->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }
