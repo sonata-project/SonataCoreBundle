@@ -121,10 +121,12 @@ class SonataCoreBundle extends Bundle
             'form.type_extension.submit.validator',
         ));
 
-        // from configuration file
-        FormHelper::registerFormTypeMapping($this->container->getParameter('sonata.core.form.mapping.type'));
-        foreach ($this->container->getParameter('sonata.core.form.mapping.extension') as $ext => $types) {
-            FormHelper::registerFormExtensionMapping($ext, $types);
+        if ($this->container && $this->container->hasParameter('sonata.core.form.mapping.type')) {
+            // from configuration file
+            FormHelper::registerFormTypeMapping($this->container->getParameter('sonata.core.form.mapping.type'));
+            foreach ($this->container->getParameter('sonata.core.form.mapping.extension') as $ext => $types) {
+                FormHelper::registerFormExtensionMapping($ext, $types);
+            }
         }
     }
 }
