@@ -12,15 +12,19 @@
 namespace Sonata\CoreBundle\Tests\Form\Extension;
 
 use Sonata\CoreBundle\Form\Extension\DependencyInjectionExtension;
+use Symfony\Component\HttpKernel\Kernel;
 
 class DependencyInjectionExtensionTest extends \PHPUnit_Framework_TestCase
 {
     public function testValidType()
     {
         $type = $this->getMock('Symfony\Component\Form\FormTypeInterface');
-        $type->expects($this->any())
-            ->method('getName')
-            ->will($this->returnValue('Symfony\Component\Form\Type\FormType'));
+
+        if (Kernel::MAJOR_VERSION < 3) {
+            $type->expects($this->any())
+                ->method('getName')
+                ->will($this->returnValue('Symfony\Component\Form\Type\FormType'));
+        }
 
         $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->any())

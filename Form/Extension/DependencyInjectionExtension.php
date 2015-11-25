@@ -95,12 +95,12 @@ class DependencyInjectionExtension implements FormExtensionInterface
 
         $type = $this->container->get($this->typeServiceIds[$name]);
 
-        if ($name !== get_class($type) && $type->getName() !== $name) {
+        if ($name !== get_class($type) && (method_exists($type, 'getName') && $type->getName() !== $name)) {
             throw new InvalidArgumentException(
                 sprintf('The type name specified for the service "%s" does not match the actual name. Expected "%s", given "%s"',
                     $this->typeServiceIds[$name],
                     $name,
-                    $type->getName()
+                    get_class($type)
                 ));
         }
 
