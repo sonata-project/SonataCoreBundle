@@ -13,7 +13,6 @@ namespace Sonata\CoreBundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyConfigTest\PhpUnit\AbstractConfigurationTestCase;
 use Sonata\CoreBundle\DependencyInjection\Configuration;
-use Sonata\CoreBundle\Form\FormHelper;
 
 class ConfigurationTest extends AbstractConfigurationTestCase
 {
@@ -41,9 +40,11 @@ class ConfigurationTest extends AbstractConfigurationTestCase
             'form_type'    => 'standard',
             'flashmessage' => array(),
             'form'         => array(
-                'force_mapping'     => true,
-                'type_mapping'      => FormHelper::getFormTypeMapping(),
-                'extension_mapping' => FormHelper::getFormExtensionMapping(),
+                'mapping' => array(
+                    'enabled'   => true,
+                    'type'      => array(),
+                    'extension' => array(),
+                ),
             ),
         ));
     }
@@ -52,17 +53,30 @@ class ConfigurationTest extends AbstractConfigurationTestCase
     {
         $this->assertProcessedConfigurationEquals(array(
             array('form' => array(
-                'type_mapping' => array(
-                    'foo' => 'Foo\Bar',
+                'mapping' => array(
+                    'type'      => array(
+                        'foo' => 'Foo\Bar',
+                    ),
+                    'extension' => array(
+                        'choice' => array(
+                            'service.id',
+                        ),
+                    ),
                 ),
             )),
         ), array(
             'form'         => array(
-                'force_mapping'     => true,
-                'extension_mapping' => FormHelper::getFormExtensionMapping(),
-                'type_mapping'      => array_merge(FormHelper::getFormTypeMapping(), array(
-                    'foo' => 'Foo\Bar',
-                )),
+                'mapping' => array(
+                    'enabled'   => true,
+                    'type'      => array(
+                        'foo' => 'Foo\Bar',
+                    ),
+                    'extension' => array(
+                        'choice' => array(
+                            'service.id',
+                        ),
+                    ),
+                ),
             ),
             'form_type'    => 'standard',
             'flashmessage' => array(),
@@ -75,9 +89,11 @@ class ConfigurationTest extends AbstractConfigurationTestCase
             array(),
         ), array(
             'form'         => array(
-                'force_mapping'     => true,
-                'type_mapping'      => FormHelper::getFormTypeMapping(),
-                'extension_mapping' => FormHelper::getFormExtensionMapping(),
+                'mapping' => array(
+                    'enabled'   => true,
+                    'type'      => array(),
+                    'extension' => array(),
+                ),
             ),
             'form_type'    => 'standard',
             'flashmessage' => array(),

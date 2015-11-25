@@ -6,6 +6,78 @@ Form Types
 
 The bundle comes with some handy form types.
 
+
+Symfony3 Supports
+-----------------
+
+In order to help the migration path toward Symfony3, the bundle restores the Symfony2.X behavior of string code usage for the form type declaration.
+Each bundles can register a mapping with Symfony3 boot.
+
+.. code-block:: php
+
+    <?php
+    namespace Sonata\AdminBundle;
+
+    use Sonata\CoreBundle\Form\FormHelper;
+    use Symfony\Component\DependencyInjection\ContainerBuilder;
+    use Symfony\Component\HttpKernel\Bundle\Bundle;
+
+    class SonataAdminBundle extends Bundle
+    {
+        /**
+         * {@inheritdoc}
+         */
+        public function build(ContainerBuilder $container)
+        {
+            $this->registerFormMapping();
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function boot()
+        {
+            $this->registerFormMapping();
+        }
+
+        /**
+         * Register form mapping information
+         */
+        public function registerFormMapping()
+        {
+            FormHelper::registerFormTypeMapping(array(
+                'sonata_type_admin' => 'Sonata\AdminBundle\Form\Type\AdminType', // the form mapping
+            ));
+
+            FormHelper::registerFormExtensionMapping('choice', array( // the extended mapping for the choice type
+                'sonata.admin.form.extension.choice',
+            ));
+        }
+    }
+
+You can either alter your bundle to configure these mappings or you can add the mapping as configuration settings. Values provided in configuration will overwrite default values:
+
+.. code-block: yaml
+
+    sonata_core:
+        form:
+            mapping:
+                enabled: true # (default value)
+                type:
+                    sonata_type_admin: Sonata\AdminBundle\Form\Type\AdminType
+
+                extension:
+                    choice:
+                        - sonata.admin.form.extension.choice
+
+If you are lazy, you can get the mapping with the command:
+
+.. code-block: yaml
+
+    app/console sonata:core:form-mapping -f yaml|php
+
+
+
 DoctrineORMSerializationType
 ----------------------------
 
@@ -34,6 +106,14 @@ The service definition should contain the following arguments:
 * The form type name,
 * The entity class name for which you want to build form,
 * The serialization group you want serialization fields have.
+
+
+.. warning::
+
+    ``DoctrineORMSerializationType`` cannot be used directly with Symfony3.0, you need to extends the class ``BaseDoctrineORMSerializationType``
+    with an empty class to have an unique FQCN.
+
+
 
 sonata_type_immutable_array
 ---------------------------
@@ -280,6 +360,13 @@ And the type can now be used:
             ;
         }
     }
+
+.. warning::
+
+    ``StatusType`` cannot be used directly with Symfony3.0, you need to extends the class ``BaseStatusType``
+    with an empty class to have an unique FQCN.
+
+
 
 sonata_type_date_picker and sonata_type_datetime_picker
 -------------------------------------------------------

@@ -11,7 +11,6 @@
 
 namespace Sonata\CoreBundle\DependencyInjection;
 
-use Sonata\CoreBundle\Form\FormHelper;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -41,31 +40,26 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('form')
                     ->addDefaultsIfNotSet()
                     ->children()
-                        ->booleanNode('force_mapping')
-                            ->defaultValue(true)
-                        ->end()
-                        ->arrayNode('type_mapping')
-                            ->useAttributeAsKey('id')
-                            ->defaultValue(FormHelper::getFormTypeMapping())
-                            ->beforeNormalization()
-                                ->always()
-                                ->then(function ($mapping) {
-                                    return array_merge(FormHelper::getFormTypeMapping(), $mapping);
-                                })
-                            ->end()
-                            ->prototype('scalar')->end()
-                        ->end()
+                        ->arrayNode('mapping')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->booleanNode('enabled')
+                                    ->defaultValue(true)
+                                ->end()
+                                ->arrayNode('type')
+                                    ->useAttributeAsKey('id')
+                                    ->defaultValue(array())
+                                    ->prototype('scalar')->end()
+                                ->end()
 
-                        ->arrayNode('extension_mapping')
-                            ->useAttributeAsKey('id')
-                            ->defaultValue(FormHelper::getFormExtensionMapping())
-                            ->beforeNormalization()
-                                ->always()
-                                ->then(function ($mapping) {
-                                    return array_merge(FormHelper::getFormExtensionMapping(), $mapping);
-                                })
+                                ->arrayNode('extension')
+                                    ->useAttributeAsKey('id')
+                                    ->defaultValue(array())
+                                    ->prototype('array')
+                                        ->prototype('scalar')->end()
+                                    ->end()
+                                ->end()
                             ->end()
-                            ->prototype('scalar')->end()
                         ->end()
                     ->end()
                 ->end()

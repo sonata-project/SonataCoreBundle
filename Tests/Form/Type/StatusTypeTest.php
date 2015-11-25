@@ -25,7 +25,7 @@ class Choice
     }
 }
 
-class StatusType extends \Sonata\CoreBundle\Form\Type\StatusType
+class StatusType extends \Sonata\CoreBundle\Form\Type\BaseStatusType
 {
 }
 

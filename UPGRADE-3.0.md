@@ -39,3 +39,6 @@ class FooAdmin extends Admin
 }
 ```
 
+## ``DoctrineORMSerializationType`` and ``StatusType``
+
+These classes will be remove use respectively ``BaseDoctrineORMSerializationType`` and ``BaseStatusType``
