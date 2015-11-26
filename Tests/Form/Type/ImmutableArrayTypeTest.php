@@ -24,7 +24,8 @@ class ImmutableArrayTypeTest extends TypeTestCase
         $type = new ImmutableArrayType();
 
         $this->assertEquals('sonata_type_immutable_array', $type->getName());
-        $this->assertEquals(Kernel::MAJOR_VERSION < 3 ? 'form' : 'Symfony\Component\Form\Extension\Core\Type\FormType', $type->getParent());
+
+        $this->assertEquals(version_compare(Kernel::VERSION, '2.8', '<') ? 'form' : 'Symfony\Component\Form\Extension\Core\Type\FormType', $type->getParent());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 

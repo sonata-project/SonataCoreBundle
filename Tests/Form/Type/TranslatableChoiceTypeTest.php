@@ -18,7 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TranslatableChoiceTypeTest extends TypeTestCase
 {
-    public function testGetDefaultOptions()
+    public function testLegacyGetDefaultOptions()
     {
         $stub = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
 

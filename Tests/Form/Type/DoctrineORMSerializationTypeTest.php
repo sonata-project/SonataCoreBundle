@@ -65,7 +65,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $metadataFactory = $this->getMetadataFactoryMock();
         $registry = $this->getRegistryMock();
 
-        if (Kernel::MAJOR_VERSION < 3) {
+        if (version_compare(Kernel::VERSION, '2.8', '<')) {
             $type = new DoctrineORMSerializationType($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_write');
         } else {
             $this->factory = $this->createCustomFactory($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_write');
@@ -96,7 +96,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $metadataFactory = $this->getMetadataFactoryMock();
         $registry = $this->getRegistryMock(array('name'));
 
-        if (Kernel::MAJOR_VERSION < 3) {
+        if (version_compare(Kernel::VERSION, '2.8', '<')) {
             $type = new DoctrineORMSerializationType($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_write');
         } else {
             $this->factory = $this->createCustomFactory($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_write');
@@ -121,7 +121,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $metadataFactory = $this->getMetadataFactoryMock();
         $registry = $this->getRegistryMock(array('name'));
 
-        if (Kernel::MAJOR_VERSION < 3) {
+        if (version_compare(Kernel::VERSION, '2.8', '<')) {
             $type = new DoctrineORMSerializationType($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_invalid');
         } else {
             $this->factory = $this->createCustomFactory($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_invalid');

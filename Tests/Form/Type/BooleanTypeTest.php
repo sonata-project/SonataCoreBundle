@@ -84,7 +84,7 @@ class BooleanTypeTest extends TypeTestCase
         ), $resolvedOptions);
     }
 
-    public function testDeprecatedCatalogueOption()
+    public function testLegacyDeprecatedCatalogueOption()
     {
         $type = new BooleanType();
 
