@@ -27,6 +27,7 @@ class DependencyInjectionExtensionTest extends \PHPUnit_Framework_TestCase
         }
 
         $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
+        $container->expects($this->any())->method('has')->will($this->returnValue(true));
         $container->expects($this->any())
             ->method('get')
             ->with($this->equalTo('symfony.form.type.form'))
@@ -52,6 +53,7 @@ class DependencyInjectionExtensionTest extends \PHPUnit_Framework_TestCase
     public function testTypeExtensionsValid()
     {
         $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
+        $container->expects($this->any())->method('has')->will($this->returnValue(true));
         $container->expects($this->any())
             ->method('get')
             ->withConsecutive(
