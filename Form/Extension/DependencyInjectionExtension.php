@@ -135,7 +135,9 @@ class DependencyInjectionExtension implements FormExtensionInterface
 
         $extensions = array();
         foreach ($serviceIdx as $serviceId) {
-            $extensions[] = $this->container->get($serviceId);
+            if ($this->container->has($serviceId)) {
+                $extensions[] = $this->container->get($serviceId);
+            }
         }
 
         return $extensions;
@@ -159,10 +161,12 @@ class DependencyInjectionExtension implements FormExtensionInterface
             $guessers            = array();
 
             foreach ($this->guesserServiceIds as $serviceId) {
-                $guessers[] = $this->container->get($serviceId);
+                if ($this->container->has($serviceId)) {
+                    $guessers[] = $this->container->get($serviceId);
+                }
             }
 
-            if (count($guessers) > 0) {
+            if ($guessers) {
                 $this->guesser = new FormTypeGuesserChain($guessers);
             }
         }
