@@ -39,6 +39,64 @@ class ConfigurationTest extends AbstractConfigurationTestCase
         ), array(
             'form_type'    => 'standard',
             'flashmessage' => array(),
+            'form'         => array(
+                'mapping' => array(
+                    'enabled'   => true,
+                    'type'      => array(),
+                    'extension' => array(),
+                ),
+            ),
+        ));
+    }
+
+    public function testFormMapping()
+    {
+        $this->assertProcessedConfigurationEquals(array(
+            array('form' => array(
+                'mapping' => array(
+                    'type'      => array(
+                        'foo' => 'Foo\Bar',
+                    ),
+                    'extension' => array(
+                        'choice' => array(
+                            'service.id',
+                        ),
+                    ),
+                ),
+            )),
+        ), array(
+            'form'         => array(
+                'mapping' => array(
+                    'enabled'   => true,
+                    'type'      => array(
+                        'foo' => 'Foo\Bar',
+                    ),
+                    'extension' => array(
+                        'choice' => array(
+                            'service.id',
+                        ),
+                    ),
+                ),
+            ),
+            'form_type'    => 'standard',
+            'flashmessage' => array(),
+        ));
+    }
+
+    public function testDefault()
+    {
+        $this->assertProcessedConfigurationEquals(array(
+            array(),
+        ), array(
+            'form'         => array(
+                'mapping' => array(
+                    'enabled'   => true,
+                    'type'      => array(),
+                    'extension' => array(),
+                ),
+            ),
+            'form_type'    => 'standard',
+            'flashmessage' => array(),
         ));
     }
 }

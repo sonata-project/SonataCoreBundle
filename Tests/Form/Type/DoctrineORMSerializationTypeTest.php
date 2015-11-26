@@ -15,7 +15,9 @@ use Doctrine\ORM\Mapping\ClassMetadataInfo as DoctrineMetadata;
 use JMS\Serializer\Metadata\ClassMetadata as SerializerMetadata;
 use JMS\Serializer\Metadata\PropertyMetadata;
 use Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType;
+use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\Test\TypeTestCase;
+use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * Class FakeMetadataClass.
@@ -63,7 +65,12 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $metadataFactory = $this->getMetadataFactoryMock();
         $registry = $this->getRegistryMock();
 
-        $type = new DoctrineORMSerializationType($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_write');
+        if (version_compare(Kernel::VERSION, '2.8', '<')) {
+            $type = new DoctrineORMSerializationType($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_write');
+        } else {
+            $this->factory = $this->createCustomFactory($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_write');
+            $type = 'Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType';
+        }
 
         $form = $this->factory->createBuilder($type, null)->setCompound(true)->getForm();
 
@@ -89,7 +96,12 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $metadataFactory = $this->getMetadataFactoryMock();
         $registry = $this->getRegistryMock(array('name'));
 
-        $type = new DoctrineORMSerializationType($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_write');
+        if (version_compare(Kernel::VERSION, '2.8', '<')) {
+            $type = new DoctrineORMSerializationType($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_write');
+        } else {
+            $this->factory = $this->createCustomFactory($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_write');
+            $type = 'Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType';
+        }
 
         $form = $this->factory->createBuilder($type, null)->setCompound(true)->getForm();
 
@@ -109,7 +121,12 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $metadataFactory = $this->getMetadataFactoryMock();
         $registry = $this->getRegistryMock(array('name'));
 
-        $type = new DoctrineORMSerializationType($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_invalid');
+        if (version_compare(Kernel::VERSION, '2.8', '<')) {
+            $type = new DoctrineORMSerializationType($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_invalid');
+        } else {
+            $this->factory = $this->createCustomFactory($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_invalid');
+            $type = 'Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType';
+        }
 
         $form = $this->factory->createBuilder($type, null)->setCompound(true)->getForm();
 
@@ -176,5 +193,15 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($entityManager));
 
         return $registry;
+    }
+
+    /**
+     * Create a form factory registering the DoctrineORMSerializationType.
+     */
+    protected function createCustomFactory($metadataFactory, $registry, $name, $class, $group)
+    {
+        return $this->factory = Forms::createFormFactoryBuilder()
+            ->addType(new DoctrineORMSerializationType($metadataFactory, $registry, $name, $class, $group))
+            ->getFormFactory();
     }
 }

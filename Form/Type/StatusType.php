@@ -11,72 +11,9 @@
 
 namespace Sonata\CoreBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
-class StatusType extends AbstractType
+/**
+ * @deprecated Class to be remove once we only support Symfony3.X
+ */
+class StatusType extends BaseStatusType
 {
-    /**
-     * @var string
-     */
-    protected $class;
-
-    /**
-     * @var string
-     */
-    protected $getter;
-
-    /**
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * @param string $class
-     * @param string $getter
-     * @param string $name
-     */
-    public function __construct($class, $getter, $name)
-    {
-        $this->class  = $class;
-        $this->getter = $getter;
-        $this->name   = $name;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
-    {
-        return 'choice';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @todo Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'choices' => call_user_func(array($this->class, $this->getter)),
-        ));
-    }
 }

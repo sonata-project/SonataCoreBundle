@@ -11,12 +11,14 @@
 
 namespace Sonata\CoreBundle\DependencyInjection;
 
+use Sonata\CoreBundle\Form\FormHelper;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * SonataCoreExtension.
@@ -61,6 +63,7 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
         $this->registerFlashTypes($container, $config);
         $container->setParameter('sonata.core.form_type', $config['form_type']);
 
+        $this->configureFormFactory($container, $config);
         $this->configureClassesToCompile();
     }
 
@@ -75,6 +78,33 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
             'Sonata\\CoreBundle\\Form\\Type\\ImmutableArrayType',
             'Sonata\\CoreBundle\\Form\\Type\\TranslatableChoiceType',
         ));
+    }
+
+    /**
+     * @param ContainerBuilder $container
+     * @param array            $config
+     */
+    public function configureFormFactory(ContainerBuilder $container, array $config)
+    {
+        if (!$config['form']['mapping']['enabled'] || version_compare(Kernel::VERSION, '2.8', '<')) {
+            $container->removeDefinition('sonata.core.form.extension.dependency');
+
+            return;
+        }
+
+        $container->setParameter('sonata.core.form.mapping.type', $config['form']['mapping']['type']);
+        $container->setParameter('sonata.core.form.mapping.extension', $config['form']['mapping']['extension']);
+
+        FormHelper::registerFormTypeMapping($config['form']['mapping']['type']);
+        foreach ($config['form']['mapping']['extension'] as $ext => $idx) {
+            FormHelper::registerFormExtensionMapping($ext, $idx);
+        }
+
+        $definition = $container->getDefinition('sonata.core.form.extension.dependency');
+        $definition->replaceArgument(4, FormHelper::getFormTypeMapping());
+
+        $definition = $container->getDefinition('sonata.core.form.extension.dependency');
+        $definition->replaceArgument(5, FormHelper::getFormExtensionMapping());
     }
 
     /**

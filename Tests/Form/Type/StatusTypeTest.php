@@ -11,7 +11,7 @@
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
-use Sonata\CoreBundle\Form\Type\StatusType;
+use Sonata\CoreBundle\Form\FormHelper;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,6 +25,10 @@ class Choice
     }
 }
 
+class StatusType extends \Sonata\CoreBundle\Form\Type\BaseStatusType
+{
+}
+
 class StatusTypeTest extends TypeTestCase
 {
     public function testGetDefaultOptions()
@@ -34,11 +38,9 @@ class StatusTypeTest extends TypeTestCase
         $this->assertEquals('choice_type', $type->getName());
         $this->assertEquals('choice', $type->getParent());
 
-        $optionResolver = new OptionsResolver();
+        FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
-        $type->setDefaultOptions($optionResolver);
-
-        $options = $optionResolver->resolve(array());
+        $options = $resolver->resolve(array());
 
         $this->assertArrayHasKey('choices', $options);
         $this->assertEquals($options['choices'], array(1 => 'salut'));

@@ -11,8 +11,10 @@
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
+use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
 use Symfony\Component\Form\Test\TypeTestCase;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImmutableArrayTypeTest extends TypeTestCase
@@ -22,10 +24,10 @@ class ImmutableArrayTypeTest extends TypeTestCase
         $type = new ImmutableArrayType();
 
         $this->assertEquals('sonata_type_immutable_array', $type->getName());
-        $this->assertEquals('form', $type->getParent());
 
-        $resolver = new OptionsResolver();
-        $type->setDefaultOptions($resolver);
+        $this->assertEquals(version_compare(Kernel::VERSION, '2.8', '<') ? 'form' : 'Symfony\Component\Form\Extension\Core\Type\FormType', $type->getParent());
+
+        FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
         $options = $resolver->resolve();
 

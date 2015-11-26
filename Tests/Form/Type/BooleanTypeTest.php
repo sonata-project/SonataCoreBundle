@@ -11,6 +11,7 @@
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
+use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\BooleanType;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,11 +22,9 @@ class BooleanTypeTest extends TypeTestCase
     {
         $type = new BooleanType();
 
-        $optionResolver = new OptionsResolver();
-
         $this->assertEquals('choice', $type->getParent());
 
-        $type->setDefaultOptions($optionResolver);
+        FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
 
         $options = $optionResolver->resolve();
 
@@ -36,7 +35,7 @@ class BooleanTypeTest extends TypeTestCase
     {
         $type = new BooleanType();
 
-        $type->setDefaultOptions($optionResolver = new OptionsResolver());
+        FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
 
         $builder = $this->getMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->once())->method('addModelTransformer');
@@ -53,7 +52,7 @@ class BooleanTypeTest extends TypeTestCase
     {
         $type = new BooleanType();
 
-        $type->setDefaultOptions($optionResolver = new OptionsResolver());
+        FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
 
         $builder = $this->getMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->never())->method('addModelTransformer');
@@ -65,7 +64,7 @@ class BooleanTypeTest extends TypeTestCase
     {
         $type = new BooleanType();
 
-        $type->setDefaultOptions($optionResolver = new OptionsResolver());
+        FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
 
         $builder = $this->getMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->never())->method('addModelTransformer');
@@ -85,11 +84,11 @@ class BooleanTypeTest extends TypeTestCase
         ), $resolvedOptions);
     }
 
-    public function testDeprecatedCatalogueOption()
+    public function testLegacyDeprecatedCatalogueOption()
     {
         $type = new BooleanType();
 
-        $type->setDefaultOptions($optionResolver = new OptionsResolver());
+        FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
 
         $builder = $this->getMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->never())->method('addModelTransformer');

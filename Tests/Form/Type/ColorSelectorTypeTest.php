@@ -11,6 +11,7 @@
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
+use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\ColorSelectorType;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,8 +25,7 @@ class ColorSelectorTypeTest extends TypeTestCase
         $this->assertEquals('sonata_type_color_selector', $type->getName());
         $this->assertEquals('choice', $type->getParent());
 
-        $resolver = new OptionsResolver();
-        $type->setDefaultOptions($resolver);
+        FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
         $options = $resolver->resolve();
 
