@@ -52,7 +52,6 @@ class TemplateExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('sonata_slugify', array($this, 'slugify'), array('deprecated' => true, 'alternative' => 'slugify')),
             new \Twig_SimpleFilter('sonata_urlsafeid', array($this, 'getUrlsafeIdentifier')),
         );
     }
@@ -65,35 +64,6 @@ class TemplateExtension extends \Twig_Extension
         return array(
             new TemplateBoxTokenParser($this->debug, $this->translator),
         );
-    }
-
-    /**
-     * Slugify a text.
-     *
-     * @param $text
-     *
-     * @return string
-     */
-    public function slugify($text)
-    {
-        // replace non letter or digits by -
-        $text = preg_replace('~[^\\pL\d]+~u', '-', $text);
-
-        // trim
-        $text = trim($text, '-');
-
-        // transliterate
-        if (function_exists('iconv')) {
-            $text = iconv('UTF-8', 'ASCII//TRANSLIT', $text);
-        }
-
-        // lowercase
-        $text = strtolower($text);
-
-        // remove unwanted characters
-        $text = preg_replace('~[^-\w]+~', '', $text);
-
-        return $text;
     }
 
     /**

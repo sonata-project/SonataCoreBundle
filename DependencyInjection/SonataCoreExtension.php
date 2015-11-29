@@ -69,8 +69,6 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
         $this->configureFormFactory($container, $config);
         $this->configureClassesToCompile();
 
-        $this->deprecateSlugify($container);
-
         $this->configureSerializerFormats($config);
     }
 
@@ -162,16 +160,5 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
     public function configureSerializerFormats($config)
     {
         BaseSerializerHandler::setFormats($config['serializer']['formats']);
-    }
-
-    protected function deprecateSlugify(ContainerBuilder $container)
-    {
-        $definition = $container->getDefinition('sonata.core.slugify.cocur');
-        if (method_exists($definition, 'setDeprecated')) {
-            $definition->setDeprecated(true);
-
-            $definition = $container->getDefinition('sonata.core.slugify.native');
-            $definition->setDeprecated(true);
-        }
     }
 }
