@@ -52,7 +52,7 @@ class TemplateExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('sonata_slugify', array($this, 'slugify')),
+            new \Twig_SimpleFilter('sonata_slugify', array($this, 'slugify'), array('deprecated' => true, 'alternative' => 'slugify')),
             new \Twig_SimpleFilter('sonata_urlsafeid', array($this, 'getUrlsafeIdentifier')),
         );
     }

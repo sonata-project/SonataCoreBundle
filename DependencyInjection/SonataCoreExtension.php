@@ -65,6 +65,8 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
 
         $this->configureFormFactory($container, $config);
         $this->configureClassesToCompile();
+
+        $this->deprecateSlugify($container);
     }
 
     public function configureClassesToCompile()
@@ -147,5 +149,16 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
         $definition->replaceArgument(3, $cssClasses);
 
         $container->setDefinition($identifier, $definition);
+    }
+
+    protected function deprecateSlugify(ContainerBuilder $container)
+    {
+        $definition = $container->getDefinition('sonata.core.slugify.cocur');
+        if (method_exists($definition, 'setDeprecated')) {
+            $definition->setDeprecated(true);
+
+            $definition = $container->getDefinition('sonata.core.slugify.native');
+            $definition->setDeprecated(true);
+        }
     }
 }
