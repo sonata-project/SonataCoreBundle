@@ -34,11 +34,13 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
     {
         $configs = $container->getExtensionConfig('sonata_admin');
 
-        if (isset($configs[0]['options']['form_type'])) {
-            $container->prependExtensionConfig(
-                $this->getAlias(),
-                array('form_type' => $configs[0]['options']['form_type'])
-            );
+        foreach ($configs as $config) {
+            if (isset($config['options']['form_type'])) {
+                $container->prependExtensionConfig(
+                    $this->getAlias(),
+                    array('form_type' => $config['options']['form_type'])
+                );
+            }
         }
     }
 

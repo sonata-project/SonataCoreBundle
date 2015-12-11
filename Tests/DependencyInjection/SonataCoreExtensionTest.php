@@ -50,4 +50,30 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
             )
         );
     }
+
+    public function testPrepend()
+    {
+        $containerBuilder = $this->prophesize(
+            'Symfony\Component\DependencyInjection\ContainerBuilder'
+        );
+
+        $containerBuilder->getExtensionConfig('sonata_admin')->willReturn(array(
+            array('some_key_we_do_not_care_about' => 42),
+            array('options' => array('form_type' => 'standard')),
+            array('options' => array('form_type' => 'horizontal')),
+        ));
+
+        $containerBuilder->prependExtensionConfig(
+            'sonata_core',
+            array('form_type' => 'standard')
+        )->shouldBeCalled();
+
+        $containerBuilder->prependExtensionConfig(
+            'sonata_core',
+            array('form_type' => 'horizontal')
+        )->shouldBeCalled();
+
+        $extension = new SonataCoreExtension();
+        $extension->prepend($containerBuilder->reveal());
+    }
 }
