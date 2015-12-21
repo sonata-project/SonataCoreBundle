@@ -97,13 +97,18 @@ class SonataCoreBundle extends Bundle
             'sonata_type_color_selector'        => 'Sonata\CoreBundle\Form\Type\ColorSelectorType',
         ));
 
-        FormHelper::registerFormExtensionMapping('form', array(
+        $formTypes = array(
             'form.type_extension.form.http_foundation',
             'form.type_extension.form.validator',
             'form.type_extension.csrf',
             'form.type_extension.form.data_collector',
-            'nelmio_api_doc.form.extension.description_form_type_extension',
-        ));
+        );
+
+        if (class_exists('Nelmio\ApiDocBundle\Form\Extension\DescriptionFormTypeExtension')) {
+            $formTypes[] = 'nelmio_api_doc.form.extension.description_form_type_extension';
+        }
+
+        FormHelper::registerFormExtensionMapping('form', $formTypes);
 
         FormHelper::registerFormExtensionMapping('repeated', array(
             'form.type_extension.repeated.validator',
