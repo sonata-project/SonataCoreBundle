@@ -33,15 +33,22 @@ abstract class BaseStatusType extends AbstractType
     protected $name;
 
     /**
+     * @var bool
+     */
+    protected $flip;
+
+    /**
      * @param string $class
      * @param string $getter
      * @param string $name
+     * @param bool   $flip   reverse key/value to match sf2.8 and sf3.0 change
      */
-    public function __construct($class, $getter, $name)
+    public function __construct($class, $getter, $name, $flip = false)
     {
         $this->class  = $class;
         $this->getter = $getter;
         $this->name   = $name;
+        $this->flip   = $flip;
     }
 
     /**
@@ -83,8 +90,20 @@ abstract class BaseStatusType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
+        $choices = call_user_func(array($this->class, $this->getter));
+
+        if ($this->flip) {
+            $count = count($choices);
+
+            $choices = array_flip($choices);
+
+            if (count($choices) !== $count) {
+                throw new \RuntimeException('Unable to safely flip value as final count is different');
+            }
+        }
+
         $resolver->setDefaults(array(
-            'choices' => call_user_func(array($this->class, $this->getter)),
+            'choices' => $choices,
         ));
     }
 }
