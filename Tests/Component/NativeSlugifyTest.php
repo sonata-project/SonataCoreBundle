@@ -13,6 +13,9 @@ namespace Sonata\CoreBundle\Tests\Component;
 
 use Sonata\CoreBundle\Component\NativeSlugify;
 
+/**
+ * @group legacy
+ */
 class NativeSlugifyTest extends \PHPUnit_Framework_TestCase
 {
     public function testSlugify()

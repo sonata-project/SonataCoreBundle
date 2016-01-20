@@ -15,6 +15,9 @@ use Sonata\CoreBundle\Twig\Extension\TemplateExtension;
 
 class TemplateExtensionTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @group legacy
+     */
     public function testSlugify()
     {
         setlocale(LC_ALL, 'en_US.utf8');

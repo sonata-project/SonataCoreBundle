@@ -23,7 +23,7 @@
         "symfony/validator": "~2.3|~3.0",
         "symfony/property-access": "~2.3|~3.0",
         "twig/twig": "~1.23",
-        "cocur/slugify": "~1.4"
+        "cocur/slugify": "~1.4|~2.0"
     },
     "require-dev": {
         "matthiasnoback/symfony-config-test": "~0.4|~1.0",
