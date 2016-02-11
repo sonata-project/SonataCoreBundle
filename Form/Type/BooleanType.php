@@ -55,11 +55,17 @@ class BooleanType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
+        $choices =  array(
+            self::TYPE_YES => 'label_type_yes',
+            self::TYPE_NO  => 'label_type_no',
+        );
+
+        if (!method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+            $choices = array_flip($choices);
+        }
+
         $resolver->setDefaults(array(
-            'choices'            => array(
-                self::TYPE_YES  => 'label_type_yes',
-                self::TYPE_NO   => 'label_type_no',
-            ),
+            'choices'   => $choices,
             'transform' => false,
 
             // @deprecated Deprecated as of SonataCoreBundle 2.3.10, to be removed in 3.0.
