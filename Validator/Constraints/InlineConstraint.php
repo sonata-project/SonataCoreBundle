@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraint;
 
 /**
  * Constraint which allows inline-validation inside services.
- * 
+ *
  * @Annotation
  * @Target({"CLASS"})
  */

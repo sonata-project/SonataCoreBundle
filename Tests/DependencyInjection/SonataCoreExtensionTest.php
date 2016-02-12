@@ -59,8 +59,8 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
 
         $containerBuilder->getExtensionConfig('sonata_admin')->willReturn(array(
             array('some_key_we_do_not_care_about' => 42),
-            array('options' => array('form_type' => 'standard')),
-            array('options' => array('form_type' => 'horizontal')),
+            array('options' => array('form_type'  => 'standard')),
+            array('options' => array('form_type'  => 'horizontal')),
         ));
 
         $containerBuilder->prependExtensionConfig(
