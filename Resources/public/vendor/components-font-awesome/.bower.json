@@ -24,14 +24,15 @@
     "composer.json"
   ],
   "homepage": "https://github.com/components/font-awesome",
-  "version": "4.4.0",
-  "_release": "4.4.0",
+  "version": "4.5.0",
+  "_release": "4.5.0",
   "_resolution": {
     "type": "version",
-    "tag": "4.4.0",
-    "commit": "7dffacc72e566e5db6272244effc06f64fe9f185"
+    "tag": "4.5.0",
+    "commit": "069663a8419f9db90f9bec71e71ed4bb9d28d6ee"
   },
   "_source": "git://github.com/components/font-awesome.git",
-  "_target": "^4.4",
-  "_originalSource": "components-font-awesome"
+  "_target": "^4.5",
+  "_originalSource": "components-font-awesome",
+  "_direct": true
 }
