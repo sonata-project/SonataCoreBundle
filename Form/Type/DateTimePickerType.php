@@ -52,7 +52,8 @@ class DateTimePickerType extends BasePickerType
      */
     public function getParent()
     {
-        return 'datetime';
+        return class_exists('Symfony\Component\Form\Extension\Core\Type\DateTimeType') ?
+        'Symfony\Component\Form\Extension\Core\Type\DateTimeType' : 'datetime';
     }
 
     /**
