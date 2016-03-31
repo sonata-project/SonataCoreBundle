@@ -71,7 +71,8 @@ class TranslatableChoiceType extends AbstractType
      */
     public function getParent()
     {
-        return 'choice';
+        return class_exists('Symfony\Component\Form\Extension\Core\Type\ChoiceType') ?
+        'Symfony\Component\Form\Extension\Core\Type\ChoiceType' : 'choice';
     }
 
     /**
