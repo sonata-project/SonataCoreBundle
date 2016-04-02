@@ -78,5 +78,8 @@ class MomentFormatConverterTest extends \PHPUnit_Framework_TestCase
 
         $phpFormat = 'D MMM y';
         $this->assertEquals('D MMM YYYY', $mfc->convert($phpFormat));
+
+        $phpFormat = "dd 'de' MMMM 'de' YYYY"; //Brazilian date format
+        $this->assertEquals('DD [de] MMMM [de] YYYY', $mfc->convert($phpFormat));
     }
 }

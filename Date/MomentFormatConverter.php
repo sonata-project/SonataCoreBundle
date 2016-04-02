@@ -46,8 +46,6 @@ class MomentFormatConverter
         'EE' => 'ddd', 'EEEEEE' => 'dd',
         // timezone
         'ZZZZZ' => 'Z', 'ZZZ' => 'ZZ',
-        // letter 'T'
-        '\'T\'' => 'T',
     );
 
     /**
@@ -59,6 +57,48 @@ class MomentFormatConverter
      */
     public function convert($format)
     {
-        return strtr($format, self::$formatConvertRules);
+        $size = strlen($format);
+        $foundOne = false;
+        $output = '';
+        //process the format string letter by letter
+        for ($i = 0; $i < $size; ++$i) {
+            //if finds a '
+            if ($format[$i] == "'") {
+                //if the next character are T' forming 'T', send a T to the
+                //output
+                if ($format[$i + 1] == 'T' && $format[$i + 2] == '\'') {
+                    $output .= 'T';
+                    $i += 2;
+                } else {
+                    //if it's no a 'T' then send whatever is inside the '' to
+                //the output, but send it inside [] (useful for cases like
+                //the brazilian translation that uses a 'de' in the date)
+                    $output .= '[';
+                    $temp = current(explode("'", substr($format, $i + 1)));
+                    $output .= $temp;
+                    $output .= ']';
+                    $i += strlen($temp) + 1;
+                }
+            } else {
+                //if no ' is found, then search all the rules, see if any of
+                //them matchs
+                $foundOne = false;
+                foreach (self::$formatConvertRules as $key => $value) {
+                    if (substr($format, $i, strlen($key)) == $key) {
+                        $output .= $value;
+                        $foundOne = true;
+                        $i += strlen($key) - 1;
+                        break;
+                    }
+                }
+        //if no rule is matched, then just add the character to the
+        //output
+                if (!$foundOne) {
+                    $output .= $format[$i];
+                }
+            }
+        }
+
+        return $output;
     }
 }
