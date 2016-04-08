@@ -177,10 +177,19 @@ class ErrorElementTest extends \PHPUnit_Framework_TestCase
     {
         $constraint = new NotNull();
 
-        $this->context->expects($this->any())
-            ->method('validateValue')
-            ->with($this->equalTo($this->subject), $this->equalTo($constraint), $this->equalTo(''), $this->equalTo('foo_core'))
-            ->will($this->returnValue(null));
+        if ($this->context instanceof LegacyExecutionContextInterface) {
+            $this->context->expects($this->any())
+                ->method('validateValue')
+                ->with($this->equalTo($this->subject), $this->equalTo($constraint), $this->equalTo(''), $this->equalTo('foo_core'))
+                ->will($this->returnValue(null));
+        } else {
+            $this->contextualValidator->expects($this->any())
+                ->method('atPath')
+                ->with('');
+            $this->contextualValidator->expects($this->any())
+                ->method('validate')
+                ->with($this->subject, $constraint, array('foo_core'));
+        }
 
         $this->assertEquals($this->errorElement, $this->errorElement->with('baz'));
         $this->assertEquals($this->errorElement, $this->errorElement->end());
