@@ -51,7 +51,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
                 return $name === 'text';
             }),
             $this->callback(function ($name) {
-                return $name === array(1 => 1);
+                return $name === array(1 => '1');
             })
         );
 

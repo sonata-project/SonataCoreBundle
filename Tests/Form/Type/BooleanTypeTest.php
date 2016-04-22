@@ -84,13 +84,13 @@ class BooleanTypeTest extends TypeTestCase
         $expectedOptions = array(
             'transform'          => false,
             'catalogue'          => 'SonataCoreBundle',
+            'choices_as_value'   => true,
             'translation_domain' => 'fooTrans',
             'choices'            => array(1 => 'foo_yes', 2 => 'foo_no'),
         );
 
-        if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
-            && method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
-            $expectedOptions['choices_as_value'] = true;
+        if (!method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+            unset($expectedOptions['choices_as_value']);
         }
 
         $this->assertSame($expectedOptions, $resolvedOptions);
@@ -114,14 +114,14 @@ class BooleanTypeTest extends TypeTestCase
 
         $expectedOptions = array(
             'transform'          => false,
+            'choices_as_value'   => true,
             'catalogue'          => 'fooTrans',
             'translation_domain' => 'fooTrans',
             'choices'            => array(1 => 'foo_yes', 2 => 'foo_no'),
         );
 
-        if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
-            && method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
-            $expectedOptions['choices_as_value'] = true;
+        if (!method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+            unset($expectedOptions['choices_as_value']);
         }
 
         $this->assertSame($expectedOptions, $resolvedOptions);

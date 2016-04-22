@@ -48,12 +48,12 @@ class EqualTypeTest extends TypeTestCase
         }
 
         $expected = array(
+            'choices_as_value' => true,
             'choices' => $choices,
         );
 
-        if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
-            && method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
-            $expected['choices_as_value'] = true;
+        if (!method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+            unset($expected['choices_as_value']);
         }
 
         $this->assertSame($expected, $options);

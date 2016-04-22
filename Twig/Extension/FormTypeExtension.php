@@ -26,7 +26,7 @@ class FormTypeExtension extends \Twig_Extension implements \Twig_Extension_Globa
      */
     public function __construct($formType)
     {
-        $this->wrapFieldsWithAddons = ($formType === 'standard');
+        $this->wrapFieldsWithAddons = (true === $formType || $formType === 'standard');
     }
 
     /**
