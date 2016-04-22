@@ -56,7 +56,7 @@ class EqualType extends AbstractType
             self::TYPE_IS_NOT_EQUAL => $this->translator->trans('label_type_not_equals', array(), 'SonataCoreBundle'),
         );
 
-        $defaultOptions = [];
+        $defaultOptions = array();
 
         // SF 2.7+ BC
         if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')) {
