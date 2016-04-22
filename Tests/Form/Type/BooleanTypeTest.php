@@ -89,7 +89,8 @@ class BooleanTypeTest extends TypeTestCase
             'choices'            => array(1 => 'foo_yes', 2 => 'foo_no'),
         );
 
-        if (!method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+        if (!method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
+            || !method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
             unset($expectedOptions['choices_as_value']);
         }
 
@@ -120,10 +121,13 @@ class BooleanTypeTest extends TypeTestCase
             'choices'            => array(1 => 'foo_yes', 2 => 'foo_no'),
         );
 
-        if (!method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+        if (!method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
+            || !method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
             unset($expectedOptions['choices_as_value']);
         }
 
-        $this->assertSame($expectedOptions, $resolvedOptions);
+        // "sort" trick can be remove when SF 2.3 support will be drop
+        // Reason: array order as not the same between SF versions. This is the easiest way to fix it.
+        $this->assertSame(sort($expectedOptions), sort($resolvedOptions));
     }
 }
