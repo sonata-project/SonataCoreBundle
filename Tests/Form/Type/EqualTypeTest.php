@@ -49,7 +49,7 @@ class EqualTypeTest extends TypeTestCase
 
         $expected = array(
             'choices_as_value' => true,
-            'choices' => $choices,
+            'choices'          => $choices,
         );
 
         if (!method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
