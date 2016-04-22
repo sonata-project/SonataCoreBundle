@@ -95,7 +95,7 @@ class FormHelper
     {
         if (!method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
             $type->setDefaultOptions($optionsResolver);
-        } else {
+        } else { // SF <2.8 BC
             $type->configureOptions($optionsResolver);
         }
     }
