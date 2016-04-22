@@ -23,7 +23,12 @@ class ColorSelectorTypeTest extends TypeTestCase
         $type = new ColorSelectorType();
 
         $this->assertEquals('sonata_type_color_selector', $type->getName());
-        $this->assertEquals('choice', $type->getParent());
+        $this->assertEquals(
+            method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
+                'Symfony\Component\Form\Extension\Core\Type\ChoiceType' :
+                'choice',
+            $type->getParent()
+        );
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
