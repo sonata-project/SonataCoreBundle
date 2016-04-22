@@ -43,13 +43,18 @@ class EqualTypeTest extends TypeTestCase
 
         $choices = array(1 => 'label_type_equals', 2 => 'label_type_not_equals');
 
-        if (method_exists('Symfony\Component\Form\FormTypeInterface', 'configureOptions')) {
+        if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')) {
             $choices = array_flip($choices);
         }
 
         $expected = array(
             'choices' => $choices,
         );
+
+        if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
+            && method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+            $expected['choices_as_value'] = true;
+        }
 
         $this->assertEquals($expected, $options);
     }
