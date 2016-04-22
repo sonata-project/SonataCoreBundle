@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -25,11 +25,11 @@ class NativeSlugifyTest extends \PHPUnit_Framework_TestCase
 
         $service = new NativeSlugify();
 
-        $this->assertEquals($service->slugify('test'), 'test');
-        $this->assertEquals($service->slugify('S§!@@#$#$alut'), 's-alut');
-        $this->assertEquals($service->slugify('Symfony2'), 'symfony2');
-        $this->assertEquals($service->slugify('test'), 'test');
-        $this->assertEquals($service->slugify('c\'est bientôt l\'été'), 'c-est-bientot-l-ete');
-        $this->assertEquals($service->slugify(urldecode('%2Fc\'est+bientôt+l\'été')), 'c-est-bientot-l-ete');
+        $this->assertSame($service->slugify('test'), 'test');
+        $this->assertSame($service->slugify('S§!@@#$#$alut'), 's-alut');
+        $this->assertSame($service->slugify('Symfony2'), 'symfony2');
+        $this->assertSame($service->slugify('test'), 'test');
+        $this->assertSame($service->slugify('c\'est bientôt l\'été'), 'c-est-bientot-l-ete');
+        $this->assertSame($service->slugify(urldecode('%2Fc\'est+bientôt+l\'été')), 'c-est-bientot-l-ete');
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
 /*
-* This file is part of the "Outil Auteur" project.
-*
-* (c) 2014 - DED (CanalPlus Group)
-*
-* For the full copyright and license information, please view the LICENSE
-* file that was distributed with this source code.
-*/
+ * This file is part of the Sonata Project package.
+ *
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Sonata\CoreBundle\Tests\Form\EventListener;
 
@@ -32,7 +32,7 @@ class ResizeFormListenerTest extends \PHPUnit_Framework_TestCase
         $event = new FormEvent($form, $data);
 
         $closure = function ($listenerValue) use ($value) {
-            $this->assertEquals($value, $listenerValue);
+            $this->assertSame($value, $listenerValue);
         };
 
         $listener = new ResizeFormListener('form', array(), false, $closure);

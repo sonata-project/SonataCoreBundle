@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -27,10 +27,10 @@ class CollectionTypeTest extends TypeTestCase
         $options = $optionResolver->resolve();
 
         $this->assertFalse($options['modifiable']);
-        $this->assertEquals('text', $options['type']);
-        $this->assertEquals(0, count($options['type_options']));
-        $this->assertEquals('link_add', $options['btn_add']);
-        $this->assertEquals('SonataCoreBundle', $options['btn_catalogue']);
+        $this->assertSame('text', $options['type']);
+        $this->assertSame(0, count($options['type_options']));
+        $this->assertSame('link_add', $options['btn_add']);
+        $this->assertSame('SonataCoreBundle', $options['btn_catalogue']);
         $this->assertNull($options['pre_bind_data_callback']);
     }
 }

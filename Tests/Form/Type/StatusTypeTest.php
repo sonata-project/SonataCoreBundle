@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -39,15 +39,15 @@ class StatusTypeTest extends TypeTestCase
 
         $type = new StatusType('Sonata\CoreBundle\Tests\Form\Type\Choice', 'getList', 'choice_type');
 
-        $this->assertEquals('choice_type', $type->getName());
-        $this->assertEquals('choice', $type->getParent());
+        $this->assertSame('choice_type', $type->getName());
+        $this->assertSame('choice', $type->getParent());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
         $options = $resolver->resolve(array());
 
         $this->assertArrayHasKey('choices', $options);
-        $this->assertEquals($options['choices'], array(1 => 'salut'));
+        $this->assertSame($options['choices'], array(1 => 'salut'));
     }
 
     public function testGetDefaultOptionsWithValidFlip()
@@ -59,15 +59,15 @@ class StatusTypeTest extends TypeTestCase
 
         $type = new StatusType('Sonata\CoreBundle\Tests\Form\Type\Choice', 'getList', 'choice_type', true);
 
-        $this->assertEquals('choice_type', $type->getName());
-        $this->assertEquals('choice', $type->getParent());
+        $this->assertSame('choice_type', $type->getName());
+        $this->assertSame('choice', $type->getParent());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
         $options = $resolver->resolve(array());
 
         $this->assertArrayHasKey('choices', $options);
-        $this->assertEquals($options['choices'], array('salut' => 1, 'toi!' => 2));
+        $this->assertSame($options['choices'], array('salut' => 1, 'toi!' => 2));
     }
 
     /**
@@ -82,8 +82,8 @@ class StatusTypeTest extends TypeTestCase
 
         $type = new StatusType('Sonata\CoreBundle\Tests\Form\Type\Choice', 'getList', 'choice_type', true);
 
-        $this->assertEquals('choice_type', $type->getName());
-        $this->assertEquals('choice', $type->getParent());
+        $this->assertSame('choice_type', $type->getName());
+        $this->assertSame('choice', $type->getParent());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 

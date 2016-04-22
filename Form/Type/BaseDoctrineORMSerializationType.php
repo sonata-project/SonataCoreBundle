@@ -1,13 +1,12 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- *
  */
 
 namespace Sonata\CoreBundle\Form\Type;
@@ -94,11 +93,11 @@ class BaseDoctrineORMSerializationType extends AbstractType
         foreach ($serializerMetadata->propertyMetadata as $propertyMetadata) {
             $name = $propertyMetadata->name;
 
-            if (in_array($name, $doctrineMetadata->getIdentifierFieldNames()) && !$this->identifierOverwrite) {
+            if (in_array($name, $doctrineMetadata->getIdentifierFieldNames(), true) && !$this->identifierOverwrite) {
                 continue;
             }
 
-            if (!$propertyMetadata->groups || !in_array($this->group, $propertyMetadata->groups)) {
+            if (!$propertyMetadata->groups || !in_array($this->group, $propertyMetadata->groups, true)) {
                 continue;
             }
 

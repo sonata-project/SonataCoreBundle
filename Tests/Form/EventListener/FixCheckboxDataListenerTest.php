@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -43,7 +43,7 @@ class FixCheckboxDataListenerTest extends \PHPUnit_Framework_TestCase
         $form = $formBuilder->getForm();
         $form->submit($data);
 
-        $this->assertEquals($expected, $form->getData());
+        $this->assertSame($expected, $form->getData());
     }
 
     public function valuesProvider()

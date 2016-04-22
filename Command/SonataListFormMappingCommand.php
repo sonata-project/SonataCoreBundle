@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Sonata Connector project.
+ * This file is part of the Sonata Project package.
  *
- * (c) Sylvain Rascar <sylvain.rascar@fullsix.com>
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -55,7 +55,7 @@ class SonataListFormMappingCommand extends ContainerAwareCommand
             try {
                 $instance = $this->getContainer()->get($id);
 
-                if ($input->getOption('format') == 'yaml') {
+                if ($input->getOption('format') === 'yaml') {
                     $output->writeln(sprintf('              %s: %s', $instance->getName(), get_class($instance)));
                 } else {
                     $output->writeln(sprintf(" '%s' => '%s',", $instance->getName(), get_class($instance)));
@@ -81,21 +81,21 @@ class SonataListFormMappingCommand extends ContainerAwareCommand
         }
 
         foreach ($types as $type => $classes) {
-            if ($input->getOption('format') == 'yaml') {
+            if ($input->getOption('format') === 'yaml') {
                 $output->writeln(sprintf('        %s: ', $type));
             } else {
                 $output->writeln(sprintf("        '%s' => array( ", $type));
             }
 
             foreach ($classes as $class) {
-                if ($input->getOption('format') == 'yaml') {
+                if ($input->getOption('format') === 'yaml') {
                     $output->writeln(sprintf('              - %s', $class));
                 } else {
                     $output->writeln(sprintf("              '%s',", $class));
                 }
             }
 
-            if ($input->getOption('format') == 'php') {
+            if ($input->getOption('format') === 'php') {
                 $output->writeln('        ), ');
             }
         }

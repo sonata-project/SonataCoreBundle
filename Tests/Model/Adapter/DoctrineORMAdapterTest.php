@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -84,7 +84,7 @@ class DoctrineORMAdapterTest extends \PHPUnit_Framework_TestCase
 
         $adapter = new DoctrineORMAdapter($registry);
 
-        $this->assertEquals($expected, $adapter->getNormalizedIdentifier(new \stdClass()));
+        $this->assertSame($expected, $adapter->getNormalizedIdentifier(new \stdClass()));
     }
 
     public static function getFixtures()

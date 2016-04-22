@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -26,7 +26,7 @@ class FormTypeExtension extends \Twig_Extension implements \Twig_Extension_Globa
      */
     public function __construct($formType)
     {
-        $this->wrapFieldsWithAddons = ($formType == 'standard');
+        $this->wrapFieldsWithAddons = (true === $formType || $formType === 'standard');
     }
 
     /**

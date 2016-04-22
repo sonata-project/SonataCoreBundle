@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -22,13 +22,13 @@ class DateRangePickerTypeTest extends TypeTestCase
     {
         $type = new DateRangePickerType($this->getMock('Symfony\Component\Translation\TranslatorInterface'));
 
-        $this->assertEquals('sonata_type_date_range_picker', $type->getName());
+        $this->assertSame('sonata_type_date_range_picker', $type->getName());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
         $options = $resolver->resolve();
 
-        $this->assertEquals(
+        $this->assertSame(
             array(
                 'field_options'       => array(),
                 'field_options_start' => array(),

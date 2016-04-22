@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -91,8 +91,8 @@ class DoctrinePHPCRAdapterTest extends \PHPUnit_Framework_TestCase
         $instance = new MyDocument();
         $instance->path = $data;
 
-        $this->assertEquals($data, $adapter->getNormalizedIdentifier($instance));
-        $this->assertEquals($expected, $adapter->getUrlsafeIdentifier($instance));
+        $this->assertSame($data, $adapter->getNormalizedIdentifier($instance));
+        $this->assertSame($expected, $adapter->getUrlsafeIdentifier($instance));
     }
 
     public static function getFixtures()

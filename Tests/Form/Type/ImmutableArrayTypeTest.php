@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -23,9 +23,9 @@ class ImmutableArrayTypeTest extends TypeTestCase
     {
         $type = new ImmutableArrayType();
 
-        $this->assertEquals('sonata_type_immutable_array', $type->getName());
+        $this->assertSame('sonata_type_immutable_array', $type->getName());
 
-        $this->assertEquals(version_compare(Kernel::VERSION, '2.8', '<') ? 'form' : 'Symfony\Component\Form\Extension\Core\Type\FormType', $type->getParent());
+        $this->assertSame(version_compare(Kernel::VERSION, '2.8', '<') ? 'form' : 'Symfony\Component\Form\Extension\Core\Type\FormType', $type->getParent());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
@@ -35,7 +35,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
             'keys' => array(),
         );
 
-        $this->assertEquals($expected, $options);
+        $this->assertSame($expected, $options);
     }
 
     public function testCallback()
@@ -45,13 +45,13 @@ class ImmutableArrayTypeTest extends TypeTestCase
         $builder = $this->getMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->once())->method('add')->with(
             $this->callback(function ($name) {
-                return $name == 'ttl';
+                return $name === 'ttl';
             }),
             $this->callback(function ($name) {
-                return $name == 'text';
+                return $name === 'text';
             }),
             $this->callback(function ($name) {
-                return $name == array(1 => 1);
+                return $name === array(1 => '1');
             })
         );
 

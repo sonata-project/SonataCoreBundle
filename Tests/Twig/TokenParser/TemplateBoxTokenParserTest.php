@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -18,6 +18,12 @@ class TemplateBoxTokenParserTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider getTestsForRender
+     *
+     * @param bool            $enabled
+     * @param string          $source
+     * @param TemplateBoxNode $expected
+     *
+     * @throws \Twig_Error_Syntax
      */
     public function testCompile($enabled, $source, $expected)
     {
@@ -28,7 +34,19 @@ class TemplateBoxTokenParserTest extends \PHPUnit_Framework_TestCase
         $stream = $env->tokenize($source);
         $parser = new \Twig_Parser($env);
 
-        $this->assertEquals($expected, $parser->parse($stream)->getNode('body')->getNode(0));
+        $actual = $parser->parse($stream)->getNode('body')->getNode(0);
+        $this->assertSame(
+            $expected->getIterator()->getFlags(),
+            $actual->getIterator()->getFlags()
+        );
+        $this->assertSame(
+            $expected->getLine(),
+            $actual->getLine()
+        );
+        $this->assertSame(
+            $expected->count(),
+            $actual->count()
+        );
     }
 
     public function getTestsForRender()

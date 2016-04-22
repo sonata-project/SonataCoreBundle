@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -30,12 +30,12 @@ class TemplateExtensionTest extends \PHPUnit_Framework_TestCase
 
         $extension = new TemplateExtension(true, $translator, $adapter);
 
-        $this->assertEquals($extension->slugify('test'), 'test');
-        $this->assertEquals($extension->slugify('S§!@@#$#$alut'), 's-alut');
-        $this->assertEquals($extension->slugify('Symfony2'), 'symfony2');
-        $this->assertEquals($extension->slugify('test'), 'test');
-        $this->assertEquals($extension->slugify('c\'est bientôt l\'été'), 'c-est-bientot-l-ete');
-        $this->assertEquals($extension->slugify(urldecode('%2Fc\'est+bientôt+l\'été')), 'c-est-bientot-l-ete');
+        $this->assertSame($extension->slugify('test'), 'test');
+        $this->assertSame($extension->slugify('S§!@@#$#$alut'), 's-alut');
+        $this->assertSame($extension->slugify('Symfony2'), 'symfony2');
+        $this->assertSame($extension->slugify('test'), 'test');
+        $this->assertSame($extension->slugify('c\'est bientôt l\'été'), 'c-est-bientot-l-ete');
+        $this->assertSame($extension->slugify(urldecode('%2Fc\'est+bientôt+l\'été')), 'c-est-bientot-l-ete');
     }
 
     public function testSafeUrl()
@@ -47,6 +47,6 @@ class TemplateExtensionTest extends \PHPUnit_Framework_TestCase
 
         $extension = new TemplateExtension(true, $translator, $adapter);
 
-        $this->assertEquals('safe-parameter', $extension->getUrlsafeIdentifier(new \stdClass()));
+        $this->assertSame('safe-parameter', $extension->getUrlsafeIdentifier(new \stdClass()));
     }
 }

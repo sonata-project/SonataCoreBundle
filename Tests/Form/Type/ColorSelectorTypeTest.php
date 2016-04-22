@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -22,8 +22,8 @@ class ColorSelectorTypeTest extends TypeTestCase
     {
         $type = new ColorSelectorType();
 
-        $this->assertEquals('sonata_type_color_selector', $type->getName());
-        $this->assertEquals(
+        $this->assertSame('sonata_type_color_selector', $type->getName());
+        $this->assertSame(
             method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
                 'Symfony\Component\Form\Extension\Core\Type\ChoiceType' :
                 'choice',
@@ -191,6 +191,6 @@ class ColorSelectorTypeTest extends TypeTestCase
             ),
         );
 
-        $this->assertEquals($expected, $options);
+        $this->assertSame($expected, $options);
     }
 }

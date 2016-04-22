@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -34,7 +34,7 @@ class AdapterChainTest extends \PHPUnit_Framework_TestCase
 
         $fake2->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue('voila'));
 
-        $this->assertEquals('voila', $adapter->getUrlsafeIdentifier(new \stdClass()));
+        $this->assertSame('voila', $adapter->getUrlsafeIdentifier(new \stdClass()));
     }
 
     public function testNormalizedIdentifier()
@@ -48,6 +48,6 @@ class AdapterChainTest extends \PHPUnit_Framework_TestCase
 
         $fake2->expects($this->once())->method('getNormalizedIdentifier')->will($this->returnValue('voila'));
 
-        $this->assertEquals('voila', $adapter->getNormalizedIdentifier(new \stdClass()));
+        $this->assertSame('voila', $adapter->getNormalizedIdentifier(new \stdClass()));
     }
 }
