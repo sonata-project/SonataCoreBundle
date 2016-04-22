@@ -17,8 +17,8 @@ enabled:
   - php_unit_strict
 
 disabled:
-  - -unalign_double_arrow
-  - -unalign_equals
+  - unalign_double_arrow
+  - unalign_equals
 
 finder:
   exclude:
