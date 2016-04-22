@@ -43,7 +43,7 @@ class EqualTypeTest extends TypeTestCase
 
         $choices = array(1 => 'label_type_equals', 2 => 'label_type_not_equals');
 
-        if (!method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+        if (method_exists('Symfony\Component\Form\FormTypeInterface', 'configureOptions')) {
             $choices = array_flip($choices);
         }
 

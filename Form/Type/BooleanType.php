@@ -60,12 +60,7 @@ class BooleanType extends AbstractType
             self::TYPE_NO  => 'label_type_no',
         );
 
-        if (!method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
-            $choices = array_flip($choices);
-        }
-
-        $resolver->setDefaults(array(
-            'choices'   => $choices,
+        $defaultOptions = array(
             'transform' => false,
 
             // @deprecated Deprecated as of SonataCoreBundle 2.3.10, to be removed in 3.0.
@@ -79,7 +74,21 @@ class BooleanType extends AbstractType
 
                 return $options['translation_domain'];
             },
-        ));
+        );
+
+        // SF 2.7+ BC
+        if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')) {
+            $choices = array_flip($choices);
+
+            // choice_as_value options is not needed of SF 3.0+
+            if (method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+                $defaultOptions['choices_as_value'] = true;
+            }
+        }
+
+        $defaultOptions['choices'] = $choices;
+
+        $resolver->setDefaults($defaultOptions);
     }
 
     /**
