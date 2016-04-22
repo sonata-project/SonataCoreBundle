@@ -21,8 +21,6 @@ matrix:
   fast_finish: true
   include:
     - php: 7.0
-      env: TARGET=cs_dry_run
-    - php: 7.0
       env: TARGET=docs
     - php: 5.3
       env: COMPOSER_FLAGS="--prefer-lowest --prefer-stable"
@@ -48,7 +46,7 @@ before_script:
   - mkdir -p ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d && echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - composer selfupdate
   - composer config -q -g github-oauth.github.com $GITHUB_OAUTH_TOKEN
-  - composer global require phpunit/phpunit:@stable fabpot/php-cs-fixer --no-update
+  - composer global require phpunit/phpunit:@stable --no-update
   - composer global update --prefer-dist --no-interaction
   - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --no-update; fi;
   - travis_wait composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
