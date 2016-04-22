@@ -20,7 +20,14 @@ class EqualTypeTest extends TypeTestCase
 {
     public function testGetDefaultOptions()
     {
-        $type = new EqualType($this->getMock('Symfony\Component\Translation\TranslatorInterface'));
+        $mock = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+
+        $mock->expects($this->exactly(2))
+            ->method('trans')
+            ->will($this->returnCallback(function ($arg) { return $arg; })
+            );
+
+        $type = new EqualType($mock);
 
         $this->assertEquals('sonata_type_equal', $type->getName());
         $this->assertEquals(
@@ -34,9 +41,20 @@ class EqualTypeTest extends TypeTestCase
 
         $options = $resolver->resolve();
 
+        $choices = array(1 => 'label_type_equals', 2 => 'label_type_not_equals');
+
+        if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')) {
+            $choices = array_flip($choices);
+        }
+
         $expected = array(
-            'choices' => array(1 => null, 2 => null),
+            'choices' => $choices,
         );
+
+        if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
+            && method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+            $expected['choices_as_value'] = true;
+        }
 
         $this->assertEquals($expected, $options);
     }

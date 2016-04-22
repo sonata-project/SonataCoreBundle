@@ -81,12 +81,19 @@ class BooleanTypeTest extends TypeTestCase
 
         $type->buildForm($builder, $resolvedOptions);
 
-        $this->assertEquals(array(
+        $expectedOptions = array(
             'transform'          => false,
             'catalogue'          => 'SonataCoreBundle',
             'translation_domain' => 'fooTrans',
             'choices'            => array(1 => 'foo_yes', 2 => 'foo_no'),
-        ), $resolvedOptions);
+        );
+
+        if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
+            && method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+            $expectedOptions['choices_as_value'] = true;
+        }
+
+        $this->assertEquals($expectedOptions, $resolvedOptions);
     }
 
     public function testLegacyDeprecatedCatalogueOption()
@@ -105,11 +112,18 @@ class BooleanTypeTest extends TypeTestCase
 
         $type->buildForm($builder, $resolvedOptions);
 
-        $this->assertEquals(array(
+        $expectedOptions = array(
             'transform'          => false,
             'catalogue'          => 'fooTrans',
             'translation_domain' => 'fooTrans',
             'choices'            => array(1 => 'foo_yes', 2 => 'foo_no'),
-        ), $resolvedOptions);
+        );
+
+        if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
+            && method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+            $expectedOptions['choices_as_value'] = true;
+        }
+
+        $this->assertEquals($expectedOptions, $resolvedOptions);
     }
 }
