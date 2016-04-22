@@ -17,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FormHelper
 {
-    private static $typeMappping = array();
+    private static $typeMapping = array();
 
     private static $extensionMapping = array();
 
@@ -61,7 +61,7 @@ class FormHelper
      */
     public static function registerFormTypeMapping(array $mapping)
     {
-        self::$typeMappping = array_merge(self::$typeMappping, $mapping);
+        self::$typeMapping = array_merge(self::$typeMapping, $mapping);
     }
 
     /**
@@ -82,7 +82,7 @@ class FormHelper
      */
     public static function getFormTypeMapping()
     {
-        return self::$typeMappping;
+        return self::$typeMapping;
     }
 
     /**
