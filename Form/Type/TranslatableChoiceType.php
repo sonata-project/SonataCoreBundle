@@ -73,7 +73,8 @@ class TranslatableChoiceType extends AbstractType
     {
         return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
             'Symfony\Component\Form\Extension\Core\Type\ChoiceType' :
-            'choice';
+            'choice' // SF <2.8 BC
+        ;
     }
 
     /**
