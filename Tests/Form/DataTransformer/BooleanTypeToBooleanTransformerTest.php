@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -23,7 +23,7 @@ class BooleanTypeToBooleanTransformerTest extends \PHPUnit_Framework_TestCase
     {
         $transformer = new BooleanTypeToBooleanTransformer();
 
-        $this->assertEquals($expected, $transformer->transform($value));
+        $this->assertSame($expected, $transformer->transform($value));
     }
 
     public function testTransform()

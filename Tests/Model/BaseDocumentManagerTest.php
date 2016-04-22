@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -30,6 +30,6 @@ class BaseDocumentManagerTest extends \PHPUnit_Framework_TestCase
 
     public function test()
     {
-        $this->assertEquals('classname', $this->getManager()->getClass());
+        $this->assertSame('classname', $this->getManager()->getClass());
     }
 }

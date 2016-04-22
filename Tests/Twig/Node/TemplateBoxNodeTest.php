@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -31,7 +31,7 @@ class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
             'sonata_template_box'
         );
 
-        $this->assertEquals(1, $body->getLine());
+        $this->assertSame(1, $body->getLine());
     }
 
     /**

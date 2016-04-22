@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -29,7 +29,7 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasParameter(
             'sonata.core.form_type'
         );
-        $this->assertEquals(
+        $this->assertSame(
             'standard',
             $this->container->getParameter(
                 'sonata.core.form_type'
@@ -43,7 +43,7 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasParameter(
             'sonata.core.form_type'
         );
-        $this->assertEquals(
+        $this->assertSame(
             'horizontal',
             $this->container->getParameter(
                 'sonata.core.form_type'

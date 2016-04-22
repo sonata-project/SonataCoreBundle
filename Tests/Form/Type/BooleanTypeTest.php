@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -22,7 +22,7 @@ class BooleanTypeTest extends TypeTestCase
     {
         $type = new BooleanType();
 
-        $this->assertEquals(
+        $this->assertSame(
             method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
                 'Symfony\Component\Form\Extension\Core\Type\ChoiceType' :
                 'choice',
@@ -33,7 +33,7 @@ class BooleanTypeTest extends TypeTestCase
 
         $options = $optionResolver->resolve();
 
-        $this->assertEquals(2, count($options['choices']));
+        $this->assertSame(2, count($options['choices']));
     }
 
     public function testAddTransformerCall()
@@ -93,7 +93,7 @@ class BooleanTypeTest extends TypeTestCase
             $expectedOptions['choices_as_value'] = true;
         }
 
-        $this->assertEquals($expectedOptions, $resolvedOptions);
+        $this->assertSame($expectedOptions, $resolvedOptions);
     }
 
     public function testLegacyDeprecatedCatalogueOption()
@@ -124,6 +124,6 @@ class BooleanTypeTest extends TypeTestCase
             $expectedOptions['choices_as_value'] = true;
         }
 
-        $this->assertEquals($expectedOptions, $resolvedOptions);
+        $this->assertSame($expectedOptions, $resolvedOptions);
     }
 }

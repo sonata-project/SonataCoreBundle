@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -95,7 +95,7 @@ class ErrorElement
      */
     public function __call($name, array $arguments = array())
     {
-        if (substr($name, 0, 6) == 'assert') {
+        if (substr($name, 0, 6) === 'assert') {
             $this->validate($this->newConstraint(substr($name, 6), isset($arguments[0]) ? $arguments[0] : array()));
         } else {
             throw new \RunTimeException('Unable to recognize the command');
@@ -183,7 +183,7 @@ class ErrorElement
      */
     protected function getValue()
     {
-        if ($this->current == '') {
+        if ($this->current === '') {
             return $this->subject;
         }
 

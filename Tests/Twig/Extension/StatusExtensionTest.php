@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -18,7 +18,7 @@ class StatusExtensionTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
         $extension = new StatusExtension();
-        $this->assertEquals('sonata_core_status', $extension->getName());
+        $this->assertSame('sonata_core_status', $extension->getName());
     }
 
     public function testGetFilters()
@@ -39,6 +39,6 @@ class StatusExtensionTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(false));
 
         $extension->addStatusService($statusService);
-        $this->assertEquals('test-value', $extension->statusClass(new \stdClass(), 'getStatus', 'test-value'));
+        $this->assertSame('test-value', $extension->statusClass(new \stdClass(), 'getStatus', 'test-value'));
     }
 }

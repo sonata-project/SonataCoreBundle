@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Sonata Connector project.
+ * This file is part of the Sonata Project package.
  *
- * (c) Sylvain Rascar <sylvain.rascar@fullsix.com>
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -115,7 +115,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
             $directory = dirname($input->getOption('filename'));
             $filename = basename($input->getOption('filename'));
 
-            if (empty($directory) || $directory == '.') {
+            if (empty($directory) || $directory === '.') {
                 $directory = getcwd();
             }
 

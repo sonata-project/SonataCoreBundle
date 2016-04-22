@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Sonata Project package.
+ *
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Sonata\CoreBundle\Tests\FlashMessage;
 
 use Sonata\CoreBundle\FlashMessage\FlashManager;
@@ -72,12 +81,12 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetHandledTypes()
     {
-        $this->assertEquals(array('success', 'warning', 'error'), $this->flashManager->getHandledTypes());
+        $this->assertSame(array('success', 'warning', 'error'), $this->flashManager->getHandledTypes());
     }
 
     public function testGetStatus()
     {
-        $this->assertEquals('danger', $this->flashManager->getStatusClass('error'));
+        $this->assertSame('danger', $this->flashManager->getStatusClass('error'));
     }
 
     /**
@@ -90,7 +99,7 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
 
         // Then
         $this->assertCount(3, $types);
-        $this->assertEquals(array(
+        $this->assertSame(array(
             'success' => array(
                 'my_bundle_success'        => array('domain' => 'MySuccessBundle'),
                 'my_second_bundle_success' => array('domain' => 'SonataCoreBundle'),
@@ -130,19 +139,19 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $successMessages);
 
         foreach ($successMessages as $message) {
-            $this->assertEquals($message, 'hey, success dude!');
+            $this->assertSame($message, 'hey, success dude!');
         }
 
         $this->assertCount(2, $warningMessages);
 
         foreach ($warningMessages as $message) {
-            $this->assertEquals($message, 'hey, warning dude!');
+            $this->assertSame($message, 'hey, warning dude!');
         }
 
         $this->assertCount(2, $errorMessages);
 
         foreach ($errorMessages as $message) {
-            $this->assertEquals($message, 'hey, error dude!');
+            $this->assertSame($message, 'hey, error dude!');
         }
     }
 
@@ -164,7 +173,7 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(1, $nonRegisteredMessages);
 
         foreach ($nonRegisteredMessages as $message) {
-            $this->assertEquals($message, 'hey, success dude!');
+            $this->assertSame($message, 'hey, success dude!');
         }
     }
 
@@ -192,11 +201,11 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(1, $messagesWithoutDomain);
 
         foreach ($messages as $message) {
-            $this->assertEquals($message, 'My bundle success message!');
+            $this->assertSame($message, 'My bundle success message!');
         }
 
         foreach ($messagesWithoutDomain as $message) {
-            $this->assertEquals($message, 'my_bundle_success_message');
+            $this->assertSame($message, 'my_bundle_success_message');
         }
     }
 

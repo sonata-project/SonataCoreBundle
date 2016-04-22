@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -75,7 +75,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $form = $this->factory->createBuilder($type, null)->setCompound(true)->getForm();
 
         // Asserts that all 3 elements are in the form
-        $this->assertEquals(3, $form->count(), 'Should return 3 items in form');
+        $this->assertSame(3, $form->count(), 'Should return 3 items in form');
 
         // Assets that forms are correctly returned for correct fields
         $this->assertInstanceOf('Symfony\Component\Form\FormInterface', $form->get('name'), 'Should return a form instance');
@@ -106,7 +106,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $form = $this->factory->createBuilder($type, null)->setCompound(true)->getForm();
 
         // Assets that forms have only 2 generated fields as the third is an identifier
-        $this->assertEquals(2, $form->count(), 'Should return 2 elements in the form');
+        $this->assertSame(2, $form->count(), 'Should return 2 elements in the form');
 
         // Assets that forms are correctly returned for correct fields
         $this->assertInstanceOf('Symfony\Component\Form\FormInterface', $form->get('url'), 'Should return a form instance');
@@ -131,7 +131,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $form = $this->factory->createBuilder($type, null)->setCompound(true)->getForm();
 
         // Assets that forms have no generated field as group is invalid
-        $this->assertEquals(0, $form->count(), 'Should return 0 elements as given form type group is invalid');
+        $this->assertSame(0, $form->count(), 'Should return 0 elements as given form type group is invalid');
     }
 
     /**

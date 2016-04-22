@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -28,7 +28,7 @@ class TemplateBoxTokenParserTest extends \PHPUnit_Framework_TestCase
         $stream = $env->tokenize($source);
         $parser = new \Twig_Parser($env);
 
-        $this->assertEquals($expected, $parser->parse($stream)->getNode('body')->getNode(0));
+        $this->assertSame($expected, $parser->parse($stream)->getNode('body')->getNode(0));
     }
 
     public function getTestsForRender()

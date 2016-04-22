@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -29,8 +29,8 @@ class EqualTypeTest extends TypeTestCase
 
         $type = new EqualType($mock);
 
-        $this->assertEquals('sonata_type_equal', $type->getName());
-        $this->assertEquals(
+        $this->assertSame('sonata_type_equal', $type->getName());
+        $this->assertSame(
             method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
                 'Symfony\Component\Form\Extension\Core\Type\ChoiceType' :
                 'choice',
@@ -56,6 +56,6 @@ class EqualTypeTest extends TypeTestCase
             $expected['choices_as_value'] = true;
         }
 
-        $this->assertEquals($expected, $options);
+        $this->assertSame($expected, $options);
     }
 }

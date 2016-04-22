@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -18,7 +18,7 @@ class FormTypeExtensionTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
         $extension = new FormTypeExtension(true);
-        $this->assertEquals('sonata_core_wrapping', $extension->getName());
+        $this->assertSame('sonata_core_wrapping', $extension->getName());
     }
 
     public function testGetGlobals()

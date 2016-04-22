@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -26,13 +26,13 @@ class DateTimePickerTypeTest extends \PHPUnit_Framework_TestCase
     {
         $type = new DateTimePickerType(new MomentFormatConverter(), $this->getMock('Symfony\Component\Translation\TranslatorInterface'));
 
-        $this->assertEquals('sonata_type_datetime_picker', $type->getName());
+        $this->assertSame('sonata_type_datetime_picker', $type->getName());
     }
 
     public function testLegacyConstructor()
     {
         $type = new DateTimePickerType(new MomentFormatConverter());
 
-        $this->assertEquals('sonata_type_datetime_picker', $type->getName());
+        $this->assertSame('sonata_type_datetime_picker', $type->getName());
     }
 }

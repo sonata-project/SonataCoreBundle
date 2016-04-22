@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -55,7 +55,7 @@ abstract class BasePHPCRManager extends BaseManager
      */
     public function __get($name)
     {
-        if ($name == 'dm') {
+        if ($name === 'dm') {
             return $this->getObjectManager();
         }
 
