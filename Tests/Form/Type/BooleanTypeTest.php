@@ -84,7 +84,7 @@ class BooleanTypeTest extends TypeTestCase
         $expectedOptions = array(
             'transform'          => false,
             'catalogue'          => 'SonataCoreBundle',
-            'choices_as_values'   => true,
+            'choices_as_values'  => true,
             'translation_domain' => 'fooTrans',
             'choices'            => array(1 => 'foo_yes', 2 => 'foo_no'),
         );
@@ -115,7 +115,7 @@ class BooleanTypeTest extends TypeTestCase
 
         $expectedOptions = array(
             'transform'          => false,
-            'choices_as_values'   => true,
+            'choices_as_values'  => true,
             'catalogue'          => 'fooTrans',
             'translation_domain' => 'fooTrans',
             'choices'            => array(1 => 'foo_yes', 2 => 'foo_no'),
