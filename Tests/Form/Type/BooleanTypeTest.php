@@ -84,14 +84,14 @@ class BooleanTypeTest extends TypeTestCase
         $expectedOptions = array(
             'transform'          => false,
             'catalogue'          => 'SonataCoreBundle',
-            'choices_as_value'   => true,
+            'choices_as_values'   => true,
             'translation_domain' => 'fooTrans',
             'choices'            => array(1 => 'foo_yes', 2 => 'foo_no'),
         );
 
         if (!method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
             || !method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
-            unset($expectedOptions['choices_as_value']);
+            unset($expectedOptions['choices_as_values']);
         }
 
         $this->assertSame($expectedOptions, $resolvedOptions);
@@ -115,7 +115,7 @@ class BooleanTypeTest extends TypeTestCase
 
         $expectedOptions = array(
             'transform'          => false,
-            'choices_as_value'   => true,
+            'choices_as_values'   => true,
             'catalogue'          => 'fooTrans',
             'translation_domain' => 'fooTrans',
             'choices'            => array(1 => 'foo_yes', 2 => 'foo_no'),
@@ -123,7 +123,7 @@ class BooleanTypeTest extends TypeTestCase
 
         if (!method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
             || !method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
-            unset($expectedOptions['choices_as_value']);
+            unset($expectedOptions['choices_as_values']);
         }
 
         // "sort" trick can be remove when SF 2.3 support will be drop
