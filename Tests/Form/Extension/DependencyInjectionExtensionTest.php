@@ -50,6 +50,15 @@ class DependencyInjectionExtensionTest extends \PHPUnit_Framework_TestCase
         $f->getType('Symfony\Component\Form\Type\FormType');
     }
 
+    public function testTypeWithoutService()
+    {
+        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
+
+        $f = new DependencyInjectionExtension($container, array(), array(), array(), array());
+
+        $this->assertInstanceOf('Symfony\Component\Form\Extension\Core\Type\HiddenType', $f->getType('Symfony\Component\Form\Extension\Core\Type\HiddenType'));
+    }
+
     public function testTypeExtensionsValid()
     {
         $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
