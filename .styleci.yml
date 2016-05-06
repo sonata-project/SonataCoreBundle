@@ -11,10 +11,11 @@ enabled:
   - newline_after_open_tag
   - ordered_use
   - long_array_syntax
-  - strict
-  - strict_param
-  - php_unit_construct
-  - php_unit_strict
+# Comment strict rules for the moment. Should be uncomment later to see StyleCI PR results
+#  - strict
+#  - strict_param
+#  - php_unit_construct
+#  - php_unit_strict
 
 disabled:
   - unalign_double_arrow
