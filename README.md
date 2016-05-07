@@ -1,16 +1,28 @@
-Sonata Core Bundle
-==================
+# Sonata Core Bundle
 
-[![Build Status](https://api.travis-ci.org/sonata-project/SonataCoreBundle.png)](https://travis-ci.org/sonata-project/SonataCoreBundle)
+Symfony SonataCoreBundle
 
-Check out the documentation on [https://sonata-project.org/bundles/core/master/doc/index.html](https://sonata-project.org/bundles/core/master/doc/index.html)
+[![Latest Stable Version](https://poser.pugx.org/sonata-project/core-bundle/v/stable)](https://packagist.org/packages/sonata-project/core-bundle)
+[![Latest Unstable Version](https://poser.pugx.org/sonata-project/core-bundle/v/unstable)](https://packagist.org/packages/sonata-project/core-bundle)
+[![License](https://poser.pugx.org/sonata-project/core-bundle/license)](https://packagist.org/packages/sonata-project/core-bundle)
 
-**Google Groups**: For questions and proposals you can post on this google groups
+[![Total Downloads](https://poser.pugx.org/sonata-project/core-bundle/downloads)](https://packagist.org/packages/sonata-project/core-bundle)
+[![Monthly Downloads](https://poser.pugx.org/sonata-project/core-bundle/d/monthly)](https://packagist.org/packages/sonata-project/core-bundle)
+[![Daily Downloads](https://poser.pugx.org/sonata-project/core-bundle/d/daily)](https://packagist.org/packages/sonata-project/core-bundle)
 
-* [Sonata Users](https://groups.google.com/group/sonata-users): Only for user questions
-* [Sonata Devs](https://groups.google.com/group/sonata-devs): Only for devs
+[![Build Status](https://travis-ci.org/sonata-project/SonataCoreBundle.svg?branch=3.x)](https://travis-ci.org/sonata-project/SonataCoreBundle)
 
-License
--------
+## Documentation
 
-This bundle is available under the [MIT license](Resources/meta/LICENSE).
+Check out the documentation on the [official website](https://sonata-project.org/bundles/core).
+
+## Support
+
+For general support and questions, please use [StackOverflow](http://stackoverflow.com/questions/tagged/sonata).
+
+If you think you find a bug or you have a feature idea to propose, feel free to open a issue
+**after looking** at the [contributing guide](CONTRIBUTING.md).
+
+## License
+
+This package is available under the [MIT license](LICENSE).
