@@ -56,9 +56,9 @@ class ResizeFormListener implements EventSubscriberInterface
      */
     public function __construct($type, array $typeOptions = array(), $resizeOnBind = false, $preBindDataCallback = null)
     {
-        $this->type                = $type;
-        $this->resizeOnBind        = $resizeOnBind;
-        $this->typeOptions         = $typeOptions;
+        $this->type = $type;
+        $this->resizeOnBind = $resizeOnBind;
+        $this->typeOptions = $typeOptions;
         $this->preBindDataCallback = $preBindDataCallback;
     }
 
@@ -68,9 +68,9 @@ class ResizeFormListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            FormEvents::PRE_SET_DATA    => 'preSetData',
-            FormEvents::PRE_SUBMIT      => 'preBind',
-            FormEvents::SUBMIT          => 'onBind',
+            FormEvents::PRE_SET_DATA => 'preSetData',
+            FormEvents::PRE_SUBMIT => 'preBind',
+            FormEvents::SUBMIT => 'onBind',
         );
     }
 
@@ -101,7 +101,7 @@ class ResizeFormListener implements EventSubscriberInterface
         foreach ($data as $name => $value) {
             $options = array_merge($this->typeOptions, array(
                 'property_path' => '['.$name.']',
-                'data'          => $value,
+                'data' => $value,
             ));
 
             $form->add($name, $this->type, $options);

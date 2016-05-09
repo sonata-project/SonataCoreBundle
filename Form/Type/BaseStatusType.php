@@ -45,10 +45,10 @@ abstract class BaseStatusType extends AbstractType
      */
     public function __construct($class, $getter, $name, $flip = false)
     {
-        $this->class  = $class;
+        $this->class = $class;
         $this->getter = $getter;
-        $this->name   = $name;
-        $this->flip   = $flip;
+        $this->name = $name;
+        $this->flip = $flip;
     }
 
     /**

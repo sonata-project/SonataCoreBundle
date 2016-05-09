@@ -39,23 +39,23 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
      */
     public static function getSubscribingMethods()
     {
-        $type    = static::getType();
+        $type = static::getType();
         $formats = array('json', 'xml', 'yml');
         $methods = array();
 
         foreach ($formats as $format) {
             $methods[] = array(
                 'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
-                'format'    => $format,
-                'type'      => $type,
-                'method'    => 'serializeObjectToId',
+                'format' => $format,
+                'type' => $type,
+                'method' => 'serializeObjectToId',
             );
 
             $methods[] = array(
                 'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
-                'format'    => $format,
-                'type'      => $type,
-                'method'    => 'deserializeObjectFromId',
+                'format' => $format,
+                'type' => $type,
+                'method' => 'deserializeObjectFromId',
             );
         }
 

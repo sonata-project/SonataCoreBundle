@@ -30,10 +30,10 @@ class DateRangeTypeTest extends TypeTestCase
 
         $this->assertSame(
             array(
-                'field_options'       => array(),
+                'field_options' => array(),
                 'field_options_start' => array(),
-                'field_options_end'   => array(),
-                'field_type'          => 'date',
+                'field_options_end' => array(),
+                'field_type' => 'date',
             ), $options);
     }
 }
