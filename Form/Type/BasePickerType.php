@@ -105,25 +105,25 @@ abstract class BasePickerType extends AbstractType
     protected function getCommonDefaults()
     {
         return array(
-            'widget'                   => 'single_text',
-            'datepicker_use_button'    => true,
-            'dp_pick_time'             => true,
-            'dp_use_current'           => true,
-            'dp_min_date'              => '1/1/1900',
-            'dp_max_date'              => null,
-            'dp_show_today'            => true,
-            'dp_language'              => $this->locale,
-            'dp_default_date'          => '',
-            'dp_disabled_dates'        => array(),
-            'dp_enabled_dates'         => array(),
-            'dp_icons'                 => array(
+            'widget' => 'single_text',
+            'datepicker_use_button' => true,
+            'dp_pick_time' => true,
+            'dp_use_current' => true,
+            'dp_min_date' => '1/1/1900',
+            'dp_max_date' => null,
+            'dp_show_today' => true,
+            'dp_language' => $this->locale,
+            'dp_default_date' => '',
+            'dp_disabled_dates' => array(),
+            'dp_enabled_dates' => array(),
+            'dp_icons' => array(
                 'time' => 'fa fa-clock-o',
                 'date' => 'fa fa-calendar',
-                'up'   => 'fa fa-chevron-up',
+                'up' => 'fa fa-chevron-up',
                 'down' => 'fa fa-chevron-down',
             ),
-            'dp_use_strict'            => false,
-            'dp_side_by_side'          => false,
+            'dp_use_strict' => false,
+            'dp_side_by_side' => false,
             'dp_days_of_week_disabled' => array(),
         );
     }

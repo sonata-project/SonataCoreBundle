@@ -70,12 +70,12 @@ class DependencyInjectionExtension implements FormExtensionInterface
      */
     public function __construct(ContainerInterface $container, array $typeServiceIds, array $typeExtensionServiceIds, array $guesserServiceIds, array $mappingTypes = array(), array $extensionTypes = array())
     {
-        $this->container               = $container;
-        $this->typeServiceIds          = $typeServiceIds;
+        $this->container = $container;
+        $this->typeServiceIds = $typeServiceIds;
         $this->typeExtensionServiceIds = $typeExtensionServiceIds;
-        $this->guesserServiceIds       = $guesserServiceIds;
+        $this->guesserServiceIds = $guesserServiceIds;
 
-        $this->mappingTypes          = $mappingTypes;
+        $this->mappingTypes = $mappingTypes;
         $this->mappingExtensionTypes = $extensionTypes;
 
         $this->reverseMappingTypes = array_flip($mappingTypes);
@@ -162,7 +162,7 @@ class DependencyInjectionExtension implements FormExtensionInterface
     {
         if (!$this->guesserLoaded) {
             $this->guesserLoaded = true;
-            $guessers            = array();
+            $guessers = array();
 
             foreach ($this->guesserServiceIds as $serviceId) {
                 if ($this->container->has($serviceId)) {

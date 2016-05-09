@@ -37,12 +37,12 @@ class ConfigurationTest extends AbstractConfigurationTestCase
             array('form_type' => 'horizontal'), // this should be overwritten
             array('form_type' => 'standard'),    // by this during the merge
         ), array(
-            'form_type'    => 'standard',
+            'form_type' => 'standard',
             'flashmessage' => array(),
-            'form'         => array(
+            'form' => array(
                 'mapping' => array(
-                    'enabled'   => true,
-                    'type'      => array(),
+                    'enabled' => true,
+                    'type' => array(),
                     'extension' => array(),
                 ),
             ),
@@ -54,7 +54,7 @@ class ConfigurationTest extends AbstractConfigurationTestCase
         $this->assertProcessedConfigurationEquals(array(
             array('form' => array(
                 'mapping' => array(
-                    'type'      => array(
+                    'type' => array(
                         'foo' => 'Foo\Bar',
                     ),
                     'extension' => array(
@@ -65,10 +65,10 @@ class ConfigurationTest extends AbstractConfigurationTestCase
                 ),
             )),
         ), array(
-            'form'         => array(
+            'form' => array(
                 'mapping' => array(
-                    'enabled'   => true,
-                    'type'      => array(
+                    'enabled' => true,
+                    'type' => array(
                         'foo' => 'Foo\Bar',
                     ),
                     'extension' => array(
@@ -78,7 +78,7 @@ class ConfigurationTest extends AbstractConfigurationTestCase
                     ),
                 ),
             ),
-            'form_type'    => 'standard',
+            'form_type' => 'standard',
             'flashmessage' => array(),
         ));
     }
@@ -88,14 +88,14 @@ class ConfigurationTest extends AbstractConfigurationTestCase
         $this->assertProcessedConfigurationEquals(array(
             array(),
         ), array(
-            'form'         => array(
+            'form' => array(
                 'mapping' => array(
-                    'enabled'   => true,
-                    'type'      => array(),
+                    'enabled' => true,
+                    'type' => array(),
                     'extension' => array(),
                 ),
             ),
-            'form_type'    => 'standard',
+            'form_type' => 'standard',
             'flashmessage' => array(),
         ));
     }

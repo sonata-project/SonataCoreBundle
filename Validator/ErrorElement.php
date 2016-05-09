@@ -76,12 +76,12 @@ class ErrorElement
         if (!($context instanceof LegacyExecutionContextInterface) && !($context instanceof ExecutionContextInterface)) {
             throw new \InvalidArgumentException(sprintf('Argument 3 passed to %s::__construct() must be an instance of Symfony\Component\Validator\ExecutionContextInterface or Symfony\Component\Validator\Context\ExecutionContextInterface.', get_class($this)));
         }
-        $this->subject                    = $subject;
-        $this->context                    = $context;
-        $this->group                      = $group;
+        $this->subject = $subject;
+        $this->context = $context;
+        $this->group = $group;
         $this->constraintValidatorFactory = $constraintValidatorFactory;
 
-        $this->current          = '';
+        $this->current = '';
         $this->basePropertyPath = $this->context->getPropertyPath();
     }
 
@@ -124,7 +124,7 @@ class ErrorElement
      */
     public function with($name, $key = false)
     {
-        $key           = $key ? $name.'.'.$key : $name;
+        $key = $key ? $name.'.'.$key : $name;
         $this->stack[] = $key;
 
         $this->current = implode('.', $this->stack);
@@ -239,9 +239,9 @@ class ErrorElement
     public function addViolation($message, $parameters = array(), $value = null)
     {
         if (is_array($message)) {
-            $value      = isset($message[2]) ? $message[2] : $value;
+            $value = isset($message[2]) ? $message[2] : $value;
             $parameters = isset($message[1]) ? (array) $message[1] : array();
-            $message    = isset($message[0]) ? $message[0] : 'error';
+            $message = isset($message[0]) ? $message[0] : 'error';
         }
 
         $subPath = (string) $this->getCurrentPropertyPath();

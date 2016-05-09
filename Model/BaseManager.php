@@ -40,7 +40,7 @@ abstract class BaseManager implements ManagerInterface
     public function __construct($class, ManagerRegistry $registry)
     {
         $this->registry = $registry;
-        $this->class    = $class;
+        $this->class = $class;
     }
 
     /**
