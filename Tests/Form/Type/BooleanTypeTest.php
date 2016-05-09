@@ -76,17 +76,17 @@ class BooleanTypeTest extends TypeTestCase
 
         $resolvedOptions = $optionResolver->resolve(array(
             'translation_domain' => 'fooTrans',
-            'choices'            => array(1 => 'foo_yes', 2 => 'foo_no'),
+            'choices' => array(1 => 'foo_yes', 2 => 'foo_no'),
         ));
 
         $type->buildForm($builder, $resolvedOptions);
 
         $expectedOptions = array(
-            'transform'          => false,
-            'catalogue'          => 'SonataCoreBundle',
-            'choices_as_values'  => true,
+            'transform' => false,
+            'catalogue' => 'SonataCoreBundle',
+            'choices_as_values' => true,
             'translation_domain' => 'fooTrans',
-            'choices'            => array(1 => 'foo_yes', 2 => 'foo_no'),
+            'choices' => array(1 => 'foo_yes', 2 => 'foo_no'),
         );
 
         if (!method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
@@ -108,17 +108,17 @@ class BooleanTypeTest extends TypeTestCase
 
         $resolvedOptions = $optionResolver->resolve(array(
             'catalogue' => 'fooTrans',
-            'choices'   => array(1 => 'foo_yes', 2 => 'foo_no'),
+            'choices' => array(1 => 'foo_yes', 2 => 'foo_no'),
         ));
 
         $type->buildForm($builder, $resolvedOptions);
 
         $expectedOptions = array(
-            'transform'          => false,
-            'choices_as_values'  => true,
-            'catalogue'          => 'fooTrans',
+            'transform' => false,
+            'choices_as_values' => true,
+            'catalogue' => 'fooTrans',
             'translation_domain' => 'fooTrans',
-            'choices'            => array(1 => 'foo_yes', 2 => 'foo_no'),
+            'choices' => array(1 => 'foo_yes', 2 => 'foo_no'),
         );
 
         if (!method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')

@@ -61,12 +61,12 @@ class CollectionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'modifiable'             => false,
-            'type'                   => 'text',
-            'type_options'           => array(),
+            'modifiable' => false,
+            'type' => 'text',
+            'type_options' => array(),
             'pre_bind_data_callback' => null,
-            'btn_add'                => 'link_add',
-            'btn_catalogue'          => 'SonataCoreBundle',
+            'btn_add' => 'link_add',
+            'btn_catalogue' => 'SonataCoreBundle',
         ));
     }
 

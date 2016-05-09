@@ -177,7 +177,7 @@ class ColorSelectorTypeTest extends TypeTestCase
                 '#9ACD32' => 'yellowgreen',
             ),
             'translation_domain' => 'SonataCoreBundle',
-            'preferred_choices'  => array(
+            'preferred_choices' => array(
                 '#000000',
                 '#0000FF',
                 '#808080',
