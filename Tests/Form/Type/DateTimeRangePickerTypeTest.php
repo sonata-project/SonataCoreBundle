@@ -30,10 +30,10 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
 
         $this->assertSame(
             array(
-                'field_options'       => array(),
+                'field_options' => array(),
                 'field_options_start' => array(),
-                'field_options_end'   => array(),
-                'field_type'          => 'sonata_type_datetime_picker',
+                'field_options_end' => array(),
+                'field_type' => 'sonata_type_datetime_picker',
             ), $options);
     }
 }

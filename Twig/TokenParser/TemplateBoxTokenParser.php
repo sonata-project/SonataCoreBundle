@@ -34,7 +34,7 @@ class TemplateBoxTokenParser extends \Twig_TokenParser
      */
     public function __construct($enabled, TranslatorInterface $translator)
     {
-        $this->enabled    = $enabled;
+        $this->enabled = $enabled;
         $this->translator = $translator;
     }
 

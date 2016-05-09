@@ -49,19 +49,19 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->session      = $this->getSession();
-        $this->translator   = $this->getTranslator();
+        $this->session = $this->getSession();
+        $this->translator = $this->getTranslator();
         $this->flashManager = $this->getFlashManager(array(
             'success' => array(
-                'my_bundle_success'        => array('domain' => 'MySuccessBundle'),
+                'my_bundle_success' => array('domain' => 'MySuccessBundle'),
                 'my_second_bundle_success' => array('domain' => 'SonataCoreBundle'),
             ),
             'warning' => array(
-                'my_bundle_warning'        => array('domain' => 'MyWarningBundle'),
+                'my_bundle_warning' => array('domain' => 'MyWarningBundle'),
                 'my_second_bundle_warning' => array('domain' => 'SonataCoreBundle'),
             ),
             'error' => array(
-                'my_bundle_error'        => array('domain' => 'MyErrorBundle'),
+                'my_bundle_error' => array('domain' => 'MyErrorBundle'),
                 'my_second_bundle_error' => array('domain' => 'SonataCoreBundle'),
             ),
         ));
@@ -101,15 +101,15 @@ class FlashManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(3, $types);
         $this->assertSame(array(
             'success' => array(
-                'my_bundle_success'        => array('domain' => 'MySuccessBundle'),
+                'my_bundle_success' => array('domain' => 'MySuccessBundle'),
                 'my_second_bundle_success' => array('domain' => 'SonataCoreBundle'),
             ),
             'warning' => array(
-                'my_bundle_warning'        => array('domain' => 'MyWarningBundle'),
+                'my_bundle_warning' => array('domain' => 'MyWarningBundle'),
                 'my_second_bundle_warning' => array('domain' => 'SonataCoreBundle'),
             ),
             'error' => array(
-                'my_bundle_error'        => array('domain' => 'MyErrorBundle'),
+                'my_bundle_error' => array('domain' => 'MyErrorBundle'),
                 'my_second_bundle_error' => array('domain' => 'SonataCoreBundle'),
             ),
         ), $types);
