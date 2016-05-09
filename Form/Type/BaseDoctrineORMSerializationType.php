@@ -74,7 +74,7 @@ class BaseDoctrineORMSerializationType extends AbstractType
     {
         $this->metadataFactory = $metadataFactory;
         $this->registry = $registry;
-        $this->name  = $name;
+        $this->name = $name;
         $this->class = $class;
         $this->group = $group;
         $this->identifierOverwrite = $identifierOverwrite;

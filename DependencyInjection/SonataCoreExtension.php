@@ -121,19 +121,19 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
     {
         $mergedConfig = array_merge_recursive($config['flashmessage'], array(
             'success' => array('types' => array(
-                'success'              => array('domain' => 'SonataCoreBundle'),
+                'success' => array('domain' => 'SonataCoreBundle'),
                 'sonata_flash_success' => array('domain' => 'SonataAdminBundle'),
-                'sonata_user_success'  => array('domain' => 'SonataUserBundle'),
-                'fos_user_success'     => array('domain' => 'FOSUserBundle'),
+                'sonata_user_success' => array('domain' => 'SonataUserBundle'),
+                'fos_user_success' => array('domain' => 'FOSUserBundle'),
             )),
             'warning' => array('types' => array(
-                'warning'           => array('domain' => 'SonataCoreBundle'),
+                'warning' => array('domain' => 'SonataCoreBundle'),
                 'sonata_flash_info' => array('domain' => 'SonataAdminBundle'),
             )),
             'danger' => array('types' => array(
-                'error'              => array('domain' => 'SonataCoreBundle'),
+                'error' => array('domain' => 'SonataCoreBundle'),
                 'sonata_flash_error' => array('domain' => 'SonataAdminBundle'),
-                'sonata_user_error'  => array('domain' => 'SonataUserBundle'),
+                'sonata_user_error' => array('domain' => 'SonataUserBundle'),
             )),
         ));
 

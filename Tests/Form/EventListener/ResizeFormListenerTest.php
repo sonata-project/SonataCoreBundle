@@ -27,7 +27,7 @@ class ResizeFormListenerTest extends \PHPUnit_Framework_TestCase
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
 
         $value = array('value1', 'value2');
-        $data  = array($value);
+        $data = array($value);
 
         $event = new FormEvent($form, $data);
 
