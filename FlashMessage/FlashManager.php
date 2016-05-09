@@ -52,9 +52,9 @@ class FlashManager implements StatusClassRendererInterface
      */
     public function __construct(SessionInterface $session, TranslatorInterface $translator, array $types, array $cssClasses)
     {
-        $this->session    = $session;
+        $this->session = $session;
         $this->translator = $translator;
-        $this->types      = $types;
+        $this->types = $types;
         $this->cssClasses = $cssClasses;
     }
 

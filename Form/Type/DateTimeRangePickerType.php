@@ -26,10 +26,10 @@ class DateTimeRangePickerType extends DateTimeRangeType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'field_options'       => array(),
+            'field_options' => array(),
             'field_options_start' => array(),
-            'field_options_end'   => array(),
-            'field_type'          => 'sonata_type_datetime_picker',
+            'field_options_end' => array(),
+            'field_type' => 'sonata_type_datetime_picker',
         ));
     }
 

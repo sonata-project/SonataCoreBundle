@@ -37,7 +37,7 @@ class TemplateBoxNode extends \Twig_Node
      */
     public function __construct(\Twig_Node_Expression $message, \Twig_Node_Expression $translationBundle = null, $enabled, TranslatorInterface $translator, $lineno, $tag = null)
     {
-        $this->enabled    = $enabled;
+        $this->enabled = $enabled;
         $this->translator = $translator;
 
         parent::__construct(array('message' => $message, 'translationBundle' => $translationBundle), array(), $lineno, $tag);

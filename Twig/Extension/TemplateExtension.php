@@ -41,8 +41,8 @@ class TemplateExtension extends \Twig_Extension
      */
     public function __construct($debug, TranslatorInterface $translator, AdapterInterface $modelAdapter)
     {
-        $this->debug        = $debug;
-        $this->translator   = $translator;
+        $this->debug = $debug;
+        $this->translator = $translator;
         $this->modelAdapter = $modelAdapter;
     }
 

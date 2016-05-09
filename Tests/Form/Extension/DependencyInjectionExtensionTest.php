@@ -38,11 +38,11 @@ class DependencyInjectionExtensionTest extends \PHPUnit_Framework_TestCase
         );
 
         $typeExtensionServiceIds = array();
-        $guesserServiceIds       = array();
-        $mappingTypes            = array(
+        $guesserServiceIds = array();
+        $mappingTypes = array(
             'form' => 'Symfony\Component\Form\Type\FormType',
         );
-        $extensionTypes          = array();
+        $extensionTypes = array();
 
         $f = new DependencyInjectionExtension($container, $typeServiceIds, $typeExtensionServiceIds, $guesserServiceIds, $mappingTypes, $extensionTypes);
 
@@ -77,11 +77,11 @@ class DependencyInjectionExtensionTest extends \PHPUnit_Framework_TestCase
                 'symfony.form.type.form_extension',
             ),
         );
-        $guesserServiceIds       = array();
-        $mappingTypes            = array(
+        $guesserServiceIds = array();
+        $mappingTypes = array(
             'form' => 'Symfony\Component\Form\Type\FormType',
         );
-        $extensionTypes          = array(
+        $extensionTypes = array(
             'form' => array(
                 'sonata.form.type.form_extension',
             ),

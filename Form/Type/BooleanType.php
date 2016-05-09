@@ -54,9 +54,9 @@ class BooleanType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $choices =  array(
+        $choices = array(
             self::TYPE_YES => 'label_type_yes',
-            self::TYPE_NO  => 'label_type_no',
+            self::TYPE_NO => 'label_type_no',
         );
 
         $defaultOptions = array(
