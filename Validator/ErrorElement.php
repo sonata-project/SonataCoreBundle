@@ -149,22 +149,6 @@ class ErrorElement
     }
 
     /**
-     * @param \Symfony\Component\Validator\Constraint $constraint
-     */
-    protected function validate(Constraint $constraint)
-    {
-        $subPath = (string) $this->getCurrentPropertyPath();
-        if ($this->context instanceof LegacyExecutionContextInterface) {
-            $this->context->validateValue($this->getValue(), $constraint, $subPath, $this->group);
-        } else {
-            $this->context->getValidator()
-                ->inContext($this->context)
-                ->atPath($subPath)
-                ->validate($this->getValue(), $constraint, array($this->group));
-        }
-    }
-
-    /**
      * @return string
      */
     public function getFullPropertyPath()
@@ -177,56 +161,11 @@ class ErrorElement
     }
 
     /**
-     * Return the value linked to.
-     *
-     * @return mixed
-     */
-    protected function getValue()
-    {
-        if ($this->current === '') {
-            return $this->subject;
-        }
-
-        $propertyAccessor = PropertyAccess::createPropertyAccessor();
-
-        return $propertyAccessor->getValue($this->subject, $this->getCurrentPropertyPath());
-    }
-
-    /**
      * @return mixed
      */
     public function getSubject()
     {
         return $this->subject;
-    }
-
-    /**
-     * @param string $name
-     * @param array  $options
-     *
-     * @return
-     */
-    protected function newConstraint($name, array $options = array())
-    {
-        if (strpos($name, '\\') !== false && class_exists($name)) {
-            $className = (string) $name;
-        } else {
-            $className = 'Symfony\\Component\\Validator\\Constraints\\'.$name;
-        }
-
-        return new $className($options);
-    }
-
-    /**
-     * @return null|PropertyPath
-     */
-    protected function getCurrentPropertyPath()
-    {
-        if (!isset($this->propertyPaths[$this->current])) {
-            return; //global error
-        }
-
-        return $this->propertyPaths[$this->current];
     }
 
     /**
@@ -267,5 +206,66 @@ class ErrorElement
     public function getErrors()
     {
         return $this->errors;
+    }
+
+    /**
+     * @param \Symfony\Component\Validator\Constraint $constraint
+     */
+    protected function validate(Constraint $constraint)
+    {
+        $subPath = (string) $this->getCurrentPropertyPath();
+        if ($this->context instanceof LegacyExecutionContextInterface) {
+            $this->context->validateValue($this->getValue(), $constraint, $subPath, $this->group);
+        } else {
+            $this->context->getValidator()
+                ->inContext($this->context)
+                ->atPath($subPath)
+                ->validate($this->getValue(), $constraint, array($this->group));
+        }
+    }
+
+    /**
+     * Return the value linked to.
+     *
+     * @return mixed
+     */
+    protected function getValue()
+    {
+        if ($this->current === '') {
+            return $this->subject;
+        }
+
+        $propertyAccessor = PropertyAccess::createPropertyAccessor();
+
+        return $propertyAccessor->getValue($this->subject, $this->getCurrentPropertyPath());
+    }
+
+    /**
+     * @param string $name
+     * @param array  $options
+     *
+     * @return
+     */
+    protected function newConstraint($name, array $options = array())
+    {
+        if (strpos($name, '\\') !== false && class_exists($name)) {
+            $className = (string) $name;
+        } else {
+            $className = 'Symfony\\Component\\Validator\\Constraints\\'.$name;
+        }
+
+        return new $className($options);
+    }
+
+    /**
+     * @return null|PropertyPath
+     */
+    protected function getCurrentPropertyPath()
+    {
+        if (!isset($this->propertyPaths[$this->current])) {
+            return; //global error
+        }
+
+        return $this->propertyPaths[$this->current];
     }
 }
