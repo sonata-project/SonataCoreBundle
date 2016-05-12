@@ -27,6 +27,14 @@ class SonataListFormMappingCommand extends ContainerAwareCommand
     /**
      * {@inheritdoc}
      */
+    public function isEnabled()
+    {
+        return Kernel::MAJOR_VERSION !== 3;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function configure()
     {
         $this
@@ -35,14 +43,6 @@ class SonataListFormMappingCommand extends ContainerAwareCommand
             ->setDescription(
                 'Get information on the current form mapping'
             );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isEnabled()
-    {
-        return Kernel::MAJOR_VERSION !== 3;
     }
 
     /**

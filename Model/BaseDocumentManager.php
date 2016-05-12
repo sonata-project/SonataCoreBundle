@@ -22,22 +22,6 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 abstract class BaseDocumentManager extends BaseManager
 {
     /**
-     * {@inheritdoc}
-     */
-    public function getConnection()
-    {
-        return $this->getObjectManager()->getConnection();
-    }
-
-    /**
-     * @return DocumentManager
-     */
-    public function getDocumentManager()
-    {
-        return $this->getObjectManager();
-    }
-
-    /**
      * Make sure the code is compatible with legacy code.
      *
      * @param $name
@@ -51,5 +35,21 @@ abstract class BaseDocumentManager extends BaseManager
         }
 
         throw new \RuntimeException(sprintf('The property %s does not exists', $name));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getConnection()
+    {
+        return $this->getObjectManager()->getConnection();
+    }
+
+    /**
+     * @return DocumentManager
+     */
+    public function getDocumentManager()
+    {
+        return $this->getObjectManager();
     }
 }
