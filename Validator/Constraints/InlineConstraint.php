@@ -53,6 +53,36 @@ class InlineConstraint extends Constraint
     /**
      * {@inheritdoc}
      */
+    public function __sleep()
+    {
+        if (!is_string($this->service) || !is_string($this->method)) {
+            return array();
+        }
+
+        // Initialize "groups" option if it is not set
+        $this->groups;
+
+        return array_keys(get_object_vars($this));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __wakeup()
+    {
+        if (is_string($this->service) && is_string($this->method)) {
+            return;
+        }
+
+        $this->method = function () {
+        };
+
+        $this->serializingWarning = true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function validatedBy()
     {
         return 'sonata.core.validator.inline';
@@ -115,35 +145,5 @@ class InlineConstraint extends Constraint
     public function getSerializingWarning()
     {
         return $this->serializingWarning;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __sleep()
-    {
-        if (!is_string($this->service) || !is_string($this->method)) {
-            return array();
-        }
-
-        // Initialize "groups" option if it is not set
-        $this->groups;
-
-        return array_keys(get_object_vars($this));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __wakeup()
-    {
-        if (is_string($this->service) && is_string($this->method)) {
-            return;
-        }
-
-        $this->method = function () {
-        };
-
-        $this->serializingWarning = true;
     }
 }
