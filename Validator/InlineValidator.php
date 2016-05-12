@@ -39,21 +39,6 @@ class InlineValidator extends ConstraintValidator
     }
 
     /**
-     * @param mixed $value
-     *
-     * @return ErrorElement
-     */
-    protected function getErrorElement($value)
-    {
-        return new ErrorElement(
-            $value,
-            $this->constraintValidatorFactory,
-            $this->context,
-            $this->context->getGroup()
-        );
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function validate($value, Constraint $constraint)
@@ -71,5 +56,20 @@ class InlineValidator extends ConstraintValidator
         }
 
         call_user_func($function, $this->getErrorElement($value), $value);
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return ErrorElement
+     */
+    protected function getErrorElement($value)
+    {
+        return new ErrorElement(
+            $value,
+            $this->constraintValidatorFactory,
+            $this->context,
+            $this->context->getGroup()
+        );
     }
 }

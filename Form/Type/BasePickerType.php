@@ -27,11 +27,6 @@ use Symfony\Component\Translation\TranslatorInterface;
 abstract class BasePickerType extends AbstractType
 {
     /**
-     * @var MomentFormatConverter
-     */
-    private $formatConverter;
-
-    /**
      * @var TranslatorInterface
      */
     protected $translator;
@@ -40,6 +35,10 @@ abstract class BasePickerType extends AbstractType
      * @var string
      */
     protected $locale;
+    /**
+     * @var MomentFormatConverter
+     */
+    private $formatConverter;
 
     /**
      * @param MomentFormatConverter $formatConverter

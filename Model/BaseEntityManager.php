@@ -21,22 +21,6 @@ use Doctrine\ORM\EntityManager;
 abstract class BaseEntityManager extends BaseManager
 {
     /**
-     * {@inheritdoc}
-     */
-    public function getConnection()
-    {
-        return $this->getEntityManager()->getConnection();
-    }
-
-    /**
-     * @return EntityManager
-     */
-    public function getEntityManager()
-    {
-        return $this->getObjectManager();
-    }
-
-    /**
      * Make sure the code is compatible with legacy code.
      *
      * @param $name
@@ -50,5 +34,21 @@ abstract class BaseEntityManager extends BaseManager
         }
 
         throw new \RuntimeException(sprintf('The property %s does not exists', $name));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getConnection()
+    {
+        return $this->getEntityManager()->getConnection();
+    }
+
+    /**
+     * @return EntityManager
+     */
+    public function getEntityManager()
+    {
+        return $this->getObjectManager();
     }
 }

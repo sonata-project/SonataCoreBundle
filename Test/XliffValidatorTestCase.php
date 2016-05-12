@@ -32,6 +32,23 @@ abstract class XliffValidatorTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @dataProvider getXliffPaths
+     */
+    public function testXliff($path)
+    {
+        $this->validatePath($path);
+
+        if (count($this->errors) > 0) {
+            $this->fail(sprintf('Unable to parse xliff files: %s', implode(', ', $this->errors)));
+        }
+    }
+
+    /**
+     * @return array List all path to validate xliff
+     */
+    abstract public function getXliffPaths();
+
+    /**
      * @param string $file The path to the xliff file
      */
     protected function validateXliff($file)
@@ -55,21 +72,4 @@ abstract class XliffValidatorTestCase extends \PHPUnit_Framework_TestCase
             $this->validateXliff($file);
         }
     }
-
-    /**
-     * @dataProvider getXliffPaths
-     */
-    public function testXliff($path)
-    {
-        $this->validatePath($path);
-
-        if (count($this->errors) > 0) {
-            $this->fail(sprintf('Unable to parse xliff files: %s', implode(', ', $this->errors)));
-        }
-    }
-
-    /**
-     * @return array List all path to validate xliff
-     */
-    abstract public function getXliffPaths();
 }
