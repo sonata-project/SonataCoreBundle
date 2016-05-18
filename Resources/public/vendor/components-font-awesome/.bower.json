@@ -7,6 +7,7 @@
   },
   "main": [
     "css/font-awesome.css",
+    "css/font-awesome.css.map",
     "scss/font-awesome.scss",
     "fonts/fontawesome-webfont.eot",
     "fonts/fontawesome-webfont.woff",
@@ -24,15 +25,15 @@
     "composer.json"
   ],
   "homepage": "https://github.com/components/font-awesome",
-  "version": "4.5.0",
-  "_release": "4.5.0",
+  "version": "4.6.3",
+  "_release": "4.6.3",
   "_resolution": {
     "type": "version",
-    "tag": "4.5.0",
-    "commit": "069663a8419f9db90f9bec71e71ed4bb9d28d6ee"
+    "tag": "4.6.3",
+    "commit": "daa3ef598620217085dcb13ad11149e89a20a925"
   },
-  "_source": "git://github.com/components/font-awesome.git",
-  "_target": "^4.5",
+  "_source": "https://github.com/components/font-awesome.git",
+  "_target": "^4.6.3",
   "_originalSource": "components-font-awesome",
   "_direct": true
 }
