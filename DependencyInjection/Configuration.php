@@ -38,6 +38,15 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->arrayNode('exporter')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('default_writers')
+                            ->defaultValue(array('csv', 'json', 'xls', 'xml'))
+                            ->prototype('scalar')->end()
+                        ->end()
+                    ->end()
+                ->end()
                 ->arrayNode('form')
                     ->addDefaultsIfNotSet()
                     ->children()
