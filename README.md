@@ -10,7 +10,9 @@ Symfony SonataCoreBundle
 [![Monthly Downloads](https://poser.pugx.org/sonata-project/core-bundle/d/monthly)](https://packagist.org/packages/sonata-project/core-bundle)
 [![Daily Downloads](https://poser.pugx.org/sonata-project/core-bundle/d/daily)](https://packagist.org/packages/sonata-project/core-bundle)
 
-[![Build Status](https://travis-ci.org/sonata-project/SonataCoreBundle.svg?branch=3.x)](https://travis-ci.org/sonata-project/SonataCoreBundle)
+3.x status: [![Build Status](https://travis-ci.org/sonata-project/SonataCoreBundle.svg?branch=3.x)](https://travis-ci.org/sonata-project/SonataCoreBundle)
+
+master status: [![Build Status](https://travis-ci.org/sonata-project/SonataCoreBundle.svg?branch=master)](https://travis-ci.org/sonata-project/SonataCoreBundle)
 
 ## Documentation
 
