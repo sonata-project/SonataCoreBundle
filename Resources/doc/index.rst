@@ -21,4 +21,5 @@ Reference Guide
    reference/api
    reference/conditional_validation
    reference/command
+   reference/testing
 
