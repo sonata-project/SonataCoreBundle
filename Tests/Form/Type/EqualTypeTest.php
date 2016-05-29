@@ -24,7 +24,9 @@ class EqualTypeTest extends TypeTestCase
 
         $mock->expects($this->exactly(2))
             ->method('trans')
-            ->will($this->returnCallback(function ($arg) { return $arg; })
+            ->will($this->returnCallback(function ($arg) {
+                return $arg;
+            })
             );
 
         $type = new EqualType($mock);
