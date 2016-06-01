@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [3.0.1]
+## [3.0.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.0.0...3.0.1) - 2016-06-01
 ### Changed
 - Updated Bootstrap from version 3.3.5 to version 3.3.6
 - Updated Font-awesome from version 4.5.0 to version 4.6.3
