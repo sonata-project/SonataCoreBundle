@@ -79,8 +79,6 @@ final class InlineValidatorTest extends \PHPUnit_Framework_TestCase
 
     public function testValidateWithConstraintGetServiceIsString()
     {
-        $this->setExpectedException('Symfony\Component\Validator\Exception\ValidatorException', 'foo is equal to foo');
-
         $constraint = $this->getMock('Symfony\Component\Validator\Constraint', array(
             'isClosure',
             'getService',
@@ -108,13 +106,13 @@ final class InlineValidatorTest extends \PHPUnit_Framework_TestCase
 
         $inlineValidator->initialize($this->context);
 
+        $this->setExpectedException('Symfony\Component\Validator\Exception\ValidatorException', 'foo is equal to foo');
+
         $inlineValidator->validate('foo', $constraint);
     }
 
     public function testValidateWithConstraintGetServiceIsNotString()
     {
-        $this->setExpectedException('Symfony\Component\Validator\Exception\ValidatorException', 'foo is equal to foo');
-
         $constraint = $this->getMock('Symfony\Component\Validator\Constraint', array(
             'isClosure',
             'getService',
@@ -136,6 +134,8 @@ final class InlineValidatorTest extends \PHPUnit_Framework_TestCase
         $inlineValidator = new InlineValidator($this->container, $this->constraintValidatorFactory);
 
         $inlineValidator->initialize($this->context);
+
+        $this->setExpectedException('Symfony\Component\Validator\Exception\ValidatorException', 'foo is equal to foo');
 
         $inlineValidator->validate('foo', $constraint);
     }
