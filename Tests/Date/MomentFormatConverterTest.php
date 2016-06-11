@@ -14,9 +14,6 @@ namespace Sonata\CoreBundle\Tests\Date;
 use Sonata\CoreBundle\Date\MomentFormatConverter;
 
 /**
- * Class MomentFormatConverterTest.
- *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 class MomentFormatConverterTest extends \PHPUnit_Framework_TestCase

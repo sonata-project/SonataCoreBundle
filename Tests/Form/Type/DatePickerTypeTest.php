@@ -15,9 +15,6 @@ use Sonata\CoreBundle\Date\MomentFormatConverter;
 use Sonata\CoreBundle\Form\Type\DatePickerType;
 
 /**
- * Class DatePickerTypeTest.
- *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 class DatePickerTypeTest extends \PHPUnit_Framework_TestCase

@@ -19,8 +19,6 @@ use Sonata\CoreBundle\SonataCoreBundle;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 /**
- * Test for SonataCoreBundle.
- *
  * @author Ahmet Akbana <ahmetakbana@gmail.com>
  */
 final class SonataCoreBundleTest extends \PHPUnit_Framework_TestCase

@@ -14,8 +14,6 @@ namespace Sonata\CoreBundle\Test\Validator\Constraints;
 use Sonata\CoreBundle\Validator\Constraints\InlineConstraint;
 
 /**
- * Test for InlineConstraint.
- *
  * @author Andrej Hudec <pulzarraider@gmail.com>
  */
 class InlineConstraintTest extends \PHPUnit_Framework_TestCase

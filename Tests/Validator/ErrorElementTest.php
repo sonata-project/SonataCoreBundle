@@ -18,8 +18,6 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\ExecutionContextInterface as LegacyExecutionContextInterface;
 
 /**
- * Test for ErrorElement.
- *
  * @author Andrej Hudec <pulzarraider@gmail.com>
  */
 class ErrorElementTest extends \PHPUnit_Framework_TestCase
