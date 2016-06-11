@@ -14,9 +14,6 @@ namespace Sonata\CoreBundle\Tests\Model;
 use Sonata\CoreBundle\Model\Metadata;
 
 /**
- * Class MetadataTest.
- *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 class MetadataTest extends \PHPUnit_Framework_TestCase

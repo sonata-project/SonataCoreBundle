@@ -15,9 +15,6 @@ use Sonata\CoreBundle\Form\EventListener\ResizeFormListener;
 use Symfony\Component\Form\FormEvent;
 
 /**
- * Class ResizeFormListenerTest.
- *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 class ResizeFormListenerTest extends \PHPUnit_Framework_TestCase
