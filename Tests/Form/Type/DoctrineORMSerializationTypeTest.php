@@ -19,9 +19,6 @@ use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\HttpKernel\Kernel;
 
-/**
- * Class FakeMetadataClass.
- */
 class FakeMetadataClass
 {
     protected $name;
@@ -32,8 +29,6 @@ class FakeMetadataClass
 }
 
 /**
- * Class DoctrineORMSerializationTypeTest.
- *
  * @author Vincent Composieux <vincent.composieux@gmail.com>
  */
 class DoctrineORMSerializationTypeTest extends TypeTestCase

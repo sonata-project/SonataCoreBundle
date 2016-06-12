@@ -31,9 +31,6 @@ class BasePickerTest extends BasePickerType
 }
 
 /**
- * Class BasePickerTypeTest.
- *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 class BasePickerTypeTest extends \PHPUnit_Framework_TestCase
