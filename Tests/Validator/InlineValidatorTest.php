@@ -31,11 +31,7 @@ final class InlineValidatorTest extends \PHPUnit_Framework_TestCase
         $this->constraintValidatorFactory = $this->getMock(
             'Symfony\Component\Validator\ConstraintValidatorFactoryInterface'
         );
-        $this->context = $this->getMock(
-            interface_exists('Symfony\Component\Validator\Context\ExecutionContextInterface') ?
-                'Symfony\Component\Validator\Context\ExecutionContextInterface' :
-                'Symfony\Component\Validator\ExecutionContextInterface'
-        );
+        $this->context = $this->getMock('Symfony\Component\Validator\Context\ExecutionContextInterface');
     }
 
     public function testGetErrorElement()
