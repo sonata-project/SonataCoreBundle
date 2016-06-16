@@ -155,9 +155,9 @@ class ErrorElement
     {
         if ($this->getCurrentPropertyPath()) {
             return sprintf('%s.%s', $this->basePropertyPath, $this->getCurrentPropertyPath());
-        } else {
-            return $this->basePropertyPath;
         }
+
+        return $this->basePropertyPath;
     }
 
     /**
