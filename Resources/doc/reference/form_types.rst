@@ -191,10 +191,6 @@ If you want to map to a boolean value, just set the option ``transform`` to true
 sonata_type_translatable_choice
 -------------------------------
 
-.. warning::
-
-    ``sonata_type_translatable_choice`` is deprecated and will be removed in 3.0. Use form type ``choice`` with ``translation_domain`` option instead!
-
 The translatable type is a specialized ``ChoiceType`` where the choices values are translated with the Symfony Translator component.
 
 The type has one extra parameter:

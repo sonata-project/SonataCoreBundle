@@ -52,7 +52,7 @@ abstract class BasePickerType extends AbstractType
         if (null !== $this->translator) {
             $this->locale = $this->translator->getLocale();
         } else {
-            @trigger_error('Initializing '.__CLASS__.' without TranslatorInterface is deprecated since 2.4 and will be remove in 3.0.', E_USER_DEPRECATED);
+            @trigger_error('Initializing '.__CLASS__.' without TranslatorInterface is deprecated since 3.0 and will be removed in 4.0.', E_USER_DEPRECATED);
             $this->locale = \Locale::getDefault();
         }
     }
