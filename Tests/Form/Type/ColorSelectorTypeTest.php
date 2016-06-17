@@ -13,6 +13,7 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\ColorSelectorType;
+use Sonata\CoreBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,9 +25,10 @@ class ColorSelectorTypeTest extends TypeTestCase
 
         $this->assertSame('sonata_type_color_selector', $type->getName());
         $this->assertSame(
-            method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
-                'Symfony\Component\Form\Extension\Core\Type\ChoiceType' :
-                'choice',
+            LegacyFormHelper::getType(
+                'Symfony\Component\Form\Extension\Core\Type\ChoiceType',
+                'choice'
+            ),
             $type->getParent()
         );
 

@@ -13,6 +13,7 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\EqualType;
+use Sonata\CoreBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -33,9 +34,10 @@ class EqualTypeTest extends TypeTestCase
 
         $this->assertSame('sonata_type_equal', $type->getName());
         $this->assertSame(
-            method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
-                'Symfony\Component\Form\Extension\Core\Type\ChoiceType' :
-                'choice',
+            LegacyFormHelper::getType(
+                'Symfony\Component\Form\Extension\Core\Type\ChoiceType',
+                'choice'
+            ),
             $type->getParent()
         );
 
@@ -44,20 +46,11 @@ class EqualTypeTest extends TypeTestCase
         $options = $resolver->resolve();
 
         $choices = array(1 => 'label_type_equals', 2 => 'label_type_not_equals');
-
-        if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')) {
-            $choices = array_flip($choices);
-        }
-
         $expected = array(
-            'choices_as_values' => true,
             'choices' => $choices,
         );
 
-        if (!method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
-            || !method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
-            unset($expected['choices_as_values']);
-        }
+        LegacyFormHelper::fixChoiceOptions($expected);
 
         $this->assertSame($expected, $options);
     }

@@ -12,6 +12,7 @@
 namespace Sonata\CoreBundle\Form\Type;
 
 use Sonata\CoreBundle\Color\Colors;
+use Sonata\CoreBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -56,10 +57,10 @@ class ColorSelectorType extends AbstractType
      */
     public function getParent()
     {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
-            'Symfony\Component\Form\Extension\Core\Type\ChoiceType' :
-            'choice' // SF <2.8 BC
-        ;
+        return LegacyFormHelper::getType(
+            'Symfony\Component\Form\Extension\Core\Type\ChoiceType',
+            'choice'
+        );
     }
 
     /**

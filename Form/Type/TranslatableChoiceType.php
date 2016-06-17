@@ -11,6 +11,7 @@
 
 namespace Sonata\CoreBundle\Form\Type;
 
+use Sonata\CoreBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -71,10 +72,10 @@ class TranslatableChoiceType extends AbstractType
      */
     public function getParent()
     {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
-            'Symfony\Component\Form\Extension\Core\Type\ChoiceType' :
-            'choice' // SF <2.8 BC
-        ;
+        return LegacyFormHelper::getType(
+            'Symfony\Component\Form\Extension\Core\Type\ChoiceType',
+            'choice'
+        );
     }
 
     /**
