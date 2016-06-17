@@ -111,14 +111,14 @@ class ResizeFormListener implements EventSubscriberInterface
     /**
      * @param FormEvent $event
      *
-     * @deprecated Since version 2.3, to be renamed in 3.0.
+     * @deprecated Since version 2.3, to be renamed in 4.0.
      *             Use {@link preSubmit} instead
      */
     public function preBind(FormEvent $event)
     {
         // BC prevention for class extending this one.
         if (get_called_class() !== 'Sonata\CoreBundle\Form\EventListener\ResizeFormListener') {
-            trigger_error('The '.__METHOD__.' method is deprecated since 2.3 and will be renamed in 3.0. Use '.__CLASS__.'::preSubmit instead.', E_USER_DEPRECATED);
+            trigger_error('The '.__METHOD__.' method is deprecated since 2.3 and will be renamed in 4.0. Use '.__CLASS__.'::preSubmit instead.', E_USER_DEPRECATED);
         }
 
         $this->preSubmit($event);
@@ -176,14 +176,14 @@ class ResizeFormListener implements EventSubscriberInterface
     /**
      * @param FormEvent $event
      *
-     * @deprecated Since version 2.3, to be removed in 3.0.
+     * @deprecated Since version 2.3, to be removed in 4.0.
      *             Use {@link onSubmit} instead
      */
     public function onBind(FormEvent $event)
     {
         // BC prevention for class extending this one.
         if (get_called_class() !== 'Sonata\CoreBundle\Form\EventListener\ResizeFormListener') {
-            trigger_error(__CLASS__.'::'.__METHOD__.' is deprecated since 2.3 and will be renamed in 3.0. Use '.__CLASS__.'::onSubmit instead.', E_USER_DEPRECATED);
+            trigger_error(__CLASS__.'::'.__METHOD__.' is deprecated since 2.3 and will be renamed in 4.0. Use '.__CLASS__.'::onSubmit instead.', E_USER_DEPRECATED);
         }
 
         $this->onSubmit($event);

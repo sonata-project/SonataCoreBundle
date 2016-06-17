@@ -195,4 +195,18 @@ class ErrorElementTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($this->errorElement, $this->errorElement->addConstraint($constraint));
         $this->assertSame($this->errorElement, $this->errorElement->assertNotNull());
     }
+
+    public function testExceptionIsThrownWhenContextIsString()
+    {
+        $constraintValidatorFactory = $this->getMock('Symfony\Component\Validator\ConstraintValidatorFactoryInterface');
+
+        $this->setExpectedException(
+            'InvalidArgumentException',
+            'Argument 3 passed to Sonata\CoreBundle\Validator\ErrorElement::__construct() must be an instance of '.
+            'Symfony\Component\Validator\ExecutionContextInterface or '.
+            'Symfony\Component\Validator\Context\ExecutionContextInterface.'
+        );
+
+        $this->errorElement = new ErrorElement($this->subject, $constraintValidatorFactory, 'foo', 'foo_core');
+    }
 }
