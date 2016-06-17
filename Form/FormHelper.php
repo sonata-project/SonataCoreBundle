@@ -11,6 +11,7 @@
 
 namespace Sonata\CoreBundle\Form;
 
+use Sonata\CoreBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -93,9 +94,9 @@ class FormHelper
      */
     public static function configureOptions(FormTypeInterface $type, OptionsResolver $optionsResolver)
     {
-        if (!method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+        if (LegacyFormHelper::isLegacy()) {
             $type->setDefaultOptions($optionsResolver);
-        } else { // SF <2.8 BC
+        } else {
             $type->configureOptions($optionsResolver);
         }
     }

@@ -13,6 +13,7 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\TranslatableChoiceType;
+use Sonata\CoreBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -27,9 +28,10 @@ class TranslatableChoiceTypeTest extends TypeTestCase
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
         $this->assertSame(
-            method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
-                'Symfony\Component\Form\Extension\Core\Type\ChoiceType' :
-                'choice',
+            LegacyFormHelper::getType(
+                'Symfony\Component\Form\Extension\Core\Type\ChoiceType',
+                'choice'
+            ),
             $type->getParent()
         );
 
