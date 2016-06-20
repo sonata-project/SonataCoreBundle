@@ -34,6 +34,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('sonata_core');
 
         $this->addFlashMessageSection($rootNode);
+        $this->addSerializerFormats($rootNode);
 
         $rootNode
             ->children()
@@ -102,6 +103,29 @@ class Configuration implements ConfigurationInterface
                                     ->end()
                                 ->end()
                             ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
+    }
+
+    /**
+     * Returns configuration for serializer formats.
+     *
+     * @param ArrayNodeDefinition $node
+     */
+    private function addSerializerFormats(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('serializer')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('formats')
+                            ->prototype('scalar')->end()
+                            ->defaultValue(array('json', 'xml', 'yml'))
+                            ->info('Default serializer formats, will be used while getting subscribing methods.')
                         ->end()
                     ->end()
                 ->end()

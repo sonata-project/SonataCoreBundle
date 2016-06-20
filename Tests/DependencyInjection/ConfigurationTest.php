@@ -46,6 +46,9 @@ class ConfigurationTest extends AbstractConfigurationTestCase
                     'extension' => array(),
                 ),
             ),
+            'serializer' => array(
+                'formats' => array('json', 'xml', 'yml'),
+            ),
         ));
     }
 
@@ -80,6 +83,9 @@ class ConfigurationTest extends AbstractConfigurationTestCase
             ),
             'form_type' => 'standard',
             'flashmessage' => array(),
+            'serializer' => array(
+                'formats' => array('json', 'xml', 'yml'),
+            ),
         ));
     }
 
@@ -97,6 +103,9 @@ class ConfigurationTest extends AbstractConfigurationTestCase
             ),
             'form_type' => 'standard',
             'flashmessage' => array(),
+            'serializer' => array(
+                'formats' => array('json', 'xml', 'yml'),
+            ),
         ));
     }
 }

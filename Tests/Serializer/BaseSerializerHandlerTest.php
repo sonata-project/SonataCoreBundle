@@ -19,7 +19,12 @@ use Sonata\CoreBundle\Tests\Fixtures\Bundle\Serializer\FooSerializer;
  */
 final class BaseSerializerHandlerTest extends \PHPUnit_Framework_TestCase
 {
-    public function testGetSubscribingMethods()
+    /**
+     * @group legacy
+     *
+     * NEXT_MAJOR : this should call setFormats method
+     */
+    public function testGetSubscribingMethodsWithDefaultFormats()
     {
         $manager = $this->getMock('Sonata\CoreBundle\Model\ManagerInterface');
 
@@ -64,7 +69,77 @@ final class BaseSerializerHandlerTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
-        $methods = $serializer->getSubscribingMethods();
+        $methods = $serializer::getSubscribingMethods();
+
+        $this->assertSame($methods, $expectedMethods);
+    }
+
+    public function testSetFormats()
+    {
+        $manager = $this->getMock('Sonata\CoreBundle\Model\ManagerInterface');
+
+        $serializer = new FooSerializer($manager);
+
+        $expectedMethods = array(
+            array(
+                'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
+                'format' => 'bar',
+                'type' => 'foo',
+                'method' => 'serializeObjectToId',
+            ),
+            array(
+                'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
+                'format' => 'bar',
+                'type' => 'foo',
+                'method' => 'deserializeObjectFromId',
+            ),
+        );
+
+        $serializer::setFormats(array('bar'));
+
+        $methods = $serializer::getSubscribingMethods();
+
+        $this->assertSame($methods, $expectedMethods);
+    }
+
+    public function testAddFormats()
+    {
+        $manager = $this->getMock('Sonata\CoreBundle\Model\ManagerInterface');
+
+        $serializer = new FooSerializer($manager);
+
+        $expectedMethods = array(
+            array(
+                'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
+                'format' => 'bar',
+                'type' => 'foo',
+                'method' => 'serializeObjectToId',
+            ),
+            array(
+                'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
+                'format' => 'bar',
+                'type' => 'foo',
+                'method' => 'deserializeObjectFromId',
+            ),
+            array(
+                'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
+                'format' => 'foo',
+                'type' => 'foo',
+                'method' => 'serializeObjectToId',
+            ),
+            array(
+                'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
+                'format' => 'foo',
+                'type' => 'foo',
+                'method' => 'deserializeObjectFromId',
+            ),
+        );
+
+        $serializer::setFormats(array('bar'));
+
+        $serializer::addFormat('foo');
+
+        $methods = $serializer::getSubscribingMethods();
 
         $this->assertSame($methods, $expectedMethods);
     }
