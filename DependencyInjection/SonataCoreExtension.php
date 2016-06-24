@@ -12,6 +12,7 @@
 namespace Sonata\CoreBundle\DependencyInjection;
 
 use Sonata\CoreBundle\Form\FormHelper;
+use Sonata\CoreBundle\Serializer\BaseSerializerHandler;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -69,6 +70,8 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
         $this->configureClassesToCompile();
 
         $this->deprecateSlugify($container);
+
+        $this->configureSerializerFormats($config);
     }
 
     public function configureClassesToCompile()
@@ -151,6 +154,14 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
         $definition->replaceArgument(3, $cssClasses);
 
         $container->setDefinition($identifier, $definition);
+    }
+
+    /**
+     * @param array $config
+     */
+    public function configureSerializerFormats($config)
+    {
+        BaseSerializerHandler::setFormats($config['serializer']['formats']);
     }
 
     protected function deprecateSlugify(ContainerBuilder $container)

@@ -27,6 +27,11 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
     protected $manager;
 
     /**
+     * @var string[]
+     */
+    protected static $formats;
+
+    /**
      * @param ManagerInterface $manager
      */
     public function __construct(ManagerInterface $manager)
@@ -35,15 +40,41 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
     }
 
     /**
+     * @param string[] $formats
+     */
+    final public static function setFormats(array $formats)
+    {
+        static::$formats = $formats;
+    }
+
+    /**
+     * @param string $format
+     */
+    final public static function addFormat($format)
+    {
+        static::$formats[] = $format;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function getSubscribingMethods()
     {
+        // NEXT_MAJOR : remove this block
+        if (null === static::$formats) {
+            static::$formats = array('json', 'xml', 'yml');
+            @trigger_error(
+                '$formats has been set to default array("json", "xml", "yml"). Setting $formats to a 
+                default array is deprecated since version 3.0 and will be removed in 4.0. Use SonataCoreBundle 
+                configuration to add default serializer formats.',
+                E_USER_DEPRECATED
+            );
+        }
+
         $type = static::getType();
-        $formats = array('json', 'xml', 'yml');
         $methods = array();
 
-        foreach ($formats as $format) {
+        foreach (static::$formats as $format) {
             $methods[] = array(
                 'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
                 'format' => $format,
