@@ -62,7 +62,9 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
         $loader->load('twig.xml');
         $loader->load('model_adapter.xml');
         $loader->load('core.xml');
+        $loader->load('exporter.xml');
 
+        $this->configureExporter($container, $config);
         $this->registerFlashTypes($container, $config);
         $container->setParameter('sonata.core.form_type', $config['form_type']);
 
@@ -172,6 +174,17 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
 
             $definition = $container->getDefinition('sonata.core.slugify.native');
             $definition->setDeprecated(true);
+        }
+    }
+
+    private function configureExporter(ContainerBuilder $container, array $config)
+    {
+        foreach (array('csv', 'json', 'xls', 'xml') as $format) {
+            if (in_array($format, $config['exporter']['default_writers'])) {
+                $container->getDefinition('sonata.core.exporter.writer.'.$format)->addTag(
+                    'sonata.core.exporter.writer'
+                );
+            }
         }
     }
 }

@@ -12,6 +12,7 @@
 namespace Sonata\CoreBundle\Tests;
 
 use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
+use Sonata\CoreBundle\DependencyInjection\Compiler\ExporterCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
 use Sonata\CoreBundle\Form\FormHelper;
@@ -30,7 +31,7 @@ final class SonataCoreBundleTest extends \PHPUnit_Framework_TestCase
             array('addCompilerPass')
         );
 
-        $containerBuilder->expects($this->exactly(3))
+        $containerBuilder->expects($this->exactly(4))
             ->method('addCompilerPass')
             ->will($this->returnCallback(function (CompilerPassInterface $pass) {
                 if ($pass instanceof StatusRendererCompilerPass) {
@@ -41,14 +42,19 @@ final class SonataCoreBundleTest extends \PHPUnit_Framework_TestCase
                     return;
                 }
 
+                if ($pass instanceof ExporterCompilerPass) {
+                    return;
+                }
+
                 if ($pass instanceof FormFactoryCompilerPass) {
                     return;
                 }
 
                 $this->fail(sprintf(
-                    'Compiler pass is not one of the expected types. 
-                    Expects "Sonata\AdminBundle\DependencyInjection\Compiler\StatusRendererCompilerPass", 
-                    "Sonata\AdminBundle\DependencyInjection\Compiler\AdapterCompilerPass" or 
+                    'Compiler pass is not one of the expected types.
+                    Expects "Sonata\AdminBundle\DependencyInjection\Compiler\StatusRendererCompilerPass",
+                    "Sonata\AdminBundle\DependencyInjection\Compiler\AdapterCompilerPass" or
+                    "Sonata\AdminBundle\DependencyInjection\Compiler\ExporterCompilerPass" or
                     "Sonata\AdminBundle\DependencyInjection\Compiler\FormFactoryCompilerPass", but got "%s".',
                     get_class($pass)
                 ));

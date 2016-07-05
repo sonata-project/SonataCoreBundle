@@ -39,6 +39,9 @@ class ConfigurationTest extends AbstractConfigurationTestCase
         ), array(
             'form_type' => 'standard',
             'flashmessage' => array(),
+            'exporter' => array('default_writers' => array(
+                'csv', 'json', 'xls', 'xml',
+            )),
             'form' => array(
                 'mapping' => array(
                     'enabled' => true,
@@ -81,6 +84,9 @@ class ConfigurationTest extends AbstractConfigurationTestCase
                     ),
                 ),
             ),
+            'exporter' => array('default_writers' => array(
+                'csv', 'json', 'xls', 'xml',
+            )),
             'form_type' => 'standard',
             'flashmessage' => array(),
             'serializer' => array(
@@ -101,6 +107,9 @@ class ConfigurationTest extends AbstractConfigurationTestCase
                     'extension' => array(),
                 ),
             ),
+            'exporter' => array('default_writers' => array(
+                'csv', 'json', 'xls', 'xml',
+            )),
             'form_type' => 'standard',
             'flashmessage' => array(),
             'serializer' => array(

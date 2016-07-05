@@ -70,6 +70,12 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
         $extension->prepend($containerBuilder->reveal());
     }
 
+    public function testExporterServiceIsPresent()
+    {
+        $this->load();
+        $this->assertContainerBuilderHasService('sonata.core.exporter');
+    }
+
     protected function getContainerExtensions()
     {
         return array(
