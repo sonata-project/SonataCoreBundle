@@ -20,15 +20,24 @@ use Symfony\Component\Translation\TranslatorInterface;
 class DateTimeRangeType extends AbstractType
 {
     /**
-     * @var TranslatorInterface
+     * @var TranslatorInterface|null
+     *
+     * @deprecated Translator property is deprecated since version 3.1, to be removed in 4.0.
      */
     protected $translator;
 
     /**
-     * @param TranslatorInterface $translator
+     * @param TranslatorInterface|null $translator
+     *
+     * @deprecated Translator dependency is deprecated since version 3.1, to be removed in 4.0.
      */
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(TranslatorInterface $translator = null)
     {
+        // check if class is overloaded and notifiy about removing deprecated translator
+        if ($translator !== null && get_class($this) !== get_class() && get_class($this) !== 'Sonata\CoreBundle\Form\Type\DateTimeRangePickerType') {
+            @trigger_error('The translator dependency in Sonata`s DateTimeRangeType is deprecated since 3.1 and will be removed in 4.0. Please prepare your dependencies for this change.', E_USER_DEPRECATED);
+        }
+
         $this->translator = $translator;
     }
 
@@ -39,14 +48,16 @@ class DateTimeRangeType extends AbstractType
     {
         $options['field_options_start'] = array_merge(
             array(
-                'label' => $this->translator->trans('date_range_start', array(), 'SonataCoreBundle'),
+                'label' => 'date_range_start',
+                'translation_domain' => 'SonataCoreBundle',
             ),
             $options['field_options_start']
         );
 
         $options['field_options_end'] = array_merge(
             array(
-                'label' => $this->translator->trans('date_range_end', array(), 'SonataCoreBundle'),
+                'label' => 'date_range_end',
+                'translation_domain' => 'SonataCoreBundle',
             ),
             $options['field_options_end']
         );
