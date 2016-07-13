@@ -90,7 +90,11 @@ class DateTimeRangeType extends AbstractType
             'field_options' => array(),
             'field_options_start' => array(),
             'field_options_end' => array(),
-            'field_type' => 'datetime',
+            // NEXT_MAJOR: Remove ternary and keep 'Symfony\Component\Form\Extension\Core\Type\DateTimeType'
+            // (when requirement of Symfony is >= 2.8)
+            'field_type' => method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+                ? 'Symfony\Component\Form\Extension\Core\Type\DateTimeType'
+                : 'datetime',
         ));
     }
 }

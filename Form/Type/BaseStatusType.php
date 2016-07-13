@@ -56,7 +56,11 @@ abstract class BaseStatusType extends AbstractType
      */
     public function getParent()
     {
-        return 'choice';
+        // NEXT_MAJOR: Remove ternary and keep 'Symfony\Component\Form\Extension\Core\Type\ChoiceType'
+        // (when requirement of Symfony is >= 2.8)
+        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+            ? 'Symfony\Component\Form\Extension\Core\Type\ChoiceType'
+            : 'choice';
     }
 
     /**

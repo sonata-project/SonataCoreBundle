@@ -117,10 +117,17 @@ class BaseDoctrineORMSerializationType extends AbstractType
                     $nullable = $associationMetadata['inverseJoinColumns']['nullable'];
                 }
             }
-
             switch ($type) {
                 case 'datetime':
-                    $builder->add($name, $type, array('required' => !$nullable, 'widget' => 'single_text'));
+                    $builder->add(
+                        $name,
+                        // NEXT_MAJOR: Remove ternary and keep 'Symfony\Component\Form\Extension\Core\Type\DateTimeType'
+                        // (when requirement of Symfony is >= 2.8)
+                        method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
+                            ? 'Symfony\Component\Form\Extension\Core\Type\DateTimeType'
+                            : 'datetime',
+                        array('required' => !$nullable, 'widget' => 'single_text')
+                    );
                     break;
 
                 case 'boolean':
