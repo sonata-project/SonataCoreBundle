@@ -83,6 +83,48 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $this->assertFalse($form->get('comments')->isRequired(), 'Should return a non-required field');
     }
 
+    public function testBuildFormAddCall()
+    {
+        // NEXT_MAJOR: Hack for php 5.3 only, remove it when requirement of PHP is >= 5.4
+        $that = $this;
+
+        $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
+        $formBuilder
+            ->expects($this->any())
+            ->method('add')
+            ->will($this->returnCallback(function ($name, $type = null) use ($that) {
+                // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
+                if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+                    if (null !== $type) {
+                        $isFQCN = class_exists($type);
+                        if (!$isFQCN && method_exists('Symfony\Component\Form\AbstractType', 'getName')) {
+                            // 2.8
+                            @trigger_error(
+                                sprintf(
+                                    'Accessing type "%s" by its string name is deprecated since version 2.8 and will be removed in 3.0.'
+                                    .' Use the fully-qualified type class name instead.',
+                                    $type
+                                ),
+                                E_USER_DEPRECATED)
+                            ;
+                        }
+
+                        $that->assertTrue($isFQCN, sprintf('Unable to ensure %s is a FQCN', $type));
+                    }
+                }
+            }));
+
+        $type = new DoctrineORMSerializationType(
+            $this->getMetadataFactoryMock(),// $this->getMock('Metadata\MetadataFactoryInterface'),
+            $this->getRegistryMock(),
+            'form_type_test',
+            $this->class,
+            'serialization_api_write'
+        );
+
+        $type->buildForm($formBuilder, array());
+    }
+
     /**
      * Test form type buildForm() method that generates data with an identifier field.
      */
@@ -127,6 +169,37 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
 
         // Assets that forms have no generated field as group is invalid
         $this->assertSame(0, $form->count(), 'Should return 0 elements as given form type group is invalid');
+    }
+
+    public function testGetParent()
+    {
+        $form = new DoctrineORMSerializationType(
+            $this->getMock('Metadata\MetadataFactoryInterface'),
+            $this->getMock('Doctrine\Common\Persistence\ManagerRegistry'),
+            'form_type_test',
+            $this->class,
+            'serialization_api_write'
+        );
+
+        // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
+        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+            $parentRef = $form->getParent();
+
+            $isFQCN = class_exists($parentRef);
+            if (!$isFQCN && method_exists('Symfony\Component\Form\AbstractType', 'getName')) {
+                // 2.8
+                @trigger_error(
+                    sprintf(
+                        'Accessing type "%s" by its string name is deprecated since version 2.8 and will be removed in 3.0.'
+                        .' Use the fully-qualified type class name instead.',
+                        $parentRef
+                    ),
+                    E_USER_DEPRECATED)
+                ;
+            }
+
+            $this->assertTrue($isFQCN, sprintf('Unable to ensure %s is a FQCN', $parentRef));
+        }
     }
 
     /**
