@@ -18,6 +18,15 @@ use Exporter\Writer\XlsWriter;
 use Exporter\Writer\XmlWriter;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
+@trigger_error(
+    'The '.__NAMESPACE__.'\Exporter class is deprecated since version 3.x and will be removed in 4.0.'.
+    ' Use Exporter\Exporter instead',
+    E_USER_DEPRECATED
+);
+
+/**
+ * NEXT_MAJOR: remove this class, and the dev dependency.
+ */
 class Exporter
 {
     /**
