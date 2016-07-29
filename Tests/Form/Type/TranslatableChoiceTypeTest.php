@@ -16,6 +16,9 @@ use Sonata\CoreBundle\Form\Type\TranslatableChoiceType;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @group legacy
+ */
 class TranslatableChoiceTypeTest extends TypeTestCase
 {
     public function testBuildForm()
