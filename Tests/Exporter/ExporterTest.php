@@ -14,6 +14,11 @@ namespace Sonata\CoreBundle\Tests\Exporter;
 use Exporter\Source\ArraySourceIterator;
 use Sonata\CoreBundle\Exporter\Exporter;
 
+/**
+ * NEXT_MAJOR: remove this class.
+ *
+ * @group legacy
+ */
 class ExporterTest extends \PHPUnit_Framework_TestCase
 {
     /**

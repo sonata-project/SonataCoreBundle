@@ -115,7 +115,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
             }));
 
         $type = new DoctrineORMSerializationType(
-            $this->getMetadataFactoryMock(),// $this->getMock('Metadata\MetadataFactoryInterface'),
+            $this->getMetadataFactoryMock(), // $this->getMock('Metadata\MetadataFactoryInterface'),
             $this->getRegistryMock(),
             'form_type_test',
             $this->class,
