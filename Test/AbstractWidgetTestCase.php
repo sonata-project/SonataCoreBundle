@@ -15,6 +15,7 @@ use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Bridge\Twig\Form\TwigRenderer;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
+use Symfony\Bridge\Twig\Form\TwigRendererEngineInterface;
 use Symfony\Bridge\Twig\Tests\Extension\Fixtures\StubFilesystemLoader;
 use Symfony\Bundle\FrameworkBundle\Tests\Templating\Helper\Fixtures\StubTranslator;
 use Symfony\Component\Form\FormExtensionInterface;
@@ -40,10 +41,6 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
     {
         parent::setUp();
 
-        $rendererEngine = new TwigRendererEngine(array(
-            'form_div_layout.html.twig',
-        ));
-
         // NEXT_MAJOR: Remove BC hack when dropping symfony 2.4 support
         $csrfProviderClasses = array_filter(array(
             // symfony <=2.4
@@ -52,10 +49,17 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
             'Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface',
         ), 'interface_exists');
 
-        $renderer = new TwigRenderer($rendererEngine, $this->getMock(current($csrfProviderClasses)));
+        $renderer = new TwigRenderer($this->getRenderingEngine(), $this->getMock(current($csrfProviderClasses)));
 
         $this->extension = new FormExtension($renderer);
+        $this->extension->initRuntime($this->getEnvironment());
+    }
 
+    /**
+     * @return \Twig_Environment
+     */
+    protected function getEnvironment()
+    {
         // this is an workaround for different composer requirements and different TwigBridge installation directories
         $twigPaths = array_filter(array(
             // symfony/twig-bridge (running from this bundle)
@@ -81,20 +85,19 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
             'strict_variables' => true,
         ));
         $environment->addExtension(new TranslationExtension(new StubTranslator()));
-        foreach ($this->getTwigExtensions() as $extension) {
-            $environment->addExtension($extension);
-        }
         $environment->addExtension($this->extension);
 
-        $this->extension->initRuntime($environment);
+        return $environment;
     }
 
     /**
-     * @return \Twig_ExtensionInterface[]
+     * @return TwigRendererEngineInterface
      */
-    protected function getTwigExtensions()
+    protected function getRenderingEngine()
     {
-        return array();
+        return new TwigRendererEngine(array(
+            'form_div_layout.html.twig',
+        ));
     }
 
     /**
