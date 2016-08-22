@@ -60,6 +60,24 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      */
     protected function getEnvironment()
     {
+        $loader = new StubFilesystemLoader($this->getTemplatePaths());
+
+        $environment = new \Twig_Environment($loader, array(
+            'strict_variables' => true,
+        ));
+        $environment->addExtension(new TranslationExtension(new StubTranslator()));
+        $environment->addExtension($this->extension);
+
+        return $environment;
+    }
+
+    /**
+     * Returns a list of template paths.
+     *
+     * @return string[]
+     */
+    protected function getTemplatePaths()
+    {
         // this is an workaround for different composer requirements and different TwigBridge installation directories
         $twigPaths = array_filter(array(
             // symfony/twig-bridge (running from this bundle)
@@ -79,15 +97,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
 
         $twigPaths[] = __DIR__.'/../Resources/views/Form';
 
-        $loader = new StubFilesystemLoader($twigPaths);
-
-        $environment = new \Twig_Environment($loader, array(
-            'strict_variables' => true,
-        ));
-        $environment->addExtension(new TranslationExtension(new StubTranslator()));
-        $environment->addExtension($this->extension);
-
-        return $environment;
+        return $twigPaths;
     }
 
     /**
