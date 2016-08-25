@@ -25,21 +25,21 @@ class EqualType extends AbstractType
     /**
      * @var TranslatorInterface|null
      *
-     * @deprecated translator property is deprecated since version 3.x, to be removed in 4.0
+     * @deprecated translator property is deprecated since version 3.1, to be removed in 4.0
      */
     protected $translator;
 
     /**
      * @param TranslatorInterface|null $translator
      *
-     * @deprecated translator property is deprecated since version 3.x, to be removed in 4.0
+     * @deprecated translator property is deprecated since version 3.1, to be removed in 4.0
      */
     public function __construct(TranslatorInterface $translator = null)
     {
         // check if class is overloaded and notify about removing deprecated translator
         if ($translator !== null && get_class($this) !== get_class()) {
             @trigger_error(
-                'The translator dependency in '.__CLASS__.' is deprecated since 3.x and will be removed in 4.0. '.
+                'The translator dependency in '.__CLASS__.' is deprecated since 3.1 and will be removed in 4.0. '.
                 'Please prepare your dependencies for this change.',
                 E_USER_DEPRECATED
             );
