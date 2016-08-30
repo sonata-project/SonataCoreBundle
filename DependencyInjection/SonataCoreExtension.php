@@ -62,7 +62,7 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
                 if (isset($config['serializer'])) {
                     @trigger_error(<<<'EOT'
 Setting the sonata_core -> serializer -> formats option
-without having the jms/serializer library installed is deprecated since 3.x,
+without having the jms/serializer library installed is deprecated since 3.1,
 and will not be supported in 4.0,
 because the configuration option will not be added in that case.
 EOT

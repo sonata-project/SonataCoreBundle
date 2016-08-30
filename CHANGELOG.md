@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.1.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.1.0...3.1.1) - 2016-08-30
+### Fixed
+- Added interface check for `JMS\Serializer\Handler\SubscribingHandlerInterface` in `SonataCoreExtension::configureSerializerFormats`
+
 ## [3.1.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.0.3...3.1.0) - 2016-08-25
 ### Added
 - Added `AbstractWidgetTestCase` test suite
