@@ -60,17 +60,6 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
      */
     public static function getSubscribingMethods()
     {
-        // NEXT_MAJOR : remove this block
-        if (null === static::$formats) {
-            static::$formats = array('json', 'xml', 'yml');
-            @trigger_error(
-                '$formats has been set to default array("json", "xml", "yml"). Setting $formats to a 
-                default array is deprecated since version 3.0 and will be removed in 4.0. Use SonataCoreBundle 
-                configuration to add default serializer formats.',
-                E_USER_DEPRECATED
-            );
-        }
-
         $type = static::getType();
         $methods = array();
 
