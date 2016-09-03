@@ -25,24 +25,8 @@ class BooleanTypeTest extends TypeTestCase
             ->expects($this->any())
             ->method('add')
             ->will($this->returnCallback(function ($name, $type = null) {
-                // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
-                if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-                    if (null !== $type) {
-                        $isFQCN = class_exists($type);
-                        if (!$isFQCN && method_exists('Symfony\Component\Form\AbstractType', 'getName')) {
-                            // 2.8
-                            @trigger_error(
-                                sprintf(
-                                    'Accessing type "%s" by its string name is deprecated since version 2.8 and will be removed in 3.0.'
-                                    .' Use the fully-qualified type class name instead.',
-                                    $type
-                                ),
-                                E_USER_DEPRECATED)
-                            ;
-                        }
-
-                        $this->assertTrue($isFQCN, sprintf('Unable to ensure %s is a FQCN', $type));
-                    }
+                if (null !== $type) {
+                    $this->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
                 }
             }));
 
@@ -58,25 +42,9 @@ class BooleanTypeTest extends TypeTestCase
     {
         $form = new BooleanType();
 
-        // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
-        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            $parentRef = $form->getParent();
+        $parentRef = $form->getParent();
 
-            $isFQCN = class_exists($parentRef);
-            if (!$isFQCN && method_exists('Symfony\Component\Form\AbstractType', 'getName')) {
-                // 2.8
-                @trigger_error(
-                    sprintf(
-                        'Accessing type "%s" by its string name is deprecated since version 2.8 and will be removed in 3.0.'
-                        .' Use the fully-qualified type class name instead.',
-                        $parentRef
-                    ),
-                    E_USER_DEPRECATED)
-                ;
-            }
-
-            $this->assertTrue($isFQCN, sprintf('Unable to ensure %s is a FQCN', $parentRef));
-        }
+        $this->assertTrue(class_exists($parentRef), sprintf('Unable to ensure %s is a FQCN', $parentRef));
     }
 
     public function testGetDefaultOptions()
@@ -84,9 +52,7 @@ class BooleanTypeTest extends TypeTestCase
         $type = new BooleanType();
 
         $this->assertSame(
-            method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
-                'Symfony\Component\Form\Extension\Core\Type\ChoiceType' :
-                'choice',
+            'Symfony\Component\Form\Extension\Core\Type\ChoiceType',
             $type->getParent()
         );
 
@@ -150,8 +116,7 @@ class BooleanTypeTest extends TypeTestCase
             'choices' => array(1 => 'foo_yes', 2 => 'foo_no'),
         );
 
-        if (!method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
-            || !method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+        if (!method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
             unset($expectedOptions['choices_as_values']);
         }
 

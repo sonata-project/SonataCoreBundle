@@ -13,7 +13,6 @@ namespace Sonata\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class EqualType extends AbstractType
@@ -54,36 +53,21 @@ class EqualType extends AbstractType
 
     /**
      * {@inheritdoc}
-     *
-     * @todo Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
-    /**
-     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $choices = array(
-            self::TYPE_IS_EQUAL => 'label_type_equals',
-            self::TYPE_IS_NOT_EQUAL => 'label_type_not_equals',
+            'label_type_equals' => self::TYPE_IS_EQUAL,
+            'label_type_not_equals' => self::TYPE_IS_NOT_EQUAL,
         );
 
         $defaultOptions = array(
             'choice_translation_domain' => 'SonataCoreBundle',
         );
 
-        // SF 2.7+ BC
-        if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')) {
-            $choices = array_flip($choices);
-
-            // choice_as_value options is not needed in SF 3.0+
-            if (method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
-                $defaultOptions['choices_as_values'] = true;
-            }
+        // NEXT_MAJOR: choice_as_value options is not needed in SF 3.0+
+        if (method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+            $defaultOptions['choices_as_values'] = true;
         }
 
         $defaultOptions['choices'] = $choices;
@@ -96,10 +80,7 @@ class EqualType extends AbstractType
      */
     public function getParent()
     {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
-            'Symfony\Component\Form\Extension\Core\Type\ChoiceType' :
-            'choice' // SF <2.8 BC
-        ;
+        return 'Symfony\Component\Form\Extension\Core\Type\ChoiceType';
     }
 
     /**
