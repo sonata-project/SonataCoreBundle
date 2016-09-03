@@ -19,61 +19,6 @@ use Sonata\CoreBundle\Tests\Fixtures\Bundle\Serializer\FooSerializer;
  */
 final class BaseSerializerHandlerTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @group legacy
-     *
-     * NEXT_MAJOR : this should call setFormats method
-     */
-    public function testGetSubscribingMethodsWithDefaultFormats()
-    {
-        $manager = $this->getMock('Sonata\CoreBundle\Model\ManagerInterface');
-
-        $serializer = new FooSerializer($manager);
-
-        $expectedMethods = array(
-            array(
-                'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
-                'format' => 'json',
-                'type' => 'foo',
-                'method' => 'serializeObjectToId',
-            ),
-            array(
-                'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
-                'format' => 'json',
-                'type' => 'foo',
-                'method' => 'deserializeObjectFromId',
-            ),
-            array(
-                'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
-                'format' => 'xml',
-                'type' => 'foo',
-                'method' => 'serializeObjectToId',
-            ),
-            array(
-                'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
-                'format' => 'xml',
-                'type' => 'foo',
-                'method' => 'deserializeObjectFromId',
-            ),
-            array(
-                'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
-                'format' => 'yml',
-                'type' => 'foo',
-                'method' => 'serializeObjectToId',
-            ),
-            array(
-                'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
-                'format' => 'yml',
-                'type' => 'foo',
-                'method' => 'deserializeObjectFromId',
-            ),
-        );
-
-        $methods = $serializer::getSubscribingMethods();
-
-        $this->assertSame($methods, $expectedMethods);
-    }
-
     public function testSetFormats()
     {
         $manager = $this->getMock('Sonata\CoreBundle\Model\ManagerInterface');
