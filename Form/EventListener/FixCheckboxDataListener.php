@@ -36,6 +36,8 @@ class FixCheckboxDataListener implements EventSubscriberInterface
     }
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * @param FormEvent $event
      *
      * @deprecated Since version 2.3, to be renamed in 4.0.

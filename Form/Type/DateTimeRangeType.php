@@ -20,6 +20,8 @@ use Symfony\Component\Translation\TranslatorInterface;
 class DateTimeRangeType extends AbstractType
 {
     /**
+     * NEXT_MAJOR: remove this property.
+     *
      * @var TranslatorInterface|null
      *
      * @deprecated translator property is deprecated since version 3.1, to be removed in 4.0
@@ -27,6 +29,8 @@ class DateTimeRangeType extends AbstractType
     protected $translator;
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * @param TranslatorInterface|null $translator
      *
      * @deprecated translator dependency is deprecated since version 3.1, to be removed in 4.0
