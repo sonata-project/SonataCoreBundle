@@ -23,6 +23,8 @@ class EqualType extends AbstractType
     const TYPE_IS_NOT_EQUAL = 2;
 
     /**
+     * NEXT_MAJOR: remove this property.
+     *
      * @var TranslatorInterface|null
      *
      * @deprecated translator property is deprecated since version 3.1, to be removed in 4.0
@@ -30,6 +32,8 @@ class EqualType extends AbstractType
     protected $translator;
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * @param TranslatorInterface|null $translator
      *
      * @deprecated translator property is deprecated since version 3.1, to be removed in 4.0

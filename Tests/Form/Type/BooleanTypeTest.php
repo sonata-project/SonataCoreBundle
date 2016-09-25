@@ -55,7 +55,10 @@ class BooleanTypeTest extends TypeTestCase
         $type->buildForm($formBuilder, array(
             'transform' => false,
 
-            // @deprecated Deprecated as of SonataCoreBundle 2.3.10, to be removed in 4.0.
+            /*
+             * NEXT_MAJOR: remove this block.
+             * @deprecated Deprecated as of SonataCoreBundle 2.3.10, to be removed in 4.0.
+             */
             'catalogue' => 'SonataCoreBundle',
 
             // Use directly translation_domain in SonataCoreBundle 4.0
