@@ -61,9 +61,11 @@ abstract class BasePickerType extends AbstractType
                 E_USER_DEPRECATED
             );
             $this->locale = \Locale::getDefault();
-        } else {
-            $this->locale = $this->translator->getLocale();
+
+            return;
         }
+
+        $this->locale = $this->translator->getLocale();
     }
 
     /**
