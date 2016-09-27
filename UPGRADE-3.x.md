@@ -13,3 +13,24 @@ The exporter class and service are now deprecated in favor of very similar equiv
 [`sonata-project/exporter`](https://github.com/sonata-project/exporter) library,
 which are available since version 1.6.0,
 if you enable the bundle as described in the documentation.
+
+### BasePickerType needs a ``TranslatorInterface`` as 2nd argument
+
+Before:
+
+```php
+    /**
+     * @param MomentFormatConverter $formatConverter
+     */
+    public function __construct(MomentFormatConverter $formatConverter)
+```
+
+After:
+
+```php
+    /**
+     * @param MomentFormatConverter $formatConverter
+     * @param TranslatorInterface   $translator
+     */
+    public function __construct(MomentFormatConverter $formatConverter, TranslatorInterface $translator)
+```
