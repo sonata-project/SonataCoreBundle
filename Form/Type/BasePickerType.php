@@ -21,7 +21,6 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * Class BasePickerType (to factorize DatePickerType and DateTimePickerType code.
  *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 abstract class BasePickerType extends AbstractType
@@ -35,12 +34,15 @@ abstract class BasePickerType extends AbstractType
      * @var string
      */
     protected $locale;
+
     /**
      * @var MomentFormatConverter
      */
     private $formatConverter;
 
     /**
+     * NEXT_MAJOR: TranslatorInterface needs to be mandatory.
+     *
      * @param MomentFormatConverter $formatConverter
      * @param TranslatorInterface   $translator
      */
@@ -49,12 +51,21 @@ abstract class BasePickerType extends AbstractType
         $this->formatConverter = $formatConverter;
         $this->translator = $translator;
 
-        if (null !== $this->translator) {
-            $this->locale = $this->translator->getLocale();
-        } else {
-            @trigger_error('Initializing '.__CLASS__.' without TranslatorInterface is deprecated since 3.0 and will be removed in 4.0.', E_USER_DEPRECATED);
+        /*
+         * NEXT_MAJOR: remove this check
+         */
+        if (null === $this->translator) {
+            @trigger_error(
+                'Initializing '.__CLASS__.' without TranslatorInterface
+                is deprecated since 2.4 and will be removed in 4.0.',
+                E_USER_DEPRECATED
+            );
             $this->locale = \Locale::getDefault();
+
+            return;
         }
+
+        $this->locale = $this->translator->getLocale();
     }
 
     /**
@@ -68,7 +79,14 @@ abstract class BasePickerType extends AbstractType
             $format = $options['date_format'];
         } elseif (is_int($format)) {
             $timeFormat = ($options['dp_pick_time']) ? DateTimeType::DEFAULT_TIME_FORMAT : \IntlDateFormatter::NONE;
-            $intlDateFormatter = new \IntlDateFormatter(\Locale::getDefault(), $format, $timeFormat, null, \IntlDateFormatter::GREGORIAN, null);
+            $intlDateFormatter = new \IntlDateFormatter(
+                \Locale::getDefault(),
+                $format,
+                $timeFormat,
+                null,
+                \IntlDateFormatter::GREGORIAN,
+                null
+            );
             $format = $intlDateFormatter->getPattern();
         }
 
