@@ -163,6 +163,7 @@ class BooleanTypeTest extends TypeTestCase
         $expectedOptions = array(
             'transform' => false,
             'catalogue' => 'SonataCoreBundle',
+            'choice_translation_domain' => 'SonataCoreBundle',
             'choices_as_values' => true,
             'translation_domain' => 'fooTrans',
             'choices' => array(1 => 'foo_yes', 2 => 'foo_no'),
@@ -171,6 +172,11 @@ class BooleanTypeTest extends TypeTestCase
         if (!method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
             || !method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
             unset($expectedOptions['choices_as_values']);
+        }
+
+        // NEXT_MAJOR: Remove this block (when requirement of Symfony is >= 2.7)
+        if (!method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')) {
+            unset($expectedOptions['choice_translation_domain']);
         }
 
         $this->assertSame($expectedOptions, $resolvedOptions);
