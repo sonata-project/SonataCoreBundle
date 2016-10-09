@@ -556,7 +556,7 @@
             </trans-unit>
             <trans-unit id="tan">
                 <source>tan</source>
-                  <target>Čreslovinasta</target>
+                <target>Čreslovinasta</target>
             </trans-unit>
             <trans-unit id="teal">
                 <source>teal</source>
