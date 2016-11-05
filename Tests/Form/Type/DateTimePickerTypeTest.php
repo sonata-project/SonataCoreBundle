@@ -99,11 +99,4 @@ class DateTimePickerTypeTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame('sonata_type_datetime_picker', $type->getName());
     }
-
-    public function testLegacyConstructor()
-    {
-        $type = new DateTimePickerType(new MomentFormatConverter());
-
-        $this->assertSame('sonata_type_datetime_picker', $type->getName());
-    }
 }
