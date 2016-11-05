@@ -27,9 +27,9 @@ class ResizeFormListenerTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey(FormEvents::PRE_SET_DATA, $events);
         $this->assertSame('preSetData', $events[FormEvents::PRE_SET_DATA]);
         $this->assertArrayHasKey(FormEvents::PRE_SUBMIT, $events);
-        $this->assertSame('preBind', $events[FormEvents::PRE_SUBMIT]);
+        $this->assertSame('preSubmit', $events[FormEvents::PRE_SUBMIT]);
         $this->assertArrayHasKey(FormEvents::SUBMIT, $events);
-        $this->assertSame('onBind', $events[FormEvents::SUBMIT]);
+        $this->assertSame('onSubmit', $events[FormEvents::SUBMIT]);
     }
 
     public function testPreSetDataWithNullData()
@@ -46,24 +46,6 @@ class ResizeFormListenerTest extends \PHPUnit_Framework_TestCase
         $event = new FormEvent($form, null);
 
         $listener->preSetData($event);
-    }
-
-    /**
-     * @group legacy
-     * NEXT_MAJOR: remove this method
-     */
-    public function testPreBindCallsPreSubmit()
-    {
-        $listener = new ResizeFormListener('form', array(), true, null);
-
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
-        $form->expects($this->once())
-            ->method('getIterator')
-            ->willReturn(new \ArrayIterator());
-
-        $event = new FormEvent($form, null);
-
-        $listener->preBind($event);
     }
 
     public function testPreSetDataThrowsExceptionWithStringEventData()
@@ -216,30 +198,6 @@ class ResizeFormListenerTest extends \PHPUnit_Framework_TestCase
         $event = new FormEvent($form, $data);
 
         $listener->preSubmit($event);
-    }
-
-    /**
-     * @group legacy
-     * NEXT_MAJOR: remove this method
-     */
-    public function testOnBindCallsOnSubmit()
-    {
-        $listener = new ResizeFormListener('form', array(), true, null);
-
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
-
-        $event = $this->getMockBuilder('Symfony\Component\Form\FormEvent')->disableOriginalConstructor()->getMock();
-        $event->expects($this->once())
-            ->method('getForm')
-            ->willReturn($form);
-        $event->expects($this->once())
-            ->method('getData')
-            ->willReturn(null);
-        $event->expects($this->once())
-            ->method('setData')
-            ->with(array());
-
-        $listener->onBind($event);
     }
 
     public function testOnSubmitWithResizeOnBindFalse()
