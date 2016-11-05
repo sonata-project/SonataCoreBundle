@@ -46,9 +46,9 @@ final class SonataCoreBundleTest extends \PHPUnit_Framework_TestCase
                 }
 
                 $this->fail(sprintf(
-                    'Compiler pass is not one of the expected types. 
-                    Expects "Sonata\AdminBundle\DependencyInjection\Compiler\StatusRendererCompilerPass", 
-                    "Sonata\AdminBundle\DependencyInjection\Compiler\AdapterCompilerPass" or 
+                    'Compiler pass is not one of the expected types.
+                    Expects "Sonata\AdminBundle\DependencyInjection\Compiler\StatusRendererCompilerPass",
+                    "Sonata\AdminBundle\DependencyInjection\Compiler\AdapterCompilerPass" or
                     "Sonata\AdminBundle\DependencyInjection\Compiler\FormFactoryCompilerPass", but got "%s".',
                     get_class($pass)
                 ));
@@ -119,7 +119,6 @@ final class SonataCoreBundleTest extends \PHPUnit_Framework_TestCase
             array('sonata_type_immutable_array', 'Sonata\CoreBundle\Form\Type\ImmutableArrayType'),
             array('sonata_type_boolean', 'Sonata\CoreBundle\Form\Type\BooleanType'),
             array('sonata_type_collection', 'Sonata\CoreBundle\Form\Type\CollectionType'),
-            array('sonata_type_translatable_choice', 'Sonata\CoreBundle\Form\Type\TranslatableChoiceType'),
             array('sonata_type_date_range', 'Sonata\CoreBundle\Form\Type\DateRangeType'),
             array('sonata_type_datetime_range', 'Sonata\CoreBundle\Form\Type\DateTimeRangeType'),
             array('sonata_type_date_picker', 'Sonata\CoreBundle\Form\Type\DatePickerType'),
