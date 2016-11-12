@@ -44,17 +44,12 @@ abstract class BasePickerType extends AbstractType
      * @param MomentFormatConverter $formatConverter
      * @param TranslatorInterface   $translator
      */
-    public function __construct(MomentFormatConverter $formatConverter, TranslatorInterface $translator = null)
+    public function __construct(MomentFormatConverter $formatConverter, TranslatorInterface $translator)
     {
         $this->formatConverter = $formatConverter;
         $this->translator = $translator;
 
-        if (null !== $this->translator) {
-            $this->locale = $this->translator->getLocale();
-        } else {
-            @trigger_error('Initializing '.__CLASS__.' without TranslatorInterface is deprecated since 3.0 and will be removed in 4.0.', E_USER_DEPRECATED);
-            $this->locale = \Locale::getDefault();
-        }
+        $this->locale = $this->translator->getLocale();
     }
 
     /**

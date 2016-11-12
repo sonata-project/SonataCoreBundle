@@ -81,7 +81,6 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
             'Sonata\\CoreBundle\\Form\\Type\\DateTimeRangeType',
             'Sonata\\CoreBundle\\Form\\Type\\EqualType',
             'Sonata\\CoreBundle\\Form\\Type\\ImmutableArrayType',
-            'Sonata\\CoreBundle\\Form\\Type\\TranslatableChoiceType',
         ));
     }
 

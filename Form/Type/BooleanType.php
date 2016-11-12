@@ -32,10 +32,6 @@ class BooleanType extends AbstractType
         if ($options['transform']) {
             $builder->addModelTransformer(new BooleanTypeToBooleanTransformer());
         }
-
-        if ($options['catalogue'] !== 'SonataCoreBundle') {
-            @trigger_error('Option "catalogue" is deprecated since SonataCoreBundle 2.3.10 and will be removed in 4.0. Use option "translation_domain" instead.', E_USER_DEPRECATED);
-        }
     }
 
     /**
@@ -60,18 +56,7 @@ class BooleanType extends AbstractType
 
         $defaultOptions = array(
             'transform' => false,
-
-            // @deprecated Deprecated as of SonataCoreBundle 2.3.10, to be removed in 4.0.
-            'catalogue' => 'SonataCoreBundle',
-
-            // Use directly translation_domain in SonataCoreBundle 4.0
-            'translation_domain' => function (Options $options) {
-                if ($options['catalogue']) {
-                    return $options['catalogue'];
-                }
-
-                return $options['translation_domain'];
-            },
+            'translation_domain' => 'SonataCoreBundle',
         );
 
         // SF 2.7+ BC

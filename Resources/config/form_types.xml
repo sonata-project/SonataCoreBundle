@@ -10,10 +10,6 @@
         <service id="sonata.core.form.type.collection" class="Sonata\CoreBundle\Form\Type\CollectionType">
             <tag name="form.type" alias="sonata_type_collection"/>
         </service>
-        <service id="sonata.core.form.type.translatable_choice" class="Sonata\CoreBundle\Form\Type\TranslatableChoiceType">
-            <tag name="form.type" alias="sonata_type_translatable_choice"/>
-            <argument type="service" id="translator"/>
-        </service>
         <service id="sonata.core.form.type.date_range" class="Sonata\CoreBundle\Form\Type\DateRangeType">
             <tag name="form.type" alias="sonata_type_date_range"/>
             <argument type="service" id="translator"/>

@@ -86,7 +86,6 @@ class SonataCoreBundle extends Bundle
             'sonata_type_immutable_array' => 'Sonata\CoreBundle\Form\Type\ImmutableArrayType',
             'sonata_type_boolean' => 'Sonata\CoreBundle\Form\Type\BooleanType',
             'sonata_type_collection' => 'Sonata\CoreBundle\Form\Type\CollectionType',
-            'sonata_type_translatable_choice' => 'Sonata\CoreBundle\Form\Type\TranslatableChoiceType',
             'sonata_type_date_range' => 'Sonata\CoreBundle\Form\Type\DateRangeType',
             'sonata_type_datetime_range' => 'Sonata\CoreBundle\Form\Type\DateTimeRangeType',
             'sonata_type_date_picker' => 'Sonata\CoreBundle\Form\Type\DatePickerType',

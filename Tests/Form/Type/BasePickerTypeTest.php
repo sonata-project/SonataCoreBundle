@@ -55,9 +55,4 @@ class BasePickerTypeTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame('text', $view->vars['type']);
     }
-
-    public function testLegacyConstructor()
-    {
-        new BasePickerTest(new MomentFormatConverter());
-    }
 }
