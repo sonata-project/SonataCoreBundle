@@ -35,6 +35,11 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
     private $extension;
 
     /**
+     * @var TwigRenderer
+     */
+    private $renderer;
+
+    /**
      * {@inheritdoc}
      */
     protected function setUp()
@@ -49,10 +54,25 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
             'Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface',
         ), 'interface_exists');
 
-        $renderer = new TwigRenderer($this->getRenderingEngine(), $this->getMock(current($csrfProviderClasses)));
+        $this->renderer = new TwigRenderer($this->getRenderingEngine(), $this->getMock(current($csrfProviderClasses)));
 
-        $this->extension = new FormExtension($renderer);
-        $this->extension->initRuntime($this->getEnvironment());
+        $this->extension = new FormExtension($this->renderer);
+        $environment = $this->getEnvironment();
+
+        // TODO: remove the condition when dropping symfony/twig-bundle < 3.2
+        if (method_exists('Symfony\Bridge\Twig\AppVariable', 'getToken')) {
+            $runtimeLoader = $this
+                ->getMockBuilder('Twig_RuntimeLoaderInterface')
+                ->getMock();
+
+            $runtimeLoader->expects($this->any())
+                ->method('load')
+                ->with($this->equalTo('Symfony\Bridge\Twig\Form\TwigRenderer'))
+                ->will($this->returnValue($this->renderer));
+
+            $environment->addRuntimeLoader($runtimeLoader);
+        }
+        $this->extension->initRuntime($environment);
     }
 
     /**
@@ -120,7 +140,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      */
     final protected function renderWidget(FormView $view, array $vars = array())
     {
-        return (string) $this->extension->renderer->searchAndRenderBlock($view, 'widget', $vars);
+        return (string) $this->renderer->searchAndRenderBlock($view, 'widget', $vars);
     }
 
     /**
