@@ -14,7 +14,7 @@ namespace Sonata\CoreBundle\Color;
 /**
  * Handles A list of all HTML colors.
  *
- * @link http://www.w3schools.com/HTML/html_colornames.asp
+ * @see http://www.w3schools.com/HTML/html_colornames.asp
  *
  * @author Quentin Somazzi <qsomazzi@ekino.com>
  */
