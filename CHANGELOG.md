@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.1.2](https://github.com/sonata-project/SonataCoreBundle/compare/3.1.1...3.1.2) - 2016-12-09
+### Added
+- Added dutch (nl) date_range translations
+
+### Changed
+ - Use `choice_translation_domain` in `BooleanType`
+
+### Fixed
+- The abstract test case for testing widgets now works with Symfony 3.2
+
+### Updated
+- Updated Font Awesome from v4.6.3 to v4.7
+
 ## [3.1.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.1.0...3.1.1) - 2016-08-30
 ### Fixed
 - Added interface check for `JMS\Serializer\Handler\SubscribingHandlerInterface` in `SonataCoreExtension::configureSerializerFormats`
