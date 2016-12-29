@@ -52,6 +52,24 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
     {
         $processor = new Processor();
         $configuration = new Configuration();
+
+        // NEXT_MAJOR : remove this if block
+        if (!interface_exists('JMS\Serializer\Handler\SubscribingHandlerInterface')) {
+            /* Let's check for config values before the configuration is processed,
+             * otherwise we won't be able to tell,
+             * since there is a default value for this option. */
+            foreach ($configs as $config) {
+                if (isset($config['serializer'])) {
+                    @trigger_error(<<<'EOT'
+Setting the sonata_core -> serializer -> formats option
+without having the jms/serializer library installed is deprecated since 3.1,
+and will not be supported in 4.0,
+because the configuration option will not be added in that case.
+EOT
+                    , E_USER_DEPRECATED);
+                }
+            }
+        }
         $config = $processor->processConfiguration($configuration, $configs);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
@@ -158,6 +176,8 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
      */
     public function configureSerializerFormats($config)
     {
-        BaseSerializerHandler::setFormats($config['serializer']['formats']);
+        if (interface_exists('JMS\Serializer\Handler\SubscribingHandlerInterface')) {
+            BaseSerializerHandler::setFormats($config['serializer']['formats']);
+        }
     }
 }

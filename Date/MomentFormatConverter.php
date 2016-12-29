@@ -43,7 +43,7 @@ class MomentFormatConverter
         // second
         // 'ss'=>'ss', 's'=>'s',
         // day of week
-        'EE' => 'ddd', 'EEEEEE' => 'dd',
+        'EEEEEE' => 'dd', 'EEEE' => 'dddd', 'EE' => 'ddd',
         // timezone
         'ZZZZZ' => 'Z', 'ZZZ' => 'ZZ',
     );

@@ -12,6 +12,8 @@
 namespace Sonata\CoreBundle\Form\Type;
 
 /**
+ * NEXT_MAJOR: remove this class.
+ *
  * @deprecated Class to be remove once we only support Symfony3.X
  */
 class StatusType extends BaseStatusType

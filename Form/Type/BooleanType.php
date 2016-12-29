@@ -59,9 +59,11 @@ class BooleanType extends AbstractType
             'translation_domain' => 'SonataCoreBundle',
         );
 
-        // SF 2.7+ BC
+        // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.7)
         if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')) {
             $choices = array_flip($choices);
+
+            $defaultOptions['choice_translation_domain'] = 'SonataCoreBundle';
 
             // choice_as_value options is not needed in SF 3.0+
             if (method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {

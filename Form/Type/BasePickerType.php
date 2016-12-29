@@ -21,7 +21,6 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * Class BasePickerType (to factorize DatePickerType and DateTimePickerType code.
  *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 abstract class BasePickerType extends AbstractType
@@ -35,12 +34,15 @@ abstract class BasePickerType extends AbstractType
      * @var string
      */
     protected $locale;
+
     /**
      * @var MomentFormatConverter
      */
     private $formatConverter;
 
     /**
+     * NEXT_MAJOR: TranslatorInterface needs to be mandatory.
+     *
      * @param MomentFormatConverter $formatConverter
      * @param TranslatorInterface   $translator
      */
@@ -63,7 +65,14 @@ abstract class BasePickerType extends AbstractType
             $format = $options['date_format'];
         } elseif (is_int($format)) {
             $timeFormat = ($options['dp_pick_time']) ? DateTimeType::DEFAULT_TIME_FORMAT : \IntlDateFormatter::NONE;
-            $intlDateFormatter = new \IntlDateFormatter(\Locale::getDefault(), $format, $timeFormat, null, \IntlDateFormatter::GREGORIAN, null);
+            $intlDateFormatter = new \IntlDateFormatter(
+                \Locale::getDefault(),
+                $format,
+                $timeFormat,
+                null,
+                \IntlDateFormatter::GREGORIAN,
+                null
+            );
             $format = $intlDateFormatter->getPattern();
         }
 
