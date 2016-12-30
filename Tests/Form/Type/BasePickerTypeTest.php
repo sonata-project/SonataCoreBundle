@@ -31,13 +31,18 @@ class BasePickerTest extends BasePickerType
 }
 
 /**
+ * Class BasePickerTypeTest.
+ *
  * @author Hugo Briand <briand@ekino.com>
  */
 class BasePickerTypeTest extends \PHPUnit_Framework_TestCase
 {
     public function testFinishView()
     {
-        $type = new BasePickerTest(new MomentFormatConverter(), $this->getMock('Symfony\Component\Translation\TranslatorInterface'));
+        $type = new BasePickerTest(
+            new MomentFormatConverter(),
+            $this->getMock('Symfony\Component\Translation\TranslatorInterface')
+        );
 
         $view = new FormView();
         $form = new Form($this->getMock('Symfony\Component\Form\FormConfigInterface'));

@@ -23,15 +23,32 @@ class EqualType extends AbstractType
     const TYPE_IS_NOT_EQUAL = 2;
 
     /**
-     * @var TranslatorInterface
+     * NEXT_MAJOR: remove this property.
+     *
+     * @var TranslatorInterface|null
+     *
+     * @deprecated translator property is deprecated since version 3.1, to be removed in 4.0
      */
     protected $translator;
 
     /**
-     * @param TranslatorInterface $translator
+     * NEXT_MAJOR: remove this method.
+     *
+     * @param TranslatorInterface|null $translator
+     *
+     * @deprecated translator property is deprecated since version 3.1, to be removed in 4.0
      */
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(TranslatorInterface $translator = null)
     {
+        // check if class is overloaded and notify about removing deprecated translator
+        if ($translator !== null && get_class($this) !== get_class()) {
+            @trigger_error(
+                'The translator dependency in '.__CLASS__.' is deprecated since 3.1 and will be removed in 4.0. '.
+                'Please prepare your dependencies for this change.',
+                E_USER_DEPRECATED
+            );
+        }
+
         $this->translator = $translator;
     }
 
@@ -51,11 +68,13 @@ class EqualType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $choices = array(
-            self::TYPE_IS_EQUAL => $this->translator->trans('label_type_equals', array(), 'SonataCoreBundle'),
-            self::TYPE_IS_NOT_EQUAL => $this->translator->trans('label_type_not_equals', array(), 'SonataCoreBundle'),
+            self::TYPE_IS_EQUAL => 'label_type_equals',
+            self::TYPE_IS_NOT_EQUAL => 'label_type_not_equals',
         );
 
-        $defaultOptions = array();
+        $defaultOptions = array(
+            'choice_translation_domain' => 'SonataCoreBundle',
+        );
 
         // SF 2.7+ BC
         if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')) {

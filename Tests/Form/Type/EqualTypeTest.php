@@ -84,7 +84,7 @@ class EqualTypeTest extends TypeTestCase
     {
         $mock = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
 
-        $mock->expects($this->exactly(2))
+        $mock->expects($this->exactly(0))
             ->method('trans')
             ->will($this->returnCallback(function ($arg) {
                 return $arg;
@@ -112,6 +112,7 @@ class EqualTypeTest extends TypeTestCase
         }
 
         $expected = array(
+            'choice_translation_domain' => 'SonataCoreBundle',
             'choices_as_values' => true,
             'choices' => $choices,
         );

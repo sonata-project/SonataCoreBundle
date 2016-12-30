@@ -35,6 +35,11 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
     private $extension;
 
     /**
+     * @var TwigRenderer
+     */
+    private $renderer;
+
+    /**
      * {@inheritdoc}
      */
     protected function setUp()
@@ -49,16 +54,49 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
             'Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface',
         ), 'interface_exists');
 
-        $renderer = new TwigRenderer($this->getRenderingEngine(), $this->getMock(current($csrfProviderClasses)));
+        $this->renderer = new TwigRenderer($this->getRenderingEngine(), $this->getMock(current($csrfProviderClasses)));
 
-        $this->extension = new FormExtension($renderer);
-        $this->extension->initRuntime($this->getEnvironment());
+        $this->extension = new FormExtension($this->renderer);
+        $environment = $this->getEnvironment();
+
+        // TODO: remove the condition when dropping symfony/twig-bundle < 3.2
+        if (method_exists('Symfony\Bridge\Twig\AppVariable', 'getToken')) {
+            $runtimeLoader = $this
+                ->getMockBuilder('Twig_RuntimeLoaderInterface')
+                ->getMock();
+
+            $runtimeLoader->expects($this->any())
+                ->method('load')
+                ->with($this->equalTo('Symfony\Bridge\Twig\Form\TwigRenderer'))
+                ->will($this->returnValue($this->renderer));
+
+            $environment->addRuntimeLoader($runtimeLoader);
+        }
+        $this->extension->initRuntime($environment);
     }
 
     /**
      * @return \Twig_Environment
      */
     protected function getEnvironment()
+    {
+        $loader = new StubFilesystemLoader($this->getTemplatePaths());
+
+        $environment = new \Twig_Environment($loader, array(
+            'strict_variables' => true,
+        ));
+        $environment->addExtension(new TranslationExtension(new StubTranslator()));
+        $environment->addExtension($this->extension);
+
+        return $environment;
+    }
+
+    /**
+     * Returns a list of template paths.
+     *
+     * @return string[]
+     */
+    protected function getTemplatePaths()
     {
         // this is an workaround for different composer requirements and different TwigBridge installation directories
         $twigPaths = array_filter(array(
@@ -79,15 +117,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
 
         $twigPaths[] = __DIR__.'/../Resources/views/Form';
 
-        $loader = new StubFilesystemLoader($twigPaths);
-
-        $environment = new \Twig_Environment($loader, array(
-            'strict_variables' => true,
-        ));
-        $environment->addExtension(new TranslationExtension(new StubTranslator()));
-        $environment->addExtension($this->extension);
-
-        return $environment;
+        return $twigPaths;
     }
 
     /**
@@ -110,7 +140,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      */
     final protected function renderWidget(FormView $view, array $vars = array())
     {
-        return (string) $this->extension->renderer->searchAndRenderBlock($view, 'widget', $vars);
+        return (string) $this->renderer->searchAndRenderBlock($view, 'widget', $vars);
     }
 
     /**
