@@ -20,14 +20,11 @@ class DateRangeTypeTest extends TypeTestCase
 {
     public function testBuildForm()
     {
-        // NEXT_MAJOR: Hack for php 5.3 only, remove it when requirement of PHP is >= 5.4
-        $that = $this;
-
         $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
-            ->will($this->returnCallback(function ($name, $type = null) use ($that) {
+            ->will($this->returnCallback(function ($name, $type = null) {
                 // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
                 if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
                     if (null !== $type) {
@@ -44,7 +41,7 @@ class DateRangeTypeTest extends TypeTestCase
                             ;
                         }
 
-                        $that->assertTrue($isFQCN, sprintf('Unable to ensure %s is a FQCN', $type));
+                        $this->assertTrue($isFQCN, sprintf('Unable to ensure %s is a FQCN', $type));
                     }
                 }
             }));
