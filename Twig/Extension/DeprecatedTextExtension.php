@@ -18,14 +18,14 @@ namespace Sonata\CoreBundle\Twig\Extension;
  */
 final class DeprecatedTextExtension extends \Twig_Extensions_Extension_Text
 {
-    public function twig_truncate_filter(Twig_Environment $env, $value, $length = 30, $preserve = false, $separator = '...')
+    public function twig_truncate_filter(\Twig_Environment $env, $value, $length = 30, $preserve = false, $separator = '...')
     {
         $this->notifyDeprecation();
 
         return parent::twig_truncate_filter($env, $value, $length, $preserve, $separator);
     }
 
-    public function twig_wordwrap_filter(Twig_Environment $env, $value, $length = 80, $separator = "\n", $preserve = false)
+    public function twig_wordwrap_filter(\Twig_Environment $env, $value, $length = 80, $separator = "\n", $preserve = false)
     {
         $this->notifyDeprecation();
 
