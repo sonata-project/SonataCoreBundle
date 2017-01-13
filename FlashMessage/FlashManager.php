@@ -16,8 +16,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- * Class FlashManager.
- *
  * @author Vincent Composieux <composieux@ekino.com>
  */
 class FlashManager implements StatusClassRendererInterface

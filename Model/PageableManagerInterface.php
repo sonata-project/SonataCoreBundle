@@ -14,8 +14,6 @@ namespace Sonata\CoreBundle\Model;
 use Sonata\DatagridBundle\Pager\PagerInterface;
 
 /**
- * Class PageableManagerInterface.
- *
  * @author Raphaël Benitte <benitteraphael@gmail.com>
  */
 interface PageableManagerInterface

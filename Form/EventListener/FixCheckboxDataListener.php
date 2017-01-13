@@ -21,9 +21,7 @@ use Symfony\Component\Form\FormEvents;
  * will set false value to '0' instead of null which will end up
  * returning true value when the form is bind.
  *
- * Class FixCheckboxDataListener
- *
- * @author  Sylvain Rascar <rascar.sylvain@gmail.com>
+ * @author Sylvain Rascar <rascar.sylvain@gmail.com>
  */
 class FixCheckboxDataListener implements EventSubscriberInterface
 {

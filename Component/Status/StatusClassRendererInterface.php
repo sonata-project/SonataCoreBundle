@@ -12,8 +12,6 @@
 namespace Sonata\CoreBundle\Component\Status;
 
 /**
- * Class StatusClassRendererInterface.
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 interface StatusClassRendererInterface

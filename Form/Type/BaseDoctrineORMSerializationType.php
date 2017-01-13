@@ -21,8 +21,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Class DoctrineORMSerializationType.
- *
  * This is a doctrine serialization form type that generates a form type from class serialization metadata
  * and doctrine metadata
  *
