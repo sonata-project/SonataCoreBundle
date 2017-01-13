@@ -90,7 +90,7 @@ abstract class BasePickerType extends AbstractType
             $format = $intlDateFormatter->getPattern();
         }
 
-        // use seconds if it's allowe in format
+        // use seconds if it's allowed in format
         $options['dp_use_seconds'] = strpos($format, 's') !== false;
 
         $view->vars['moment_format'] = $this->formatConverter->convert($format);
