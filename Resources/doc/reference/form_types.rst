@@ -442,6 +442,9 @@ Many of the `standard date picker options`_ are available by adding options with
                         'dp_side_by_side'       => true,
                         'dp_use_current'        => false,
                         'dp_use_seconds'        => false,
+                        'dp_collapse'           => true,
+                        'dp_calendar_weeks'     => false,
+                        'dp_view_mode'          => 'days',
                 ))
 
                 // or sonata_type_date_picker if you don't need the time
