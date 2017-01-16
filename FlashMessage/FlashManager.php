@@ -41,8 +41,6 @@ class FlashManager implements StatusClassRendererInterface
     protected $cssClasses;
 
     /**
-     * Constructor.
-     *
      * @param SessionInterface    $session    Symfony session service
      * @param TranslatorInterface $translator Symfony translator service
      * @param array               $types      Sonata core types array (defined in configuration)
