@@ -16,10 +16,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
 
 /**
- * Class BaseManager.
- *
- *
- * @author  Hugo Briand <briand@ekino.com>
+ * @author Hugo Briand <briand@ekino.com>
  */
 abstract class BaseManager implements ManagerInterface
 {

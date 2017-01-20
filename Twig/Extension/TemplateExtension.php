@@ -33,8 +33,6 @@ class TemplateExtension extends \Twig_Extension
     protected $translator;
 
     /**
-     * Constructor.
-     *
      * @param bool                $debug        Is Symfony debug enabled?
      * @param TranslatorInterface $translator   Symfony Translator service
      * @param AdapterInterface    $modelAdapter A Sonata model adapter

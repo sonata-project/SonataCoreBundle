@@ -14,8 +14,6 @@ namespace Sonata\CoreBundle\Model;
 use Doctrine\ORM\EntityManager;
 
 /**
- * Class BaseManager.
- *
  * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */
 abstract class BaseEntityManager extends BaseManager

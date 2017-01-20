@@ -26,8 +26,6 @@ class TemplateBoxNode extends \Twig_Node
     protected $translator;
 
     /**
-     * Constructor.
-     *
      * @param \Twig_Node_Expression $message           Node message to display
      * @param \Twig_Node_Expression $translationBundle Node translation bundle to use for display
      * @param int                   $enabled           Is Symfony debug enabled?
