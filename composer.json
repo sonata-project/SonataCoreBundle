@@ -27,7 +27,7 @@
         "symfony/twig-bridge": "^2.3.5 || ^3.0",
         "symfony/validator": "^2.3 || ^3.0",
         "twig/extensions": "^1.0",
-        "twig/twig": "^1.23"
+        "twig/twig": "^1.23 || ^2.0"
     },
     "require-dev": {
         "doctrine/orm": "^2.4",
