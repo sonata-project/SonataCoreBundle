@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.2.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.1.2...3.2.0) - 2017-01-20
+### Added
+- Twig 2.0 compatibility
+- Missing bootstrap datepicker options (`dp_collapse`, `dp_calendar_weeks`, `dp_view_mode`)
+
+### Changed
+- Moment library updated from 2.10.6 to 2.17.1
+
+### Deprecated
+- The truncate service was deprecated
+
 ## [3.1.2](https://github.com/sonata-project/SonataCoreBundle/compare/3.1.1...3.1.2) - 2016-12-09
 ### Added
 - Added dutch (nl) date_range translations
