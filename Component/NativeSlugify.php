@@ -18,7 +18,7 @@ namespace Sonata\CoreBundle\Component;
  *
  * NEXT_MAJOR: remove this class.
  *
- * @deprecated
+ * @deprecated since 2.3, to be removed in 4.0.
  *
  * @author Thomas Rabaix <thomas.rabaix@gmail.com>
  */
@@ -29,7 +29,7 @@ class NativeSlugify
      *
      * @return mixed|string
      *
-     * @deprecated
+     * @deprecated since 2.3, to be removed in 4.0.
      */
     public function slugify($text)
     {
