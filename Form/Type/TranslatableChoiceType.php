@@ -21,7 +21,8 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * NEXT_MAJOR: remove this class.
  *
- * @deprecated Deprecated as of SonataCoreBundle 2.2.0, to be removed in 4.0. Use form type "choice" with "translation_domain" option instead
+ * @deprecated Deprecated as of SonataCoreBundle 2.2.0, to be removed in 4.0.
+ *             Use form type "choice" with "translation_domain" option instead
  */
 class TranslatableChoiceType extends AbstractType
 {
@@ -35,7 +36,11 @@ class TranslatableChoiceType extends AbstractType
      */
     public function __construct(TranslatorInterface $translator)
     {
-        @trigger_error('Form type "sonata_type_translatable_choice" is deprecated since SonataCoreBundle 2.2.0 and will be removed in 4.0. Use form type "choice" with "translation_domain" option instead.', E_USER_DEPRECATED);
+        @trigger_error(
+            'Form type "sonata_type_translatable_choice" is deprecated since SonataCoreBundle 2.2.0 and will be'
+            .' removed in 4.0. Use form type "choice" with "translation_domain" option instead.',
+            E_USER_DEPRECATED
+        );
 
         $this->translator = $translator;
     }
