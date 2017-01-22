@@ -14,10 +14,7 @@ namespace Sonata\CoreBundle\Model;
 use Doctrine\ODM\MongoDB\DocumentManager;
 
 /**
- * Class DocumentBaseManager.
- *
- *
- * @author  Hugo Briand <briand@ekino.com>
+ * @author Hugo Briand <briand@ekino.com>
  */
 abstract class BaseDocumentManager extends BaseManager
 {

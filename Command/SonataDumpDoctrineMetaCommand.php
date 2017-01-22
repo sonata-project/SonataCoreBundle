@@ -21,8 +21,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Return useful data on the database schema.
- *
- * Class SonataDoctrineUtils
  */
 class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
 {

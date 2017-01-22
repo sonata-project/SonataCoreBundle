@@ -12,9 +12,6 @@
 namespace Sonata\CoreBundle\Model;
 
 /**
- * Class MetadataInterface.
- *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 interface MetadataInterface

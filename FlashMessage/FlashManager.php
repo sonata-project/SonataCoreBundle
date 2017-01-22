@@ -16,8 +16,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- * Class FlashManager.
- *
  * @author Vincent Composieux <composieux@ekino.com>
  */
 class FlashManager implements StatusClassRendererInterface
@@ -43,8 +41,6 @@ class FlashManager implements StatusClassRendererInterface
     protected $cssClasses;
 
     /**
-     * Constructor.
-     *
      * @param SessionInterface    $session    Symfony session service
      * @param TranslatorInterface $translator Symfony translator service
      * @param array               $types      Sonata core types array (defined in configuration)

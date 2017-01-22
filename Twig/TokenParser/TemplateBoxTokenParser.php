@@ -27,8 +27,6 @@ class TemplateBoxTokenParser extends \Twig_TokenParser
     protected $translator;
 
     /**
-     * Constructor.
-     *
      * @param bool                $enabled    Is Symfony debug enabled?
      * @param TranslatorInterface $translator Symfony Translator service
      */

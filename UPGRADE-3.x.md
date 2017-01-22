@@ -1,6 +1,13 @@
 UPGRADE 3.x
 ===========
 
+UPGRADE FROM 3.1 to 3.2
+=======================
+
+### Deprecated truncate Twig filter
+
+The twig/extensions `truncate` filter is no longer available through Sonata, create your own service to get it back.
+
 UPGRADE FROM 3.0 to 3.1
 =======================
 

@@ -14,9 +14,7 @@ namespace Sonata\CoreBundle\Twig\Extension;
 use Sonata\CoreBundle\FlashMessage\FlashManager;
 
 /**
- * Class FlashMessageExtension.
- *
- * This is the Sonata core flash message Twig extension
+ * This is the Sonata core flash message Twig extension.
  *
  * @author Vincent Composieux <composieux@ekino.com>
  */
@@ -28,8 +26,6 @@ class FlashMessageExtension extends \Twig_Extension
     protected $flashManager;
 
     /**
-     * Constructor.
-     *
      * @param FlashManager $flashManager
      */
     public function __construct(FlashManager $flashManager)
