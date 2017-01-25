@@ -44,6 +44,10 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      */
     protected function setUp()
     {
+        // NEXT_MAJOR: remove this block when dropping symfony < 2.7 support
+        if (!class_exists('Symfony\Bridge\Twig\Extension\AssetExtension')) {
+            $this->markTestSkipped();
+        }
         parent::setUp();
 
         // NEXT_MAJOR: Remove BC hack when dropping symfony 2.4 support

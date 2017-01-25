@@ -21,10 +21,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Class DoctrineORMSerializationType.
- *
  * This is a doctrine serialization form type that generates a form type from class serialization metadata
- * and doctrine metadata
+ * and doctrine metadata.
  *
  * @author Vincent Composieux <vincent.composieux@gmail.com>
  */
@@ -61,8 +59,6 @@ class BaseDoctrineORMSerializationType extends AbstractType
     protected $identifierOverwrite;
 
     /**
-     * Constructor.
-     *
      * @param MetadataFactoryInterface $metadataFactory     Serializer metadata factory
      * @param ManagerRegistry          $registry            Doctrine registry
      * @param string                   $name                Form type name

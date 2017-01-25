@@ -14,7 +14,7 @@ namespace Sonata\CoreBundle\Twig\Extension;
 /**
  * NEXT_MAJOR : remove this class and the twig/extensions dependency.
  *
- * @deprecated since version 3.x, to be removed in 4.0.
+ * @deprecated since version 3.2, to be removed in 4.0
  */
 final class DeprecatedTextExtension extends \Twig_Extensions_Extension_Text
 {
@@ -35,7 +35,7 @@ final class DeprecatedTextExtension extends \Twig_Extensions_Extension_Text
     private function notifyDeprecation()
     {
         @trigger_error(
-            'Using the sonata.core.twig.extension.text service is deprecated since 3.x and will be removed in 4.0'
+            'Using the sonata.core.twig.extension.text service is deprecated since 3.2 and will be removed in 4.0'
         );
     }
 }

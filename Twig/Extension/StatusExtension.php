@@ -14,8 +14,6 @@ namespace Sonata\CoreBundle\Twig\Extension;
 use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
 
 /**
- * Class StatusExtension.
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 class StatusExtension extends \Twig_Extension

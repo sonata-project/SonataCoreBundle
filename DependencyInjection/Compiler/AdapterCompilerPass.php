@@ -16,9 +16,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Class StatusRendererCompilerPass.
- *
- *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
 class AdapterCompilerPass implements CompilerPassInterface

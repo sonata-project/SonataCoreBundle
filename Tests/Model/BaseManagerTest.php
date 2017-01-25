@@ -36,9 +36,6 @@ class ManagerTest extends BaseManager
 }
 
 /**
- * Class BaseManagerTest.
- *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 class BaseManagerTest extends \PHPUnit_Framework_TestCase
