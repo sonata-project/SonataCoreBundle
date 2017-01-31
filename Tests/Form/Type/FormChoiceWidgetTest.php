@@ -99,27 +99,13 @@ class FormChoiceWidgetTest extends AbstractWidgetTestCase
 
     private function getChoiceClass()
     {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
-            'Symfony\Component\Form\Extension\Core\Type\ChoiceType' :
-            'choice';
+        return 'Symfony\Component\Form\Extension\Core\Type\ChoiceType';
     }
 
-    /**
-     * NEXT_MAJOR: Remove this hack when dropping support for symfony 2.6.
-     *
-     * For SF < 2.6, we use 'empty_data' to provide default empty value.
-     * For SF >= 2.6, we must use 'placeholder' to achieve the same.
-     */
     private function getDefaultOption()
     {
-        if (method_exists('Symfony\Component\Form\Tests\AbstractLayoutTest', 'testSingleChoiceNonRequiredWithPlaceholder')) {
-            return array(
-                'placeholder' => 'Choose an option',
-            );
-        }
-
         return array(
-            'empty_value' => 'Choose an option',
+            'placeholder' => 'Choose an option',
         );
     }
 }

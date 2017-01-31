@@ -90,24 +90,8 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
             ->expects($this->any())
             ->method('add')
             ->will($this->returnCallback(function ($name, $type = null) {
-                // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
-                if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-                    if (null !== $type) {
-                        $isFQCN = class_exists($type);
-                        if (!$isFQCN && method_exists('Symfony\Component\Form\AbstractType', 'getName')) {
-                            // 2.8
-                            @trigger_error(
-                                sprintf(
-                                    'Accessing type "%s" by its string name is deprecated since version 2.8 and will be removed in 3.0.'
-                                    .' Use the fully-qualified type class name instead.',
-                                    $type
-                                ),
-                                E_USER_DEPRECATED)
-                            ;
-                        }
-
-                        $this->assertTrue($isFQCN, sprintf('Unable to ensure %s is a FQCN', $type));
-                    }
+                if (null !== $type) {
+                    $this->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
                 }
             }));
 
@@ -178,25 +162,9 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
             'serialization_api_write'
         );
 
-        // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
-        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            $parentRef = $form->getParent();
+        $parentRef = $form->getParent();
 
-            $isFQCN = class_exists($parentRef);
-            if (!$isFQCN && method_exists('Symfony\Component\Form\AbstractType', 'getName')) {
-                // 2.8
-                @trigger_error(
-                    sprintf(
-                        'Accessing type "%s" by its string name is deprecated since version 2.8 and will be removed in 3.0.'
-                        .' Use the fully-qualified type class name instead.',
-                        $parentRef
-                    ),
-                    E_USER_DEPRECATED)
-                ;
-            }
-
-            $this->assertTrue($isFQCN, sprintf('Unable to ensure %s is a FQCN', $parentRef));
-        }
+        $this->assertTrue(class_exists($parentRef), sprintf('Unable to ensure %s is a FQCN', $parentRef));
     }
 
     /**

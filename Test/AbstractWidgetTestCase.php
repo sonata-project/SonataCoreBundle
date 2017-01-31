@@ -50,15 +50,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
         }
         parent::setUp();
 
-        // NEXT_MAJOR: Remove BC hack when dropping symfony 2.4 support
-        $csrfProviderClasses = array_filter(array(
-            // symfony <=2.4
-            'Symfony\Component\Security\Csrf\CsrfTokenManagerInterface',
-            // symfony >=2.4
-            'Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface',
-        ), 'interface_exists');
-
-        $this->renderer = new TwigRenderer($this->getRenderingEngine(), $this->getMock(current($csrfProviderClasses)));
+        $this->renderer = new TwigRenderer($this->getRenderingEngine(), $this->getMock('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface'));
 
         $this->extension = new FormExtension($this->renderer);
         $environment = $this->getEnvironment();
@@ -108,9 +100,6 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
             __DIR__.'/../vendor/symfony/twig-bridge/Resources/views/Form',
             // symfony/twig-bridge (running from other bundles)
             __DIR__.'/../../../symfony/twig-bridge/Resources/views/Form',
-            // NEXT_MAJOR: Remove BC hacks when dropping symfony 2.3 support
-            // symfony/twig-bridge 2.3 (running from this bundle)
-            __DIR__.'/../vendor/symfony/twig-bridge/Symfony/Bridge/Twig/Resources/views/Form',
             // symfony/twig-bridge 2.3 (running from other bundles)
             __DIR__.'/../../../symfony/twig-bridge/Symfony/Bridge/Twig/Resources/views/Form',
             // symfony/symfony (running from this bundle)

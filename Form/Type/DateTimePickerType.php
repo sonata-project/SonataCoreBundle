@@ -13,23 +13,12 @@ namespace Sonata\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
  */
 class DateTimePickerType extends BasePickerType
 {
-    /**
-     * {@inheritdoc}
-     *
-     * @todo Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -49,10 +38,7 @@ class DateTimePickerType extends BasePickerType
      */
     public function getParent()
     {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
-            'Symfony\Component\Form\Extension\Core\Type\DateTimeType' :
-            'datetime' // SF <2.8 BC
-        ;
+        return 'Symfony\Component\Form\Extension\Core\Type\DateTimeType';
     }
 
     /**

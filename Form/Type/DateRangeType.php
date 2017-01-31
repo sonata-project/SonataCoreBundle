@@ -14,7 +14,6 @@ namespace Sonata\CoreBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class DateRangeType extends AbstractType
@@ -92,16 +91,6 @@ class DateRangeType extends AbstractType
 
     /**
      * {@inheritdoc}
-     *
-     * @todo Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
-    /**
-     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -109,11 +98,7 @@ class DateRangeType extends AbstractType
             'field_options' => array(),
             'field_options_start' => array(),
             'field_options_end' => array(),
-            // NEXT_MAJOR: Remove ternary and keep 'Symfony\Component\Form\Extension\Core\Type\DateType'
-            // (when requirement of Symfony is >= 2.8)
-            'field_type' => method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-                ? 'Symfony\Component\Form\Extension\Core\Type\DateType'
-                : 'date',
+            'field_type' => 'Symfony\Component\Form\Extension\Core\Type\DateType',
         ));
     }
 }

@@ -25,24 +25,8 @@ class CollectionTypeTest extends TypeTestCase
             ->expects($this->any())
             ->method('add')
             ->will($this->returnCallback(function ($name, $type = null) {
-                // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
-                if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-                    if (null !== $type) {
-                        $isFQCN = class_exists($type);
-                        if (!$isFQCN && method_exists('Symfony\Component\Form\AbstractType', 'getName')) {
-                            // 2.8
-                            @trigger_error(
-                                sprintf(
-                                    'Accessing type "%s" by its string name is deprecated since version 2.8 and will be removed in 3.0.'
-                                    .' Use the fully-qualified type class name instead.',
-                                    $type
-                                ),
-                                E_USER_DEPRECATED)
-                            ;
-                        }
-
-                        $this->assertTrue($isFQCN, sprintf('Unable to ensure %s is a FQCN', $type));
-                    }
+                if (null !== $type) {
+                    $this->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
                 }
             }));
 
@@ -50,9 +34,7 @@ class CollectionTypeTest extends TypeTestCase
 
         $type->buildForm($formBuilder, array(
             'modifiable' => false,
-            'type' => method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-                ? 'Symfony\Component\Form\Extension\Core\Type\TextType'
-                : 'text',
+            'type' => 'Symfony\Component\Form\Extension\Core\Type\TextType',
             'type_options' => array(),
             'pre_bind_data_callback' => null,
             'btn_add' => 'link_add',
@@ -64,25 +46,9 @@ class CollectionTypeTest extends TypeTestCase
     {
         $form = new CollectionType();
 
-        // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
-        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            $parentRef = $form->getParent();
+        $parentRef = $form->getParent();
 
-            $isFQCN = class_exists($parentRef);
-            if (!$isFQCN && method_exists('Symfony\Component\Form\AbstractType', 'getName')) {
-                // 2.8
-                @trigger_error(
-                    sprintf(
-                        'Accessing type "%s" by its string name is deprecated since version 2.8 and will be removed in 3.0.'
-                        .' Use the fully-qualified type class name instead.',
-                        $parentRef
-                    ),
-                    E_USER_DEPRECATED)
-                ;
-            }
-
-            $this->assertTrue($isFQCN, sprintf('Unable to ensure %s is a FQCN', $parentRef));
-        }
+        $this->assertTrue(class_exists($parentRef), sprintf('Unable to ensure %s is a FQCN', $parentRef));
     }
 
     public function testGetDefaultOptions()
@@ -95,11 +61,7 @@ class CollectionTypeTest extends TypeTestCase
 
         $this->assertFalse($options['modifiable']);
         $this->assertSame(
-            // NEXT_MAJOR: Remove ternary and keep 'Symfony\Component\Form\Extension\Core\Type\TextType'
-            // (when requirement of Symfony is >= 2.8)
-            method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-                ? 'Symfony\Component\Form\Extension\Core\Type\TextType'
-                : 'text',
+            'Symfony\Component\Form\Extension\Core\Type\TextType',
             $options['type']
         );
         $this->assertSame(0, count($options['type_options']));

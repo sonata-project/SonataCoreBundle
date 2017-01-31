@@ -18,7 +18,6 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * This is a doctrine serialization form type that generates a form type from class serialization metadata
@@ -117,11 +116,7 @@ class BaseDoctrineORMSerializationType extends AbstractType
                 case 'datetime':
                     $builder->add(
                         $name,
-                        // NEXT_MAJOR: Remove ternary and keep 'Symfony\Component\Form\Extension\Core\Type\DateTimeType'
-                        // (when requirement of Symfony is >= 2.8)
-                        method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-                            ? 'Symfony\Component\Form\Extension\Core\Type\DateTimeType'
-                            : 'datetime',
+                        'Symfony\Component\Form\Extension\Core\Type\DateTimeType',
                         array('required' => !$nullable, 'widget' => 'single_text')
                     );
                     break;
@@ -153,16 +148,6 @@ class BaseDoctrineORMSerializationType extends AbstractType
     public function getName()
     {
         return $this->getBlockPrefix();
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @todo Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
     }
 
     /**

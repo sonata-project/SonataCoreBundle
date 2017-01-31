@@ -29,11 +29,7 @@ class DateRangePickerType extends DateRangeType
             'field_options' => array(),
             'field_options_start' => array(),
             'field_options_end' => array(),
-            // NEXT_MAJOR: Remove ternary and keep 'Sonata\CoreBundle\Form\Type\DatePickerType'
-            // (when requirement of Symfony is >= 2.8)
-            'field_type' => method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-                ? 'Sonata\CoreBundle\Form\Type\DatePickerType'
-                : 'sonata_type_date_picker',
+            'field_type' => 'Sonata\CoreBundle\Form\Type\DatePickerType',
         ));
     }
 
