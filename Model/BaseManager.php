@@ -48,9 +48,13 @@ abstract class BaseManager implements ManagerInterface
         $manager = $this->registry->getManagerForClass($this->class);
 
         if (!$manager) {
-            throw new \RuntimeException(sprintf('Unable to find the mapping information for the class %s.'
-                ." Please check the 'auto_mapping' option (http://symfony.com/doc/current/reference/configuration/doctrine.html#configuration-overview)"
-                ." or add the bundle to the 'mappings' section in the doctrine configuration.", $this->class));
+            throw new \RuntimeException(sprintf(
+                'Unable to find the mapping information for the class %s.'
+                .' Please check the `auto_mapping` option'
+                .' (http://symfony.com/doc/current/reference/configuration/doctrine.html#configuration-overview)'
+                .' or add the bundle to the `mappings` section in the doctrine configuration.',
+                $this->class
+            ));
         }
 
         return $manager;

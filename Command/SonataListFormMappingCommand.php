@@ -39,10 +39,15 @@ class SonataListFormMappingCommand extends ContainerAwareCommand
     {
         $this
             ->setName('sonata:core:form-mapping')
-            ->addOption('format', 'f', InputOption::VALUE_REQUIRED, 'Output the mapping into a dedicated format (available: yaml, php)', 'yaml')
-            ->setDescription(
-                'Get information on the current form mapping'
-            );
+            ->addOption(
+                'format',
+                'f',
+                InputOption::VALUE_REQUIRED,
+                'Output the mapping into a dedicated format (available: yaml, php)',
+                'yaml'
+            )
+            ->setDescription('Get information on the current form mapping')
+        ;
     }
 
     /**
