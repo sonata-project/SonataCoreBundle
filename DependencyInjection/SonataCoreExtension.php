@@ -22,8 +22,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\HttpKernel\Kernel;
 
 /**
- * SonataCoreExtension.
- *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
 class SonataCoreExtension extends Extension implements PrependExtensionInterface
