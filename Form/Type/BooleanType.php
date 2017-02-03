@@ -34,7 +34,11 @@ class BooleanType extends AbstractType
         }
 
         if ($options['catalogue'] !== 'SonataCoreBundle') {
-            @trigger_error('Option "catalogue" is deprecated since SonataCoreBundle 2.3.10 and will be removed in 4.0. Use option "translation_domain" instead.', E_USER_DEPRECATED);
+            @trigger_error(
+                'Option "catalogue" is deprecated since SonataCoreBundle 2.3.10 and will be removed in 4.0.'
+                .' Use option "translation_domain" instead.',
+                E_USER_DEPRECATED
+            );
         }
     }
 
