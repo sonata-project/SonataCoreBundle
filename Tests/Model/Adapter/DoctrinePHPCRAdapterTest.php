@@ -13,13 +13,14 @@ namespace Sonata\CoreBundle\Tests\Model\Adapter;
 
 use Doctrine\ODM\PHPCR\Mapping\ClassMetadata;
 use Sonata\CoreBundle\Model\Adapter\DoctrinePHPCRAdapter;
+use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
 class MyDocument
 {
     public $path;
 }
 
-class DoctrinePHPCRAdapterTest extends \PHPUnit_Framework_TestCase
+class DoctrinePHPCRAdapterTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
@@ -33,7 +34,7 @@ class DoctrinePHPCRAdapterTest extends \PHPUnit_Framework_TestCase
      */
     public function testNormalizedIdentifierWithScalar()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $adapter = new DoctrinePHPCRAdapter($registry);
 
         $adapter->getNormalizedIdentifier(1);
@@ -41,7 +42,7 @@ class DoctrinePHPCRAdapterTest extends \PHPUnit_Framework_TestCase
 
     public function testNormalizedIdentifierWithNull()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $adapter = new DoctrinePHPCRAdapter($registry);
 
         $this->assertNull($adapter->getNormalizedIdentifier(null));
@@ -49,7 +50,7 @@ class DoctrinePHPCRAdapterTest extends \PHPUnit_Framework_TestCase
 
     public function testNormalizedIdentifierWithNoManager()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue(null));
 
         $adapter = new DoctrinePHPCRAdapter($registry);
@@ -62,7 +63,7 @@ class DoctrinePHPCRAdapterTest extends \PHPUnit_Framework_TestCase
         $manager = $this->getMockBuilder('Doctrine\ODM\PHPCR\DocumentManager')->disableOriginalConstructor()->getMock();
         $manager->expects($this->once())->method('contains')->will($this->returnValue(false));
 
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($manager));
 
         $adapter = new DoctrinePHPCRAdapter($registry);
@@ -83,7 +84,7 @@ class DoctrinePHPCRAdapterTest extends \PHPUnit_Framework_TestCase
         $manager->expects($this->any())->method('contains')->will($this->returnValue(true));
         $manager->expects($this->any())->method('getClassMetadata')->will($this->returnValue($metadata));
 
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->any())->method('getManagerForClass')->will($this->returnValue($manager));
 
         $adapter = new DoctrinePHPCRAdapter($registry);

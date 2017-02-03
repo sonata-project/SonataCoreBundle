@@ -12,11 +12,12 @@
 namespace Sonata\CoreBundle\Tests\Component;
 
 use Sonata\CoreBundle\Component\NativeSlugify;
+use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
  * @group legacy
  */
-class NativeSlugifyTest extends \PHPUnit_Framework_TestCase
+class NativeSlugifyTest extends PHPUnit_Framework_TestCase
 {
     public function testSlugify()
     {

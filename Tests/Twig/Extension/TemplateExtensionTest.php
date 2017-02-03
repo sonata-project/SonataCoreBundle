@@ -11,9 +11,10 @@
 
 namespace Sonata\CoreBundle\Tests\Twig\Extension;
 
+use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Sonata\CoreBundle\Twig\Extension\TemplateExtension;
 
-class TemplateExtensionTest extends \PHPUnit_Framework_TestCase
+class TemplateExtensionTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @group legacy
@@ -23,9 +24,9 @@ class TemplateExtensionTest extends \PHPUnit_Framework_TestCase
         setlocale(LC_ALL, 'en_US.utf8');
         setlocale(LC_CTYPE, 'en_US.utf8');
 
-        $translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+        $translator = $this->createMock('Symfony\Component\Translation\TranslatorInterface');
 
-        $adapter = $this->getMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface');
+        $adapter = $this->createMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface');
         $adapter->expects($this->never())->method('getUrlsafeIdentifier');
 
         $extension = new TemplateExtension(true, $translator, $adapter);
@@ -40,9 +41,9 @@ class TemplateExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testSafeUrl()
     {
-        $translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+        $translator = $this->createMock('Symfony\Component\Translation\TranslatorInterface');
 
-        $adapter = $this->getMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface');
+        $adapter = $this->createMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface');
         $adapter->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue('safe-parameter'));
 
         $extension = new TemplateExtension(true, $translator, $adapter);

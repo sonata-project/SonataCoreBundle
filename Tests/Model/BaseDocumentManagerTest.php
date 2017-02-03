@@ -12,16 +12,17 @@
 namespace Sonata\CoreBundle\Tests\Entity;
 
 use Sonata\CoreBundle\Model\BaseDocumentManager;
+use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
 class DocumentManager extends BaseDocumentManager
 {
 }
 
-class BaseDocumentManagerTest extends \PHPUnit_Framework_TestCase
+class BaseDocumentManagerTest extends PHPUnit_Framework_TestCase
 {
     public function getManager()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
 
         $manager = new DocumentManager('classname', $registry);
 

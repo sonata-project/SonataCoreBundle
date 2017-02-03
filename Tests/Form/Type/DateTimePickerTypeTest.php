@@ -13,12 +13,13 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Date\MomentFormatConverter;
 use Sonata\CoreBundle\Form\Type\DateTimePickerType;
+use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
  */
-class DateTimePickerTypeTest extends \PHPUnit_Framework_TestCase
+class DateTimePickerTypeTest extends PHPUnit_Framework_TestCase
 {
     public function testBuildForm()
     {
@@ -52,8 +53,8 @@ class DateTimePickerTypeTest extends \PHPUnit_Framework_TestCase
             }));
 
         $type = new DateTimePickerType(
-            $this->getMock('Sonata\CoreBundle\Date\MomentFormatConverter'),
-            $this->getMock('Symfony\Component\Translation\TranslatorInterface')
+            $this->createMock('Sonata\CoreBundle\Date\MomentFormatConverter'),
+            $this->createMock('Symfony\Component\Translation\TranslatorInterface')
         );
 
         $type->buildForm($formBuilder, array(
@@ -68,8 +69,8 @@ class DateTimePickerTypeTest extends \PHPUnit_Framework_TestCase
     public function testGetParent()
     {
         $form = new DateTimePickerType(
-            $this->getMock('Sonata\CoreBundle\Date\MomentFormatConverter'),
-            $this->getMock('Symfony\Component\Translation\TranslatorInterface')
+            $this->createMock('Sonata\CoreBundle\Date\MomentFormatConverter'),
+            $this->createMock('Symfony\Component\Translation\TranslatorInterface')
         );
 
         // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
@@ -95,7 +96,7 @@ class DateTimePickerTypeTest extends \PHPUnit_Framework_TestCase
 
     public function testGetName()
     {
-        $type = new DateTimePickerType(new MomentFormatConverter(), $this->getMock('Symfony\Component\Translation\TranslatorInterface'));
+        $type = new DateTimePickerType(new MomentFormatConverter(), $this->createMock('Symfony\Component\Translation\TranslatorInterface'));
 
         $this->assertSame('sonata_type_datetime_picker', $type->getName());
     }

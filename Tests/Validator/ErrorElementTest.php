@@ -12,6 +12,7 @@
 namespace Sonata\CoreBundle\Tests\Validator;
 
 use Sonata\CoreBundle\Tests\Fixtures\Bundle\Entity\Foo;
+use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Sonata\CoreBundle\Validator\ErrorElement;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -20,7 +21,7 @@ use Symfony\Component\Validator\ExecutionContextInterface as LegacyExecutionCont
 /**
  * @author Andrej Hudec <pulzarraider@gmail.com>
  */
-class ErrorElementTest extends \PHPUnit_Framework_TestCase
+class ErrorElementTest extends PHPUnit_Framework_TestCase
 {
     private $errorElement;
     private $context;
@@ -29,15 +30,15 @@ class ErrorElementTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $constraintValidatorFactory = $this->getMock('Symfony\Component\Validator\ConstraintValidatorFactoryInterface');
+        $constraintValidatorFactory = $this->createMock('Symfony\Component\Validator\ConstraintValidatorFactoryInterface');
 
-        $this->context = $this->getMock(interface_exists('Symfony\Component\Validator\Context\ExecutionContextInterface') ? 'Symfony\Component\Validator\Context\ExecutionContextInterface' : 'Symfony\Component\Validator\ExecutionContextInterface');
+        $this->context = $this->createMock(interface_exists('Symfony\Component\Validator\Context\ExecutionContextInterface') ? 'Symfony\Component\Validator\Context\ExecutionContextInterface' : 'Symfony\Component\Validator\ExecutionContextInterface');
         $this->context->expects($this->once())
                 ->method('getPropertyPath')
                 ->will($this->returnValue('bar'));
 
         if ($this->context instanceof ExecutionContextInterface) {
-            $builder = $this->getMock('Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface');
+            $builder = $this->createMock('Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface');
             $builder->expects($this->any())
                 ->method($this->anything())
                 ->will($this->returnSelf());
@@ -46,9 +47,9 @@ class ErrorElementTest extends \PHPUnit_Framework_TestCase
                 ->method('buildViolation')
                 ->willReturn($builder);
 
-            $validator = $this->getMock('Symfony\Component\Validator\Validator\ValidatorInterface');
+            $validator = $this->createMock('Symfony\Component\Validator\Validator\ValidatorInterface');
 
-            $this->contextualValidator = $this->getMock('Symfony\Component\Validator\Validator\ContextualValidatorInterface');
+            $this->contextualValidator = $this->createMock('Symfony\Component\Validator\Validator\ContextualValidatorInterface');
             $this->contextualValidator->expects($this->any())
                 ->method($this->anything())
                 ->will($this->returnSelf());
@@ -198,7 +199,7 @@ class ErrorElementTest extends \PHPUnit_Framework_TestCase
 
     public function testExceptionIsThrownWhenContextIsString()
     {
-        $constraintValidatorFactory = $this->getMock('Symfony\Component\Validator\ConstraintValidatorFactoryInterface');
+        $constraintValidatorFactory = $this->createMock('Symfony\Component\Validator\ConstraintValidatorFactoryInterface');
 
         $this->setExpectedException(
             'InvalidArgumentException',
