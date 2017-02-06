@@ -13,7 +13,6 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\BooleanType;
-use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -121,7 +120,7 @@ class BooleanTypeTest extends TypeTestCase
 
         FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
 
-        $builder = $this->getMock('Symfony\Component\Form\Test\FormBuilderInterface');
+        $builder = $this->createMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->once())->method('addModelTransformer');
 
         $type->buildForm($builder, $optionResolver->resolve(array(
@@ -138,7 +137,7 @@ class BooleanTypeTest extends TypeTestCase
 
         FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
 
-        $builder = $this->getMock('Symfony\Component\Form\Test\FormBuilderInterface');
+        $builder = $this->createMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->never())->method('addModelTransformer');
 
         $type->buildForm($builder, $optionResolver->resolve(array()));
@@ -150,7 +149,7 @@ class BooleanTypeTest extends TypeTestCase
 
         FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
 
-        $builder = $this->getMock('Symfony\Component\Form\Test\FormBuilderInterface');
+        $builder = $this->createMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->never())->method('addModelTransformer');
 
         $resolvedOptions = $optionResolver->resolve(array(
@@ -188,7 +187,7 @@ class BooleanTypeTest extends TypeTestCase
 
         FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
 
-        $builder = $this->getMock('Symfony\Component\Form\Test\FormBuilderInterface');
+        $builder = $this->createMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->never())->method('addModelTransformer');
 
         $resolvedOptions = $optionResolver->resolve(array(

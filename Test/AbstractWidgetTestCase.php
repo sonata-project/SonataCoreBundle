@@ -58,7 +58,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
             'Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface',
         ), 'interface_exists');
 
-        $this->renderer = new TwigRenderer($this->getRenderingEngine(), $this->getMock(current($csrfProviderClasses)));
+        $this->renderer = new TwigRenderer($this->getRenderingEngine(), $this->createMock(current($csrfProviderClasses)));
 
         $this->extension = new FormExtension($this->renderer);
         $environment = $this->getEnvironment();
@@ -171,5 +171,21 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
         return preg_replace_callback('~<([A-Z0-9]+) \K(.*?)>~i', function ($m) {
             return preg_replace('~\s*~', '', $m[0]);
         }, $html);
+    }
+
+    /**
+     * NEXT_MAJOR: Remove this method when dropping support for < PHPUnit 5.4.
+     *
+     * @param string $class
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected function createMock($class)
+    {
+        if (is_callable('parent::createMock')) {
+            return parent::createMock($class);
+        }
+
+        return $this->getMock($class);
     }
 }

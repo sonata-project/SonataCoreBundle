@@ -13,7 +13,6 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\TranslatableChoiceType;
-use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -52,7 +51,7 @@ class TranslatableChoiceTypeTest extends TypeTestCase
                 }
             }));
 
-        $type = new TranslatableChoiceType($this->getMock('Symfony\Component\Translation\TranslatorInterface'));
+        $type = new TranslatableChoiceType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
         $type->buildForm($formBuilder, array(
             'catalogue' => 'messages',
         ));
@@ -60,7 +59,7 @@ class TranslatableChoiceTypeTest extends TypeTestCase
 
     public function testGetParent()
     {
-        $form = new TranslatableChoiceType($this->getMock('Symfony\Component\Translation\TranslatorInterface'));
+        $form = new TranslatableChoiceType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
 
         // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
         if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
@@ -85,7 +84,7 @@ class TranslatableChoiceTypeTest extends TypeTestCase
 
     public function testLegacyGetDefaultOptions()
     {
-        $stub = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+        $stub = $this->createMock('Symfony\Component\Translation\TranslatorInterface');
 
         $type = new TranslatableChoiceType($stub);
 

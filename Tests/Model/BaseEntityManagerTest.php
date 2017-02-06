@@ -12,16 +12,17 @@
 namespace Sonata\CoreBundle\Tests\Entity;
 
 use Sonata\CoreBundle\Model\BaseEntityManager;
+use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
 class EntityManager extends BaseEntityManager
 {
 }
 
-class BaseEntityManagerTest extends \PHPUnit_Framework_TestCase
+class BaseEntityManagerTest extends PHPUnit_Framework_TestCase
 {
     public function getManager()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
 
         $manager = new EntityManager('classname', $registry);
 
@@ -48,7 +49,7 @@ class BaseEntityManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testExceptionOnNonMappedEntity()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue(null));
 
         $manager = new EntityManager('classname', $registry);
@@ -57,9 +58,9 @@ class BaseEntityManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetEntityManager()
     {
-        $objectManager = $this->getMock('Doctrine\Common\Persistence\ObjectManager');
+        $objectManager = $this->createMock('Doctrine\Common\Persistence\ObjectManager');
 
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($objectManager));
 
         $manager = new EntityManager('classname', $registry);

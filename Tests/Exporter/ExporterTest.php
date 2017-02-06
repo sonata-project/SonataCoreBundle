@@ -13,20 +13,21 @@ namespace Sonata\CoreBundle\Tests\Exporter;
 
 use Exporter\Source\ArraySourceIterator;
 use Sonata\CoreBundle\Exporter\Exporter;
+use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
  * NEXT_MAJOR: remove this class.
  *
  * @group legacy
  */
-class ExporterTest extends \PHPUnit_Framework_TestCase
+class ExporterTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException \RuntimeException
      */
     public function testFilter()
     {
-        $source = $this->getMock('Exporter\Source\SourceIteratorInterface');
+        $source = $this->createMock('Exporter\Source\SourceIteratorInterface');
 
         $exporter = new Exporter();
         $exporter->getResponse('foo', 'foo', $source);

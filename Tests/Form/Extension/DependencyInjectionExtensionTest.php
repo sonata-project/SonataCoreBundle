@@ -12,13 +12,14 @@
 namespace Sonata\CoreBundle\Tests\Form\Extension;
 
 use Sonata\CoreBundle\Form\Extension\DependencyInjectionExtension;
+use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Symfony\Component\HttpKernel\Kernel;
 
-class DependencyInjectionExtensionTest extends \PHPUnit_Framework_TestCase
+class DependencyInjectionExtensionTest extends PHPUnit_Framework_TestCase
 {
     public function testValidType()
     {
-        $type = $this->getMock('Symfony\Component\Form\FormTypeInterface');
+        $type = $this->createMock('Symfony\Component\Form\FormTypeInterface');
 
         if (Kernel::MAJOR_VERSION < 3) {
             $type->expects($this->any())
@@ -26,7 +27,7 @@ class DependencyInjectionExtensionTest extends \PHPUnit_Framework_TestCase
                 ->will($this->returnValue('Symfony\Component\Form\Type\FormType'));
         }
 
-        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
+        $container = $this->createMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->any())->method('has')->will($this->returnValue(true));
         $container->expects($this->any())
             ->method('get')
@@ -52,7 +53,7 @@ class DependencyInjectionExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testTypeWithoutService()
     {
-        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
+        $container = $this->createMock('Symfony\Component\DependencyInjection\ContainerInterface');
 
         $f = new DependencyInjectionExtension($container, array(), array(), array(), array());
 
@@ -61,7 +62,7 @@ class DependencyInjectionExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testTypeExtensionsValid()
     {
-        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
+        $container = $this->createMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->any())->method('has')->will($this->returnValue(true));
         $container->expects($this->any())
             ->method('get')
