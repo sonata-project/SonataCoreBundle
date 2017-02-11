@@ -1,6 +1,23 @@
 UPGRADE 3.x
 ===========
 
+### AbstractWidgetTestCase::getRenderingEngine() mandatory argument
+
+When using symfony/twig-bridge ^3.2.0,
+`AbstractWidgetTestCase::getRenderingEngine()` requires a `Twig_Environment` instance.
+
+Before:
+
+```php
+$this->getRenderingEngine();
+```
+
+After:
+
+```php
+$this->getRenderingEngine($environment);
+```
+
 UPGRADE FROM 3.1 to 3.2
 =======================
 
