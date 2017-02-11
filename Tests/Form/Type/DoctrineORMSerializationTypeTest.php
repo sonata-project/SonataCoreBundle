@@ -16,7 +16,6 @@ use JMS\Serializer\Metadata\ClassMetadata as SerializerMetadata;
 use JMS\Serializer\Metadata\PropertyMetadata;
 use Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType;
 use Symfony\Component\Form\Forms;
-use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\HttpKernel\Kernel;
 
 class FakeMetadataClass
@@ -96,7 +95,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
             }));
 
         $type = new DoctrineORMSerializationType(
-            $this->getMetadataFactoryMock(), // $this->getMock('Metadata\MetadataFactoryInterface'),
+            $this->getMetadataFactoryMock(), // $this->createMock('Metadata\MetadataFactoryInterface'),
             $this->getRegistryMock(),
             'form_type_test',
             $this->class,
@@ -155,8 +154,8 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
     public function testGetParent()
     {
         $form = new DoctrineORMSerializationType(
-            $this->getMock('Metadata\MetadataFactoryInterface'),
-            $this->getMock('Doctrine\Common\Persistence\ManagerRegistry'),
+            $this->createMock('Metadata\MetadataFactoryInterface'),
+            $this->createMock('Doctrine\Common\Persistence\ManagerRegistry'),
             'form_type_test',
             $this->class,
             'serialization_api_write'
@@ -188,7 +187,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $classMetadata->addPropertyMetadata($url);
         $classMetadata->addPropertyMetadata($comments);
 
-        $metadataFactory = $this->getMock('Metadata\MetadataFactoryInterface');
+        $metadataFactory = $this->createMock('Metadata\MetadataFactoryInterface');
         $metadataFactory->expects($this->once())->method('getMetadataForClass')->will($this->returnValue($classMetadata));
 
         return $metadataFactory;
@@ -219,10 +218,10 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
             ),
         );
 
-        $entityManager = $this->getMock('Doctrine\ORM\EntityManagerInterface');
+        $entityManager = $this->createMock('Doctrine\ORM\EntityManagerInterface');
         $entityManager->expects($this->once())->method('getClassMetadata')->will($this->returnValue($classMetadata));
 
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($entityManager));
 
         return $registry;

@@ -11,15 +11,16 @@
 
 namespace Sonata\CoreBundle\Tests\Twig\Extension;
 
+use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Sonata\CoreBundle\Twig\Extension\TemplateExtension;
 
-class TemplateExtensionTest extends \PHPUnit_Framework_TestCase
+class TemplateExtensionTest extends PHPUnit_Framework_TestCase
 {
     public function testSafeUrl()
     {
-        $translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+        $translator = $this->createMock('Symfony\Component\Translation\TranslatorInterface');
 
-        $adapter = $this->getMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface');
+        $adapter = $this->createMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface');
         $adapter->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue('safe-parameter'));
 
         $extension = new TemplateExtension(true, $translator, $adapter);

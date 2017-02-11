@@ -13,6 +13,7 @@ namespace Sonata\CoreBundle\Tests\Model;
 
 use Doctrine\DBAL\Connection;
 use Sonata\CoreBundle\Model\BaseManager;
+use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
 class ManagerTest extends BaseManager
 {
@@ -38,7 +39,7 @@ class ManagerTest extends BaseManager
 /**
  * @author Hugo Briand <briand@ekino.com>
  */
-class BaseManagerTest extends \PHPUnit_Framework_TestCase
+class BaseManagerTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException \InvalidArgumentException
@@ -46,7 +47,7 @@ class BaseManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckObject()
     {
-        $manager = new ManagerTest('class', $this->getMock('Doctrine\Common\Persistence\ManagerRegistry'));
+        $manager = new ManagerTest('class', $this->createMock('Doctrine\Common\Persistence\ManagerRegistry'));
 
         $manager->publicCheckObject(new \DateTime());
     }

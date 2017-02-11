@@ -21,14 +21,13 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 /**
  * @author Ahmet Akbana <ahmetakbana@gmail.com>
  */
-final class SonataCoreBundleTest extends \PHPUnit_Framework_TestCase
+final class SonataCoreBundleTest extends PHPUnit_Framework_TestCase
 {
     public function testBuild()
     {
-        $containerBuilder = $this->getMock(
-            'Symfony\Component\DependencyInjection\ContainerBuilder',
-            array('addCompilerPass')
-        );
+        $containerBuilder = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')
+            ->setMethods(array('addCompilerPass'))
+            ->getMock();
 
         $containerBuilder->expects($this->exactly(3))
             ->method('addCompilerPass')
@@ -161,7 +160,7 @@ final class SonataCoreBundleTest extends \PHPUnit_Framework_TestCase
     {
         $bundle = new SonataCoreBundle();
 
-        $container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
+        $container = $this->createMock('Symfony\Component\DependencyInjection\ContainerInterface');
 
         $container->expects($this->once())
             ->method('hasParameter')

@@ -38,21 +38,29 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
             ->setName('sonata:core:dump-doctrine-metadata')
             ->setDefinition(array(
                 new InputOption(
-                    'entity-name', 'E', InputOption::VALUE_OPTIONAL,
-                    'If entity-name is set, dump will only contain the specified entity and all its extended classes.', null
+                    'entity-name',
+                    'E',
+                    InputOption::VALUE_OPTIONAL,
+                    'If entity-name is set, dump will only contain the specified entity and all its extended classes.',
+                    null
                 ),
                 new InputOption(
-                    'regex', 'r', InputOption::VALUE_OPTIONAL,
-                    'If regex is set, dump will only contain entities which name match the pattern.', null
+                    'regex',
+                    'r',
+                    InputOption::VALUE_OPTIONAL,
+                    'If regex is set, dump will only contain entities which name match the pattern.',
+                    null
                 ),
                 new InputOption(
-                    'filename', 'f', InputOption::VALUE_OPTIONAL,
-                    'If filename is specified, result will be dumped into this file under json format.', null
+                    'filename',
+                    'f',
+                    InputOption::VALUE_OPTIONAL,
+                    'If filename is specified, result will be dumped into this file under json format.',
+                    null
                 ),
             ))
-            ->setDescription(
-                'Get information on the current Doctrine\'s schema'
-            );
+            ->setDescription('Get information on the current Doctrine\'s schema')
+        ;
     }
 
     /**

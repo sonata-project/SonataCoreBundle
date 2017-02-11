@@ -11,10 +11,11 @@
 
 namespace Sonata\CoreBundle\Tests\Twig\TokenParser;
 
+use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Sonata\CoreBundle\Twig\Node\TemplateBoxNode;
 use Sonata\CoreBundle\Twig\TokenParser\TemplateBoxTokenParser;
 
-class TemplateBoxTokenParserTest extends \PHPUnit_Framework_TestCase
+class TemplateBoxTokenParserTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider getTestsForRender
@@ -27,7 +28,7 @@ class TemplateBoxTokenParserTest extends \PHPUnit_Framework_TestCase
      */
     public function testCompile($enabled, $source, $expected)
     {
-        $translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+        $translator = $this->createMock('Symfony\Component\Translation\TranslatorInterface');
 
         $env = new \Twig_Environment(new \Twig_Loader_Array(array()), array('cache' => false, 'autoescape' => false, 'optimizations' => 0));
         $env->addTokenParser(new TemplateBoxTokenParser($enabled, $translator));
@@ -51,7 +52,7 @@ class TemplateBoxTokenParserTest extends \PHPUnit_Framework_TestCase
 
     public function getTestsForRender()
     {
-        $translator = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+        $translator = $this->createMock('Symfony\Component\Translation\TranslatorInterface');
 
         return array(
             array(

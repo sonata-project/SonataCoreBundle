@@ -93,18 +93,21 @@ class DependencyInjectionExtension implements FormExtensionInterface
             if (class_exists($name) && in_array('Symfony\Component\Form\FormTypeInterface', class_implements($name), true)) {
                 return new $name();
             }
-            throw new InvalidArgumentException(sprintf('The field type "%s" is not registered with the service container.', $name));
+            throw new InvalidArgumentException(
+                sprintf('The field type "%s" is not registered with the service container.', $name)
+            );
         }
 
         $type = $this->container->get($this->typeServiceIds[$name]);
 
         if ($name !== get_class($type) && (method_exists($type, 'getName') && $type->getName() !== $name)) {
-            throw new InvalidArgumentException(
-                sprintf('The type name specified for the service "%s" does not match the actual name. Expected "%s", given "%s"',
-                    $this->typeServiceIds[$name],
-                    $name,
-                    get_class($type)
-                ));
+            throw new InvalidArgumentException(sprintf(
+                'The type name specified for the service "%s" does not match the actual name.'
+                .' Expected "%s", given "%s"',
+                $this->typeServiceIds[$name],
+                $name,
+                get_class($type)
+            ));
         }
 
         return $type;

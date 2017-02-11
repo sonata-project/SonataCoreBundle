@@ -69,7 +69,7 @@ class BooleanTypeTest extends TypeTestCase
 
         FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
 
-        $builder = $this->getMock('Symfony\Component\Form\Test\FormBuilderInterface');
+        $builder = $this->createMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->once())->method('addModelTransformer');
 
         $type->buildForm($builder, $optionResolver->resolve(array(
@@ -86,7 +86,7 @@ class BooleanTypeTest extends TypeTestCase
 
         FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
 
-        $builder = $this->getMock('Symfony\Component\Form\Test\FormBuilderInterface');
+        $builder = $this->createMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->never())->method('addModelTransformer');
 
         $type->buildForm($builder, $optionResolver->resolve(array()));
@@ -98,7 +98,7 @@ class BooleanTypeTest extends TypeTestCase
 
         FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
 
-        $builder = $this->getMock('Symfony\Component\Form\Test\FormBuilderInterface');
+        $builder = $this->createMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->never())->method('addModelTransformer');
 
         $resolvedOptions = $optionResolver->resolve(array(

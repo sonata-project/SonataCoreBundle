@@ -11,12 +11,13 @@
 
 namespace Sonata\CoreBundle\Test\Validator\Constraints;
 
+use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Sonata\CoreBundle\Validator\Constraints\InlineConstraint;
 
 /**
  * @author Andrej Hudec <pulzarraider@gmail.com>
  */
-class InlineConstraintTest extends \PHPUnit_Framework_TestCase
+class InlineConstraintTest extends PHPUnit_Framework_TestCase
 {
     public function testValidatedBy()
     {
