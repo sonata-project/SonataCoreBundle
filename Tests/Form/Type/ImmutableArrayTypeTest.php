@@ -13,7 +13,6 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
-use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImmutableArrayTypeTest extends TypeTestCase
@@ -68,7 +67,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
     {
         $type = new ImmutableArrayType();
 
-        $builder = $this->getMock('Symfony\Component\Form\Test\FormBuilderInterface');
+        $builder = $this->createMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->once())->method('add')->with(
             $this->callback(function ($name) {
                 return $name === 'ttl';

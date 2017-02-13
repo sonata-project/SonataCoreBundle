@@ -12,8 +12,9 @@
 namespace Sonata\CoreBundle\Tests\Model\Adapter;
 
 use Sonata\CoreBundle\Model\Adapter\DoctrineORMAdapter;
+use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
-class DoctrineORMAdapterTest extends \PHPUnit_Framework_TestCase
+class DoctrineORMAdapterTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
@@ -27,7 +28,7 @@ class DoctrineORMAdapterTest extends \PHPUnit_Framework_TestCase
      */
     public function testNormalizedIdentifierWithScalar()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $adapter = new DoctrineORMAdapter($registry);
 
         $adapter->getNormalizedIdentifier(1);
@@ -35,7 +36,7 @@ class DoctrineORMAdapterTest extends \PHPUnit_Framework_TestCase
 
     public function testNormalizedIdentifierWithNull()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $adapter = new DoctrineORMAdapter($registry);
 
         $this->assertNull($adapter->getNormalizedIdentifier(null));
@@ -43,7 +44,7 @@ class DoctrineORMAdapterTest extends \PHPUnit_Framework_TestCase
 
     public function testNormalizedIdentifierWithNoManager()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue(null));
 
         $adapter = new DoctrineORMAdapter($registry);
@@ -56,10 +57,10 @@ class DoctrineORMAdapterTest extends \PHPUnit_Framework_TestCase
         $unitOfWork = $this->getMockBuilder('Doctrine\ORM\UnitOfWork')->disableOriginalConstructor()->getMock();
         $unitOfWork->expects($this->once())->method('isInIdentityMap')->will($this->returnValue(false));
 
-        $manager = $this->getMock('Doctrine\ORM\EntityManagerInterface');
+        $manager = $this->createMock('Doctrine\ORM\EntityManagerInterface');
         $manager->expects($this->any())->method('getUnitOfWork')->will($this->returnValue($unitOfWork));
 
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($manager));
 
         $adapter = new DoctrineORMAdapter($registry);
@@ -76,10 +77,10 @@ class DoctrineORMAdapterTest extends \PHPUnit_Framework_TestCase
         $unitOfWork->expects($this->once())->method('isInIdentityMap')->will($this->returnValue(true));
         $unitOfWork->expects($this->once())->method('getEntityIdentifier')->will($this->returnValue($data));
 
-        $manager = $this->getMock('Doctrine\ORM\EntityManagerInterface');
+        $manager = $this->createMock('Doctrine\ORM\EntityManagerInterface');
         $manager->expects($this->any())->method('getUnitOfWork')->will($this->returnValue($unitOfWork));
 
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($manager));
 
         $adapter = new DoctrineORMAdapter($registry);

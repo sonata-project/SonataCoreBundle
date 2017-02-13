@@ -12,6 +12,7 @@
 namespace Sonata\CoreBundle\Tests\Validator;
 
 use Sonata\CoreBundle\Tests\Fixtures\Bundle\Validator\FooValidatorService;
+use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Sonata\CoreBundle\Validator\ErrorElement;
 use Sonata\CoreBundle\Validator\InlineValidator;
 use Symfony\Component\Validator\Exception\ValidatorException;
@@ -19,7 +20,7 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 /**
  * @author Ahmet Akbana <ahmetakbana@gmail.com>
  */
-final class InlineValidatorTest extends \PHPUnit_Framework_TestCase
+final class InlineValidatorTest extends PHPUnit_Framework_TestCase
 {
     private $container;
     private $constraintValidatorFactory;
@@ -27,11 +28,11 @@ final class InlineValidatorTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->container = $this->getMock('Symfony\Component\DependencyInjection\ContainerInterface');
-        $this->constraintValidatorFactory = $this->getMock(
+        $this->container = $this->createMock('Symfony\Component\DependencyInjection\ContainerInterface');
+        $this->constraintValidatorFactory = $this->createMock(
             'Symfony\Component\Validator\ConstraintValidatorFactoryInterface'
         );
-        $this->context = $this->getMock(
+        $this->context = $this->createMock(
             interface_exists('Symfony\Component\Validator\Context\ExecutionContextInterface') ?
                 'Symfony\Component\Validator\Context\ExecutionContextInterface' :
                 'Symfony\Component\Validator\ExecutionContextInterface'
@@ -58,7 +59,9 @@ final class InlineValidatorTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('Symfony\Component\Validator\Exception\ValidatorException', 'foo is equal to foo');
 
-        $constraint = $this->getMock('Symfony\Component\Validator\Constraint', array('isClosure', 'getClosure'));
+        $constraint = $this->getMockBuilder('Symfony\Component\Validator\Constraint')
+            ->setMethods(array('isClosure', 'getClosure'))
+            ->getMock();
 
         $constraint->expects($this->once())
             ->method('isClosure')
@@ -79,11 +82,13 @@ final class InlineValidatorTest extends \PHPUnit_Framework_TestCase
 
     public function testValidateWithConstraintGetServiceIsString()
     {
-        $constraint = $this->getMock('Symfony\Component\Validator\Constraint', array(
-            'isClosure',
-            'getService',
-            'getMethod',
-        ));
+        $constraint = $this->getMockBuilder('Symfony\Component\Validator\Constraint')
+            ->setMethods(array(
+                'isClosure',
+                'getService',
+                'getMethod',
+            ))
+            ->getMock();
 
         $constraint->expects($this->once())
             ->method('isClosure')
@@ -113,11 +118,13 @@ final class InlineValidatorTest extends \PHPUnit_Framework_TestCase
 
     public function testValidateWithConstraintGetServiceIsNotString()
     {
-        $constraint = $this->getMock('Symfony\Component\Validator\Constraint', array(
-            'isClosure',
-            'getService',
-            'getMethod',
-        ));
+        $constraint = $this->getMockBuilder('Symfony\Component\Validator\Constraint')
+            ->setMethods(array(
+                'isClosure',
+                'getService',
+                'getMethod',
+            ))
+            ->getMock();
 
         $constraint->expects($this->once())
             ->method('isClosure')

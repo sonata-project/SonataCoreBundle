@@ -13,7 +13,6 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\EqualType;
-use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EqualTypeTest extends TypeTestCase
@@ -30,7 +29,7 @@ class EqualTypeTest extends TypeTestCase
                 }
             }));
 
-        $type = new EqualType($this->getMock('Symfony\Component\Translation\TranslatorInterface'));
+        $type = new EqualType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
         $type->buildForm($formBuilder, array(
             'choices' => array(),
         ));
@@ -38,7 +37,7 @@ class EqualTypeTest extends TypeTestCase
 
     public function testGetParent()
     {
-        $form = new EqualType($this->getMock('Symfony\Component\Translation\TranslatorInterface'));
+        $form = new EqualType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
 
         $parentRef = $form->getParent();
 
@@ -47,7 +46,7 @@ class EqualTypeTest extends TypeTestCase
 
     public function testGetDefaultOptions()
     {
-        $mock = $this->getMock('Symfony\Component\Translation\TranslatorInterface');
+        $mock = $this->createMock('Symfony\Component\Translation\TranslatorInterface');
 
         $mock->expects($this->exactly(0))
             ->method('trans')

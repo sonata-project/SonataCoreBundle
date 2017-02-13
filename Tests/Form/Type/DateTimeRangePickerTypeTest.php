@@ -13,7 +13,6 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\DateTimeRangePickerType;
-use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DateTimeRangePickerTypeTest extends TypeTestCase
@@ -30,7 +29,7 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
                 }
             }));
 
-        $type = new DateTimeRangePickerType($this->getMock('Symfony\Component\Translation\TranslatorInterface'));
+        $type = new DateTimeRangePickerType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
         $type->buildForm($formBuilder, array(
             'field_options' => array(),
             'field_options_start' => array(),
@@ -41,7 +40,7 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
 
     public function testGetParent()
     {
-        $form = new DateTimeRangePickerType($this->getMock('Symfony\Component\Translation\TranslatorInterface'));
+        $form = new DateTimeRangePickerType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
 
         $parentRef = $form->getParent();
 
@@ -50,7 +49,7 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
 
     public function testGetDefaultOptions()
     {
-        $type = new DateTimeRangePickerType($this->getMock('Symfony\Component\Translation\TranslatorInterface'));
+        $type = new DateTimeRangePickerType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
 
         $this->assertSame('sonata_type_datetime_range_picker', $type->getName());
 
