@@ -3,11 +3,9 @@ Core Bundle
 
 The ``SonataCoreBundle`` provided defaults elements required by the different Sonata's Bundles.
 
-
-Reference Guide
----------------
-
 .. toctree::
+   :caption: Reference Guide
+   :name: reference-guide
    :maxdepth: 1
    :numbered:
 
