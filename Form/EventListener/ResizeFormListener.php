@@ -49,6 +49,8 @@ class ResizeFormListener implements EventSubscriberInterface
     private $preBindDataCallback;
 
     /**
+     * NEXT_MAJOR: rename $resizeOnBind to $resizeOnSubmit and $preBindDataCallback to $preSubmitDataCallback.
+     *
      * @param string        $type
      * @param array         $typeOptions
      * @param bool          $resizeOnBind
@@ -69,7 +71,9 @@ class ResizeFormListener implements EventSubscriberInterface
     {
         return array(
             FormEvents::PRE_SET_DATA => 'preSetData',
+            // NEXT_MAJOR: change `preBind` to `preSubmit`
             FormEvents::PRE_SUBMIT => 'preBind',
+            // NEXT_MAJOR: change `onBind` to `onSubmit`
             FormEvents::SUBMIT => 'onBind',
         );
     }
