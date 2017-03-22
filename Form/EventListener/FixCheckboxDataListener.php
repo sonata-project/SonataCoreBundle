@@ -47,7 +47,7 @@ class FixCheckboxDataListener implements EventSubscriberInterface
         // BC prevention for class extending this one.
         if (get_called_class() !== 'Sonata\CoreBundle\Form\EventListener\FixCheckboxDataListener') {
             @trigger_error(
-                'The '.__METHOD__.' is deprecated since 2.3 and will be renamed in 4.0.'
+                __METHOD__.' is deprecated since 2.3 and will be renamed in 4.0.'
                 .' Use '.__CLASS__.'::preSubmit instead.',
                 E_USER_DEPRECATED
             );
