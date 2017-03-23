@@ -155,4 +155,39 @@ class ImmutableArrayTypeTest extends TypeTestCase
 
         $type->buildForm($builder, $options);
     }
+
+    public function testWithIncompleteOptions()
+    {
+        // NEXT_MAJOR: remove the condition
+        if (!method_exists('Symfony\Component\OptionsResolver\OptionsResolver', 'setDefault')) {
+            $this->markTestSkipped('closure validation is not available');
+        }
+
+        $optionsResolver = new OptionsResolver();
+
+        $type = new ImmutableArrayType();
+        $type->configureOptions($optionsResolver);
+
+        $this->setExpectedException(
+            'Symfony\Component\OptionsResolver\Exception\InvalidOptionsException',
+            'The option "keys" with value array is invalid.'
+        );
+
+        $optionsResolver->resolve(array('keys' => array(array('test'))));
+    }
+
+    public function testFormBuilderIsAValidElement()
+    {
+        $optionsResolver = new OptionsResolver();
+
+        $type = new ImmutableArrayType();
+        $type->configureOptions($optionsResolver);
+
+        $this->assertArrayHasKey(
+            'keys',
+            $optionsResolver->resolve(array('keys' => array($this->getMockBuilder(
+                'Symfony\Component\Form\FormBuilderInterface'
+            )->getMock())))
+        );
+    }
 }
