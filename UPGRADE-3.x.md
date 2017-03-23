@@ -1,6 +1,14 @@
 UPGRADE 3.x
 ===========
 
+### Deprecated `Sonata\CoreBundle\Form\EventListener\ResizeFormlistener::preBind`
+
+Use `Sonata\CoreBundle\Form\EventListener\ResizeFormlistener::preSubmit` instead.
+
+### Deprecated `Sonata\CoreBundle\Form\EventListener\ResizeFormlistener::onBind`
+
+Use `Sonata\CoreBundle\Form\EventListener\ResizeFormlistener::onSubmit` instead.
+
 UPGRADE FROM 3.2 to 3.3
 =======================
 
