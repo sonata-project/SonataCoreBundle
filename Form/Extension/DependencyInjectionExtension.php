@@ -28,8 +28,14 @@ class DependencyInjectionExtension implements FormExtensionInterface
      */
     protected $extension;
 
+    /**
+     * @var array
+     */
     protected $mappingTypes;
 
+    /**
+     * @var array
+     */
     protected $extensionTypes;
 
     /**
@@ -56,6 +62,10 @@ class DependencyInjectionExtension implements FormExtensionInterface
      * @var FormTypeGuesserInterface
      */
     private $guesser;
+
+    /**
+     * @var bool
+     */
     private $guesserLoaded = false;
 
     /**
