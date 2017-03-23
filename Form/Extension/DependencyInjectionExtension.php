@@ -59,8 +59,6 @@ class DependencyInjectionExtension implements FormExtensionInterface
     private $guesserLoaded = false;
 
     /**
-     * DependencyInjectionExtension constructor.
-     *
      * @param ContainerInterface $container
      * @param array              $typeServiceIds
      * @param array              $typeExtensionServiceIds
