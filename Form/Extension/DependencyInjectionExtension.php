@@ -44,17 +44,17 @@ class DependencyInjectionExtension implements FormExtensionInterface
     private $container;
 
     /**
-     * @var []string
+     * @var string[]
      */
     private $typeServiceIds;
 
     /**
-     * @var []string
+     * @var string[]
      */
     private $typeExtensionServiceIds;
 
     /**
-     * @var []string
+     * @var string[]
      */
     private $guesserServiceIds;
 
