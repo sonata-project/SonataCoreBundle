@@ -49,6 +49,8 @@ class ResizeFormListener implements EventSubscriberInterface
     private $preBindDataCallback;
 
     /**
+     * NEXT_MAJOR: rename $resizeOnBind to $resizeOnSubmit and $preBindDataCallback to $preSubmitDataCallback.
+     *
      * @param string        $type
      * @param array         $typeOptions
      * @param bool          $resizeOnBind
