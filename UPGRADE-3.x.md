@@ -1,6 +1,9 @@
 UPGRADE 3.x
 ===========
 
+UPGRADE FROM 3.2 to 3.3
+=======================
+
 ### AbstractWidgetTestCase::getRenderingEngine() mandatory argument
 
 When using symfony/twig-bridge ^3.2.0,
