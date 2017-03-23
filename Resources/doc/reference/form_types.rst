@@ -157,8 +157,6 @@ Now, the property can be edited by setting a type for each type:
 
 .. code-block:: php
 
-        <?php
-
     <?php
     // src/AppBundle/Admin/PageAdmin.php
 
