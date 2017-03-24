@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.3.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.2.0...3.3.0) - 2017-03-23
+### Added
+- `sonata-project/datagrid-bundle` dependency for `Sonata\CoreBundle\ModelPageableManagerInterface`
+
+### Fixed
+- deprecation notices in `AbstractWidgetTestCase`
+
 ## [3.2.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.1.2...3.2.0) - 2017-01-20
 ### Added
 - Twig 2.0 compatibility
