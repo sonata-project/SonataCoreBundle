@@ -64,6 +64,21 @@ class ImmutableArrayType extends AbstractType
         $resolver->setDefaults(array(
             'keys' => array(),
         ));
+
+        // NEXT_MAJOR: remove the condition
+        if (!method_exists('Symfony\Component\OptionsResolver\OptionsResolver', 'setDefault')) {
+            return;
+        }
+
+        $resolver->setAllowedValues('keys', function ($value) {
+            foreach ($value as $subValue) {
+                if (!$subValue instanceof FormBuilderInterface && (!is_array($subValue) || count($subValue) !== 3)) {
+                    return false;
+                }
+            }
+
+            return true;
+        });
     }
 
     /**
