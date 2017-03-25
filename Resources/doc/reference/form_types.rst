@@ -121,7 +121,7 @@ sonata_type_immutable_array
 The ``Immutable Array`` allows you to edit an array property by defining a type per key.
 
 The type has a ``keys`` parameter which contains the definition for each key.
-A definition is an array with 3 options:
+A definition is either a ``FormBuilder`` instance, or an array with 3 options:
 
 * key name,
 * type: a type name or a ``FormType`` instance,
@@ -156,8 +156,6 @@ Each value has a different type: `integer`, `url`, or `string` for instance.
 Now, the property can be edited by setting a type for each type:
 
 .. code-block:: php
-
-        <?php
 
     <?php
     // src/AppBundle/Admin/PageAdmin.php
