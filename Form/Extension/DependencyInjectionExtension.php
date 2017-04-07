@@ -34,27 +34,22 @@ class DependencyInjectionExtension implements FormExtensionInterface
     protected $mappingTypes;
 
     /**
-     * @var array
-     */
-    protected $extensionTypes;
-
-    /**
      * @var ContainerInterface
      */
     private $container;
 
     /**
-     * @var string[]
+     * @var array
      */
     private $typeServiceIds;
 
     /**
-     * @var string[]
+     * @var array
      */
     private $typeExtensionServiceIds;
 
     /**
-     * @var string[]
+     * @var array
      */
     private $guesserServiceIds;
 
@@ -69,6 +64,18 @@ class DependencyInjectionExtension implements FormExtensionInterface
     private $guesserLoaded = false;
 
     /**
+     * @var array
+     */
+    private $mappingExtensionTypes;
+
+    /**
+     * @var array|bool
+     */
+    private $reverseMappingTypes;
+
+    /**
+     * DependencyInjectionExtension constructor.
+     *
      * @param ContainerInterface $container
      * @param array              $typeServiceIds
      * @param array              $typeExtensionServiceIds
@@ -76,8 +83,21 @@ class DependencyInjectionExtension implements FormExtensionInterface
      * @param array              $mappingTypes
      * @param array              $extensionTypes
      */
-    public function __construct(ContainerInterface $container, array $typeServiceIds, array $typeExtensionServiceIds, array $guesserServiceIds, array $mappingTypes = array(), array $extensionTypes = array())
-    {
+    public function __construct(
+        ContainerInterface $container,
+        array $typeServiceIds,
+        $typeExtensionServiceIds,
+        $guesserServiceIds,
+        array $mappingTypes = [],
+        array $extensionTypes = []
+    ) {
+        if (is_object($typeExtensionServiceIds) && $typeExtensionServiceIds instanceof \Iterator) {
+            $typeExtensionServiceIds = iterator_to_array($typeExtensionServiceIds);
+        }
+        if (is_object($guesserServiceIds) && $guesserServiceIds instanceof \Iterator) {
+            $guesserServiceIds = iterator_to_array($guesserServiceIds);
+        }
+
         $this->container = $container;
         $this->typeServiceIds = $typeServiceIds;
         $this->typeExtensionServiceIds = $typeExtensionServiceIds;

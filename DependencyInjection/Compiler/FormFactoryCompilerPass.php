@@ -13,6 +13,7 @@ namespace Sonata\CoreBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Exception\OutOfBoundsException;
 
 class FormFactoryCompilerPass implements CompilerPassInterface
 {
@@ -45,7 +46,11 @@ class FormFactoryCompilerPass implements CompilerPassInterface
         $factory = $container->getDefinition('sonata.core.form.extension.dependency');
         $factory->replaceArgument(1, $original->getArgument(1));
         $factory->replaceArgument(2, $original->getArgument(2));
-        $factory->replaceArgument(3, $original->getArgument(3));
+        try {
+            $factory->replaceArgument(3, $original->getArgument(3));
+        } catch (OutOfBoundsException $e) {
+            $factory->replaceArgument(3, []);
+        }
 
         $container->removeDefinition('form.extension');
         $container->removeDefinition('sonata.core.form.extension.dependency');
