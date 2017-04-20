@@ -52,27 +52,22 @@ final class FormFactoryCompilerPassTest extends AbstractCompilerPassTestCase
 
     public function testProcessWithContainerHasFormExtensionDefinition()
     {
-        $formExtension = new Definition();
-        $formExtension->addArgument('foo');
-        $formExtension->addArgument('bar');
-        $formExtension->addArgument('baz');
-        $formExtension->addArgument('caz');
+        $formExtension = new Definition(null, array(null, null, null, null));
         $this->setDefinition('form.extension', $formExtension);
 
-        $sonataFormExtension = new Definition();
-        $sonataFormExtension->addArgument('extension-foo');
-        $sonataFormExtension->addArgument('extension-bar');
-        $sonataFormExtension->addArgument('extension-baz');
-        $sonataFormExtension->addArgument('extension-caz');
+        $formType = new Definition();
+        $formType->addTag('form.type');
+        $this->setDefinition('foo', $formType);
+
+        $sonataFormExtension = new Definition(null, array(null, null, null, null));
         $this->setDefinition('sonata.core.form.extension.dependency', $sonataFormExtension);
 
         $this->compile();
 
-        $expectedFormExtension = $this->container->getDefinition('form.extension');
+        $this->assertSame($sonataFormExtension, $this->container->getDefinition('form.extension'));
 
-        $this->assertSame('extension-foo', $expectedFormExtension->getArgument(0));
-        $this->assertSame('bar', $expectedFormExtension->getArgument(1));
-        $this->assertSame('baz', $expectedFormExtension->getArgument(2));
-        $this->assertSame('caz', $expectedFormExtension->getArgument(3));
+        $this->assertContains('foo', $sonataFormExtension->getArgument(1));
+        $this->assertSame(array(), $sonataFormExtension->getArgument(2));
+        $this->assertSame(array(), $sonataFormExtension->getArgument(3));
     }
 }

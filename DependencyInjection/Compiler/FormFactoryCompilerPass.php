@@ -11,10 +11,10 @@
 
 namespace Sonata\CoreBundle\DependencyInjection\Compiler;
 
-use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\FormPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class FormFactoryCompilerPass implements CompilerPassInterface
+class FormFactoryCompilerPass extends FormPass
 {
     /**
      * {@inheritdoc}
@@ -41,6 +41,7 @@ class FormFactoryCompilerPass implements CompilerPassInterface
 
         // get factories
         $original = $container->getDefinition('form.extension');
+        parent::process($container);
 
         $factory = $container->getDefinition('sonata.core.form.extension.dependency');
         $factory->replaceArgument(1, $original->getArgument(1));
