@@ -25,6 +25,7 @@ class SonataCoreBundle extends Bundle
      */
     public function build(ContainerBuilder $container)
     {
+        // unsignificant change
         $container->addCompilerPass(new StatusRendererCompilerPass());
         $container->addCompilerPass(new AdapterCompilerPass());
         $container->addCompilerPass(new FormFactoryCompilerPass());
