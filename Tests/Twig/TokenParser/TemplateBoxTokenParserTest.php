@@ -21,7 +21,7 @@ class TemplateBoxTokenParserTest extends PHPUnit_Framework_TestCase
      * @dataProvider getTestsForRender
      *
      * @param bool            $enabled
-     * @param string          $source
+     * @param \Twig_Source    $source
      * @param TemplateBoxNode $expected
      *
      * @throws \Twig_Error_Syntax
@@ -32,6 +32,9 @@ class TemplateBoxTokenParserTest extends PHPUnit_Framework_TestCase
 
         $env = new \Twig_Environment(new \Twig_Loader_Array(array()), array('cache' => false, 'autoescape' => false, 'optimizations' => 0));
         $env->addTokenParser(new TemplateBoxTokenParser($enabled, $translator));
+        if (class_exists('\Twig_Source')) {
+            $source = new \Twig_Source($source, 'test');
+        }
         $stream = $env->tokenize($source);
         $parser = new \Twig_Parser($env);
 
@@ -40,10 +43,17 @@ class TemplateBoxTokenParserTest extends PHPUnit_Framework_TestCase
             $expected->getIterator()->getFlags(),
             $actual->getIterator()->getFlags()
         );
-        $this->assertSame(
-            $expected->getLine(),
-            $actual->getLine()
-        );
+        if (method_exists($expected, 'getLine')) {
+            $this->assertSame(
+                $expected->getLine(),
+                $actual->getLine()
+            );
+        } else {
+            $this->assertSame(
+                $expected->getTemplateLine(),
+                $actual->getTemplateLine()
+            );
+        }
         $this->assertSame(
             $expected->count(),
             $actual->count()
