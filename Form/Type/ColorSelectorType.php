@@ -33,7 +33,7 @@ class ColorSelectorType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $defaults = array(
             'choices' => Colors::getAll(),
             'translation_domain' => 'SonataCoreBundle',
             'preferred_choices' => array(
@@ -48,7 +48,15 @@ class ColorSelectorType extends AbstractType
                 Colors::WHITE,
                 Colors::YELLOW,
             ),
-        ));
+        );
+
+        // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
+        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+            $defaults['choices'] = Colors::getAll(false);
+            $defaults['choices_as_values'] = true;
+        }
+
+        $resolver->setDefaults($defaults);
     }
 
     /**
