@@ -83,7 +83,9 @@ EOT
         $container->setParameter('sonata.core.form_type', $config['form_type']);
 
         $this->configureFormFactory($container, $config);
-        $this->configureClassesToCompile();
+        if (\PHP_VERSION_ID < 70000) {
+            $this->configureClassesToCompile();
+        }
 
         $this->deprecateSlugify($container);
 
