@@ -34,7 +34,8 @@ class ColorSelectorType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'choices' => Colors::getAll(),
+            'choices' => array_flip(Colors::getAll()),
+            'choices_as_values' => true,
             'translation_domain' => 'SonataCoreBundle',
             'preferred_choices' => array(
                 Colors::BLACK,
