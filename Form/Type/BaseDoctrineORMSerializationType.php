@@ -124,16 +124,19 @@ class BaseDoctrineORMSerializationType extends AbstractType
                             : 'datetime',
                         array('required' => !$nullable, 'widget' => 'single_text')
                     );
+
                     break;
 
                 case 'boolean':
                     $childBuilder = $builder->create($name, null, array('required' => !$nullable));
                     $childBuilder->addEventSubscriber(new FixCheckboxDataListener());
                     $builder->add($childBuilder);
+
                     break;
 
                 default:
                     $builder->add($name, null, array('required' => !$nullable));
+
                     break;
             }
         }
