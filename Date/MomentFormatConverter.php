@@ -71,8 +71,8 @@ class MomentFormatConverter
                     $i += 2;
                 } else {
                     //if it's no a 'T' then send whatever is inside the '' to
-                //the output, but send it inside [] (useful for cases like
-                //the brazilian translation that uses a 'de' in the date)
+                    //the output, but send it inside [] (useful for cases like
+                    //the brazilian translation that uses a 'de' in the date)
                     $output .= '[';
                     $temp = current(explode("'", substr($format, $i + 1)));
                     $output .= $temp;
@@ -88,11 +88,12 @@ class MomentFormatConverter
                         $output .= $value;
                         $foundOne = true;
                         $i += strlen($key) - 1;
+
                         break;
                     }
                 }
-        //if no rule is matched, then just add the character to the
-        //output
+                //if no rule is matched, then just add the character to the
+                //output
                 if (!$foundOne) {
                     $output .= $format[$i];
                 }
