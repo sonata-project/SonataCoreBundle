@@ -39,6 +39,7 @@ class TemplateBoxNode extends \Twig_Node
         $this->translator = $translator;
 
         $nodes = array('message' => $message);
+
         if ($translationBundle) {
             $nodes['translationBundle'] = $translationBundle;
         }
@@ -62,7 +63,11 @@ class TemplateBoxNode extends \Twig_Node
 
         $value = $this->getNode('message')->getAttribute('value');
 
-        $translationBundle = $this->getNode('translationBundle');
+        $translationBundle = null;
+
+        if ($this->hasNode('translationBundle')) {
+            $translationBundle = $this->getNode('translationBundle');
+        }
 
         if ($translationBundle) {
             $translationBundle = $translationBundle->getAttribute('value');
