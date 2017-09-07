@@ -145,6 +145,7 @@ abstract class BasePickerType extends AbstractType
             'dp_collapse' => true,
             'dp_calendar_weeks' => false,
             'dp_view_mode' => 'days',
+            'dp_min_view_mode' => 'days',
         );
     }
 }
