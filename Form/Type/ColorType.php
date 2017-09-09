@@ -13,7 +13,7 @@ namespace Sonata\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 
-class ColorType extends AbstractType
+final class ColorType extends AbstractType
 {
     /**
      * {@inheritdoc}
