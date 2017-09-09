@@ -47,14 +47,14 @@ class ColorTypeTest extends TypeTestCase
             }));
 
         $type = new ColorType();
-        $type->buildForm($formBuilder, []);
+        $type->buildForm($formBuilder, array());
     }
 
 
     public function testSubmitValidData()
     {
         $data = '#556b2f';
-        $form = $this->factory->create(ColorType::class);
+        $form = $this->factory->create('Sonata\CoreBundle\Form\Type\ColorType');
         $form->submit($data);
         $this->assertTrue($form->isSynchronized());
     }
