@@ -487,12 +487,12 @@ Example with ``doctrine_orm_date_range`` filter:
         // ...
     }
 
-sonata_type_color_picker
+sonata_type_color
 ------------------------
 
-This type a simple color picker from AdminLTE colors. Its available as service, and inherit from ``choice`` default form types.
+This is HTML5 input type color.
 
-.. image:: ../images/colorpicker.png
+.. image:: ../images/color.png
 
 In order to use it, you'll need to perform a bit of setup:
 
@@ -503,7 +503,7 @@ In order to use it, you'll need to perform a bit of setup:
         # app/config/config.yml
         twig:
             form_themes:
-                - 'SonataCoreBundle:Form:colorpicker.html.twig'
+                - 'SonataCoreBundle:Form:color.html.twig'
 
 Finally, in your form, you may use the form type as follows:
 
@@ -517,7 +517,7 @@ Finally, in your form, you may use the form type as follows:
         protected function configureFormFields(FormMapper $formMapper)
         {
             $formMapper
-                ->add('color', 'sonata_type_color_selector')
+                ->add('color', 'sonata_type_color')
                 // ...
             ;
         }
