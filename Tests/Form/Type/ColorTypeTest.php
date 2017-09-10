@@ -50,11 +50,17 @@ class ColorTypeTest extends TypeTestCase
         $type->buildForm($formBuilder, array());
     }
 
-
     public function testSubmitValidData()
     {
         $data = '#556b2f';
-        $form = $this->factory->create('Sonata\CoreBundle\Form\Type\ColorType');
+
+        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+            $type = 'Sonata\CoreBundle\Form\Type\ColorType';
+        } else {
+            $type = new ColorType();
+        }
+
+        $form = $this->factory->create($type);
         $form->submit($data);
         $this->assertTrue($form->isSynchronized());
     }
