@@ -39,12 +39,14 @@ file that was distributed with this source code.
 
 {% block sonata_type_datetime_picker_widget_html %}
     {% if datepicker_use_button %}
-        <div class='input-group date' id='dtp_{{ id }}'>
+        <div class='input-group date {% if not dp_options['pickDate'] %}timepicker{% endif %}' id='dtp_{{ id }}'>
     {% endif %}
     {% set attr = attr|merge({'data-date-format': moment_format}) %}
     {{ block('datetime_widget') }}
     {% if datepicker_use_button %}
-          <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+            <span class="input-group-addon">
+                <span class="fa {% if dp_options['pickDate'] %}fa-calendar{% else %}fa-clock{% endif %}"></span>
+            </span>
         </div>
     {% endif %}
 {% endblock sonata_type_datetime_picker_widget_html %}

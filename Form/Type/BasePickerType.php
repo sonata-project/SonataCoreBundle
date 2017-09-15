@@ -125,6 +125,7 @@ abstract class BasePickerType extends AbstractType
             'widget' => 'single_text',
             'datepicker_use_button' => true,
             'dp_pick_time' => true,
+            'dp_pick_date' => true,
             'dp_use_current' => true,
             'dp_min_date' => '1/1/1900',
             'dp_max_date' => null,
