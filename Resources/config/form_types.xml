@@ -43,5 +43,8 @@
         <service id="sonata.core.form.type.color_selector" class="Sonata\CoreBundle\Form\Type\ColorSelectorType">
             <tag name="form.type" alias="sonata_type_color_selector"/>
         </service>
+        <service id="sonata.core.form.type.color" class="Sonata\CoreBundle\Form\Type\ColorType">
+            <tag name="form.type" alias="sonata_type_color"/>
+        </service>
     </services>
 </container>

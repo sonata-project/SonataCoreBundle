@@ -1,13 +1,10 @@
 UPGRADE 3.x
 ===========
 
-### Deprecated `Sonata\CoreBundle\Form\EventListener\ResizeFormlistener::preBind`
+UPGRADE FROM 3.4 to 3.5
+=======================
 
-Use `Sonata\CoreBundle\Form\EventListener\ResizeFormlistener::preSubmit` instead.
-
-### Deprecated `Sonata\CoreBundle\Form\EventListener\ResizeFormlistener::onBind`
-
-Use `Sonata\CoreBundle\Form\EventListener\ResizeFormlistener::onSubmit` instead.
+The `ColorSelectorType` class is deprecated. Use `ColorType` instead.
 
 UPGRADE FROM 3.2 to 3.3
 =======================
