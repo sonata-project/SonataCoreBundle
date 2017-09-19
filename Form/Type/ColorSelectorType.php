@@ -17,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 @trigger_error(
-    'The '.__NAMESPACE__.'\ColorSelectorType class is deprecated since version 3.4 and will be removed in 4.0.'
+    'The '.__NAMESPACE__.'\ColorSelectorType class is deprecated since version 3.5 and will be removed in 4.0.'
     .' Use '.__NAMESPACE__.'\ColorType instead.',
     E_USER_DEPRECATED
 );
@@ -25,7 +25,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 /**
  * NEXT_MAJOR: remove this class.
  *
- * @deprecated since version 3.4, to be removed in 4.0. Use ColorType instead
+ * @deprecated since version 3.5, to be removed in 4.0. Use ColorType instead
  */
 class ColorSelectorType extends AbstractType
 {

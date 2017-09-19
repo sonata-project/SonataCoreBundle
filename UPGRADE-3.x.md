@@ -1,6 +1,11 @@
 UPGRADE 3.x
 ===========
 
+UPGRADE FROM 3.4 to 3.5
+=======================
+
+The `ColorSelectorType` class is deprecated. Use `ColorType` instead.
+
 UPGRADE FROM 3.2 to 3.3
 =======================
 

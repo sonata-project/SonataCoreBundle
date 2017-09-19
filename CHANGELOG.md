@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.5.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.4.0...3.5.0) - 2017-09-19
+### Added
+- New ColorType form type that should give us easier color picking functioanlity instead of choice field with color names
+
+### Changed
+- Removed add of `FormFactoryCompilerPass` when the option `form.mapping.enabled` is `false`
+
+### Deprecated
+- Class `ColorSelectorType` is deprecated and replaced by `ColorType`
+
+### Fixed
+- fixed Twig errors when using `sonata_template_box` without a translation domain
+- deprecation notices related to `addClassesToCompile`
+- Fixed deprecation notice in `ColorSelectorType` for Sf 3. support
+- Missing brazilian translations for color names and date_range messages.
+- Fixed passing empty translation domain to `sonata_template_box`
+
 ## [3.4.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.3.0...3.4.0) - 2017-05-09
 ### Added
 - Options for `ImmutableArrayType` are now validated, which should yield better results.
