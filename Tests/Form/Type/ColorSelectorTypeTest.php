@@ -33,7 +33,8 @@ class ColorSelectorTypeTest extends TypeTestCase
         $type = new ColorSelectorType();
 
         $type->buildForm($formBuilder, array(
-            'choices' => Colors::getAll(),
+            'choices' => array_flip(Colors::getAll()),
+            'choices_as_values' => true,
             'translation_domain' => 'SonataCoreBundle',
             'preferred_choices' => array(
                 Colors::BLACK,
@@ -74,7 +75,7 @@ class ColorSelectorTypeTest extends TypeTestCase
         $options = $resolver->resolve();
 
         $expected = array(
-            'choices' => array(
+            'choices' => array_flip(array(
                 '#F0F8FF' => 'aliceblue',
                 '#FAEBD7' => 'antiquewhite',
                 '#00FFFF' => 'cyan',
@@ -214,7 +215,8 @@ class ColorSelectorTypeTest extends TypeTestCase
                 '#F5F5F5' => 'whitesmoke',
                 '#FFFF00' => 'yellow',
                 '#9ACD32' => 'yellowgreen',
-            ),
+            )),
+            'choices_as_values' => true,
             'translation_domain' => 'SonataCoreBundle',
             'preferred_choices' => array(
                 '#000000',

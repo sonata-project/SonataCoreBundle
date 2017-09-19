@@ -38,7 +38,13 @@ class TemplateBoxNode extends \Twig_Node
         $this->enabled = $enabled;
         $this->translator = $translator;
 
-        parent::__construct(array('message' => $message, 'translationBundle' => $translationBundle), array(), $lineno, $tag);
+        $nodes = array('message' => $message);
+
+        if ($translationBundle) {
+            $nodes['translationBundle'] = $translationBundle;
+        }
+
+        parent::__construct($nodes, array(), $lineno, $tag);
     }
 
     /**
@@ -57,7 +63,11 @@ class TemplateBoxNode extends \Twig_Node
 
         $value = $this->getNode('message')->getAttribute('value');
 
-        $translationBundle = $this->getNode('translationBundle');
+        $translationBundle = null;
+
+        if ($this->hasNode('translationBundle')) {
+            $translationBundle = $this->getNode('translationBundle');
+        }
 
         if ($translationBundle) {
             $translationBundle = $translationBundle->getAttribute('value');
