@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.5.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.5.0...3.5.1) - 2017-09-20
+### Fixed
+- Datagrid build form issue caused by a regression on release 3.5.0
+
 ## [3.5.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.4.0...3.5.0) - 2017-09-19
 ### Added
 - New ColorType form type that should give us easier color picking functioanlity instead of choice field with color names
