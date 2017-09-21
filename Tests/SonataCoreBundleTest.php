@@ -26,13 +26,8 @@ final class SonataCoreBundleTest extends PHPUnit_Framework_TestCase
     public function testBuild()
     {
         $containerBuilder = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')
-            ->setMethods(array('addCompilerPass', 'hasDefinition'))
+            ->setMethods(array('addCompilerPass'))
             ->getMock();
-
-        $containerBuilder->expects($this->once())
-            ->method('hasDefinition')
-            ->with('sonata.core.form.extension.dependency')
-            ->willReturn(true);
 
         $containerBuilder->expects($this->exactly(3))
             ->method('addCompilerPass')
@@ -54,42 +49,6 @@ final class SonataCoreBundleTest extends PHPUnit_Framework_TestCase
                     Expects "Sonata\AdminBundle\DependencyInjection\Compiler\StatusRendererCompilerPass",
                     "Sonata\AdminBundle\DependencyInjection\Compiler\AdapterCompilerPass" or
                     "Sonata\AdminBundle\DependencyInjection\Compiler\FormFactoryCompilerPass", but got "%s".',
-                    get_class($pass)
-                ));
-            }));
-
-        $bundle = new SonataCoreBundle();
-        $bundle->build($containerBuilder);
-
-        $this->assertMappingTypeRegistered('form', 'Symfony\Component\Form\Extension\Core\Type\FormType');
-    }
-
-    public function testBuildWithFormMappingDisabled()
-    {
-        $containerBuilder = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')
-            ->setMethods(array('addCompilerPass', 'hasDefinition'))
-            ->getMock();
-
-        $containerBuilder->expects($this->once())
-            ->method('hasDefinition')
-            ->with('sonata.core.form.extension.dependency')
-            ->willReturn(false);
-
-        $containerBuilder->expects($this->exactly(2))
-            ->method('addCompilerPass')
-            ->will($this->returnCallback(function (CompilerPassInterface $pass) {
-                if ($pass instanceof StatusRendererCompilerPass) {
-                    return;
-                }
-
-                if ($pass instanceof AdapterCompilerPass) {
-                    return;
-                }
-
-                $this->fail(sprintf(
-                    'Compiler pass is not one of the expected types. 
-                    Expects "Sonata\AdminBundle\DependencyInjection\Compiler\StatusRendererCompilerPass" or 
-                    "Sonata\AdminBundle\DependencyInjection\Compiler\AdapterCompilerPass", but got "%s".',
                     get_class($pass)
                 ));
             }));

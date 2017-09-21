@@ -27,10 +27,7 @@ class SonataCoreBundle extends Bundle
     {
         $container->addCompilerPass(new StatusRendererCompilerPass());
         $container->addCompilerPass(new AdapterCompilerPass());
-
-        if ($container->hasDefinition('sonata.core.form.extension.dependency')) {
-            $container->addCompilerPass(new FormFactoryCompilerPass());
-        }
+        $container->addCompilerPass(new FormFactoryCompilerPass());
 
         $this->registerFormMapping();
     }
