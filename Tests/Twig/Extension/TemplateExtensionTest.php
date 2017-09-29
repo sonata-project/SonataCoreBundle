@@ -18,12 +18,10 @@ class TemplateExtensionTest extends PHPUnit_Framework_TestCase
 {
     public function testSafeUrl()
     {
-        $translator = $this->createMock('Symfony\Component\Translation\TranslatorInterface');
-
         $adapter = $this->createMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface');
         $adapter->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue('safe-parameter'));
 
-        $extension = new TemplateExtension(true, $translator, $adapter);
+        $extension = new TemplateExtension(true, $adapter);
 
         $this->assertSame('safe-parameter', $extension->getUrlsafeIdentifier(new \stdClass()));
     }

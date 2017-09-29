@@ -11,3 +11,7 @@ Install `cocur/slugify` and enable `CocurSlugifyBundle` https://github.com/cocur
 ### Deprecations in forms
 
 The translator in ``DateRangeType``, ``DateTimeRangeType``, ``EqualType`` has been deprecated. 
+
+### Removed translation for `sonata_template_box`
+
+The ability of translating the text of `sonata_template_box` twig nodes was removed.
