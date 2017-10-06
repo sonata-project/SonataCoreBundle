@@ -126,6 +126,7 @@ final class SonataCoreBundleTest extends PHPUnit_Framework_TestCase
             array('sonata_type_date_range_picker', 'Sonata\CoreBundle\Form\Type\DateRangePickerType'),
             array('sonata_type_datetime_range_picker', 'Sonata\CoreBundle\Form\Type\DateTimeRangePickerType'),
             array('sonata_type_equal', 'Sonata\CoreBundle\Form\Type\EqualType'),
+            array('sonata_type_color', 'Sonata\CoreBundle\Form\Type\ColorType'),
             array('sonata_type_color_selector', 'Sonata\CoreBundle\Form\Type\ColorSelectorType'),
         );
     }
