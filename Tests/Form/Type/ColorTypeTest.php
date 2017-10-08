@@ -47,7 +47,7 @@ class ColorTypeTest extends TypeTestCase
             }));
 
         $type = new ColorType();
-        $type->buildForm($formBuilder, array());
+        $type->buildForm($formBuilder, []);
     }
 
     public function testSubmitValidData()

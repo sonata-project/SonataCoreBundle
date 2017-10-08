@@ -33,7 +33,7 @@ class FormHelperTest extends PHPUnit_Framework_TestCase
 
         $form->add(new Form($config));
 
-        FormHelper::removeFields(array(), $form);
+        FormHelper::removeFields([], $form);
 
         $this->assertFalse(isset($form['child']));
     }

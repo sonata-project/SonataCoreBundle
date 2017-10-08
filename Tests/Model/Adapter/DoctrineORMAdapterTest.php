@@ -90,9 +90,9 @@ class DoctrineORMAdapterTest extends PHPUnit_Framework_TestCase
 
     public static function getFixtures()
     {
-        return array(
-            array(array(1), '1'),
-            array(array(1, 2), '1~2'),
-        );
+        return [
+            [[1], '1'],
+            [[1, 2], '1~2'],
+        ];
     }
 }

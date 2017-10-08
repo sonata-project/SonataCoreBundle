@@ -31,7 +31,7 @@ class EntityManagerMockFactory
 
         if (Version::compare('2.5.0') < 1) {
             $entityManager = $test->getMockBuilder('Doctrine\ORM\EntityManagerInterface')->getMock();
-            $qb = $test->getMockBuilder('Doctrine\ORM\QueryBuilder')->setConstructorArgs(array($entityManager))->getMock();
+            $qb = $test->getMockBuilder('Doctrine\ORM\QueryBuilder')->setConstructorArgs([$entityManager])->getMock();
         } else {
             $qb = $test->getMockBuilder('Doctrine\ORM\QueryBuilder')->disableOriginalConstructor()->getMock();
         }

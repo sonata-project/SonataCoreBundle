@@ -62,9 +62,9 @@ class StatusTypeTest extends TypeTestCase
             }));
 
         $type = new StatusType('Sonata\CoreBundle\Tests\Form\Type\Choice', 'getList', 'choice_type');
-        $type->buildForm($formBuilder, array(
-            'choices' => array(),
-        ));
+        $type->buildForm($formBuilder, [
+            'choices' => [],
+        ]);
     }
 
     public function testGetParent()
@@ -94,9 +94,9 @@ class StatusTypeTest extends TypeTestCase
 
     public function testGetDefaultOptions()
     {
-        Choice::$list = array(
+        Choice::$list = [
             1 => 'salut',
-        );
+        ];
 
         $type = new StatusType('Sonata\CoreBundle\Tests\Form\Type\Choice', 'getList', 'choice_type');
 
@@ -113,18 +113,18 @@ class StatusTypeTest extends TypeTestCase
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
-        $options = $resolver->resolve(array());
+        $options = $resolver->resolve([]);
 
         $this->assertArrayHasKey('choices', $options);
-        $this->assertSame($options['choices'], array(1 => 'salut'));
+        $this->assertSame($options['choices'], [1 => 'salut']);
     }
 
     public function testGetDefaultOptionsWithValidFlip()
     {
-        Choice::$list = array(
+        Choice::$list = [
             1 => 'salut',
             2 => 'toi!',
-        );
+        ];
 
         $type = new StatusType('Sonata\CoreBundle\Tests\Form\Type\Choice', 'getList', 'choice_type', true);
 
@@ -140,10 +140,10 @@ class StatusTypeTest extends TypeTestCase
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
-        $options = $resolver->resolve(array());
+        $options = $resolver->resolve([]);
 
         $this->assertArrayHasKey('choices', $options);
-        $this->assertSame($options['choices'], array('salut' => 1, 'toi!' => 2));
+        $this->assertSame($options['choices'], ['salut' => 1, 'toi!' => 2]);
     }
 
     /**
@@ -151,10 +151,10 @@ class StatusTypeTest extends TypeTestCase
      */
     public function testGetDefaultOptionsWithValidInvalidFlip()
     {
-        Choice::$list = array(
+        Choice::$list = [
             1 => 'error',
             2 => 'error',
-        );
+        ];
 
         $type = new StatusType('Sonata\CoreBundle\Tests\Form\Type\Choice', 'getList', 'choice_type', true);
 
@@ -169,6 +169,6 @@ class StatusTypeTest extends TypeTestCase
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
-        $options = $resolver->resolve(array());
+        $options = $resolver->resolve([]);
     }
 }

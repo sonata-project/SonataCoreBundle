@@ -37,7 +37,7 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
             if (isset($config['options']['form_type'])) {
                 $container->prependExtensionConfig(
                     $this->getAlias(),
-                    array('form_type' => $config['options']['form_type'])
+                    ['form_type' => $config['options']['form_type']]
                 );
             }
         }
@@ -94,7 +94,7 @@ EOT
 
     public function configureClassesToCompile()
     {
-        $this->addClassesToCompile(array(
+        $this->addClassesToCompile([
             'Sonata\\CoreBundle\\Form\\Type\\BooleanType',
             'Sonata\\CoreBundle\\Form\\Type\\CollectionType',
             'Sonata\\CoreBundle\\Form\\Type\\DateRangeType',
@@ -102,7 +102,7 @@ EOT
             'Sonata\\CoreBundle\\Form\\Type\\EqualType',
             'Sonata\\CoreBundle\\Form\\Type\\ImmutableArrayType',
             'Sonata\\CoreBundle\\Form\\Type\\TranslatableChoiceType',
-        ));
+        ]);
     }
 
     /**
@@ -140,25 +140,25 @@ EOT
      */
     public function registerFlashTypes(ContainerBuilder $container, array $config)
     {
-        $mergedConfig = array_merge_recursive($config['flashmessage'], array(
-            'success' => array('types' => array(
-                'success' => array('domain' => 'SonataCoreBundle'),
-                'sonata_flash_success' => array('domain' => 'SonataAdminBundle'),
-                'sonata_user_success' => array('domain' => 'SonataUserBundle'),
-                'fos_user_success' => array('domain' => 'FOSUserBundle'),
-            )),
-            'warning' => array('types' => array(
-                'warning' => array('domain' => 'SonataCoreBundle'),
-                'sonata_flash_info' => array('domain' => 'SonataAdminBundle'),
-            )),
-            'danger' => array('types' => array(
-                'error' => array('domain' => 'SonataCoreBundle'),
-                'sonata_flash_error' => array('domain' => 'SonataAdminBundle'),
-                'sonata_user_error' => array('domain' => 'SonataUserBundle'),
-            )),
-        ));
+        $mergedConfig = array_merge_recursive($config['flashmessage'], [
+            'success' => ['types' => [
+                'success' => ['domain' => 'SonataCoreBundle'],
+                'sonata_flash_success' => ['domain' => 'SonataAdminBundle'],
+                'sonata_user_success' => ['domain' => 'SonataUserBundle'],
+                'fos_user_success' => ['domain' => 'FOSUserBundle'],
+            ]],
+            'warning' => ['types' => [
+                'warning' => ['domain' => 'SonataCoreBundle'],
+                'sonata_flash_info' => ['domain' => 'SonataAdminBundle'],
+            ]],
+            'danger' => ['types' => [
+                'error' => ['domain' => 'SonataCoreBundle'],
+                'sonata_flash_error' => ['domain' => 'SonataAdminBundle'],
+                'sonata_user_error' => ['domain' => 'SonataUserBundle'],
+            ]],
+        ]);
 
-        $types = $cssClasses = array();
+        $types = $cssClasses = [];
 
         foreach ($mergedConfig as $typeKey => $typeConfig) {
             $types[$typeKey] = $typeConfig['types'];

@@ -77,24 +77,24 @@ class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
             'sonata_template_box'
         );
 
-        return array(
-            array($nodeEn, <<<'EOF'
+        return [
+            [$nodeEn, <<<'EOF'
 // line 1
 echo "<div class='alert alert-default alert-info'>
     <strong>This is the default message</strong>
     <div>This file can be found in <code>{$this->getTemplateName()}</code>.</div>
 </div>";
 EOF
-            ),
-            array($nodeFr, <<<'EOF'
+            ],
+            [$nodeFr, <<<'EOF'
 // line 1
 echo "<div class='alert alert-default alert-info'>
     <strong>Ceci est le message par défaut</strong>
     <div>Ce fichier peut être trouvé à l'emplacement <code>{$this->getTemplateName()}</code>.</div>
 </div>";
 EOF
-            ),
-        );
+            ],
+        ];
     }
 
     /**
@@ -109,10 +109,10 @@ EOF
         $translator = new Translator($locale, new MessageSelector());
         $translator->addLoader('array', new ArrayLoader());
 
-        $translator->addResource('array', array('sonata_template_box_media_gallery_block' => 'This is the default message'), 'en', 'SonataCoreBundle');
-        $translator->addResource('array', array('sonata_template_box_media_gallery_block' => 'Ceci est le message par défaut'), 'fr', 'SonataCoreBundle');
-        $translator->addResource('array', array('sonata_core_template_box_file_found_in' => 'This file can be found in'), 'en', 'SonataCoreBundle');
-        $translator->addResource('array', array('sonata_core_template_box_file_found_in' => "Ce fichier peut être trouvé à l'emplacement"), 'fr', 'SonataCoreBundle');
+        $translator->addResource('array', ['sonata_template_box_media_gallery_block' => 'This is the default message'], 'en', 'SonataCoreBundle');
+        $translator->addResource('array', ['sonata_template_box_media_gallery_block' => 'Ceci est le message par défaut'], 'fr', 'SonataCoreBundle');
+        $translator->addResource('array', ['sonata_core_template_box_file_found_in' => 'This file can be found in'], 'en', 'SonataCoreBundle');
+        $translator->addResource('array', ['sonata_core_template_box_file_found_in' => "Ce fichier peut être trouvé à l'emplacement"], 'fr', 'SonataCoreBundle');
 
         return $translator;
     }

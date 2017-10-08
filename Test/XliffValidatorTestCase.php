@@ -24,7 +24,7 @@ abstract class XliffValidatorTestCase extends \PHPUnit_Framework_TestCase
     /**
      * @var string[]
      */
-    protected $errors = array();
+    protected $errors = [];
 
     public function setUp()
     {

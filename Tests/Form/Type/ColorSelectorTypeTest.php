@@ -51,11 +51,11 @@ class ColorSelectorTypeTest extends TypeTestCase
 
         $type = new ColorSelectorType();
 
-        $type->buildForm($formBuilder, array(
+        $type->buildForm($formBuilder, [
             'choices' => array_flip(Colors::getAll()),
             'choices_as_values' => true,
             'translation_domain' => 'SonataCoreBundle',
-            'preferred_choices' => array(
+            'preferred_choices' => [
                 Colors::BLACK,
                 Colors::BLUE,
                 Colors::GRAY,
@@ -66,8 +66,8 @@ class ColorSelectorTypeTest extends TypeTestCase
                 Colors::RED,
                 Colors::WHITE,
                 Colors::YELLOW,
-            ),
-        ));
+            ],
+        ]);
     }
 
     public function testGetParent()
@@ -111,8 +111,8 @@ class ColorSelectorTypeTest extends TypeTestCase
 
         $options = $resolver->resolve();
 
-        $expected = array(
-            'choices' => array_flip(array(
+        $expected = [
+            'choices' => array_flip([
                 '#F0F8FF' => 'aliceblue',
                 '#FAEBD7' => 'antiquewhite',
                 '#00FFFF' => 'cyan',
@@ -252,10 +252,10 @@ class ColorSelectorTypeTest extends TypeTestCase
                 '#F5F5F5' => 'whitesmoke',
                 '#FFFF00' => 'yellow',
                 '#9ACD32' => 'yellowgreen',
-            )),
+            ]),
             'choices_as_values' => true,
             'translation_domain' => 'SonataCoreBundle',
-            'preferred_choices' => array(
+            'preferred_choices' => [
                 '#000000',
                 '#0000FF',
                 '#808080',
@@ -266,8 +266,8 @@ class ColorSelectorTypeTest extends TypeTestCase
                 '#FF0000',
                 '#FFFFFF',
                 '#FFFF00',
-            ),
-        );
+            ],
+        ];
 
         $this->assertSame($expected, $options);
     }

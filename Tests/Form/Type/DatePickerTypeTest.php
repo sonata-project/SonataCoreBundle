@@ -56,10 +56,10 @@ class DatePickerTypeTest extends PHPUnit_Framework_TestCase
             $this->createMock('Sonata\CoreBundle\Date\MomentFormatConverter'),
             $this->createMock('Symfony\Component\Translation\TranslatorInterface')
         );
-        $type->buildForm($formBuilder, array(
+        $type->buildForm($formBuilder, [
             'dp_pick_time' => false,
             'format' => DateType::DEFAULT_FORMAT,
-        ));
+        ]);
     }
 
     public function testGetParent()

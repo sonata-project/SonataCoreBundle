@@ -26,5 +26,5 @@ interface PageableManagerInterface
      *
      * @return PagerInterface
      */
-    public function getPager(array $criteria, $page, $limit = 10, array $sort = array());
+    public function getPager(array $criteria, $page, $limit = 10, array $sort = []);
 }

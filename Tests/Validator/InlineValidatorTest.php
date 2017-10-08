@@ -49,7 +49,7 @@ final class InlineValidatorTest extends PHPUnit_Framework_TestCase
         $reflectedMethod = $reflectorObject->getMethod('getErrorElement');
         $reflectedMethod->setAccessible(true);
 
-        $errorElement = $reflectedMethod->invokeArgs($inlineValidator, array('foo'));
+        $errorElement = $reflectedMethod->invokeArgs($inlineValidator, ['foo']);
 
         $this->assertInstanceOf('Sonata\CoreBundle\Validator\ErrorElement', $errorElement);
         $this->assertSame('foo', $errorElement->getSubject());
@@ -60,7 +60,7 @@ final class InlineValidatorTest extends PHPUnit_Framework_TestCase
         $this->setExpectedException('Symfony\Component\Validator\Exception\ValidatorException', 'foo is equal to foo');
 
         $constraint = $this->getMockBuilder('Symfony\Component\Validator\Constraint')
-            ->setMethods(array('isClosure', 'getClosure'))
+            ->setMethods(['isClosure', 'getClosure'])
             ->getMock();
 
         $constraint->expects($this->once())
@@ -83,11 +83,11 @@ final class InlineValidatorTest extends PHPUnit_Framework_TestCase
     public function testValidateWithConstraintGetServiceIsString()
     {
         $constraint = $this->getMockBuilder('Symfony\Component\Validator\Constraint')
-            ->setMethods(array(
+            ->setMethods([
                 'isClosure',
                 'getService',
                 'getMethod',
-            ))
+            ])
             ->getMock();
 
         $constraint->expects($this->once())
@@ -119,11 +119,11 @@ final class InlineValidatorTest extends PHPUnit_Framework_TestCase
     public function testValidateWithConstraintGetServiceIsNotString()
     {
         $constraint = $this->getMockBuilder('Symfony\Component\Validator\Constraint')
-            ->setMethods(array(
+            ->setMethods([
                 'isClosure',
                 'getService',
                 'getMethod',
-            ))
+            ])
             ->getMock();
 
         $constraint->expects($this->once())

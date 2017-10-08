@@ -30,7 +30,7 @@ class TemplateBoxTokenParserTest extends PHPUnit_Framework_TestCase
     {
         $translator = $this->createMock('Symfony\Component\Translation\TranslatorInterface');
 
-        $env = new \Twig_Environment(new \Twig_Loader_Array(array()), array('cache' => false, 'autoescape' => false, 'optimizations' => 0));
+        $env = new \Twig_Environment(new \Twig_Loader_Array([]), ['cache' => false, 'autoescape' => false, 'optimizations' => 0]);
         $env->addTokenParser(new TemplateBoxTokenParser($enabled, $translator));
         if (class_exists('\Twig_Source')) {
             $source = new \Twig_Source($source, 'test');
@@ -64,8 +64,8 @@ class TemplateBoxTokenParserTest extends PHPUnit_Framework_TestCase
     {
         $translator = $this->createMock('Symfony\Component\Translation\TranslatorInterface');
 
-        return array(
-            array(
+        return [
+            [
                 true,
                 '{% sonata_template_box %}',
                 new TemplateBoxNode(
@@ -76,8 +76,8 @@ class TemplateBoxTokenParserTest extends PHPUnit_Framework_TestCase
                     1,
                     'sonata_template_box'
                 ),
-            ),
-            array(
+            ],
+            [
                 true,
                 '{% sonata_template_box "This is the basket delivery address step page" %}',
                 new TemplateBoxNode(
@@ -88,8 +88,8 @@ class TemplateBoxTokenParserTest extends PHPUnit_Framework_TestCase
                     1,
                     'sonata_template_box'
                 ),
-            ),
-            array(
+            ],
+            [
                 false,
                 '{% sonata_template_box "This is the basket delivery address step page" %}',
                 new TemplateBoxNode(
@@ -100,7 +100,7 @@ class TemplateBoxTokenParserTest extends PHPUnit_Framework_TestCase
                     1,
                     'sonata_template_box'
                 ),
-            ),
-        );
+            ],
+        ];
     }
 }

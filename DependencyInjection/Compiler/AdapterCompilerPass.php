@@ -32,13 +32,13 @@ class AdapterCompilerPass implements CompilerPassInterface
         $definition = $container->findDefinition('sonata.core.model.adapter.chain');
 
         if ($container->has('doctrine')) {
-            $definition->addMethodCall('addAdapter', array(new Reference('sonata.core.model.adapter.doctrine_orm')));
+            $definition->addMethodCall('addAdapter', [new Reference('sonata.core.model.adapter.doctrine_orm')]);
         } else {
             $container->removeDefinition('sonata.core.model.adapter.doctrine_orm');
         }
 
         if ($container->has('doctrine_phpcr')) {
-            $definition->addMethodCall('addAdapter', array(new Reference('sonata.core.model.adapter.doctrine_phpcr')));
+            $definition->addMethodCall('addAdapter', [new Reference('sonata.core.model.adapter.doctrine_phpcr')]);
         } else {
             $container->removeDefinition('sonata.core.model.adapter.doctrine_phpcr');
         }

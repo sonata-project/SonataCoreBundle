@@ -31,9 +31,9 @@ class FormTypeExtension extends \Twig_Extension implements \Twig_Extension_Globa
      */
     public function getGlobals()
     {
-        return array(
+        return [
             'wrap_fields_with_addons' => $this->wrapFieldsWithAddons,
-        );
+        ];
     }
 
     /**

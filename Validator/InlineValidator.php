@@ -52,7 +52,7 @@ class InlineValidator extends ConstraintValidator
                 $service = $constraint->getService();
             }
 
-            $function = array($service, $constraint->getMethod());
+            $function = [$service, $constraint->getMethod()];
         }
 
         call_user_func($function, $this->getErrorElement($value), $value);

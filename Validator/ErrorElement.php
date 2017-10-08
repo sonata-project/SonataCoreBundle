@@ -38,12 +38,12 @@ class ErrorElement
     /**
      * @var string[]
      */
-    protected $stack = array();
+    protected $stack = [];
 
     /**
      * @var string[]
      */
-    protected $propertyPaths = array();
+    protected $propertyPaths = [];
 
     /**
      * @var mixed
@@ -63,7 +63,7 @@ class ErrorElement
     /**
      * @var array
      */
-    protected $errors = array();
+    protected $errors = [];
 
     /**
      * @param mixed                                                     $subject
@@ -93,10 +93,10 @@ class ErrorElement
      *
      * @return ErrorElement
      */
-    public function __call($name, array $arguments = array())
+    public function __call($name, array $arguments = [])
     {
         if (substr($name, 0, 6) === 'assert') {
-            $this->validate($this->newConstraint(substr($name, 6), isset($arguments[0]) ? $arguments[0] : array()));
+            $this->validate($this->newConstraint(substr($name, 6), isset($arguments[0]) ? $arguments[0] : []));
         } else {
             throw new \RunTimeException('Unable to recognize the command');
         }
@@ -175,11 +175,11 @@ class ErrorElement
      *
      * @return ErrorElement
      */
-    public function addViolation($message, $parameters = array(), $value = null)
+    public function addViolation($message, $parameters = [], $value = null)
     {
         if (is_array($message)) {
             $value = isset($message[2]) ? $message[2] : $value;
-            $parameters = isset($message[1]) ? (array) $message[1] : array();
+            $parameters = isset($message[1]) ? (array) $message[1] : [];
             $message = isset($message[0]) ? $message[0] : 'error';
         }
 
@@ -195,7 +195,7 @@ class ErrorElement
                ->addViolation();
         }
 
-        $this->errors[] = array($message, $parameters, $value);
+        $this->errors[] = [$message, $parameters, $value];
 
         return $this;
     }
@@ -220,7 +220,7 @@ class ErrorElement
             $this->context->getValidator()
                 ->inContext($this->context)
                 ->atPath($subPath)
-                ->validate($this->getValue(), $constraint, array($this->group));
+                ->validate($this->getValue(), $constraint, [$this->group]);
         }
     }
 
@@ -246,7 +246,7 @@ class ErrorElement
      *
      * @return
      */
-    protected function newConstraint($name, array $options = array())
+    protected function newConstraint($name, array $options = [])
     {
         if (strpos($name, '\\') !== false && class_exists($name)) {
             $className = (string) $name;

@@ -62,7 +62,7 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
     {
         // NEXT_MAJOR : remove this block
         if (null === static::$formats) {
-            static::$formats = array('json', 'xml', 'yml');
+            static::$formats = ['json', 'xml', 'yml'];
             @trigger_error(
                 '$formats has been set to default array("json", "xml", "yml"). Setting $formats to a 
                 default array is deprecated since version 3.0 and will be removed in 4.0. Use SonataCoreBundle 
@@ -72,22 +72,22 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
         }
 
         $type = static::getType();
-        $methods = array();
+        $methods = [];
 
         foreach (static::$formats as $format) {
-            $methods[] = array(
+            $methods[] = [
                 'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
                 'format' => $format,
                 'type' => $type,
                 'method' => 'serializeObjectToId',
-            );
+            ];
 
-            $methods[] = array(
+            $methods[] = [
                 'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
                 'format' => $format,
                 'type' => $type,
                 'method' => 'deserializeObjectFromId',
-            );
+            ];
         }
 
         return $methods;
@@ -125,6 +125,6 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
      */
     public function deserializeObjectFromId(VisitorInterface $visitor, $data, array $type)
     {
-        return $this->manager->findOneBy(array('id' => $data));
+        return $this->manager->findOneBy(['id' => $data]);
     }
 }

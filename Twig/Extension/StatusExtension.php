@@ -21,7 +21,7 @@ class StatusExtension extends \Twig_Extension
     /**
      * @var StatusClassRendererInterface[]
      */
-    protected $statusServices = array();
+    protected $statusServices = [];
 
     /**
      * Adds a renderer to the status services list.
@@ -38,9 +38,9 @@ class StatusExtension extends \Twig_Extension
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('sonata_status_class', array($this, 'statusClass')),
-        );
+        return [
+            new \Twig_SimpleFilter('sonata_status_class', [$this, 'statusClass']),
+        ];
     }
 
     /**

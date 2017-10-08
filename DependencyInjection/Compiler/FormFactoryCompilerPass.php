@@ -21,12 +21,12 @@ class FormFactoryCompilerPass extends FormPass
      */
     public function process(ContainerBuilder $container)
     {
-        $typeIdx = array();
+        $typeIdx = [];
         foreach ($container->findTaggedServiceIds('form.type') as $id => $tags) {
             $typeIdx[] = $id;
         }
 
-        $typeExtensionIdx = array();
+        $typeExtensionIdx = [];
         foreach ($container->findTaggedServiceIds('form.type_extension') as $id => $tag) {
             $typeExtensionIdx[] = $id;
         }
