@@ -98,9 +98,9 @@ class DoctrinePHPCRAdapterTest extends PHPUnit_Framework_TestCase
 
     public static function getFixtures()
     {
-        return array(
-            array('/salut', 'salut'),
-            array('/les-gens', 'les-gens'),
-        );
+        return [
+            ['/salut', 'salut'],
+            ['/les-gens', 'les-gens'],
+        ];
     }
 }

@@ -41,7 +41,7 @@ class ResizeFormListener implements EventSubscriberInterface
     /**
      * @var string[]
      */
-    private $removed = array();
+    private $removed = [];
 
     /**
      * @var \Closure
@@ -54,7 +54,7 @@ class ResizeFormListener implements EventSubscriberInterface
      * @param bool          $resizeOnSubmit
      * @param \Closure|null $preSubmitDataCallback
      */
-    public function __construct($type, array $typeOptions = array(), $resizeOnSubmit = false, $preSubmitDataCallback = null)
+    public function __construct($type, array $typeOptions = [], $resizeOnSubmit = false, $preSubmitDataCallback = null)
     {
         $this->type = $type;
         $this->resizeOnSubmit = $resizeOnSubmit;
@@ -67,13 +67,13 @@ class ResizeFormListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             FormEvents::PRE_SET_DATA => 'preSetData',
             // NEXT_MAJOR: change `preBind` to `preSubmit`
             FormEvents::PRE_SUBMIT => 'preBind',
             // NEXT_MAJOR: change `onBind` to `onSubmit`
             FormEvents::SUBMIT => 'onBind',
-        );
+        ];
     }
 
     /**
@@ -87,7 +87,7 @@ class ResizeFormListener implements EventSubscriberInterface
         $data = $event->getData();
 
         if (null === $data) {
-            $data = array();
+            $data = [];
         }
 
         if (!is_array($data) && !$data instanceof \Traversable) {
@@ -101,10 +101,10 @@ class ResizeFormListener implements EventSubscriberInterface
 
         // Then add all rows again in the correct order
         foreach ($data as $name => $value) {
-            $options = array_merge($this->typeOptions, array(
+            $options = array_merge($this->typeOptions, [
                 'property_path' => '['.$name.']',
                 'data' => $value,
-            ));
+            ]);
 
             $form->add($name, $this->type, $options);
         }
@@ -147,7 +147,7 @@ class ResizeFormListener implements EventSubscriberInterface
         $data = $event->getData();
 
         if (null === $data || '' === $data) {
-            $data = array();
+            $data = [];
         }
 
         if (!is_array($data) && !$data instanceof \Traversable) {
@@ -162,9 +162,9 @@ class ResizeFormListener implements EventSubscriberInterface
         // Add all additional rows
         foreach ($data as $name => $value) {
             if (!$form->has($name)) {
-                $buildOptions = array(
+                $buildOptions = [
                     'property_path' => '['.$name.']',
-                );
+                ];
 
                 if ($this->preSubmitDataCallback) {
                     $buildOptions['data'] = call_user_func($this->preSubmitDataCallback, $value);
@@ -218,7 +218,7 @@ class ResizeFormListener implements EventSubscriberInterface
         $data = $event->getData();
 
         if (null === $data) {
-            $data = array();
+            $data = [];
         }
 
         if (!is_array($data) && !$data instanceof \Traversable) {

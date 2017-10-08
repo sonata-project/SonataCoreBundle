@@ -57,12 +57,12 @@ class BooleanType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $choices = array(
+        $choices = [
             self::TYPE_YES => 'label_type_yes',
             self::TYPE_NO => 'label_type_no',
-        );
+        ];
 
-        $defaultOptions = array(
+        $defaultOptions = [
             'transform' => false,
 
             /*
@@ -79,7 +79,7 @@ class BooleanType extends AbstractType
 
                 return $options['translation_domain'];
             },
-        );
+        ];
 
         // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.7)
         if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')) {

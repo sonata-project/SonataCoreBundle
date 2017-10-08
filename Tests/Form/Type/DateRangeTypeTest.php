@@ -49,14 +49,14 @@ class DateRangeTypeTest extends TypeTestCase
             }));
 
         $type = new DateRangeType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
-        $type->buildForm($formBuilder, array(
-            'field_options' => array(),
-            'field_options_start' => array(),
-            'field_options_end' => array(),
+        $type->buildForm($formBuilder, [
+            'field_options' => [],
+            'field_options_start' => [],
+            'field_options_end' => [],
             'field_type' => method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
                 ? 'Symfony\Component\Form\Extension\Core\Type\DateType'
                 : 'date',
-        ));
+        ]);
     }
 
     public function testGetParent()
@@ -95,15 +95,15 @@ class DateRangeTypeTest extends TypeTestCase
         $options = $resolver->resolve();
 
         $this->assertSame(
-            array(
-                'field_options' => array(),
-                'field_options_start' => array(),
-                'field_options_end' => array(),
+            [
+                'field_options' => [],
+                'field_options_start' => [],
+                'field_options_end' => [],
                 // NEXT_MAJOR: Remove ternary and keep 'Symfony\Component\Form\Extension\Core\Type\DateType'
                 // (when requirement of Symfony is >= 2.8)
                 'field_type' => method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
                     ? 'Symfony\Component\Form\Extension\Core\Type\DateType'
                     : 'date',
-            ), $options);
+            ], $options);
     }
 }

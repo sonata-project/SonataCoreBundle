@@ -34,16 +34,16 @@ class DependencyInjectionExtensionTest extends PHPUnit_Framework_TestCase
             ->with($this->equalTo('symfony.form.type.form'))
             ->will($this->returnValue($type));
 
-        $typeServiceIds = array(
+        $typeServiceIds = [
             'Symfony\Component\Form\Type\FormType' => 'symfony.form.type.form',
-        );
+        ];
 
-        $typeExtensionServiceIds = array();
-        $guesserServiceIds = array();
-        $mappingTypes = array(
+        $typeExtensionServiceIds = [];
+        $guesserServiceIds = [];
+        $mappingTypes = [
             'form' => 'Symfony\Component\Form\Type\FormType',
-        );
-        $extensionTypes = array();
+        ];
+        $extensionTypes = [];
 
         $f = new DependencyInjectionExtension($container, $typeServiceIds, $typeExtensionServiceIds, $guesserServiceIds, $mappingTypes, $extensionTypes);
 
@@ -55,7 +55,7 @@ class DependencyInjectionExtensionTest extends PHPUnit_Framework_TestCase
     {
         $container = $this->createMock('Symfony\Component\DependencyInjection\ContainerInterface');
 
-        $f = new DependencyInjectionExtension($container, array(), array(), array(), array());
+        $f = new DependencyInjectionExtension($container, [], [], [], []);
 
         $this->assertInstanceOf('Symfony\Component\Form\Extension\Core\Type\HiddenType', $f->getType('Symfony\Component\Form\Extension\Core\Type\HiddenType'));
     }
@@ -67,26 +67,26 @@ class DependencyInjectionExtensionTest extends PHPUnit_Framework_TestCase
         $container->expects($this->any())
             ->method('get')
             ->withConsecutive(
-                array($this->equalTo('symfony.form.type.form_extension')),
-                array($this->equalTo('sonata.form.type.form_extension'))
+                [$this->equalTo('symfony.form.type.form_extension')],
+                [$this->equalTo('sonata.form.type.form_extension')]
             )
         ;
 
-        $typeServiceIds = array();
-        $typeExtensionServiceIds = array(
-            'Symfony\Component\Form\Type\FormType' => array(
+        $typeServiceIds = [];
+        $typeExtensionServiceIds = [
+            'Symfony\Component\Form\Type\FormType' => [
                 'symfony.form.type.form_extension',
-            ),
-        );
-        $guesserServiceIds = array();
-        $mappingTypes = array(
+            ],
+        ];
+        $guesserServiceIds = [];
+        $mappingTypes = [
             'form' => 'Symfony\Component\Form\Type\FormType',
-        );
-        $extensionTypes = array(
-            'form' => array(
+        ];
+        $extensionTypes = [
+            'form' => [
                 'sonata.form.type.form_extension',
-            ),
-        );
+            ],
+        ];
 
         $f = new DependencyInjectionExtension($container, $typeServiceIds, $typeExtensionServiceIds, $guesserServiceIds, $mappingTypes, $extensionTypes);
 

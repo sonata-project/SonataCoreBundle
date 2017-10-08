@@ -27,7 +27,7 @@ class MomentFormatConverter
      *            For ICU formats see http://userguide.icu-project.org/formatparse/datetime#TOC-Date-Time-Format-Syntax
      *            For Moment formats see http://momentjs.com/docs/#/displaying/format/
      */
-    private static $formatConvertRules = array(
+    private static $formatConvertRules = [
         // year
         'yyyy' => 'YYYY', 'yy' => 'YY', 'y' => 'YYYY',
         // month
@@ -46,7 +46,7 @@ class MomentFormatConverter
         'EEEEEE' => 'dd', 'EEEE' => 'dddd', 'EE' => 'ddd',
         // timezone
         'ZZZZZ' => 'Z', 'ZZZ' => 'ZZ',
-    );
+    ];
 
     /**
      * Returns associated moment.js format.

@@ -38,13 +38,13 @@ class TemplateBoxNode extends \Twig_Node
         $this->enabled = $enabled;
         $this->translator = $translator;
 
-        $nodes = array('message' => $message);
+        $nodes = ['message' => $message];
 
         if ($translationBundle) {
             $nodes['translationBundle'] = $translationBundle;
         }
 
-        parent::__construct($nodes, array(), $lineno, $tag);
+        parent::__construct($nodes, [], $lineno, $tag);
     }
 
     /**
@@ -75,8 +75,8 @@ class TemplateBoxNode extends \Twig_Node
 
         $message = <<<CODE
 "<div class='alert alert-default alert-info'>
-    <strong>{$this->translator->trans($value, array(), $translationBundle)}</strong>
-    <div>{$this->translator->trans('sonata_core_template_box_file_found_in', array(), 'SonataCoreBundle')} <code>{\$this->getTemplateName()}</code>.</div>
+    <strong>{$this->translator->trans($value, [], $translationBundle)}</strong>
+    <div>{$this->translator->trans('sonata_core_template_box_file_found_in', [], 'SonataCoreBundle')} <code>{\$this->getTemplateName()}</code>.</div>
 </div>"
 CODE;
 

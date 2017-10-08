@@ -50,9 +50,9 @@ class ImmutableArrayTypeTest extends TypeTestCase
             }));
 
         $type = new ImmutableArrayType();
-        $type->buildForm($formBuilder, array(
-            'keys' => array(),
-        ));
+        $type->buildForm($formBuilder, [
+            'keys' => [],
+        ]);
     }
 
     public function testGetParent()
@@ -92,9 +92,9 @@ class ImmutableArrayTypeTest extends TypeTestCase
 
         $options = $resolver->resolve();
 
-        $expected = array(
-            'keys' => array(),
-        );
+        $expected = [
+            'keys' => [],
+        ];
 
         $this->assertSame($expected, $options);
     }
@@ -116,13 +116,13 @@ class ImmutableArrayTypeTest extends TypeTestCase
                     : 'text';
             }),
             $this->callback(function ($name) {
-                return $name === array(1 => '1');
+                return $name === [1 => '1'];
             })
         );
 
         $self = $this;
         $optionsCallback = function ($builder, $name, $type, $extra) use ($self) {
-            $self->assertEquals(array('foo', 'bar'), $extra);
+            $self->assertEquals(['foo', 'bar'], $extra);
             $self->assertEquals($name, 'ttl');
             $self->assertEquals(
                 $type,
@@ -134,12 +134,12 @@ class ImmutableArrayTypeTest extends TypeTestCase
             );
             $self->assertInstanceOf('Symfony\Component\Form\Test\FormBuilderInterface', $builder);
 
-            return array('1' => '1');
+            return ['1' => '1'];
         };
 
-        $options = array(
-            'keys' => array(
-                array(
+        $options = [
+            'keys' => [
+                [
                     'ttl',
                     // NEXT_MAJOR: Remove ternary and keep 'Symfony\Component\Form\Extension\Core\Type\TextType'
                     // (when requirement of Symfony is >= 2.8)
@@ -149,9 +149,9 @@ class ImmutableArrayTypeTest extends TypeTestCase
                     $optionsCallback,
                     'foo',
                     'bar',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
         $type->buildForm($builder, $options);
     }
@@ -173,7 +173,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
             'The option "keys" with value array is invalid.'
         );
 
-        $optionsResolver->resolve(array('keys' => array(array('test'))));
+        $optionsResolver->resolve(['keys' => [['test']]]);
     }
 
     public function testFormBuilderIsAValidElement()
@@ -185,9 +185,9 @@ class ImmutableArrayTypeTest extends TypeTestCase
 
         $this->assertArrayHasKey(
             'keys',
-            $optionsResolver->resolve(array('keys' => array($this->getMockBuilder(
+            $optionsResolver->resolve(['keys' => [$this->getMockBuilder(
                 'Symfony\Component\Form\FormBuilderInterface'
-            )->getMock())))
+            )->getMock()]])
         );
     }
 }

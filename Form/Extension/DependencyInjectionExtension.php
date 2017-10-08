@@ -76,7 +76,7 @@ class DependencyInjectionExtension implements FormExtensionInterface
      * @param array              $mappingTypes
      * @param array              $extensionTypes
      */
-    public function __construct(ContainerInterface $container, array $typeServiceIds, array $typeExtensionServiceIds, array $guesserServiceIds, array $mappingTypes = array(), array $extensionTypes = array())
+    public function __construct(ContainerInterface $container, array $typeServiceIds, array $typeExtensionServiceIds, array $guesserServiceIds, array $mappingTypes = [], array $extensionTypes = [])
     {
         $this->container = $container;
         $this->typeServiceIds = $typeServiceIds;
@@ -136,7 +136,7 @@ class DependencyInjectionExtension implements FormExtensionInterface
     public function getTypeExtensions($name)
     {
         // lookup inside the extension mapping
-        $serviceIdx = array();
+        $serviceIdx = [];
 
         if (isset($this->reverseMappingTypes[$name])) {
             $code = $this->reverseMappingTypes[$name];
@@ -146,9 +146,9 @@ class DependencyInjectionExtension implements FormExtensionInterface
             }
         }
 
-        $serviceIdx = array_unique(array_merge(isset($this->typeExtensionServiceIds[$name]) ? $this->typeExtensionServiceIds[$name] : array(), $serviceIdx));
+        $serviceIdx = array_unique(array_merge(isset($this->typeExtensionServiceIds[$name]) ? $this->typeExtensionServiceIds[$name] : [], $serviceIdx));
 
-        $extensions = array();
+        $extensions = [];
         foreach ($serviceIdx as $serviceId) {
             if ($this->container->has($serviceId)) {
                 $extensions[] = $this->container->get($serviceId);
@@ -173,7 +173,7 @@ class DependencyInjectionExtension implements FormExtensionInterface
     {
         if (!$this->guesserLoaded) {
             $this->guesserLoaded = true;
-            $guessers = array();
+            $guessers = [];
 
             foreach ($this->guesserServiceIds as $serviceId) {
                 if ($this->container->has($serviceId)) {

@@ -13,7 +13,7 @@ namespace Sonata\CoreBundle\Model\Adapter;
 
 class AdapterChain implements AdapterInterface
 {
-    protected $adapters = array();
+    protected $adapters = [];
 
     /**
      * @param AdapterInterface $adapter

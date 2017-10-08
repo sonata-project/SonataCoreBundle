@@ -154,7 +154,7 @@ class FlashManager implements StatusClassRendererInterface
         $flashBag = $this->getSession()->getFlashBag();
 
         foreach ($flashBag->get($value) as $message) {
-            $message = $this->getTranslator()->trans($message, array(), $domain);
+            $message = $this->getTranslator()->trans($message, [], $domain);
             $flashBag->add($type, $message);
         }
     }

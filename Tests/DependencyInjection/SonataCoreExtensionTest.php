@@ -32,7 +32,7 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
 
     public function testHorizontalFormTypeMeansNoWrapping()
     {
-        $this->load(array('form_type' => 'horizontal'));
+        $this->load(['form_type' => 'horizontal']);
         $this->assertContainerBuilderHasParameter(
             'sonata.core.form_type'
         );
@@ -50,20 +50,20 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
             'Symfony\Component\DependencyInjection\ContainerBuilder'
         );
 
-        $containerBuilder->getExtensionConfig('sonata_admin')->willReturn(array(
-            array('some_key_we_do_not_care_about' => 42),
-            array('options' => array('form_type' => 'standard')),
-            array('options' => array('form_type' => 'horizontal')),
-        ));
+        $containerBuilder->getExtensionConfig('sonata_admin')->willReturn([
+            ['some_key_we_do_not_care_about' => 42],
+            ['options' => ['form_type' => 'standard']],
+            ['options' => ['form_type' => 'horizontal']],
+        ]);
 
         $containerBuilder->prependExtensionConfig(
             'sonata_core',
-            array('form_type' => 'standard')
+            ['form_type' => 'standard']
         )->shouldBeCalled();
 
         $containerBuilder->prependExtensionConfig(
             'sonata_core',
-            array('form_type' => 'horizontal')
+            ['form_type' => 'horizontal']
         )->shouldBeCalled();
 
         $extension = new SonataCoreExtension();
@@ -72,8 +72,8 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
 
     protected function getContainerExtensions()
     {
-        return array(
+        return [
             new SonataCoreExtension(),
-        );
+        ];
     }
 }

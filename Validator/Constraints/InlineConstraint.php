@@ -56,7 +56,7 @@ class InlineConstraint extends Constraint
     public function __sleep()
     {
         if (!is_string($this->service) || !is_string($this->method)) {
-            return array();
+            return [];
         }
 
         // Initialize "groups" option if it is not set
@@ -117,10 +117,10 @@ class InlineConstraint extends Constraint
      */
     public function getRequiredOptions()
     {
-        return array(
+        return [
             'service',
             'method',
-        );
+        ];
     }
 
     /**

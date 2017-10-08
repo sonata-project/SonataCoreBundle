@@ -67,14 +67,14 @@ class EqualType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $choices = array(
+        $choices = [
             self::TYPE_IS_EQUAL => 'label_type_equals',
             self::TYPE_IS_NOT_EQUAL => 'label_type_not_equals',
-        );
+        ];
 
-        $defaultOptions = array(
+        $defaultOptions = [
             'choice_translation_domain' => 'SonataCoreBundle',
-        );
+        ];
 
         // SF 2.7+ BC
         if (method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')) {

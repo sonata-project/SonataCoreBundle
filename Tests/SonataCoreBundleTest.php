@@ -26,7 +26,7 @@ final class SonataCoreBundleTest extends PHPUnit_Framework_TestCase
     public function testBuild()
     {
         $containerBuilder = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')
-            ->setMethods(array('addCompilerPass'))
+            ->setMethods(['addCompilerPass'])
             ->getMock();
 
         $containerBuilder->expects($this->exactly(3))
@@ -83,52 +83,52 @@ final class SonataCoreBundleTest extends PHPUnit_Framework_TestCase
 
     public function getRegisteredFormMappingAndTypes()
     {
-        return array(
-            array('form', 'Symfony\Component\Form\Extension\Core\Type\FormType'),
-            array('birthday', 'Symfony\Component\Form\Extension\Core\Type\BirthdayType'),
-            array('checkbox', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType'),
-            array('choice', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType'),
-            array('collection', 'Symfony\Component\Form\Extension\Core\Type\CollectionType'),
-            array('country', 'Symfony\Component\Form\Extension\Core\Type\CountryType'),
-            array('date', 'Symfony\Component\Form\Extension\Core\Type\DateType'),
-            array('datetime', 'Symfony\Component\Form\Extension\Core\Type\DateTimeType'),
-            array('email', 'Symfony\Component\Form\Extension\Core\Type\EmailType'),
-            array('file', 'Symfony\Component\Form\Extension\Core\Type\FileType'),
-            array('hidden', 'Symfony\Component\Form\Extension\Core\Type\HiddenType'),
-            array('integer', 'Symfony\Component\Form\Extension\Core\Type\IntegerType'),
-            array('language', 'Symfony\Component\Form\Extension\Core\Type\LanguageType'),
-            array('locale', 'Symfony\Component\Form\Extension\Core\Type\LocaleType'),
-            array('money', 'Symfony\Component\Form\Extension\Core\Type\MoneyType'),
-            array('number', 'Symfony\Component\Form\Extension\Core\Type\NumberType'),
-            array('password', 'Symfony\Component\Form\Extension\Core\Type\PasswordType'),
-            array('percent', 'Symfony\Component\Form\Extension\Core\Type\PercentType'),
-            array('radio', 'Symfony\Component\Form\Extension\Core\Type\RadioType'),
-            array('repeated', 'Symfony\Component\Form\Extension\Core\Type\RepeatedType'),
-            array('search', 'Symfony\Component\Form\Extension\Core\Type\SearchType'),
-            array('textarea', 'Symfony\Component\Form\Extension\Core\Type\TextareaType'),
-            array('text', 'Symfony\Component\Form\Extension\Core\Type\TextType'),
-            array('time', 'Symfony\Component\Form\Extension\Core\Type\TimeType'),
-            array('timezone', 'Symfony\Component\Form\Extension\Core\Type\TimezoneType'),
-            array('url', 'Symfony\Component\Form\Extension\Core\Type\UrlType'),
-            array('button', 'Symfony\Component\Form\Extension\Core\Type\ButtonType'),
-            array('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType'),
-            array('reset', 'Symfony\Component\Form\Extension\Core\Type\ResetType'),
-            array('currency', 'Symfony\Component\Form\Extension\Core\Type\CurrencyType'),
-            array('entity', 'Symfony\Bridge\Doctrine\Form\Type\EntityType'),
-            array('sonata_type_immutable_array', 'Sonata\CoreBundle\Form\Type\ImmutableArrayType'),
-            array('sonata_type_boolean', 'Sonata\CoreBundle\Form\Type\BooleanType'),
-            array('sonata_type_collection', 'Sonata\CoreBundle\Form\Type\CollectionType'),
-            array('sonata_type_translatable_choice', 'Sonata\CoreBundle\Form\Type\TranslatableChoiceType'),
-            array('sonata_type_date_range', 'Sonata\CoreBundle\Form\Type\DateRangeType'),
-            array('sonata_type_datetime_range', 'Sonata\CoreBundle\Form\Type\DateTimeRangeType'),
-            array('sonata_type_date_picker', 'Sonata\CoreBundle\Form\Type\DatePickerType'),
-            array('sonata_type_datetime_picker', 'Sonata\CoreBundle\Form\Type\DateTimePickerType'),
-            array('sonata_type_date_range_picker', 'Sonata\CoreBundle\Form\Type\DateRangePickerType'),
-            array('sonata_type_datetime_range_picker', 'Sonata\CoreBundle\Form\Type\DateTimeRangePickerType'),
-            array('sonata_type_equal', 'Sonata\CoreBundle\Form\Type\EqualType'),
-            array('sonata_type_color', 'Sonata\CoreBundle\Form\Type\ColorType'),
-            array('sonata_type_color_selector', 'Sonata\CoreBundle\Form\Type\ColorSelectorType'),
-        );
+        return [
+            ['form', 'Symfony\Component\Form\Extension\Core\Type\FormType'],
+            ['birthday', 'Symfony\Component\Form\Extension\Core\Type\BirthdayType'],
+            ['checkbox', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType'],
+            ['choice', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType'],
+            ['collection', 'Symfony\Component\Form\Extension\Core\Type\CollectionType'],
+            ['country', 'Symfony\Component\Form\Extension\Core\Type\CountryType'],
+            ['date', 'Symfony\Component\Form\Extension\Core\Type\DateType'],
+            ['datetime', 'Symfony\Component\Form\Extension\Core\Type\DateTimeType'],
+            ['email', 'Symfony\Component\Form\Extension\Core\Type\EmailType'],
+            ['file', 'Symfony\Component\Form\Extension\Core\Type\FileType'],
+            ['hidden', 'Symfony\Component\Form\Extension\Core\Type\HiddenType'],
+            ['integer', 'Symfony\Component\Form\Extension\Core\Type\IntegerType'],
+            ['language', 'Symfony\Component\Form\Extension\Core\Type\LanguageType'],
+            ['locale', 'Symfony\Component\Form\Extension\Core\Type\LocaleType'],
+            ['money', 'Symfony\Component\Form\Extension\Core\Type\MoneyType'],
+            ['number', 'Symfony\Component\Form\Extension\Core\Type\NumberType'],
+            ['password', 'Symfony\Component\Form\Extension\Core\Type\PasswordType'],
+            ['percent', 'Symfony\Component\Form\Extension\Core\Type\PercentType'],
+            ['radio', 'Symfony\Component\Form\Extension\Core\Type\RadioType'],
+            ['repeated', 'Symfony\Component\Form\Extension\Core\Type\RepeatedType'],
+            ['search', 'Symfony\Component\Form\Extension\Core\Type\SearchType'],
+            ['textarea', 'Symfony\Component\Form\Extension\Core\Type\TextareaType'],
+            ['text', 'Symfony\Component\Form\Extension\Core\Type\TextType'],
+            ['time', 'Symfony\Component\Form\Extension\Core\Type\TimeType'],
+            ['timezone', 'Symfony\Component\Form\Extension\Core\Type\TimezoneType'],
+            ['url', 'Symfony\Component\Form\Extension\Core\Type\UrlType'],
+            ['button', 'Symfony\Component\Form\Extension\Core\Type\ButtonType'],
+            ['submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType'],
+            ['reset', 'Symfony\Component\Form\Extension\Core\Type\ResetType'],
+            ['currency', 'Symfony\Component\Form\Extension\Core\Type\CurrencyType'],
+            ['entity', 'Symfony\Bridge\Doctrine\Form\Type\EntityType'],
+            ['sonata_type_immutable_array', 'Sonata\CoreBundle\Form\Type\ImmutableArrayType'],
+            ['sonata_type_boolean', 'Sonata\CoreBundle\Form\Type\BooleanType'],
+            ['sonata_type_collection', 'Sonata\CoreBundle\Form\Type\CollectionType'],
+            ['sonata_type_translatable_choice', 'Sonata\CoreBundle\Form\Type\TranslatableChoiceType'],
+            ['sonata_type_date_range', 'Sonata\CoreBundle\Form\Type\DateRangeType'],
+            ['sonata_type_datetime_range', 'Sonata\CoreBundle\Form\Type\DateTimeRangeType'],
+            ['sonata_type_date_picker', 'Sonata\CoreBundle\Form\Type\DatePickerType'],
+            ['sonata_type_datetime_picker', 'Sonata\CoreBundle\Form\Type\DateTimePickerType'],
+            ['sonata_type_date_range_picker', 'Sonata\CoreBundle\Form\Type\DateRangePickerType'],
+            ['sonata_type_datetime_range_picker', 'Sonata\CoreBundle\Form\Type\DateTimeRangePickerType'],
+            ['sonata_type_equal', 'Sonata\CoreBundle\Form\Type\EqualType'],
+            ['sonata_type_color', 'Sonata\CoreBundle\Form\Type\ColorType'],
+            ['sonata_type_color_selector', 'Sonata\CoreBundle\Form\Type\ColorSelectorType'],
+        ];
     }
 
     /**
@@ -147,15 +147,15 @@ final class SonataCoreBundleTest extends PHPUnit_Framework_TestCase
 
     public function getRegisteredFormMappingAndExtensions()
     {
-        return array(
-            array('form', 'form.type_extension.form.http_foundation'),
-            array('form', 'form.type_extension.form.validator'),
-            array('form', 'form.type_extension.csrf'),
-            array('form', 'form.type_extension.form.data_collector'),
-            array('form', 'nelmio_api_doc.form.extension.description_form_type_extension'),
-            array('repeated', 'form.type_extension.repeated.validator'),
-            array('submit', 'form.type_extension.submit.validator'),
-        );
+        return [
+            ['form', 'form.type_extension.form.http_foundation'],
+            ['form', 'form.type_extension.form.validator'],
+            ['form', 'form.type_extension.csrf'],
+            ['form', 'form.type_extension.form.data_collector'],
+            ['form', 'nelmio_api_doc.form.extension.description_form_type_extension'],
+            ['repeated', 'form.type_extension.repeated.validator'],
+            ['submit', 'form.type_extension.submit.validator'],
+        ];
     }
 
     public function testRegisterFormMappingWithContainer()
@@ -171,12 +171,12 @@ final class SonataCoreBundleTest extends PHPUnit_Framework_TestCase
         $container->expects($this->at(1))
             ->method('getParameter')
             ->with('sonata.core.form.mapping.type')
-            ->willReturn(array('fooMapping' => 'barType'));
+            ->willReturn(['fooMapping' => 'barType']);
 
         $container->expects($this->at(2))
             ->method('getParameter')
             ->with('sonata.core.form.mapping.extension')
-            ->willReturn(array('fooMapping' => array('barExtension')));
+            ->willReturn(['fooMapping' => ['barExtension']]);
 
         $reflectedBundle = new \ReflectionClass('Sonata\CoreBundle\SonataCoreBundle');
         $reflectedContainer = $reflectedBundle->getProperty('container');

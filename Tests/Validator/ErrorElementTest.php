@@ -74,19 +74,19 @@ class ErrorElementTest extends PHPUnit_Framework_TestCase
 
     public function testGetErrorsEmpty()
     {
-        $this->assertSame(array(), $this->errorElement->getErrors());
+        $this->assertSame([], $this->errorElement->getErrors());
     }
 
     public function testGetErrors()
     {
-        $this->errorElement->addViolation('Foo error message', array('bar_param' => 'bar_param_lvalue'), 'BAR');
-        $this->assertSame(array(array('Foo error message', array('bar_param' => 'bar_param_lvalue'), 'BAR')), $this->errorElement->getErrors());
+        $this->errorElement->addViolation('Foo error message', ['bar_param' => 'bar_param_lvalue'], 'BAR');
+        $this->assertSame([['Foo error message', ['bar_param' => 'bar_param_lvalue'], 'BAR']], $this->errorElement->getErrors());
     }
 
     public function testAddViolation()
     {
-        $this->errorElement->addViolation(array('Foo error message', array('bar_param' => 'bar_param_lvalue'), 'BAR'));
-        $this->assertSame(array(array('Foo error message', array('bar_param' => 'bar_param_lvalue'), 'BAR')), $this->errorElement->getErrors());
+        $this->errorElement->addViolation(['Foo error message', ['bar_param' => 'bar_param_lvalue'], 'BAR']);
+        $this->assertSame([['Foo error message', ['bar_param' => 'bar_param_lvalue'], 'BAR']], $this->errorElement->getErrors());
     }
 
     public function testAddConstraint()
@@ -103,7 +103,7 @@ class ErrorElementTest extends PHPUnit_Framework_TestCase
                 ->with('');
             $this->contextualValidator->expects($this->once())
                 ->method('validate')
-                ->with($this->subject, $constraint, array('foo_core'));
+                ->with($this->subject, $constraint, ['foo_core']);
         }
 
         $this->errorElement->addConstraint($constraint);
@@ -124,7 +124,7 @@ class ErrorElementTest extends PHPUnit_Framework_TestCase
                 ->with('bar');
             $this->contextualValidator->expects($this->once())
                 ->method('validate')
-                ->with(null, $constraint, array('foo_core'));
+                ->with(null, $constraint, ['foo_core']);
         }
 
         $this->errorElement->with('bar');
@@ -147,7 +147,7 @@ class ErrorElementTest extends PHPUnit_Framework_TestCase
                 ->with('bar');
             $this->contextualValidator->expects($this->once())
                 ->method('validate')
-                ->with(null, $constraint, array('foo_core'));
+                ->with(null, $constraint, ['foo_core']);
         }
 
         $this->errorElement->with('bar');
@@ -187,12 +187,12 @@ class ErrorElementTest extends PHPUnit_Framework_TestCase
                 ->with('');
             $this->contextualValidator->expects($this->any())
                 ->method('validate')
-                ->with($this->subject, $constraint, array('foo_core'));
+                ->with($this->subject, $constraint, ['foo_core']);
         }
 
         $this->assertSame($this->errorElement, $this->errorElement->with('baz'));
         $this->assertSame($this->errorElement, $this->errorElement->end());
-        $this->assertSame($this->errorElement, $this->errorElement->addViolation('Foo error message', array('bar_param' => 'bar_param_lvalue'), 'BAR'));
+        $this->assertSame($this->errorElement, $this->errorElement->addViolation('Foo error message', ['bar_param' => 'bar_param_lvalue'], 'BAR'));
         $this->assertSame($this->errorElement, $this->errorElement->addConstraint($constraint));
         $this->assertSame($this->errorElement, $this->errorElement->assertNotNull());
     }

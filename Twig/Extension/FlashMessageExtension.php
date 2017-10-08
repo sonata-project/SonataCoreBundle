@@ -38,10 +38,10 @@ class FlashMessageExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
-            new \Twig_SimpleFunction('sonata_flashmessages_get', array($this, 'getFlashMessages')),
-            new \Twig_SimpleFunction('sonata_flashmessages_types', array($this, 'getFlashMessagesTypes')),
-        );
+        return [
+            new \Twig_SimpleFunction('sonata_flashmessages_get', [$this, 'getFlashMessages']),
+            new \Twig_SimpleFunction('sonata_flashmessages_types', [$this, 'getFlashMessagesTypes']),
+        ];
     }
 
     /**
