@@ -35,7 +35,7 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
 
     public function testPreSetDataWithNullData()
     {
-        $listener = new ResizeFormListener('form', array(), false, null);
+        $listener = new ResizeFormListener('form', [], false, null);
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
         $form->expects($this->once())
@@ -55,7 +55,7 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testPreBindCallsPreSubmit()
     {
-        $listener = new ResizeFormListener('form', array(), true, null);
+        $listener = new ResizeFormListener('form', [], true, null);
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
         $form->expects($this->once())
@@ -69,7 +69,7 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
 
     public function testPreSetDataThrowsExceptionWithStringEventData()
     {
-        $listener = new ResizeFormListener('form', array(), false, null);
+        $listener = new ResizeFormListener('form', [], false, null);
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
 
@@ -82,22 +82,22 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
 
     public function testPreSetData()
     {
-        $typeOptions = array(
+        $typeOptions = [
             'default' => 'option',
-        );
+        ];
 
         $listener = new ResizeFormListener('form', $typeOptions, false, null);
 
-        $options = array(
+        $options = [
             'property_path' => '[baz]',
             'data' => 'caz',
             'default' => 'option',
-        );
+        ];
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
         $form->expects($this->once())
             ->method('getIterator')
-            ->willReturn(new \ArrayIterator(array('foo' => 'bar')));
+            ->willReturn(new \ArrayIterator(['foo' => 'bar']));
         $form->expects($this->once())
             ->method('remove')
             ->with('foo');
@@ -105,7 +105,7 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
             ->method('add')
             ->with('baz', 'form', $options);
 
-        $data = array('baz' => 'caz');
+        $data = ['baz' => 'caz'];
 
         $event = new FormEvent($form, $data);
 
@@ -114,7 +114,7 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
 
     public function testPreSubmitWithResizeOnBindFalse()
     {
-        $listener = new ResizeFormListener('form', array(), false, null);
+        $listener = new ResizeFormListener('form', [], false, null);
 
         $event = $this->getMockBuilder('Symfony\Component\Form\FormEvent')->disableOriginalConstructor()->getMock();
         $event->expects($this->never())
@@ -125,12 +125,12 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
 
     public function testPreSubmitDataWithNullData()
     {
-        $listener = new ResizeFormListener('form', array(), true, null);
+        $listener = new ResizeFormListener('form', [], true, null);
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
         $form->expects($this->once())
             ->method('getIterator')
-            ->willReturn(new \ArrayIterator(array('foo' => 'bar')));
+            ->willReturn(new \ArrayIterator(['foo' => 'bar']));
         $form->expects($this->never())
             ->method('has');
 
@@ -141,7 +141,7 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
 
     public function testPreSubmitThrowsExceptionWithIntEventData()
     {
-        $listener = new ResizeFormListener('form', array(), true, null);
+        $listener = new ResizeFormListener('form', [], true, null);
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
 
@@ -154,21 +154,21 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
 
     public function testPreSubmitData()
     {
-        $typeOptions = array(
+        $typeOptions = [
             'default' => 'option',
-        );
+        ];
 
         $listener = new ResizeFormListener('form', $typeOptions, true, null);
 
-        $options = array(
+        $options = [
             'property_path' => '[baz]',
             'default' => 'option',
-        );
+        ];
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
         $form->expects($this->once())
             ->method('getIterator')
-            ->willReturn(new \ArrayIterator(array('foo' => 'bar')));
+            ->willReturn(new \ArrayIterator(['foo' => 'bar']));
         $form->expects($this->once())
             ->method('remove')
             ->with('foo');
@@ -176,7 +176,7 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
             ->method('add')
             ->with('baz', 'form', $options);
 
-        $data = array('baz' => 'caz');
+        $data = ['baz' => 'caz'];
 
         $event = new FormEvent($form, $data);
 
@@ -185,11 +185,11 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
 
     public function testPreSubmitDataWithClosure()
     {
-        $typeOptions = array(
+        $typeOptions = [
             'default' => 'option',
-        );
+        ];
 
-        $data = array('baz' => 'caz');
+        $data = ['baz' => 'caz'];
 
         $closure = function () use ($data) {
             return $data['baz'];
@@ -197,16 +197,16 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
 
         $listener = new ResizeFormListener('form', $typeOptions, true, $closure);
 
-        $options = array(
+        $options = [
             'property_path' => '[baz]',
             'default' => 'option',
             'data' => 'caz',
-        );
+        ];
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
         $form->expects($this->once())
             ->method('getIterator')
-            ->willReturn(new \ArrayIterator(array('foo' => 'bar')));
+            ->willReturn(new \ArrayIterator(['foo' => 'bar']));
         $form->expects($this->once())
             ->method('remove')
             ->with('foo');
@@ -225,7 +225,7 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
      */
     public function testOnBindCallsOnSubmit()
     {
-        $listener = new ResizeFormListener('form', array(), true, null);
+        $listener = new ResizeFormListener('form', [], true, null);
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
 
@@ -238,14 +238,14 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
             ->willReturn(null);
         $event->expects($this->once())
             ->method('setData')
-            ->with(array());
+            ->with([]);
 
         $listener->onBind($event);
     }
 
     public function testOnSubmitWithResizeOnBindFalse()
     {
-        $listener = new ResizeFormListener('form', array(), false, null);
+        $listener = new ResizeFormListener('form', [], false, null);
 
         $event = $this->getMockBuilder('Symfony\Component\Form\FormEvent')->disableOriginalConstructor()->getMock();
         $event->expects($this->never())
@@ -256,7 +256,7 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
 
     public function testOnSubmitDataWithNullData()
     {
-        $listener = new ResizeFormListener('form', array(), true, null);
+        $listener = new ResizeFormListener('form', [], true, null);
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
         $form->expects($this->never())
@@ -269,7 +269,7 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
 
     public function testOnSubmitThrowsExceptionWithIntEventData()
     {
-        $listener = new ResizeFormListener('form', array(), true, null);
+        $listener = new ResizeFormListener('form', [], true, null);
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
 
@@ -282,12 +282,12 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
 
     public function testOnSubmit()
     {
-        $listener = new ResizeFormListener('form', array(), true, null);
+        $listener = new ResizeFormListener('form', [], true, null);
 
         $reflector = new \ReflectionClass('Sonata\CoreBundle\Form\EventListener\ResizeFormListener');
         $reflectedMethod = $reflector->getProperty('removed');
         $reflectedMethod->setAccessible(true);
-        $reflectedMethod->setValue($listener, array('foo'));
+        $reflectedMethod->setValue($listener, ['foo']);
 
         $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
         $form->expects($this->at(2))
@@ -295,15 +295,15 @@ class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
             ->with('baz')
             ->willReturn(true);
 
-        $data = array(
+        $data = [
             'foo' => 'foo-value',
             'bar' => 'bar-value',
             'baz' => 'baz-value',
-        );
+        ];
 
-        $removedData = array(
+        $removedData = [
             'baz' => 'baz-value',
-        );
+        ];
 
         $event = $this->getMockBuilder('Symfony\Component\Form\FormEvent')->disableOriginalConstructor()->getMock();
         $event->expects($this->once())

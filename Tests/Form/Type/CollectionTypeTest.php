@@ -50,16 +50,16 @@ class CollectionTypeTest extends TypeTestCase
 
         $type = new CollectionType();
 
-        $type->buildForm($formBuilder, array(
+        $type->buildForm($formBuilder, [
             'modifiable' => false,
             'type' => method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
                 ? 'Symfony\Component\Form\Extension\Core\Type\TextType'
                 : 'text',
-            'type_options' => array(),
+            'type_options' => [],
             'pre_bind_data_callback' => null,
             'btn_add' => 'link_add',
             'btn_catalogue' => 'SonataCoreBundle',
-        ));
+        ]);
     }
 
     public function testGetParent()

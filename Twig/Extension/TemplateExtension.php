@@ -49,10 +49,10 @@ class TemplateExtension extends \Twig_Extension
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('sonata_slugify', array($this, 'slugify'), array('deprecated' => true, 'alternative' => 'slugify')),
-            new \Twig_SimpleFilter('sonata_urlsafeid', array($this, 'getUrlsafeIdentifier')),
-        );
+        return [
+            new \Twig_SimpleFilter('sonata_slugify', [$this, 'slugify'], ['deprecated' => true, 'alternative' => 'slugify']),
+            new \Twig_SimpleFilter('sonata_urlsafeid', [$this, 'getUrlsafeIdentifier']),
+        ];
     }
 
     /**
@@ -60,9 +60,9 @@ class TemplateExtension extends \Twig_Extension
      */
     public function getTokenParsers()
     {
-        return array(
+        return [
             new TemplateBoxTokenParser($this->debug, $this->translator),
-        );
+        ];
     }
 
     /**

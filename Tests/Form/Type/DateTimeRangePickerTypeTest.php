@@ -49,14 +49,14 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
             }));
 
         $type = new DateTimeRangePickerType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
-        $type->buildForm($formBuilder, array(
-            'field_options' => array(),
-            'field_options_start' => array(),
-            'field_options_end' => array(),
+        $type->buildForm($formBuilder, [
+            'field_options' => [],
+            'field_options_start' => [],
+            'field_options_end' => [],
             'field_type' => method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
                 ? 'Sonata\CoreBundle\Form\Type\DateTimePickerType'
                 : 'sonata_type_datetime_picker',
-        ));
+        ]);
     }
 
     public function testGetParent()
@@ -95,15 +95,15 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
         $options = $resolver->resolve();
 
         $this->assertSame(
-            array(
-                'field_options' => array(),
-                'field_options_start' => array(),
-                'field_options_end' => array(),
+            [
+                'field_options' => [],
+                'field_options_start' => [],
+                'field_options_end' => [],
                 // NEXT_MAJOR: Remove ternary and keep 'Sonata\CoreBundle\Form\Type\DateTimePickerType'
                 // (when requirement of Symfony is >= 2.8)
                 'field_type' => method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
                     ? 'Sonata\CoreBundle\Form\Type\DateTimePickerType'
                     : 'sonata_type_datetime_picker',
-            ), $options);
+            ], $options);
     }
 }

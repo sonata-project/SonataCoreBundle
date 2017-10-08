@@ -20,7 +20,7 @@ class FormChoiceWidgetTest extends AbstractWidgetTestCase
 {
     public function testLabelRendering()
     {
-        $choices = array('some', 'choices');
+        $choices = ['some', 'choices'];
         if (!method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
             $choices = array_flip($choices);
         }
@@ -28,10 +28,10 @@ class FormChoiceWidgetTest extends AbstractWidgetTestCase
         $choice = $this->factory->create(
             $this->getChoiceClass(),
             null,
-            $this->getDefaultOption() + array(
+            $this->getDefaultOption() + [
                 'multiple' => true,
                 'expanded' => true,
-            ) + compact('choices')
+            ] + compact('choices')
         );
 
         $html = $this->renderWidget($choice->createView());
@@ -92,9 +92,9 @@ class FormChoiceWidgetTest extends AbstractWidgetTestCase
 
     private function getRequiredOption()
     {
-        return array(
+        return [
             'required' => true,
-        );
+        ];
     }
 
     private function getChoiceClass()
@@ -113,13 +113,13 @@ class FormChoiceWidgetTest extends AbstractWidgetTestCase
     private function getDefaultOption()
     {
         if (method_exists('Symfony\Component\Form\Tests\AbstractLayoutTest', 'testSingleChoiceNonRequiredWithPlaceholder')) {
-            return array(
+            return [
                 'placeholder' => 'Choose an option',
-            );
+            ];
         }
 
-        return array(
+        return [
             'empty_value' => 'Choose an option',
-        );
+        ];
     }
 }

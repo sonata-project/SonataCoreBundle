@@ -71,12 +71,12 @@ class SonataListFormMappingCommand extends ContainerAwareCommand
         }
 
         $output->writeln("\n\n\nGetting form type extensions:");
-        $types = array();
+        $types = [];
         foreach ($this->getContainer()->getParameter('sonata.core.form.type_extensions') as $id) {
             try {
                 $instance = $this->getContainer()->get($id);
                 if (!isset($types[$instance->getExtendedType()])) {
-                    $types[$instance->getExtendedType()] = array();
+                    $types[$instance->getExtendedType()] = [];
                 }
 
                 $types[$instance->getExtendedType()][] = $id;

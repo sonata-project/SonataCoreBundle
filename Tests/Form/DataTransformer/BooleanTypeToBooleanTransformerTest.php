@@ -38,14 +38,14 @@ class BooleanTypeToBooleanTransformerTest extends PHPUnit_Framework_TestCase
 
     public function getReverseTransformData()
     {
-        return array(
-            array(true, BooleanType::TYPE_YES),
-            array(false, BooleanType::TYPE_NO),
-            array('wrong', BooleanType::TYPE_NO),
-            array('1', BooleanType::TYPE_YES),
-            array('2', BooleanType::TYPE_NO),
+        return [
+            [true, BooleanType::TYPE_YES],
+            [false, BooleanType::TYPE_NO],
+            ['wrong', BooleanType::TYPE_NO],
+            ['1', BooleanType::TYPE_YES],
+            ['2', BooleanType::TYPE_NO],
 
-            array('3', BooleanType::TYPE_NO), // default value is false ...
-        );
+            ['3', BooleanType::TYPE_NO], // default value is false ...
+        ];
     }
 }

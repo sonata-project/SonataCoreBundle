@@ -35,10 +35,10 @@ class DatePickerType extends BasePickerType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array_merge($this->getCommonDefaults(), array(
+        $resolver->setDefaults(array_merge($this->getCommonDefaults(), [
             'dp_pick_time' => false,
             'format' => DateType::DEFAULT_FORMAT,
-        )));
+        ]));
     }
 
     /**

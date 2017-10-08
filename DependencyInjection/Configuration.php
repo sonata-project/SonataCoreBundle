@@ -47,13 +47,13 @@ class Configuration implements ConfigurationInterface
                                 ->end()
                                 ->arrayNode('type')
                                     ->useAttributeAsKey('id')
-                                    ->defaultValue(array())
+                                    ->defaultValue([])
                                     ->prototype('scalar')->end()
                                 ->end()
 
                                 ->arrayNode('extension')
                                     ->useAttributeAsKey('id')
-                                    ->defaultValue(array())
+                                    ->defaultValue([])
                                     ->prototype('array')
                                         ->prototype('scalar')->end()
                                     ->end()
@@ -80,7 +80,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('form_type')
                     ->defaultValue('standard')
                     ->validate()
-                    ->ifNotInArray($validFormTypes = array('standard', 'horizontal'))
+                    ->ifNotInArray($validFormTypes = ['standard', 'horizontal'])
                         ->thenInvalid(sprintf(
                             'The form_type option value must be one of %s',
                             $validFormTypesString = implode(', ', $validFormTypes)
@@ -123,7 +123,7 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->arrayNode('formats')
                             ->prototype('scalar')->end()
-                            ->defaultValue(array('json', 'xml', 'yml'))
+                            ->defaultValue(['json', 'xml', 'yml'])
                             ->info('Default serializer formats, will be used while getting subscribing methods.')
                         ->end()
                     ->end()

@@ -44,11 +44,11 @@ class ColorSelectorType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'choices' => array_flip(Colors::getAll()),
             'choices_as_values' => true,
             'translation_domain' => 'SonataCoreBundle',
-            'preferred_choices' => array(
+            'preferred_choices' => [
                 Colors::BLACK,
                 Colors::BLUE,
                 Colors::GRAY,
@@ -59,8 +59,8 @@ class ColorSelectorType extends AbstractType
                 Colors::RED,
                 Colors::WHITE,
                 Colors::YELLOW,
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**

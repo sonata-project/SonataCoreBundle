@@ -36,7 +36,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
     {
         $this
             ->setName('sonata:core:dump-doctrine-metadata')
-            ->setDefinition(array(
+            ->setDefinition([
                 new InputOption(
                     'entity-name',
                     'E',
@@ -58,7 +58,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
                     'If filename is specified, result will be dumped into this file under json format.',
                     null
                 ),
-            ))
+            ])
             ->setDescription('Get information on the current Doctrine\'s schema')
         ;
     }
@@ -179,7 +179,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
      */
     private function normalizeDoctrineORMMeta(ClassMetadata $meta)
     {
-        $normalizedMeta = array();
+        $normalizedMeta = [];
         $fieldMappings = $meta->fieldMappings;
 
         $normalizedMeta['table'] = $meta->table['name'];

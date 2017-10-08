@@ -70,9 +70,9 @@ class Exporter
             $handler->export();
         };
 
-        return new StreamedResponse($callback, 200, array(
+        return new StreamedResponse($callback, 200, [
             'Content-Type' => $contentType,
             'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
-        ));
+        ]);
     }
 }

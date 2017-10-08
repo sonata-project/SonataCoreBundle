@@ -52,9 +52,9 @@ class TranslatableChoiceTypeTest extends TypeTestCase
             }));
 
         $type = new TranslatableChoiceType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
-        $type->buildForm($formBuilder, array(
+        $type->buildForm($formBuilder, [
             'catalogue' => 'messages',
-        ));
+        ]);
     }
 
     public function testGetParent()
@@ -97,7 +97,7 @@ class TranslatableChoiceTypeTest extends TypeTestCase
             $type->getParent()
         );
 
-        $options = $resolver->resolve(array('catalogue' => 'foo'));
+        $options = $resolver->resolve(['catalogue' => 'foo']);
 
         $this->assertSame('foo', $options['catalogue']);
     }

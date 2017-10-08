@@ -47,7 +47,7 @@ class SonataCoreBundle extends Bundle
     public function registerFormMapping()
     {
         // symfony
-        FormHelper::registerFormTypeMapping(array(
+        FormHelper::registerFormTypeMapping([
             'form' => 'Symfony\Component\Form\Extension\Core\Type\FormType',
             'birthday' => 'Symfony\Component\Form\Extension\Core\Type\BirthdayType',
             'checkbox' => 'Symfony\Component\Form\Extension\Core\Type\CheckboxType',
@@ -79,10 +79,10 @@ class SonataCoreBundle extends Bundle
             'reset' => 'Symfony\Component\Form\Extension\Core\Type\ResetType',
             'currency' => 'Symfony\Component\Form\Extension\Core\Type\CurrencyType',
             'entity' => 'Symfony\Bridge\Doctrine\Form\Type\EntityType',
-        ));
+        ]);
 
         // core bundle
-        FormHelper::registerFormTypeMapping(array(
+        FormHelper::registerFormTypeMapping([
             'sonata_type_immutable_array' => 'Sonata\CoreBundle\Form\Type\ImmutableArrayType',
             'sonata_type_boolean' => 'Sonata\CoreBundle\Form\Type\BooleanType',
             'sonata_type_collection' => 'Sonata\CoreBundle\Form\Type\CollectionType',
@@ -96,14 +96,14 @@ class SonataCoreBundle extends Bundle
             'sonata_type_equal' => 'Sonata\CoreBundle\Form\Type\EqualType',
             'sonata_type_color' => 'Sonata\CoreBundle\Form\Type\ColorType',
             'sonata_type_color_selector' => 'Sonata\CoreBundle\Form\Type\ColorSelectorType',
-        ));
+        ]);
 
-        $formTypes = array(
+        $formTypes = [
             'form.type_extension.form.http_foundation',
             'form.type_extension.form.validator',
             'form.type_extension.csrf',
             'form.type_extension.form.data_collector',
-        );
+        ];
 
         if (class_exists('Nelmio\ApiDocBundle\Form\Extension\DescriptionFormTypeExtension')) {
             $formTypes[] = 'nelmio_api_doc.form.extension.description_form_type_extension';
@@ -111,13 +111,13 @@ class SonataCoreBundle extends Bundle
 
         FormHelper::registerFormExtensionMapping('form', $formTypes);
 
-        FormHelper::registerFormExtensionMapping('repeated', array(
+        FormHelper::registerFormExtensionMapping('repeated', [
             'form.type_extension.repeated.validator',
-        ));
+        ]);
 
-        FormHelper::registerFormExtensionMapping('submit', array(
+        FormHelper::registerFormExtensionMapping('submit', [
             'form.type_extension.submit.validator',
-        ));
+        ]);
 
         if ($this->container && $this->container->hasParameter('sonata.core.form.mapping.type')) {
             // from configuration file

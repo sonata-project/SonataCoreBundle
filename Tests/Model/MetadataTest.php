@@ -21,7 +21,7 @@ class MetadataTest extends PHPUnit_Framework_TestCase
 {
     public function testGetters()
     {
-        $metadata = new Metadata('title', 'description', 'image', 'domain', array('key1' => 'value1'));
+        $metadata = new Metadata('title', 'description', 'image', 'domain', ['key1' => 'value1']);
 
         $this->assertSame('title', $metadata->getTitle());
         $this->assertSame('description', $metadata->getDescription());
@@ -31,16 +31,16 @@ class MetadataTest extends PHPUnit_Framework_TestCase
         $this->assertSame('value1', $metadata->getOption('key1'));
         $this->assertSame('valueDefault', $metadata->getOption('none', 'valueDefault'));
         $this->assertNull($metadata->getOption('none'));
-        $this->assertSame(array('key1' => 'value1'), $metadata->getOptions());
+        $this->assertSame(['key1' => 'value1'], $metadata->getOptions());
 
         $metadata->setOption('key2', 'value2');
 
         $this->assertSame('value2', $metadata->getOption('key2'));
-        $this->assertSame(array('key1' => 'value1', 'key2' => 'value2'), $metadata->getOptions());
+        $this->assertSame(['key1' => 'value1', 'key2' => 'value2'], $metadata->getOptions());
 
         $metadata2 = new Metadata('title', 'description', 'image');
         $this->assertNull($metadata2->getDomain());
-        $this->assertSame(array(), $metadata2->getOptions());
+        $this->assertSame([], $metadata2->getOptions());
     }
 
     public function testImageNullGetDefaultImage()

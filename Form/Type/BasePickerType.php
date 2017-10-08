@@ -97,7 +97,7 @@ abstract class BasePickerType extends AbstractType
 
         $view->vars['type'] = 'text';
 
-        $dpOptions = array();
+        $dpOptions = [];
         foreach ($options as $key => $value) {
             if (false !== strpos($key, 'dp_')) {
                 // We remove 'dp_' and camelize the options names
@@ -121,7 +121,7 @@ abstract class BasePickerType extends AbstractType
      */
     protected function getCommonDefaults()
     {
-        return array(
+        return [
             'widget' => 'single_text',
             'datepicker_use_button' => true,
             'dp_pick_time' => true,
@@ -132,21 +132,21 @@ abstract class BasePickerType extends AbstractType
             'dp_show_today' => true,
             'dp_language' => $this->locale,
             'dp_default_date' => '',
-            'dp_disabled_dates' => array(),
-            'dp_enabled_dates' => array(),
-            'dp_icons' => array(
+            'dp_disabled_dates' => [],
+            'dp_enabled_dates' => [],
+            'dp_icons' => [
                 'time' => 'fa fa-clock-o',
                 'date' => 'fa fa-calendar',
                 'up' => 'fa fa-chevron-up',
                 'down' => 'fa fa-chevron-down',
-            ),
+            ],
             'dp_use_strict' => false,
             'dp_side_by_side' => false,
-            'dp_days_of_week_disabled' => array(),
+            'dp_days_of_week_disabled' => [],
             'dp_collapse' => true,
             'dp_calendar_weeks' => false,
             'dp_view_mode' => 'days',
             'dp_min_view_mode' => 'days',
-        );
+        ];
     }
 }
