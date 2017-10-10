@@ -49,9 +49,9 @@ class TemplateExtension extends \Twig_Extension
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('sonata_urlsafeid', array($this, 'getUrlsafeIdentifier')),
-        );
+        return [
+            new \Twig_SimpleFilter('sonata_urlsafeid', [$this, 'getUrlsafeIdentifier']),
+        ];
     }
 
     /**

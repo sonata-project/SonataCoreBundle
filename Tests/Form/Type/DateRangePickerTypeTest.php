@@ -58,11 +58,11 @@ class DateRangePickerTypeTest extends TypeTestCase
         $options = $resolver->resolve();
 
         $this->assertSame(
-            array(
-                'field_options' => array(),
-                'field_options_start' => array(),
-                'field_options_end' => array(),
+            [
+                'field_options' => [],
+                'field_options_start' => [],
+                'field_options_end' => [],
                 'field_type' => 'Sonata\CoreBundle\Form\Type\DatePickerType',
-            ), $options);
+            ], $options);
     }
 }
