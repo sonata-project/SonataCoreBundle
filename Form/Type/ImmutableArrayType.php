@@ -34,7 +34,7 @@ class ImmutableArrayType extends AbstractType
                     $options = $options($builder, $name, $type, $extra);
 
                     if ($options === null) {
-                        $options = array();
+                        $options = [];
                     } elseif (!is_array($options)) {
                         throw new \RuntimeException('the closure must return null or an array');
                     }
@@ -50,9 +50,9 @@ class ImmutableArrayType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'keys' => array(),
-        ));
+        $resolver->setDefaults([
+            'keys' => [],
+        ]);
 
         // NEXT_MAJOR: remove the condition
         if (!method_exists('Symfony\Component\OptionsResolver\OptionsResolver', 'setDefault')) {

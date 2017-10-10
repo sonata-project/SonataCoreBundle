@@ -79,7 +79,7 @@ abstract class BaseStatusType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $choices = call_user_func(array($this->class, $this->getter));
+        $choices = call_user_func([$this->class, $this->getter]);
 
         if ($this->flip) {
             $count = count($choices);
@@ -91,8 +91,8 @@ abstract class BaseStatusType extends AbstractType
             }
         }
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'choices' => $choices,
-        ));
+        ]);
     }
 }

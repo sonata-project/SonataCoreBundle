@@ -117,20 +117,20 @@ class BaseDoctrineORMSerializationType extends AbstractType
                     $builder->add(
                         $name,
                         'Symfony\Component\Form\Extension\Core\Type\DateTimeType',
-                        array('required' => !$nullable, 'widget' => 'single_text')
+                        ['required' => !$nullable, 'widget' => 'single_text']
                     );
 
                     break;
 
                 case 'boolean':
-                    $childBuilder = $builder->create($name, null, array('required' => !$nullable));
+                    $childBuilder = $builder->create($name, null, ['required' => !$nullable]);
                     $childBuilder->addEventSubscriber(new FixCheckboxDataListener());
                     $builder->add($childBuilder);
 
                     break;
 
                 default:
-                    $builder->add($name, null, array('required' => !$nullable));
+                    $builder->add($name, null, ['required' => !$nullable]);
 
                     break;
             }
@@ -158,8 +158,8 @@ class BaseDoctrineORMSerializationType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => $this->class,
-        ));
+        ]);
     }
 }

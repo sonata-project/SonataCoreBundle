@@ -30,7 +30,7 @@ class FixCheckboxDataListener implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(FormEvents::PRE_SUBMIT => 'preSubmit');
+        return [FormEvents::PRE_SUBMIT => 'preSubmit'];
     }
 
     /**

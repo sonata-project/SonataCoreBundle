@@ -49,14 +49,14 @@ class CollectionType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'modifiable' => false,
             'type' => 'Symfony\Component\Form\Extension\Core\Type\TextType',
-            'type_options' => array(),
+            'type_options' => [],
             'pre_bind_data_callback' => null,
             'btn_add' => 'link_add',
             'btn_catalogue' => 'SonataCoreBundle',
-        ));
+        ]);
     }
 
     /**

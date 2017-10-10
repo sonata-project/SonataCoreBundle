@@ -26,22 +26,22 @@ final class BaseSerializerHandlerTest extends PHPUnit_Framework_TestCase
 
         $serializer = new FooSerializer($manager);
 
-        $expectedMethods = array(
-            array(
+        $expectedMethods = [
+            [
                 'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
                 'format' => 'bar',
                 'type' => 'foo',
                 'method' => 'serializeObjectToId',
-            ),
-            array(
+            ],
+            [
                 'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
                 'format' => 'bar',
                 'type' => 'foo',
                 'method' => 'deserializeObjectFromId',
-            ),
-        );
+            ],
+        ];
 
-        $serializer::setFormats(array('bar'));
+        $serializer::setFormats(['bar']);
 
         $methods = $serializer::getSubscribingMethods();
 
@@ -54,34 +54,34 @@ final class BaseSerializerHandlerTest extends PHPUnit_Framework_TestCase
 
         $serializer = new FooSerializer($manager);
 
-        $expectedMethods = array(
-            array(
+        $expectedMethods = [
+            [
                 'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
                 'format' => 'bar',
                 'type' => 'foo',
                 'method' => 'serializeObjectToId',
-            ),
-            array(
+            ],
+            [
                 'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
                 'format' => 'bar',
                 'type' => 'foo',
                 'method' => 'deserializeObjectFromId',
-            ),
-            array(
+            ],
+            [
                 'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
                 'format' => 'foo',
                 'type' => 'foo',
                 'method' => 'serializeObjectToId',
-            ),
-            array(
+            ],
+            [
                 'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
                 'format' => 'foo',
                 'type' => 'foo',
                 'method' => 'deserializeObjectFromId',
-            ),
-        );
+            ],
+        ];
 
-        $serializer::setFormats(array('bar'));
+        $serializer::setFormats(['bar']);
 
         $serializer::addFormat('foo');
 
@@ -94,7 +94,7 @@ final class BaseSerializerHandlerTest extends PHPUnit_Framework_TestCase
     {
         $modelInstance = $this->getMockBuilder('Sonata\CoreBundle\Tests\Fixtures\Bundle\Serializer\FooSerializer')
             ->disableOriginalConstructor()
-            ->setMethods(array('getId'))
+            ->setMethods(['getId'])
             ->getMock();
 
         $modelInstance->expects($this->once())
@@ -111,12 +111,12 @@ final class BaseSerializerHandlerTest extends PHPUnit_Framework_TestCase
         $visitor = $this->createMock('JMS\Serializer\VisitorInterface');
         $visitor->expects($this->once())
             ->method('visitInteger')
-            ->with(1, array('foo'), $context)
+            ->with(1, ['foo'], $context)
             ->willReturn(true);
 
         $serializer = new FooSerializer($manager);
 
-        $this->assertTrue($serializer->serializeObjectToId($visitor, $modelInstance, array('foo'), $context));
+        $this->assertTrue($serializer->serializeObjectToId($visitor, $modelInstance, ['foo'], $context));
     }
 
     public function testSerializeObjectToIdWithDataIsNotInstanceOfManager()
@@ -138,7 +138,7 @@ final class BaseSerializerHandlerTest extends PHPUnit_Framework_TestCase
 
         $serializer = new FooSerializer($manager);
 
-        $serializer->serializeObjectToId($visitor, $modelInstance, array('foo'), $context);
+        $serializer->serializeObjectToId($visitor, $modelInstance, ['foo'], $context);
     }
 
     public function testDeserializeObjectFromId()
@@ -146,13 +146,13 @@ final class BaseSerializerHandlerTest extends PHPUnit_Framework_TestCase
         $manager = $this->createMock('Sonata\CoreBundle\Model\ManagerInterface');
         $manager->expects($this->once())
             ->method('findOneBy')
-            ->with(array('id' => 'foo'))
+            ->with(['id' => 'foo'])
             ->willReturn('bar');
 
         $visitor = $this->createMock('JMS\Serializer\VisitorInterface');
 
         $serializer = new FooSerializer($manager);
 
-        $this->assertSame('bar', $serializer->deserializeObjectFromId($visitor, 'foo', array()));
+        $this->assertSame('bar', $serializer->deserializeObjectFromId($visitor, 'foo', []));
     }
 }

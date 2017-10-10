@@ -30,12 +30,12 @@ class DateRangeTypeTest extends TypeTestCase
             }));
 
         $type = new DateRangeType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
-        $type->buildForm($formBuilder, array(
-            'field_options' => array(),
-            'field_options_start' => array(),
-            'field_options_end' => array(),
+        $type->buildForm($formBuilder, [
+            'field_options' => [],
+            'field_options_start' => [],
+            'field_options_end' => [],
             'field_type' => 'Symfony\Component\Form\Extension\Core\Type\DateType',
-        ));
+        ]);
     }
 
     public function testGetParent()
@@ -58,11 +58,11 @@ class DateRangeTypeTest extends TypeTestCase
         $options = $resolver->resolve();
 
         $this->assertSame(
-            array(
-                'field_options' => array(),
-                'field_options_start' => array(),
-                'field_options_end' => array(),
+            [
+                'field_options' => [],
+                'field_options_start' => [],
+                'field_options_end' => [],
                 'field_type' => 'Symfony\Component\Form\Extension\Core\Type\DateType',
-            ), $options);
+            ], $options);
     }
 }

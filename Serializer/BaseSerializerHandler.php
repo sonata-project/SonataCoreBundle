@@ -61,22 +61,22 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
     public static function getSubscribingMethods()
     {
         $type = static::getType();
-        $methods = array();
+        $methods = [];
 
         foreach (static::$formats as $format) {
-            $methods[] = array(
+            $methods[] = [
                 'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
                 'format' => $format,
                 'type' => $type,
                 'method' => 'serializeObjectToId',
-            );
+            ];
 
-            $methods[] = array(
+            $methods[] = [
                 'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
                 'format' => $format,
                 'type' => $type,
                 'method' => 'deserializeObjectFromId',
-            );
+            ];
         }
 
         return $methods;
@@ -114,6 +114,6 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
      */
     public function deserializeObjectFromId(VisitorInterface $visitor, $data, array $type)
     {
-        return $this->manager->findOneBy(array('id' => $data));
+        return $this->manager->findOneBy(['id' => $data]);
     }
 }

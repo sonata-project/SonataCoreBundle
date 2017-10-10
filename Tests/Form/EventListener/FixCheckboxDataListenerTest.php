@@ -32,7 +32,7 @@ class FixCheckboxDataListenerTest extends PHPUnit_Framework_TestCase
         }
 
         $formFactory = Forms::createFormFactoryBuilder()
-            ->addExtensions(array())
+            ->addExtensions([])
             ->getFormFactory();
 
         $formBuilder = new FormBuilder('checkbox', 'stdClass', $dispatcher, $formFactory);
@@ -49,9 +49,9 @@ class FixCheckboxDataListenerTest extends PHPUnit_Framework_TestCase
 
     public function valuesProvider()
     {
-        return array(
-            array('0', true, null, new BooleanToStringTransformer('1')),
-            array('0', false, new FixCheckboxDataListener(), new BooleanToStringTransformer('1')),
-        );
+        return [
+            ['0', true, null, new BooleanToStringTransformer('1')],
+            ['0', false, new FixCheckboxDataListener(), new BooleanToStringTransformer('1')],
+        ];
     }
 }

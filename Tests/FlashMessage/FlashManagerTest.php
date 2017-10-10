@@ -48,20 +48,20 @@ class FlashManagerTest extends PHPUnit_Framework_TestCase
     {
         $this->session = $this->getSession();
         $this->translator = $this->getTranslator();
-        $this->flashManager = $this->getFlashManager(array(
-            'success' => array(
-                'my_bundle_success' => array('domain' => 'MySuccessBundle'),
-                'my_second_bundle_success' => array('domain' => 'SonataCoreBundle'),
-            ),
-            'warning' => array(
-                'my_bundle_warning' => array('domain' => 'MyWarningBundle'),
-                'my_second_bundle_warning' => array('domain' => 'SonataCoreBundle'),
-            ),
-            'error' => array(
-                'my_bundle_error' => array('domain' => 'MyErrorBundle'),
-                'my_second_bundle_error' => array('domain' => 'SonataCoreBundle'),
-            ),
-        ));
+        $this->flashManager = $this->getFlashManager([
+            'success' => [
+                'my_bundle_success' => ['domain' => 'MySuccessBundle'],
+                'my_second_bundle_success' => ['domain' => 'SonataCoreBundle'],
+            ],
+            'warning' => [
+                'my_bundle_warning' => ['domain' => 'MyWarningBundle'],
+                'my_second_bundle_warning' => ['domain' => 'SonataCoreBundle'],
+            ],
+            'error' => [
+                'my_bundle_error' => ['domain' => 'MyErrorBundle'],
+                'my_second_bundle_error' => ['domain' => 'SonataCoreBundle'],
+            ],
+        ]);
     }
 
     /**
@@ -78,7 +78,7 @@ class FlashManagerTest extends PHPUnit_Framework_TestCase
 
     public function testGetHandledTypes()
     {
-        $this->assertSame(array('success', 'warning', 'error'), $this->flashManager->getHandledTypes());
+        $this->assertSame(['success', 'warning', 'error'], $this->flashManager->getHandledTypes());
     }
 
     public function testGetStatus()
@@ -96,20 +96,20 @@ class FlashManagerTest extends PHPUnit_Framework_TestCase
 
         // Then
         $this->assertCount(3, $types);
-        $this->assertSame(array(
-            'success' => array(
-                'my_bundle_success' => array('domain' => 'MySuccessBundle'),
-                'my_second_bundle_success' => array('domain' => 'SonataCoreBundle'),
-            ),
-            'warning' => array(
-                'my_bundle_warning' => array('domain' => 'MyWarningBundle'),
-                'my_second_bundle_warning' => array('domain' => 'SonataCoreBundle'),
-            ),
-            'error' => array(
-                'my_bundle_error' => array('domain' => 'MyErrorBundle'),
-                'my_second_bundle_error' => array('domain' => 'SonataCoreBundle'),
-            ),
-        ), $types);
+        $this->assertSame([
+            'success' => [
+                'my_bundle_success' => ['domain' => 'MySuccessBundle'],
+                'my_second_bundle_success' => ['domain' => 'SonataCoreBundle'],
+            ],
+            'warning' => [
+                'my_bundle_warning' => ['domain' => 'MyWarningBundle'],
+                'my_second_bundle_warning' => ['domain' => 'SonataCoreBundle'],
+            ],
+            'error' => [
+                'my_bundle_error' => ['domain' => 'MyErrorBundle'],
+                'my_second_bundle_error' => ['domain' => 'SonataCoreBundle'],
+            ],
+        ], $types);
     }
 
     /**
@@ -182,9 +182,9 @@ class FlashManagerTest extends PHPUnit_Framework_TestCase
         // Given
         $translator = $this->flashManager->getTranslator();
         $translator->addLoader('array', new ArrayLoader());
-        $translator->addResource('array', array(
+        $translator->addResource('array', [
             'my_bundle_success_message' => 'My bundle success message!',
-        ), 'en', 'MyCustomDomain');
+        ], 'en', 'MyCustomDomain');
 
         // When
         $this->session->getFlashBag()->set('my_bundle_success', 'my_bundle_success_message');
@@ -235,7 +235,7 @@ class FlashManagerTest extends PHPUnit_Framework_TestCase
      */
     protected function getFlashManager(array $types)
     {
-        $classes = array('error' => 'danger');
+        $classes = ['error' => 'danger'];
 
         return new FlashManager($this->session, $this->translator, $types, $classes);
     }

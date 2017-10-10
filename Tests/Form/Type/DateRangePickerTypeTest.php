@@ -30,12 +30,12 @@ class DateRangePickerTypeTest extends TypeTestCase
             }));
 
         $type = new DateRangePickerType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
-        $type->buildForm($formBuilder, array(
-            'field_options' => array(),
-            'field_options_start' => array(),
-            'field_options_end' => array(),
+        $type->buildForm($formBuilder, [
+            'field_options' => [],
+            'field_options_start' => [],
+            'field_options_end' => [],
             'field_type' => 'Sonata\CoreBundle\Form\Type\DatePickerType',
-        ));
+        ]);
     }
 
     public function testGetParent()

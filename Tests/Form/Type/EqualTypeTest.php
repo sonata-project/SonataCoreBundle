@@ -30,9 +30,9 @@ class EqualTypeTest extends TypeTestCase
             }));
 
         $type = new EqualType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
-        $type->buildForm($formBuilder, array(
-            'choices' => array(),
-        ));
+        $type->buildForm($formBuilder, [
+            'choices' => [],
+        ]);
     }
 
     public function testGetParent()
@@ -67,14 +67,14 @@ class EqualTypeTest extends TypeTestCase
 
         $options = $resolver->resolve();
 
-        $expected = array(
+        $expected = [
             'choice_translation_domain' => 'SonataCoreBundle',
             'choices_as_values' => true,
-            'choices' => array(
+            'choices' => [
                 'label_type_equals' => 1,
                 'label_type_not_equals' => 2,
-            ),
-        );
+            ],
+        ];
 
         if (!method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
             unset($expected['choices_as_values']);

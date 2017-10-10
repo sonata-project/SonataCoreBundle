@@ -59,9 +59,9 @@ class TemplateExtension extends \Twig_Extension
      */
     public function getTokenParsers()
     {
-        return array(
+        return [
             new TemplateBoxTokenParser($this->debug, $this->translator),
-        );
+        ];
     }
 
     /**

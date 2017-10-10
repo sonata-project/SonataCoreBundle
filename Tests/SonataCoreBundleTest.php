@@ -26,7 +26,7 @@ final class SonataCoreBundleTest extends PHPUnit_Framework_TestCase
     public function testBuild()
     {
         $containerBuilder = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')
-            ->setMethods(array('addCompilerPass'))
+            ->setMethods(['addCompilerPass'])
             ->getMock();
 
         $containerBuilder->expects($this->exactly(3))
@@ -146,15 +146,15 @@ final class SonataCoreBundleTest extends PHPUnit_Framework_TestCase
 
     public function getRegisteredFormMappingAndExtensions()
     {
-        return array(
-            array('form', 'form.type_extension.form.http_foundation'),
-            array('form', 'form.type_extension.form.validator'),
-            array('form', 'form.type_extension.csrf'),
-            array('form', 'form.type_extension.form.data_collector'),
-            array('form', 'nelmio_api_doc.form.extension.description_form_type_extension'),
-            array('repeated', 'form.type_extension.repeated.validator'),
-            array('submit', 'form.type_extension.submit.validator'),
-        );
+        return [
+            ['form', 'form.type_extension.form.http_foundation'],
+            ['form', 'form.type_extension.form.validator'],
+            ['form', 'form.type_extension.csrf'],
+            ['form', 'form.type_extension.form.data_collector'],
+            ['form', 'nelmio_api_doc.form.extension.description_form_type_extension'],
+            ['repeated', 'form.type_extension.repeated.validator'],
+            ['submit', 'form.type_extension.submit.validator'],
+        ];
     }
 
     public function testRegisterFormMappingWithContainer()
@@ -170,12 +170,12 @@ final class SonataCoreBundleTest extends PHPUnit_Framework_TestCase
         $container->expects($this->at(1))
             ->method('getParameter')
             ->with('sonata.core.form.mapping.type')
-            ->willReturn(array('fooMapping' => 'barType'));
+            ->willReturn(['fooMapping' => 'barType']);
 
         $container->expects($this->at(2))
             ->method('getParameter')
             ->with('sonata.core.form.mapping.extension')
-            ->willReturn(array('fooMapping' => array('barExtension')));
+            ->willReturn(['fooMapping' => ['barExtension']]);
 
         $reflectedBundle = new \ReflectionClass('Sonata\CoreBundle\SonataCoreBundle');
         $reflectedContainer = $reflectedBundle->getProperty('container');

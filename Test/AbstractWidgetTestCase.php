@@ -51,12 +51,12 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
         parent::setUp();
 
         // NEXT_MAJOR: Remove BC hack when dropping symfony 2.4 support
-        $csrfProviderClasses = array_filter(array(
+        $csrfProviderClasses = array_filter([
             // symfony <=2.4
             'Symfony\Component\Security\Csrf\CsrfTokenManagerInterface',
             // symfony >=2.4
             'Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface',
-        ), 'interface_exists');
+        ], 'interface_exists');
 
         // TODO: remove the condition when dropping symfony/twig-bundle < 3.2
         if (method_exists('Symfony\Bridge\Twig\AppVariable', 'getToken')) {
@@ -95,9 +95,9 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
     {
         $loader = new StubFilesystemLoader($this->getTemplatePaths());
 
-        $environment = new \Twig_Environment($loader, array(
+        $environment = new \Twig_Environment($loader, [
             'strict_variables' => true,
-        ));
+        ]);
         $environment->addExtension(new TranslationExtension(new StubTranslator()));
         $environment->addExtension($this->extension);
 
@@ -112,7 +112,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
     protected function getTemplatePaths()
     {
         // this is an workaround for different composer requirements and different TwigBridge installation directories
-        $twigPaths = array_filter(array(
+        $twigPaths = array_filter([
             // symfony/twig-bridge (running from this bundle)
             __DIR__.'/../vendor/symfony/twig-bridge/Resources/views/Form',
             // symfony/twig-bridge (running from other bundles)
@@ -123,7 +123,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
             __DIR__.'/../vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form',
             // symfony/symfony (running from other bundles)
             __DIR__.'/../../../symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form',
-        ), 'is_dir');
+        ], 'is_dir');
 
         $twigPaths[] = __DIR__.'/../Resources/views/Form';
 
@@ -146,7 +146,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
             );
         }
 
-        return new TwigRendererEngine(array('form_div_layout.html.twig'), $environment);
+        return new TwigRendererEngine(['form_div_layout.html.twig'], $environment);
     }
 
     /**
@@ -157,7 +157,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      *
      * @return string
      */
-    final protected function renderWidget(FormView $view, array $vars = array())
+    final protected function renderWidget(FormView $view, array $vars = [])
     {
         return (string) $this->renderer->searchAndRenderBlock($view, 'widget', $vars);
     }

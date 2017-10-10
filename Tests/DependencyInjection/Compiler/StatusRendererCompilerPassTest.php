@@ -41,7 +41,7 @@ final class StatusRendererCompilerPassTest extends AbstractCompilerPassTestCase
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
             'sonata.core.twig.status_extension',
             'addStatusService',
-            array(new Reference('sonata.status.renderer'))
+            [new Reference('sonata.status.renderer')]
         );
     }
 }

@@ -25,12 +25,12 @@ class DateRangePickerType extends DateRangeType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'field_options' => array(),
-            'field_options_start' => array(),
-            'field_options_end' => array(),
+        $resolver->setDefaults([
+            'field_options' => [],
+            'field_options_start' => [],
+            'field_options_end' => [],
             'field_type' => 'Sonata\CoreBundle\Form\Type\DatePickerType',
-        ));
+        ]);
     }
 
     /**

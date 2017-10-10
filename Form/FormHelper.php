@@ -17,9 +17,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FormHelper
 {
-    private static $typeMapping = array();
+    private static $typeMapping = [];
 
-    private static $extensionMapping = array();
+    private static $extensionMapping = [];
 
     /**
      * This function remove fields available if there are not present in the $data array
@@ -71,7 +71,7 @@ class FormHelper
     public static function registerFormExtensionMapping($type, array $services)
     {
         if (!isset(self::$extensionMapping[$type])) {
-            self::$extensionMapping[$type] = array();
+            self::$extensionMapping[$type] = [];
         }
 
         self::$extensionMapping[$type] = array_merge(self::$extensionMapping[$type], $services);

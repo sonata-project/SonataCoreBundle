@@ -40,13 +40,13 @@ final class AdapterCompilerPassTest extends AbstractCompilerPassTestCase
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
             'sonata.core.model.adapter.chain',
             'addAdapter',
-            array(new Reference('sonata.core.model.adapter.doctrine_orm'))
+            [new Reference('sonata.core.model.adapter.doctrine_orm')]
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
             'sonata.core.model.adapter.chain',
             'addAdapter',
-            array(new Reference('sonata.core.model.adapter.doctrine_phpcr'))
+            [new Reference('sonata.core.model.adapter.doctrine_phpcr')]
         );
     }
 

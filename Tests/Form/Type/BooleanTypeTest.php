@@ -32,10 +32,10 @@ class BooleanTypeTest extends TypeTestCase
 
         $type = new BooleanType();
 
-        $type->buildForm($formBuilder, array(
+        $type->buildForm($formBuilder, [
             'transform' => false,
             'translation_domain' => 'SonataCoreBundle',
-        ));
+        ]);
     }
 
     public function testGetParent()
@@ -72,9 +72,9 @@ class BooleanTypeTest extends TypeTestCase
         $builder = $this->createMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->once())->method('addModelTransformer');
 
-        $type->buildForm($builder, $optionResolver->resolve(array(
+        $type->buildForm($builder, $optionResolver->resolve([
             'transform' => true,
-        )));
+        ]));
     }
 
     /**
@@ -89,7 +89,7 @@ class BooleanTypeTest extends TypeTestCase
         $builder = $this->createMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->never())->method('addModelTransformer');
 
-        $type->buildForm($builder, $optionResolver->resolve(array()));
+        $type->buildForm($builder, $optionResolver->resolve([]));
     }
 
     public function testOptions()
@@ -101,20 +101,20 @@ class BooleanTypeTest extends TypeTestCase
         $builder = $this->createMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->never())->method('addModelTransformer');
 
-        $resolvedOptions = $optionResolver->resolve(array(
+        $resolvedOptions = $optionResolver->resolve([
             'translation_domain' => 'fooTrans',
-            'choices' => array(1 => 'foo_yes', 2 => 'foo_no'),
-        ));
+            'choices' => [1 => 'foo_yes', 2 => 'foo_no'],
+        ]);
 
         $type->buildForm($builder, $resolvedOptions);
 
-        $expectedOptions = array(
+        $expectedOptions = [
             'transform' => false,
             'choice_translation_domain' => 'SonataCoreBundle',
             'choices_as_values' => true,
             'translation_domain' => 'fooTrans',
-            'choices' => array(1 => 'foo_yes', 2 => 'foo_no'),
-        );
+            'choices' => [1 => 'foo_yes', 2 => 'foo_no'],
+        ];
 
         if (!method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
             unset($expectedOptions['choices_as_values']);

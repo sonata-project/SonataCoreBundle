@@ -31,14 +31,14 @@ class CollectionTypeTest extends TypeTestCase
 
         $type = new CollectionType();
 
-        $type->buildForm($formBuilder, array(
+        $type->buildForm($formBuilder, [
             'modifiable' => false,
             'type' => 'Symfony\Component\Form\Extension\Core\Type\TextType',
-            'type_options' => array(),
+            'type_options' => [],
             'pre_bind_data_callback' => null,
             'btn_add' => 'link_add',
             'btn_catalogue' => 'SonataCoreBundle',
-        ));
+        ]);
     }
 
     public function testGetParent()

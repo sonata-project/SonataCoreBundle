@@ -24,88 +24,88 @@ class ConfigurationTest extends AbstractConfigurationTestCase
     public function testInvalidFormTypeValueLeadsToErrorMessage()
     {
         $this->assertConfigurationIsInvalid(
-            array(
-                array('form_type' => '3D'),
-            ),
+            [
+                ['form_type' => '3D'],
+            ],
             'The form_type option value must be one of'
         );
     }
 
     public function testProcessedConfigurationLooksAsExpected()
     {
-        $this->assertProcessedConfigurationEquals(array(
-            array('form_type' => 'horizontal'), // this should be overwritten
-            array('form_type' => 'standard'),    // by this during the merge
-        ), array(
+        $this->assertProcessedConfigurationEquals([
+            ['form_type' => 'horizontal'], // this should be overwritten
+            ['form_type' => 'standard'],    // by this during the merge
+        ], [
             'form_type' => 'standard',
-            'flashmessage' => array(),
-            'form' => array(
-                'mapping' => array(
+            'flashmessage' => [],
+            'form' => [
+                'mapping' => [
                     'enabled' => true,
-                    'type' => array(),
-                    'extension' => array(),
-                ),
-            ),
-            'serializer' => array(
-                'formats' => array('json', 'xml', 'yml'),
-            ),
-        ));
+                    'type' => [],
+                    'extension' => [],
+                ],
+            ],
+            'serializer' => [
+                'formats' => ['json', 'xml', 'yml'],
+            ],
+        ]);
     }
 
     public function testFormMapping()
     {
-        $this->assertProcessedConfigurationEquals(array(
-            array('form' => array(
-                'mapping' => array(
-                    'type' => array(
+        $this->assertProcessedConfigurationEquals([
+            ['form' => [
+                'mapping' => [
+                    'type' => [
                         'foo' => 'Foo\Bar',
-                    ),
-                    'extension' => array(
-                        'choice' => array(
+                    ],
+                    'extension' => [
+                        'choice' => [
                             'service.id',
-                        ),
-                    ),
-                ),
-            )),
-        ), array(
-            'form' => array(
-                'mapping' => array(
+                        ],
+                    ],
+                ],
+            ]],
+        ], [
+            'form' => [
+                'mapping' => [
                     'enabled' => true,
-                    'type' => array(
+                    'type' => [
                         'foo' => 'Foo\Bar',
-                    ),
-                    'extension' => array(
-                        'choice' => array(
+                    ],
+                    'extension' => [
+                        'choice' => [
                             'service.id',
-                        ),
-                    ),
-                ),
-            ),
+                        ],
+                    ],
+                ],
+            ],
             'form_type' => 'standard',
-            'flashmessage' => array(),
-            'serializer' => array(
-                'formats' => array('json', 'xml', 'yml'),
-            ),
-        ));
+            'flashmessage' => [],
+            'serializer' => [
+                'formats' => ['json', 'xml', 'yml'],
+            ],
+        ]);
     }
 
     public function testDefault()
     {
-        $this->assertProcessedConfigurationEquals(array(
-            array(),
-        ), array(
-            'form' => array(
-                'mapping' => array(
+        $this->assertProcessedConfigurationEquals([
+            [],
+        ], [
+            'form' => [
+                'mapping' => [
                     'enabled' => true,
-                    'type' => array(),
-                    'extension' => array(),
-                ),
-            ),
+                    'type' => [],
+                    'extension' => [],
+                ],
+            ],
             'form_type' => 'standard',
-            'flashmessage' => array(),
-            'serializer' => array(
-                'formats' => array('json', 'xml', 'yml'),
-            ),
-        ));
+            'flashmessage' => [],
+            'serializer' => [
+                'formats' => ['json', 'xml', 'yml'],
+            ],
+        ]);
     }
 }

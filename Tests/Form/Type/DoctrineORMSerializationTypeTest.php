@@ -102,7 +102,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
             'serialization_api_write'
         );
 
-        $type->buildForm($formBuilder, array());
+        $type->buildForm($formBuilder, []);
     }
 
     /**
@@ -111,7 +111,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
     public function testBuildFormWithIdentifier()
     {
         $metadataFactory = $this->getMetadataFactoryMock();
-        $registry = $this->getRegistryMock(array('name'));
+        $registry = $this->getRegistryMock(['name']);
 
         if (version_compare(Kernel::VERSION, '2.8', '<')) {
             $type = new DoctrineORMSerializationType($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_write');
@@ -136,7 +136,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
     public function testBuildFormWithInvalidGroupName()
     {
         $metadataFactory = $this->getMetadataFactoryMock();
-        $registry = $this->getRegistryMock(array('name'));
+        $registry = $this->getRegistryMock(['name']);
 
         if (version_compare(Kernel::VERSION, '2.8', '<')) {
             $type = new DoctrineORMSerializationType($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_invalid');
@@ -174,13 +174,13 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
     protected function getMetadataFactoryMock()
     {
         $name = new PropertyMetadata($this->class, 'name');
-        $name->groups = array('serialization_api_write');
+        $name->groups = ['serialization_api_write'];
 
         $url = new PropertyMetadata($this->class, 'url');
-        $url->groups = array('serialization_api_write');
+        $url->groups = ['serialization_api_write'];
 
         $comments = new PropertyMetadata($this->class, 'comments');
-        $comments->groups = array('serialization_api_write');
+        $comments->groups = ['serialization_api_write'];
 
         $classMetadata = new SerializerMetadata($this->class);
         $classMetadata->addPropertyMetadata($name);
@@ -200,23 +200,23 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
      *
      * @return \Symfony\Bridge\Doctrine\RegistryInterface
      */
-    protected function getRegistryMock($identifiers = array())
+    protected function getRegistryMock($identifiers = [])
     {
         $classMetadata = new DoctrineMetadata($this->class);
         $classMetadata->identifier = $identifiers;
 
-        $classMetadata->fieldMappings = array('name' => array(
+        $classMetadata->fieldMappings = ['name' => [
             'nullable' => true,
-        ));
+        ]];
 
-        $classMetadata->associationMappings = array(
-            'url' => array(
-                'joinColumns' => array('nullable' => false),
-            ),
-            'comments' => array(
-                'inverseJoinColumns' => array('nullable' => true),
-            ),
-        );
+        $classMetadata->associationMappings = [
+            'url' => [
+                'joinColumns' => ['nullable' => false],
+            ],
+            'comments' => [
+                'inverseJoinColumns' => ['nullable' => true],
+            ],
+        ];
 
         $entityManager = $this->createMock('Doctrine\ORM\EntityManagerInterface');
         $entityManager->expects($this->once())->method('getClassMetadata')->will($this->returnValue($classMetadata));

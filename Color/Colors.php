@@ -169,7 +169,7 @@ class Colors
      */
     public static function getAll()
     {
-        return array(
+        return [
             self::ALICEBLUE => 'aliceblue',
             self::ANTIQUEWHITE => 'antiquewhite',
             self::AQUA => 'aqua',
@@ -311,6 +311,6 @@ class Colors
             self::WHITESMOKE => 'whitesmoke',
             self::YELLOW => 'yellow',
             self::YELLOWGREEN => 'yellowgreen',
-        );
+        ];
     }
 }

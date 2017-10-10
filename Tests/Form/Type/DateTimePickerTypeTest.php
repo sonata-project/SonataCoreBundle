@@ -38,13 +38,13 @@ class DateTimePickerTypeTest extends PHPUnit_Framework_TestCase
             $this->createMock('Symfony\Component\Translation\TranslatorInterface')
         );
 
-        $type->buildForm($formBuilder, array(
+        $type->buildForm($formBuilder, [
             'dp_use_minutes' => true,
             'dp_use_seconds' => true,
             'dp_minute_stepping' => 1,
             'format' => DateTimeType::DEFAULT_DATE_FORMAT,
             'date_format' => null,
-        ));
+        ]);
     }
 
     public function testGetParent()

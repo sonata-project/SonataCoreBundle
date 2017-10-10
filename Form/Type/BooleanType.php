@@ -38,17 +38,16 @@ class BooleanType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $choices = array(
+        $choices = [
             'label_type_yes' => self::TYPE_YES,
             'label_type_no' => self::TYPE_NO,
-        );
+        ];
 
-        $defaultOptions = array(
+        $defaultOptions = [
             'transform' => false,
             'translation_domain' => 'SonataCoreBundle',
-        );
+        ];
 
-        $defaultOptions['choice_translation_domain'] = 'SonataCoreBundle';
 
         // choice_as_value options is not needed in SF 3.0+
         if (method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
