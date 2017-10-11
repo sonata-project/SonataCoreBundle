@@ -45,6 +45,7 @@ class BooleanType extends AbstractType
 
         $defaultOptions = [
             'transform' => false,
+            'choice_translation_domain' => 'SonataCoreBundle',
             'translation_domain' => 'SonataCoreBundle',
         ];
 
