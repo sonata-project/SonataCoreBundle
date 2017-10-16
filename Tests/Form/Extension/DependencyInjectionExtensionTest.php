@@ -11,11 +11,11 @@
 
 namespace Sonata\CoreBundle\Tests\Form\Extension;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Form\Extension\DependencyInjectionExtension;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Symfony\Component\HttpKernel\Kernel;
 
-class DependencyInjectionExtensionTest extends PHPUnit_Framework_TestCase
+class DependencyInjectionExtensionTest extends TestCase
 {
     public function testValidType()
     {

@@ -12,8 +12,8 @@
 namespace Sonata\CoreBundle\Tests\Model;
 
 use Doctrine\DBAL\Connection;
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Model\BaseManager;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
 class ManagerTest extends BaseManager
 {
@@ -39,7 +39,7 @@ class ManagerTest extends BaseManager
 /**
  * @author Hugo Briand <briand@ekino.com>
  */
-class BaseManagerTest extends PHPUnit_Framework_TestCase
+class BaseManagerTest extends TestCase
 {
     /**
      * @expectedException \InvalidArgumentException

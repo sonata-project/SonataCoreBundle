@@ -12,13 +12,13 @@
 namespace Sonata\CoreBundle\Tests\Serializer;
 
 use JMS\Serializer\GraphNavigator;
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Tests\Fixtures\Bundle\Serializer\FooSerializer;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
  * @author Ahmet Akbana <ahmetakbana@gmail.com>
  */
-final class BaseSerializerHandlerTest extends PHPUnit_Framework_TestCase
+final class BaseSerializerHandlerTest extends TestCase
 {
     /**
      * @group legacy

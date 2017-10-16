@@ -12,15 +12,15 @@
 namespace Sonata\CoreBundle\Tests\Exporter;
 
 use Exporter\Source\ArraySourceIterator;
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Exporter\Exporter;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
  * NEXT_MAJOR: remove this class.
  *
  * @group legacy
  */
-class ExporterTest extends PHPUnit_Framework_TestCase
+class ExporterTest extends TestCase
 {
     /**
      * @expectedException \RuntimeException

@@ -11,14 +11,14 @@
 
 namespace Sonata\CoreBundle\Tests\Form\EventListener;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Form\EventListener\FixCheckboxDataListener;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Form\Extension\Core\DataTransformer\BooleanToStringTransformer;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Forms;
 
-class FixCheckboxDataListenerTest extends PHPUnit_Framework_TestCase
+class FixCheckboxDataListenerTest extends TestCase
 {
     /**
      * @dataProvider valuesProvider

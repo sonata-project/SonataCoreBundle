@@ -11,14 +11,14 @@
 
 namespace Sonata\CoreBundle\Tests\Entity;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Model\BaseEntityManager;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
 class EntityManager extends BaseEntityManager
 {
 }
 
-class BaseEntityManagerTest extends PHPUnit_Framework_TestCase
+class BaseEntityManagerTest extends TestCase
 {
     public function getManager()
     {

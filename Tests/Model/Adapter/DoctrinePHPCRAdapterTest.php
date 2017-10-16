@@ -12,15 +12,15 @@
 namespace Sonata\CoreBundle\Tests\Model\Adapter;
 
 use Doctrine\ODM\PHPCR\Mapping\ClassMetadata;
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Model\Adapter\DoctrinePHPCRAdapter;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
 class MyDocument
 {
     public $path;
 }
 
-class DoctrinePHPCRAdapterTest extends PHPUnit_Framework_TestCase
+class DoctrinePHPCRAdapterTest extends TestCase
 {
     public function setUp()
     {

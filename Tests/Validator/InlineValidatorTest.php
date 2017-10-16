@@ -11,8 +11,8 @@
 
 namespace Sonata\CoreBundle\Tests\Validator;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Tests\Fixtures\Bundle\Validator\FooValidatorService;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Sonata\CoreBundle\Validator\ErrorElement;
 use Sonata\CoreBundle\Validator\InlineValidator;
 use Symfony\Component\Validator\Exception\ValidatorException;
@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 /**
  * @author Ahmet Akbana <ahmetakbana@gmail.com>
  */
-final class InlineValidatorTest extends PHPUnit_Framework_TestCase
+final class InlineValidatorTest extends TestCase
 {
     private $container;
     private $constraintValidatorFactory;

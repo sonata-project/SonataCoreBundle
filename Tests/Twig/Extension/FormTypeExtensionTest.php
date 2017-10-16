@@ -11,10 +11,10 @@
 
 namespace Sonata\CoreBundle\Tests\Twig\Extension;
 
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Twig\Extension\FormTypeExtension;
 
-class FormTypeExtensionTest extends PHPUnit_Framework_TestCase
+class FormTypeExtensionTest extends TestCase
 {
     public function testGetName()
     {
