@@ -11,10 +11,10 @@
 
 namespace Sonata\CoreBundle\Tests\Model\Adapter;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Model\Adapter\DoctrineORMAdapter;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
-class DoctrineORMAdapterTest extends PHPUnit_Framework_TestCase
+class DoctrineORMAdapterTest extends TestCase
 {
     public function setUp()
     {

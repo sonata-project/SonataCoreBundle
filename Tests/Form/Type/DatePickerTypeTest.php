@@ -11,15 +11,15 @@
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Date\MomentFormatConverter;
 use Sonata\CoreBundle\Form\Type\DatePickerType;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
  */
-class DatePickerTypeTest extends PHPUnit_Framework_TestCase
+class DatePickerTypeTest extends TestCase
 {
     public function testBuildForm()
     {

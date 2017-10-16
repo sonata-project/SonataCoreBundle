@@ -11,13 +11,13 @@
 
 namespace Sonata\CoreBundle\Tests\Date;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Date\MomentFormatConverter;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
  */
-class MomentFormatConverterTest extends PHPUnit_Framework_TestCase
+class MomentFormatConverterTest extends TestCase
 {
     public function testPhpToMoment()
     {
