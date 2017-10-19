@@ -11,15 +11,15 @@
 
 namespace Sonata\CoreBundle\Tests\Form\EventListener;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Form\EventListener\ResizeFormListener;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
 /**
  * @author Ahmet Akbana <ahmetakbana@gmail.com>
  */
-class ResizeFormListenerTest extends PHPUnit_Framework_TestCase
+class ResizeFormListenerTest extends TestCase
 {
     public function testGetSubscribedEvents()
     {

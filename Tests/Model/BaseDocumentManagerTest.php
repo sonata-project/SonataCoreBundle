@@ -11,14 +11,14 @@
 
 namespace Sonata\CoreBundle\Tests\Entity;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Model\BaseDocumentManager;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
 class DocumentManager extends BaseDocumentManager
 {
 }
 
-class BaseDocumentManagerTest extends PHPUnit_Framework_TestCase
+class BaseDocumentManagerTest extends TestCase
 {
     public function getManager()
     {

@@ -11,13 +11,13 @@
 
 namespace Sonata\CoreBundle\Tests\Model;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Model\Metadata;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
  */
-class MetadataTest extends PHPUnit_Framework_TestCase
+class MetadataTest extends TestCase
 {
     public function testGetters()
     {

@@ -11,6 +11,7 @@
 
 namespace Sonata\CoreBundle\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
@@ -21,7 +22,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 /**
  * @author Ahmet Akbana <ahmetakbana@gmail.com>
  */
-final class SonataCoreBundleTest extends PHPUnit_Framework_TestCase
+final class SonataCoreBundleTest extends TestCase
 {
     public function testBuild()
     {

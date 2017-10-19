@@ -11,8 +11,8 @@
 
 namespace Sonata\CoreBundle\Tests\Validator;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Tests\Fixtures\Bundle\Entity\Foo;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Sonata\CoreBundle\Validator\ErrorElement;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -21,7 +21,7 @@ use Symfony\Component\Validator\ExecutionContextInterface as LegacyExecutionCont
 /**
  * @author Andrej Hudec <pulzarraider@gmail.com>
  */
-class ErrorElementTest extends PHPUnit_Framework_TestCase
+class ErrorElementTest extends TestCase
 {
     private $errorElement;
     private $context;

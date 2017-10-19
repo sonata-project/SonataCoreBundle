@@ -11,8 +11,8 @@
 
 namespace Sonata\CoreBundle\Tests\FlashMessage;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\FlashMessage\FlashManager;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -24,7 +24,7 @@ use Symfony\Component\Translation\Translator;
 /**
  * @author Vincent Composieux <composieux@ekino.com>
  */
-class FlashManagerTest extends PHPUnit_Framework_TestCase
+class FlashManagerTest extends TestCase
 {
     /**
      * @var SessionInterface

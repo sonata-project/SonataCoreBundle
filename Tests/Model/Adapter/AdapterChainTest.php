@@ -11,10 +11,10 @@
 
 namespace Sonata\CoreBundle\Tests\Model\Adapter;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Model\Adapter\AdapterChain;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
-class AdapterChainTest extends PHPUnit_Framework_TestCase
+class AdapterChainTest extends TestCase
 {
     public function testEmptyAdapter()
     {

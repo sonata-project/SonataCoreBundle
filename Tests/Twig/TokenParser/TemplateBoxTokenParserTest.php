@@ -11,11 +11,11 @@
 
 namespace Sonata\CoreBundle\Tests\Twig\TokenParser;
 
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Twig\Node\TemplateBoxNode;
 use Sonata\CoreBundle\Twig\TokenParser\TemplateBoxTokenParser;
 
-class TemplateBoxTokenParserTest extends PHPUnit_Framework_TestCase
+class TemplateBoxTokenParserTest extends TestCase
 {
     /**
      * @dataProvider getTestsForRender

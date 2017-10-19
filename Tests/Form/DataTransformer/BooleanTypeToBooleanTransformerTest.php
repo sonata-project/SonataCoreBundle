@@ -11,11 +11,11 @@
 
 namespace Sonata\CoreBundle\Tests\Form\DataTransformer;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Form\DataTransformer\BooleanTypeToBooleanTransformer;
 use Sonata\CoreBundle\Form\Type\BooleanType;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 
-class BooleanTypeToBooleanTransformerTest extends PHPUnit_Framework_TestCase
+class BooleanTypeToBooleanTransformerTest extends TestCase
 {
     /**
      * @dataProvider getReverseTransformData

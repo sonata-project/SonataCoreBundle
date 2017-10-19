@@ -29,6 +29,6 @@ class TypeTestCase extends \Symfony\Component\Form\Test\TypeTestCase
             return parent::createMock($class);
         }
 
-        return $this->getMock($class);
+        return $this->createMock($class);
     }
 }

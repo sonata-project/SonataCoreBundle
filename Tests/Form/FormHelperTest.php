@@ -11,11 +11,11 @@
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Form\FormHelper;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Symfony\Component\Form\Form;
 
-class FormHelperTest extends PHPUnit_Framework_TestCase
+class FormHelperTest extends TestCase
 {
     public function testRemoveFields()
     {

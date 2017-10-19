@@ -11,9 +11,9 @@
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Date\MomentFormatConverter;
 use Sonata\CoreBundle\Form\Type\BasePickerType;
-use Sonata\CoreBundle\Tests\PHPUnit_Framework_TestCase;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormView;
@@ -34,7 +34,7 @@ class BasePickerTest extends BasePickerType
 /**
  * @author Hugo Briand <briand@ekino.com>
  */
-class BasePickerTypeTest extends PHPUnit_Framework_TestCase
+class BasePickerTypeTest extends TestCase
 {
     public function testFinishView()
     {
