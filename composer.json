@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "cocur/slugify": "^1.4 || ^2.0",
+        "cocur/slugify": "^1.4 || ^2.0 || ^3.0",
         "sonata-project/datagrid-bundle": "^2.0",
         "symfony/config": "^2.8 || ^3.2",
         "symfony/form": "^2.8 || ^3.2",
