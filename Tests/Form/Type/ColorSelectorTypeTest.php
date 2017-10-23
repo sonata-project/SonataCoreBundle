@@ -13,7 +13,7 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Color\Colors;
 use Sonata\CoreBundle\Form\FormHelper;
-use Sonata\CoreBundle\Form\Type\ColorSelectorType;
+use Sonata\CoreBundle\Form\Type\ColorType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ColorSelectorTypeTest extends TypeTestCase
@@ -49,7 +49,7 @@ class ColorSelectorTypeTest extends TypeTestCase
                 }
             }));
 
-        $type = new ColorSelectorType();
+        $type = new ColorType();
 
         $type->buildForm($formBuilder, [
             'choices' => array_flip(Colors::getAll()),
@@ -72,7 +72,7 @@ class ColorSelectorTypeTest extends TypeTestCase
 
     public function testGetParent()
     {
-        $form = new ColorSelectorType();
+        $form = new ColorType();
 
         // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
         if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
@@ -97,7 +97,7 @@ class ColorSelectorTypeTest extends TypeTestCase
 
     public function testGetDefaultOptions()
     {
-        $type = new ColorSelectorType();
+        $type = new ColorType();
 
         $this->assertSame('sonata_type_color_selector', $type->getName());
         $this->assertSame(
