@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.6.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.5.1...3.6.0) - 2017-11-04
+### Added
+- Added dp_option "dp_pick_date" in BasePickerType
+- Support of cocur/slugify 3.x
+
+### Changed
+- Changed template datepicker.html.twig to display the time icon
+
+### Fixed
+- missing form mapping for `sonata_type_color`
+- reusable test case `Sonata\CoreBundle\Test\AbstractWidgetTestCase` is now compatible with Symfony 3.4
+
+### Removed
+- Support for old versions of PHP and Symfony.
+
 ## [3.5.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.5.0...3.5.1) - 2017-09-20
 ### Fixed
 - Datagrid build form issue caused by a regression on release 3.5.0
