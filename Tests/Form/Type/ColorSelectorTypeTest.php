@@ -18,6 +18,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ColorSelectorTypeTest extends TypeTestCase
 {
+    /**
+     * @group legacy
+     */
     public function testBuildForm()
     {
         // NEXT_MAJOR: Hack for php 5.3 only, remove it when requirement of PHP is >= 5.4
