@@ -21,6 +21,7 @@ use Symfony\Bundle\FrameworkBundle\Tests\Templating\Helper\Fixtures\StubTranslat
 use Symfony\Component\Form\FormExtensionInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\Test\TypeTestCase;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 /**
  * Base class for tests checking rendering of form widgets.
@@ -50,21 +51,13 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
         }
         parent::setUp();
 
-        // NEXT_MAJOR: Remove BC hack when dropping symfony 2.4 support
-        $csrfProviderClasses = array_filter([
-            // symfony <=2.4
-            'Symfony\Component\Security\Csrf\CsrfTokenManagerInterface',
-            // symfony >=2.4
-            'Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface',
-        ], 'interface_exists');
-
         // TODO: remove the condition when dropping symfony/twig-bundle < 3.2
         if (method_exists('Symfony\Bridge\Twig\AppVariable', 'getToken')) {
             $this->extension = new FormExtension();
             $environment = $this->getEnvironment();
             $this->renderer = new TwigRenderer(
                 $this->getRenderingEngine($environment),
-                $this->createMock(current($csrfProviderClasses))
+                $this->createMock(CsrfTokenManagerInterface::class)
             );
             $runtimeLoader = $this
                 ->getMockBuilder('Twig_RuntimeLoaderInterface')
@@ -79,7 +72,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
         } else {
             $this->renderer = new TwigRenderer(
                 $this->getRenderingEngine(),
-                $this->createMock(current($csrfProviderClasses))
+                $this->createMock(CsrfTokenManagerInterface::class)
             );
             $this->extension = new FormExtension($this->renderer);
             $environment = $this->getEnvironment();
