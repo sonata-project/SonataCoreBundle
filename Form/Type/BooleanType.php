@@ -33,7 +33,7 @@ class BooleanType extends AbstractType
             $builder->addModelTransformer(new BooleanTypeToBooleanTransformer());
         }
 
-        if ($options['catalogue'] !== 'SonataCoreBundle') {
+        if ('SonataCoreBundle' !== $options['catalogue']) {
             @trigger_error(
                 'Option "catalogue" is deprecated since SonataCoreBundle 2.3.10 and will be removed in 4.0.'
                 .' Use option "translation_domain" instead.',
