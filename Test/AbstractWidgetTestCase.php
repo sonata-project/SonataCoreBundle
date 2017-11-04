@@ -16,9 +16,11 @@ use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Bridge\Twig\Form\TwigRenderer;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
 use Symfony\Bridge\Twig\Form\TwigRendererEngineInterface;
+use Symfony\Bridge\Twig\Form\TwigRendererInterface;
 use Symfony\Bridge\Twig\Tests\Extension\Fixtures\StubFilesystemLoader;
 use Symfony\Bundle\FrameworkBundle\Tests\Templating\Helper\Fixtures\StubTranslator;
 use Symfony\Component\Form\FormExtensionInterface;
+use Symfony\Component\Form\FormRenderer;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
@@ -55,18 +57,14 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
         if (method_exists('Symfony\Bridge\Twig\AppVariable', 'getToken')) {
             $this->extension = new FormExtension();
             $environment = $this->getEnvironment();
-            $this->renderer = new TwigRenderer(
+            $this->renderer = new FormRenderer(
                 $this->getRenderingEngine($environment),
                 $this->createMock(CsrfTokenManagerInterface::class)
             );
-            $runtimeLoader = $this
-                ->getMockBuilder('Twig_RuntimeLoaderInterface')
-                ->getMock();
-
-            $runtimeLoader->expects($this->any())
-                ->method('load')
-                ->with($this->equalTo('Symfony\Bridge\Twig\Form\TwigRenderer'))
-                ->will($this->returnValue($this->renderer));
+            $runtimeLoader = new \Twig_FactoryRuntimeLoader([
+                FormRenderer::class => [$this, 'getRenderer'],
+                TwigRenderer::class => [$this, 'getRenderer'],
+            ]);
 
             $environment->addRuntimeLoader($runtimeLoader);
         } else {
@@ -79,6 +77,14 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
         }
 
         $this->extension->initRuntime($environment);
+    }
+
+    /**
+     * @return TwigRendererInterface
+     */
+    final public function getRenderer()
+    {
+        return $this->renderer;
     }
 
     /**
