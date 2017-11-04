@@ -95,7 +95,7 @@ class ErrorElement
      */
     public function __call($name, array $arguments = [])
     {
-        if (substr($name, 0, 6) === 'assert') {
+        if ('assert' === substr($name, 0, 6)) {
             $this->validate($this->newConstraint(substr($name, 6), isset($arguments[0]) ? $arguments[0] : []));
         } else {
             throw new \RunTimeException('Unable to recognize the command');
@@ -231,7 +231,7 @@ class ErrorElement
      */
     protected function getValue()
     {
-        if ($this->current === '') {
+        if ('' === $this->current) {
             return $this->subject;
         }
 
@@ -248,7 +248,7 @@ class ErrorElement
      */
     protected function newConstraint($name, array $options = [])
     {
-        if (strpos($name, '\\') !== false && class_exists($name)) {
+        if (false !== strpos($name, '\\') && class_exists($name)) {
             $className = (string) $name;
         } else {
             $className = 'Symfony\\Component\\Validator\\Constraints\\'.$name;

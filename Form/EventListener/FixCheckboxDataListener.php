@@ -45,7 +45,7 @@ class FixCheckboxDataListener implements EventSubscriberInterface
     public function preBind(FormEvent $event)
     {
         // BC prevention for class extending this one.
-        if (get_called_class() !== 'Sonata\CoreBundle\Form\EventListener\FixCheckboxDataListener') {
+        if ('Sonata\CoreBundle\Form\EventListener\FixCheckboxDataListener' !== get_called_class()) {
             @trigger_error(
                 __METHOD__.' is deprecated since 2.3 and will be renamed in 4.0.'
                 .' Use '.__CLASS__.'::preSubmit instead.',
@@ -64,7 +64,7 @@ class FixCheckboxDataListener implements EventSubscriberInterface
         $data = $event->getData();
         $transformers = $event->getForm()->getConfig()->getViewTransformers();
 
-        if (count($transformers) === 1 && $transformers[0] instanceof BooleanToStringTransformer && $data === '0') {
+        if (1 === count($transformers) && $transformers[0] instanceof BooleanToStringTransformer && '0' === $data) {
             $event->setData(null);
         }
     }

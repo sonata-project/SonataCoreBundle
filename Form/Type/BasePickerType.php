@@ -91,7 +91,7 @@ abstract class BasePickerType extends AbstractType
         }
 
         // use seconds if it's allowed in format
-        $options['dp_use_seconds'] = strpos($format, 's') !== false;
+        $options['dp_use_seconds'] = false !== strpos($format, 's');
 
         $view->vars['moment_format'] = $this->formatConverter->convert($format);
 

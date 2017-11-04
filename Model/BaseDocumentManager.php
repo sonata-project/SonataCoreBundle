@@ -27,7 +27,7 @@ abstract class BaseDocumentManager extends BaseManager
      */
     public function __get($name)
     {
-        if ($name === 'dm') {
+        if ('dm' === $name) {
             return $this->getObjectManager();
         }
 

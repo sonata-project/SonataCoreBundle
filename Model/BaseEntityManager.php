@@ -27,7 +27,7 @@ abstract class BaseEntityManager extends BaseManager
      */
     public function __get($name)
     {
-        if ($name === 'em') {
+        if ('em' === $name) {
             return $this->getObjectManager();
         }
 
