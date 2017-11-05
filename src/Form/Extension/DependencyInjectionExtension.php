@@ -20,6 +20,8 @@ use Symfony\Component\Form\FormTypeGuesserInterface;
 /**
  * This proxy class help to keep BC code with < SF2.8 form behavior by restoring
  * the type as a code and not as a class.
+ *
+ * @deprecated since 3.x, to be removed in 4.0, the form mapping feature should be disabled.
  */
 class DependencyInjectionExtension implements FormExtensionInterface
 {

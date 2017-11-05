@@ -117,6 +117,11 @@ EOT
             return;
         }
 
+        @trigger_error(
+            'Relying on the form mapping feature is deprecated since 3.x and will be removed in 4.0. Please set the "sonata_core.form.mapping.enabled" configuration node to false to avoid this message.',
+            E_USER_DEPRECATED
+        );
+
         $container->setParameter('sonata.core.form.mapping.type', $config['form']['mapping']['type']);
         $container->setParameter('sonata.core.form.mapping.extension', $config['form']['mapping']['extension']);
 
