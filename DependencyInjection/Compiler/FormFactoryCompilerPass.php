@@ -11,8 +11,8 @@
 
 namespace Sonata\CoreBundle\DependencyInjection\Compiler;
 
-use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\FormPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\Form\DependencyInjection\FormPass;
 
 class FormFactoryCompilerPass extends FormPass
 {
