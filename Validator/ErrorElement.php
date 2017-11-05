@@ -209,6 +209,7 @@ class ErrorElement
     }
 
     /**
+     * @group legacy
      * @param \Symfony\Component\Validator\Constraint $constraint
      */
     protected function validate(Constraint $constraint)

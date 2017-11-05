@@ -89,6 +89,9 @@ class ErrorElementTest extends TestCase
         $this->assertSame([['Foo error message', ['bar_param' => 'bar_param_lvalue'], 'BAR']], $this->errorElement->getErrors());
     }
 
+    /**
+     * @group legacy
+     */
     public function testAddConstraint()
     {
         $constraint = new NotNull();
