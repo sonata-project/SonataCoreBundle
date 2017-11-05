@@ -11,11 +11,12 @@
 
 namespace Sonata\CoreBundle;
 
+use Sonata\CoreBundle\DependencyInjection\Compiler;
 use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
-use Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
 use Sonata\CoreBundle\Form\FormHelper;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\Form\DependencyInjection\FormPass;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SonataCoreBundle extends Bundle
@@ -27,7 +28,11 @@ class SonataCoreBundle extends Bundle
     {
         $container->addCompilerPass(new StatusRendererCompilerPass());
         $container->addCompilerPass(new AdapterCompilerPass());
-        $container->addCompilerPass(new FormFactoryCompilerPass());
+        if (class_exists(FormPass::class)) {
+            $container->addCompilerPass(new Compiler\FormFactoryCompilerPass());
+        } else {
+            $container->addCompilerPass(new Compiler\LegacyFormFactoryCompilerPass());
+        }
 
         $this->registerFormMapping();
     }
