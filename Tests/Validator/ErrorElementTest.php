@@ -77,18 +77,27 @@ class ErrorElementTest extends TestCase
         $this->assertSame([], $this->errorElement->getErrors());
     }
 
+    /**
+     * @group legacy
+     */
     public function testGetErrors()
     {
         $this->errorElement->addViolation('Foo error message', ['bar_param' => 'bar_param_lvalue'], 'BAR');
         $this->assertSame([['Foo error message', ['bar_param' => 'bar_param_lvalue'], 'BAR']], $this->errorElement->getErrors());
     }
 
+    /**
+     * @group legacy
+     */
     public function testAddViolation()
     {
         $this->errorElement->addViolation(['Foo error message', ['bar_param' => 'bar_param_lvalue'], 'BAR']);
         $this->assertSame([['Foo error message', ['bar_param' => 'bar_param_lvalue'], 'BAR']], $this->errorElement->getErrors());
     }
 
+    /**
+     * @group legacy
+     */
     public function testAddConstraint()
     {
         $constraint = new NotNull();
@@ -109,6 +118,9 @@ class ErrorElementTest extends TestCase
         $this->errorElement->addConstraint($constraint);
     }
 
+    /**
+     * @group legacy
+     */
     public function testWith()
     {
         $constraint = new NotNull();
@@ -132,6 +144,9 @@ class ErrorElementTest extends TestCase
         $this->errorElement->end();
     }
 
+    /**
+     * @group legacy
+     */
     public function testCall()
     {
         $constraint = new NotNull();
@@ -172,6 +187,9 @@ class ErrorElementTest extends TestCase
         $this->assertSame('bar', $this->errorElement->getFullPropertyPath());
     }
 
+    /**
+     * @group legacy
+     */
     public function testFluidInterface()
     {
         $constraint = new NotNull();
