@@ -18,6 +18,7 @@ use Sonata\CoreBundle\Form\FormHelper;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
+// Trigger a complete build
 class SonataCoreBundle extends Bundle
 {
     /**
