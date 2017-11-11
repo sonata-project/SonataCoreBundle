@@ -63,10 +63,10 @@ class MomentFormatConverter
         //process the format string letter by letter
         for ($i = 0; $i < $size; ++$i) {
             //if finds a '
-            if ($format[$i] === "'") {
+            if ("'" === $format[$i]) {
                 //if the next character are T' forming 'T', send a T to the
                 //output
-                if ($format[$i + 1] === 'T' && $format[$i + 2] === '\'') {
+                if ('T' === $format[$i + 1] && '\'' === $format[$i + 2]) {
                     $output .= 'T';
                     $i += 2;
                 } else {

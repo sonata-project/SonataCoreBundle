@@ -70,7 +70,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
         $builder = $this->createMock('Symfony\Component\Form\Test\FormBuilderInterface');
         $builder->expects($this->once())->method('add')->with(
             $this->callback(function ($name) {
-                return $name === 'ttl';
+                return 'ttl' === $name;
             }),
             $this->callback(function ($name) {
                 return 'Symfony\Component\Form\Extension\Core\Type\TextType';
