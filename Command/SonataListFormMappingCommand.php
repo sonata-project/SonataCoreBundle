@@ -60,7 +60,7 @@ class SonataListFormMappingCommand extends ContainerAwareCommand
             try {
                 $instance = $this->getContainer()->get($id);
 
-                if ($input->getOption('format') === 'yaml') {
+                if ('yaml' === $input->getOption('format')) {
                     $output->writeln(sprintf('              %s: %s', $instance->getName(), get_class($instance)));
                 } else {
                     $output->writeln(sprintf(" '%s' => '%s',", $instance->getName(), get_class($instance)));
@@ -86,21 +86,21 @@ class SonataListFormMappingCommand extends ContainerAwareCommand
         }
 
         foreach ($types as $type => $classes) {
-            if ($input->getOption('format') === 'yaml') {
+            if ('yaml' === $input->getOption('format')) {
                 $output->writeln(sprintf('        %s: ', $type));
             } else {
                 $output->writeln(sprintf("        '%s' => array( ", $type));
             }
 
             foreach ($classes as $class) {
-                if ($input->getOption('format') === 'yaml') {
+                if ('yaml' === $input->getOption('format')) {
                     $output->writeln(sprintf('              - %s', $class));
                 } else {
                     $output->writeln(sprintf("              '%s',", $class));
                 }
             }
 
-            if ($input->getOption('format') === 'php') {
+            if ('php' === $input->getOption('format')) {
                 $output->writeln('        ), ');
             }
         }
