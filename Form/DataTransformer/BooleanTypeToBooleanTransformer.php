@@ -21,7 +21,7 @@ class BooleanTypeToBooleanTransformer implements DataTransformerInterface
      */
     public function transform($value)
     {
-        if ($value === true or (int) $value === BooleanType::TYPE_YES) {
+        if (true === $value or BooleanType::TYPE_YES === (int) $value) {
             return BooleanType::TYPE_YES;
         }
 
@@ -33,7 +33,7 @@ class BooleanTypeToBooleanTransformer implements DataTransformerInterface
      */
     public function reverseTransform($value)
     {
-        if ($value === BooleanType::TYPE_YES) {
+        if (BooleanType::TYPE_YES === $value) {
             return true;
         }
 

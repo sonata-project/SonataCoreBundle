@@ -41,7 +41,7 @@ class FixCheckboxDataListener implements EventSubscriberInterface
         $data = $event->getData();
         $transformers = $event->getForm()->getConfig()->getViewTransformers();
 
-        if (count($transformers) === 1 && $transformers[0] instanceof BooleanToStringTransformer && $data === '0') {
+        if (1 === count($transformers) && $transformers[0] instanceof BooleanToStringTransformer && '0' === $data) {
             $event->setData(null);
         }
     }
