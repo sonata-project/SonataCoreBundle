@@ -14,6 +14,9 @@ namespace Sonata\CoreBundle\DependencyInjection\Compiler;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\FormPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
+/**
+ * @deprecated since 3.x, to be removed in 4.0, the form mapping feature should be disabled.
+ */
 class FormFactoryCompilerPass extends FormPass
 {
     /**

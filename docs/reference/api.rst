@@ -13,9 +13,11 @@ client only sent partial data to update an entity.
 
     <?php
 
+    use Sonata\ClassificationBundle\Form\Type\ApiCategoryType;
+
     $category = $id ? $this->getCategory($id) : null;
 
-    $form = $this->formFactory->createNamed(null, 'sonata_classification_api_form_category', $category, array(
+    $form = $this->formFactory->createNamed(null, ApiCategoryType::class, $category, array(
         'csrf_protection' => false
     ));
 
