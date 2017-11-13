@@ -43,7 +43,7 @@ class InlineConstraint extends Constraint
     {
         parent::__construct($options);
 
-        if ((!is_string($this->service) || !is_string($this->method)) && $this->serializingWarning !== true) {
+        if ((!is_string($this->service) || !is_string($this->method)) && true !== $this->serializingWarning) {
             throw new \RuntimeException('You are using a closure with the `InlineConstraint`, this constraint'.
                 ' cannot be serialized. You need to re-attach the `InlineConstraint` on each request.'.
                 ' Once done, you can set the `serializingWarning` option to `true` to avoid this message.');
