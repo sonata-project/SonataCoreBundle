@@ -18,6 +18,7 @@ use Symfony\Component\DependencyInjection\Definition;
 
 /**
  * @author Ahmet Akbana <ahmetakbana@gmail.com>
+ * @group legacy
  */
 final class FormFactoryCompilerPassTest extends AbstractCompilerPassTestCase
 {
