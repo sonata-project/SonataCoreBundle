@@ -11,8 +11,9 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
-use Twig\Extension\GlobalsInterface;
 use Twig\Extension\AbstractExtension;
+use Twig\Extension\GlobalsInterface;
+
 class FormTypeExtension extends AbstractExtension implements GlobalsInterface
 {
     /**
