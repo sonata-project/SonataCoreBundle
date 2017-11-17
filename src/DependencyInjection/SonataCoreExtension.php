@@ -112,7 +112,10 @@ EOT
      */
     public function configureFormFactory(ContainerBuilder $container, array $config)
     {
-        if (!$config['form']['mapping']['enabled'] || version_compare(Kernel::VERSION, '2.8', '<')) {
+        if (!$config['form']['mapping']['enabled'] ||
+            version_compare(Kernel::VERSION, '2.8', '<') ||
+            !class_exists(FormPass::class)
+        ) {
             $container->removeDefinition('sonata.core.form.extension.dependency');
 
             return;
