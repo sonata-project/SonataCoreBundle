@@ -11,21 +11,24 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
+use Twig\Environment;
+use Twig\Extensions\TextExtension;
+
 /**
  * NEXT_MAJOR : remove this class and the twig/extensions dependency.
  *
  * @deprecated since version 3.2, to be removed in 4.0.
  */
-final class DeprecatedTextExtension extends \Twig_Extensions_Extension_Text
+final class DeprecatedTextExtension extends TextExtension
 {
-    public function twig_truncate_filter(\Twig_Environment $env, $value, $length = 30, $preserve = false, $separator = '...')
+    public function twig_truncate_filter(Environment $env, $value, $length = 30, $preserve = false, $separator = '...')
     {
         $this->notifyDeprecation();
 
         return twig_truncate_filter($env, $value, $length, $preserve, $separator);
     }
 
-    public function twig_wordwrap_filter(\Twig_Environment $env, $value, $length = 80, $separator = "\n", $preserve = false)
+    public function twig_wordwrap_filter(Environment $env, $value, $length = 80, $separator = "\n", $preserve = false)
     {
         $this->notifyDeprecation();
 
