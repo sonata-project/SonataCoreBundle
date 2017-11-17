@@ -24,6 +24,7 @@ use Symfony\Component\Form\FormRenderer;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Twig\Extension\InitRuntimeInterface;
 
 /**
  * Base class for tests checking rendering of form widgets.
@@ -76,7 +77,9 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
             $environment = $this->getEnvironment();
         }
 
-        $this->extension->initRuntime($environment);
+        if ($this->extension instanceof InitRuntimeInterface) {
+            $this->extension->initRuntime($environment);
+        }
     }
 
     /**
