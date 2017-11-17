@@ -181,7 +181,10 @@ class BooleanTypeTest extends TypeTestCase
         $this->assertSame($expectedOptions, $resolvedOptions);
     }
 
-    public function testLegacyDeprecatedCatalogueOption()
+    /**
+     * @group legacy
+     */
+    public function testDeprecatedCatalogueOptionLegacy()
     {
         $type = new BooleanType();
 
