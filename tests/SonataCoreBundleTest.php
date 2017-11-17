@@ -46,9 +46,9 @@ final class SonataCoreBundleTest extends TestCase
                 }
 
                 $this->fail(sprintf(
-                    'Compiler pass is not one of the expected types. 
-                    Expects "Sonata\AdminBundle\DependencyInjection\Compiler\StatusRendererCompilerPass", 
-                    "Sonata\AdminBundle\DependencyInjection\Compiler\AdapterCompilerPass" or 
+                    'Compiler pass is not one of the expected types.
+                    Expects "Sonata\AdminBundle\DependencyInjection\Compiler\StatusRendererCompilerPass",
+                    "Sonata\AdminBundle\DependencyInjection\Compiler\AdapterCompilerPass" or
                     "Sonata\AdminBundle\DependencyInjection\Compiler\FormFactoryCompilerPass", but got "%s".',
                     get_class($pass)
                 ));
