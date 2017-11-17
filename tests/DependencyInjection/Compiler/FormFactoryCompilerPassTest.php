@@ -13,6 +13,7 @@ namespace Sonata\CoreBundle\Tests\DependencyInjection\Compiler;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass;
+use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\FormPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 
@@ -22,6 +23,14 @@ use Symfony\Component\DependencyInjection\Definition;
  */
 final class FormFactoryCompilerPassTest extends AbstractCompilerPassTestCase
 {
+    public function setUp()
+    {
+        if (!class_exists(FormPass::class)) {
+            $this->markTestSkipped();
+        }
+        parent::setUp();
+    }
+
     /**
      * {@inheritdoc}
      */
