@@ -65,7 +65,7 @@ class BasePickerTypeTest extends TestCase
      *
      * @group legacy
      */
-    public function testLegacyConstructor()
+    public function testConstructorLegacy()
     {
         new BasePickerTest(new MomentFormatConverter());
     }
