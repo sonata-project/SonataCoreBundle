@@ -11,10 +11,10 @@
 
 namespace Sonata\CoreBundle\Twig\Node;
 
-use Twig\Node\Node;
-use Twig\Node\Expression\AbstractExpression;
-use Twig\Compiler;
 use Symfony\Component\Translation\TranslatorInterface;
+use Twig\Compiler;
+use Twig\Node\Expression\AbstractExpression;
+use Twig\Node\Node;
 
 class TemplateBoxNode extends Node
 {
