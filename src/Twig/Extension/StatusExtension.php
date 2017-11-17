@@ -11,12 +11,13 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
+use Twig\Extension\AbstractExtension;
 use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
  */
-class StatusExtension extends \Twig_Extension
+class StatusExtension extends AbstractExtension
 {
     /**
      * @var StatusClassRendererInterface[]

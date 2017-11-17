@@ -11,11 +11,12 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
+use Twig\Extension\AbstractExtension;
 use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
 use Sonata\CoreBundle\Twig\TokenParser\TemplateBoxTokenParser;
 use Symfony\Component\Translation\TranslatorInterface;
 
-class TemplateExtension extends \Twig_Extension
+class TemplateExtension extends AbstractExtension
 {
     /**
      * @var bool

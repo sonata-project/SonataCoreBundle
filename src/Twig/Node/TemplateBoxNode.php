@@ -11,9 +11,12 @@
 
 namespace Sonata\CoreBundle\Twig\Node;
 
+use Twig\Node\Node;
+use Twig\Node\Expression\AbstractExpression;
+use Twig\Compiler;
 use Symfony\Component\Translation\TranslatorInterface;
 
-class TemplateBoxNode extends \Twig_Node
+class TemplateBoxNode extends Node
 {
     /**
      * @var int
@@ -33,7 +36,7 @@ class TemplateBoxNode extends \Twig_Node
      * @param null|string           $lineno            Symfony template line number
      * @param null                  $tag               Symfony tag name
      */
-    public function __construct(\Twig_Node_Expression $message, \Twig_Node_Expression $translationBundle = null, $enabled, TranslatorInterface $translator, $lineno, $tag = null)
+    public function __construct(AbstractExpression $message, AbstractExpression $translationBundle = null, $enabled, TranslatorInterface $translator, $lineno, $tag = null)
     {
         $this->enabled = $enabled;
         $this->translator = $translator;
@@ -50,7 +53,7 @@ class TemplateBoxNode extends \Twig_Node
     /**
      * {@inheritdoc}
      */
-    public function compile(\Twig_Compiler $compiler)
+    public function compile(Compiler $compiler)
     {
         $compiler
             ->addDebugInfo($this);
