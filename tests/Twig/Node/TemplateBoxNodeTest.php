@@ -12,6 +12,7 @@
 namespace Sonata\CoreBundle\Tests\Twig\TokenParser;
 
 use Sonata\CoreBundle\Twig\Node\TemplateBoxNode;
+use Symfony\Component\Translation\Formatter\MessageFormatterInterface;
 use Symfony\Component\Translation\Loader\ArrayLoader;
 use Symfony\Component\Translation\MessageSelector;
 use Symfony\Component\Translation\Translator;
@@ -106,7 +107,13 @@ EOF
      */
     public function getTranslator($locale)
     {
-        $translator = new Translator($locale, new MessageSelector());
+        // NEXT_MAJOR: remove second argument when dropping sf < 3.4.
+        $translator = new Translator(
+            $locale,
+            interface_exists(MessageFormatterInterface::class) ?
+            null :
+            new MessageSelector()
+        );
         $translator->addLoader('array', new ArrayLoader());
 
         $translator->addResource('array', ['sonata_template_box_media_gallery_block' => 'This is the default message'], 'en', 'SonataCoreBundle');
