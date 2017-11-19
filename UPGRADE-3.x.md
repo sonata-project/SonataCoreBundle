@@ -1,6 +1,9 @@
 UPGRADE 3.x
 ===========
 
+UPGRADE FROM 3.6 to 3.7
+=======================
+
 Using the form mapping feature is now deprecated. You should use FQCNs
 everywhere form names are used, and disable this feature with the following
 piece of configuration:
