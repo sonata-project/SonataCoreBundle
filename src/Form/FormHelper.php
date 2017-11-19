@@ -93,10 +93,6 @@ class FormHelper
      */
     public static function configureOptions(FormTypeInterface $type, OptionsResolver $optionsResolver)
     {
-        if (!method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            $type->setDefaultOptions($optionsResolver);
-        } else { // SF <2.8 BC
-            $type->configureOptions($optionsResolver);
-        }
+        $type->configureOptions($optionsResolver);
     }
 }

@@ -32,7 +32,7 @@ class ErrorElementTest extends TestCase
     {
         $constraintValidatorFactory = $this->createMock('Symfony\Component\Validator\ConstraintValidatorFactoryInterface');
 
-        $this->context = $this->createMock(interface_exists('Symfony\Component\Validator\Context\ExecutionContextInterface') ? 'Symfony\Component\Validator\Context\ExecutionContextInterface' : 'Symfony\Component\Validator\ExecutionContextInterface');
+        $this->context = $this->createMock(ExecutionContextInterface::class);
         $this->context->expects($this->once())
                 ->method('getPropertyPath')
                 ->will($this->returnValue('bar'));

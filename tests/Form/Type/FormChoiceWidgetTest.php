@@ -12,6 +12,8 @@
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Test\AbstractWidgetTestCase;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormTypeInterface;
 
 /**
  * @author Christian Gripp <mail@core23.de>
@@ -21,7 +23,7 @@ class FormChoiceWidgetTest extends AbstractWidgetTestCase
     public function testLabelRendering()
     {
         $choices = ['some', 'choices'];
-        if (!method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+        if (!method_exists(FormTypeInterface::class, 'setDefaultOptions')) {
             $choices = array_flip($choices);
         }
 
@@ -99,27 +101,13 @@ class FormChoiceWidgetTest extends AbstractWidgetTestCase
 
     private function getChoiceClass()
     {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
-            'Symfony\Component\Form\Extension\Core\Type\ChoiceType' :
-            'choice';
+        return ChoiceType::class;
     }
 
-    /**
-     * NEXT_MAJOR: Remove this hack when dropping support for symfony 2.6.
-     *
-     * For SF < 2.6, we use 'empty_data' to provide default empty value.
-     * For SF >= 2.6, we must use 'placeholder' to achieve the same.
-     */
     private function getDefaultOption()
     {
-        if (method_exists('Symfony\Component\Form\Tests\AbstractLayoutTest', 'testSingleChoiceNonRequiredWithPlaceholder')) {
-            return [
-                'placeholder' => 'Choose an option',
-            ];
-        }
-
         return [
-            'empty_value' => 'Choose an option',
+            'placeholder' => 'Choose an option',
         ];
     }
 }

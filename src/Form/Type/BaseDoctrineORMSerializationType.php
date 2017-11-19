@@ -16,6 +16,7 @@ use Metadata\MetadataFactoryInterface;
 use Sonata\CoreBundle\Form\EventListener\FixCheckboxDataListener;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -117,11 +118,7 @@ class BaseDoctrineORMSerializationType extends AbstractType
                 case 'datetime':
                     $builder->add(
                         $name,
-                        // NEXT_MAJOR: Remove ternary and keep 'Symfony\Component\Form\Extension\Core\Type\DateTimeType'
-                        // (when requirement of Symfony is >= 2.8)
-                        method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-                            ? 'Symfony\Component\Form\Extension\Core\Type\DateTimeType'
-                            : 'datetime',
+                        DateTimeType::class,
                         ['required' => !$nullable, 'widget' => 'single_text']
                     );
 

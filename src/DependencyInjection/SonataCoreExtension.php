@@ -20,7 +20,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
@@ -113,10 +112,7 @@ EOT
      */
     public function configureFormFactory(ContainerBuilder $container, array $config)
     {
-        if (!$config['form']['mapping']['enabled'] ||
-            version_compare(Kernel::VERSION, '2.8', '<') ||
-            !class_exists(FormPass::class)
-        ) {
+        if (!$config['form']['mapping']['enabled'] || !class_exists(FormPass::class)) {
             $container->removeDefinition('sonata.core.form.extension.dependency');
 
             return;
@@ -196,12 +192,7 @@ EOT
 
     protected function deprecateSlugify(ContainerBuilder $container)
     {
-        $definition = $container->getDefinition('sonata.core.slugify.cocur');
-        if (method_exists($definition, 'setDeprecated')) {
-            $definition->setDeprecated(true);
-
-            $definition = $container->getDefinition('sonata.core.slugify.native');
-            $definition->setDeprecated(true);
-        }
+        $container->getDefinition('sonata.core.slugify.cocur')->setDeprecated(true);
+        $container->getDefinition('sonata.core.slugify.native')->setDeprecated(true);
     }
 }

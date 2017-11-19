@@ -13,6 +13,8 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,32 +22,13 @@ class ImmutableArrayTypeTest extends TypeTestCase
 {
     public function testBuildForm()
     {
-        // NEXT_MAJOR: Hack for php 5.3 only, remove it when requirement of PHP is >= 5.4
-        $that = $this;
-
         $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
-            ->will($this->returnCallback(function ($name, $type = null) use ($that) {
-                // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
-                if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-                    if (null !== $type) {
-                        $isFQCN = class_exists($type);
-                        if (!$isFQCN && method_exists('Symfony\Component\Form\AbstractType', 'getName')) {
-                            // 2.8
-                            @trigger_error(
-                                sprintf(
-                                    'Accessing type "%s" by its string name is deprecated since version 2.8 and will be removed in 3.0.'
-                                    .' Use the fully-qualified type class name instead.',
-                                    $type
-                                ),
-                                E_USER_DEPRECATED)
-                            ;
-                        }
-
-                        $that->assertTrue($isFQCN, sprintf('Unable to ensure %s is a FQCN', $type));
-                    }
+            ->will($this->returnCallback(function ($name, $type = null) {
+                if (null !== $type) {
+                    $this->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
                 }
             }));
 
@@ -59,25 +42,9 @@ class ImmutableArrayTypeTest extends TypeTestCase
     {
         $form = new ImmutableArrayType();
 
-        // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
-        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            $parentRef = $form->getParent();
+        $parentRef = $form->getParent();
 
-            $isFQCN = class_exists($parentRef);
-            if (!$isFQCN && method_exists('Symfony\Component\Form\AbstractType', 'getName')) {
-                // 2.8
-                @trigger_error(
-                    sprintf(
-                        'Accessing type "%s" by its string name is deprecated since version 2.8 and will be removed in 3.0.'
-                        .' Use the fully-qualified type class name instead.',
-                        $parentRef
-                    ),
-                    E_USER_DEPRECATED)
-                ;
-            }
-
-            $this->assertTrue($isFQCN, sprintf('Unable to ensure %s is a FQCN', $parentRef));
-        }
+        $this->assertTrue(class_exists($parentRef), sprintf('Unable to ensure %s is a FQCN', $parentRef));
     }
 
     public function testGetDefaultOptions()
@@ -109,11 +76,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
                 return 'ttl' === $name;
             }),
             $this->callback(function ($name) {
-                // NEXT_MAJOR: Remove ternary and keep 'Symfony\Component\Form\Extension\Core\Type\TextType'
-                // (when requirement of Symfony is >= 2.8)
-                return $name === method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-                    ? 'Symfony\Component\Form\Extension\Core\Type\TextType'
-                    : 'text';
+                return TextType::class === $name;
             }),
             $this->callback(function ($name) {
                 return $name === [1 => '1'];
@@ -124,14 +87,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
         $optionsCallback = function ($builder, $name, $type, $extra) use ($self) {
             $self->assertEquals(['foo', 'bar'], $extra);
             $self->assertEquals($name, 'ttl');
-            $self->assertEquals(
-                $type,
-                // NEXT_MAJOR: Remove ternary and keep 'Symfony\Component\Form\Extension\Core\Type\TextType'
-                // (when requirement of Symfony is >= 2.8)
-                method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-                    ? 'Symfony\Component\Form\Extension\Core\Type\TextType'
-                    : 'text'
-            );
+            $self->assertEquals($type, TextType::class);
             $self->assertInstanceOf('Symfony\Component\Form\Test\FormBuilderInterface', $builder);
 
             return ['1' => '1'];
@@ -139,17 +95,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
 
         $options = [
             'keys' => [
-                [
-                    'ttl',
-                    // NEXT_MAJOR: Remove ternary and keep 'Symfony\Component\Form\Extension\Core\Type\TextType'
-                    // (when requirement of Symfony is >= 2.8)
-                    method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-                        ? 'Symfony\Component\Form\Extension\Core\Type\TextType'
-                        : 'text',
-                    $optionsCallback,
-                    'foo',
-                    'bar',
-                ],
+                ['ttl', TextType::class, $optionsCallback, 'foo', 'bar'],
             ],
         ];
 
@@ -158,11 +104,6 @@ class ImmutableArrayTypeTest extends TypeTestCase
 
     public function testWithIncompleteOptions()
     {
-        // NEXT_MAJOR: remove the condition
-        if (!method_exists('Symfony\Component\OptionsResolver\OptionsResolver', 'setDefault')) {
-            $this->markTestSkipped('closure validation is not available');
-        }
-
         $optionsResolver = new OptionsResolver();
 
         $type = new ImmutableArrayType();

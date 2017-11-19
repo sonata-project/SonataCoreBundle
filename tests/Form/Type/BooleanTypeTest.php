@@ -13,6 +13,9 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\BooleanType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,32 +23,13 @@ class BooleanTypeTest extends TypeTestCase
 {
     public function testBuildForm()
     {
-        // NEXT_MAJOR: Hack for php 5.3 only, remove it when requirement of PHP is >= 5.4
-        $that = $this;
-
         $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
-            ->will($this->returnCallback(function ($name, $type = null) use ($that) {
-                // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
-                if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-                    if (null !== $type) {
-                        $isFQCN = class_exists($type);
-                        if (!$isFQCN && method_exists('Symfony\Component\Form\AbstractType', 'getName')) {
-                            // 2.8
-                            @trigger_error(
-                                sprintf(
-                                    'Accessing type "%s" by its string name is deprecated since version 2.8 and will be removed in 3.0.'
-                                    .' Use the fully-qualified type class name instead.',
-                                    $type
-                                ),
-                                E_USER_DEPRECATED)
-                            ;
-                        }
-
-                        $that->assertTrue($isFQCN, sprintf('Unable to ensure %s is a FQCN', $type));
-                    }
+            ->will($this->returnCallback(function ($name, $type = null) {
+                if (null !== $type) {
+                    $this->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
                 }
             }));
 
@@ -75,37 +59,16 @@ class BooleanTypeTest extends TypeTestCase
     {
         $form = new BooleanType();
 
-        // NEXT_MAJOR: Remove this "if" (when requirement of Symfony is >= 2.8)
-        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            $parentRef = $form->getParent();
+        $parentRef = $form->getParent();
 
-            $isFQCN = class_exists($parentRef);
-            if (!$isFQCN && method_exists('Symfony\Component\Form\AbstractType', 'getName')) {
-                // 2.8
-                @trigger_error(
-                    sprintf(
-                        'Accessing type "%s" by its string name is deprecated since version 2.8 and will be removed in 3.0.'
-                        .' Use the fully-qualified type class name instead.',
-                        $parentRef
-                    ),
-                    E_USER_DEPRECATED)
-                ;
-            }
-
-            $this->assertTrue($isFQCN, sprintf('Unable to ensure %s is a FQCN', $parentRef));
-        }
+        $this->assertTrue(class_exists($parentRef), sprintf('Unable to ensure %s is a FQCN', $parentRef));
     }
 
     public function testGetDefaultOptions()
     {
         $type = new BooleanType();
 
-        $this->assertSame(
-            method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
-                'Symfony\Component\Form\Extension\Core\Type\ChoiceType' :
-                'choice',
-            $type->getParent()
-        );
+        $this->assertSame(ChoiceType::class, $type->getParent());
 
         FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
 
@@ -164,18 +127,12 @@ class BooleanTypeTest extends TypeTestCase
             'catalogue' => 'SonataCoreBundle',
             'choice_translation_domain' => 'SonataCoreBundle',
             'choices_as_values' => true,
-            'translation_domain' => 'fooTrans',
             'choices' => [1 => 'foo_yes', 2 => 'foo_no'],
+            'translation_domain' => 'fooTrans',
         ];
 
-        if (!method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
-            || !method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+        if (!method_exists(FormTypeInterface::class, 'setDefaultOptions')) {
             unset($expectedOptions['choices_as_values']);
-        }
-
-        // NEXT_MAJOR: Remove this block (when requirement of Symfony is >= 2.7)
-        if (!method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')) {
-            unset($expectedOptions['choice_translation_domain']);
         }
 
         $this->assertSame($expectedOptions, $resolvedOptions);
@@ -202,19 +159,17 @@ class BooleanTypeTest extends TypeTestCase
 
         $expectedOptions = [
             'transform' => false,
+            'choice_translation_domain' => 'SonataCoreBundle',
             'choices_as_values' => true,
             'catalogue' => 'fooTrans',
-            'translation_domain' => 'fooTrans',
             'choices' => [1 => 'foo_yes', 2 => 'foo_no'],
+            'translation_domain' => 'fooTrans',
         ];
 
-        if (!method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')
-            || !method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+        if (!method_exists(FormTypeInterface::class, 'setDefaultOptions')) {
             unset($expectedOptions['choices_as_values']);
         }
 
-        // "sort" trick can be remove when SF 2.3 support will be drop
-        // Reason: array order as not the same between SF versions. This is the easiest way to fix it.
-        $this->assertSame(sort($expectedOptions), sort($resolvedOptions));
+        $this->assertSame($expectedOptions, $resolvedOptions);
     }
 }
