@@ -43,21 +43,8 @@ class TemplateBoxTokenParserTest extends TestCase
             $expected->getIterator()->getFlags(),
             $actual->getIterator()->getFlags()
         );
-        if (method_exists($expected, 'getLine')) {
-            $this->assertSame(
-                $expected->getLine(),
-                $actual->getLine()
-            );
-        } else {
-            $this->assertSame(
-                $expected->getTemplateLine(),
-                $actual->getTemplateLine()
-            );
-        }
-        $this->assertSame(
-            $expected->count(),
-            $actual->count()
-        );
+        $this->assertSame($expected->getTemplateLine(), $actual->getTemplateLine());
+        $this->assertSame($expected->count(), $actual->count());
     }
 
     public function getTestsForRender()

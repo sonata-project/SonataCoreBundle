@@ -32,13 +32,6 @@ class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
             'sonata_template_box'
         );
 
-        // Remove this when dropping twig/twig < 2.0
-        if (!method_exists($body, 'getTemplateLine')) {
-            $this->assertSame(1, $body->getLine());
-
-            return;
-        }
-
         $this->assertSame(1, $body->getTemplateLine());
     }
 

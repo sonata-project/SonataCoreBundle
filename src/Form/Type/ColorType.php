@@ -12,6 +12,7 @@
 namespace Sonata\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class ColorType extends AbstractType
 {
@@ -20,10 +21,7 @@ final class ColorType extends AbstractType
      */
     public function getParent()
     {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
-            'Symfony\Component\Form\Extension\Core\Type\TextType' :
-            'text' // SF <2.8 BC
-            ;
+        return TextType::class;
     }
 
     /**

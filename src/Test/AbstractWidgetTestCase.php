@@ -48,10 +48,6 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      */
     protected function setUp()
     {
-        // NEXT_MAJOR: remove this block when dropping symfony < 2.7 support
-        if (!class_exists('Symfony\Bridge\Twig\Extension\AssetExtension')) {
-            $this->markTestSkipped();
-        }
         parent::setUp();
 
         // TODO: remove the condition when dropping symfony/twig-bundle < 3.2
@@ -119,11 +115,6 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
             __DIR__.'/../../vendor/symfony/twig-bridge/Resources/views/Form',
             // symfony/twig-bridge (running from other bundles)
             __DIR__.'/../../../../symfony/twig-bridge/Resources/views/Form',
-            // NEXT_MAJOR: Remove BC hacks when dropping symfony 2.3 support
-            // symfony/twig-bridge 2.3 (running from this bundle)
-            __DIR__.'/../../vendor/symfony/twig-bridge/Symfony/Bridge/Twig/Resources/views/Form',
-            // symfony/twig-bridge 2.3 (running from other bundles)
-            __DIR__.'/../../../../symfony/twig-bridge/Symfony/Bridge/Twig/Resources/views/Form',
             // symfony/symfony (running from this bundle)
             __DIR__.'/../../vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form',
             // symfony/symfony (running from other bundles)
@@ -191,21 +182,5 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
         return preg_replace_callback('~<([A-Z0-9]+) \K(.*?)>~i', function ($m) {
             return preg_replace('~\s*~', '', $m[0]);
         }, $html);
-    }
-
-    /**
-     * NEXT_MAJOR: Remove this method when dropping support for < PHPUnit 5.4.
-     *
-     * @param string $class
-     *
-     * @return \PHPUnit_Framework_MockObject_MockObject
-     */
-    protected function createMock($class)
-    {
-        if (is_callable('parent::createMock')) {
-            return parent::createMock($class);
-        }
-
-        return $this->getMock($class);
     }
 }

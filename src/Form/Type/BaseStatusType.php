@@ -12,6 +12,7 @@
 namespace Sonata\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -56,11 +57,7 @@ abstract class BaseStatusType extends AbstractType
      */
     public function getParent()
     {
-        // NEXT_MAJOR: Remove ternary and keep 'Symfony\Component\Form\Extension\Core\Type\ChoiceType'
-        // (when requirement of Symfony is >= 2.8)
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')
-            ? 'Symfony\Component\Form\Extension\Core\Type\ChoiceType'
-            : 'choice';
+        return ChoiceType::class;
     }
 
     /**

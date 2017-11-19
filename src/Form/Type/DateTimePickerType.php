@@ -49,10 +49,7 @@ class DateTimePickerType extends BasePickerType
      */
     public function getParent()
     {
-        return method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix') ?
-            'Symfony\Component\Form\Extension\Core\Type\DateTimeType' :
-            'datetime' // SF <2.8 BC
-        ;
+        return DateTimeType::class;
     }
 
     /**
