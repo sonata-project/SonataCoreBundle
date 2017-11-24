@@ -18,6 +18,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ColorSelectorTypeTest extends TypeTestCase
 {
+    /**
+     * @group legacy
+     */
     public function testBuildForm()
     {
         $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
