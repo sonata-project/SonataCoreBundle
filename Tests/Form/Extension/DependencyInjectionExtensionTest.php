@@ -13,42 +13,32 @@ namespace Sonata\CoreBundle\Tests\Form\Extension;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Form\Extension\DependencyInjectionExtension;
-use Symfony\Component\HttpKernel\Kernel;
 
 class DependencyInjectionExtensionTest extends TestCase
 {
     public function testValidType()
     {
         $type = $this->createMock('Symfony\Component\Form\FormTypeInterface');
-
-        if (Kernel::MAJOR_VERSION < 3) {
-            $type->expects($this->any())
-                ->method('getName')
-                ->will($this->returnValue('Symfony\Component\Form\Type\FormType'));
-        }
+        $formName = get_class($type);
 
         $container = $this->createMock('Symfony\Component\DependencyInjection\ContainerInterface');
         $container->expects($this->any())->method('has')->will($this->returnValue(true));
         $container->expects($this->any())
             ->method('get')
-            ->with($this->equalTo('symfony.form.type.form'))
+            ->with($this->equalTo($formName))
             ->will($this->returnValue($type));
 
-        $typeServiceIds = [
-            'Symfony\Component\Form\Type\FormType' => 'symfony.form.type.form',
-        ];
-
-        $typeExtensionServiceIds = [];
-        $guesserServiceIds = [];
-        $mappingTypes = [
-            'form' => 'Symfony\Component\Form\Type\FormType',
-        ];
-        $extensionTypes = [];
-
-        $f = new DependencyInjectionExtension($container, $typeServiceIds, $typeExtensionServiceIds, $guesserServiceIds, $mappingTypes, $extensionTypes);
+        $f = new DependencyInjectionExtension(
+            $container,
+            [$formName => $formName], // typeServiceIds
+            [], // typeExtensionServiceIds
+            [], // guesserServiceids
+            ['form' => $formName], //mappingTypes
+            [] // extensionTypes
+        );
 
         $f->getType('form');
-        $f->getType('Symfony\Component\Form\Type\FormType');
+        $f->getType($formName);
     }
 
     public function testTypeWithoutService()

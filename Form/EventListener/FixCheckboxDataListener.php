@@ -33,6 +33,7 @@ class FixCheckboxDataListener implements EventSubscriberInterface
         return [FormEvents::PRE_SUBMIT => 'preSubmit'];
     }
 
+
     /**
      * @param FormEvent $event
      */
