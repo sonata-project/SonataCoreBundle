@@ -35,7 +35,8 @@ final class DeprecatedTextExtension extends \Twig_Extensions_Extension_Text
     private function notifyDeprecation()
     {
         @trigger_error(
-            'Using the sonata.core.twig.extension.text service is deprecated since 3.2 and will be removed in 4.0'
+            'Using the sonata.core.twig.extension.text service is deprecated since 3.2 and will be removed in 4.0',
+            E_USER_DEPRECATED
         );
     }
 }
