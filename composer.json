@@ -46,13 +46,13 @@
         "symfony/phpunit-bridge": "^3.3"
     },
     "autoload": {
-        "psr-4": { "Sonata\\CoreBundle\\": "" },
+        "psr-4": { "Sonata\\CoreBundle\\": "src" },
         "exclude-from-classmap": [
-            "Tests/"
+            "tests/"
         ]
     },
     "autoload-dev": {
-        "psr-4": { "Sonata\\CoreBundle\\Tests\\": "Tests/" }
+        "psr-4": { "Sonata\\CoreBundle\\Tests\\": "tests/" }
     },
     "config": {
         "sort-packages": true
