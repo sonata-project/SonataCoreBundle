@@ -11,9 +11,12 @@
 
 namespace Sonata\CoreBundle\Twig\TokenParser;
 
+use Twig\TokenParser\AbstractTokenParser;
+use Twig\Node\Expression\ConstantExpression;
+use Twig\Token;
 use Sonata\CoreBundle\Twig\Node\TemplateBoxNode;
 
-class TemplateBoxTokenParser extends \Twig_TokenParser
+class TemplateBoxTokenParser extends AbstractTokenParser
 {
     /**
      * @var bool
@@ -31,21 +34,21 @@ class TemplateBoxTokenParser extends \Twig_TokenParser
     /**
      * {@inheritdoc}
      */
-    public function parse(\Twig_Token $token)
+    public function parse(Token $token)
     {
-        if ($this->parser->getStream()->test(\Twig_Token::STRING_TYPE)) {
+        if ($this->parser->getStream()->test(Token::STRING_TYPE)) {
             $message = $this->parser->getExpressionParser()->parseExpression();
         } else {
-            $message = new \Twig_Node_Expression_Constant('Template information', $token->getLine());
+            $message = new ConstantExpression('Template information', $token->getLine());
         }
 
-        if ($this->parser->getStream()->test(\Twig_Token::STRING_TYPE)) {
+        if ($this->parser->getStream()->test(Token::STRING_TYPE)) {
             $translationBundle = $this->parser->getExpressionParser()->parseExpression();
         } else {
             $translationBundle = null;
         }
 
-        $this->parser->getStream()->expect(\Twig_Token::BLOCK_END_TYPE);
+        $this->parser->getStream()->expect(Token::BLOCK_END_TYPE);
 
         return new TemplateBoxNode($message, $translationBundle, $this->enabled, $token->getLine(), $this->getTag());
     }
