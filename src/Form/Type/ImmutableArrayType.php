@@ -54,11 +54,6 @@ class ImmutableArrayType extends AbstractType
             'keys' => [],
         ]);
 
-        // NEXT_MAJOR: remove the condition
-        if (!method_exists('Symfony\Component\OptionsResolver\OptionsResolver', 'setDefault')) {
-            return;
-        }
-
         $resolver->setAllowedValues('keys', function ($value) {
             foreach ($value as $subValue) {
                 if (!$subValue instanceof FormBuilderInterface && (!is_array($subValue) || 3 !== count($subValue))) {

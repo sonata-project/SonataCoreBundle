@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.7.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.6.0...3.7.0) - 2017-11-19
+### Deprecated
+- the form mapping feature
+
+### Fixed
+- Register commands as services to prevent deprecation notices on Symfony 3.4
+- `twig_truncate_filter`, and `twig_wordwrap_filter` were broken
+- `twig_truncate_filter`, and `twig_wordwrap_filter` were not properly deprecated
+- forward-compatibility with sf4
+- form mapping feature removal on sf4, it is now properly disabled
+
 ## [3.6.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.5.1...3.6.0) - 2017-11-04
 ### Added
 - Added dp_option "dp_pick_date" in BasePickerType

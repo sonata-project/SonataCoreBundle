@@ -11,9 +11,9 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
-use Twig\TwigFunction;
-use Twig\Extension\AbstractExtension;
 use Sonata\CoreBundle\FlashMessage\FlashManager;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * This is the Sonata core flash message Twig extension.

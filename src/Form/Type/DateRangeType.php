@@ -12,6 +12,7 @@
 namespace Sonata\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -98,7 +99,7 @@ class DateRangeType extends AbstractType
             'field_options' => [],
             'field_options_start' => [],
             'field_options_end' => [],
-            'field_type' => 'Symfony\Component\Form\Extension\Core\Type\DateType',
+            'field_type' => DateType::class,
         ]);
     }
 }

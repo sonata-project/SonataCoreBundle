@@ -13,6 +13,7 @@ namespace Sonata\CoreBundle\Form\Type;
 
 use Sonata\CoreBundle\Color\Colors;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 @trigger_error(
@@ -57,7 +58,7 @@ class ColorSelectorType extends AbstractType
      */
     public function getParent()
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\ChoiceType';
+        return ChoiceType::class;
     }
 
     /**

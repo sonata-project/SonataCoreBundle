@@ -14,6 +14,8 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 use Sonata\CoreBundle\Color\Colors;
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\ColorSelectorType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ColorSelectorTypeTest extends TypeTestCase
@@ -68,10 +70,7 @@ class ColorSelectorTypeTest extends TypeTestCase
         $type = new ColorSelectorType();
 
         $this->assertSame('sonata_type_color_selector', $type->getName());
-        $this->assertSame(
-            'Symfony\Component\Form\Extension\Core\Type\ChoiceType',
-            $type->getParent()
-        );
+        $this->assertSame(ChoiceType::class, $type->getParent());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 

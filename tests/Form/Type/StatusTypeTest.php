@@ -12,6 +12,9 @@
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
+use Sonata\CoreBundle\Form\Type\BaseStatusType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class Choice
@@ -24,7 +27,7 @@ class Choice
     }
 }
 
-class StatusType extends \Sonata\CoreBundle\Form\Type\BaseStatusType
+class StatusType extends BaseStatusType
 {
 }
 
@@ -67,10 +70,7 @@ class StatusTypeTest extends TypeTestCase
 
         $this->assertSame('choice_type', $type->getName());
 
-        $this->assertSame(
-            'Symfony\Component\Form\Extension\Core\Type\ChoiceType',
-            $type->getParent()
-        );
+        $this->assertSame(ChoiceType::class, $type->getParent());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
@@ -90,10 +90,7 @@ class StatusTypeTest extends TypeTestCase
         $type = new StatusType('Sonata\CoreBundle\Tests\Form\Type\Choice', 'getList', 'choice_type', true);
 
         $this->assertSame('choice_type', $type->getName());
-        $this->assertSame(
-            'Symfony\Component\Form\Extension\Core\Type\ChoiceType',
-            $type->getParent()
-        );
+        $this->assertSame(ChoiceType::class, $type->getParent());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
@@ -116,9 +113,7 @@ class StatusTypeTest extends TypeTestCase
         $type = new StatusType('Sonata\CoreBundle\Tests\Form\Type\Choice', 'getList', 'choice_type', true);
 
         $this->assertSame('choice_type', $type->getName());
-        $this->assertSame(
-            'Symfony\Component\Form\Extension\Core\Type\ChoiceType',
-            $type->getParent());
+        $this->assertSame(ChoiceType::class, $type->getParent());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 

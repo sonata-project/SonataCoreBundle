@@ -13,7 +13,9 @@ namespace Sonata\CoreBundle\Form\Type;
 
 use Sonata\CoreBundle\Form\DataTransformer\BooleanTypeToBooleanTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -38,23 +40,32 @@ class BooleanType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $choices = [
-            'label_type_yes' => self::TYPE_YES,
-            'label_type_no' => self::TYPE_NO,
-        ];
-
         $defaultOptions = [
             'transform' => false,
+            /*
+             * NEXT_MAJOR: remove this block.
+             * @deprecated Deprecated as of SonataCoreBundle 2.3.10, to be removed in 4.0.
+             */
+            'catalogue' => 'SonataCoreBundle',
             'choice_translation_domain' => 'SonataCoreBundle',
-            'translation_domain' => 'SonataCoreBundle',
+            'choices' => [
+                'label_type_yes' => self::TYPE_YES,
+                'label_type_no' => self::TYPE_NO,
+            ],
+            // Use directly translation_domain in SonataCoreBundle 4.0
+            'translation_domain' => function (Options $options) {
+                if ($options['catalogue']) {
+                    return $options['catalogue'];
+                }
+
+                return $options['translation_domain'];
+            },
         ];
 
         // choice_as_value options is not needed in SF 3.0+
-        if (method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+        if (method_exists(FormTypeInterface::class, 'setDefaultOptions')) {
             $defaultOptions['choices_as_values'] = true;
         }
-
-        $defaultOptions['choices'] = $choices;
 
         $resolver->setDefaults($defaultOptions);
     }
@@ -64,7 +75,7 @@ class BooleanType extends AbstractType
      */
     public function getParent()
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\ChoiceType';
+        return ChoiceType::class;
     }
 
     /**

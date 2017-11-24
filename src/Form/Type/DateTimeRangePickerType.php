@@ -29,7 +29,7 @@ class DateTimeRangePickerType extends DateTimeRangeType
             'field_options' => [],
             'field_options_start' => [],
             'field_options_end' => [],
-            'field_type' => 'Sonata\CoreBundle\Form\Type\DateTimePickerType',
+            'field_type' => DateTimePickerType::class,
         ]);
     }
 
