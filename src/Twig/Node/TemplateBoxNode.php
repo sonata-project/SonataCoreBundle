@@ -11,7 +11,6 @@
 
 namespace Sonata\CoreBundle\Twig\Node;
 
-use Symfony\Component\Translation\TranslatorInterface;
 use Twig\Compiler;
 use Twig\Node\Expression\AbstractExpression;
 use Twig\Node\Node;

@@ -12,10 +12,6 @@
 namespace Sonata\CoreBundle\Tests\Twig\TokenParser;
 
 use Sonata\CoreBundle\Twig\Node\TemplateBoxNode;
-use Symfony\Component\Translation\Formatter\MessageFormatterInterface;
-use Symfony\Component\Translation\Loader\ArrayLoader;
-use Symfony\Component\Translation\MessageSelector;
-use Symfony\Component\Translation\Translator;
 
 class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
 {

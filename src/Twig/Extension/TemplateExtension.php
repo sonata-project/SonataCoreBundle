@@ -13,7 +13,6 @@ namespace Sonata\CoreBundle\Twig\Extension;
 
 use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
 use Sonata\CoreBundle\Twig\TokenParser\TemplateBoxTokenParser;
-use Symfony\Component\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 
 class TemplateExtension extends AbstractExtension

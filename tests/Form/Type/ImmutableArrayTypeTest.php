@@ -15,7 +15,6 @@ use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Test\TypeTestCase;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImmutableArrayTypeTest extends TypeTestCase
