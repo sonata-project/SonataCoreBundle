@@ -18,7 +18,7 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
 {
     public function testAfterLoadingTheWrappingParameterIsSet()
     {
-        $this->load();
+        $this->load(['form' => ['mapping' => ['enabled' => false]]]);
         $this->assertContainerBuilderHasParameter(
             'sonata.core.form_type'
         );
@@ -32,7 +32,10 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
 
     public function testHorizontalFormTypeMeansNoWrapping()
     {
-        $this->load(['form_type' => 'horizontal']);
+        $this->load([
+            'form' => ['mapping' => ['enabled' => false]],
+            'form_type' => 'horizontal',
+        ]);
         $this->assertContainerBuilderHasParameter(
             'sonata.core.form_type'
         );
