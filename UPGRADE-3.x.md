@@ -1,6 +1,21 @@
 UPGRADE 3.x
 ===========
 
+UPGRADE FROM 3.6 to 3.7
+=======================
+
+Using the form mapping feature is now deprecated. You should use FQCNs
+everywhere form names are used, and disable this feature with the following
+piece of configuration:
+
+```yaml
+# config.yml
+sonata_core:
+    form:
+        mapping:
+            enabled: false
+```
+
 UPGRADE FROM 3.4 to 3.5
 =======================
 
