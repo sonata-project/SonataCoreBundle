@@ -13,6 +13,7 @@ namespace Sonata\CoreBundle\Form\Type;
 
 use Sonata\CoreBundle\Form\DataTransformer\BooleanTypeToBooleanTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -38,14 +39,13 @@ class BooleanType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $choices = [
-            'label_type_yes' => self::TYPE_YES,
-            'label_type_no' => self::TYPE_NO,
-        ];
-
         $defaultOptions = [
             'transform' => false,
             'choice_translation_domain' => 'SonataCoreBundle',
+            'choices' => [
+                'label_type_yes' => self::TYPE_YES,
+                'label_type_no' => self::TYPE_NO,
+            ],
             'translation_domain' => 'SonataCoreBundle',
         ];
 
@@ -53,8 +53,6 @@ class BooleanType extends AbstractType
         if (method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
             $defaultOptions['choices_as_values'] = true;
         }
-
-        $defaultOptions['choices'] = $choices;
 
         $resolver->setDefaults($defaultOptions);
     }
@@ -64,7 +62,7 @@ class BooleanType extends AbstractType
      */
     public function getParent()
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\ChoiceType';
+        return ChoiceType::class;
     }
 
     /**

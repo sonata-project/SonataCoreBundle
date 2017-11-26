@@ -16,6 +16,7 @@ use JMS\Serializer\Metadata\ClassMetadata as SerializerMetadata;
 use JMS\Serializer\Metadata\PropertyMetadata;
 use Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType;
 use Symfony\Component\Form\Forms;
+use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\HttpKernel\Kernel;
 
 class FakeMetadataClass

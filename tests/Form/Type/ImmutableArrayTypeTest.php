@@ -13,6 +13,8 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImmutableArrayTypeTest extends TypeTestCase
@@ -73,7 +75,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
                 return 'ttl' === $name;
             }),
             $this->callback(function ($name) {
-                return 'Symfony\Component\Form\Extension\Core\Type\TextType';
+                return TextType::class === $name;
             }),
             $this->callback(function ($name) {
                 return $name === [1 => '1'];
@@ -84,7 +86,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
         $optionsCallback = function ($builder, $name, $type, $extra) use ($self) {
             $self->assertEquals(['foo', 'bar'], $extra);
             $self->assertEquals($name, 'ttl');
-            $self->assertEquals($type, 'Symfony\Component\Form\Extension\Core\Type\TextType');
+            $self->assertEquals($type, TextType::class);
             $self->assertInstanceOf('Symfony\Component\Form\Test\FormBuilderInterface', $builder);
 
             return ['1' => '1'];
@@ -92,13 +94,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
 
         $options = [
             'keys' => [
-                [
-                    'ttl',
-                    'Symfony\Component\Form\Extension\Core\Type\TextType',
-                    $optionsCallback,
-                    'foo',
-                    'bar',
-                ],
+                ['ttl', TextType::class, $optionsCallback, 'foo', 'bar'],
             ],
         ];
 
@@ -107,11 +103,6 @@ class ImmutableArrayTypeTest extends TypeTestCase
 
     public function testWithIncompleteOptions()
     {
-        // NEXT_MAJOR: remove the condition
-        if (!method_exists('Symfony\Component\OptionsResolver\OptionsResolver', 'setDefault')) {
-            $this->markTestSkipped('closure validation is not available');
-        }
-
         $optionsResolver = new OptionsResolver();
 
         $type = new ImmutableArrayType();

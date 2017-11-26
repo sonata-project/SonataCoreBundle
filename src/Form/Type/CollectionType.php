@@ -13,6 +13,7 @@ namespace Sonata\CoreBundle\Form\Type;
 
 use Sonata\CoreBundle\Form\EventListener\ResizeFormListener;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -51,7 +52,7 @@ class CollectionType extends AbstractType
     {
         $resolver->setDefaults([
             'modifiable' => false,
-            'type' => 'Symfony\Component\Form\Extension\Core\Type\TextType',
+            'type' => TextType::class,
             'type_options' => [],
             'pre_bind_data_callback' => null,
             'btn_add' => 'link_add',

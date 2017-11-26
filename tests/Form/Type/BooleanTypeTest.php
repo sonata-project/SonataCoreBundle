@@ -13,6 +13,8 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\BooleanType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -51,10 +53,7 @@ class BooleanTypeTest extends TypeTestCase
     {
         $type = new BooleanType();
 
-        $this->assertSame(
-            'Symfony\Component\Form\Extension\Core\Type\ChoiceType',
-            $type->getParent()
-        );
+        $this->assertSame(ChoiceType::class, $type->getParent());
 
         FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
 
@@ -112,17 +111,12 @@ class BooleanTypeTest extends TypeTestCase
             'transform' => false,
             'choice_translation_domain' => 'SonataCoreBundle',
             'choices_as_values' => true,
-            'translation_domain' => 'fooTrans',
             'choices' => [1 => 'foo_yes', 2 => 'foo_no'],
+            'translation_domain' => 'fooTrans',
         ];
 
-        if (!method_exists('Symfony\Component\Form\FormTypeInterface', 'setDefaultOptions')) {
+        if (!method_exists(FormTypeInterface::class, 'setDefaultOptions')) {
             unset($expectedOptions['choices_as_values']);
-        }
-
-        // NEXT_MAJOR: Remove this block (when requirement of Symfony is >= 2.7)
-        if (!method_exists('Symfony\Component\Form\AbstractType', 'configureOptions')) {
-            unset($expectedOptions['choice_translation_domain']);
         }
 
         $this->assertSame($expectedOptions, $resolvedOptions);

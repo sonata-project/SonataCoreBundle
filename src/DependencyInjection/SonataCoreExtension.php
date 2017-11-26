@@ -20,7 +20,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
@@ -111,17 +110,14 @@ EOT
      */
     public function configureFormFactory(ContainerBuilder $container, array $config)
     {
-        if (!$config['form']['mapping']['enabled'] ||
-            version_compare(Kernel::VERSION, '2.8', '<') ||
-            !class_exists(FormPass::class)
-        ) {
+        if (!$config['form']['mapping']['enabled'] || !class_exists(FormPass::class)) {
             $container->removeDefinition('sonata.core.form.extension.dependency');
 
             return;
         }
 
         @trigger_error(
-            'Relying on the form mapping feature is deprecated since 3.x and will be removed in 4.0. Please set the "sonata_core.form.mapping.enabled" configuration node to false to avoid this message.',
+            'Relying on the form mapping feature is deprecated since 3.7 and will be removed in 4.0. Please set the "sonata_core.form.mapping.enabled" configuration node to false to avoid this message.',
             E_USER_DEPRECATED
         );
 

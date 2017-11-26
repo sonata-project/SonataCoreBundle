@@ -15,6 +15,7 @@ use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Tests\Fixtures\Bundle\Validator\FooValidatorService;
 use Sonata\CoreBundle\Validator\ErrorElement;
 use Sonata\CoreBundle\Validator\InlineValidator;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Exception\ValidatorException;
 
 /**
@@ -32,11 +33,7 @@ final class InlineValidatorTest extends TestCase
         $this->constraintValidatorFactory = $this->createMock(
             'Symfony\Component\Validator\ConstraintValidatorFactoryInterface'
         );
-        $this->context = $this->createMock(
-            interface_exists('Symfony\Component\Validator\Context\ExecutionContextInterface') ?
-                'Symfony\Component\Validator\Context\ExecutionContextInterface' :
-                'Symfony\Component\Validator\ExecutionContextInterface'
-        );
+        $this->context = $this->createMock(ExecutionContextInterface::class);
     }
 
     public function testGetErrorElement()

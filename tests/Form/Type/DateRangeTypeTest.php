@@ -13,6 +13,8 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\DateRangeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DateRangeTypeTest extends TypeTestCase
@@ -34,7 +36,7 @@ class DateRangeTypeTest extends TypeTestCase
             'field_options' => [],
             'field_options_start' => [],
             'field_options_end' => [],
-            'field_type' => 'Symfony\Component\Form\Extension\Core\Type\DateType',
+            'field_type' => DateType::class,
         ]);
     }
 
@@ -62,7 +64,7 @@ class DateRangeTypeTest extends TypeTestCase
                 'field_options' => [],
                 'field_options_start' => [],
                 'field_options_end' => [],
-                'field_type' => 'Symfony\Component\Form\Extension\Core\Type\DateType',
+                'field_type' => DateType::class,
             ], $options);
     }
 }

@@ -13,6 +13,8 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CollectionTypeTest extends TypeTestCase
@@ -33,7 +35,7 @@ class CollectionTypeTest extends TypeTestCase
 
         $type->buildForm($formBuilder, [
             'modifiable' => false,
-            'type' => 'Symfony\Component\Form\Extension\Core\Type\TextType',
+            'type' => TextType::class,
             'type_options' => [],
             'pre_bind_data_callback' => null,
             'btn_add' => 'link_add',
@@ -59,10 +61,7 @@ class CollectionTypeTest extends TypeTestCase
         $options = $optionResolver->resolve();
 
         $this->assertFalse($options['modifiable']);
-        $this->assertSame(
-            'Symfony\Component\Form\Extension\Core\Type\TextType',
-            $options['type']
-        );
+        $this->assertSame(TextType::class, $options['type']);
         $this->assertSame(0, count($options['type_options']));
         $this->assertSame('link_add', $options['btn_add']);
         $this->assertSame('SonataCoreBundle', $options['btn_catalogue']);
