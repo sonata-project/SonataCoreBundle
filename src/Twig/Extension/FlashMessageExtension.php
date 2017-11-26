@@ -11,6 +11,8 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
+use Twig\TwigFunction;
+use Twig\Extension\AbstractExtension;
 use Sonata\CoreBundle\FlashMessage\FlashManager;
 
 /**
@@ -18,7 +20,7 @@ use Sonata\CoreBundle\FlashMessage\FlashManager;
  *
  * @author Vincent Composieux <composieux@ekino.com>
  */
-class FlashMessageExtension extends \Twig_Extension
+class FlashMessageExtension extends AbstractExtension
 {
     /**
      * @var FlashManager
@@ -39,8 +41,8 @@ class FlashMessageExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('sonata_flashmessages_get', [$this, 'getFlashMessages']),
-            new \Twig_SimpleFunction('sonata_flashmessages_types', [$this, 'getFlashMessagesTypes']),
+            new TwigFunction('sonata_flashmessages_get', [$this, 'getFlashMessages']),
+            new TwigFunction('sonata_flashmessages_types', [$this, 'getFlashMessagesTypes']),
         ];
     }
 

@@ -11,7 +11,9 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
-class FormTypeExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
+use Twig\Extension\GlobalsInterface;
+use Twig\Extension\AbstractExtension;
+class FormTypeExtension extends AbstractExtension implements GlobalsInterface
 {
     /**
      * @var bool
