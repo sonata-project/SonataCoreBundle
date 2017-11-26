@@ -18,7 +18,7 @@
     </testsuites>
 
     <filter>
-        <ini name="precision" value="8"/><whitelist>
+        <whitelist>
             <directory suffix="Test.php">./src</directory>
         </whitelist>
     </filter>
