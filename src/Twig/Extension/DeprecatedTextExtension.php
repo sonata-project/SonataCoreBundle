@@ -22,20 +22,21 @@ final class DeprecatedTextExtension extends \Twig_Extensions_Extension_Text
     {
         $this->notifyDeprecation();
 
-        return parent::twig_truncate_filter($env, $value, $length, $preserve, $separator);
+        return twig_truncate_filter($env, $value, $length, $preserve, $separator);
     }
 
     public function twig_wordwrap_filter(\Twig_Environment $env, $value, $length = 80, $separator = "\n", $preserve = false)
     {
         $this->notifyDeprecation();
 
-        return parent::twig_wordwrap_filter($env, $value, $length, $separator, $preserve);
+        return twig_wordwrap_filter($env, $value, $length, $separator, $preserve);
     }
 
     private function notifyDeprecation()
     {
         @trigger_error(
-            'Using the sonata.core.twig.extension.text service is deprecated since 3.2 and will be removed in 4.0'
+            'Using the sonata.core.twig.extension.text service is deprecated since 3.2 and will be removed in 4.0',
+            E_USER_DEPRECATED
         );
     }
 }
