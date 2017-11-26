@@ -11,8 +11,8 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
-use Twig\Extension\AbstractExtension;
 use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
+use Twig\Extension\AbstractExtension;
 
 /**
  * @author Hugo Briand <briand@ekino.com>

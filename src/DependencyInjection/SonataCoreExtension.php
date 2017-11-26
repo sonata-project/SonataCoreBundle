@@ -13,6 +13,7 @@ namespace Sonata\CoreBundle\DependencyInjection;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Serializer\BaseSerializerHandler;
+use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\FormPass;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

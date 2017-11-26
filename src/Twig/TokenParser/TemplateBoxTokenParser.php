@@ -11,10 +11,10 @@
 
 namespace Sonata\CoreBundle\Twig\TokenParser;
 
-use Twig\TokenParser\AbstractTokenParser;
+use Sonata\CoreBundle\Twig\Node\TemplateBoxNode;
 use Twig\Node\Expression\ConstantExpression;
 use Twig\Token;
-use Sonata\CoreBundle\Twig\Node\TemplateBoxNode;
+use Twig\TokenParser\AbstractTokenParser;
 
 class TemplateBoxTokenParser extends AbstractTokenParser
 {

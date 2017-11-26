@@ -11,9 +11,9 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
-use Twig\Extension\AbstractExtension;
 use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
 use Sonata\CoreBundle\Twig\TokenParser\TemplateBoxTokenParser;
+use Twig\Extension\AbstractExtension;
 
 class TemplateExtension extends AbstractExtension
 {
