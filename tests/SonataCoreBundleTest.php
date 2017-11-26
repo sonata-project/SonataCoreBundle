@@ -30,7 +30,7 @@ final class SonataCoreBundleTest extends TestCase
             ->setMethods(['addCompilerPass'])
             ->getMock();
 
-        $containerBuilder->expects($this->exactly(3))
+        $containerBuilder->expects($this->any())
             ->method('addCompilerPass')
             ->will($this->returnCallback(function (CompilerPassInterface $pass) {
                 if ($pass instanceof StatusRendererCompilerPass) {

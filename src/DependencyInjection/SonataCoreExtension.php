@@ -78,6 +78,7 @@ EOT
         $loader->load('twig.xml');
         $loader->load('model_adapter.xml');
         $loader->load('core.xml');
+        $loader->load('commands.xml');
 
         $this->registerFlashTypes($container, $config);
         $container->setParameter('sonata.core.form_type', $config['form_type']);
@@ -109,11 +110,19 @@ EOT
      */
     public function configureFormFactory(ContainerBuilder $container, array $config)
     {
-        if (!$config['form']['mapping']['enabled'] || version_compare(Kernel::VERSION, '2.8', '<')) {
+        if (!$config['form']['mapping']['enabled'] ||
+            version_compare(Kernel::VERSION, '2.8', '<') ||
+            !class_exists(FormPass::class)
+        ) {
             $container->removeDefinition('sonata.core.form.extension.dependency');
 
             return;
         }
+
+        @trigger_error(
+            'Relying on the form mapping feature is deprecated since 3.x and will be removed in 4.0. Please set the "sonata_core.form.mapping.enabled" configuration node to false to avoid this message.',
+            E_USER_DEPRECATED
+        );
 
         $container->setParameter('sonata.core.form.mapping.type', $config['form']['mapping']['type']);
         $container->setParameter('sonata.core.form.mapping.extension', $config['form']['mapping']['extension']);

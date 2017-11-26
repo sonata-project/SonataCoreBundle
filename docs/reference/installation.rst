@@ -37,7 +37,10 @@ Configuration
 
         # app/config/config.yml
 
-        sonata_core: ~
+        sonata_core:
+            form:
+                mapping:
+                    enabled: false
 
 When using bootstrap, some widgets need to be wrapped in a special ``div`` element
 depending on whether you are using the standard style for your forms or the

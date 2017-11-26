@@ -17,6 +17,9 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
+/**
+ * @deprecated since 3.x, to be removed in 4.0, the form mapping feature should be disabled.
+ */
 class SonataListFormMappingCommand extends ContainerAwareCommand
 {
     /**

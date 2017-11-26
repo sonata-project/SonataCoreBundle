@@ -6,78 +6,6 @@ Form Types
 
 The bundle comes with some handy form types.
 
-
-Symfony3 Supports
------------------
-
-In order to help the migration path toward Symfony3, the bundle restores the Symfony2.X behavior of string code usage for the form type declaration.
-Each bundles can register a mapping with Symfony3 boot.
-
-.. code-block:: php
-
-    <?php
-    namespace Sonata\AdminBundle;
-
-    use Sonata\CoreBundle\Form\FormHelper;
-    use Symfony\Component\DependencyInjection\ContainerBuilder;
-    use Symfony\Component\HttpKernel\Bundle\Bundle;
-
-    class SonataAdminBundle extends Bundle
-    {
-        /**
-         * {@inheritdoc}
-         */
-        public function build(ContainerBuilder $container)
-        {
-            $this->registerFormMapping();
-        }
-
-        /**
-         * {@inheritdoc}
-         */
-        public function boot()
-        {
-            $this->registerFormMapping();
-        }
-
-        /**
-         * Register form mapping information
-         */
-        public function registerFormMapping()
-        {
-            FormHelper::registerFormTypeMapping(array(
-                'sonata_type_admin' => 'Sonata\AdminBundle\Form\Type\AdminType', // the form mapping
-            ));
-
-            FormHelper::registerFormExtensionMapping('choice', array( // the extended mapping for the choice type
-                'sonata.admin.form.extension.choice',
-            ));
-        }
-    }
-
-You can either alter your bundle to configure these mappings or you can add the mapping as configuration settings. Values provided in configuration will overwrite default values:
-
-.. code-block: yaml
-
-    sonata_core:
-        form:
-            mapping:
-                enabled: true # (default value)
-                type:
-                    sonata_type_admin: Sonata\AdminBundle\Form\Type\AdminType
-
-                extension:
-                    choice:
-                        - sonata.admin.form.extension.choice
-
-If you are lazy, you can get the mapping with the command:
-
-.. code-block: yaml
-
-    app/console sonata:core:form-mapping -f yaml|php
-
-
-
 DoctrineORMSerializationType
 ----------------------------
 
@@ -115,8 +43,8 @@ The service definition should contain the following arguments:
 
 
 
-sonata_type_immutable_array
----------------------------
+ImmutableArrayType
+------------------
 
 The ``Immutable Array`` allows you to edit an array property by defining a type per key.
 
@@ -159,13 +87,14 @@ Now, the property can be edited by setting a type for each type:
 
     <?php
     // src/AppBundle/Admin/PageAdmin.php
+    use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
 
     class PageAdmin extends Admin
     {
         protected function configureFormFields(FormMapper $formMapper)
         {
             $formMapper
-                ->add('options', 'sonata_type_immutable_array', array(
+                ->add('options', ImmutableArrayType::class, array(
                     'keys' => array(
                         array('ttl', 'text', array('required' => false)),
                         array('redirect', 'url', array('required' => true)),
@@ -178,16 +107,16 @@ Now, the property can be edited by setting a type for each type:
         // ...
     }
 
-sonata_type_boolean
--------------------
+BooleanType
+-----------
 
 The ``boolean`` type is a specialized ``ChoiceType``, where the list of choices is locked to *yes* and *no*.
 
 Note that for backward compatibility reasons, it will set your value to *1* for *yes* and to *2* for *no*.
 If you want to map to a boolean value, just set the option ``transform`` to true. For instance, you need to do so when mapping to a doctrine boolean.
 
-sonata_type_translatable_choice
--------------------------------
+TranslatableChoiceType
+----------------------
 
 The translatable type is a specialized ``ChoiceType`` where the choices values are translated with the Symfony Translator component.
 
@@ -222,13 +151,14 @@ The type has one extra parameter:
 
     <?php
     // src/AppBundle/Admin/DeliveryAdmin.php
+    use Sonata\CoreBundle\Form\Type\TranslatableChoiceType;
 
     class DeliveryAdmin extends Admin
     {
         protected function configureFormFields(FormMapper $formMapper)
         {
             $formMapper
-                ->add('deliveryStatus', 'sonata_type_translatable_choice', array(
+                ->add('deliveryStatus', TranslatableChoiceType::class, array(
                     'choices' => Delivery::getStatusList(),
                     'catalogue' => 'SonataOrderBundle'
                 ))
@@ -243,8 +173,8 @@ The type has one extra parameter:
 
     For more information, you can check the official `ChoiceType documentation`_ .
 
-sonata_type_collection
-----------------------
+CollectionType
+--------------
 
 The ``Collection Type`` is meant to handle creation and editing of model
 collections. Rows can be added and deleted, and your model abstraction layer may
@@ -255,13 +185,14 @@ to the underlying forms.
 
     <?php
     // src/AppBundle/Entity/ProductAdmin.php
+    use Sonata\CoreBundle\Form\Type\CollectionType;
 
     class ProductAdmin extends Admin
     {
         protected function configureFormFields(FormMapper $formMapper)
         {
             $formMapper
-                ->add('sales', 'sonata_type_collection', array(
+                ->add('sales', CollectionType::class, array(
 
                     // Prevents the "Delete" option from being displayed
                     'type_options' => array('delete' => false)
@@ -330,7 +261,7 @@ This can be done by declaring a new service:
     .. code-block:: xml
 
         <service id="sonata.order.form.status_type" class="Sonata\CoreBundle\Form\Type\StatusType">
-            <tag name="form.type" alias="sonata_order_status" />
+            <tag name="form.type" />
 
             <argument>%sonata.order.order.class%</argument>
             <argument>getStatusList</argument>
@@ -343,13 +274,14 @@ And the type can now be used:
 
     <?php
     // src/AppBundle/Admin/DeliveryAdmin.php
+    use App\Type\OrderStatusType;
 
     class DeliveryAdmin extends Admin
     {
         protected function configureFormFields(FormMapper $formMapper)
         {
             $formMapper
-                ->add('deliveryStatus', 'sonata_order_status')
+                ->add('deliveryStatus', OrderStatusType::class)
                 // ...
             ;
         }
@@ -358,12 +290,12 @@ And the type can now be used:
 .. warning::
 
     ``StatusType`` cannot be used directly with Symfony3.0, you need to extends the class ``BaseStatusType``
-    with an empty class to have an unique FQCN.
+    with an empty class to have a unique FQCN.
 
 
 
-sonata_type_date_picker and sonata_type_datetime_picker
--------------------------------------------------------
+DatePickerType and DateTimePickerType
+-------------------------------------
 
 Those types integrate `Eonasdan's Bootstrap datetimepicker`_ into a Symfony form.
 They both are available as services, and inherit from ``date`` and ``datetime`` default form types.
@@ -408,16 +340,18 @@ Finally, in your form, you may use the form type as follows:
 
     <?php
     // src/AppBundle/Admin/PageAdmin.php
+    use Sonata\CoreBundle\Form\Type\DatePickerType;
+    use Sonata\CoreBundle\Form\Type\DateTimePickerType;
 
     class PageAdmin extends Admin
     {
         protected function configureFormFields(FormMapper $formMapper)
         {
             $formMapper
-                ->add('publicationDateStart', 'sonata_type_datetime_picker')
+                ->add('publicationDateStart', DateTimePickerType::class)
 
                 // or sonata_type_date_picker if you don't need the time
-                ->add('publicationDateStart', 'sonata_type_date_picker')
+                ->add('publicationDateStart', DatePickerType::class)
 
                 // ...
             ;
@@ -430,13 +364,15 @@ Many of the `standard date picker options`_ are available by adding options with
 
     <?php
     // src/AppBundle/Admin/PageAdmin.php
+    use Sonata\CoreBundle\Form\Type\DatePickerType;
+    use Sonata\CoreBundle\Form\Type\DateTimePickerType;
 
     class PageAdmin extends Admin
     {
         protected function configureFormFields(FormMapper $formMapper)
         {
             $formMapper
-                ->add('publicationDateStart', 'sonata_type_datetime_picker', array(
+                ->add('publicationDateStart', DateTimePickerType::class, array(
                         'dp_side_by_side'       => true,
                         'dp_use_current'        => false,
                         'dp_use_seconds'        => false,
@@ -447,7 +383,7 @@ Many of the `standard date picker options`_ are available by adding options with
                 ))
 
                 // or sonata_type_date_picker if you don't need the time
-                ->add('publicationDateStart', 'sonata_type_date_picker', array(
+                ->add('publicationDateStart', DatePickerType::class, array(
                         'dp_use_current'        => false,
                 ))
             ;
@@ -458,18 +394,22 @@ If you look in the classes ``DateTimePickerType.php`` and ``BasePickerType.php``
 
 In addition to these standard options, there is also the option ``datepicker_use_button`` which, when used, will change the widget so that the datepicker icon is not shown and the pop-up datepicker is invoked simply by clicking on the date input.
 
-sonata_type_date_range_picker and sonata_type_datetime_range_picker
--------------------------------------------------------------------
+DateRangePickerType and DateTimeRangePickerType
+-----------------------------------------------
 
-``sonata_type_date_range_picker`` and ``sonata_type_datetime_range_picker`` extends the basic range form field types (``sonata_type_date_range`` and ``sonata_type_datetime_range``).
+Those types extend the basic range form field types
+(``Sonata\CoreBundle\Form\Type\DateRangeType`` and
+``Sonata\CoreBundle\Form\Type\DateTimeRangeType``).
 You can use them if you need datetime picker in datetime range filters.
 
-Example with ``doctrine_orm_date_range`` filter:
+Example with ``Sonata\DoctrineORMAdminBundle\Filter\DateRangeFilter`` filter:
 
 .. code-block:: php
 
     <?php
     // src/AppBundle/Admin/PostAdmin.php
+    use Sonata\CoreBundle\Form\Type\DateRangeType;
+    use Sonata\DoctrineORMAdminBundle\Filter\DateRangeFilter;
 
     class PostAdmin extends Admin
     {
@@ -477,8 +417,8 @@ Example with ``doctrine_orm_date_range`` filter:
         {
 
             $datagridMapper
-                ->add('createdAt', 'doctrine_orm_date_range', array(
-                    'field_type' => 'sonata_type_date_range_picker',
+                ->add('createdAt', DateRangeFilter::class, array(
+                    'field_type' => DateRangeType::class,
                 ))
                 // ...
             ;
@@ -487,8 +427,8 @@ Example with ``doctrine_orm_date_range`` filter:
         // ...
     }
 
-sonata_type_color
-------------------------
+ColorType
+---------
 
 This is HTML5 input type color.
 
@@ -511,13 +451,14 @@ Finally, in your form, you may use the form type as follows:
 
     <?php
     // src/AppBundle/Admin/PageAdmin.php
+    use Sonata\CoreBundle\Form\Type\ColorType;
 
     class PageAdmin extends Admin
     {
         protected function configureFormFields(FormMapper $formMapper)
         {
             $formMapper
-                ->add('color', 'sonata_type_color')
+                ->add('color', ColorType::class)
                 // ...
             ;
         }
