@@ -29,8 +29,15 @@ class SonataCoreBundle extends Bundle
         $container->addCompilerPass(new StatusRendererCompilerPass());
         $container->addCompilerPass(new AdapterCompilerPass());
 
+        $formMappingIsEnabled = true;
+        foreach ($container->getExtensionConfig('sonata_core') as $config) {
+            if (isset($config['form']['mapping']['enabled'])) {
+                // the last config wins
+                $formMappingIsEnabled = $config['form']['mapping']['enabled'];
+            }
+        }
         // NEXT_MAJOR: remove this block
-        if (class_exists(FormPass::class)) {
+        if ($formMappingIsEnabled && class_exists(FormPass::class)) {
             $container->addCompilerPass(new FormFactoryCompilerPass());
         }
 
