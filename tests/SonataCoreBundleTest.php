@@ -15,9 +15,11 @@ use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
+use Sonata\CoreBundle\DependencyInjection\SonataCoreExtension;
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\SonataCoreBundle;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * @author Ahmet Akbana <ahmetakbana@gmail.com>
@@ -187,6 +189,24 @@ final class SonataCoreBundleTest extends TestCase
 
         $this->assertMappingTypeRegistered('fooMapping', 'barType');
         $this->assertMappingExtensionRegistered('fooMapping', 'barExtension');
+    }
+
+    public function testWithDisabledFormMapping()
+    {
+        $extension = new SonataCoreExtension();
+        $containerBuilder = new ContainerBuilder();
+        $containerBuilder->registerExtension($extension);
+        $containerBuilder->loadFromExtension('sonata_core', ['form' => [
+            'mapping' => ['enabled' => false],
+        ]]);
+        $bundle = new SonataCoreBundle();
+        $bundle->build($containerBuilder);
+        $this->assertCount(0, array_filter(
+            $containerBuilder->getCompilerPassConfig()->getBeforeOptimizationPasses(),
+            function (CompilerPassInterface $compilerPass) {
+                return $compilerPass instanceof FormFactoryCompilerPass;
+            }
+        ));
     }
 
     /**
