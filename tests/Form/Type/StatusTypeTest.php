@@ -100,11 +100,10 @@ class StatusTypeTest extends TypeTestCase
         $this->assertSame($options['choices'], ['salut' => 1, 'toi!' => 2]);
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testGetDefaultOptionsWithValidInvalidFlip()
     {
+        $this->expectException(\RuntimeException::class);
+
         Choice::$list = [
             1 => 'error',
             2 => 'error',

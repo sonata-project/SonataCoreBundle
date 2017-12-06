@@ -24,7 +24,6 @@ class ManagerTest extends BaseManager
      */
     public function getConnection()
     {
-        return;
     }
 
     /**
@@ -41,12 +40,11 @@ class ManagerTest extends BaseManager
  */
 class BaseManagerTest extends TestCase
 {
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Object must be instance of class, DateTime given
-     */
     public function testCheckObject()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Object must be instance of class, DateTime given');
+
         $manager = new ManagerTest('class', $this->createMock('Doctrine\Common\Persistence\ManagerRegistry'));
 
         $manager->publicCheckObject(new \DateTime());

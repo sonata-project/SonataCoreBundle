@@ -23,7 +23,7 @@ class EntityManagerMockFactory
      *
      * @return EntityManagerInterface
      */
-    public static function create(\PHPUnit_Framework_TestCase $test, \Closure $qbCallback, $fields)
+    public static function create(\PHPUnit\Framework\TestCase $test, \Closure $qbCallback, $fields)
     {
         $query = $test->getMockBuilder('Doctrine\ORM\AbstractQuery')
             ->disableOriginalConstructor()->getMock();

@@ -86,10 +86,10 @@ class ErrorElement
     }
 
     /**
-     * @throws \RunTimeException
-     *
      * @param string $name
      * @param array  $arguments
+     *
+     * @throws \RunTimeException
      *
      * @return ErrorElement
      */

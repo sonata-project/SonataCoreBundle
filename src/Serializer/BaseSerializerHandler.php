@@ -110,8 +110,6 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
         if ($data instanceof $className) {
             return $visitor->visitInteger($data->getId(), $type, $context);
         }
-
-        return;
     }
 
     /**

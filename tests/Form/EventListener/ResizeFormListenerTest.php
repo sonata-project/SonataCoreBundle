@@ -75,7 +75,7 @@ class ResizeFormListenerTest extends TestCase
 
         $event = new FormEvent($form, '');
 
-        $this->setExpectedException('Symfony\Component\Form\Exception\UnexpectedTypeException');
+        $this->expectException('Symfony\Component\Form\Exception\UnexpectedTypeException');
 
         $listener->preSetData($event);
     }
@@ -147,7 +147,7 @@ class ResizeFormListenerTest extends TestCase
 
         $event = new FormEvent($form, 123);
 
-        $this->setExpectedException('Symfony\Component\Form\Exception\UnexpectedTypeException');
+        $this->expectException('Symfony\Component\Form\Exception\UnexpectedTypeException');
 
         $listener->preSubmit($event);
     }
@@ -275,7 +275,7 @@ class ResizeFormListenerTest extends TestCase
 
         $event = new FormEvent($form, 123);
 
-        $this->setExpectedException('Symfony\Component\Form\Exception\UnexpectedTypeException');
+        $this->expectException('Symfony\Component\Form\Exception\UnexpectedTypeException');
 
         $listener->onSubmit($event);
     }

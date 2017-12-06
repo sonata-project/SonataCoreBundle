@@ -172,7 +172,8 @@ class ErrorElementTest extends TestCase
 
     public function testCallException()
     {
-        $this->setExpectedException('RuntimeException', 'Unable to recognize the command');
+        $this->expectException('RuntimeException');
+        $this->expectExceptionMessage('Unable to recognize the command');
 
         $this->errorElement->with('bar');
         $this->errorElement->baz();
@@ -219,8 +220,10 @@ class ErrorElementTest extends TestCase
     {
         $constraintValidatorFactory = $this->createMock('Symfony\Component\Validator\ConstraintValidatorFactoryInterface');
 
-        $this->setExpectedException(
-            'InvalidArgumentException',
+        $this->expectException(
+            'InvalidArgumentException'
+        );
+        $this->expectExceptionMessage(
             'Argument 3 passed to Sonata\CoreBundle\Validator\ErrorElement::__construct() must be an instance of '.
             'Symfony\Component\Validator\ExecutionContextInterface or '.
             'Symfony\Component\Validator\Context\ExecutionContextInterface.'
