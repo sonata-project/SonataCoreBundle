@@ -134,7 +134,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
     protected function getRenderingEngine(/* \Twig_Environment $environment = null */)
     {
         $environment = current(func_get_args());
-        if (is_null($environment) && method_exists('Symfony\Bridge\Twig\AppVariable', 'getToken')) {
+        if (null === $environment && method_exists('Symfony\Bridge\Twig\AppVariable', 'getToken')) {
             @trigger_error(
                 'Not passing a \Twig_Environment instance to '.__METHOD__.
                 ' is deprecated since 3.3 and will not be possible in 4.0',

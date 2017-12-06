@@ -30,11 +30,11 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class Exporter
 {
     /**
-     * @throws \RuntimeException
-     *
      * @param string                  $format
      * @param string                  $filename
      * @param SourceIteratorInterface $source
+     *
+     * @throws \RuntimeException
      *
      * @return StreamedResponse
      */

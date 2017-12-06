@@ -35,8 +35,6 @@ class AdapterChain implements AdapterInterface
                 return $identifier;
             }
         }
-
-        return;
     }
 
     /**
@@ -51,7 +49,5 @@ class AdapterChain implements AdapterInterface
                 return $safeIdentifier;
             }
         }
-
-        return;
     }
 }

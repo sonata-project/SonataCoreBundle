@@ -109,8 +109,10 @@ class ImmutableArrayTypeTest extends TypeTestCase
         $type = new ImmutableArrayType();
         $type->configureOptions($optionsResolver);
 
-        $this->setExpectedException(
-            'Symfony\Component\OptionsResolver\Exception\InvalidOptionsException',
+        $this->expectException(
+            'Symfony\Component\OptionsResolver\Exception\InvalidOptionsException'
+        );
+        $this->expectExceptionMessage(
             'The option "keys" with value array is invalid.'
         );
 

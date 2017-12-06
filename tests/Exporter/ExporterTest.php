@@ -22,11 +22,10 @@ use Sonata\CoreBundle\Exporter\Exporter;
  */
 class ExporterTest extends TestCase
 {
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testFilter()
     {
+        $this->expectException(\RuntimeException::class);
+
         $source = $this->createMock('Exporter\Source\SourceIteratorInterface');
 
         $exporter = new Exporter();

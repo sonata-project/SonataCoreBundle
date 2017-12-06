@@ -100,8 +100,10 @@ class InlineConstraintTest extends TestCase
 
     public function testSerializingWarningIsFalseWithServiceIsNotString()
     {
-        $this->setExpectedException(
-            'RuntimeException',
+        $this->expectException(
+            'RuntimeException'
+        );
+        $this->expectExceptionMessage(
             'You are using a closure with the `InlineConstraint`, this constraint'.
             ' cannot be serialized. You need to re-attach the `InlineConstraint` on each request.'.
             ' Once done, you can set the `serializingWarning` option to `true` to avoid this message.');
@@ -111,8 +113,10 @@ class InlineConstraintTest extends TestCase
 
     public function testSerializingWarningIsFalseWithMethodIsNotString()
     {
-        $this->setExpectedException(
-            'RuntimeException',
+        $this->expectException(
+            'RuntimeException'
+        );
+        $this->expectExceptionMessage(
             'You are using a closure with the `InlineConstraint`, this constraint'.
             ' cannot be serialized. You need to re-attach the `InlineConstraint` on each request.'.
             ' Once done, you can set the `serializingWarning` option to `true` to avoid this message.');
