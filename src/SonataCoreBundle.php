@@ -15,7 +15,6 @@ use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
 use Sonata\CoreBundle\Form\FormHelper;
-use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\FormPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

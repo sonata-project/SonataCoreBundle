@@ -15,11 +15,9 @@ use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
-use Sonata\CoreBundle\DependencyInjection\SonataCoreExtension;
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\SonataCoreBundle;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * @author Ahmet Akbana <ahmetakbana@gmail.com>
