@@ -34,21 +34,19 @@ class BaseEntityManagerTest extends TestCase
         $this->assertSame('classname', $this->getManager()->getClass());
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage The property exception does not exists
-     */
     public function testException()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('The property exception does not exists');
+
         $this->getManager()->exception;
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Unable to find the mapping information for the class classname. Please check the `auto_mapping` option (http://symfony.com/doc/current/reference/configuration/doctrine.html#configuration-overview) or add the bundle to the `mappings` section in the doctrine configuration
-     */
     public function testExceptionOnNonMappedEntity()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Unable to find the mapping information for the class classname. Please check the `auto_mapping` option (http://symfony.com/doc/current/reference/configuration/doctrine.html#configuration-overview) or add the bundle to the `mappings` section in the doctrine configuration');
+
         $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue(null));
 

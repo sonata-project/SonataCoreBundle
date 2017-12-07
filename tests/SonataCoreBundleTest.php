@@ -191,24 +191,6 @@ final class SonataCoreBundleTest extends TestCase
         $this->assertMappingExtensionRegistered('fooMapping', 'barExtension');
     }
 
-    public function testWithDisabledFormMapping()
-    {
-        $extension = new SonataCoreExtension();
-        $containerBuilder = new ContainerBuilder();
-        $containerBuilder->registerExtension($extension);
-        $containerBuilder->loadFromExtension('sonata_core', ['form' => [
-            'mapping' => ['enabled' => false],
-        ]]);
-        $bundle = new SonataCoreBundle();
-        $bundle->build($containerBuilder);
-        $this->assertCount(0, array_filter(
-            $containerBuilder->getCompilerPassConfig()->getBeforeOptimizationPasses(),
-            function (CompilerPassInterface $compilerPass) {
-                return $compilerPass instanceof FormFactoryCompilerPass;
-            }
-        ));
-    }
-
     /**
      * Asserts mapping type registered.
      *

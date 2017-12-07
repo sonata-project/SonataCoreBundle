@@ -23,11 +23,10 @@ class DoctrineORMAdapterTest extends TestCase
         }
     }
 
-    /**
-     * @expectedException \RunTimeException
-     */
     public function testNormalizedIdentifierWithScalar()
     {
+        $this->expectException(\RunTimeException::class);
+
         $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $adapter = new DoctrineORMAdapter($registry);
 

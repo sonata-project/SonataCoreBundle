@@ -14,7 +14,7 @@ namespace Sonata\CoreBundle\Test;
 use Symfony\Component\Translation\Exception\InvalidResourceException;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
 
-abstract class XliffValidatorTestCase extends \PHPUnit_Framework_TestCase
+abstract class XliffValidatorTestCase extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var XliffFileLoader

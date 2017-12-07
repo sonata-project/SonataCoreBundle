@@ -42,7 +42,7 @@ class EqualType extends AbstractType
     public function __construct(TranslatorInterface $translator = null)
     {
         // check if class is overloaded and notify about removing deprecated translator
-        if (null !== $translator && get_class($this) !== get_class()) {
+        if (null !== $translator && __CLASS__ !== get_class($this)) {
             @trigger_error(
                 'The translator dependency in '.__CLASS__.' is deprecated since 3.1 and will be removed in 4.0. '.
                 'Please prepare your dependencies for this change.',
