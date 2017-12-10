@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -132,7 +134,7 @@ class FlashManager implements StatusClassRendererInterface
      *
      * @param string $domain
      */
-    protected function handle($domain = null)
+    protected function handle($domain = null): void
     {
         foreach ($this->getTypes() as $type => $values) {
             foreach ($values as $value => $options) {
@@ -149,7 +151,7 @@ class FlashManager implements StatusClassRendererInterface
      * @param string $value  Original flash message type
      * @param string $domain Translation domain to use
      */
-    protected function rename($type, $value, $domain)
+    protected function rename($type, $value, $domain): void
     {
         $flashBag = $this->getSession()->getFlashBag();
 

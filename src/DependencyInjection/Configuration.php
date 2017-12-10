@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -73,7 +75,7 @@ class Configuration implements ConfigurationInterface
      *
      * @param ArrayNodeDefinition $node
      */
-    private function addFlashMessageSection(ArrayNodeDefinition $node)
+    private function addFlashMessageSection(ArrayNodeDefinition $node): void
     {
         $node
             ->children()
@@ -113,7 +115,7 @@ class Configuration implements ConfigurationInterface
      *
      * @param ArrayNodeDefinition $node
      */
-    private function addSerializerFormats(ArrayNodeDefinition $node)
+    private function addSerializerFormats(ArrayNodeDefinition $node): void
     {
         // NEXT_MAJOR : do not execute this if jms/serializer is missing
         $node

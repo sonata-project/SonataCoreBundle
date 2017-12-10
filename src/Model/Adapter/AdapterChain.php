@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -18,7 +20,7 @@ class AdapterChain implements AdapterInterface
     /**
      * @param AdapterInterface $adapter
      */
-    public function addAdapter(AdapterInterface $adapter)
+    public function addAdapter(AdapterInterface $adapter): void
     {
         $this->adapters[] = $adapter;
     }

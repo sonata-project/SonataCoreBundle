@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -16,13 +18,13 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 class ColorTypeTest extends TypeTestCase
 {
-    public function testBuildForm()
+    public function testBuildForm(): void
     {
         $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
-            ->will($this->returnCallback(function ($name, $type = null) {
+            ->will($this->returnCallback(function ($name, $type = null): void {
                 if (null !== $type) {
                     $this->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
                 }
@@ -32,14 +34,14 @@ class ColorTypeTest extends TypeTestCase
         $type->buildForm($formBuilder, []);
     }
 
-    public function testSubmitValidData()
+    public function testSubmitValidData(): void
     {
         $form = $this->factory->create(ColorType::class);
         $form->submit('#556b2f');
         $this->assertTrue($form->isSynchronized());
     }
 
-    public function testGetParent()
+    public function testGetParent(): void
     {
         $form = new ColorType();
 

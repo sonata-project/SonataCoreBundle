@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -29,12 +31,12 @@ class BaseEntityManagerTest extends TestCase
         return $manager;
     }
 
-    public function test()
+    public function test(): void
     {
         $this->assertSame('classname', $this->getManager()->getClass());
     }
 
-    public function testException()
+    public function testException(): void
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('The property exception does not exists');
@@ -42,7 +44,7 @@ class BaseEntityManagerTest extends TestCase
         $this->getManager()->exception;
     }
 
-    public function testExceptionOnNonMappedEntity()
+    public function testExceptionOnNonMappedEntity(): void
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Unable to find the mapping information for the class classname. Please check the `auto_mapping` option (http://symfony.com/doc/current/reference/configuration/doctrine.html#configuration-overview) or add the bundle to the `mappings` section in the doctrine configuration');
@@ -54,7 +56,7 @@ class BaseEntityManagerTest extends TestCase
         $manager->getObjectManager();
     }
 
-    public function testGetEntityManager()
+    public function testGetEntityManager(): void
     {
         $objectManager = $this->createMock('Doctrine\Common\Persistence\ObjectManager');
 

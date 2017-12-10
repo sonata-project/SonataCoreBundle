@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -29,7 +31,7 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
     /**
      * {@inheritdoc}
      */
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         $configs = $container->getExtensionConfig('sonata_admin');
 
@@ -46,7 +48,7 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $processor = new Processor();
         $configuration = new Configuration();
@@ -91,7 +93,7 @@ EOT
         $this->configureSerializerFormats($config);
     }
 
-    public function configureClassesToCompile()
+    public function configureClassesToCompile(): void
     {
         $this->addClassesToCompile([
             'Sonata\\CoreBundle\\Form\\Type\\BooleanType',
@@ -108,7 +110,7 @@ EOT
      * @param ContainerBuilder $container
      * @param array            $config
      */
-    public function configureFormFactory(ContainerBuilder $container, array $config)
+    public function configureFormFactory(ContainerBuilder $container, array $config): void
     {
         if (!$config['form']['mapping']['enabled'] || !class_exists(FormPass::class)) {
             $container->removeDefinition('sonata.core.form.extension.dependency');
@@ -142,7 +144,7 @@ EOT
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      * @param array                                                   $config
      */
-    public function registerFlashTypes(ContainerBuilder $container, array $config)
+    public function registerFlashTypes(ContainerBuilder $container, array $config): void
     {
         $mergedConfig = array_merge_recursive($config['flashmessage'], [
             'success' => ['types' => [
@@ -181,7 +183,7 @@ EOT
     /**
      * @param array $config
      */
-    public function configureSerializerFormats($config)
+    public function configureSerializerFormats($config): void
     {
         if (interface_exists('JMS\Serializer\Handler\SubscribingHandlerInterface')) {
             BaseSerializerHandler::setFormats($config['serializer']['formats']);

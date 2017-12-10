@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -22,14 +24,14 @@ class MyDocument
 
 class DoctrinePHPCRAdapterTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         if (!class_exists('Doctrine\ODM\PHPCR\UnitOfWork')) {
             $this->markTestSkipped('Doctrine PHPCR not installed');
         }
     }
 
-    public function testNormalizedIdentifierWithScalar()
+    public function testNormalizedIdentifierWithScalar(): void
     {
         $this->expectException(\RunTimeException::class);
 
@@ -39,7 +41,7 @@ class DoctrinePHPCRAdapterTest extends TestCase
         $adapter->getNormalizedIdentifier(1);
     }
 
-    public function testNormalizedIdentifierWithNull()
+    public function testNormalizedIdentifierWithNull(): void
     {
         $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $adapter = new DoctrinePHPCRAdapter($registry);
@@ -47,7 +49,7 @@ class DoctrinePHPCRAdapterTest extends TestCase
         $this->assertNull($adapter->getNormalizedIdentifier(null));
     }
 
-    public function testNormalizedIdentifierWithNoManager()
+    public function testNormalizedIdentifierWithNoManager(): void
     {
         $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue(null));
@@ -57,7 +59,7 @@ class DoctrinePHPCRAdapterTest extends TestCase
         $this->assertNull($adapter->getNormalizedIdentifier(new \stdClass()));
     }
 
-    public function testNormalizedIdentifierWithNotManaged()
+    public function testNormalizedIdentifierWithNotManaged(): void
     {
         $manager = $this->getMockBuilder('Doctrine\ODM\PHPCR\DocumentManager')->disableOriginalConstructor()->getMock();
         $manager->expects($this->once())->method('contains')->will($this->returnValue(false));
@@ -73,7 +75,7 @@ class DoctrinePHPCRAdapterTest extends TestCase
     /**
      * @dataProvider getFixtures
      */
-    public function testNormalizedIdentifierWithValidObject($data, $expected)
+    public function testNormalizedIdentifierWithValidObject($data, $expected): void
     {
         $metadata = new ClassMetadata('Sonata\CoreBundle\Tests\Model\Adapter\MyDocument');
         $metadata->identifier = 'path';

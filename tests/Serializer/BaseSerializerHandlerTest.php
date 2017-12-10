@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -20,7 +22,7 @@ use Sonata\CoreBundle\Tests\Fixtures\Bundle\Serializer\FooSerializer;
  */
 final class BaseSerializerHandlerTest extends TestCase
 {
-    public function testSetFormats()
+    public function testSetFormats(): void
     {
         $manager = $this->createMock('Sonata\CoreBundle\Model\ManagerInterface');
 
@@ -48,7 +50,7 @@ final class BaseSerializerHandlerTest extends TestCase
         $this->assertSame($methods, $expectedMethods);
     }
 
-    public function testAddFormats()
+    public function testAddFormats(): void
     {
         $manager = $this->createMock('Sonata\CoreBundle\Model\ManagerInterface');
 
@@ -90,7 +92,7 @@ final class BaseSerializerHandlerTest extends TestCase
         $this->assertSame($methods, $expectedMethods);
     }
 
-    public function testSerializeObjectToIdWithDataIsInstanceOfManager()
+    public function testSerializeObjectToIdWithDataIsInstanceOfManager(): void
     {
         $modelInstance = $this->getMockBuilder('Sonata\CoreBundle\Tests\Fixtures\Bundle\Serializer\FooSerializer')
             ->disableOriginalConstructor()
@@ -119,7 +121,7 @@ final class BaseSerializerHandlerTest extends TestCase
         $this->assertTrue($serializer->serializeObjectToId($visitor, $modelInstance, ['foo'], $context));
     }
 
-    public function testSerializeObjectToIdWithDataIsNotInstanceOfManager()
+    public function testSerializeObjectToIdWithDataIsNotInstanceOfManager(): void
     {
         $modelInstance = $this->getMockBuilder('Sonata\CoreBundle\Tests\Fixtures\Bundle\Serializer\FooSerializer')
             ->disableOriginalConstructor()
@@ -141,7 +143,7 @@ final class BaseSerializerHandlerTest extends TestCase
         $serializer->serializeObjectToId($visitor, $modelInstance, ['foo'], $context);
     }
 
-    public function testDeserializeObjectFromId()
+    public function testDeserializeObjectFromId(): void
     {
         $manager = $this->createMock('Sonata\CoreBundle\Model\ManagerInterface');
         $manager->expects($this->once())

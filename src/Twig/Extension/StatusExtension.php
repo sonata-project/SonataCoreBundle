@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -29,7 +31,7 @@ class StatusExtension extends AbstractExtension
      *
      * @param StatusClassRendererInterface $renderer
      */
-    public function addStatusService(StatusClassRendererInterface $renderer)
+    public function addStatusService(StatusClassRendererInterface $renderer): void
     {
         $this->statusServices[] = $renderer;
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -24,7 +26,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
  */
 final class SonataCoreBundleTest extends TestCase
 {
-    public function testBuild()
+    public function testBuild(): void
     {
         $containerBuilder = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')
             ->setMethods(['addCompilerPass'])
@@ -32,7 +34,7 @@ final class SonataCoreBundleTest extends TestCase
 
         $containerBuilder->expects($this->any())
             ->method('addCompilerPass')
-            ->will($this->returnCallback(function (CompilerPassInterface $pass) {
+            ->will($this->returnCallback(function (CompilerPassInterface $pass): void {
                 if ($pass instanceof StatusRendererCompilerPass) {
                     return;
                 }
@@ -60,7 +62,7 @@ final class SonataCoreBundleTest extends TestCase
         $this->assertMappingTypeRegistered('form', 'Symfony\Component\Form\Extension\Core\Type\FormType');
     }
 
-    public function testBootCallsRegisterFormMapping()
+    public function testBootCallsRegisterFormMapping(): void
     {
         $bundle = new SonataCoreBundle();
         $bundle->boot();
@@ -74,7 +76,7 @@ final class SonataCoreBundleTest extends TestCase
      * @param string $mapping
      * @param string $type
      */
-    public function testRegisterFormTypeMapping($mapping, $type)
+    public function testRegisterFormTypeMapping($mapping, $type): void
     {
         $bundle = new SonataCoreBundle();
         $bundle->registerFormMapping();
@@ -137,7 +139,7 @@ final class SonataCoreBundleTest extends TestCase
      * @param string $mapping
      * @param string $extension
      */
-    public function testRegisterFormExtensionMapping($mapping, $extension)
+    public function testRegisterFormExtensionMapping($mapping, $extension): void
     {
         $bundle = new SonataCoreBundle();
         $bundle->registerFormMapping();
@@ -158,7 +160,7 @@ final class SonataCoreBundleTest extends TestCase
         ];
     }
 
-    public function testRegisterFormMappingWithContainer()
+    public function testRegisterFormMappingWithContainer(): void
     {
         $bundle = new SonataCoreBundle();
 
@@ -195,7 +197,7 @@ final class SonataCoreBundleTest extends TestCase
      * @param string $mapping
      * @param string $type
      */
-    private function assertMappingTypeRegistered($mapping, $type)
+    private function assertMappingTypeRegistered($mapping, $type): void
     {
         $registeredMapping = FormHelper::getFormTypeMapping();
 
@@ -209,7 +211,7 @@ final class SonataCoreBundleTest extends TestCase
      * @param string $mapping
      * @param string $extension
      */
-    private function assertMappingExtensionRegistered($mapping, $extension)
+    private function assertMappingExtensionRegistered($mapping, $extension): void
     {
         $registeredMapping = FormHelper::getFormExtensionMapping();
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -28,7 +30,7 @@ class ErrorElementTest extends TestCase
     private $contextualValidator;
     private $subject;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $constraintValidatorFactory = $this->createMock('Symfony\Component\Validator\ConstraintValidatorFactoryInterface');
 
@@ -67,12 +69,12 @@ class ErrorElementTest extends TestCase
         $this->errorElement = new ErrorElement($this->subject, $constraintValidatorFactory, $this->context, 'foo_core');
     }
 
-    public function testGetSubject()
+    public function testGetSubject(): void
     {
         $this->assertSame($this->subject, $this->errorElement->getSubject());
     }
 
-    public function testGetErrorsEmpty()
+    public function testGetErrorsEmpty(): void
     {
         $this->assertSame([], $this->errorElement->getErrors());
     }
@@ -80,7 +82,7 @@ class ErrorElementTest extends TestCase
     /**
      * @group legacy
      */
-    public function testGetErrors()
+    public function testGetErrors(): void
     {
         $this->errorElement->addViolation('Foo error message', ['bar_param' => 'bar_param_lvalue'], 'BAR');
         $this->assertSame([['Foo error message', ['bar_param' => 'bar_param_lvalue'], 'BAR']], $this->errorElement->getErrors());
@@ -89,7 +91,7 @@ class ErrorElementTest extends TestCase
     /**
      * @group legacy
      */
-    public function testAddViolation()
+    public function testAddViolation(): void
     {
         $this->errorElement->addViolation(['Foo error message', ['bar_param' => 'bar_param_lvalue'], 'BAR']);
         $this->assertSame([['Foo error message', ['bar_param' => 'bar_param_lvalue'], 'BAR']], $this->errorElement->getErrors());
@@ -98,7 +100,7 @@ class ErrorElementTest extends TestCase
     /**
      * @group legacy
      */
-    public function testAddConstraint()
+    public function testAddConstraint(): void
     {
         $constraint = new NotNull();
         if ($this->context instanceof LegacyExecutionContextInterface) {
@@ -121,7 +123,7 @@ class ErrorElementTest extends TestCase
     /**
      * @group legacy
      */
-    public function testWith()
+    public function testWith(): void
     {
         $constraint = new NotNull();
 
@@ -147,7 +149,7 @@ class ErrorElementTest extends TestCase
     /**
      * @group legacy
      */
-    public function testCall()
+    public function testCall(): void
     {
         $constraint = new NotNull();
 
@@ -170,7 +172,7 @@ class ErrorElementTest extends TestCase
         $this->errorElement->end();
     }
 
-    public function testCallException()
+    public function testCallException(): void
     {
         $this->expectException('RuntimeException');
         $this->expectExceptionMessage('Unable to recognize the command');
@@ -179,7 +181,7 @@ class ErrorElementTest extends TestCase
         $this->errorElement->baz();
     }
 
-    public function testGetFullPropertyPath()
+    public function testGetFullPropertyPath(): void
     {
         $this->errorElement->with('baz');
         $this->assertSame('bar.baz', $this->errorElement->getFullPropertyPath());
@@ -191,7 +193,7 @@ class ErrorElementTest extends TestCase
     /**
      * @group legacy
      */
-    public function testFluidInterface()
+    public function testFluidInterface(): void
     {
         $constraint = new NotNull();
 
@@ -216,7 +218,7 @@ class ErrorElementTest extends TestCase
         $this->assertSame($this->errorElement, $this->errorElement->assertNotNull());
     }
 
-    public function testExceptionIsThrownWhenContextIsString()
+    public function testExceptionIsThrownWhenContextIsString(): void
     {
         $constraintValidatorFactory = $this->createMock('Symfony\Component\Validator\ConstraintValidatorFactoryInterface');
 

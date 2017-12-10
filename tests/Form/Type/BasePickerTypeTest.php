@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -36,7 +38,7 @@ class BasePickerTest extends BasePickerType
  */
 class BasePickerTypeTest extends TestCase
 {
-    public function testFinishView()
+    public function testFinishView(): void
     {
         $type = new BasePickerTest(
             new MomentFormatConverter(),

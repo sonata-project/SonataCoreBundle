@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -42,7 +44,7 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
     /**
      * @param string[] $formats
      */
-    final public static function setFormats(array $formats)
+    final public static function setFormats(array $formats): void
     {
         static::$formats = $formats;
     }
@@ -50,7 +52,7 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
     /**
      * @param string $format
      */
-    final public static function addFormat($format)
+    final public static function addFormat($format): void
     {
         static::$formats[] = $format;
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -21,13 +23,13 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
  */
 class DatePickerTypeTest extends TestCase
 {
-    public function testBuildForm()
+    public function testBuildForm(): void
     {
         $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
-            ->will($this->returnCallback(function ($name, $type = null) {
+            ->will($this->returnCallback(function ($name, $type = null): void {
                 if (null !== $type) {
                     $that->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
                 }
@@ -43,7 +45,7 @@ class DatePickerTypeTest extends TestCase
         ]);
     }
 
-    public function testGetParent()
+    public function testGetParent(): void
     {
         $form = new DatePickerType(
             $this->createMock('Sonata\CoreBundle\Date\MomentFormatConverter'),
@@ -55,7 +57,7 @@ class DatePickerTypeTest extends TestCase
         $this->assertTrue(class_exists($parentRef), sprintf('Unable to ensure %s is a FQCN', $parentRef));
     }
 
-    public function testGetName()
+    public function testGetName(): void
     {
         $type = new DatePickerType(new MomentFormatConverter(), $this->createMock('Symfony\Component\Translation\TranslatorInterface'));
 

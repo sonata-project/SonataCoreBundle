@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -23,7 +25,7 @@ use Symfony\Component\DependencyInjection\Definition;
  */
 final class FormFactoryCompilerPassTest extends AbstractCompilerPassTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         if (!class_exists(FormPass::class)) {
             $this->markTestSkipped();
@@ -34,12 +36,12 @@ final class FormFactoryCompilerPassTest extends AbstractCompilerPassTestCase
     /**
      * {@inheritdoc}
      */
-    public function registerCompilerPass(ContainerBuilder $container)
+    public function registerCompilerPass(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new FormFactoryCompilerPass());
     }
 
-    public function testProcessWithContainerHasNoFormExtensionDefinition()
+    public function testProcessWithContainerHasNoFormExtensionDefinition(): void
     {
         $formType = new Definition();
         $formType->addTag('form.type');
@@ -60,7 +62,7 @@ final class FormFactoryCompilerPassTest extends AbstractCompilerPassTestCase
         $this->assertSame($taggedFormTypes, ['baz', 'caz']);
     }
 
-    public function testProcessWithContainerHasFormExtensionDefinition()
+    public function testProcessWithContainerHasFormExtensionDefinition(): void
     {
         $formExtension = new Definition(null, [null, null, null, null]);
         $this->setDefinition('form.extension', $formExtension);

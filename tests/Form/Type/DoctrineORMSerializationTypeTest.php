@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -41,7 +43,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
     /**
      * Set up test.
      */
-    public function setUp()
+    public function setUp(): void
     {
         if (!interface_exists('\Metadata\MetadataFactoryInterface') or !interface_exists('\Doctrine\ORM\EntityManagerInterface')) {
             $this->markTestSkipped('Serializer and Doctrine has to be loaded to run this test');
@@ -55,7 +57,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
     /**
      * Test form type buildForm() method that generates data.
      */
-    public function testBuildForm()
+    public function testBuildForm(): void
     {
         $metadataFactory = $this->getMetadataFactoryMock();
         $registry = $this->getRegistryMock();
@@ -83,13 +85,13 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $this->assertFalse($form->get('comments')->isRequired(), 'Should return a non-required field');
     }
 
-    public function testBuildFormAddCall()
+    public function testBuildFormAddCall(): void
     {
         $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
-            ->will($this->returnCallback(function ($name, $type = null) {
+            ->will($this->returnCallback(function ($name, $type = null): void {
                 if (null !== $type) {
                     $this->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
                 }
@@ -109,7 +111,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
     /**
      * Test form type buildForm() method that generates data with an identifier field.
      */
-    public function testBuildFormWithIdentifier()
+    public function testBuildFormWithIdentifier(): void
     {
         $metadataFactory = $this->getMetadataFactoryMock();
         $registry = $this->getRegistryMock(['name']);
@@ -134,7 +136,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
     /**
      * Test form type buildForm() method that generates data with an invalid group name.
      */
-    public function testBuildFormWithInvalidGroupName()
+    public function testBuildFormWithInvalidGroupName(): void
     {
         $metadataFactory = $this->getMetadataFactoryMock();
         $registry = $this->getRegistryMock(['name']);
@@ -152,7 +154,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $this->assertSame(0, $form->count(), 'Should return 0 elements as given form type group is invalid');
     }
 
-    public function testGetParent()
+    public function testGetParent(): void
     {
         $form = new DoctrineORMSerializationType(
             $this->createMock('Metadata\MetadataFactoryInterface'),
