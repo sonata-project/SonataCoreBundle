@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -22,7 +24,7 @@ class DeprecatedTextExtensionTest extends TestCase
      * @group legacy
      * @expectedDeprecation Using the sonata.core.twig.extension.text service is deprecated since 3.2 and will be removed in 4.0
      */
-    public function testDeprecation()
+    public function testDeprecation(): void
     {
         $extension = new DeprecatedTextExtension();
         $extension->twig_truncate_filter(

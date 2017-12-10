@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -20,7 +22,7 @@ use Symfony\Component\Form\FormTypeInterface;
  */
 class FormChoiceWidgetTest extends AbstractWidgetTestCase
 {
-    public function testLabelRendering()
+    public function testLabelRendering(): void
     {
         $choices = ['some', 'choices'];
         if (!method_exists(FormTypeInterface::class, 'setDefaultOptions')) {
@@ -44,7 +46,7 @@ class FormChoiceWidgetTest extends AbstractWidgetTestCase
         );
     }
 
-    public function testDefaultValueRendering()
+    public function testDefaultValueRendering(): void
     {
         $choice = $this->factory->create(
             $this->getChoiceClass(),
@@ -60,7 +62,7 @@ class FormChoiceWidgetTest extends AbstractWidgetTestCase
         );
     }
 
-    public function testRequiredIsDisabledForEmptyPlaceholder()
+    public function testRequiredIsDisabledForEmptyPlaceholder(): void
     {
         $choice = $this->factory->create(
             $this->getChoiceClass(),
@@ -76,7 +78,7 @@ class FormChoiceWidgetTest extends AbstractWidgetTestCase
         );
     }
 
-    public function testRequiredIsEnabledIfPlaceholderIsSet()
+    public function testRequiredIsEnabledIfPlaceholderIsSet(): void
     {
         $choice = $this->factory->create(
             $this->getChoiceClass(),

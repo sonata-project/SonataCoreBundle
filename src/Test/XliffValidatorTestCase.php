@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -26,7 +28,7 @@ abstract class XliffValidatorTestCase extends \PHPUnit\Framework\TestCase
      */
     protected $errors = [];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->loader = new XliffFileLoader();
     }
@@ -34,7 +36,7 @@ abstract class XliffValidatorTestCase extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider getXliffPaths
      */
-    public function testXliff($path)
+    public function testXliff($path): void
     {
         $this->validatePath($path);
 
@@ -51,7 +53,7 @@ abstract class XliffValidatorTestCase extends \PHPUnit\Framework\TestCase
     /**
      * @param string $file The path to the xliff file
      */
-    protected function validateXliff($file)
+    protected function validateXliff($file): void
     {
         try {
             $this->loader->load($file, 'en');
@@ -64,7 +66,7 @@ abstract class XliffValidatorTestCase extends \PHPUnit\Framework\TestCase
     /**
      * @param string $path The path to lookup for Xliff file
      */
-    protected function validatePath($path)
+    protected function validatePath($path): void
     {
         $files = glob(sprintf('%s/*.xliff', $path));
 

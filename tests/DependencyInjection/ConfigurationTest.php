@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -21,7 +23,7 @@ class ConfigurationTest extends AbstractConfigurationTestCase
         return new Configuration();
     }
 
-    public function testInvalidFormTypeValueLeadsToErrorMessage()
+    public function testInvalidFormTypeValueLeadsToErrorMessage(): void
     {
         $this->assertConfigurationIsInvalid(
             [
@@ -31,7 +33,7 @@ class ConfigurationTest extends AbstractConfigurationTestCase
         );
     }
 
-    public function testProcessedConfigurationLooksAsExpected()
+    public function testProcessedConfigurationLooksAsExpected(): void
     {
         $this->assertProcessedConfigurationEquals([
             ['form_type' => 'horizontal'], // this should be overwritten
@@ -52,7 +54,7 @@ class ConfigurationTest extends AbstractConfigurationTestCase
         ]);
     }
 
-    public function testFormMapping()
+    public function testFormMapping(): void
     {
         $this->assertProcessedConfigurationEquals([
             ['form' => [
@@ -89,7 +91,7 @@ class ConfigurationTest extends AbstractConfigurationTestCase
         ]);
     }
 
-    public function testDefault()
+    public function testDefault(): void
     {
         $this->assertProcessedConfigurationEquals([
             [],

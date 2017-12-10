@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -29,7 +31,7 @@ class BaseDocumentManagerTest extends TestCase
         return $manager;
     }
 
-    public function test()
+    public function test(): void
     {
         $this->assertSame('classname', $this->getManager()->getClass());
     }

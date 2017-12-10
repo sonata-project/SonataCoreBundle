@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -111,7 +113,7 @@ abstract class BaseManager implements ManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function save($entity, $andFlush = true)
+    public function save($entity, $andFlush = true): void
     {
         $this->checkObject($entity);
 
@@ -125,7 +127,7 @@ abstract class BaseManager implements ManagerInterface
     /**
      * {@inheritdoc}
      */
-    public function delete($entity, $andFlush = true)
+    public function delete($entity, $andFlush = true): void
     {
         $this->checkObject($entity);
 
@@ -159,7 +161,7 @@ abstract class BaseManager implements ManagerInterface
      *
      * @throws \InvalidArgumentException
      */
-    protected function checkObject($object)
+    protected function checkObject($object): void
     {
         if (!$object instanceof $this->class) {
             throw new \InvalidArgumentException(sprintf(

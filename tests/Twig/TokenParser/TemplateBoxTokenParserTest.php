@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -26,7 +28,7 @@ class TemplateBoxTokenParserTest extends TestCase
      *
      * @throws \Twig_Error_Syntax
      */
-    public function testCompile($enabled, $source, $expected)
+    public function testCompile($enabled, $source, $expected): void
     {
         $translator = $this->createMock('Symfony\Component\Translation\TranslatorInterface');
 

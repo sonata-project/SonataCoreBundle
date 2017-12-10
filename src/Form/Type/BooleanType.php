@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -20,14 +22,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BooleanType extends AbstractType
 {
-    const TYPE_YES = 1;
+    public const TYPE_YES = 1;
 
-    const TYPE_NO = 2;
+    public const TYPE_NO = 2;
 
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         if ($options['transform']) {
             $builder->addModelTransformer(new BooleanTypeToBooleanTransformer());
@@ -37,7 +39,7 @@ class BooleanType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $defaultOptions = [
             'transform' => false,

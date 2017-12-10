@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -31,7 +33,7 @@ class FormHelper
      * @param array $data
      * @param Form  $form
      */
-    public static function removeFields(array $data, Form $form)
+    public static function removeFields(array $data, Form $form): void
     {
         $diff = array_diff(array_keys($form->all()), array_keys($data));
 
@@ -59,7 +61,7 @@ class FormHelper
     /**
      * @param array $mapping
      */
-    public static function registerFormTypeMapping(array $mapping)
+    public static function registerFormTypeMapping(array $mapping): void
     {
         self::$typeMapping = array_merge(self::$typeMapping, $mapping);
     }
@@ -68,7 +70,7 @@ class FormHelper
      * @param string $type
      * @param array  $services
      */
-    public static function registerFormExtensionMapping($type, array $services)
+    public static function registerFormExtensionMapping($type, array $services): void
     {
         if (!isset(self::$extensionMapping[$type])) {
             self::$extensionMapping[$type] = [];
@@ -91,7 +93,7 @@ class FormHelper
      *
      * @internal
      */
-    public static function configureOptions(FormTypeInterface $type, OptionsResolver $optionsResolver)
+    public static function configureOptions(FormTypeInterface $type, OptionsResolver $optionsResolver): void
     {
         $type->configureOptions($optionsResolver);
     }

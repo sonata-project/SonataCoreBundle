@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -32,7 +34,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
     /**
      * {@inheritdoc}
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('sonata:core:dump-doctrine-metadata')
@@ -66,7 +68,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
     /**
      * {@inheritdoc}
      */
-    protected function initialize(InputInterface $input, OutputInterface $output)
+    protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         $output->writeln('Initialising Doctrine metadata.');
         $manager = $this->getContainer()->get('doctrine')->getManager();
@@ -103,7 +105,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
      * @param InputInterface  $input
      * @param OutputInterface $output
      */
-    private function dumpMetadata(array $metadata, InputInterface $input, OutputInterface $output)
+    private function dumpMetadata(array $metadata, InputInterface $input, OutputInterface $output): void
     {
         foreach ($metadata as $name => $meta) {
             $output->writeln(sprintf('<info>%s</info>', $name));
@@ -185,7 +187,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
         $normalizedMeta['table'] = $meta->table['name'];
 
         foreach ($fieldMappings as $field) {
-            $normalizedMeta['fields'][$field['fieldName']] = isset($field['columnName']) ? $field['columnName'] : null;
+            $normalizedMeta['fields'][$field['fieldName']] = $field['columnName'] ?? null;
         }
 
         return $normalizedMeta;

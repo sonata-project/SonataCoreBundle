@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -15,7 +17,7 @@ use Sonata\CoreBundle\Twig\Node\TemplateBoxNode;
 
 class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $body = new TemplateBoxNode(
             new \Twig_Node_Expression_Constant('This is the default message', 1),
@@ -31,7 +33,7 @@ class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
      * @covers \Twig_Node_Block::compile
      * @dataProvider getTests
      */
-    public function testCompile($node, $source, $environment = null, $isPattern = false)
+    public function testCompile($node, $source, $environment = null, $isPattern = false): void
     {
         parent::testCompile($node, $source, $environment, $isPattern);
     }

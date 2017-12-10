@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -22,12 +24,12 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 final class AdapterCompilerPassTest extends AbstractCompilerPassTestCase
 {
-    public function registerCompilerPass(ContainerBuilder $container)
+    public function registerCompilerPass(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new AdapterCompilerPass());
     }
 
-    public function testDefinitionsAdded()
+    public function testDefinitionsAdded(): void
     {
         $coreModelAdapterChain = new Definition();
         $this->setDefinition('sonata.core.model.adapter.chain', $coreModelAdapterChain);
@@ -50,7 +52,7 @@ final class AdapterCompilerPassTest extends AbstractCompilerPassTestCase
         );
     }
 
-    public function testDefinitionsRemoved()
+    public function testDefinitionsRemoved(): void
     {
         $coreModelAdapterChain = new Definition();
         $this->setDefinition('sonata.core.model.adapter.chain', $coreModelAdapterChain);

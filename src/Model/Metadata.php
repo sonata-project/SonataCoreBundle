@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -114,7 +116,7 @@ class Metadata implements MetadataInterface
      * @param $name
      * @param $option
      */
-    public function setOption($name, $option)
+    public function setOption($name, $option): void
     {
         $this->options[$name] = $option;
     }
@@ -124,7 +126,7 @@ class Metadata implements MetadataInterface
      *
      * @param array $options
      */
-    public function setOptions(array $options)
+    public function setOptions(array $options): void
     {
         $this->options = $options;
     }

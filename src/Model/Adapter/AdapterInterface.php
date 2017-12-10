@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -13,7 +15,7 @@ namespace Sonata\CoreBundle\Model\Adapter;
 
 interface AdapterInterface
 {
-    const ID_SEPARATOR = '~';
+    public const ID_SEPARATOR = '~';
 
     /**
      * Get the identifiers for this model class as a string.

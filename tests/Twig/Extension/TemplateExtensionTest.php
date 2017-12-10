@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -16,7 +18,7 @@ use Sonata\CoreBundle\Twig\Extension\TemplateExtension;
 
 class TemplateExtensionTest extends TestCase
 {
-    public function testSafeUrl()
+    public function testSafeUrl(): void
     {
         $adapter = $this->createMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface');
         $adapter->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue('safe-parameter'));
