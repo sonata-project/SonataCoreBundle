@@ -67,12 +67,15 @@ class ErrorElement
 
     /**
      * @param mixed                                                     $subject
-     * @param ConstraintValidatorFactoryInterface                       $constraintValidatorFactory
      * @param LegacyExecutionContextInterface|ExecutionContextInterface $context
      * @param string                                                    $group
      */
-    public function __construct($subject, ConstraintValidatorFactoryInterface $constraintValidatorFactory, $context, $group)
-    {
+    public function __construct(
+        $subject,
+        ConstraintValidatorFactoryInterface $constraintValidatorFactory,
+        $context,
+        $group
+    ) {
         if (!($context instanceof LegacyExecutionContextInterface) && !($context instanceof ExecutionContextInterface)) {
             throw new \InvalidArgumentException(sprintf('Argument 3 passed to %s::__construct() must be an instance of Symfony\Component\Validator\ExecutionContextInterface or Symfony\Component\Validator\Context\ExecutionContextInterface.', get_class($this)));
         }
@@ -87,7 +90,6 @@ class ErrorElement
 
     /**
      * @param string $name
-     * @param array  $arguments
      *
      * @throws \RunTimeException
      *
@@ -105,8 +107,6 @@ class ErrorElement
     }
 
     /**
-     * @param Constraint $constraint
-     *
      * @return ErrorElement
      */
     public function addConstraint(Constraint $constraint)
@@ -208,11 +208,6 @@ class ErrorElement
         return $this->errors;
     }
 
-    /**
-     * @group legacy
-     *
-     * @param \Symfony\Component\Validator\Constraint $constraint
-     */
     protected function validate(Constraint $constraint)
     {
         $subPath = (string) $this->getCurrentPropertyPath();
@@ -244,7 +239,6 @@ class ErrorElement
 
     /**
      * @param string $name
-     * @param array  $options
      *
      * @return
      */

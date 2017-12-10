@@ -32,8 +32,6 @@ class DateRangeType extends AbstractType
     /**
      * NEXT_MAJOR: remove this method.
      *
-     * @param TranslatorInterface|null $translator
-     *
      * @deprecated translator dependency is deprecated since version 3.1, to be removed in 4.0
      */
     public function __construct(TranslatorInterface $translator = null)

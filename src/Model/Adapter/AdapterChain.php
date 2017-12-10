@@ -15,9 +15,6 @@ class AdapterChain implements AdapterInterface
 {
     protected $adapters = [];
 
-    /**
-     * @param AdapterInterface $adapter
-     */
     public function addAdapter(AdapterInterface $adapter)
     {
         $this->adapters[] = $adapter;

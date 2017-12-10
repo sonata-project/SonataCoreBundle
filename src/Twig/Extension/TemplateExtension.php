@@ -34,9 +34,7 @@ class TemplateExtension extends AbstractExtension
     protected $translator;
 
     /**
-     * @param bool                $debug        Is Symfony debug enabled?
-     * @param TranslatorInterface $translator   Symfony Translator service
-     * @param AdapterInterface    $modelAdapter A Sonata model adapter
+     * @param bool $debug Is Symfony debug enabled?
      */
     public function __construct($debug, TranslatorInterface $translator, AdapterInterface $modelAdapter)
     {
@@ -63,8 +61,6 @@ class TemplateExtension extends AbstractExtension
     /**
      * Slugify a text.
      *
-     * @param $text
-     *
      * @return string
      */
     public function slugify($text)
@@ -90,8 +86,6 @@ class TemplateExtension extends AbstractExtension
     }
 
     /**
-     * @param $model
-     *
      * @return string
      */
     public function getUrlsafeIdentifier($model)

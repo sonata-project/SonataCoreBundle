@@ -28,8 +28,6 @@ namespace Sonata\CoreBundle\Component;
 class NativeSlugify
 {
     /**
-     * @param $text
-     *
      * @return mixed|string
      *
      * @deprecated since 2.3, to be removed in 4.0.

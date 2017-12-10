@@ -67,8 +67,6 @@ class Configuration implements ConfigurationInterface
 
     /**
      * Returns configuration for flash messages.
-     *
-     * @param ArrayNodeDefinition $node
      */
     private function addFlashMessageSection(ArrayNodeDefinition $node)
     {
@@ -107,8 +105,6 @@ class Configuration implements ConfigurationInterface
 
     /**
      * Returns configuration for serializer formats.
-     *
-     * @param ArrayNodeDefinition $node
      */
     private function addSerializerFormats(ArrayNodeDefinition $node)
     {

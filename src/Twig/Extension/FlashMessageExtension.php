@@ -27,9 +27,6 @@ class FlashMessageExtension extends AbstractExtension
      */
     protected $flashManager;
 
-    /**
-     * @param FlashManager $flashManager
-     */
     public function __construct(FlashManager $flashManager)
     {
         $this->flashManager = $flashManager;

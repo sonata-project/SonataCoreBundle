@@ -21,9 +21,6 @@ class FormTypeExtension extends AbstractExtension implements GlobalsInterface
      */
     private $wrapFieldsWithAddons;
 
-    /**
-     * @param $formType
-     */
     public function __construct($formType)
     {
         $this->wrapFieldsWithAddons = (true === $formType || 'standard' === $formType);

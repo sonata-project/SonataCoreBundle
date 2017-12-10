@@ -29,15 +29,20 @@ class TemplateBoxNode extends Node
     protected $translator;
 
     /**
-     * @param \Twig_Node_Expression $message           Node message to display
-     * @param \Twig_Node_Expression $translationBundle Node translation bundle to use for display
-     * @param int                   $enabled           Is Symfony debug enabled?
-     * @param TranslatorInterface   $translator        Symfony Translator service
-     * @param null|string           $lineno            Symfony template line number
-     * @param null                  $tag               Symfony tag name
+     * @param AbstractExpression $message           Node message to display
+     * @param AbstractExpression $translationBundle Node translation bundle to use for display
+     * @param int                $enabled           Is Symfony debug enabled?
+     * @param null|string        $lineno            Symfony template line number
+     * @param null               $tag               Symfony tag name
      */
-    public function __construct(AbstractExpression $message, AbstractExpression $translationBundle = null, $enabled, TranslatorInterface $translator, $lineno, $tag = null)
-    {
+    public function __construct(
+        AbstractExpression $message,
+        AbstractExpression $translationBundle = null,
+        $enabled,
+        TranslatorInterface $translator,
+        $lineno,
+        $tag = null
+    ) {
         $this->enabled = $enabled;
         $this->translator = $translator;
 
