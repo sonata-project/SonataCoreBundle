@@ -18,9 +18,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ImmutableArrayType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         foreach ($options['keys'] as $infos) {
@@ -56,9 +53,6 @@ class ImmutableArrayType extends AbstractType
         $this->configureOptions($resolver);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -76,17 +70,11 @@ class ImmutableArrayType extends AbstractType
         });
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix()
     {
         return 'sonata_type_immutable_array';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return $this->getBlockPrefix();

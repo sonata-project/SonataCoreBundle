@@ -34,9 +34,6 @@ abstract class BaseDocumentManager extends BaseManager
         throw new \RuntimeException(sprintf('The property %s does not exists', $name));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getConnection()
     {
         return $this->getObjectManager()->getConnection();

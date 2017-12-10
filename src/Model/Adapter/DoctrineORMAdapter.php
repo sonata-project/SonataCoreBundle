@@ -32,9 +32,6 @@ class DoctrineORMAdapter implements AdapterInterface
         $this->registry = $registry;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNormalizedIdentifier($entity)
     {
         if (is_scalar($entity)) {

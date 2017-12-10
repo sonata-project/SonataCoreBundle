@@ -36,9 +36,6 @@ class InlineConstraint extends Constraint
      */
     protected $serializingWarning;
 
-    /**
-     * {@inheritdoc}
-     */
     public function __construct($options = null)
     {
         parent::__construct($options);
@@ -50,9 +47,6 @@ class InlineConstraint extends Constraint
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function __sleep()
     {
         if (!is_string($this->service) || !is_string($this->method)) {
@@ -65,9 +59,6 @@ class InlineConstraint extends Constraint
         return array_keys(get_object_vars($this));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function __wakeup()
     {
         if (is_string($this->service) && is_string($this->method)) {
@@ -80,9 +71,6 @@ class InlineConstraint extends Constraint
         $this->serializingWarning = true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function validatedBy()
     {
         return 'sonata.core.validator.inline';
@@ -104,17 +92,11 @@ class InlineConstraint extends Constraint
         return $this->method;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTargets()
     {
         return self::CLASS_CONSTRAINT;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRequiredOptions()
     {
         return [

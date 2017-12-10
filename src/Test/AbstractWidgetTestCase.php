@@ -44,9 +44,6 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      */
     private $renderer;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp()
     {
         parent::setUp();

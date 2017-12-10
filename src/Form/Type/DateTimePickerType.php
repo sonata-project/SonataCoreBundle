@@ -30,9 +30,6 @@ class DateTimePickerType extends BasePickerType
         $this->configureOptions($resolver);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array_merge($this->getCommonDefaults(), [
@@ -44,25 +41,16 @@ class DateTimePickerType extends BasePickerType
         ]));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent()
     {
         return DateTimeType::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix()
     {
         return 'sonata_type_datetime_picker';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return $this->getBlockPrefix();

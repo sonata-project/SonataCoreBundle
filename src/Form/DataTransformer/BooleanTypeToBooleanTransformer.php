@@ -16,9 +16,6 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 class BooleanTypeToBooleanTransformer implements DataTransformerInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function transform($value)
     {
         if (true === $value or BooleanType::TYPE_YES === (int) $value) {
@@ -28,9 +25,6 @@ class BooleanTypeToBooleanTransformer implements DataTransformerInterface
         return BooleanType::TYPE_NO;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function reverseTransform($value)
     {
         if (BooleanType::TYPE_YES === $value) {

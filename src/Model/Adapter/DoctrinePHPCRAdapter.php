@@ -32,9 +32,6 @@ class DoctrinePHPCRAdapter implements AdapterInterface
         $this->registry = $registry;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNormalizedIdentifier($document)
     {
         if (is_scalar($document)) {

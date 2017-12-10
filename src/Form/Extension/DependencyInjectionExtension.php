@@ -92,9 +92,6 @@ class DependencyInjectionExtension implements FormExtensionInterface
         $this->reverseMappingTypes = array_flip($mappingTypes);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getType($name)
     {
         // resolve code to FQCN
@@ -125,17 +122,11 @@ class DependencyInjectionExtension implements FormExtensionInterface
         return $type;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasType($name)
     {
         return isset($this->mappingTypes[$name]) || isset($this->typeServiceIds[$name]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTypeExtensions($name)
     {
         // lookup inside the extension mapping
@@ -161,17 +152,11 @@ class DependencyInjectionExtension implements FormExtensionInterface
         return $extensions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasTypeExtensions($name)
     {
         return isset($this->reverseMappingTypes[$name]) || isset($this->typeExtensionServiceIds[$name]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTypeGuesser()
     {
         if (!$this->guesserLoaded) {

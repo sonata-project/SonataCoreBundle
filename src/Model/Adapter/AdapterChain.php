@@ -23,9 +23,6 @@ class AdapterChain implements AdapterInterface
         $this->adapters[] = $adapter;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNormalizedIdentifier($model)
     {
         foreach ($this->adapters as $adapter) {
@@ -37,9 +34,6 @@ class AdapterChain implements AdapterInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getUrlsafeIdentifier($model)
     {
         foreach ($this->adapters as $adapter) {

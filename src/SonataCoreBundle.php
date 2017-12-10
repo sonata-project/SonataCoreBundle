@@ -65,9 +65,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SonataCoreBundle extends Bundle
 {
-    /**
-     * {@inheritdoc}
-     */
     public function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new StatusRendererCompilerPass());
@@ -77,9 +74,6 @@ class SonataCoreBundle extends Bundle
         $this->registerFormMapping();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function boot()
     {
         // not sur we need this at Runtime ...

@@ -20,9 +20,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 class FormFactoryCompilerPass implements CompilerPassInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function process(ContainerBuilder $container)
     {
         $typeIdx = [];
