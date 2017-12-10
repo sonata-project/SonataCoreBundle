@@ -50,9 +50,6 @@ class DateTimeRangeType extends AbstractType
         $this->translator = $translator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $options['field_options_start'] = array_merge(
@@ -75,17 +72,11 @@ class DateTimeRangeType extends AbstractType
         $builder->add('end', $options['field_type'], array_merge(['required' => false], $options['field_options'], $options['field_options_end']));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix()
     {
         return 'sonata_type_datetime_range';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return $this->getBlockPrefix();
@@ -101,9 +92,6 @@ class DateTimeRangeType extends AbstractType
         $this->configureOptions($resolver);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

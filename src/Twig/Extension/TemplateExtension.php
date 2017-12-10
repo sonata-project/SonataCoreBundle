@@ -45,9 +45,6 @@ class TemplateExtension extends AbstractExtension
         $this->modelAdapter = $modelAdapter;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFilters()
     {
         return [
@@ -56,9 +53,6 @@ class TemplateExtension extends AbstractExtension
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTokenParsers()
     {
         return [
@@ -105,9 +99,6 @@ class TemplateExtension extends AbstractExtension
         return $this->modelAdapter->getUrlsafeIdentifier($model);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return 'sonata_core_template';

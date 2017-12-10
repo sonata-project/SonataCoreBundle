@@ -34,9 +34,6 @@ class StatusExtension extends AbstractExtension
         $this->statusServices[] = $renderer;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFilters()
     {
         return [
@@ -63,9 +60,6 @@ class StatusExtension extends AbstractExtension
         return $default;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return 'sonata_core_status';

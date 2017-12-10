@@ -68,9 +68,6 @@ abstract class BasePickerType extends AbstractType
         $this->locale = $this->translator->getLocale();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         $format = $options['format'];

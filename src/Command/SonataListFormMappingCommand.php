@@ -27,17 +27,11 @@ class SonataListFormMappingCommand extends ContainerAwareCommand
      */
     protected $metadata;
 
-    /**
-     * {@inheritdoc}
-     */
     public function isEnabled()
     {
         return Kernel::MAJOR_VERSION !== 3;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configure()
     {
         $this
@@ -53,9 +47,6 @@ class SonataListFormMappingCommand extends ContainerAwareCommand
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('Getting form types:');

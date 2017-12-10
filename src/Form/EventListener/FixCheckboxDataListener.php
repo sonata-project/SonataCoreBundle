@@ -25,9 +25,6 @@ use Symfony\Component\Form\FormEvents;
  */
 class FixCheckboxDataListener implements EventSubscriberInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents()
     {
         // NEXT_MAJOR: change `preBind` to `preSubmit`

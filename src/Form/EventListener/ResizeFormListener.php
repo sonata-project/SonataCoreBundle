@@ -62,9 +62,6 @@ class ResizeFormListener implements EventSubscriberInterface
         $this->preSubmitDataCallback = $preSubmitDataCallback;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents()
     {
         return [

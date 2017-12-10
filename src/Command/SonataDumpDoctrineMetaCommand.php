@@ -29,9 +29,6 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
      */
     protected $metadata;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configure()
     {
         $this
@@ -63,9 +60,6 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('Initialising Doctrine metadata.');
@@ -80,9 +74,6 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         if (!$this->metadata) {

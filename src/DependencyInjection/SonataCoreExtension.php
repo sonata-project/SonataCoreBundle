@@ -26,9 +26,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class SonataCoreExtension extends Extension implements PrependExtensionInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function prepend(ContainerBuilder $container)
     {
         $configs = $container->getExtensionConfig('sonata_admin');
@@ -43,9 +40,6 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $processor = new Processor();

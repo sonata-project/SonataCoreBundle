@@ -26,9 +26,6 @@ class BooleanType extends AbstractType
 
     const TYPE_NO = 2;
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if ($options['transform']) {
@@ -54,9 +51,6 @@ class BooleanType extends AbstractType
         $this->configureOptions($resolver);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $defaultOptions = [
@@ -89,25 +83,16 @@ class BooleanType extends AbstractType
         $resolver->setDefaults($defaultOptions);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent()
     {
         return ChoiceType::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return $this->getBlockPrefix();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix()
     {
         return 'sonata_type_boolean';

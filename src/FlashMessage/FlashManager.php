@@ -54,17 +54,11 @@ class FlashManager implements StatusClassRendererInterface
         $this->cssClasses = $cssClasses;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function handlesObject($object, $statusName = null)
     {
         return is_string($object) && array_key_exists($object, $this->cssClasses);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getStatusClass($object, $statusName = null, $default = '')
     {
         return array_key_exists($object, $this->cssClasses)

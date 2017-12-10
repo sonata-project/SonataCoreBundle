@@ -38,9 +38,6 @@ class InlineValidator extends ConstraintValidator
         $this->constraintValidatorFactory = $constraintValidatorFactory;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function validate($value, Constraint $constraint)
     {
         if ($constraint->isClosure()) {

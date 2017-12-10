@@ -30,9 +30,6 @@ class DatePickerType extends BasePickerType
         $this->configureOptions($resolver);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array_merge($this->getCommonDefaults(), [
@@ -41,25 +38,16 @@ class DatePickerType extends BasePickerType
         ]));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent()
     {
         return DateType::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix()
     {
         return 'sonata_type_date_picker';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return $this->getBlockPrefix();

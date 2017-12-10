@@ -35,9 +35,6 @@ class FlashMessageExtension extends AbstractExtension
         $this->flashManager = $flashManager;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions()
     {
         return [
@@ -69,9 +66,6 @@ class FlashMessageExtension extends AbstractExtension
         return $this->flashManager->getHandledTypes();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return 'sonata_core_flashmessage';
