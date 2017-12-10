@@ -13,6 +13,7 @@ namespace Sonata\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -44,8 +45,17 @@ abstract class BaseStatusType extends AbstractType
      * @param string $name
      * @param bool   $flip   reverse key/value to match sf2.8 and sf3.0 change
      */
-    public function __construct($class, $getter, $name, $flip = false)
+    public function __construct($class, $getter, $name, $flip = null)
     {
+        if (null === $flip) {
+            $flip = true;
+        } else {
+            @trigger_error(
+                'Calling '.__CLASS__.' class with a flip parameter is deprecated since 3.x, to be removed with 4.0',
+                E_USER_DEPRECATED
+            );
+        }
+
         $this->class = $class;
         $this->getter = $getter;
         $this->name = $name;
@@ -93,6 +103,12 @@ abstract class BaseStatusType extends AbstractType
     {
         $choices = call_user_func([$this->class, $this->getter]);
 
+        // choice_as_value options is not needed in SF 3.0+
+        if (method_exists(FormTypeInterface::class, 'setDefaultOptions')) {
+            $resolver->setDefault('choices_as_values', true);
+        }
+
+        // NEXT_MAJOR: remove this property
         if ($this->flip) {
             $count = count($choices);
 
