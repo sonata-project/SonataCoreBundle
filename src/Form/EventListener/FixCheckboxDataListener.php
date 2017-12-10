@@ -34,8 +34,6 @@ class FixCheckboxDataListener implements EventSubscriberInterface
     /**
      * NEXT_MAJOR: remove this method.
      *
-     * @param FormEvent $event
-     *
      * @deprecated Since version 2.3, to be renamed in 4.0.
      *             Use {@link preSubmit} instead
      */
@@ -53,9 +51,6 @@ class FixCheckboxDataListener implements EventSubscriberInterface
         $this->preSubmit($event);
     }
 
-    /**
-     * @param FormEvent $event
-     */
     public function preSubmit(FormEvent $event)
     {
         $data = $event->getData();

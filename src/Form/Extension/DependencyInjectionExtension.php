@@ -70,16 +70,14 @@ class DependencyInjectionExtension implements FormExtensionInterface
      */
     private $guesserLoaded = false;
 
-    /**
-     * @param ContainerInterface $container
-     * @param array              $typeServiceIds
-     * @param array              $typeExtensionServiceIds
-     * @param array              $guesserServiceIds
-     * @param array              $mappingTypes
-     * @param array              $extensionTypes
-     */
-    public function __construct(ContainerInterface $container, array $typeServiceIds, array $typeExtensionServiceIds, array $guesserServiceIds, array $mappingTypes = [], array $extensionTypes = [])
-    {
+    public function __construct(
+        ContainerInterface $container,
+        array $typeServiceIds,
+        array $typeExtensionServiceIds,
+        array $guesserServiceIds,
+        array $mappingTypes = [],
+        array $extensionTypes = []
+    ) {
         $this->container = $container;
         $this->typeServiceIds = $typeServiceIds;
         $this->typeExtensionServiceIds = $typeExtensionServiceIds;

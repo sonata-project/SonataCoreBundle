@@ -42,9 +42,6 @@ abstract class BasePickerType extends AbstractType
 
     /**
      * NEXT_MAJOR: TranslatorInterface needs to be mandatory.
-     *
-     * @param MomentFormatConverter $formatConverter
-     * @param TranslatorInterface   $translator
      */
     public function __construct(MomentFormatConverter $formatConverter, TranslatorInterface $translator = null)
     {

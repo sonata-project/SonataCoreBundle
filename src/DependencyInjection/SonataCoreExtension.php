@@ -100,10 +100,6 @@ EOT
         ]);
     }
 
-    /**
-     * @param ContainerBuilder $container
-     * @param array            $config
-     */
     public function configureFormFactory(ContainerBuilder $container, array $config)
     {
         if (!$config['form']['mapping']['enabled'] || !class_exists(FormPass::class)) {
@@ -134,9 +130,6 @@ EOT
 
     /**
      * Registers flash message types defined in configuration to flash manager.
-     *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param array                                                   $config
      */
     public function registerFlashTypes(ContainerBuilder $container, array $config)
     {

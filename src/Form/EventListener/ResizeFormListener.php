@@ -50,12 +50,15 @@ class ResizeFormListener implements EventSubscriberInterface
 
     /**
      * @param string        $type
-     * @param array         $typeOptions
      * @param bool          $resizeOnSubmit
      * @param \Closure|null $preSubmitDataCallback
      */
-    public function __construct($type, array $typeOptions = [], $resizeOnSubmit = false, $preSubmitDataCallback = null)
-    {
+    public function __construct(
+        $type,
+        array $typeOptions = [],
+        $resizeOnSubmit = false,
+        $preSubmitDataCallback = null
+    ) {
         $this->type = $type;
         $this->resizeOnSubmit = $resizeOnSubmit;
         $this->typeOptions = $typeOptions;
@@ -74,8 +77,6 @@ class ResizeFormListener implements EventSubscriberInterface
     }
 
     /**
-     * @param FormEvent $event
-     *
      * @throws UnexpectedTypeException
      */
     public function preSetData(FormEvent $event)
@@ -110,8 +111,6 @@ class ResizeFormListener implements EventSubscriberInterface
     /**
      * NEXT_MAJOR: remove this method.
      *
-     * @param FormEvent $event
-     *
      * @deprecated Since version 2.3, to be renamed in 4.0.
      *             Use {@link preSubmit} instead
      */
@@ -130,8 +129,6 @@ class ResizeFormListener implements EventSubscriberInterface
     }
 
     /**
-     * @param FormEvent $event
-     *
      * @throws UnexpectedTypeException
      */
     public function preSubmit(FormEvent $event)
@@ -181,8 +178,6 @@ class ResizeFormListener implements EventSubscriberInterface
     /**
      * NEXT_MAJOR: remove this method.
      *
-     * @param FormEvent $event
-     *
      * @deprecated Since version 2.3, to be removed in 4.0.
      *             Use {@link onSubmit} instead
      */
@@ -201,8 +196,6 @@ class ResizeFormListener implements EventSubscriberInterface
     }
 
     /**
-     * @param FormEvent $event
-     *
      * @throws UnexpectedTypeException
      */
     public function onSubmit(FormEvent $event)

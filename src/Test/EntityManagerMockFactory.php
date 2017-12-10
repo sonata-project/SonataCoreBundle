@@ -17,10 +17,6 @@ use Doctrine\ORM\Version;
 class EntityManagerMockFactory
 {
     /**
-     * @param \PHPUnit_Framework_TestCase $test
-     * @param \Closure                    $qbCallback
-     * @param                             $fields
-     *
      * @return EntityManagerInterface
      */
     public static function create(\PHPUnit\Framework\TestCase $test, \Closure $qbCallback, $fields)

@@ -46,7 +46,6 @@ class Metadata implements MetadataInterface
      * @param string $description
      * @param mixed  $image
      * @param string $domain
-     * @param array  $options
      */
     public function __construct($title, $description = null, $image = null, $domain = null, array $options = [])
     {
@@ -108,22 +107,11 @@ class Metadata implements MetadataInterface
         return array_key_exists($name, $this->options) ? $this->options[$name] : $default;
     }
 
-    /**
-     * Sets an option.
-     *
-     * @param $name
-     * @param $option
-     */
     public function setOption($name, $option)
     {
         $this->options[$name] = $option;
     }
 
-    /**
-     * Sets all options.
-     *
-     * @param array $options
-     */
     public function setOptions(array $options)
     {
         $this->options = $options;

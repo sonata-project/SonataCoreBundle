@@ -30,8 +30,7 @@ class TemplateBoxTokenParser extends AbstractTokenParser
     protected $translator;
 
     /**
-     * @param bool                $enabled    Is Symfony debug enabled?
-     * @param TranslatorInterface $translator Symfony Translator service
+     * @param bool $enabled Is Symfony debug enabled?
      */
     public function __construct($enabled, TranslatorInterface $translator)
     {

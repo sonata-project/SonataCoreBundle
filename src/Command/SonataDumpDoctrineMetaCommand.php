@@ -89,10 +89,6 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
 
     /**
      * Display the list of entities handled by Doctrine and their fields.
-     *
-     * @param array           $metadata
-     * @param InputInterface  $input
-     * @param OutputInterface $output
      */
     private function dumpMetadata(array $metadata, InputInterface $input, OutputInterface $output)
     {
@@ -129,10 +125,6 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
     }
 
     /**
-     * @param array           $metadata
-     * @param InputInterface  $input
-     * @param OutputInterface $output
-     *
      * @return array
      */
     private function filterMetadata(array $metadata, InputInterface $input, OutputInterface $output)
@@ -164,8 +156,6 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
     }
 
     /**
-     * @param ClassMetadata $meta
-     *
      * @return array
      */
     private function normalizeDoctrineORMMeta(ClassMetadata $meta)

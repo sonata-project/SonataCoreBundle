@@ -145,9 +145,6 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
     /**
      * Renders widget from FormView, in SonataAdmin context, with optional view variables $vars. Returns plain HTML.
      *
-     * @param FormView $view
-     * @param array    $vars
-     *
      * @return string
      */
     final protected function renderWidget(FormView $view, array $vars = [])
