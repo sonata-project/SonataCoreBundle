@@ -19,6 +19,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
+@trigger_error(
+    sprintf(
+        'Form type "%s" is deprecated since SonataCoreBundle 2.2.0 and will be'
+        .' removed in 4.0. Use form type "%s" with "translation_domain" option instead.',
+        TranslatableChoiceType::class,
+        ChoiceType::class
+    ),
+    E_USER_DEPRECATED
+);
+
 /**
  * NEXT_MAJOR: remove this class.
  *
@@ -37,12 +47,6 @@ class TranslatableChoiceType extends AbstractType
      */
     public function __construct(TranslatorInterface $translator)
     {
-        @trigger_error(
-            'Form type "sonata_type_translatable_choice" is deprecated since SonataCoreBundle 2.2.0 and will be'
-            .' removed in 4.0. Use form type "choice" with "translation_domain" option instead.',
-            E_USER_DEPRECATED
-        );
-
         $this->translator = $translator;
     }
 
