@@ -11,6 +11,7 @@
 
 namespace Sonata\CoreBundle\Tests\Model;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\DBAL\Connection;
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Model\BaseManager;
@@ -45,7 +46,7 @@ class BaseManagerTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Object must be instance of class, DateTime given');
 
-        $manager = new ManagerTest('class', $this->createMock('Doctrine\Common\Persistence\ManagerRegistry'));
+        $manager = new ManagerTest('class', $this->createMock(ManagerRegistry::class));
 
         $manager->publicCheckObject(new \DateTime());
     }

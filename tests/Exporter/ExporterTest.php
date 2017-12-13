@@ -12,8 +12,10 @@
 namespace Sonata\CoreBundle\Tests\Exporter;
 
 use Exporter\Source\ArraySourceIterator;
+use Exporter\Source\SourceIteratorInterface;
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Exporter\Exporter;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * NEXT_MAJOR: remove this class.
@@ -26,7 +28,7 @@ class ExporterTest extends TestCase
     {
         $this->expectException(\RuntimeException::class);
 
-        $source = $this->createMock('Exporter\Source\SourceIteratorInterface');
+        $source = $this->createMock(SourceIteratorInterface::class);
 
         $exporter = new Exporter();
         $exporter->getResponse('foo', 'foo', $source);
@@ -44,7 +46,7 @@ class ExporterTest extends TestCase
         $exporter = new Exporter();
         $response = $exporter->getResponse($format, $filename, $source);
 
-        $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
+        $this->assertInstanceOf(Response::class, $response);
         $this->assertSame($contentType, $response->headers->get('Content-Type'));
         $this->assertSame('attachment; filename="'.$filename.'"', $response->headers->get('Content-Disposition'));
     }

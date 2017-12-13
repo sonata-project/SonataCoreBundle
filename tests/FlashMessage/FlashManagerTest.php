@@ -73,7 +73,7 @@ class FlashManagerTest extends TestCase
         $session = $this->flashManager->getSession();
 
         // Then
-        $this->assertInstanceOf('\Symfony\Component\HttpFoundation\Session\Session', $session);
+        $this->assertInstanceOf(Session::class, $session);
     }
 
     public function testGetHandledTypes()

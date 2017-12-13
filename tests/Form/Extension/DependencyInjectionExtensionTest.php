@@ -13,15 +13,19 @@ namespace Sonata\CoreBundle\Tests\Form\Extension;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Form\Extension\DependencyInjectionExtension;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\FormTypeInterface;
 
 class DependencyInjectionExtensionTest extends TestCase
 {
     public function testValidType()
     {
-        $type = $this->createMock('Symfony\Component\Form\FormTypeInterface');
+        $type = $this->createMock(FormTypeInterface::class);
         $formName = get_class($type);
 
-        $container = $this->createMock('Symfony\Component\DependencyInjection\ContainerInterface');
+        $container = $this->createMock(ContainerInterface::class);
         $container->expects($this->any())->method('has')->will($this->returnValue(true));
         $container->expects($this->any())
             ->method('get')
@@ -43,16 +47,16 @@ class DependencyInjectionExtensionTest extends TestCase
 
     public function testTypeWithoutService()
     {
-        $container = $this->createMock('Symfony\Component\DependencyInjection\ContainerInterface');
+        $container = $this->createMock(ContainerInterface::class);
 
         $f = new DependencyInjectionExtension($container, [], [], [], []);
 
-        $this->assertInstanceOf('Symfony\Component\Form\Extension\Core\Type\HiddenType', $f->getType('Symfony\Component\Form\Extension\Core\Type\HiddenType'));
+        $this->assertInstanceOf(HiddenType::class, $f->getType(HiddenType::class));
     }
 
     public function testTypeExtensionsValid()
     {
-        $container = $this->createMock('Symfony\Component\DependencyInjection\ContainerInterface');
+        $container = $this->createMock(ContainerInterface::class);
         $container->expects($this->any())->method('has')->will($this->returnValue(true));
         $container->expects($this->any())
             ->method('get')
@@ -64,13 +68,13 @@ class DependencyInjectionExtensionTest extends TestCase
 
         $typeServiceIds = [];
         $typeExtensionServiceIds = [
-            'Symfony\Component\Form\Type\FormType' => [
+            FormType::class => [
                 'symfony.form.type.form_extension',
             ],
         ];
         $guesserServiceIds = [];
         $mappingTypes = [
-            'form' => 'Symfony\Component\Form\Type\FormType',
+            'form' => FormType::class,
         ];
         $extensionTypes = [
             'form' => [
@@ -80,6 +84,6 @@ class DependencyInjectionExtensionTest extends TestCase
 
         $f = new DependencyInjectionExtension($container, $typeServiceIds, $typeExtensionServiceIds, $guesserServiceIds, $mappingTypes, $extensionTypes);
 
-        $this->assertCount(2, $f->getTypeExtensions('Symfony\Component\Form\Type\FormType'));
+        $this->assertCount(2, $f->getTypeExtensions(FormType::class));
     }
 }

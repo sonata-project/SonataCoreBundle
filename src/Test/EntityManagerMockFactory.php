@@ -11,7 +11,12 @@
 
 namespace Sonata\CoreBundle\Test;
 
+use Doctrine\Common\Persistence\Mapping\ClassMetadata;
+use Doctrine\ORM\AbstractQuery;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Version;
 
 class EntityManagerMockFactory
@@ -25,15 +30,15 @@ class EntityManagerMockFactory
      */
     public static function create(\PHPUnit\Framework\TestCase $test, \Closure $qbCallback, $fields)
     {
-        $query = $test->getMockBuilder('Doctrine\ORM\AbstractQuery')
+        $query = $test->getMockBuilder(AbstractQuery::class)
             ->disableOriginalConstructor()->getMock();
         $query->expects($test->any())->method('execute')->will($test->returnValue(true));
 
         if (Version::compare('2.5.0') < 1) {
-            $entityManager = $test->getMockBuilder('Doctrine\ORM\EntityManagerInterface')->getMock();
-            $qb = $test->getMockBuilder('Doctrine\ORM\QueryBuilder')->setConstructorArgs([$entityManager])->getMock();
+            $entityManager = $test->getMockBuilder(EntityManagerInterface::class)->getMock();
+            $qb = $test->getMockBuilder(QueryBuilder::class)->setConstructorArgs([$entityManager])->getMock();
         } else {
-            $qb = $test->getMockBuilder('Doctrine\ORM\QueryBuilder')->disableOriginalConstructor()->getMock();
+            $qb = $test->getMockBuilder(QueryBuilder::class)->disableOriginalConstructor()->getMock();
         }
 
         $qb->expects($test->any())->method('select')->will($test->returnValue($qb));
@@ -45,14 +50,14 @@ class EntityManagerMockFactory
 
         $qbCallback($qb);
 
-        $repository = $test->getMockBuilder('Doctrine\ORM\EntityRepository')->disableOriginalConstructor()->getMock();
+        $repository = $test->getMockBuilder(EntityRepository::class)->disableOriginalConstructor()->getMock();
         $repository->expects($test->any())->method('createQueryBuilder')->will($test->returnValue($qb));
 
-        $metadata = $test->getMockBuilder('Doctrine\Common\Persistence\Mapping\ClassMetadata')->getMock();
+        $metadata = $test->getMockBuilder(ClassMetadata::class)->getMock();
         $metadata->expects($test->any())->method('getFieldNames')->will($test->returnValue($fields));
         $metadata->expects($test->any())->method('getName')->will($test->returnValue('className'));
 
-        $em = $test->getMockBuilder('Doctrine\ORM\EntityManager')->disableOriginalConstructor()->getMock();
+        $em = $test->getMockBuilder(EntityManager::class)->disableOriginalConstructor()->getMock();
         $em->expects($test->any())->method('getRepository')->will($test->returnValue($repository));
         $em->expects($test->any())->method('getClassMetadata')->will($test->returnValue($metadata));
 

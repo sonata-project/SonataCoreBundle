@@ -11,8 +11,11 @@
 
 namespace Sonata\CoreBundle\Tests\Serializer;
 
+use JMS\Serializer\Context;
 use JMS\Serializer\GraphNavigator;
+use JMS\Serializer\VisitorInterface;
 use PHPUnit\Framework\TestCase;
+use Sonata\CoreBundle\Model\ManagerInterface;
 use Sonata\CoreBundle\Tests\Fixtures\Bundle\Serializer\FooSerializer;
 
 /**
@@ -27,7 +30,7 @@ final class BaseSerializerHandlerTest extends TestCase
      */
     public function testGetSubscribingMethodsWithDefaultFormats()
     {
-        $manager = $this->createMock('Sonata\CoreBundle\Model\ManagerInterface');
+        $manager = $this->createMock(ManagerInterface::class);
 
         $serializer = new FooSerializer($manager);
 
@@ -77,7 +80,7 @@ final class BaseSerializerHandlerTest extends TestCase
 
     public function testSetFormats()
     {
-        $manager = $this->createMock('Sonata\CoreBundle\Model\ManagerInterface');
+        $manager = $this->createMock(ManagerInterface::class);
 
         $serializer = new FooSerializer($manager);
 
@@ -105,7 +108,7 @@ final class BaseSerializerHandlerTest extends TestCase
 
     public function testAddFormats()
     {
-        $manager = $this->createMock('Sonata\CoreBundle\Model\ManagerInterface');
+        $manager = $this->createMock(ManagerInterface::class);
 
         $serializer = new FooSerializer($manager);
 
@@ -147,7 +150,7 @@ final class BaseSerializerHandlerTest extends TestCase
 
     public function testSerializeObjectToIdWithDataIsInstanceOfManager()
     {
-        $modelInstance = $this->getMockBuilder('Sonata\CoreBundle\Tests\Fixtures\Bundle\Serializer\FooSerializer')
+        $modelInstance = $this->getMockBuilder(FooSerializer::class)
             ->disableOriginalConstructor()
             ->setMethods(['getId'])
             ->getMock();
@@ -156,14 +159,14 @@ final class BaseSerializerHandlerTest extends TestCase
             ->method('getId')
             ->willReturn(1);
 
-        $manager = $this->createMock('Sonata\CoreBundle\Model\ManagerInterface');
+        $manager = $this->createMock(ManagerInterface::class);
         $manager->expects($this->once())
             ->method('getClass')
             ->willReturn(get_class($modelInstance));
 
-        $context = $this->createMock('JMS\Serializer\Context');
+        $context = $this->createMock(Context::class);
 
-        $visitor = $this->createMock('JMS\Serializer\VisitorInterface');
+        $visitor = $this->createMock(VisitorInterface::class);
         $visitor->expects($this->once())
             ->method('visitInteger')
             ->with(1, ['foo'], $context)
@@ -176,18 +179,18 @@ final class BaseSerializerHandlerTest extends TestCase
 
     public function testSerializeObjectToIdWithDataIsNotInstanceOfManager()
     {
-        $modelInstance = $this->getMockBuilder('Sonata\CoreBundle\Tests\Fixtures\Bundle\Serializer\FooSerializer')
+        $modelInstance = $this->getMockBuilder(FooSerializer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $manager = $this->createMock('Sonata\CoreBundle\Model\ManagerInterface');
+        $manager = $this->createMock(ManagerInterface::class);
         $manager->expects($this->once())
             ->method('getClass')
             ->willReturn('bar');
 
-        $context = $this->createMock('JMS\Serializer\Context');
+        $context = $this->createMock(Context::class);
 
-        $visitor = $this->createMock('JMS\Serializer\VisitorInterface');
+        $visitor = $this->createMock(VisitorInterface::class);
         $visitor->expects($this->never())
             ->method('visitInteger');
 
@@ -198,13 +201,13 @@ final class BaseSerializerHandlerTest extends TestCase
 
     public function testDeserializeObjectFromId()
     {
-        $manager = $this->createMock('Sonata\CoreBundle\Model\ManagerInterface');
+        $manager = $this->createMock(ManagerInterface::class);
         $manager->expects($this->once())
             ->method('findOneBy')
             ->with(['id' => 'foo'])
             ->willReturn('bar');
 
-        $visitor = $this->createMock('JMS\Serializer\VisitorInterface');
+        $visitor = $this->createMock(VisitorInterface::class);
 
         $serializer = new FooSerializer($manager);
 

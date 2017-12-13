@@ -14,8 +14,10 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\TranslatableChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * @group legacy
@@ -24,7 +26,7 @@ class TranslatableChoiceTypeTest extends TypeTestCase
 {
     public function testBuildForm()
     {
-        $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
+        $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
@@ -34,7 +36,7 @@ class TranslatableChoiceTypeTest extends TypeTestCase
                 }
             }));
 
-        $type = new TranslatableChoiceType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
+        $type = new TranslatableChoiceType($this->createMock(TranslatorInterface::class));
         $type->buildForm($formBuilder, [
             'catalogue' => 'messages',
         ]);
@@ -42,7 +44,7 @@ class TranslatableChoiceTypeTest extends TypeTestCase
 
     public function testGetParent()
     {
-        $form = new TranslatableChoiceType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
+        $form = new TranslatableChoiceType($this->createMock(TranslatorInterface::class));
 
         $parentRef = $form->getParent();
 
@@ -51,7 +53,7 @@ class TranslatableChoiceTypeTest extends TypeTestCase
 
     public function testLegacyGetDefaultOptions()
     {
-        $stub = $this->createMock('Symfony\Component\Translation\TranslatorInterface');
+        $stub = $this->createMock(TranslatorInterface::class);
 
         $type = new TranslatableChoiceType($stub);
 

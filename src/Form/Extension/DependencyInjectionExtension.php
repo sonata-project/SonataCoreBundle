@@ -16,6 +16,7 @@ use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\Form\FormExtensionInterface;
 use Symfony\Component\Form\FormTypeGuesserChain;
 use Symfony\Component\Form\FormTypeGuesserInterface;
+use Symfony\Component\Form\FormTypeInterface;
 
 /**
  * This proxy class help to keep BC code with < SF2.8 form behavior by restoring
@@ -100,7 +101,7 @@ class DependencyInjectionExtension implements FormExtensionInterface
         $name = self::findClass($this->mappingTypes, $name);
 
         if (!isset($this->typeServiceIds[$name])) {
-            if (class_exists($name) && in_array('Symfony\Component\Form\FormTypeInterface', class_implements($name), true)) {
+            if (class_exists($name) && in_array(FormTypeInterface::class, class_implements($name), true)) {
                 return new $name();
             }
 

@@ -15,6 +15,8 @@ use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Date\MomentFormatConverter;
 use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
@@ -23,7 +25,7 @@ class DatePickerTypeTest extends TestCase
 {
     public function testBuildForm()
     {
-        $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
+        $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
@@ -34,8 +36,8 @@ class DatePickerTypeTest extends TestCase
             }));
 
         $type = new DatePickerType(
-            $this->createMock('Sonata\CoreBundle\Date\MomentFormatConverter'),
-            $this->createMock('Symfony\Component\Translation\TranslatorInterface')
+            $this->createMock(MomentFormatConverter::class),
+            $this->createMock(TranslatorInterface::class)
         );
         $type->buildForm($formBuilder, [
             'dp_pick_time' => false,
@@ -46,8 +48,8 @@ class DatePickerTypeTest extends TestCase
     public function testGetParent()
     {
         $form = new DatePickerType(
-            $this->createMock('Sonata\CoreBundle\Date\MomentFormatConverter'),
-            $this->createMock('Symfony\Component\Translation\TranslatorInterface')
+            $this->createMock(MomentFormatConverter::class),
+            $this->createMock(TranslatorInterface::class)
         );
 
         $parentRef = $form->getParent();
@@ -57,7 +59,7 @@ class DatePickerTypeTest extends TestCase
 
     public function testGetName()
     {
-        $type = new DatePickerType(new MomentFormatConverter(), $this->createMock('Symfony\Component\Translation\TranslatorInterface'));
+        $type = new DatePickerType(new MomentFormatConverter(), $this->createMock(TranslatorInterface::class));
 
         $this->assertSame('sonata_type_date_picker', $type->getName());
     }

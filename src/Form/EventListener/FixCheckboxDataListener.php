@@ -45,7 +45,7 @@ class FixCheckboxDataListener implements EventSubscriberInterface
     public function preBind(FormEvent $event)
     {
         // BC prevention for class extending this one.
-        if ('Sonata\CoreBundle\Form\EventListener\FixCheckboxDataListener' !== get_called_class()) {
+        if (self::class !== get_called_class()) {
             @trigger_error(
                 __METHOD__.' is deprecated since 2.3 and will be renamed in 4.0.'
                 .' Use '.__CLASS__.'::preSubmit instead.',
