@@ -11,7 +11,15 @@
 
 namespace Sonata\CoreBundle\DependencyInjection;
 
+use JMS\Serializer\Handler\SubscribingHandlerInterface;
 use Sonata\CoreBundle\Form\FormHelper;
+use Sonata\CoreBundle\Form\Type\BooleanType;
+use Sonata\CoreBundle\Form\Type\CollectionType;
+use Sonata\CoreBundle\Form\Type\DateRangeType;
+use Sonata\CoreBundle\Form\Type\DateTimeRangeType;
+use Sonata\CoreBundle\Form\Type\EqualType;
+use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
+use Sonata\CoreBundle\Form\Type\TranslatableChoiceType;
 use Sonata\CoreBundle\Serializer\BaseSerializerHandler;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\FormPass;
 use Symfony\Component\Config\Definition\Processor;
@@ -52,7 +60,7 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
         $configuration = new Configuration();
 
         // NEXT_MAJOR : remove this if block
-        if (!interface_exists('JMS\Serializer\Handler\SubscribingHandlerInterface')) {
+        if (!interface_exists(SubscribingHandlerInterface::class)) {
             /* Let's check for config values before the configuration is processed,
              * otherwise we won't be able to tell,
              * since there is a default value for this option. */
@@ -96,13 +104,13 @@ EOT
     public function configureClassesToCompile()
     {
         $this->addClassesToCompile([
-            'Sonata\\CoreBundle\\Form\\Type\\BooleanType',
-            'Sonata\\CoreBundle\\Form\\Type\\CollectionType',
-            'Sonata\\CoreBundle\\Form\\Type\\DateRangeType',
-            'Sonata\\CoreBundle\\Form\\Type\\DateTimeRangeType',
-            'Sonata\\CoreBundle\\Form\\Type\\EqualType',
-            'Sonata\\CoreBundle\\Form\\Type\\ImmutableArrayType',
-            'Sonata\\CoreBundle\\Form\\Type\\TranslatableChoiceType',
+            BooleanType::class,
+            CollectionType::class,
+            DateRangeType::class,
+            DateTimeRangeType::class,
+            EqualType::class,
+            ImmutableArrayType::class,
+            TranslatableChoiceType::class,
         ]);
     }
 
@@ -185,7 +193,7 @@ EOT
      */
     public function configureSerializerFormats($config)
     {
-        if (interface_exists('JMS\Serializer\Handler\SubscribingHandlerInterface')) {
+        if (interface_exists(SubscribingHandlerInterface::class)) {
             BaseSerializerHandler::setFormats($config['serializer']['formats']);
         }
     }

@@ -14,15 +14,17 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\EqualType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class EqualTypeTest extends TypeTestCase
 {
     public function testBuildForm()
     {
-        $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
+        $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
@@ -32,7 +34,7 @@ class EqualTypeTest extends TypeTestCase
                 }
             }));
 
-        $type = new EqualType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
+        $type = new EqualType($this->createMock(TranslatorInterface::class));
         $type->buildForm($formBuilder, [
             'choices' => [],
         ]);
@@ -40,7 +42,7 @@ class EqualTypeTest extends TypeTestCase
 
     public function testGetParent()
     {
-        $form = new EqualType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
+        $form = new EqualType($this->createMock(TranslatorInterface::class));
 
         $parentRef = $form->getParent();
 
@@ -49,7 +51,7 @@ class EqualTypeTest extends TypeTestCase
 
     public function testGetDefaultOptions()
     {
-        $mock = $this->createMock('Symfony\Component\Translation\TranslatorInterface');
+        $mock = $this->createMock(TranslatorInterface::class);
 
         $mock->expects($this->exactly(0))
             ->method('trans')

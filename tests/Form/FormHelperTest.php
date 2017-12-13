@@ -13,22 +13,24 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Form\FormHelper;
+use Symfony\Component\Form\DataMapperInterface;
 use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormConfigInterface;
 
 class FormHelperTest extends TestCase
 {
     public function testRemoveFields()
     {
-        $dataMapper = $this->createMock('Symfony\Component\Form\DataMapperInterface');
+        $dataMapper = $this->createMock(DataMapperInterface::class);
 
-        $config = $this->createMock('Symfony\Component\Form\FormConfigInterface');
+        $config = $this->createMock(FormConfigInterface::class);
         $config->expects($this->any())->method('getName')->will($this->returnValue('root'));
         $config->expects($this->any())->method('getCompound')->will($this->returnValue(true));
         $config->expects($this->any())->method('getDataMapper')->will($this->returnValue($dataMapper));
 
         $form = new Form($config);
 
-        $config = $this->createMock('Symfony\Component\Form\FormConfigInterface');
+        $config = $this->createMock(FormConfigInterface::class);
         $config->expects($this->any())->method('getName')->will($this->returnValue('child'));
 
         $form->add(new Form($config));

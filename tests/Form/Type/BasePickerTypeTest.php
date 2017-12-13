@@ -16,7 +16,9 @@ use Sonata\CoreBundle\Date\MomentFormatConverter;
 use Sonata\CoreBundle\Form\Type\BasePickerType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class BasePickerTest extends BasePickerType
 {
@@ -40,11 +42,11 @@ class BasePickerTypeTest extends TestCase
     {
         $type = new BasePickerTest(
             new MomentFormatConverter(),
-            $this->createMock('Symfony\Component\Translation\TranslatorInterface')
+            $this->createMock(TranslatorInterface::class)
         );
 
         $view = new FormView();
-        $form = new Form($this->createMock('Symfony\Component\Form\FormConfigInterface'));
+        $form = new Form($this->createMock(FormConfigInterface::class));
 
         $type->finishView($view, $form, ['format' => 'yyyy-MM-dd']);
 

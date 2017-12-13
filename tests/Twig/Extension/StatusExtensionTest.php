@@ -12,6 +12,7 @@
 namespace Sonata\CoreBundle\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
+use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
 use Sonata\CoreBundle\Twig\Extension\StatusExtension;
 
 class StatusExtensionTest extends TestCase
@@ -33,7 +34,7 @@ class StatusExtensionTest extends TestCase
     public function testStatusClassDefaultValue()
     {
         $extension = new StatusExtension();
-        $statusService = $this->getMockBuilder('Sonata\CoreBundle\Component\Status\StatusClassRendererInterface')
+        $statusService = $this->getMockBuilder(StatusClassRendererInterface::class)
             ->getMock();
         $statusService->expects($this->once())
             ->method('handlesObject')

@@ -14,14 +14,16 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\DateTimePickerType;
 use Sonata\CoreBundle\Form\Type\DateTimeRangePickerType;
+use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class DateTimeRangePickerTypeTest extends TypeTestCase
 {
     public function testBuildForm()
     {
-        $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
+        $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
@@ -31,7 +33,7 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
                 }
             }));
 
-        $type = new DateTimeRangePickerType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
+        $type = new DateTimeRangePickerType($this->createMock(TranslatorInterface::class));
         $type->buildForm($formBuilder, [
             'field_options' => [],
             'field_options_start' => [],
@@ -42,7 +44,7 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
 
     public function testGetParent()
     {
-        $form = new DateTimeRangePickerType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
+        $form = new DateTimeRangePickerType($this->createMock(TranslatorInterface::class));
 
         $parentRef = $form->getParent();
 
@@ -51,7 +53,7 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
 
     public function testGetDefaultOptions()
     {
-        $type = new DateTimeRangePickerType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
+        $type = new DateTimeRangePickerType($this->createMock(TranslatorInterface::class));
 
         $this->assertSame('sonata_type_datetime_range_picker', $type->getName());
 

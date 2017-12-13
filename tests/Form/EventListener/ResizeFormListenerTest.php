@@ -13,6 +13,8 @@ namespace Sonata\CoreBundle\Tests\Form\EventListener;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Form\EventListener\ResizeFormListener;
+use Symfony\Component\Form\Exception\UnexpectedTypeException;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
@@ -37,7 +39,7 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], false, null);
 
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
+        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
         $form->expects($this->once())
             ->method('getIterator')
             ->willReturn(new \ArrayIterator());
@@ -57,7 +59,7 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
+        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
         $form->expects($this->once())
             ->method('getIterator')
             ->willReturn(new \ArrayIterator());
@@ -71,11 +73,11 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], false, null);
 
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
+        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
 
         $event = new FormEvent($form, '');
 
-        $this->expectException('Symfony\Component\Form\Exception\UnexpectedTypeException');
+        $this->expectException(UnexpectedTypeException::class);
 
         $listener->preSetData($event);
     }
@@ -94,7 +96,7 @@ class ResizeFormListenerTest extends TestCase
             'default' => 'option',
         ];
 
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
+        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
         $form->expects($this->once())
             ->method('getIterator')
             ->willReturn(new \ArrayIterator(['foo' => 'bar']));
@@ -116,7 +118,7 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], false, null);
 
-        $event = $this->getMockBuilder('Symfony\Component\Form\FormEvent')->disableOriginalConstructor()->getMock();
+        $event = $this->getMockBuilder(FormEvent::class)->disableOriginalConstructor()->getMock();
         $event->expects($this->never())
             ->method('getForm');
 
@@ -127,7 +129,7 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
+        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
         $form->expects($this->once())
             ->method('getIterator')
             ->willReturn(new \ArrayIterator(['foo' => 'bar']));
@@ -143,11 +145,11 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
+        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
 
         $event = new FormEvent($form, 123);
 
-        $this->expectException('Symfony\Component\Form\Exception\UnexpectedTypeException');
+        $this->expectException(UnexpectedTypeException::class);
 
         $listener->preSubmit($event);
     }
@@ -165,7 +167,7 @@ class ResizeFormListenerTest extends TestCase
             'default' => 'option',
         ];
 
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
+        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
         $form->expects($this->once())
             ->method('getIterator')
             ->willReturn(new \ArrayIterator(['foo' => 'bar']));
@@ -203,7 +205,7 @@ class ResizeFormListenerTest extends TestCase
             'data' => 'caz',
         ];
 
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
+        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
         $form->expects($this->once())
             ->method('getIterator')
             ->willReturn(new \ArrayIterator(['foo' => 'bar']));
@@ -227,9 +229,9 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
+        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
 
-        $event = $this->getMockBuilder('Symfony\Component\Form\FormEvent')->disableOriginalConstructor()->getMock();
+        $event = $this->getMockBuilder(FormEvent::class)->disableOriginalConstructor()->getMock();
         $event->expects($this->once())
             ->method('getForm')
             ->willReturn($form);
@@ -247,7 +249,7 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], false, null);
 
-        $event = $this->getMockBuilder('Symfony\Component\Form\FormEvent')->disableOriginalConstructor()->getMock();
+        $event = $this->getMockBuilder(FormEvent::class)->disableOriginalConstructor()->getMock();
         $event->expects($this->never())
             ->method('getForm');
 
@@ -258,7 +260,7 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
+        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
         $form->expects($this->never())
             ->method('has');
 
@@ -271,11 +273,11 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
+        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
 
         $event = new FormEvent($form, 123);
 
-        $this->expectException('Symfony\Component\Form\Exception\UnexpectedTypeException');
+        $this->expectException(UnexpectedTypeException::class);
 
         $listener->onSubmit($event);
     }
@@ -284,12 +286,12 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
-        $reflector = new \ReflectionClass('Sonata\CoreBundle\Form\EventListener\ResizeFormListener');
+        $reflector = new \ReflectionClass(ResizeFormListener::class);
         $reflectedMethod = $reflector->getProperty('removed');
         $reflectedMethod->setAccessible(true);
         $reflectedMethod->setValue($listener, ['foo']);
 
-        $form = $this->getMockBuilder('Symfony\Component\Form\Form')->disableOriginalConstructor()->getMock();
+        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
         $form->expects($this->at(2))
             ->method('has')
             ->with('baz')
@@ -305,7 +307,7 @@ class ResizeFormListenerTest extends TestCase
             'baz' => 'baz-value',
         ];
 
-        $event = $this->getMockBuilder('Symfony\Component\Form\FormEvent')->disableOriginalConstructor()->getMock();
+        $event = $this->getMockBuilder(FormEvent::class)->disableOriginalConstructor()->getMock();
         $event->expects($this->once())
             ->method('getForm')
             ->willReturn($form);
