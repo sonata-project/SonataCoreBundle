@@ -33,14 +33,12 @@ class DateTimeRangeType extends AbstractType
     /**
      * NEXT_MAJOR: remove this method.
      *
-     * @param TranslatorInterface|null $translator
-     *
      * @deprecated translator dependency is deprecated since version 3.1, to be removed in 4.0
      */
     public function __construct(TranslatorInterface $translator = null)
     {
         // check if class is overloaded and notify about removing deprecated translator
-        if (null !== $translator && __CLASS__ !== get_class($this) && 'Sonata\CoreBundle\Form\Type\DateTimeRangePickerType' !== get_class($this)) {
+        if (null !== $translator && __CLASS__ !== get_class($this) && DateTimeRangePickerType::class !== get_class($this)) {
             @trigger_error(
                 'The translator dependency in '.__CLASS__.' is deprecated since 3.1 and will be removed in 4.0. '.
                 'Please prepare your dependencies for this change.',
@@ -51,9 +49,6 @@ class DateTimeRangeType extends AbstractType
         $this->translator = $translator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $options['field_options_start'] = array_merge(
@@ -76,25 +71,16 @@ class DateTimeRangeType extends AbstractType
         $builder->add('end', $options['field_type'], array_merge(['required' => false], $options['field_options'], $options['field_options_end']));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix()
     {
         return 'sonata_type_datetime_range';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return $this->getBlockPrefix();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

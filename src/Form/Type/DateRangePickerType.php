@@ -22,9 +22,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class DateRangePickerType extends DateRangeType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -35,17 +32,11 @@ class DateRangePickerType extends DateRangeType
         ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix()
     {
         return 'sonata_type_date_range_picker';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return $this->getBlockPrefix();

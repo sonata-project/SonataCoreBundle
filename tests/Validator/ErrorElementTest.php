@@ -17,8 +17,12 @@ use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Tests\Fixtures\Bundle\Entity\Foo;
 use Sonata\CoreBundle\Validator\ErrorElement;
 use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\ExecutionContextInterface as LegacyExecutionContextInterface;
+use Symfony\Component\Validator\Validator\ContextualValidatorInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
 
 /**
  * @author Andrej Hudec <pulzarraider@gmail.com>
@@ -32,7 +36,7 @@ class ErrorElementTest extends TestCase
 
     protected function setUp(): void
     {
-        $constraintValidatorFactory = $this->createMock('Symfony\Component\Validator\ConstraintValidatorFactoryInterface');
+        $constraintValidatorFactory = $this->createMock(ConstraintValidatorFactoryInterface::class);
 
         $this->context = $this->createMock(ExecutionContextInterface::class);
         $this->context->expects($this->once())
@@ -40,7 +44,7 @@ class ErrorElementTest extends TestCase
                 ->will($this->returnValue('bar'));
 
         if ($this->context instanceof ExecutionContextInterface) {
-            $builder = $this->createMock('Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface');
+            $builder = $this->createMock(ConstraintViolationBuilderInterface::class);
             $builder->expects($this->any())
                 ->method($this->anything())
                 ->will($this->returnSelf());
@@ -49,9 +53,9 @@ class ErrorElementTest extends TestCase
                 ->method('buildViolation')
                 ->willReturn($builder);
 
-            $validator = $this->createMock('Symfony\Component\Validator\Validator\ValidatorInterface');
+            $validator = $this->createMock(ValidatorInterface::class);
 
-            $this->contextualValidator = $this->createMock('Symfony\Component\Validator\Validator\ContextualValidatorInterface');
+            $this->contextualValidator = $this->createMock(ContextualValidatorInterface::class);
             $this->contextualValidator->expects($this->any())
                 ->method($this->anything())
                 ->will($this->returnSelf());
@@ -220,7 +224,7 @@ class ErrorElementTest extends TestCase
 
     public function testExceptionIsThrownWhenContextIsString(): void
     {
-        $constraintValidatorFactory = $this->createMock('Symfony\Component\Validator\ConstraintValidatorFactoryInterface');
+        $constraintValidatorFactory = $this->createMock(ConstraintValidatorFactoryInterface::class);
 
         $this->expectException(
             'InvalidArgumentException'

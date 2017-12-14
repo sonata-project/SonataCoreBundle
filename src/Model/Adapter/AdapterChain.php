@@ -17,17 +17,11 @@ class AdapterChain implements AdapterInterface
 {
     protected $adapters = [];
 
-    /**
-     * @param AdapterInterface $adapter
-     */
     public function addAdapter(AdapterInterface $adapter): void
     {
         $this->adapters[] = $adapter;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNormalizedIdentifier($model)
     {
         foreach ($this->adapters as $adapter) {
@@ -39,9 +33,6 @@ class AdapterChain implements AdapterInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getUrlsafeIdentifier($model)
     {
         foreach ($this->adapters as $adapter) {

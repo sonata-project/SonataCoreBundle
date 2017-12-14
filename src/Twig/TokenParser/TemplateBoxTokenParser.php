@@ -33,9 +33,6 @@ class TemplateBoxTokenParser extends AbstractTokenParser
         $this->enabled = $enabled;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function parse(Token $token)
     {
         if ($this->parser->getStream()->test(Token::STRING_TYPE)) {
@@ -55,9 +52,6 @@ class TemplateBoxTokenParser extends AbstractTokenParser
         return new TemplateBoxNode($message, $translationBundle, $this->enabled, $token->getLine(), $this->getTag());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTag()
     {
         return 'sonata_template_box';

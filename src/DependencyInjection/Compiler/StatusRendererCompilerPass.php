@@ -22,9 +22,6 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class StatusRendererCompilerPass implements CompilerPassInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function process(ContainerBuilder $container): void
     {
         foreach ($container->findTaggedServiceIds('sonata.status.renderer') as $id => $attributes) {

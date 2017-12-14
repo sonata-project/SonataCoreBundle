@@ -16,6 +16,7 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\BaseStatusType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -37,7 +38,7 @@ class StatusTypeTest extends TypeTestCase
 {
     public function testBuildForm(): void
     {
-        $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
+        $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
@@ -47,7 +48,7 @@ class StatusTypeTest extends TypeTestCase
                 }
             }));
 
-        $type = new StatusType('Sonata\CoreBundle\Tests\Form\Type\Choice', 'getList', 'choice_type');
+        $type = new StatusType(Choice::class, 'getList', 'choice_type');
         $type->buildForm($formBuilder, [
             'choices' => [],
         ]);
@@ -55,7 +56,7 @@ class StatusTypeTest extends TypeTestCase
 
     public function testGetParent(): void
     {
-        $form = new StatusType('Sonata\CoreBundle\Tests\Form\Type\Choice', 'getList', 'choice_type');
+        $form = new StatusType(Choice::class, 'getList', 'choice_type');
 
         $parentRef = $form->getParent();
 
@@ -68,7 +69,7 @@ class StatusTypeTest extends TypeTestCase
             1 => 'salut',
         ];
 
-        $type = new StatusType('Sonata\CoreBundle\Tests\Form\Type\Choice', 'getList', 'choice_type');
+        $type = new StatusType(Choice::class, 'getList', 'choice_type');
 
         $this->assertSame('choice_type', $type->getName());
 
@@ -89,7 +90,7 @@ class StatusTypeTest extends TypeTestCase
             2 => 'toi!',
         ];
 
-        $type = new StatusType('Sonata\CoreBundle\Tests\Form\Type\Choice', 'getList', 'choice_type', true);
+        $type = new StatusType(Choice::class, 'getList', 'choice_type', true);
 
         $this->assertSame('choice_type', $type->getName());
         $this->assertSame(ChoiceType::class, $type->getParent());
@@ -111,7 +112,7 @@ class StatusTypeTest extends TypeTestCase
             2 => 'error',
         ];
 
-        $type = new StatusType('Sonata\CoreBundle\Tests\Form\Type\Choice', 'getList', 'choice_type', true);
+        $type = new StatusType(Choice::class, 'getList', 'choice_type', true);
 
         $this->assertSame('choice_type', $type->getName());
         $this->assertSame(ChoiceType::class, $type->getParent());

@@ -25,10 +25,10 @@ class TemplateBoxNode extends Node
     protected $enabled;
 
     /**
-     * @param \Twig_Node_Expression $message Node message to display
-     * @param int                   $enabled Is Symfony debug enabled?
-     * @param null|string           $lineno  Symfony template line number
-     * @param null                  $tag     Symfony tag name
+     * @param AbstractExpression $message Node message to display
+     * @param int                $enabled Is Symfony debug enabled?
+     * @param null|string        $lineno  Symfony template line number
+     * @param null               $tag     Symfony tag name
      */
     public function __construct(AbstractExpression $message, $enabled, $lineno, $tag = null)
     {
@@ -37,9 +37,6 @@ class TemplateBoxNode extends Node
         parent::__construct(['message' => $message], [], $lineno, $tag);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function compile(Compiler $compiler): void
     {
         $compiler

@@ -21,9 +21,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class DatePickerType extends BasePickerType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(array_merge($this->getCommonDefaults(), [
@@ -32,25 +29,16 @@ class DatePickerType extends BasePickerType
         ]));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent()
     {
         return DateType::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix()
     {
         return 'sonata_type_date_picker';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return $this->getBlockPrefix();

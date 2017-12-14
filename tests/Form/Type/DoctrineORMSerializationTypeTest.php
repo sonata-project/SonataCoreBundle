@@ -13,10 +13,15 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadataInfo as DoctrineMetadata;
 use JMS\Serializer\Metadata\ClassMetadata as SerializerMetadata;
 use JMS\Serializer\Metadata\PropertyMetadata;
+use Metadata\MetadataFactoryInterface;
 use Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType;
+use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\HttpKernel\Kernel;
@@ -45,13 +50,13 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
      */
     public function setUp(): void
     {
-        if (!interface_exists('\Metadata\MetadataFactoryInterface') or !interface_exists('\Doctrine\ORM\EntityManagerInterface')) {
+        if (!interface_exists(MetadataFactoryInterface::class) or !interface_exists(EntityManagerInterface::class)) {
             $this->markTestSkipped('Serializer and Doctrine has to be loaded to run this test');
         }
 
         parent::setUp();
 
-        $this->class = 'Sonata\CoreBundle\Tests\Form\Type\FakeMetadataClass';
+        $this->class = FakeMetadataClass::class;
     }
 
     /**
@@ -66,7 +71,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
             $type = new DoctrineORMSerializationType($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_write');
         } else {
             $this->factory = $this->createCustomFactory($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_write');
-            $type = 'Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType';
+            $type = DoctrineORMSerializationType::class;
         }
 
         $form = $this->factory->createBuilder($type, null)->setCompound(true)->getForm();
@@ -75,9 +80,9 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $this->assertSame(3, $form->count(), 'Should return 3 items in form');
 
         // Assets that forms are correctly returned for correct fields
-        $this->assertInstanceOf('Symfony\Component\Form\FormInterface', $form->get('name'), 'Should return a form instance');
-        $this->assertInstanceOf('Symfony\Component\Form\FormInterface', $form->get('url'), 'Should return a form instance');
-        $this->assertInstanceOf('Symfony\Component\Form\FormInterface', $form->get('comments'), 'Should return a form instance');
+        $this->assertInstanceOf(FormInterface::class, $form->get('name'), 'Should return a form instance');
+        $this->assertInstanceOf(FormInterface::class, $form->get('url'), 'Should return a form instance');
+        $this->assertInstanceOf(FormInterface::class, $form->get('comments'), 'Should return a form instance');
 
         // Asserts that required fields / associations rules are correctly parsed
         $this->assertFalse($form->get('name')->isRequired(), 'Should return a non-required field');
@@ -87,7 +92,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
 
     public function testBuildFormAddCall(): void
     {
-        $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
+        $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
@@ -98,7 +103,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
             }));
 
         $type = new DoctrineORMSerializationType(
-            $this->getMetadataFactoryMock(), // $this->createMock('Metadata\MetadataFactoryInterface'),
+            $this->getMetadataFactoryMock(), // $this->createMock(MetadataFactoryInterface::class),
             $this->getRegistryMock(),
             'form_type_test',
             $this->class,
@@ -120,7 +125,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
             $type = new DoctrineORMSerializationType($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_write');
         } else {
             $this->factory = $this->createCustomFactory($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_write');
-            $type = 'Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType';
+            $type = DoctrineORMSerializationType::class;
         }
 
         $form = $this->factory->createBuilder($type, null)->setCompound(true)->getForm();
@@ -129,8 +134,8 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $this->assertSame(2, $form->count(), 'Should return 2 elements in the form');
 
         // Assets that forms are correctly returned for correct fields
-        $this->assertInstanceOf('Symfony\Component\Form\FormInterface', $form->get('url'), 'Should return a form instance');
-        $this->assertInstanceOf('Symfony\Component\Form\FormInterface', $form->get('comments'), 'Should return a form instance');
+        $this->assertInstanceOf(FormInterface::class, $form->get('url'), 'Should return a form instance');
+        $this->assertInstanceOf(FormInterface::class, $form->get('comments'), 'Should return a form instance');
     }
 
     /**
@@ -145,7 +150,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
             $type = new DoctrineORMSerializationType($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_invalid');
         } else {
             $this->factory = $this->createCustomFactory($metadataFactory, $registry, 'form_type_test', $this->class, 'serialization_api_invalid');
-            $type = 'Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType';
+            $type = DoctrineORMSerializationType::class;
         }
 
         $form = $this->factory->createBuilder($type, null)->setCompound(true)->getForm();
@@ -157,8 +162,8 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
     public function testGetParent(): void
     {
         $form = new DoctrineORMSerializationType(
-            $this->createMock('Metadata\MetadataFactoryInterface'),
-            $this->createMock('Doctrine\Common\Persistence\ManagerRegistry'),
+            $this->createMock(MetadataFactoryInterface::class),
+            $this->createMock(ManagerRegistry::class),
             'form_type_test',
             $this->class,
             'serialization_api_write'
@@ -190,7 +195,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $classMetadata->addPropertyMetadata($url);
         $classMetadata->addPropertyMetadata($comments);
 
-        $metadataFactory = $this->createMock('Metadata\MetadataFactoryInterface');
+        $metadataFactory = $this->createMock(MetadataFactoryInterface::class);
         $metadataFactory->expects($this->once())->method('getMetadataForClass')->will($this->returnValue($classMetadata));
 
         return $metadataFactory;
@@ -221,10 +226,10 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
             ],
         ];
 
-        $entityManager = $this->createMock('Doctrine\ORM\EntityManagerInterface');
+        $entityManager = $this->createMock(EntityManagerInterface::class);
         $entityManager->expects($this->once())->method('getClassMetadata')->will($this->returnValue($classMetadata));
 
-        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock(ManagerRegistry::class);
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($entityManager));
 
         return $registry;

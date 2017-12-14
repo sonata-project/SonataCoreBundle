@@ -16,14 +16,16 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Sonata\CoreBundle\Form\Type\DateRangePickerType;
+use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class DateRangePickerTypeTest extends TypeTestCase
 {
     public function testBuildForm(): void
     {
-        $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
+        $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
@@ -33,7 +35,7 @@ class DateRangePickerTypeTest extends TypeTestCase
                 }
             }));
 
-        $type = new DateRangePickerType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
+        $type = new DateRangePickerType($this->createMock(TranslatorInterface::class));
         $type->buildForm($formBuilder, [
             'field_options' => [],
             'field_options_start' => [],
@@ -44,7 +46,7 @@ class DateRangePickerTypeTest extends TypeTestCase
 
     public function testGetParent(): void
     {
-        $form = new DateRangePickerType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
+        $form = new DateRangePickerType($this->createMock(TranslatorInterface::class));
 
         $parentRef = $form->getParent();
 
@@ -53,7 +55,7 @@ class DateRangePickerTypeTest extends TypeTestCase
 
     public function testGetDefaultOptions(): void
     {
-        $type = new DateRangePickerType($this->createMock('Symfony\Component\Translation\TranslatorInterface'));
+        $type = new DateRangePickerType($this->createMock(TranslatorInterface::class));
 
         $this->assertSame('sonata_type_date_range_picker', $type->getName());
 

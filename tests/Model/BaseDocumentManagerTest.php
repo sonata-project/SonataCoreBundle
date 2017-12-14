@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Entity;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Model\BaseDocumentManager;
 
@@ -24,7 +25,7 @@ class BaseDocumentManagerTest extends TestCase
 {
     public function getManager()
     {
-        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock(ManagerRegistry::class);
 
         $manager = new DocumentManager('classname', $registry);
 

@@ -37,8 +37,6 @@ class EqualType extends AbstractType
     /**
      * NEXT_MAJOR: remove this method.
      *
-     * @param TranslatorInterface|null $translator
-     *
      * @deprecated translator property is deprecated since version 3.1, to be removed in 4.0
      */
     public function __construct(TranslatorInterface $translator = null)
@@ -55,9 +53,6 @@ class EqualType extends AbstractType
         $this->translator = $translator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $defaultOptions = [
@@ -76,25 +71,16 @@ class EqualType extends AbstractType
         $resolver->setDefaults($defaultOptions);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent()
     {
         return ChoiceType::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix()
     {
         return 'sonata_type_equal';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return $this->getBlockPrefix();

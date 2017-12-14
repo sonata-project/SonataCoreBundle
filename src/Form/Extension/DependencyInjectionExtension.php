@@ -18,6 +18,7 @@ use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\Form\FormExtensionInterface;
 use Symfony\Component\Form\FormTypeGuesserChain;
 use Symfony\Component\Form\FormTypeGuesserInterface;
+use Symfony\Component\Form\FormTypeInterface;
 
 /**
  * This proxy class help to keep BC code with < SF2.8 form behavior by restoring
@@ -72,16 +73,14 @@ class DependencyInjectionExtension implements FormExtensionInterface
      */
     private $guesserLoaded = false;
 
-    /**
-     * @param ContainerInterface $container
-     * @param array              $typeServiceIds
-     * @param array              $typeExtensionServiceIds
-     * @param array              $guesserServiceIds
-     * @param array              $mappingTypes
-     * @param array              $extensionTypes
-     */
-    public function __construct(ContainerInterface $container, array $typeServiceIds, array $typeExtensionServiceIds, array $guesserServiceIds, array $mappingTypes = [], array $extensionTypes = [])
-    {
+    public function __construct(
+        ContainerInterface $container,
+        array $typeServiceIds,
+        array $typeExtensionServiceIds,
+        array $guesserServiceIds,
+        array $mappingTypes = [],
+        array $extensionTypes = []
+    ) {
         $this->container = $container;
         $this->typeServiceIds = $typeServiceIds;
         $this->typeExtensionServiceIds = $typeExtensionServiceIds;
@@ -93,16 +92,13 @@ class DependencyInjectionExtension implements FormExtensionInterface
         $this->reverseMappingTypes = array_flip($mappingTypes);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getType($name)
     {
         // resolve code to FQCN
         $name = self::findClass($this->mappingTypes, $name);
 
         if (!isset($this->typeServiceIds[$name])) {
-            if (class_exists($name) && in_array('Symfony\Component\Form\FormTypeInterface', class_implements($name), true)) {
+            if (class_exists($name) && in_array(FormTypeInterface::class, class_implements($name), true)) {
                 return new $name();
             }
 
@@ -126,17 +122,11 @@ class DependencyInjectionExtension implements FormExtensionInterface
         return $type;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasType($name)
     {
         return isset($this->mappingTypes[$name]) || isset($this->typeServiceIds[$name]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTypeExtensions($name)
     {
         // lookup inside the extension mapping
@@ -162,17 +152,11 @@ class DependencyInjectionExtension implements FormExtensionInterface
         return $extensions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function hasTypeExtensions($name)
     {
         return isset($this->reverseMappingTypes[$name]) || isset($this->typeExtensionServiceIds[$name]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTypeGuesser()
     {
         if (!$this->guesserLoaded) {

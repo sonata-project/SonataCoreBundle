@@ -15,6 +15,7 @@ namespace Sonata\CoreBundle\Tests\Model\Adapter;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Model\Adapter\AdapterChain;
+use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
 
 class AdapterChainTest extends TestCase
 {
@@ -30,10 +31,10 @@ class AdapterChainTest extends TestCase
     {
         $adapter = new AdapterChain();
 
-        $adapter->addAdapter($fake1 = $this->createMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface'));
+        $adapter->addAdapter($fake1 = $this->createMock(AdapterInterface::class));
         $fake1->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue(null));
 
-        $adapter->addAdapter($fake2 = $this->createMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface'));
+        $adapter->addAdapter($fake2 = $this->createMock(AdapterInterface::class));
 
         $fake2->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue('voila'));
 
@@ -44,10 +45,10 @@ class AdapterChainTest extends TestCase
     {
         $adapter = new AdapterChain();
 
-        $adapter->addAdapter($fake1 = $this->createMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface'));
+        $adapter->addAdapter($fake1 = $this->createMock(AdapterInterface::class));
         $fake1->expects($this->once())->method('getNormalizedIdentifier')->will($this->returnValue(null));
 
-        $adapter->addAdapter($fake2 = $this->createMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface'));
+        $adapter->addAdapter($fake2 = $this->createMock(AdapterInterface::class));
 
         $fake2->expects($this->once())->method('getNormalizedIdentifier')->will($this->returnValue('voila'));
 

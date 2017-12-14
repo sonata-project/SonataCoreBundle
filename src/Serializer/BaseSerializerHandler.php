@@ -57,9 +57,6 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
         static::$formats[] = $format;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribingMethods()
     {
         $type = static::getType();
@@ -87,10 +84,7 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
     /**
      * Serialize data object to id.
      *
-     * @param VisitorInterface $visitor
-     * @param object           $data
-     * @param array            $type
-     * @param Context          $context
+     * @param object $data
      *
      * @return int|null
      */
@@ -106,9 +100,7 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
     /**
      * Deserialize object from its id.
      *
-     * @param VisitorInterface $visitor
-     * @param int              $data
-     * @param array            $type
+     * @param int $data
      *
      * @return null|object
      */

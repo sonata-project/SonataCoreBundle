@@ -29,9 +29,6 @@ class FormHelper
      *
      * This can be usefull if you don't want to send all fields will building an api. As missing
      * fields will be threated like null values.
-     *
-     * @param array $data
-     * @param Form  $form
      */
     public static function removeFields(array $data, Form $form): void
     {
@@ -58,9 +55,6 @@ class FormHelper
         return self::$extensionMapping;
     }
 
-    /**
-     * @param array $mapping
-     */
     public static function registerFormTypeMapping(array $mapping): void
     {
         self::$typeMapping = array_merge(self::$typeMapping, $mapping);
@@ -68,7 +62,6 @@ class FormHelper
 
     /**
      * @param string $type
-     * @param array  $services
      */
     public static function registerFormExtensionMapping($type, array $services): void
     {
@@ -88,9 +81,6 @@ class FormHelper
     }
 
     /**
-     * @param FormTypeInterface $type
-     * @param OptionsResolver   $optionsResolver
-     *
      * @internal
      */
     public static function configureOptions(FormTypeInterface $type, OptionsResolver $optionsResolver): void

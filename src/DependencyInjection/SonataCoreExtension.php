@@ -13,7 +13,15 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\DependencyInjection;
 
+use JMS\Serializer\Handler\SubscribingHandlerInterface;
 use Sonata\CoreBundle\Form\FormHelper;
+use Sonata\CoreBundle\Form\Type\BooleanType;
+use Sonata\CoreBundle\Form\Type\CollectionType;
+use Sonata\CoreBundle\Form\Type\DateRangeType;
+use Sonata\CoreBundle\Form\Type\DateTimeRangeType;
+use Sonata\CoreBundle\Form\Type\EqualType;
+use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
+use Sonata\CoreBundle\Form\Type\TranslatableChoiceType;
 use Sonata\CoreBundle\Serializer\BaseSerializerHandler;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\FormPass;
 use Symfony\Component\Config\Definition\Processor;
@@ -28,9 +36,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class SonataCoreExtension extends Extension implements PrependExtensionInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function prepend(ContainerBuilder $container): void
     {
         $configs = $container->getExtensionConfig('sonata_admin');
@@ -45,16 +50,13 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $processor = new Processor();
         $configuration = new Configuration();
 
         // NEXT_MAJOR : remove this if block
-        if (!interface_exists('JMS\Serializer\Handler\SubscribingHandlerInterface')) {
+        if (!interface_exists(SubscribingHandlerInterface::class)) {
             /* Let's check for config values before the configuration is processed,
              * otherwise we won't be able to tell,
              * since there is a default value for this option. */
@@ -96,20 +98,16 @@ EOT
     public function configureClassesToCompile(): void
     {
         $this->addClassesToCompile([
-            'Sonata\\CoreBundle\\Form\\Type\\BooleanType',
-            'Sonata\\CoreBundle\\Form\\Type\\CollectionType',
-            'Sonata\\CoreBundle\\Form\\Type\\DateRangeType',
-            'Sonata\\CoreBundle\\Form\\Type\\DateTimeRangeType',
-            'Sonata\\CoreBundle\\Form\\Type\\EqualType',
-            'Sonata\\CoreBundle\\Form\\Type\\ImmutableArrayType',
-            'Sonata\\CoreBundle\\Form\\Type\\TranslatableChoiceType',
+            BooleanType::class,
+            CollectionType::class,
+            DateRangeType::class,
+            DateTimeRangeType::class,
+            EqualType::class,
+            ImmutableArrayType::class,
+            TranslatableChoiceType::class,
         ]);
     }
 
-    /**
-     * @param ContainerBuilder $container
-     * @param array            $config
-     */
     public function configureFormFactory(ContainerBuilder $container, array $config): void
     {
         if (!$config['form']['mapping']['enabled'] || !class_exists(FormPass::class)) {
@@ -140,9 +138,6 @@ EOT
 
     /**
      * Registers flash message types defined in configuration to flash manager.
-     *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param array                                                   $config
      */
     public function registerFlashTypes(ContainerBuilder $container, array $config): void
     {
@@ -185,7 +180,7 @@ EOT
      */
     public function configureSerializerFormats($config): void
     {
-        if (interface_exists('JMS\Serializer\Handler\SubscribingHandlerInterface')) {
+        if (interface_exists(SubscribingHandlerInterface::class)) {
             BaseSerializerHandler::setFormats($config['serializer']['formats']);
         }
     }

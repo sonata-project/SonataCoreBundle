@@ -23,17 +23,11 @@ class FormTypeExtension extends AbstractExtension implements GlobalsInterface
      */
     private $wrapFieldsWithAddons;
 
-    /**
-     * @param $formType
-     */
     public function __construct($formType)
     {
         $this->wrapFieldsWithAddons = (true === $formType || 'standard' === $formType);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getGlobals()
     {
         return [
@@ -41,9 +35,6 @@ class FormTypeExtension extends AbstractExtension implements GlobalsInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return 'sonata_core_wrapping';

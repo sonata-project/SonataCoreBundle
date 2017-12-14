@@ -23,8 +23,6 @@ abstract class BaseDocumentManager extends BaseManager
     /**
      * Make sure the code is compatible with legacy code.
      *
-     * @param $name
-     *
      * @return mixed
      */
     public function __get($name)
@@ -36,9 +34,6 @@ abstract class BaseDocumentManager extends BaseManager
         throw new \RuntimeException(sprintf('The property %s does not exists', $name));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getConnection()
     {
         return $this->getObjectManager()->getConnection();

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Test;
 
+use Symfony\Bridge\Twig\AppVariable;
 use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Bridge\Twig\Form\TwigRenderer;
@@ -45,15 +46,12 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      */
     private $renderer;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
         // TODO: remove the condition when dropping symfony/twig-bundle < 3.2
-        if (method_exists('Symfony\Bridge\Twig\AppVariable', 'getToken')) {
+        if (method_exists(AppVariable::class, 'getToken')) {
             $this->extension = new FormExtension();
             $environment = $this->getEnvironment();
             $this->renderer = new FormRenderer(
@@ -138,7 +136,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
     protected function getRenderingEngine(/* \Twig_Environment $environment = null */)
     {
         $environment = current(func_get_args());
-        if (null === $environment && method_exists('Symfony\Bridge\Twig\AppVariable', 'getToken')) {
+        if (null === $environment && method_exists(AppVariable::class, 'getToken')) {
             @trigger_error(
                 'Not passing a \Twig_Environment instance to '.__METHOD__.
                 ' is deprecated since 3.3 and will not be possible in 4.0',
@@ -151,9 +149,6 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
 
     /**
      * Renders widget from FormView, in SonataAdmin context, with optional view variables $vars. Returns plain HTML.
-     *
-     * @param FormView $view
-     * @param array    $vars
      *
      * @return string
      */

@@ -15,15 +15,20 @@ namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Test\FormBuilderInterface as TestFormBuilderInterface;
 use Symfony\Component\Form\Test\TypeTestCase;
+use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImmutableArrayTypeTest extends TypeTestCase
 {
     public function testBuildForm(): void
     {
-        $formBuilder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
+        $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
@@ -54,7 +59,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
 
         $this->assertSame('sonata_type_immutable_array', $type->getName());
 
-        $this->assertSame('Symfony\Component\Form\Extension\Core\Type\FormType', $type->getParent());
+        $this->assertSame(FormType::class, $type->getParent());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
@@ -71,7 +76,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
     {
         $type = new ImmutableArrayType();
 
-        $builder = $this->createMock('Symfony\Component\Form\Test\FormBuilderInterface');
+        $builder = $this->createMock(TestFormBuilderInterface::class);
         $builder->expects($this->once())->method('add')->with(
             $this->callback(function ($name) {
                 return 'ttl' === $name;
@@ -89,7 +94,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
             $self->assertEquals(['foo', 'bar'], $extra);
             $self->assertEquals($name, 'ttl');
             $self->assertEquals($type, TextType::class);
-            $self->assertInstanceOf('Symfony\Component\Form\Test\FormBuilderInterface', $builder);
+            $self->assertInstanceOf(TestFormBuilderInterface::class, $builder);
 
             return ['1' => '1'];
         };
@@ -110,9 +115,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
         $type = new ImmutableArrayType();
         $type->configureOptions($optionsResolver);
 
-        $this->expectException(
-            'Symfony\Component\OptionsResolver\Exception\InvalidOptionsException'
-        );
+        $this->expectException(InvalidOptionsException::class);
         $this->expectExceptionMessage(
             'The option "keys" with value array is invalid.'
         );
@@ -130,7 +133,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
         $this->assertArrayHasKey(
             'keys',
             $optionsResolver->resolve(['keys' => [$this->getMockBuilder(
-                'Symfony\Component\Form\FormBuilderInterface'
+                FormBuilderInterface::class
             )->getMock()]])
         );
     }

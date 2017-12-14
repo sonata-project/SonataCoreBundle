@@ -27,17 +27,11 @@ use Symfony\Component\Form\FormEvents;
  */
 class FixCheckboxDataListener implements EventSubscriberInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents()
     {
         return [FormEvents::PRE_SUBMIT => 'preSubmit'];
     }
 
-    /**
-     * @param FormEvent $event
-     */
     public function preSubmit(FormEvent $event): void
     {
         $data = $event->getData();

@@ -20,8 +20,6 @@ abstract class BasePHPCRManager extends BaseManager
     /**
      * Make sure the code is compatible with legacy code.
      *
-     * @param $name
-     *
      * @return mixed
      */
     public function __get($name)

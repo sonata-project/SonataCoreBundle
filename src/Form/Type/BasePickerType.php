@@ -44,9 +44,6 @@ abstract class BasePickerType extends AbstractType
 
     /**
      * NEXT_MAJOR: TranslatorInterface needs to be mandatory.
-     *
-     * @param MomentFormatConverter $formatConverter
-     * @param TranslatorInterface   $translator
      */
     public function __construct(MomentFormatConverter $formatConverter, TranslatorInterface $translator)
     {
@@ -56,9 +53,6 @@ abstract class BasePickerType extends AbstractType
         $this->locale = $this->translator->getLocale();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         $format = $options['format'];

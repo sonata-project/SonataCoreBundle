@@ -31,9 +31,6 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
      */
     protected $metadata;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configure(): void
     {
         $this
@@ -65,9 +62,6 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         $output->writeln('Initialising Doctrine metadata.');
@@ -82,9 +76,6 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         if (!$this->metadata) {
@@ -100,10 +91,6 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
 
     /**
      * Display the list of entities handled by Doctrine and their fields.
-     *
-     * @param array           $metadata
-     * @param InputInterface  $input
-     * @param OutputInterface $output
      */
     private function dumpMetadata(array $metadata, InputInterface $input, OutputInterface $output): void
     {
@@ -140,10 +127,6 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
     }
 
     /**
-     * @param array           $metadata
-     * @param InputInterface  $input
-     * @param OutputInterface $output
-     *
      * @return array
      */
     private function filterMetadata(array $metadata, InputInterface $input, OutputInterface $output)
@@ -175,8 +158,6 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
     }
 
     /**
-     * @param ClassMetadata $meta
-     *
      * @return array
      */
     private function normalizeDoctrineORMMeta(ClassMetadata $meta)

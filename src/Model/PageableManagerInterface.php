@@ -21,10 +21,8 @@ use Sonata\DatagridBundle\Pager\PagerInterface;
 interface PageableManagerInterface
 {
     /**
-     * @param array $criteria
-     * @param int   $page
-     * @param int   $limit
-     * @param array $sort
+     * @param int $page
+     * @param int $limit
      *
      * @return PagerInterface
      */

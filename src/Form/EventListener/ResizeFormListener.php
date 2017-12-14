@@ -52,21 +52,21 @@ class ResizeFormListener implements EventSubscriberInterface
 
     /**
      * @param string        $type
-     * @param array         $typeOptions
      * @param bool          $resizeOnSubmit
      * @param \Closure|null $preSubmitDataCallback
      */
-    public function __construct($type, array $typeOptions = [], $resizeOnSubmit = false, $preSubmitDataCallback = null)
-    {
+    public function __construct(
+        $type,
+        array $typeOptions = [],
+        $resizeOnSubmit = false,
+        $preSubmitDataCallback = null
+    ) {
         $this->type = $type;
         $this->resizeOnSubmit = $resizeOnSubmit;
         $this->typeOptions = $typeOptions;
         $this->preSubmitDataCallback = $preSubmitDataCallback;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getSubscribedEvents()
     {
         return [
@@ -77,8 +77,6 @@ class ResizeFormListener implements EventSubscriberInterface
     }
 
     /**
-     * @param FormEvent $event
-     *
      * @throws UnexpectedTypeException
      */
     public function preSetData(FormEvent $event): void
@@ -111,8 +109,6 @@ class ResizeFormListener implements EventSubscriberInterface
     }
 
     /**
-     * @param FormEvent $event
-     *
      * @throws UnexpectedTypeException
      */
     public function preSubmit(FormEvent $event): void
@@ -160,8 +156,6 @@ class ResizeFormListener implements EventSubscriberInterface
     }
 
     /**
-     * @param FormEvent $event
-     *
      * @throws UnexpectedTypeException
      */
     public function onSubmit(FormEvent $event): void

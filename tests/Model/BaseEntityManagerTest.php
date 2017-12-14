@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Entity;
 
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Common\Persistence\ObjectManager;
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Model\BaseEntityManager;
 
@@ -24,7 +26,7 @@ class BaseEntityManagerTest extends TestCase
 {
     public function getManager()
     {
-        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock(ManagerRegistry::class);
 
         $manager = new EntityManager('classname', $registry);
 
@@ -49,7 +51,7 @@ class BaseEntityManagerTest extends TestCase
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Unable to find the mapping information for the class classname. Please check the `auto_mapping` option (http://symfony.com/doc/current/reference/configuration/doctrine.html#configuration-overview) or add the bundle to the `mappings` section in the doctrine configuration');
 
-        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock(ManagerRegistry::class);
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue(null));
 
         $manager = new EntityManager('classname', $registry);
@@ -58,9 +60,9 @@ class BaseEntityManagerTest extends TestCase
 
     public function testGetEntityManager(): void
     {
-        $objectManager = $this->createMock('Doctrine\Common\Persistence\ObjectManager');
+        $objectManager = $this->createMock(ObjectManager::class);
 
-        $registry = $this->createMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->createMock(ManagerRegistry::class);
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($objectManager));
 
         $manager = new EntityManager('classname', $registry);

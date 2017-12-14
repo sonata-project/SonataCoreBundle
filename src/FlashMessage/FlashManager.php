@@ -43,30 +43,26 @@ class FlashManager implements StatusClassRendererInterface
     protected $cssClasses;
 
     /**
-     * @param SessionInterface    $session    Symfony session service
-     * @param TranslatorInterface $translator Symfony translator service
-     * @param array               $types      Sonata core types array (defined in configuration)
-     * @param array               $cssClasses Css classes associated with $types
+     * @param array $types      Sonata core types array (defined in configuration)
+     * @param array $cssClasses Css classes associated with $types
      */
-    public function __construct(SessionInterface $session, TranslatorInterface $translator, array $types, array $cssClasses)
-    {
+    public function __construct(
+        SessionInterface $session,
+        TranslatorInterface $translator,
+        array $types,
+        array $cssClasses
+    ) {
         $this->session = $session;
         $this->translator = $translator;
         $this->types = $types;
         $this->cssClasses = $cssClasses;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function handlesObject($object, $statusName = null)
     {
         return is_string($object) && array_key_exists($object, $this->cssClasses);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getStatusClass($object, $statusName = null, $default = '')
     {
         return array_key_exists($object, $this->cssClasses)

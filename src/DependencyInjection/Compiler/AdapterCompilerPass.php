@@ -22,9 +22,6 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class AdapterCompilerPass implements CompilerPassInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function process(ContainerBuilder $container): void
     {
         if (!$container->has('sonata.core.model.adapter.chain')) {

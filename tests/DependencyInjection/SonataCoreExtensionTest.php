@@ -15,6 +15,7 @@ namespace Sonata\CoreBundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Sonata\CoreBundle\DependencyInjection\SonataCoreExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class SonataCoreExtensionTest extends AbstractExtensionTestCase
 {
@@ -51,9 +52,7 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
 
     public function testPrepend(): void
     {
-        $containerBuilder = $this->prophesize(
-            'Symfony\Component\DependencyInjection\ContainerBuilder'
-        );
+        $containerBuilder = $this->prophesize(ContainerBuilder::class);
 
         $containerBuilder->getExtensionConfig('sonata_admin')->willReturn([
             ['some_key_we_do_not_care_about' => 42],

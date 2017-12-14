@@ -62,57 +62,36 @@ abstract class BaseManager implements ManagerInterface
         return $manager;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getClass()
     {
         return $this->class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function findAll()
     {
         return $this->getRepository()->findAll();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
     {
         return $this->getRepository()->findBy($criteria, $orderBy, $limit, $offset);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function findOneBy(array $criteria, array $orderBy = null)
     {
         return $this->getRepository()->findOneBy($criteria, $orderBy);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function find($id)
     {
         return $this->getRepository()->find($id);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function create()
     {
         return new $this->class();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function save($entity, $andFlush = true): void
     {
         $this->checkObject($entity);
@@ -124,9 +103,6 @@ abstract class BaseManager implements ManagerInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function delete($entity, $andFlush = true): void
     {
         $this->checkObject($entity);
@@ -138,9 +114,6 @@ abstract class BaseManager implements ManagerInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTableName()
     {
         return $this->getObjectManager()->getClassMetadata($this->class)->table['name'];
@@ -157,8 +130,6 @@ abstract class BaseManager implements ManagerInterface
     }
 
     /**
-     * @param $object
-     *
      * @throws \InvalidArgumentException
      */
     protected function checkObject($object): void
