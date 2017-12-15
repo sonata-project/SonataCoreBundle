@@ -13,7 +13,6 @@ namespace Sonata\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -104,7 +103,7 @@ abstract class BaseStatusType extends AbstractType
         $choices = call_user_func([$this->class, $this->getter]);
 
         // choice_as_value options is not needed in SF 3.0+
-        if (method_exists(FormTypeInterface::class, 'setDefaultOptions')) {
+        if ($resolver->isDefined('choices_as_values')) {
             $resolver->setDefault('choices_as_values', true);
         }
 
