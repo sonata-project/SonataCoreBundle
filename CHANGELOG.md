@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.8.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.7.1...3.8.0) - 2017-12-16
+### Added
+- Added Russian translations
+- Added twig extension for deprecating templates
+
+### Changed
+- Avoid inheritance from deprecated FormPass
+
+### Fixed
+- Deprecation about `FormPass` can now be avoided
+- Fixed deprecation message in `ColorSelectorType`
+
 ## [3.7.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.7.0...3.7.1) - 2017-11-30
 ### Fixed
 - It is now allowed to install Symfony 4
