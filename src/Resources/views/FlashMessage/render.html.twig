@@ -12,7 +12,7 @@ file that was distributed with this source code.
     {% set domain = domain is defined ? domain : null %}
     {% for message in sonata_flashmessages_get(type, domain) %}
         <div class="alert alert-{{ type|sonata_status_class }} alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" aria-label="{{ 'message_close'|trans({}, 'SonataCoreBundle') }}">&times;</button>
             {{ message|raw }}
         </div>
     {% endfor %}
