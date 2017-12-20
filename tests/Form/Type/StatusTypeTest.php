@@ -61,6 +61,29 @@ class StatusTypeTest extends TypeTestCase
         $this->assertTrue(class_exists($parentRef), sprintf('Unable to ensure %s is a FQCN', $parentRef));
     }
 
+    /**
+     * @group legacy
+     */
+    public function testGetDefaultOptionsLegacy()
+    {
+        Choice::$list = [
+            1 => 'salut',
+        ];
+
+        $type = new StatusType(Choice::class, 'getList', 'choice_type', false);
+
+        $this->assertSame('choice_type', $type->getName());
+
+        $this->assertSame(ChoiceType::class, $type->getParent());
+
+        FormHelper::configureOptions($type, $resolver = new OptionsResolver());
+
+        $options = $resolver->resolve([]);
+
+        $this->assertArrayHasKey('choices', $options);
+        $this->assertSame($options['choices'], [1 => 'salut']);
+    }
+
     public function testGetDefaultOptions()
     {
         Choice::$list = [
@@ -78,7 +101,7 @@ class StatusTypeTest extends TypeTestCase
         $options = $resolver->resolve([]);
 
         $this->assertArrayHasKey('choices', $options);
-        $this->assertSame($options['choices'], [1 => 'salut']);
+        $this->assertSame($options['choices'], ['salut' => 1]);
     }
 
     public function testGetDefaultOptionsWithValidFlip()
@@ -88,7 +111,7 @@ class StatusTypeTest extends TypeTestCase
             2 => 'toi!',
         ];
 
-        $type = new StatusType(Choice::class, 'getList', 'choice_type', true);
+        $type = new StatusType(Choice::class, 'getList', 'choice_type');
 
         $this->assertSame('choice_type', $type->getName());
         $this->assertSame(ChoiceType::class, $type->getParent());
@@ -110,13 +133,13 @@ class StatusTypeTest extends TypeTestCase
             2 => 'error',
         ];
 
-        $type = new StatusType(Choice::class, 'getList', 'choice_type', true);
+        $type = new StatusType(Choice::class, 'getList', 'choice_type');
 
         $this->assertSame('choice_type', $type->getName());
         $this->assertSame(ChoiceType::class, $type->getParent());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
-        $options = $resolver->resolve([]);
+        $resolver->resolve([]);
     }
 }
