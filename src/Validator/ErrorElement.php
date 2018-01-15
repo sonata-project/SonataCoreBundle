@@ -91,7 +91,7 @@ class ErrorElement
     /**
      * @param string $name
      *
-     * @throws \RunTimeException
+     * @throws \RuntimeException
      *
      * @return ErrorElement
      */
@@ -100,7 +100,7 @@ class ErrorElement
         if ('assert' === substr($name, 0, 6)) {
             $this->validate($this->newConstraint(substr($name, 6), isset($arguments[0]) ? $arguments[0] : []));
         } else {
-            throw new \RunTimeException('Unable to recognize the command');
+            throw new \RuntimeException('Unable to recognize the command');
         }
 
         return $this;

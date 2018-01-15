@@ -35,7 +35,7 @@ class DoctrinePHPCRAdapter implements AdapterInterface
     public function getNormalizedIdentifier($document)
     {
         if (is_scalar($document)) {
-            throw new \RunTimeException('Invalid argument, object or null required');
+            throw new \RuntimeException('Invalid argument, object or null required');
         }
 
         if (!$document) {
