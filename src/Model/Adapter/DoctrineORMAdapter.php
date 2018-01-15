@@ -35,7 +35,7 @@ class DoctrineORMAdapter implements AdapterInterface
     public function getNormalizedIdentifier($entity)
     {
         if (is_scalar($entity)) {
-            throw new \RunTimeException('Invalid argument, object or null required');
+            throw new \RuntimeException('Invalid argument, object or null required');
         }
 
         if (!$entity) {
