@@ -36,7 +36,7 @@ class DoctrinePHPCRAdapterTest extends TestCase
 
     public function testNormalizedIdentifierWithScalar(): void
     {
-        $this->expectException(\RunTimeException::class);
+        $this->expectException(\RuntimeException::class);
 
         $registry = $this->createMock(ManagerRegistry::class);
         $adapter = new DoctrinePHPCRAdapter($registry);
