@@ -318,7 +318,7 @@ In order to use them, you'll need to perform a bit of setup:
 
         twig:
             form_themes:
-                - 'SonataCoreBundle:Form:datepicker.html.twig'
+                - '@SonataCore/Form/datepicker.html.twig'
 
 In your layout, you'll need to add the assets dependencies (feel free to adapt this to your needs, for instance to use with assetic):
 
@@ -443,7 +443,7 @@ In order to use it, you'll need to perform a bit of setup:
         # app/config/config.yml
         twig:
             form_themes:
-                - 'SonataCoreBundle:Form:color.html.twig'
+                - '@SonataCore/Form/color.html.twig'
 
 Finally, in your form, you may use the form type as follows:
 
