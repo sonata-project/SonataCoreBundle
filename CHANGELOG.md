@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.9.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.9.0...3.9.1) - 2018-02-23
+### Fixed
+- Missing deprecation alert for `sonata.core.slugify.native` service
+
+### Changed
+- changed composer dependency from `symfony/security` to `symfony/security-csrf`
+- Services for slugify strings are marked as public
+
 ## [3.9.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.8.0...3.9.0) - 2018-01-07
 ### Added
 - Added close label to flash messages
