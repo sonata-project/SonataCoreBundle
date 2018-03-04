@@ -1,8 +1,9 @@
 Command
 =======
 
-You can create a dump file with entity schema information. For each entity, you will get
-table name and the mapping between fields and column names (related entities fields won't be displayed).
+You can create a dump file with entity schema information. For each
+entity, you will get the table name and the mapping between fields and
+column names (related entity fields won't be displayed).
 
 .. code-block:: bash
 

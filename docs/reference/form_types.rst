@@ -38,8 +38,10 @@ The service definition should contain the following arguments:
 
 .. warning::
 
-    ``DoctrineORMSerializationType`` cannot be used directly with Symfony3.0, you need to extends the class ``BaseDoctrineORMSerializationType``
-    with an empty class to have an unique FQCN.
+    ``DoctrineORMSerializationType`` cannot be used directly with
+    Symfony3.0, you need to extend the class
+    ``BaseDoctrineORMSerializationType`` with an empty class to have a
+    unique FQCN.
 
 
 
@@ -49,7 +51,7 @@ ImmutableArrayType
 The ``Immutable Array`` allows you to edit an array property by defining a type per key.
 
 The type has a ``keys`` parameter which contains the definition for each key.
-A definition is either a ``FormBuilder`` instance, or an array with 3 options:
+A definition is either a ``FormBuilder`` instance or an array with 3 options:
 
 * key name,
 * type: a type name or a ``FormType`` instance,
@@ -289,16 +291,18 @@ And the type can now be used:
 
 .. warning::
 
-    ``StatusType`` cannot be used directly with Symfony3.0, you need to extends the class ``BaseStatusType``
-    with an empty class to have a unique FQCN.
+    ``StatusType`` cannot be used directly with Symfony3.0, you need to
+    extend the class ``BaseStatusType`` with an empty class to have a
+    unique FQCN.
 
 
 
 DatePickerType and DateTimePickerType
 -------------------------------------
 
-Those types integrate `Eonasdan's Bootstrap datetimepicker`_ into a Symfony form.
-They both are available as services, and inherit from ``date`` and ``datetime`` default form types.
+Those types integrate `Eonasdan's Bootstrap datetimepicker`_ into a
+Symfony form. They both are available as services and inherit from
+``date`` and ``datetime`` default form types.
 
 .. note::
 
@@ -320,7 +324,8 @@ In order to use them, you'll need to perform a bit of setup:
             form_themes:
                 - '@SonataCore/Form/datepicker.html.twig'
 
-In your layout, you'll need to add the assets dependencies (feel free to adapt this to your needs, for instance to use with assetic):
+In your layout, you'll need to add the assets dependencies (feel free to
+adapt this to your needs, for instance, to use with assetic):
 
 .. code-block:: html
 
