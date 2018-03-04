@@ -1,11 +1,12 @@
 Inline Validation
 =================
 
-The inline validation is about delegating model validation to a dedicated service.
-The current validation implementation built in the Symfony framework is very powerful
-as it allows to declare validation on a : class, field and getter. However these declarations
-can take a while to code for complex rules. As rules must be a set of a ``Constraint``
-and a ``Validator`` instances.
+The inline validation is about delegating model validation to a
+dedicated service.  The current validation implementation built in the
+Symfony framework is very powerful as it allows to declare validation on
+a : class, field and getter. However, these declarations can take a
+while to code for complex rules. As rules must be a set of a
+``Constraint`` and a ``Validator`` instances.
 
 The inline validation tries to provide a nice solution by introducing an ``ErrorElement``
 object. The object can be used to check assertions against the model :
@@ -54,8 +55,8 @@ object. The object can be used to check assertions against the model :
 
 .. note::
 
-    This solution relies on the validator component so validation defined through
-    the validator component will be used.
+    This solution relies on the validator component so validation
+    defined by the validator component will be used.
 
 .. tip::
 
@@ -106,8 +107,9 @@ There are two important options:
 
 .. note::
 
-    If the ``service`` or ``method`` are not string, you will need to re-attach the validation on each request. Set
-    the ``serializingWarning`` option to ``true`` once it is done.
+    If the ``service`` or ``method`` is not a string, you will need to
+    re-attach the validation on each request. Set the
+    ``serializingWarning`` option to ``true`` once it is done.
 
 The method must accept two arguments:
 

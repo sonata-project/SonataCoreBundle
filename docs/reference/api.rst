@@ -29,4 +29,5 @@ client only sent partial data to update an entity.
         // ...
     }
 
-The call need to be done before the ``bind`` function as you cannot manipulate the form after the binding.
+The call needs to be done before the ``bind`` function as you cannot
+manipulate the form after the binding.
