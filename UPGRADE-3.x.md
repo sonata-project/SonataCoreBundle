@@ -1,6 +1,9 @@
 UPGRADE 3.x
 ===========
 
+The `ColorType` class is deprecated. Use 
+`Symfony\Component\Form\Extension\Core\Type\ColorType` instead.
+
 UPGRADE FROM 3.6 to 3.7
 =======================
 

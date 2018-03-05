@@ -15,6 +15,9 @@ use Sonata\CoreBundle\Form\Type\ColorType;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Test\TypeTestCase;
 
+/**
+ * NEXT_MAJOR: remove this class.
+ */
 class ColorTypeTest extends TypeTestCase
 {
     public function testBuildForm()
