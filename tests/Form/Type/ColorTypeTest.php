@@ -20,6 +20,19 @@ use Symfony\Component\Form\Test\TypeTestCase;
  */
 class ColorTypeTest extends TypeTestCase
 {
+    /**
+     * @group legacy
+     * @expectedDeprecation The Sonata\CoreBundle\Form\Type\ColorType class is deprecated since version 3.x and will be removed in 4.0. Use Symfony\Component\Form\Extension\Core\Type\ColorType instead.
+     */
+    public function testDeprecation()
+    {
+        if (!class_exists('Symfony\Component\Form\Extension\Core\Type\ColorType')) {
+            $this->markTestSkipped('< Symfony 3.4');
+        }
+
+        $type = new ColorType();
+    }
+
     public function testBuildForm()
     {
         $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
