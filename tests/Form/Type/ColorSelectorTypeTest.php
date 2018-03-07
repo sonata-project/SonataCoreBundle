@@ -25,6 +25,7 @@ class ColorSelectorTypeTest extends TypeTestCase
 {
     /**
      * @group legacy
+     * @expectedDeprecation The Sonata\CoreBundle\Color\Colors class is deprecated since version 3.x and will be removed in 4.0.
      */
     public function testBuildForm(): void
     {
