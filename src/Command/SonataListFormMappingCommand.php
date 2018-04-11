@@ -29,7 +29,7 @@ class SonataListFormMappingCommand extends ContainerAwareCommand
 
     public function isEnabled()
     {
-        return Kernel::MAJOR_VERSION !== 3;
+        return Kernel::MAJOR_VERSION < 3;
     }
 
     protected function configure()
