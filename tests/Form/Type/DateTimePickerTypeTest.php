@@ -67,6 +67,6 @@ class DateTimePickerTypeTest extends TestCase
     {
         $type = new DateTimePickerType(new MomentFormatConverter(), $this->createMock(TranslatorInterface::class));
 
-        $this->assertSame('sonata_type_datetime_picker', $type->getName());
+        $this->assertSame('sonata_type_datetime_picker', $type->getBlockPrefix());
     }
 }

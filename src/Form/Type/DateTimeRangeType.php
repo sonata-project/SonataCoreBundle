@@ -17,38 +17,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Translation\TranslatorInterface;
 
 class DateTimeRangeType extends AbstractType
 {
-    /**
-     * NEXT_MAJOR: remove this property.
-     *
-     * @var TranslatorInterface|null
-     *
-     * @deprecated translator property is deprecated since version 3.1, to be removed in 4.0
-     */
-    protected $translator;
-
-    /**
-     * NEXT_MAJOR: remove this method.
-     *
-     * @deprecated translator dependency is deprecated since version 3.1, to be removed in 4.0
-     */
-    public function __construct(TranslatorInterface $translator = null)
-    {
-        // check if class is overloaded and notify about removing deprecated translator
-        if (null !== $translator && __CLASS__ !== get_class($this) && DateTimeRangePickerType::class !== get_class($this)) {
-            @trigger_error(
-                'The translator dependency in '.__CLASS__.' is deprecated since 3.1 and will be removed in 4.0. '.
-                'Please prepare your dependencies for this change.',
-                E_USER_DEPRECATED
-            );
-        }
-
-        $this->translator = $translator;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $options['field_options_start'] = array_merge(
@@ -74,11 +45,6 @@ class DateTimeRangeType extends AbstractType
     public function getBlockPrefix()
     {
         return 'sonata_type_datetime_range';
-    }
-
-    public function getName()
-    {
-        return $this->getBlockPrefix();
     }
 
     public function configureOptions(OptionsResolver $resolver): void

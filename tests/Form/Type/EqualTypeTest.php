@@ -64,7 +64,7 @@ class EqualTypeTest extends TypeTestCase
 
         $type = new EqualType($mock);
 
-        $this->assertSame('sonata_type_equal', $type->getName());
+        $this->assertSame('sonata_type_equal', $type->getBlockPrefix());
         $this->assertSame(ChoiceType::class, $type->getParent());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());

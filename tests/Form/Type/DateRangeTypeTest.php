@@ -57,7 +57,7 @@ class DateRangeTypeTest extends TypeTestCase
     {
         $type = new DateRangeType($this->createMock(TranslatorInterface::class));
 
-        $this->assertSame('sonata_type_date_range', $type->getName());
+        $this->assertSame('sonata_type_date_range', $type->getBlockPrefix());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 

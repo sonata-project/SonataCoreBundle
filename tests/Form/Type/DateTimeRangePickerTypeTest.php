@@ -57,7 +57,7 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
     {
         $type = new DateTimeRangePickerType($this->createMock(TranslatorInterface::class));
 
-        $this->assertSame('sonata_type_datetime_range_picker', $type->getName());
+        $this->assertSame('sonata_type_datetime_range_picker', $type->getBlockPrefix());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 

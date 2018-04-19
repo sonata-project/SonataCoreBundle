@@ -36,9 +36,4 @@ class DateTimeRangePickerType extends DateTimeRangeType
     {
         return 'sonata_type_datetime_range_picker';
     }
-
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
 }

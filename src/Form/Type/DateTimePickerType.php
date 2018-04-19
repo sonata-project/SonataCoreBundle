@@ -41,9 +41,4 @@ class DateTimePickerType extends BasePickerType
     {
         return 'sonata_type_datetime_picker';
     }
-
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
 }

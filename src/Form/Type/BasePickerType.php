@@ -42,14 +42,10 @@ abstract class BasePickerType extends AbstractType
      */
     private $formatConverter;
 
-    /**
-     * NEXT_MAJOR: TranslatorInterface needs to be mandatory.
-     */
     public function __construct(MomentFormatConverter $formatConverter, TranslatorInterface $translator)
     {
         $this->formatConverter = $formatConverter;
         $this->translator = $translator;
-
         $this->locale = $this->translator->getLocale();
     }
 
