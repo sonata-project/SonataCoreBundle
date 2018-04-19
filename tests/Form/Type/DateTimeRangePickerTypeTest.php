@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
-use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\DateTimePickerType;
 use Sonata\CoreBundle\Form\Type\DateTimeRangePickerType;
 use Symfony\Component\Form\FormBuilder;
@@ -59,7 +58,7 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
 
         $this->assertSame('sonata_type_datetime_range_picker', $type->getBlockPrefix());
 
-        FormHelper::configureOptions($type, $resolver = new OptionsResolver());
+        $type->configureOptions($resolver = new OptionsResolver());
 
         $options = $resolver->resolve();
 

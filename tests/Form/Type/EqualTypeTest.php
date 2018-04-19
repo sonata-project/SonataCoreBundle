@@ -13,11 +13,9 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
-use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\EqualType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilder;
-use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -67,19 +65,14 @@ class EqualTypeTest extends TypeTestCase
         $this->assertSame('sonata_type_equal', $type->getBlockPrefix());
         $this->assertSame(ChoiceType::class, $type->getParent());
 
-        FormHelper::configureOptions($type, $resolver = new OptionsResolver());
+        $type->configureOptions($resolver = new OptionsResolver());
 
         $options = $resolver->resolve();
 
         $expected = [
             'choice_translation_domain' => 'SonataCoreBundle',
             'choices' => ['label_type_equals' => 1, 'label_type_not_equals' => 2],
-            'choices_as_values' => true,
         ];
-
-        if (!method_exists(FormTypeInterface::class, 'setDefaultOptions')) {
-            unset($expected['choices_as_values']);
-        }
 
         $this->assertSame($expected, $options);
     }
