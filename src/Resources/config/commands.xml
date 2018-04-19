@@ -4,8 +4,5 @@
         <service id="Sonata\CoreBundle\Command\SonataDumpDoctrineMetaCommand" class="Sonata\CoreBundle\Command\SonataDumpDoctrineMetaCommand">
             <tag name="console.command"/>
         </service>
-        <service id="Sonata\CoreBundle\Command\SonataListFormMappingCommand" class="Sonata\CoreBundle\Command\SonataListFormMappingCommand">
-            <tag name="console.command"/>
-        </service>
     </services>
 </container>

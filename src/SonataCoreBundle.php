@@ -13,15 +13,11 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle;
 
-use Nelmio\ApiDocBundle\Form\Extension\DescriptionFormTypeExtension;
 use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
-use Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\BooleanType;
 use Sonata\CoreBundle\Form\Type\CollectionType;
-use Sonata\CoreBundle\Form\Type\ColorSelectorType;
-use Sonata\CoreBundle\Form\Type\ColorType;
 use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Sonata\CoreBundle\Form\Type\DateRangePickerType;
 use Sonata\CoreBundle\Form\Type\DateRangeType;
@@ -71,7 +67,6 @@ class SonataCoreBundle extends Bundle
     {
         $container->addCompilerPass(new StatusRendererCompilerPass());
         $container->addCompilerPass(new AdapterCompilerPass());
-        $container->addCompilerPass(new FormFactoryCompilerPass());
 
         $this->registerFormMapping();
     }
@@ -135,8 +130,6 @@ class SonataCoreBundle extends Bundle
             'sonata_type_date_range_picker' => DateRangePickerType::class,
             'sonata_type_datetime_range_picker' => DateTimeRangePickerType::class,
             'sonata_type_equal' => EqualType::class,
-            'sonata_type_color' => ColorType::class,
-            'sonata_type_color_selector' => ColorSelectorType::class,
         ]);
 
         $formTypes = [
@@ -145,10 +138,6 @@ class SonataCoreBundle extends Bundle
             'form.type_extension.csrf',
             'form.type_extension.form.data_collector',
         ];
-
-        if (class_exists(DescriptionFormTypeExtension::class)) {
-            $formTypes[] = 'nelmio_api_doc.form.extension.description_form_type_extension';
-        }
 
         FormHelper::registerFormExtensionMapping('form', $formTypes);
 

@@ -129,21 +129,10 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
     }
 
     /**
-     * NEXT_MAJOR: uncomment and use the $environment argument.
-     *
      * @return TwigRendererEngineInterface
      */
-    protected function getRenderingEngine(/* \Twig_Environment $environment = null */)
+    protected function getRenderingEngine(\Twig_Environment $environment)
     {
-        $environment = current(func_get_args());
-        if (null === $environment && method_exists(AppVariable::class, 'getToken')) {
-            @trigger_error(
-                'Not passing a \Twig_Environment instance to '.__METHOD__.
-                ' is deprecated since 3.3 and will not be possible in 4.0',
-                E_USER_DEPRECATED
-            );
-        }
-
         return new TwigRendererEngine(['form_div_layout.html.twig'], $environment);
     }
 

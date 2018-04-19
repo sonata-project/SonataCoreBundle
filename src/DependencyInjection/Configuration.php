@@ -110,7 +110,6 @@ class Configuration implements ConfigurationInterface
      */
     private function addSerializerFormats(ArrayNodeDefinition $node): void
     {
-        // NEXT_MAJOR : do not execute this if jms/serializer is missing
         $node
             ->children()
                 ->arrayNode('serializer')

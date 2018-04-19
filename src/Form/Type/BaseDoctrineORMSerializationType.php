@@ -142,11 +142,6 @@ class BaseDoctrineORMSerializationType extends AbstractType
         return $this->name;
     }
 
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

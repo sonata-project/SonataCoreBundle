@@ -20,8 +20,6 @@ use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\BooleanType;
 use Sonata\CoreBundle\Form\Type\CollectionType;
-use Sonata\CoreBundle\Form\Type\ColorSelectorType;
-use Sonata\CoreBundle\Form\Type\ColorType;
 use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Sonata\CoreBundle\Form\Type\DateRangePickerType;
 use Sonata\CoreBundle\Form\Type\DateRangeType;
@@ -173,8 +171,6 @@ final class SonataCoreBundleTest extends TestCase
             ['sonata_type_date_range_picker', DateRangePickerType::class],
             ['sonata_type_datetime_range_picker', DateTimeRangePickerType::class],
             ['sonata_type_equal', EqualType::class],
-            ['sonata_type_color', ColorType::class],
-            ['sonata_type_color_selector', ColorSelectorType::class],
         ];
     }
 
@@ -199,7 +195,6 @@ final class SonataCoreBundleTest extends TestCase
             ['form', 'form.type_extension.form.validator'],
             ['form', 'form.type_extension.csrf'],
             ['form', 'form.type_extension.form.data_collector'],
-            ['form', 'nelmio_api_doc.form.extension.description_form_type_extension'],
             ['repeated', 'form.type_extension.repeated.validator'],
             ['submit', 'form.type_extension.submit.validator'],
         ];

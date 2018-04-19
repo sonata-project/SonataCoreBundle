@@ -65,9 +65,4 @@ class ImmutableArrayType extends AbstractType
     {
         return 'sonata_type_immutable_array';
     }
-
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
 }

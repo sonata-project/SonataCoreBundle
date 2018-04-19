@@ -40,12 +40,5 @@
             <tag name="form.type" alias="sonata_type_equal"/>
             <argument type="service" id="translator"/>
         </service>
-        <service id="sonata.core.form.type.color_selector" class="Sonata\CoreBundle\Form\Type\ColorSelectorType">
-            <deprecated>The "%service_id%" service is deprecated since 3.5 and will be removed in 4.0.</deprecated>
-            <tag name="form.type" alias="sonata_type_color_selector"/>
-        </service>
-        <service id="sonata.core.form.type.color" class="Sonata\CoreBundle\Form\Type\ColorType">
-            <tag name="form.type" alias="sonata_type_color"/>
-        </service>
     </services>
 </container>

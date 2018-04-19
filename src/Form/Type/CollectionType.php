@@ -57,9 +57,4 @@ class CollectionType extends AbstractType
     {
         return 'sonata_type_collection';
     }
-
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
 }
