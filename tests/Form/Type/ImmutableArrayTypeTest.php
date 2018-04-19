@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
-use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -61,7 +60,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
 
         $this->assertSame(FormType::class, $type->getParent());
 
-        FormHelper::configureOptions($type, $resolver = new OptionsResolver());
+        $type->configureOptions($resolver = new OptionsResolver());
 
         $options = $resolver->resolve();
 

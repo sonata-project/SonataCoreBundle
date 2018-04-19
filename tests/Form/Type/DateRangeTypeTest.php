@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
-use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\DateRangeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilder;
@@ -59,7 +58,7 @@ class DateRangeTypeTest extends TypeTestCase
 
         $this->assertSame('sonata_type_date_range', $type->getBlockPrefix());
 
-        FormHelper::configureOptions($type, $resolver = new OptionsResolver());
+        $type->configureOptions($resolver = new OptionsResolver());
 
         $options = $resolver->resolve();
 

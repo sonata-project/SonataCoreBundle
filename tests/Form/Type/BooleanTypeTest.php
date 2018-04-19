@@ -13,11 +13,9 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
-use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\BooleanType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilder;
-use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\Test\FormBuilderInterface;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -59,7 +57,7 @@ class BooleanTypeTest extends TypeTestCase
 
         $this->assertSame(ChoiceType::class, $type->getParent());
 
-        FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
+        $type->configureOptions($optionResolver = new OptionsResolver());
 
         $options = $optionResolver->resolve();
 
@@ -70,7 +68,7 @@ class BooleanTypeTest extends TypeTestCase
     {
         $type = new BooleanType();
 
-        FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
+        $type->configureOptions($optionResolver = new OptionsResolver());
 
         $builder = $this->createMock(FormBuilderInterface::class);
         $builder->expects($this->once())->method('addModelTransformer');
@@ -87,7 +85,7 @@ class BooleanTypeTest extends TypeTestCase
     {
         $type = new BooleanType();
 
-        FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
+        $type->configureOptions($optionResolver = new OptionsResolver());
 
         $builder = $this->createMock(FormBuilderInterface::class);
         $builder->expects($this->never())->method('addModelTransformer');
@@ -99,7 +97,7 @@ class BooleanTypeTest extends TypeTestCase
     {
         $type = new BooleanType();
 
-        FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
+        $type->configureOptions($optionResolver = new OptionsResolver());
 
         $builder = $this->createMock(FormBuilderInterface::class);
         $builder->expects($this->never())->method('addModelTransformer');
@@ -114,14 +112,9 @@ class BooleanTypeTest extends TypeTestCase
         $expectedOptions = [
             'transform' => false,
             'choice_translation_domain' => 'SonataCoreBundle',
-            'choices_as_values' => true,
             'choices' => [1 => 'foo_yes', 2 => 'foo_no'],
             'translation_domain' => 'fooTrans',
         ];
-
-        if (!method_exists(FormTypeInterface::class, 'setDefaultOptions')) {
-            unset($expectedOptions['choices_as_values']);
-        }
 
         $this->assertSame($expectedOptions, $resolvedOptions);
     }

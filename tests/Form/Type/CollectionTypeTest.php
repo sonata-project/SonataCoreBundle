@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
-use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilder;
@@ -59,7 +58,7 @@ class CollectionTypeTest extends TypeTestCase
     {
         $type = new CollectionType();
 
-        FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
+        $type->configureOptions($optionResolver = new OptionsResolver());
 
         $options = $optionResolver->resolve();
 
