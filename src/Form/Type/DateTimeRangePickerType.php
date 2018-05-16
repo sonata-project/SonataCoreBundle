@@ -25,7 +25,9 @@ class DateTimeRangePickerType extends DateTimeRangeType
         $resolver->setDefaults([
             'field_options' => [],
             'field_options_start' => [],
-            'field_options_end' => [],
+            'field_options_end' => [
+                'dp_use_current' => false,
+            ],
             'field_type' => DateTimePickerType::class,
         ]);
     }

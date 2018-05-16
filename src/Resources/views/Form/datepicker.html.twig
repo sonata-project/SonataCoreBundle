@@ -37,6 +37,24 @@ file that was distributed with this source code.
     {% endspaceless %}
 {% endblock sonata_type_date_picker_widget %}
 
+{% block sonata_type_date_range_picker_widget %}
+    {% spaceless %}
+        {{ block('form_widget') }}
+        <script type="text/javascript">
+            jQuery(function ($) {
+                var $startDateTimePicker = $('#{{ form.children.start.vars.datepicker_use_button ? 'dp_' : '' }}{{ form.children.start.vars.id }}');
+                var $endDateTimePicker = $('#{{ form.children.end.vars.datepicker_use_button ? 'dp_' : '' }}{{ form.children.end.vars.id }}');
+                $startDateTimePicker.on("dp.change", function (e) {
+                    $endDateTimePicker.data("DateTimePicker").setMinDate(e.date);
+                });
+                $endDateTimePicker.on("dp.change", function (e) {
+                    $startDateTimePicker.data("DateTimePicker").setMaxDate(e.date);
+                });
+            });
+        </script>
+    {% endspaceless %}
+{% endblock sonata_type_date_range_picker_widget %}
+
 {% block sonata_type_datetime_picker_widget_html %}
     {% if datepicker_use_button %}
         <div class='input-group date {% if not dp_options['pickDate'] %}timepicker{% endif %}' id='dtp_{{ id }}'>
@@ -67,3 +85,21 @@ file that was distributed with this source code.
         </script>
     {% endspaceless %}
 {% endblock sonata_type_datetime_picker_widget %}
+
+{% block sonata_type_datetime_range_picker_widget %}
+    {% spaceless %}
+    {{ block('form_widget') }}
+        <script type="text/javascript">
+            jQuery(function ($) {
+                var $startDateTimePicker = $('#{{ form.children.start.vars.datepicker_use_button ? 'dtp_' : '' }}{{ form.children.start.vars.id }}');
+                var $endDateTimePicker = $('#{{ form.children.end.vars.datepicker_use_button ? 'dtp_' : '' }}{{ form.children.end.vars.id }}');
+                $startDateTimePicker.on("dp.change", function (e) {
+                    $endDateTimePicker.data("DateTimePicker").setMinDate(e.date);
+                });
+                $endDateTimePicker.on("dp.change", function (e) {
+                    $startDateTimePicker.data("DateTimePicker").setMaxDate(e.date);
+                });
+            });
+        </script>
+    {% endspaceless %}
+{% endblock sonata_type_datetime_range_picker_widget %}
