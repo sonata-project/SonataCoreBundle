@@ -87,6 +87,13 @@ abstract class BasePickerType extends AbstractType
         // use seconds if it's allowed in format
         $options['dp_use_seconds'] = false !== strpos($format, 's');
 
+        if ($options['dp_min_date'] instanceof \DateTime) {
+            $options['dp_min_date'] = \IntlDateFormatter::formatObject($options['dp_min_date'], $format, $this->locale);
+        }
+        if ($options['dp_max_date'] instanceof \DateTime) {
+            $options['dp_max_date'] = \IntlDateFormatter::formatObject($options['dp_max_date'], $format, $this->locale);
+        }
+
         $view->vars['moment_format'] = $this->formatConverter->convert($format);
 
         $view->vars['type'] = 'text';
