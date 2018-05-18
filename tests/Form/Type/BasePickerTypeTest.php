@@ -48,11 +48,19 @@ class BasePickerTypeTest extends TestCase
         $view = new FormView();
         $form = new Form($this->createMock(FormConfigInterface::class));
 
-        $type->finishView($view, $form, ['format' => 'yyyy-MM-dd']);
+        $type->finishView($view, $form, [
+            'format' => 'yyyy-MM-dd',
+            'dp_min_date' => '1/1/1900',
+            'dp_max_date' => new \DateTime('1/1/2001'),
+            'dp_use_seconds' => true,
+        ]);
 
         $this->assertArrayHasKey('moment_format', $view->vars);
         $this->assertArrayHasKey('dp_options', $view->vars);
         $this->assertArrayHasKey('datepicker_use_button', $view->vars);
+        $this->assertFalse($view->vars['dp_options']['useSeconds']);
+        $this->assertSame('1/1/1900', $view->vars['dp_options']['minDate']);
+        $this->assertSame('2001-01-01', $view->vars['dp_options']['maxDate']);
 
         foreach ($view->vars['dp_options'] as $dpKey => $dpValue) {
             $this->assertFalse(strpos($dpKey, '_'));
@@ -60,6 +68,30 @@ class BasePickerTypeTest extends TestCase
         }
 
         $this->assertSame('text', $view->vars['type']);
+    }
+
+    public function testTimePickerIntlFormater()
+    {
+        $translator = $this->createMock(TranslatorInterface::class);
+        $translator->method('getLocale')->willReturn('ru');
+
+        $type = new BasePickerTest(new MomentFormatConverter(), $translator);
+
+        $view = new FormView();
+        $form = new Form($this->createMock(FormConfigInterface::class));
+
+        $type->finishView($view, $form, [
+            'format' => \IntlDateFormatter::NONE,
+            'dp_min_date' => '1/1/1900',
+            'dp_max_date' => new \DateTime('3/1/2001'),
+            'dp_use_seconds' => false,
+            'dp_pick_time' => true,
+            'dp_pick_date' => false,
+        ]);
+
+        $this->assertFalse($view->vars['dp_options']['useSeconds']);
+        $this->assertSame('H:mm', $view->vars['moment_format']);
+        $this->assertSame('0:00', $view->vars['dp_options']['maxDate']);
     }
 
     /**
