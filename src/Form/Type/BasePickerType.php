@@ -56,20 +56,30 @@ abstract class BasePickerType extends AbstractType
         if (isset($options['date_format']) && is_string($options['date_format'])) {
             $format = $options['date_format'];
         } elseif (is_int($format)) {
-            $timeFormat = ($options['dp_pick_time']) ? DateTimeType::DEFAULT_TIME_FORMAT : \IntlDateFormatter::NONE;
+            $timeFormat = \IntlDateFormatter::NONE;
+            if ($options['dp_pick_time']) {
+                $timeFormat = $options['dp_use_seconds'] ? DateTimeType::DEFAULT_TIME_FORMAT : \IntlDateFormatter::SHORT;
+            }
             $intlDateFormatter = new \IntlDateFormatter(
-                \Locale::getDefault(),
+                $this->locale,
                 $format,
                 $timeFormat,
                 null,
                 \IntlDateFormatter::GREGORIAN,
-                null
+                ''
             );
             $format = $intlDateFormatter->getPattern();
         }
 
         // use seconds if it's allowed in format
         $options['dp_use_seconds'] = false !== strpos($format, 's');
+
+        if ($options['dp_min_date'] instanceof \DateTime) {
+            $options['dp_min_date'] = \IntlDateFormatter::formatObject($options['dp_min_date'], $format, $this->locale);
+        }
+        if ($options['dp_max_date'] instanceof \DateTime) {
+            $options['dp_max_date'] = \IntlDateFormatter::formatObject($options['dp_max_date'], $format, $this->locale);
+        }
 
         $view->vars['moment_format'] = $this->formatConverter->convert($format);
 

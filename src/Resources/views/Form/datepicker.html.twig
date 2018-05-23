@@ -67,3 +67,33 @@ file that was distributed with this source code.
         </script>
     {% endspaceless %}
 {% endblock sonata_type_datetime_picker_widget %}
+
+{% block sonata_type_datetime_range_script_block %}
+    {% spaceless %}
+        {{ block('form_widget') }}
+        <script type="text/javascript">
+            jQuery(function ($) {
+                var $startDateTimePicker = $('#{{ startId }}');
+                var $endDateTimePicker = $('#{{ endId }}');
+                $startDateTimePicker.on("dp.change", function (e) {
+                    $endDateTimePicker.data("DateTimePicker").setMinDate(e.date);
+                });
+                $endDateTimePicker.on("dp.change", function (e) {
+                    $startDateTimePicker.data("DateTimePicker").setMaxDate(e.date);
+                });
+            });
+        </script>
+    {% endspaceless %}
+{% endblock sonata_type_datetime_range_script_block %}
+
+{% block sonata_type_datetime_range_picker_widget %}
+    {% set startId = (form.children.start.vars.datepicker_use_button ? 'dtp_' : '') ~ form.children.start.vars.id %}
+    {% set endId = (form.children.end.vars.datepicker_use_button ? 'dtp_' : '') ~ form.children.end.vars.id %}
+    {{ block('sonata_type_datetime_range_script_block') }}
+{% endblock sonata_type_datetime_range_picker_widget %}
+
+{% block sonata_type_date_range_picker_widget %}
+    {% set startId = (form.children.start.vars.datepicker_use_button ? 'dp_' : '') ~ form.children.start.vars.id %}
+    {% set endId = (form.children.end.vars.datepicker_use_button ? 'dp_' : '') ~ form.children.end.vars.id %}
+    {{ block('sonata_type_datetime_range_script_block') }}
+{% endblock sonata_type_date_range_picker_widget %}
