@@ -598,6 +598,10 @@
                 <source>yellowgreen</source>
                 <target>yellowgreen</target>
             </trans-unit>
+            <trans-unit id="message_close">
+                <source>message_close</source>
+                <target>Zamknij</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
