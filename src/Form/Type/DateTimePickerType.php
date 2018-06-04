@@ -39,6 +39,8 @@ class DateTimePickerType extends BasePickerType
             'format' => DateTimeType::DEFAULT_DATE_FORMAT,
             'date_format' => null,
         ]));
+
+        parent::configureOptions($resolver);
     }
 
     public function getParent()

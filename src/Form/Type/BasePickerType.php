@@ -16,6 +16,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -65,27 +67,40 @@ abstract class BasePickerType extends AbstractType
         $this->locale = $this->translator->getLocale();
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setNormalizer('format', function (Options $options, $format) {
+            if (isset($options['date_format']) && \is_string($options['date_format'])) {
+                return $options['date_format'];
+            }
+
+            if (\is_int($format)) {
+                $timeFormat = \IntlDateFormatter::NONE;
+                if ($options['dp_pick_time']) {
+                    $timeFormat = $options['dp_use_seconds'] ? DateTimeType::DEFAULT_TIME_FORMAT : \IntlDateFormatter::SHORT;
+                }
+                $intlDateFormatter = new \IntlDateFormatter(
+                    $this->locale,
+                    $format,
+                    $timeFormat,
+                    null,
+                    \IntlDateFormatter::GREGORIAN,
+                    null
+                );
+
+                return $intlDateFormatter->getPattern();
+            }
+
+            return $format;
+        });
+    }
+
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         $format = $options['format'];
-
-        if (isset($options['date_format']) && \is_string($options['date_format'])) {
-            $format = $options['date_format'];
-        } elseif (\is_int($format)) {
-            $timeFormat = \IntlDateFormatter::NONE;
-            if ($options['dp_pick_time']) {
-                $timeFormat = $options['dp_use_seconds'] ? DateTimeType::DEFAULT_TIME_FORMAT : \IntlDateFormatter::SHORT;
-            }
-            $intlDateFormatter = new \IntlDateFormatter(
-                $this->locale,
-                $format,
-                $timeFormat,
-                null,
-                \IntlDateFormatter::GREGORIAN,
-                null
-            );
-            $format = $intlDateFormatter->getPattern();
-        }
 
         // use seconds if it's allowed in format
         $options['dp_use_seconds'] = false !== strpos($format, 's');
