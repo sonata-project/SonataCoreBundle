@@ -50,7 +50,7 @@ abstract class BaseStatusType extends AbstractType
             $flip = true;
         } else {
             @trigger_error(
-                'Calling '.__CLASS__.' class with a flip parameter is deprecated since 3.x, to be removed with 4.0',
+                'Calling '.__CLASS__.' class with a flip parameter is deprecated since 3.9, to be removed with 4.0',
                 E_USER_DEPRECATED
             );
         }
