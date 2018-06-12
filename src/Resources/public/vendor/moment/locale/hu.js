@@ -46,7 +46,7 @@ function week(isFuture) {
 
 var hu = moment.defineLocale('hu', {
     months : 'január_február_március_április_május_június_július_augusztus_szeptember_október_november_december'.split('_'),
-    monthsShort : 'jan_feb_márc_ápr_máj_jún_júl_aug_szept_okt_nov_dec'.split('_'),
+    monthsShort : 'jan_febr_márc_ápr_máj_jún_júl_aug_szept_okt_nov_dec'.split('_'),
     weekdays : 'vasárnap_hétfő_kedd_szerda_csütörtök_péntek_szombat'.split('_'),
     weekdaysShort : 'vas_hét_kedd_sze_csüt_pén_szo'.split('_'),
     weekdaysMin : 'v_h_k_sze_cs_p_szo'.split('_'),
