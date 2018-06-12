@@ -63,7 +63,7 @@ class CollectionTypeTest extends TypeTestCase
 
         $this->assertFalse($options['modifiable']);
         $this->assertSame(TextType::class, $options['type']);
-        $this->assertSame(0, count($options['type_options']));
+        $this->assertCount(0, $options['type_options']);
         $this->assertSame('link_add', $options['btn_add']);
         $this->assertSame('SonataCoreBundle', $options['btn_catalogue']);
         $this->assertNull($options['pre_bind_data_callback']);
