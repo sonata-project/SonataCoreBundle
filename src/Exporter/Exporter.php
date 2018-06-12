@@ -57,7 +57,7 @@ class Exporter
 
                 break;
             case 'csv':
-                $writer = new CsvWriter('php://output', ',', '"', '', true, true);
+                $writer = new CsvWriter('php://output', ',', '"', '\\', true, true);
                 $contentType = 'text/csv';
 
                 break;
