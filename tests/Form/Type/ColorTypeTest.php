@@ -22,7 +22,7 @@ class ColorTypeTest extends TypeTestCase
 {
     /**
      * @group legacy
-     * @expectedDeprecation The Sonata\CoreBundle\Form\Type\ColorType class is deprecated since version 3.x and will be removed in 4.0. Use Symfony\Component\Form\Extension\Core\Type\ColorType instead.
+     * @expectedDeprecation The Sonata\CoreBundle\Form\Type\ColorType class is deprecated since version 3.10 and will be removed in 4.0. Use Symfony\Component\Form\Extension\Core\Type\ColorType instead.
      */
     public function testDeprecation()
     {

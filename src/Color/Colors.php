@@ -12,14 +12,14 @@
 namespace Sonata\CoreBundle\Color;
 
 @trigger_error(
-    'The '.__NAMESPACE__.'\Colors class is deprecated since version 3.x and will be removed in 4.0.',
+    'The '.__NAMESPACE__.'\Colors class is deprecated since version 3.10 and will be removed in 4.0.',
     E_USER_DEPRECATED
 );
 
 /**
  * NEXT_MAJOR: remove this class.
  *
- * @deprecated since version 3.x, to be removed in 4.0.
+ * @deprecated since version 3.10, to be removed in 4.0.
  *
  * Handles A list of all HTML colors.
  * @see http://www.w3schools.com/HTML/html_colornames.asp
