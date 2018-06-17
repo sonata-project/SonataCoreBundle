@@ -61,7 +61,7 @@ class BooleanTypeTest extends TypeTestCase
 
         $options = $optionResolver->resolve();
 
-        $this->assertSame(2, count($options['choices']));
+        $this->assertCount(2, $options['choices']);
     }
 
     public function testAddTransformerCall(): void

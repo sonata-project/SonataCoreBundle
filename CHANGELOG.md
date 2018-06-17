@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.10.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.9.1...3.10.0) - 2018-06-12
+### Fixed
+- `fputcsv()` default escape character
+- `SonataListFormMappingCommand::isEnabled` to only enable the command when Symfony Major Version < 3
+
+### Added
+- [Date(Time)PickerType] Handle field without seconds with option `dp_use_seconds`.
+- [Date(Time)PickerType] Allow DateTime Object in `dp_min_date` and `dp_max_date`
+- [Date(Time)RangePickerType] Link DateTimeRange pickers to keep start < end
+
+### Deprecated
+- `ColorType` has been deprecated
+- `Colors` class has been deprecated
+
 ## [3.9.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.9.0...3.9.1) - 2018-02-23
 ### Fixed
 - Missing deprecation alert for `sonata.core.slugify.native` service
