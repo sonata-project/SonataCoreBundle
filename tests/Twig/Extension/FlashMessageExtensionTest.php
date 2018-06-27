@@ -12,7 +12,6 @@
 namespace Sonata\CoreBundle\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\FlashMessage\FlashManager;
 use Sonata\CoreBundle\Twig\Extension\FlashMessageExtension;
 
 class FlashMessageExtensionTest extends TestCase
@@ -21,9 +20,7 @@ class FlashMessageExtensionTest extends TestCase
 
     protected function setUp()
     {
-        $this->extension = new FlashMessageExtension(
-            $this->prophesize(FlashManager::class)->reveal()
-        );
+        $this->extension = new FlashMessageExtension();
     }
 
     public function testFunctionsArePrefixed()

@@ -19,6 +19,7 @@ use Twig\TwigFunction;
  * This is the Sonata core flash message Twig extension.
  *
  * @author Vincent Composieux <composieux@ekino.com>
+ * @author Titouan Galopin <galopintitouan@gmail.com>
  */
 class FlashMessageExtension extends AbstractExtension
 {
@@ -27,16 +28,31 @@ class FlashMessageExtension extends AbstractExtension
      */
     protected $flashManager;
 
-    public function __construct(FlashManager $flashManager)
+    public function __construct(FlashManager $flashManager = null)
     {
         $this->flashManager = $flashManager;
+
+        if ($this->flashManager) {
+            @trigger_error(
+                'Argument "flashManager" in FlashMessageExtension is deprecated since SonataCoreBundle 3.x and will'.
+                ' be removed in 4.0. Use the FlashMessageRuntime instead.',
+                E_USER_DEPRECATED
+            );
+        }
     }
 
     public function getFunctions()
     {
+        if ($this->flashManager) {
+            return [
+                new TwigFunction('sonata_flashmessages_get', [$this, 'getFlashMessages']),
+                new TwigFunction('sonata_flashmessages_types', [$this, 'getFlashMessagesTypes']),
+            ];
+        }
+
         return [
-            new TwigFunction('sonata_flashmessages_get', [$this, 'getFlashMessages']),
-            new TwigFunction('sonata_flashmessages_types', [$this, 'getFlashMessagesTypes']),
+            new TwigFunction('sonata_flashmessages_get', [FlashMessageRuntime::class, 'getFlashMessages']),
+            new TwigFunction('sonata_flashmessages_types', [FlashMessageRuntime::class, 'getFlashMessagesTypes']),
         ];
     }
 
@@ -47,9 +63,17 @@ class FlashMessageExtension extends AbstractExtension
      * @param string $domain Translation domain to use
      *
      * @return string
+     *
+     * @deprecated since 3.x, to be removed in 4.0. Use the FlashMessageRuntime instead.
      */
     public function getFlashMessages($type, $domain = null)
     {
+        @trigger_error(
+            'Method "FlashMessageExtension::getFlashMessages()" is deprecated since SonataCoreBundle 3.x and will'.
+            ' be removed in 4.0. Use the FlashMessageRuntime instead.',
+            E_USER_DEPRECATED
+        );
+
         return $this->flashManager->get($type, $domain);
     }
 
@@ -57,9 +81,17 @@ class FlashMessageExtension extends AbstractExtension
      * Returns flash messages types handled by Sonata core flash manager.
      *
      * @return string
+     *
+     * @deprecated since 3.x, to be removed in 4.0. Use the FlashMessageRuntime instead.
      */
     public function getFlashMessagesTypes()
     {
+        @trigger_error(
+            'Method "FlashMessageExtension::getFlashMessagesTypes()" is deprecated since SonataCoreBundle 3.x and will'.
+            ' be removed in 4.0. Use the FlashMessageRuntime instead.',
+            E_USER_DEPRECATED
+        );
+
         return $this->flashManager->getHandledTypes();
     }
 
