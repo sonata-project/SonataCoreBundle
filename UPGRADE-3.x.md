@@ -6,6 +6,14 @@ The `ColorType` class is deprecated. Use
 
 The `Sonata\CoreBundle\Color\Colors` class is deprecated.
 
+A runtime has been introduced to lazy-load some extensions dependencies:
+    - The methods `getFlashMessages()` and `getFlashMessagesTypes` of class
+      `Sonata\CoreBundle\Twig\Extension\FlashMessageExtension` are deprecated.
+    - The method `statusClass()` of class `Sonata\CoreBundle\Twig\Extension\StatusExtension`
+      is deprecated.
+
+Instead, use the associated runtimes: `FlashMessageRuntime` and `StatusRuntime`.
+
 UPGRADE FROM 3.6 to 3.7
 =======================
 
