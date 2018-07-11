@@ -14,7 +14,6 @@ namespace Sonata\CoreBundle\Tests\Twig\Extension;
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
 use Sonata\CoreBundle\Twig\Extension\StatusExtension;
-use Sonata\CoreBundle\Twig\Extension\StatusRuntime;
 
 class StatusExtensionTest extends TestCase
 {
@@ -32,9 +31,12 @@ class StatusExtensionTest extends TestCase
         $this->assertContainsOnlyInstancesOf('Twig_SimpleFilter', $filters);
     }
 
+    /**
+     * @group legacy
+     */
     public function testStatusClassDefaultValue()
     {
-        $extension = new StatusRuntime();
+        $extension = new StatusExtension();
         $statusService = $this->getMockBuilder(StatusClassRendererInterface::class)
             ->getMock();
         $statusService->expects($this->once())
