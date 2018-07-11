@@ -13,6 +13,7 @@ namespace Sonata\CoreBundle\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
+use Sonata\CoreBundle\DependencyInjection\Compiler\FlashMessageCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
 use Sonata\CoreBundle\Form\FormHelper;
@@ -80,6 +81,10 @@ final class SonataCoreBundleTest extends TestCase
             ->method('addCompilerPass')
             ->will($this->returnCallback(function (CompilerPassInterface $pass) {
                 if ($pass instanceof StatusRendererCompilerPass) {
+                    return;
+                }
+
+                if ($pass instanceof FlashMessageCompilerPass) {
                     return;
                 }
 

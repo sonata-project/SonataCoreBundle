@@ -13,6 +13,7 @@ namespace Sonata\CoreBundle;
 
 use Nelmio\ApiDocBundle\Form\Extension\DescriptionFormTypeExtension;
 use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
+use Sonata\CoreBundle\DependencyInjection\Compiler\FlashMessageCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
 use Sonata\CoreBundle\Form\FormHelper;
@@ -68,6 +69,7 @@ class SonataCoreBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new StatusRendererCompilerPass());
+        $container->addCompilerPass(new FlashMessageCompilerPass());
         $container->addCompilerPass(new AdapterCompilerPass());
         $container->addCompilerPass(new FormFactoryCompilerPass());
 
