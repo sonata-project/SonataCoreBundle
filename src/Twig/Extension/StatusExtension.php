@@ -18,6 +18,7 @@ use Twig\Extension\AbstractExtension;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
+ * @author Titouan Galopin <galopintitouan@gmail.com>
  */
 class StatusExtension extends AbstractExtension
 {
@@ -30,16 +31,30 @@ class StatusExtension extends AbstractExtension
      * Adds a renderer to the status services list.
      *
      * @param StatusClassRendererInterface $renderer
+     *
+     * @deprecated since 3.x, to be removed in 4.0. Use the StatusRuntime instead.
      */
     public function addStatusService(StatusClassRendererInterface $renderer): void
     {
+        @trigger_error(
+            'Method "StatusExtension::addStatusService()" is deprecated since SonataCoreBundle 3.x and will'.
+            ' be removed in 4.0. Use the StatusRuntime instead.',
+            E_USER_DEPRECATED
+        );
+
         $this->statusServices[] = $renderer;
     }
 
     public function getFilters()
     {
+        if (!empty($this->statusServices)) {
+            return [
+                new \Twig_SimpleFilter('sonata_status_class', [$this, 'statusClass']),
+            ];
+        }
+
         return [
-            new \Twig_SimpleFilter('sonata_status_class', [$this, 'statusClass']),
+            new \Twig_SimpleFilter('sonata_status_class', [StatusRuntime::class, 'statusClass']),
         ];
     }
 
@@ -49,9 +64,17 @@ class StatusExtension extends AbstractExtension
      * @param string $default
      *
      * @return string
+     *
+     * @deprecated since 3.x, to be removed in 4.0. Use the StatusRuntime instead.
      */
     public function statusClass($object, $statusType = null, $default = '')
     {
+        @trigger_error(
+            'Method "StatusExtension::statusClass()" is deprecated since SonataCoreBundle 3.x and will'.
+            ' be removed in 4.0. Use the StatusRuntime instead.',
+            E_USER_DEPRECATED
+        );
+
         /** @var StatusClassRendererInterface $statusService */
         foreach ($this->statusServices as $statusService) {
             if ($statusService->handlesObject($object, $statusType)) {

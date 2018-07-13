@@ -15,37 +15,20 @@ namespace Sonata\CoreBundle\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
-use Sonata\CoreBundle\Twig\Extension\StatusExtension;
+use Sonata\CoreBundle\Twig\Extension\StatusRuntime;
 
-class StatusExtensionTest extends TestCase
+class StatusRuntimeTest extends TestCase
 {
-    public function testGetName(): void
-    {
-        $extension = new StatusExtension();
-        $this->assertSame('sonata_core_status', $extension->getName());
-    }
-
-    public function testGetFilters(): void
-    {
-        $extension = new StatusExtension();
-        $filters = $extension->getFilters();
-
-        $this->assertContainsOnlyInstancesOf('Twig_SimpleFilter', $filters);
-    }
-
-    /**
-     * @group legacy
-     */
     public function testStatusClassDefaultValue(): void
     {
-        $extension = new StatusExtension();
+        $runtime = new StatusRuntime();
         $statusService = $this->getMockBuilder(StatusClassRendererInterface::class)
             ->getMock();
         $statusService->expects($this->once())
             ->method('handlesObject')
             ->will($this->returnValue(false));
 
-        $extension->addStatusService($statusService);
-        $this->assertSame('test-value', $extension->statusClass(new \stdClass(), 'getStatus', 'test-value'));
+        $runtime->addStatusService($statusService);
+        $this->assertSame('test-value', $runtime->statusClass(new \stdClass(), 'getStatus', 'test-value'));
     }
 }

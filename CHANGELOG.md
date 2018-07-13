@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.11.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.11.0...3.11.1) - 2018-07-12
+### Fixed
+- Fix compatibility with Symfony 2.8 regarding Twig runtimes
+
+## [3.11.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.10.0...3.11.0) - 2018-07-08
+
+### Added
+- Added `FlashMessageRuntime` and `StatusRuntime` to remove strong dependency on the session introduced by Twig extensions
+
 ## [3.10.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.9.1...3.10.0) - 2018-06-12
 ### Fixed
 - `fputcsv()` default escape character
