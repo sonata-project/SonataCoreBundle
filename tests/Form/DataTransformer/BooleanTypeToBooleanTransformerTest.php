@@ -34,8 +34,10 @@ class BooleanTypeToBooleanTransformerTest extends TestCase
         $transformer = new BooleanTypeToBooleanTransformer();
         $this->assertTrue($transformer->reverseTransform(BooleanType::TYPE_YES));
         $this->assertTrue($transformer->reverseTransform(1));
-        $this->assertFalse($transformer->reverseTransform('asd'));
         $this->assertFalse($transformer->reverseTransform(BooleanType::TYPE_NO));
+        $this->assertFalse($transformer->reverseTransform(2));
+        $this->assertNull($transformer->reverseTransform(null));
+        $this->assertNull($transformer->reverseTransform('asd'));
     }
 
     public function getReverseTransformData()
@@ -43,11 +45,10 @@ class BooleanTypeToBooleanTransformerTest extends TestCase
         return [
             [true, BooleanType::TYPE_YES],
             [false, BooleanType::TYPE_NO],
-            ['wrong', BooleanType::TYPE_NO],
+            ['wrong', null],
             ['1', BooleanType::TYPE_YES],
             ['2', BooleanType::TYPE_NO],
-
-            ['3', BooleanType::TYPE_NO], // default value is false ...
+            ['3', null], // default value is null ...
         ];
     }
 }
