@@ -20,6 +20,8 @@ use Doctrine\Common\Persistence\ObjectRepository;
  */
 abstract class BaseManager implements ManagerInterface
 {
+    use CommandManagerTrait, QueryManagerTrait;
+
     /**
      * @var ManagerRegistry
      */
@@ -65,51 +67,9 @@ abstract class BaseManager implements ManagerInterface
         return $this->class;
     }
 
-    public function findAll()
-    {
-        return $this->getRepository()->findAll();
-    }
-
-    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
-    {
-        return $this->getRepository()->findBy($criteria, $orderBy, $limit, $offset);
-    }
-
-    public function findOneBy(array $criteria, array $orderBy = null)
-    {
-        return $this->getRepository()->findOneBy($criteria, $orderBy);
-    }
-
-    public function find($id)
-    {
-        return $this->getRepository()->find($id);
-    }
-
     public function create()
     {
         return new $this->class();
-    }
-
-    public function save($entity, $andFlush = true)
-    {
-        $this->checkObject($entity);
-
-        $this->getObjectManager()->persist($entity);
-
-        if ($andFlush) {
-            $this->getObjectManager()->flush();
-        }
-    }
-
-    public function delete($entity, $andFlush = true)
-    {
-        $this->checkObject($entity);
-
-        $this->getObjectManager()->remove($entity);
-
-        if ($andFlush) {
-            $this->getObjectManager()->flush();
-        }
     }
 
     public function getTableName()
