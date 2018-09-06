@@ -23,7 +23,7 @@ class DependencyInjectionExtensionTest extends TestCase
     public function testValidType()
     {
         $type = $this->createMock(FormTypeInterface::class);
-        $formName = get_class($type);
+        $formName = \get_class($type);
 
         $container = $this->createMock(ContainerInterface::class);
         $container->expects($this->any())->method('has')->will($this->returnValue(true));

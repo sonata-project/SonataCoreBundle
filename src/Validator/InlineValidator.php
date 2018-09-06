@@ -41,7 +41,7 @@ class InlineValidator extends ConstraintValidator
         if ($constraint->isClosure()) {
             $function = $constraint->getClosure();
         } else {
-            if (is_string($constraint->getService())) {
+            if (\is_string($constraint->getService())) {
                 $service = $this->container->get($constraint->getService());
             } else {
                 $service = $constraint->getService();
@@ -50,7 +50,7 @@ class InlineValidator extends ConstraintValidator
             $function = [$service, $constraint->getMethod()];
         }
 
-        call_user_func($function, $this->getErrorElement($value), $value);
+        \call_user_func($function, $this->getErrorElement($value), $value);
     }
 
     /**

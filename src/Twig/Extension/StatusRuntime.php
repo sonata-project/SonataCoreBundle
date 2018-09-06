@@ -42,7 +42,7 @@ final class StatusRuntime
     public function statusClass($object, $statusType = null, $default = '')
     {
         foreach ($this->statusServices as $statusService) {
-            assert($statusService instanceof StatusClassRendererInterface);
+            \assert($statusService instanceof StatusClassRendererInterface);
 
             if ($statusService->handlesObject($object, $statusType)) {
                 return $statusService->getStatusClass($object, $statusType, $default);

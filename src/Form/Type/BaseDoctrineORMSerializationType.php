@@ -87,11 +87,11 @@ class BaseDoctrineORMSerializationType extends AbstractType
         foreach ($serializerMetadata->propertyMetadata as $propertyMetadata) {
             $name = $propertyMetadata->name;
 
-            if (in_array($name, $doctrineMetadata->getIdentifierFieldNames(), true) && !$this->identifierOverwrite) {
+            if (\in_array($name, $doctrineMetadata->getIdentifierFieldNames(), true) && !$this->identifierOverwrite) {
                 continue;
             }
 
-            if (!$propertyMetadata->groups || !in_array($this->group, $propertyMetadata->groups, true)) {
+            if (!$propertyMetadata->groups || !\in_array($this->group, $propertyMetadata->groups, true)) {
                 continue;
             }
 

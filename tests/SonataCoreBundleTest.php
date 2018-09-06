@@ -101,7 +101,7 @@ final class SonataCoreBundleTest extends TestCase
                     Expects "Sonata\AdminBundle\DependencyInjection\Compiler\StatusRendererCompilerPass",
                     "Sonata\AdminBundle\DependencyInjection\Compiler\AdapterCompilerPass" or
                     "Sonata\AdminBundle\DependencyInjection\Compiler\FormFactoryCompilerPass", but got "%s".',
-                    get_class($pass)
+                    \get_class($pass)
                 ));
             }));
 
