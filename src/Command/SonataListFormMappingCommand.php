@@ -55,9 +55,9 @@ class SonataListFormMappingCommand extends ContainerAwareCommand
                 $instance = $this->getContainer()->get($id);
 
                 if ('yaml' === $input->getOption('format')) {
-                    $output->writeln(sprintf('              %s: %s', $instance->getName(), get_class($instance)));
+                    $output->writeln(sprintf('              %s: %s', $instance->getName(), \get_class($instance)));
                 } else {
-                    $output->writeln(sprintf(" '%s' => '%s',", $instance->getName(), get_class($instance)));
+                    $output->writeln(sprintf(" '%s' => '%s',", $instance->getName(), \get_class($instance)));
                 }
             } catch (\Exception $e) {
                 $output->writeln(sprintf('<error>Unable load service: %s</error>', $id));

@@ -131,7 +131,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      */
     protected function getRenderingEngine(/* \Twig_Environment $environment = null */)
     {
-        $environment = current(func_get_args());
+        $environment = current(\func_get_args());
         if (null === $environment && method_exists(AppVariable::class, 'getToken')) {
             @trigger_error(
                 'Not passing a \Twig_Environment instance to '.__METHOD__.

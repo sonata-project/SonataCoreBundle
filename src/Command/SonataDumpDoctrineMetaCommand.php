@@ -105,7 +105,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
         $output->writeln('');
 
         if ($input->getOption('filename')) {
-            $directory = dirname($input->getOption('filename'));
+            $directory = \dirname($input->getOption('filename'));
             $filename = basename($input->getOption('filename'));
 
             if (empty($directory) || '.' === $directory) {
