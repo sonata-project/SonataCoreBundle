@@ -37,7 +37,7 @@ class FormHelper
         }
 
         foreach ($data as $name => $value) {
-            if (!is_array($value)) {
+            if (!\is_array($value)) {
                 continue;
             }
 

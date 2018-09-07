@@ -40,7 +40,7 @@ class FixCheckboxDataListener implements EventSubscriberInterface
     public function preBind(FormEvent $event)
     {
         // BC prevention for class extending this one.
-        if (self::class !== get_called_class()) {
+        if (self::class !== \get_called_class()) {
             @trigger_error(
                 __METHOD__.' is deprecated since 2.3 and will be renamed in 4.0.'
                 .' Use '.__CLASS__.'::preSubmit instead.',
@@ -56,7 +56,7 @@ class FixCheckboxDataListener implements EventSubscriberInterface
         $data = $event->getData();
         $transformers = $event->getForm()->getConfig()->getViewTransformers();
 
-        if (1 === count($transformers) && $transformers[0] instanceof BooleanToStringTransformer && '0' === $data) {
+        if (1 === \count($transformers) && $transformers[0] instanceof BooleanToStringTransformer && '0' === $data) {
             $event->setData(null);
         }
     }

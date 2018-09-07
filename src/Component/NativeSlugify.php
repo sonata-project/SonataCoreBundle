@@ -40,7 +40,7 @@ class NativeSlugify
         $text = trim($text, '-');
 
         // transliterate
-        if (function_exists('iconv')) {
+        if (\function_exists('iconv')) {
             $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
         }
 
