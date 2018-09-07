@@ -77,7 +77,7 @@ class ErrorElement
         $group
     ) {
         if (!($context instanceof LegacyExecutionContextInterface) && !($context instanceof ExecutionContextInterface)) {
-            throw new \InvalidArgumentException(sprintf('Argument 3 passed to %s::__construct() must be an instance of Symfony\Component\Validator\ExecutionContextInterface or Symfony\Component\Validator\Context\ExecutionContextInterface.', get_class($this)));
+            throw new \InvalidArgumentException(sprintf('Argument 3 passed to %s::__construct() must be an instance of Symfony\Component\Validator\ExecutionContextInterface or Symfony\Component\Validator\Context\ExecutionContextInterface.', \get_class($this)));
         }
         $this->subject = $subject;
         $this->context = $context;
@@ -177,7 +177,7 @@ class ErrorElement
      */
     public function addViolation($message, $parameters = [], $value = null)
     {
-        if (is_array($message)) {
+        if (\is_array($message)) {
             $value = isset($message[2]) ? $message[2] : $value;
             $parameters = isset($message[1]) ? (array) $message[1] : [];
             $message = isset($message[0]) ? $message[0] : 'error';

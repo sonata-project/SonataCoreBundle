@@ -52,7 +52,7 @@ class DoctrinePHPCRAdapter implements AdapterInterface
             return;
         }
 
-        $class = $manager->getClassMetadata(get_class($document));
+        $class = $manager->getClassMetadata(\get_class($document));
 
         return $class->getIdentifierValue($document);
     }

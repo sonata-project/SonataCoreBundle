@@ -88,7 +88,7 @@ abstract class BaseStatusType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $choices = call_user_func([$this->class, $this->getter]);
+        $choices = \call_user_func([$this->class, $this->getter]);
 
         // choice_as_value options is not needed in SF 3.0+
         if ($resolver->isDefined('choices_as_values')) {
@@ -97,11 +97,11 @@ abstract class BaseStatusType extends AbstractType
 
         // NEXT_MAJOR: remove this property
         if ($this->flip) {
-            $count = count($choices);
+            $count = \count($choices);
 
             $choices = array_flip($choices);
 
-            if (count($choices) !== $count) {
+            if (\count($choices) !== $count) {
                 throw new \RuntimeException('Unable to safely flip value as final count is different');
             }
         }
