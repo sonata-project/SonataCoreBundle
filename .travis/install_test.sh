@@ -4,7 +4,7 @@ set -ev
 mkdir --parents "${HOME}/bin"
 
 # PHPUnit install
-wget "https://phar.phpunit.de/phpunit-5.7.phar" --output-document="${HOME}/bin/phpunit"
+wget "https://phar.phpunit.de/phpunit-7.phar" --output-document="${HOME}/bin/phpunit"
 chmod u+x "${HOME}/bin/phpunit"
 
 # Coveralls client install
