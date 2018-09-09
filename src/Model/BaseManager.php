@@ -137,7 +137,7 @@ abstract class BaseManager implements ManagerInterface
         if (!$object instanceof $this->class) {
             throw new \InvalidArgumentException(sprintf(
                 'Object must be instance of %s, %s given',
-                $this->class, is_object($object) ? get_class($object) : gettype($object)
+                $this->class, \is_object($object) ? \get_class($object) : \gettype($object)
             ));
         }
     }

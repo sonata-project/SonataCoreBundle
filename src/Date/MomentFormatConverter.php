@@ -59,7 +59,7 @@ class MomentFormatConverter
      */
     public function convert($format)
     {
-        $size = strlen($format);
+        $size = \strlen($format);
         $foundOne = false;
         $output = '';
         //process the format string letter by letter
@@ -79,17 +79,17 @@ class MomentFormatConverter
                     $temp = current(explode("'", substr($format, $i + 1)));
                     $output .= $temp;
                     $output .= ']';
-                    $i += strlen($temp) + 1;
+                    $i += \strlen($temp) + 1;
                 }
             } else {
                 //if no ' is found, then search all the rules, see if any of
                 //them matchs
                 $foundOne = false;
                 foreach (self::$formatConvertRules as $key => $value) {
-                    if (substr($format, $i, strlen($key)) === $key) {
+                    if (substr($format, $i, \strlen($key)) === $key) {
                         $output .= $value;
                         $foundOne = true;
-                        $i += strlen($key) - 1;
+                        $i += \strlen($key) - 1;
 
                         break;
                     }

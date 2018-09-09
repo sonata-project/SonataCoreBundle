@@ -27,14 +27,14 @@ class ImmutableArrayType extends AbstractType
             } else {
                 list($name, $type, $options) = $infos;
 
-                if (is_callable($options)) {
-                    $extra = array_slice($infos, 3);
+                if (\is_callable($options)) {
+                    $extra = \array_slice($infos, 3);
 
                     $options = $options($builder, $name, $type, $extra);
 
                     if (null === $options) {
                         $options = [];
-                    } elseif (!is_array($options)) {
+                    } elseif (!\is_array($options)) {
                         throw new \RuntimeException('the closure must return null or an array');
                     }
                 }
@@ -52,7 +52,7 @@ class ImmutableArrayType extends AbstractType
 
         $resolver->setAllowedValues('keys', function ($value) {
             foreach ($value as $subValue) {
-                if (!$subValue instanceof FormBuilderInterface && (!is_array($subValue) || 3 !== count($subValue))) {
+                if (!$subValue instanceof FormBuilderInterface && (!\is_array($subValue) || 3 !== \count($subValue))) {
                     return false;
                 }
             }
