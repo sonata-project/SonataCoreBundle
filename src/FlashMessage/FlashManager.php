@@ -20,27 +20,27 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * @author Vincent Composieux <composieux@ekino.com>
  */
-class FlashManager implements StatusClassRendererInterface
+final class FlashManager implements StatusClassRendererInterface
 {
     /**
      * @var SessionInterface
      */
-    protected $session;
+    private $session;
 
     /**
      * @var TranslatorInterface
      */
-    protected $translator;
+    private $translator;
 
     /**
      * @var array
      */
-    protected $types;
+    private $types;
 
     /**
      * @var array
      */
-    protected $cssClasses;
+    private $cssClasses;
 
     /**
      * @param array $types      Sonata core types array (defined in configuration)
@@ -58,12 +58,12 @@ class FlashManager implements StatusClassRendererInterface
         $this->cssClasses = $cssClasses;
     }
 
-    public function handlesObject($object, $statusName = null)
+    public function handlesObject($object, ?string $statusName = null): bool
     {
         return \is_string($object) && array_key_exists($object, $this->cssClasses);
     }
 
-    public function getStatusClass($object, $statusName = null, $default = '')
+    public function getStatusClass($object, ?string $statusName = null, string $default = ''): string
     {
         return array_key_exists($object, $this->cssClasses)
             ? $this->cssClasses[$object]
@@ -72,20 +72,16 @@ class FlashManager implements StatusClassRendererInterface
 
     /**
      * Returns Sonata core flash message types.
-     *
-     * @return array
      */
-    public function getTypes()
+    public function getTypes(): array
     {
         return $this->types;
     }
 
     /**
      * Returns Symfony session service.
-     *
-     * @return SessionInterface
      */
-    public function getSession()
+    public function getSession(): SessionInterface
     {
         return $this->session;
     }
@@ -102,13 +98,8 @@ class FlashManager implements StatusClassRendererInterface
 
     /**
      * Returns flash bag messages for correct type after renaming with Sonata core type.
-     *
-     * @param string $type   Type of flash message
-     * @param string $domain Translation domain to use
-     *
-     * @return array
      */
-    public function get($type, $domain = null)
+    public function get(string $type, ?string $domain = null): array
     {
         $this->handle($domain);
 
@@ -117,20 +108,16 @@ class FlashManager implements StatusClassRendererInterface
 
     /**
      * Gets handled message types.
-     *
-     * @return array
      */
-    public function getHandledTypes()
+    public function getHandledTypes(): array
     {
         return array_keys($this->getTypes());
     }
 
     /**
      * Handles flash bag types renaming.
-     *
-     * @param string $domain
      */
-    protected function handle($domain = null): void
+    private function handle(string $domain = null): void
     {
         foreach ($this->getTypes() as $type => $values) {
             foreach ($values as $value => $options) {
@@ -147,7 +134,7 @@ class FlashManager implements StatusClassRendererInterface
      * @param string $value  Original flash message type
      * @param string $domain Translation domain to use
      */
-    protected function rename($type, $value, $domain): void
+    private function rename(string $type, string $value, string $domain): void
     {
         $flashBag = $this->getSession()->getFlashBag();
 

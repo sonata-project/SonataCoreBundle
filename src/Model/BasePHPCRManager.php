@@ -51,10 +51,7 @@ abstract class BasePHPCRManager extends BaseManager
         throw new \LogicException('PHPCR does not use a reference name for a list of data.');
     }
 
-    /**
-     * @return ObjectManager
-     */
-    public function getDocumentManager()
+    public function getDocumentManager(): ObjectManager
     {
         return $this->getObjectManager();
     }

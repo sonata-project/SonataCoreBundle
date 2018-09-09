@@ -34,7 +34,7 @@ class DateTimeRangePickerType extends DateTimeRangeType
         ]);
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'sonata_type_datetime_range_picker';
     }

@@ -34,24 +34,19 @@ abstract class BaseStatusType extends AbstractType
      */
     protected $name;
 
-    /**
-     * @param string $class
-     * @param string $getter
-     * @param string $name
-     */
-    public function __construct($class, $getter, $name)
+    public function __construct(string $class, string $getter, string $name)
     {
         $this->class = $class;
         $this->getter = $getter;
         $this->name = $name;
     }
 
-    public function getParent()
+    public function getParent(): string
     {
         return ChoiceType::class;
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return $this->name;
     }

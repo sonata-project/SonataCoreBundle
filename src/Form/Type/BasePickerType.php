@@ -104,10 +104,8 @@ abstract class BasePickerType extends AbstractType
 
     /**
      * Gets base default options for the date pickers.
-     *
-     * @return array
      */
-    protected function getCommonDefaults()
+    protected function getCommonDefaults(): array
     {
         return [
             'widget' => 'single_text',

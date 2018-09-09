@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\Reference;
  *
  * @author Titouan Galopin <galopintitouan@gmail.com>
  */
-class FlashMessageCompilerPass implements CompilerPassInterface
+final class FlashMessageCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {

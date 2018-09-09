@@ -26,11 +26,11 @@ class TemplateBoxNode extends Node
 
     /**
      * @param AbstractExpression $message Node message to display
-     * @param int                $enabled Is Symfony debug enabled?
-     * @param null|string        $lineno  Symfony template line number
-     * @param null               $tag     Symfony tag name
+     * @param bool               $enabled Is Symfony debug enabled?
+     * @param int                $lineno  Symfony template line number
+     * @param ?string            $tag     Symfony tag name
      */
-    public function __construct(AbstractExpression $message, $enabled, $lineno, $tag = null)
+    public function __construct(AbstractExpression $message, bool $enabled, ?int $lineno, $tag = null)
     {
         $this->enabled = $enabled;
 

@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
 
-class InlineValidator extends ConstraintValidator
+final class InlineValidator extends ConstraintValidator
 {
     /**
      * @var ContainerInterface
@@ -57,10 +57,8 @@ class InlineValidator extends ConstraintValidator
 
     /**
      * @param mixed $value
-     *
-     * @return ErrorElement
      */
-    protected function getErrorElement($value)
+    protected function getErrorElement($value): ErrorElement
     {
         return new ErrorElement(
             $value,

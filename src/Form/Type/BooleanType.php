@@ -19,7 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class BooleanType extends AbstractType
+final class BooleanType extends AbstractType
 {
     public const TYPE_YES = 1;
 
@@ -47,12 +47,12 @@ class BooleanType extends AbstractType
         $resolver->setDefaults($defaultOptions);
     }
 
-    public function getParent()
+    public function getParent(): string
     {
         return ChoiceType::class;
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'sonata_type_boolean';
     }

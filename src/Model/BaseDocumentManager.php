@@ -39,10 +39,7 @@ abstract class BaseDocumentManager extends BaseManager
         return $this->getObjectManager()->getConnection();
     }
 
-    /**
-     * @return DocumentManager
-     */
-    public function getDocumentManager()
+    public function getDocumentManager(): DocumentManager
     {
         return $this->getObjectManager();
     }

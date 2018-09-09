@@ -19,7 +19,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * @author Hugo Briand <briand@ekino.com>
  */
-class DatePickerType extends BasePickerType
+final class DatePickerType extends BasePickerType
 {
     public function configureOptions(OptionsResolver $resolver): void
     {
@@ -29,12 +29,12 @@ class DatePickerType extends BasePickerType
         ]));
     }
 
-    public function getParent()
+    public function getParent(): string
     {
         return DateType::class;
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'sonata_type_date_picker';
     }

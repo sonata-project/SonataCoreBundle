@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Constraint;
  * @Annotation
  * @Target({"CLASS"})
  */
-class InlineConstraint extends Constraint
+final class InlineConstraint extends Constraint
 {
     /**
      * @var mixed
@@ -73,15 +73,12 @@ class InlineConstraint extends Constraint
         $this->serializingWarning = true;
     }
 
-    public function validatedBy()
+    public function validatedBy(): string
     {
         return 'sonata.core.validator.inline';
     }
 
-    /**
-     * @return bool
-     */
-    public function isClosure()
+    public function isClosure(): bool
     {
         return $this->method instanceof \Closure;
     }
@@ -108,7 +105,7 @@ class InlineConstraint extends Constraint
     }
 
     /**
-     * @return string
+     * @return mixed string|callable
      */
     public function getMethod()
     {

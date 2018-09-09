@@ -28,12 +28,12 @@ class TemplateBoxTokenParser extends AbstractTokenParser
     /**
      * @param bool $enabled Is Symfony debug enabled?
      */
-    public function __construct($enabled)
+    public function __construct(bool $enabled)
     {
         $this->enabled = $enabled;
     }
 
-    public function parse(Token $token)
+    public function parse(Token $token): TemplateBoxNode
     {
         if ($this->parser->getStream()->test(Token::STRING_TYPE)) {
             $message = $this->parser->getExpressionParser()->parseExpression();
@@ -41,18 +41,12 @@ class TemplateBoxTokenParser extends AbstractTokenParser
             $message = new ConstantExpression('Template information', $token->getLine());
         }
 
-        if ($this->parser->getStream()->test(Token::STRING_TYPE)) {
-            $translationBundle = $this->parser->getExpressionParser()->parseExpression();
-        } else {
-            $translationBundle = null;
-        }
-
         $this->parser->getStream()->expect(Token::BLOCK_END_TYPE);
 
-        return new TemplateBoxNode($message, $translationBundle, $this->enabled, $token->getLine(), $this->getTag());
+        return new TemplateBoxNode($message, $this->enabled, $token->getLine(), $this->getTag());
     }
 
-    public function getTag()
+    public function getTag(): string
     {
         return 'sonata_template_box';
     }

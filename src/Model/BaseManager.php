@@ -32,20 +32,13 @@ abstract class BaseManager implements ManagerInterface
      */
     protected $class;
 
-    /**
-     * @param string          $class
-     * @param ManagerRegistry $registry
-     */
-    public function __construct($class, ManagerRegistry $registry)
+    public function __construct(string $class, ManagerRegistry $registry)
     {
         $this->registry = $registry;
         $this->class = $class;
     }
 
-    /**
-     * @return ObjectManager
-     */
-    public function getObjectManager()
+    public function getObjectManager(): ObjectManager
     {
         $manager = $this->registry->getManagerForClass($this->class);
 
@@ -62,7 +55,7 @@ abstract class BaseManager implements ManagerInterface
         return $manager;
     }
 
-    public function getClass()
+    public function getClass(): string
     {
         return $this->class;
     }
@@ -72,8 +65,12 @@ abstract class BaseManager implements ManagerInterface
         return $this->getRepository()->findAll();
     }
 
-    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
-    {
+    public function findBy(
+        array $criteria,
+        ?array $orderBy = null,
+        ?int $limit = null,
+        ?int $offset = null
+    ): array {
         return $this->getRepository()->findBy($criteria, $orderBy, $limit, $offset);
     }
 
@@ -92,7 +89,7 @@ abstract class BaseManager implements ManagerInterface
         return new $this->class();
     }
 
-    public function save($entity, $andFlush = true): void
+    public function save($entity, bool $andFlush = true): void
     {
         $this->checkObject($entity);
 
@@ -103,7 +100,7 @@ abstract class BaseManager implements ManagerInterface
         }
     }
 
-    public function delete($entity, $andFlush = true): void
+    public function delete($entity, bool $andFlush = true): void
     {
         $this->checkObject($entity);
 
@@ -114,17 +111,15 @@ abstract class BaseManager implements ManagerInterface
         }
     }
 
-    public function getTableName()
+    public function getTableName(): string
     {
         return $this->getObjectManager()->getClassMetadata($this->class)->table['name'];
     }
 
     /**
      * Returns the related Object Repository.
-     *
-     * @return ObjectRepository
      */
-    protected function getRepository()
+    protected function getRepository(): ObjectRepository
     {
         return $this->getObjectManager()->getRepository($this->class);
     }
@@ -137,7 +132,8 @@ abstract class BaseManager implements ManagerInterface
         if (!$object instanceof $this->class) {
             throw new \InvalidArgumentException(sprintf(
                 'Object must be instance of %s, %s given',
-                $this->class, \is_object($object) ? \get_class($object) : \gettype($object)
+                $this->class,
+                \is_object($object) ? \get_class($object) : \gettype($object)
             ));
         }
     }

@@ -23,7 +23,7 @@ use Symfony\Component\Form\FormEvents;
  *
  * @author Bernhard Schussek <bernhard.schussek@symfony-project.com>
  */
-class ResizeFormListener implements EventSubscriberInterface
+final class ResizeFormListener implements EventSubscriberInterface
 {
     /**
      * @var string
@@ -67,7 +67,7 @@ class ResizeFormListener implements EventSubscriberInterface
         $this->preSubmitDataCallback = $preSubmitDataCallback;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             FormEvents::PRE_SET_DATA => 'preSetData',

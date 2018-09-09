@@ -42,7 +42,7 @@ class DateTimeRangeType extends AbstractType
         $builder->add('end', $options['field_type'], array_merge(['required' => false], $options['field_options'], $options['field_options_end']));
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'sonata_type_datetime_range';
     }

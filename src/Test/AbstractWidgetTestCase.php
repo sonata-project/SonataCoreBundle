@@ -18,8 +18,6 @@ use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Bridge\Twig\Form\TwigRenderer;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
-use Symfony\Bridge\Twig\Form\TwigRendererEngineInterface;
-use Symfony\Bridge\Twig\Form\TwigRendererInterface;
 use Symfony\Bridge\Twig\Tests\Extension\Fixtures\StubFilesystemLoader;
 use Symfony\Bundle\FrameworkBundle\Tests\Templating\Helper\Fixtures\StubTranslator;
 use Symfony\Component\Form\FormExtensionInterface;
@@ -78,18 +76,12 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
         }
     }
 
-    /**
-     * @return TwigRendererInterface
-     */
     final public function getRenderer()
     {
         return $this->renderer;
     }
 
-    /**
-     * @return \Twig_Environment
-     */
-    protected function getEnvironment()
+    final protected function getEnvironment(): \Twig_Environment
     {
         $loader = new StubFilesystemLoader($this->getTemplatePaths());
 
@@ -107,7 +99,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      *
      * @return string[]
      */
-    protected function getTemplatePaths()
+    final protected function getTemplatePaths(): array
     {
         // this is an workaround for different composer requirements and different TwigBridge installation directories
         $twigPaths = array_filter([
@@ -128,10 +120,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
         return $twigPaths;
     }
 
-    /**
-     * @return TwigRendererEngineInterface
-     */
-    protected function getRenderingEngine(\Twig_Environment $environment)
+    final protected function getRenderingEngine(\Twig_Environment $environment): TwigRendererEngine
     {
         return new TwigRendererEngine(['form_div_layout.html.twig'], $environment);
     }
@@ -141,33 +130,24 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      *
      * @return string
      */
-    final protected function renderWidget(FormView $view, array $vars = [])
+    final protected function renderWidget(FormView $view, array $vars = []): string
     {
         return (string) $this->renderer->searchAndRenderBlock($view, 'widget', $vars);
     }
 
     /**
      * Helper method to strip newline and space characters from html string to make comparing easier.
-     *
-     * @param string $html
-     *
-     * @return string
      */
-    final protected function cleanHtmlWhitespace($html)
+    final protected function cleanHtmlWhitespace(string $html): string
     {
-        return preg_replace_callback('/\s*>([^<]+)</', function ($value) {
+        return preg_replace_callback('/\s*>([^<]+)</', function (array $value): string {
             return '>'.trim($value[1]).'<';
         }, $html);
     }
 
-    /**
-     * @param string $html
-     *
-     * @return string
-     */
-    final protected function cleanHtmlAttributeWhitespace($html)
+    final protected function cleanHtmlAttributeWhitespace(string $html): string
     {
-        return preg_replace_callback('~<([A-Z0-9]+) \K(.*?)>~i', function ($m) {
+        return preg_replace_callback('~<([A-Z0-9]+) \K(.*?)>~i', function (array $m): string {
             return preg_replace('~\s*~', '', $m[0]);
         }, $html);
     }

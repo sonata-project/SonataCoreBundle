@@ -25,7 +25,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class SonataCoreExtension extends Extension implements PrependExtensionInterface
+final class SonataCoreExtension extends Extension implements PrependExtensionInterface
 {
     public function prepend(ContainerBuilder $container): void
     {
@@ -104,10 +104,7 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
         $container->setDefinition($identifier, $definition);
     }
 
-    /**
-     * @param array $config
-     */
-    public function configureSerializerFormats($config): void
+    public function configureSerializerFormats(array $config): void
     {
         if (interface_exists(SubscribingHandlerInterface::class)) {
             BaseSerializerHandler::setFormats($config['serializer']['formats']);

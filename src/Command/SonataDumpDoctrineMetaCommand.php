@@ -24,12 +24,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Return useful data on the database schema.
  */
-class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
+final class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
 {
     /**
      * @var array
      */
-    protected $metadata;
+    private $metadata;
 
     protected function configure(): void
     {
@@ -76,7 +76,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
         }
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if (!$this->metadata) {
             $output->writeln('<error>No meta was found</error>');
@@ -126,10 +126,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
         }
     }
 
-    /**
-     * @return array
-     */
-    private function filterMetadata(array $metadata, InputInterface $input, OutputInterface $output)
+    private function filterMetadata(array $metadata, InputInterface $input, OutputInterface $output): array
     {
         $baseEntity = $input->getOption('entity-name');
         $regex = $input->getOption('regex');
@@ -137,16 +134,14 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
         if ($baseEntity) {
             $allowedMeta = array_filter(
                 $metadata,
-                function ($meta) use ($baseEntity) {
-                    /* @var \Doctrine\ORM\Mapping\ClassMetadata $meta */
+                function (ClassMetadata $meta) use ($baseEntity): bool {
                     return $meta->rootEntityName === $baseEntity;
                 }
             );
         } elseif ($regex) {
             $allowedMeta = array_filter(
                 $metadata,
-                function ($meta) use ($regex) {
-                    /* @var \Doctrine\ORM\Mapping\ClassMetadata $meta */
+                function (ClassMetadata $meta) use ($regex): bool {
                     return preg_match($regex, $meta->rootEntityName);
                 }
             );
@@ -157,10 +152,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
         return $allowedMeta;
     }
 
-    /**
-     * @return array
-     */
-    private function normalizeDoctrineORMMeta(ClassMetadata $meta)
+    private function normalizeDoctrineORMMeta(ClassMetadata $meta): array
     {
         $normalizedMeta = [];
         $fieldMappings = $meta->fieldMappings;

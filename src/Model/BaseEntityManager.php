@@ -13,7 +13,8 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Model;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\DBAL\Connection;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @author Sylvain Deloux <sylvain.deloux@ekino.com>
@@ -34,15 +35,12 @@ abstract class BaseEntityManager extends BaseManager
         throw new \RuntimeException(sprintf('The property %s does not exists', $name));
     }
 
-    public function getConnection()
+    public function getConnection(): Connection
     {
         return $this->getEntityManager()->getConnection();
     }
 
-    /**
-     * @return EntityManager
-     */
-    public function getEntityManager()
+    public function getEntityManager(): EntityManagerInterface
     {
         return $this->getObjectManager();
     }
