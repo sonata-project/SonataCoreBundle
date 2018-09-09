@@ -109,7 +109,7 @@ final class BaseSerializerHandlerTest extends TestCase
         $manager = $this->createMock(ManagerInterface::class);
         $manager->expects($this->once())
             ->method('getClass')
-            ->willReturn(get_class($modelInstance));
+            ->willReturn(\get_class($modelInstance));
 
         $context = $this->createMock(Context::class);
 

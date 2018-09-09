@@ -88,7 +88,7 @@ class ResizeFormListener implements EventSubscriberInterface
             $data = [];
         }
 
-        if (!is_array($data) && !$data instanceof \Traversable) {
+        if (!\is_array($data) && !$data instanceof \Traversable) {
             throw new UnexpectedTypeException($data, 'array or \Traversable');
         }
 
@@ -124,7 +124,7 @@ class ResizeFormListener implements EventSubscriberInterface
             $data = [];
         }
 
-        if (!is_array($data) && !$data instanceof \Traversable) {
+        if (!\is_array($data) && !$data instanceof \Traversable) {
             throw new UnexpectedTypeException($data, 'array or \Traversable');
         }
 
@@ -141,7 +141,7 @@ class ResizeFormListener implements EventSubscriberInterface
                 ];
 
                 if ($this->preSubmitDataCallback) {
-                    $buildOptions['data'] = call_user_func($this->preSubmitDataCallback, $value);
+                    $buildOptions['data'] = \call_user_func($this->preSubmitDataCallback, $value);
                 }
 
                 $options = array_merge($this->typeOptions, $buildOptions);
@@ -171,7 +171,7 @@ class ResizeFormListener implements EventSubscriberInterface
             $data = [];
         }
 
-        if (!is_array($data) && !$data instanceof \Traversable) {
+        if (!\is_array($data) && !$data instanceof \Traversable) {
             throw new UnexpectedTypeException($data, 'array or \Traversable');
         }
 

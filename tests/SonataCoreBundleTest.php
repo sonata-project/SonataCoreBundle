@@ -51,7 +51,7 @@ final class SonataCoreBundleTest extends TestCase
                     'Compiler pass is not one of the expected types.
                     Expects "Sonata\AdminBundle\DependencyInjection\Compiler\StatusRendererCompilerPass" or
                     "Sonata\AdminBundle\DependencyInjection\Compiler\AdapterCompilerPass", but got "%s".',
-                    get_class($pass)
+                    \get_class($pass)
                 ));
             }));
 

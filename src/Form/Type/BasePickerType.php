@@ -53,9 +53,9 @@ abstract class BasePickerType extends AbstractType
     {
         $format = $options['format'];
 
-        if (isset($options['date_format']) && is_string($options['date_format'])) {
+        if (isset($options['date_format']) && \is_string($options['date_format'])) {
             $format = $options['date_format'];
-        } elseif (is_int($format)) {
+        } elseif (\is_int($format)) {
             $timeFormat = \IntlDateFormatter::NONE;
             if ($options['dp_pick_time']) {
                 $timeFormat = $options['dp_use_seconds'] ? DateTimeType::DEFAULT_TIME_FORMAT : \IntlDateFormatter::SHORT;
