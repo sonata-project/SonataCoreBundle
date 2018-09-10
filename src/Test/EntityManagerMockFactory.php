@@ -18,13 +18,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Version;
+use PHPUnit\Framework\TestCase;
 
 class EntityManagerMockFactory
 {
     /**
      * @return EntityManagerInterface
      */
-    public static function create(\PHPUnit\Framework\TestCase $test, \Closure $qbCallback, $fields)
+    public static function create(TestCase $test, \Closure $qbCallback, $fields)
     {
         $query = $test->getMockBuilder(AbstractQuery::class)
             ->disableOriginalConstructor()->getMock();
