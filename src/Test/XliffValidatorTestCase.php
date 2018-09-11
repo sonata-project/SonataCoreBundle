@@ -41,9 +41,10 @@ abstract class XliffValidatorTestCase extends TestCase
     {
         $this->validatePath($path);
 
-        if (\count($this->errors) > 0) {
-            $this->fail(sprintf('Unable to parse xliff files: %s', implode(', ', $this->errors)));
-        }
+        $this->assertCount(0, $this->errors, sprintf(
+            'Unable to parse xliff files: %s',
+            implode(', ', $this->errors)
+        ));
     }
 
     /**

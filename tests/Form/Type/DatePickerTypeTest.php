@@ -25,6 +25,9 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 class DatePickerTypeTest extends TestCase
 {
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testBuildForm(): void
     {
         $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();

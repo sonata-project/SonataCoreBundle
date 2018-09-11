@@ -26,6 +26,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 final class SonataCoreBundleTest extends TestCase
 {
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testBuild(): void
     {
         $containerBuilder = $this->getMockBuilder(ContainerBuilder::class)

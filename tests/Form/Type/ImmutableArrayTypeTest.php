@@ -25,6 +25,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImmutableArrayTypeTest extends TypeTestCase
 {
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testBuildForm(): void
     {
         $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
