@@ -15,3 +15,8 @@ The translator in ``DateRangeType``, ``DateTimeRangeType``, ``EqualType`` has be
 ### Removed translation for `sonata_template_box`
 
 The ability of translating the text of `sonata_template_box` twig nodes was removed.
+
+## Type hinting
+
+Now that only PHP 7 is supported, many signatures have changed: type hinting
+was added for the parameters or the return value.

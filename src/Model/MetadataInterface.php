@@ -18,36 +18,23 @@ namespace Sonata\CoreBundle\Model;
  */
 interface MetadataInterface
 {
-    /**
-     * @return string
-     */
-    public function getTitle();
+    public function getTitle(): string;
 
-    /**
-     * @return string
-     */
-    public function getDescription();
+    public function getDescription(): ?string;
 
     /**
      * @return mixed
      */
     public function getImage();
 
-    /**
-     * @return string
-     */
-    public function getDomain();
+    public function getDomain(): ?string;
+
+    public function getOptions(): array;
 
     /**
-     * @return array
-     */
-    public function getOptions();
-
-    /**
-     * @param string $name    The option key
-     * @param mixed  $default The default value if option not found
+     * @param mixed $default The default value if option not found
      *
      * @return mixed
      */
-    public function getOption($name, $default = null);
+    public function getOption(string $name, $default = null);
 }

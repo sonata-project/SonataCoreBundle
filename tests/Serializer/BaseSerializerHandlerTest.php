@@ -117,11 +117,14 @@ final class BaseSerializerHandlerTest extends TestCase
         $visitor->expects($this->once())
             ->method('visitInteger')
             ->with(1, ['foo'], $context)
-            ->willReturn(true);
+            ->willReturn(42);
 
         $serializer = new FooSerializer($manager);
 
-        $this->assertTrue($serializer->serializeObjectToId($visitor, $modelInstance, ['foo'], $context));
+        $this->assertSame(
+            42,
+            $serializer->serializeObjectToId($visitor, $modelInstance, ['foo'], $context)
+        );
     }
 
     public function testSerializeObjectToIdWithDataIsNotInstanceOfManager(): void
@@ -151,13 +154,13 @@ final class BaseSerializerHandlerTest extends TestCase
         $manager = $this->createMock(ManagerInterface::class);
         $manager->expects($this->once())
             ->method('findOneBy')
-            ->with(['id' => 'foo'])
+            ->with(['id' => 42])
             ->willReturn('bar');
 
         $visitor = $this->createMock(VisitorInterface::class);
 
         $serializer = new FooSerializer($manager);
 
-        $this->assertSame('bar', $serializer->deserializeObjectFromId($visitor, 'foo', []));
+        $this->assertSame('bar', $serializer->deserializeObjectFromId($visitor, 42, []));
     }
 }

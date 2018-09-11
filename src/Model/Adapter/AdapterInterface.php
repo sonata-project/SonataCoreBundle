@@ -24,7 +24,7 @@ interface AdapterInterface
      *
      * @return string a string representation of the identifiers for this instance
      */
-    public function getNormalizedIdentifier($model);
+    public function getNormalizedIdentifier($model): ?string;
 
     /**
      * Get the identifiers as a string that is save to use in an url.
@@ -36,5 +36,5 @@ interface AdapterInterface
      *
      * @return string string representation of the id that is save to use in an url
      */
-    public function getUrlsafeIdentifier($model);
+    public function getUrlsafeIdentifier($model): ?string;
 }

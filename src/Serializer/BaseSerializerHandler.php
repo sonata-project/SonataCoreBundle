@@ -33,9 +33,6 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
      */
     protected static $formats;
 
-    /**
-     * @param ManagerInterface $manager
-     */
     public function __construct(ManagerInterface $manager)
     {
         $this->manager = $manager;
@@ -49,15 +46,12 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
         static::$formats = $formats;
     }
 
-    /**
-     * @param string $format
-     */
-    final public static function addFormat($format): void
+    final public static function addFormat(string $format): void
     {
         static::$formats[] = $format;
     }
 
-    public static function getSubscribingMethods()
+    public static function getSubscribingMethods(): array
     {
         $type = static::getType();
         $methods = [];
@@ -85,26 +79,28 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
      * Serialize data object to id.
      *
      * @param object $data
-     *
-     * @return int|null
      */
-    public function serializeObjectToId(VisitorInterface $visitor, $data, array $type, Context $context)
-    {
+    public function serializeObjectToId(
+        VisitorInterface $visitor,
+        $data,
+        array $type,
+        Context $context
+    ): ?int {
         $className = $this->manager->getClass();
 
         if ($data instanceof $className) {
             return $visitor->visitInteger($data->getId(), $type, $context);
         }
+
+        return null;
     }
 
     /**
      * Deserialize object from its id.
      *
-     * @param int $data
-     *
      * @return null|object
      */
-    public function deserializeObjectFromId(VisitorInterface $visitor, $data, array $type)
+    public function deserializeObjectFromId(VisitorInterface $visitor, int $data, array $type)
     {
         return $this->manager->findOneBy(['id' => $data]);
     }

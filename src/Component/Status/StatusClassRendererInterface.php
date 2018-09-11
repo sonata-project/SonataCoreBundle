@@ -21,21 +21,14 @@ interface StatusClassRendererInterface
     /**
      * Tells if class may handle $object for status class rendering.
      *
-     * @param mixed $object
-     * @param null  $statusName
-     *
-     * @return bool
+     * @param object $object
      */
-    public function handlesObject($object, $statusName = null);
+    public function handlesObject($object, ?string $statusName = null): bool;
 
     /**
      * Returns the status CSS class for $object.
      *
-     * @param mixed  $object
-     * @param null   $statusName
-     * @param string $default
-     *
-     * @return string
+     * @param object $object
      */
-    public function getStatusClass($object, $statusName = null, $default = '');
+    public function getStatusClass($object, ?string $statusName = null, string $default = ''): string;
 }

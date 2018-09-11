@@ -52,17 +52,13 @@ class TemplateBoxTokenParserTest extends TestCase
 
     public function getTestsForRender()
     {
-        $translator = $this->createMock(TranslatorInterface::class);
-
         return [
             [
                 true,
                 '{% sonata_template_box %}',
                 new TemplateBoxNode(
                     new \Twig_Node_Expression_Constant('Template information', 1),
-                    null,
                     true,
-                    $translator,
                     1,
                     'sonata_template_box'
                 ),
@@ -72,9 +68,7 @@ class TemplateBoxTokenParserTest extends TestCase
                 '{% sonata_template_box "This is the basket delivery address step page" %}',
                 new TemplateBoxNode(
                     new \Twig_Node_Expression_Constant('This is the basket delivery address step page', 1),
-                    null,
                     true,
-                    $translator,
                     1,
                     'sonata_template_box'
                 ),
@@ -84,9 +78,7 @@ class TemplateBoxTokenParserTest extends TestCase
                 '{% sonata_template_box "This is the basket delivery address step page" %}',
                 new TemplateBoxNode(
                     new \Twig_Node_Expression_Constant('This is the basket delivery address step page', 1),
-                    null,
                     false,
-                    $translator,
                     1,
                     'sonata_template_box'
                 ),

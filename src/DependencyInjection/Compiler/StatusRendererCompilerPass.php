@@ -21,7 +21,7 @@ use Symfony\Component\DependencyInjection\Reference;
 /**
  * @author Hugo Briand <briand@ekino.com>
  */
-class StatusRendererCompilerPass implements CompilerPassInterface
+final class StatusRendererCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {

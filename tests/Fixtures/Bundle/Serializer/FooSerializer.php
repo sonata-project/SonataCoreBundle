@@ -21,9 +21,6 @@ use Sonata\CoreBundle\Serializer\BaseSerializerHandler;
  */
 class FooSerializer extends BaseSerializerHandler
 {
-    /**
-     * @param ManagerInterface $manager
-     */
     public function __construct(ManagerInterface $manager)
     {
         parent::__construct($manager);
@@ -32,7 +29,7 @@ class FooSerializer extends BaseSerializerHandler
     /**
      * {@inheritdoc}
      */
-    public static function getType()
+    public static function getType(): string
     {
         return 'foo';
     }

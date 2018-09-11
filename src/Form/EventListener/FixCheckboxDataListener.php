@@ -25,9 +25,9 @@ use Symfony\Component\Form\FormEvents;
  *
  * @author Sylvain Rascar <rascar.sylvain@gmail.com>
  */
-class FixCheckboxDataListener implements EventSubscriberInterface
+final class FixCheckboxDataListener implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [FormEvents::PRE_SUBMIT => 'preSubmit'];
     }

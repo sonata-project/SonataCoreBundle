@@ -17,7 +17,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EqualType extends AbstractType
+final class EqualType extends AbstractType
 {
     public const TYPE_IS_EQUAL = 1;
 
@@ -36,12 +36,12 @@ class EqualType extends AbstractType
         $resolver->setDefaults($defaultOptions);
     }
 
-    public function getParent()
+    public function getParent(): string
     {
         return ChoiceType::class;
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'sonata_type_equal';
     }

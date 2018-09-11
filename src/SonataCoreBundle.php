@@ -19,7 +19,7 @@ use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class SonataCoreBundle extends Bundle
+final class SonataCoreBundle extends Bundle
 {
     public function build(ContainerBuilder $container): void
     {

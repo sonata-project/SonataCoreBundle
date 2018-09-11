@@ -20,52 +20,52 @@ use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\ExecutionContextInterface as LegacyExecutionContextInterface;
 
-class ErrorElement
+final class ErrorElement
 {
     /**
      * @var LegacyExecutionContextInterface|ExecutionContextInterface
      */
-    protected $context;
+    private $context;
 
     /**
      * @var string
      */
-    protected $group;
+    private $group;
 
     /**
      * @var ConstraintValidatorFactoryInterface
      */
-    protected $constraintValidatorFactory;
+    private $constraintValidatorFactory;
 
     /**
      * @var string[]
      */
-    protected $stack = [];
+    private $stack = [];
 
     /**
      * @var string[]
      */
-    protected $propertyPaths = [];
+    private $propertyPaths = [];
 
     /**
      * @var mixed
      */
-    protected $subject;
+    private $subject;
 
     /**
      * @var string
      */
-    protected $current;
+    private $current;
 
     /**
      * @var string
      */
-    protected $basePropertyPath;
+    private $basePropertyPath;
 
     /**
      * @var array
      */
-    protected $errors = [];
+    private $errors = [];
 
     /**
      * @param mixed                                                     $subject
@@ -76,7 +76,7 @@ class ErrorElement
         $subject,
         ConstraintValidatorFactoryInterface $constraintValidatorFactory,
         $context,
-        $group
+        ?string $group
     ) {
         if (!($context instanceof LegacyExecutionContextInterface) && !($context instanceof ExecutionContextInterface)) {
             throw new \InvalidArgumentException(sprintf('Argument 3 passed to %s::__construct() must be an instance of Symfony\Component\Validator\ExecutionContextInterface or Symfony\Component\Validator\Context\ExecutionContextInterface.', \get_class($this)));
@@ -91,13 +91,9 @@ class ErrorElement
     }
 
     /**
-     * @param string $name
-     *
      * @throws \RuntimeException
-     *
-     * @return ErrorElement
      */
-    public function __call($name, array $arguments = [])
+    public function __call(string $name, array $arguments = []): self
     {
         if ('assert' === substr($name, 0, 6)) {
             $this->validate($this->newConstraint(substr($name, 6), $arguments[0] ?? []));
@@ -108,23 +104,14 @@ class ErrorElement
         return $this;
     }
 
-    /**
-     * @return ErrorElement
-     */
-    public function addConstraint(Constraint $constraint)
+    public function addConstraint(Constraint $constraint): self
     {
         $this->validate($constraint);
 
         return $this;
     }
 
-    /**
-     * @param string $name
-     * @param bool   $key
-     *
-     * @return ErrorElement
-     */
-    public function with($name, $key = false)
+    public function with(string $name, bool $key = false): self
     {
         $key = $key ? $name.'.'.$key : $name;
         $this->stack[] = $key;
@@ -138,10 +125,7 @@ class ErrorElement
         return $this;
     }
 
-    /**
-     * @return ErrorElement
-     */
-    public function end()
+    public function end(): self
     {
         array_pop($this->stack);
 
@@ -150,10 +134,7 @@ class ErrorElement
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getFullPropertyPath()
+    public function getFullPropertyPath(): string
     {
         if ($this->getCurrentPropertyPath()) {
             return sprintf('%s.%s', $this->basePropertyPath, $this->getCurrentPropertyPath());
@@ -172,12 +153,8 @@ class ErrorElement
 
     /**
      * @param string|array $message
-     * @param array        $parameters
-     * @param null         $value
-     *
-     * @return ErrorElement
      */
-    public function addViolation($message, $parameters = [], $value = null)
+    public function addViolation($message, array $parameters = [], $value = null): self
     {
         if (\is_array($message)) {
             $value = $message[2] ?? $value;
@@ -202,15 +179,12 @@ class ErrorElement
         return $this;
     }
 
-    /**
-     * @return array
-     */
-    public function getErrors()
+    public function getErrors(): array
     {
         return $this->errors;
     }
 
-    protected function validate(Constraint $constraint): void
+    private function validate(Constraint $constraint): void
     {
         $subPath = (string) $this->getCurrentPropertyPath();
         if ($this->context instanceof LegacyExecutionContextInterface) {
@@ -228,7 +202,7 @@ class ErrorElement
      *
      * @return mixed
      */
-    protected function getValue()
+    private function getValue()
     {
         if ('' === $this->current) {
             return $this->subject;
@@ -240,11 +214,9 @@ class ErrorElement
     }
 
     /**
-     * @param string $name
-     *
-     * @return
+     * @return object
      */
-    protected function newConstraint($name, array $options = [])
+    private function newConstraint(string $name, array $options = [])
     {
         if (false !== strpos($name, '\\') && class_exists($name)) {
             $className = (string) $name;
@@ -255,13 +227,10 @@ class ErrorElement
         return new $className($options);
     }
 
-    /**
-     * @return null|PropertyPath
-     */
-    protected function getCurrentPropertyPath()
+    private function getCurrentPropertyPath(): ?PropertyPath
     {
         if (!isset($this->propertyPaths[$this->current])) {
-            return; //global error
+            return null; //global error
         }
 
         return $this->propertyPaths[$this->current];

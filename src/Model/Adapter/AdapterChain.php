@@ -13,16 +13,16 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Model\Adapter;
 
-class AdapterChain implements AdapterInterface
+final class AdapterChain implements AdapterInterface
 {
-    protected $adapters = [];
+    private $adapters = [];
 
     public function addAdapter(AdapterInterface $adapter): void
     {
         $this->adapters[] = $adapter;
     }
 
-    public function getNormalizedIdentifier($model)
+    public function getNormalizedIdentifier($model): ?string
     {
         foreach ($this->adapters as $adapter) {
             $identifier = $adapter->getNormalizedIdentifier($model);
@@ -31,9 +31,11 @@ class AdapterChain implements AdapterInterface
                 return $identifier;
             }
         }
+
+        return null;
     }
 
-    public function getUrlsafeIdentifier($model)
+    public function getUrlsafeIdentifier($model): ?string
     {
         foreach ($this->adapters as $adapter) {
             $safeIdentifier = $adapter->getUrlsafeIdentifier($model);
@@ -42,5 +44,7 @@ class AdapterChain implements AdapterInterface
                 return $safeIdentifier;
             }
         }
+
+        return null;
     }
 }

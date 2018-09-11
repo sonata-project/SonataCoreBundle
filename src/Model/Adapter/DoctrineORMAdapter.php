@@ -19,12 +19,12 @@ use Doctrine\ORM\EntityManagerInterface;
 /**
  * This is a port of the DoctrineORMAdminBundle / ModelManager class.
  */
-class DoctrineORMAdapter implements AdapterInterface
+final class DoctrineORMAdapter implements AdapterInterface
 {
     /**
      * @var ManagerRegistry
      */
-    protected $registry;
+    private $registry;
 
     /**
      * @param ManagerRegistry $registry
@@ -34,24 +34,24 @@ class DoctrineORMAdapter implements AdapterInterface
         $this->registry = $registry;
     }
 
-    public function getNormalizedIdentifier($entity)
+    public function getNormalizedIdentifier($entity): ?string
     {
         if (is_scalar($entity)) {
             throw new \RuntimeException('Invalid argument, object or null required');
         }
 
         if (!$entity) {
-            return;
+            return null;
         }
 
         $manager = $this->registry->getManagerForClass(\get_class($entity));
 
         if (!$manager instanceof EntityManagerInterface) {
-            return;
+            return null;
         }
 
         if (!$manager->getUnitOfWork()->isInIdentityMap($entity)) {
-            return;
+            return null;
         }
 
         return implode(self::ID_SEPARATOR, $manager->getUnitOfWork()->getEntityIdentifier($entity));
@@ -63,7 +63,7 @@ class DoctrineORMAdapter implements AdapterInterface
      * The ORM implementation does nothing special but you still should use
      * this method when using the id in a URL to allow for future improvements.
      */
-    public function getUrlsafeIdentifier($entity)
+    public function getUrlsafeIdentifier($entity): ?string
     {
         return $this->getNormalizedIdentifier($entity);
     }

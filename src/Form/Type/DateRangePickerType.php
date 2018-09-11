@@ -20,7 +20,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author Andrej Hudec <pulzarraider@gmail.com>
  */
-class DateRangePickerType extends DateRangeType
+final class DateRangePickerType extends DateRangeType
 {
     public function configureOptions(OptionsResolver $resolver): void
     {
@@ -34,7 +34,7 @@ class DateRangePickerType extends DateRangeType
         ]);
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'sonata_type_date_range_picker';
     }

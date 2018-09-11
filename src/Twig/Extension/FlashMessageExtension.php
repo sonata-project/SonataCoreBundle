@@ -23,12 +23,12 @@ use Twig\TwigFunction;
  * @author Vincent Composieux <composieux@ekino.com>
  * @author Titouan Galopin <galopintitouan@gmail.com>
  */
-class FlashMessageExtension extends AbstractExtension
+final class FlashMessageExtension extends AbstractExtension
 {
     /**
      * @var FlashManager
      */
-    protected $flashManager;
+    private $flashManager;
 
     public function __construct(FlashManager $flashManager = null)
     {
@@ -43,7 +43,7 @@ class FlashMessageExtension extends AbstractExtension
         }
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         if ($this->flashManager) {
             return [
@@ -64,11 +64,9 @@ class FlashMessageExtension extends AbstractExtension
      * @param string $type   Type of flash message
      * @param string $domain Translation domain to use
      *
-     * @return string
-     *
      * @deprecated since 3.x, to be removed in 4.0. Use the FlashMessageRuntime instead.
      */
-    public function getFlashMessages($type, $domain = null)
+    public function getFlashMessages(string $type, ?string $domain = null): string
     {
         @trigger_error(
             'Method "FlashMessageExtension::getFlashMessages()" is deprecated since SonataCoreBundle 3.x and will'.
@@ -82,11 +80,9 @@ class FlashMessageExtension extends AbstractExtension
     /**
      * Returns flash messages types handled by Sonata core flash manager.
      *
-     * @return string
-     *
      * @deprecated since 3.x, to be removed in 4.0. Use the FlashMessageRuntime instead.
      */
-    public function getFlashMessagesTypes()
+    public function getFlashMessagesTypes(): string
     {
         @trigger_error(
             'Method "FlashMessageExtension::getFlashMessagesTypes()" is deprecated since SonataCoreBundle 3.x and will'.
@@ -97,7 +93,7 @@ class FlashMessageExtension extends AbstractExtension
         return $this->flashManager->getHandledTypes();
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'sonata_core_flashmessage';
     }

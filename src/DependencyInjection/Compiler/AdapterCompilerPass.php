@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\Reference;
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class AdapterCompilerPass implements CompilerPassInterface
+final class AdapterCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
