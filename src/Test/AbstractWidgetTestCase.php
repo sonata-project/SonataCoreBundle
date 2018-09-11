@@ -13,10 +13,8 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Test;
 
-use Symfony\Bridge\Twig\AppVariable;
 use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
-use Symfony\Bridge\Twig\Form\TwigRenderer;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
 use Symfony\Bridge\Twig\Tests\Extension\Fixtures\StubFilesystemLoader;
 use Symfony\Bundle\FrameworkBundle\Tests\Templating\Helper\Fixtures\StubTranslator;
@@ -42,7 +40,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
     private $extension;
 
     /**
-     * @var TwigRenderer
+     * @var FormRenderer
      */
     private $renderer;
 
@@ -50,28 +48,19 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
     {
         parent::setUp();
 
-        // TODO: remove the condition when dropping symfony/twig-bundle < 3.2
-        if (method_exists(AppVariable::class, 'getToken')) {
-            $this->extension = new FormExtension();
-            $environment = $this->getEnvironment();
-            $this->renderer = new FormRenderer(
-                $this->getRenderingEngine($environment),
-                $this->createMock(CsrfTokenManagerInterface::class)
-            );
-            $runtimeLoader = new FactoryRuntimeLoader([
-                FormRenderer::class => [$this, 'getRenderer'],
-                TwigRenderer::class => [$this, 'getRenderer'],
-            ]);
+        $this->extension = new FormExtension($this->renderer);
+        $environment = $this->getEnvironment();
 
-            $environment->addRuntimeLoader($runtimeLoader);
-        } else {
-            $this->renderer = new TwigRenderer(
-                $this->getRenderingEngine(),
-                $this->createMock(CsrfTokenManagerInterface::class)
-            );
-            $this->extension = new FormExtension($this->renderer);
-            $environment = $this->getEnvironment();
-        }
+        $this->renderer = new FormRenderer(
+            $this->getRenderingEngine($environment),
+            $this->createMock(CsrfTokenManagerInterface::class)
+        );
+
+        $environment->addRuntimeLoader(new FactoryRuntimeLoader([
+            FormRenderer::class => function () {
+                return $this->renderer;
+            },
+        ]));
 
         if ($this->extension instanceof InitRuntimeInterface) {
             $this->extension->initRuntime($environment);

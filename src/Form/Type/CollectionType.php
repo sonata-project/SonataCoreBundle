@@ -25,14 +25,12 @@ final class CollectionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $listener = new ResizeFormListener(
+        $builder->addEventSubscriber(new ResizeFormListener(
             $options['type'],
             $options['type_options'],
             $options['modifiable'],
             $options['pre_bind_data_callback']
-        );
-
-        $builder->addEventSubscriber($listener);
+        ));
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options): void

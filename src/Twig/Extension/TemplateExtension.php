@@ -18,7 +18,7 @@ use Sonata\CoreBundle\Twig\TokenParser\TemplateBoxTokenParser;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
-class TemplateExtension extends AbstractExtension
+final class TemplateExtension extends AbstractExtension
 {
     /**
      * @var bool
@@ -34,26 +34,20 @@ class TemplateExtension extends AbstractExtension
      * @param bool             $debug        Is Symfony debug enabled?
      * @param AdapterInterface $modelAdapter A Sonata model adapter
      */
-    public function __construct($debug, AdapterInterface $modelAdapter)
+    public function __construct(bool $debug, AdapterInterface $modelAdapter)
     {
         $this->debug = $debug;
         $this->modelAdapter = $modelAdapter;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getFilters()
+    public function getFilters(): array
     {
         return [
             new TwigFilter('sonata_urlsafeid', [$this, 'getUrlsafeIdentifier']),
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getTokenParsers()
+    public function getTokenParsers(): array
     {
         return [
             new TemplateBoxTokenParser($this->debug),
@@ -61,19 +55,14 @@ class TemplateExtension extends AbstractExtension
     }
 
     /**
-     * @param $model
-     *
-     * @return string
+     * @param object $model
      */
-    public function getUrlsafeIdentifier($model)
+    public function getUrlsafeIdentifier($model): ?string
     {
         return $this->modelAdapter->getUrlsafeIdentifier($model);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
+    public function getName(): string
     {
         return 'sonata_core_template';
     }

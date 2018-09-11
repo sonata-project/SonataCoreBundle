@@ -16,7 +16,7 @@ namespace Sonata\CoreBundle\Twig\Extension;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 
-class FormTypeExtension extends AbstractExtension implements GlobalsInterface
+final class FormTypeExtension extends AbstractExtension implements GlobalsInterface
 {
     /**
      * @var bool
@@ -28,14 +28,14 @@ class FormTypeExtension extends AbstractExtension implements GlobalsInterface
         $this->wrapFieldsWithAddons = (true === $formType || 'standard' === $formType);
     }
 
-    public function getGlobals()
+    public function getGlobals(): array
     {
         return [
             'wrap_fields_with_addons' => $this->wrapFieldsWithAddons,
         ];
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'sonata_core_wrapping';
     }

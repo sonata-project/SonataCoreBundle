@@ -88,10 +88,8 @@ final class FlashManager implements StatusClassRendererInterface
 
     /**
      * Returns Symfony translator service.
-     *
-     * @return TranslatorInterface
      */
-    public function getTranslator()
+    public function getTranslator(): TranslatorInterface
     {
         return $this->translator;
     }
