@@ -38,8 +38,16 @@ class DateTimeRangeType extends AbstractType
             $options['field_options_end']
         );
 
-        $builder->add('start', $options['field_type'], array_merge(['required' => false], $options['field_options'], $options['field_options_start']));
-        $builder->add('end', $options['field_type'], array_merge(['required' => false], $options['field_options'], $options['field_options_end']));
+        $builder->add(
+            'start',
+            $options['field_type'],
+            array_merge(['required' => false], $options['field_options'], $options['field_options_start'])
+        );
+        $builder->add(
+            'end',
+            $options['field_type'],
+            array_merge(['required' => false], $options['field_options'], $options['field_options_end'])
+        );
     }
 
     public function getBlockPrefix(): string

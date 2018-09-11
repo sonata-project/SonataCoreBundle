@@ -73,5 +73,7 @@ class DoctrinePHPCRAdapter implements AdapterInterface
         if (null !== $id) {
             return substr($id, 1);
         }
+
+        return null;
     }
 }

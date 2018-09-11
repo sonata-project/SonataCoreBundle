@@ -23,6 +23,9 @@ use Sonata\CoreBundle\FlashMessage\FlashManager;
  */
 final class FlashMessageRuntime
 {
+    /**
+     * @var FlashManager
+     */
     private $flashManager;
 
     public function __construct(FlashManager $flashManager)
@@ -35,20 +38,16 @@ final class FlashMessageRuntime
      *
      * @param string $type   Type of flash message
      * @param string $domain Translation domain to use
-     *
-     * @return string
      */
-    public function getFlashMessages($type, $domain = null)
+    public function getFlashMessages(string $type, string $domain = null): array
     {
         return $this->flashManager->get($type, $domain);
     }
 
     /**
      * Returns flash messages types handled by Sonata core flash manager.
-     *
-     * @return string
      */
-    public function getFlashMessagesTypes()
+    public function getFlashMessagesTypes(): array
     {
         return $this->flashManager->getHandledTypes();
     }

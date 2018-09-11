@@ -18,7 +18,7 @@ use Twig\Node\Expression\ConstantExpression;
 use Twig\Token;
 use Twig\TokenParser\AbstractTokenParser;
 
-class TemplateBoxTokenParser extends AbstractTokenParser
+final class TemplateBoxTokenParser extends AbstractTokenParser
 {
     /**
      * @var bool

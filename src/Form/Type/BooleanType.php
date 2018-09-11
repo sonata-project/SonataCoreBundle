@@ -34,7 +34,7 @@ final class BooleanType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $defaultOptions = [
+        $resolver->setDefaults([
             'transform' => false,
             'choice_translation_domain' => 'SonataCoreBundle',
             'choices' => [
@@ -42,9 +42,7 @@ final class BooleanType extends AbstractType
                 'label_type_no' => self::TYPE_NO,
             ],
             'translation_domain' => 'SonataCoreBundle',
-        ];
-
-        $resolver->setDefaults($defaultOptions);
+        ]);
     }
 
     public function getParent(): string

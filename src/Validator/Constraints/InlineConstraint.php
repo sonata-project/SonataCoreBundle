@@ -49,7 +49,7 @@ final class InlineConstraint extends Constraint
         }
     }
 
-    public function __sleep()
+    public function __sleep(): array
     {
         if (!\is_string($this->service) || !\is_string($this->method)) {
             return [];
@@ -91,12 +91,12 @@ final class InlineConstraint extends Constraint
         return $this->method;
     }
 
-    public function getTargets()
+    public function getTargets(): string
     {
         return self::CLASS_CONSTRAINT;
     }
 
-    public function getRequiredOptions()
+    public function getRequiredOptions(): array
     {
         return [
             'service',

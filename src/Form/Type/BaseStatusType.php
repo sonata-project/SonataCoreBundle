@@ -53,15 +53,8 @@ abstract class BaseStatusType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $choices = \call_user_func([$this->class, $this->getter]);
-
-        // choice_as_value options is not needed in SF 3.0+
-        if ($resolver->isDefined('choices_as_values')) {
-            $resolver->setDefault('choices_as_values', true);
-        }
-
         $resolver->setDefaults([
-            'choices' => $choices,
+            'choices' => \call_user_func([$this->class, $this->getter]),
         ]);
     }
 }

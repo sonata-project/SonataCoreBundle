@@ -17,7 +17,7 @@ use Twig\Compiler;
 use Twig\Node\Expression\AbstractExpression;
 use Twig\Node\Node;
 
-class TemplateBoxNode extends Node
+final class TemplateBoxNode extends Node
 {
     /**
      * @var int
@@ -30,7 +30,7 @@ class TemplateBoxNode extends Node
      * @param int                $lineno  Symfony template line number
      * @param ?string            $tag     Symfony tag name
      */
-    public function __construct(AbstractExpression $message, bool $enabled, ?int $lineno, $tag = null)
+    public function __construct(AbstractExpression $message, bool $enabled, ?int $lineno, ?string $tag = null)
     {
         $this->enabled = $enabled;
 

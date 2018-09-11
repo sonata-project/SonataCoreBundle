@@ -68,7 +68,7 @@ final class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
         $manager = $this->getContainer()->get('doctrine')->getManager();
         $metadata = $manager->getMetadataFactory()->getAllMetadata();
 
-        $allowedMeta = $this->filterMetadata($metadata, $input, $output);
+        $allowedMeta = $this->filterMetadata($metadata, $input);
 
         /** @var ClassMetadata $meta */
         foreach ($allowedMeta as $meta) {
@@ -126,7 +126,7 @@ final class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
         }
     }
 
-    private function filterMetadata(array $metadata, InputInterface $input, OutputInterface $output): array
+    private function filterMetadata(array $metadata, InputInterface $input): array
     {
         $baseEntity = $input->getOption('entity-name');
         $regex = $input->getOption('regex');
@@ -142,7 +142,7 @@ final class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
             $allowedMeta = array_filter(
                 $metadata,
                 function (ClassMetadata $meta) use ($regex): bool {
-                    return preg_match($regex, $meta->rootEntityName);
+                    return (bool) preg_match($regex, $meta->rootEntityName);
                 }
             );
         } else {
