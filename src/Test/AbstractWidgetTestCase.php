@@ -25,7 +25,9 @@ use Symfony\Component\Form\FormRenderer;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Twig\Environment;
 use Twig\Extension\InitRuntimeInterface;
+use Twig\RuntimeLoader\FactoryRuntimeLoader;
 
 /**
  * Base class for tests checking rendering of form widgets.
@@ -56,7 +58,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
                 $this->getRenderingEngine($environment),
                 $this->createMock(CsrfTokenManagerInterface::class)
             );
-            $runtimeLoader = new \Twig_FactoryRuntimeLoader([
+            $runtimeLoader = new FactoryRuntimeLoader([
                 FormRenderer::class => [$this, 'getRenderer'],
                 TwigRenderer::class => [$this, 'getRenderer'],
             ]);
@@ -91,7 +93,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
     {
         $loader = new StubFilesystemLoader($this->getTemplatePaths());
 
-        $environment = new \Twig_Environment($loader, [
+        $environment = new Environment($loader, [
             'strict_variables' => true,
         ]);
         $environment->addExtension(new TranslationExtension(new StubTranslator()));

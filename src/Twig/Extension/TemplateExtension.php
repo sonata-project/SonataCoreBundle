@@ -15,6 +15,7 @@ use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
 use Sonata\CoreBundle\Twig\TokenParser\TemplateBoxTokenParser;
 use Symfony\Component\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
 class TemplateExtension extends AbstractExtension
 {
@@ -46,8 +47,8 @@ class TemplateExtension extends AbstractExtension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('sonata_slugify', [$this, 'slugify'], ['deprecated' => true, 'alternative' => 'slugify']),
-            new \Twig_SimpleFilter('sonata_urlsafeid', [$this, 'getUrlsafeIdentifier']),
+            new TwigFilter('sonata_slugify', [$this, 'slugify'], ['deprecated' => true, 'alternative' => 'slugify']),
+            new TwigFilter('sonata_urlsafeid', [$this, 'getUrlsafeIdentifier']),
         ];
     }
 

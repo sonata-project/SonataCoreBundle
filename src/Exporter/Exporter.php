@@ -11,6 +11,7 @@
 
 namespace Sonata\CoreBundle\Exporter;
 
+use Exporter\Handler;
 use Exporter\Source\SourceIteratorInterface;
 use Exporter\Writer\CsvWriter;
 use Exporter\Writer\JsonWriter;
@@ -66,7 +67,7 @@ class Exporter
         }
 
         $callback = function () use ($source, $writer) {
-            $handler = \Exporter\Handler::create($source, $writer);
+            $handler = Handler::create($source, $writer);
             $handler->export();
         };
 
