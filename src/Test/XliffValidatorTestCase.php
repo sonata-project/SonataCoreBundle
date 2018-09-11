@@ -13,10 +13,11 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Test;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Translation\Exception\InvalidResourceException;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
 
-abstract class XliffValidatorTestCase extends \PHPUnit\Framework\TestCase
+abstract class XliffValidatorTestCase extends TestCase
 {
     /**
      * @var XliffFileLoader

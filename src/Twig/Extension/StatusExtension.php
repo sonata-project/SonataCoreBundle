@@ -15,6 +15,7 @@ namespace Sonata\CoreBundle\Twig\Extension;
 
 use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
 use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
@@ -49,12 +50,12 @@ class StatusExtension extends AbstractExtension
     {
         if (!empty($this->statusServices)) {
             return [
-                new \Twig_SimpleFilter('sonata_status_class', [$this, 'statusClass']),
+                new TwigFilter('sonata_status_class', [$this, 'statusClass']),
             ];
         }
 
         return [
-            new \Twig_SimpleFilter('sonata_status_class', [StatusRuntime::class, 'statusClass']),
+            new TwigFilter('sonata_status_class', [StatusRuntime::class, 'statusClass']),
         ];
     }
 

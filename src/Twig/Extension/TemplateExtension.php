@@ -16,6 +16,7 @@ namespace Sonata\CoreBundle\Twig\Extension;
 use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
 use Sonata\CoreBundle\Twig\TokenParser\TemplateBoxTokenParser;
 use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
 class TemplateExtension extends AbstractExtension
 {
@@ -45,7 +46,7 @@ class TemplateExtension extends AbstractExtension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('sonata_urlsafeid', [$this, 'getUrlsafeIdentifier']),
+            new TwigFilter('sonata_urlsafeid', [$this, 'getUrlsafeIdentifier']),
         ];
     }
 
