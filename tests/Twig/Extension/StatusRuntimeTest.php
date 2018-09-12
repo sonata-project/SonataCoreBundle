@@ -22,8 +22,8 @@ class StatusRuntimeTest extends TestCase
     public function testStatusClassDefaultValue(): void
     {
         $runtime = new StatusRuntime();
-        $statusService = $this->getMockBuilder(StatusClassRendererInterface::class)
-            ->getMock();
+        $statusService = $this->createMock(StatusClassRendererInterface::class);
+
         $statusService->expects($this->once())
             ->method('handlesObject')
             ->will($this->returnValue(false));

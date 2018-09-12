@@ -64,7 +64,7 @@ class DoctrinePHPCRAdapterTest extends TestCase
 
     public function testNormalizedIdentifierWithNotManaged(): void
     {
-        $manager = $this->getMockBuilder(DocumentManager::class)->disableOriginalConstructor()->getMock();
+        $manager = $this->createMock(DocumentManager::class);
         $manager->expects($this->once())->method('contains')->will($this->returnValue(false));
 
         $registry = $this->createMock(ManagerRegistry::class);
@@ -84,7 +84,7 @@ class DoctrinePHPCRAdapterTest extends TestCase
         $metadata->identifier = 'path';
         $metadata->reflFields['path'] = new \ReflectionProperty(MyDocument::class, 'path');
 
-        $manager = $this->getMockBuilder(DocumentManager::class)->disableOriginalConstructor()->getMock();
+        $manager = $this->createMock(DocumentManager::class);
         $manager->expects($this->any())->method('contains')->will($this->returnValue(true));
         $manager->expects($this->any())->method('getClassMetadata')->will($this->returnValue($metadata));
 

@@ -129,9 +129,7 @@ final class BaseSerializerHandlerTest extends TestCase
 
     public function testSerializeObjectToIdWithDataIsNotInstanceOfManager(): void
     {
-        $modelInstance = $this->getMockBuilder(FooSerializer::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $modelInstance = $this->createMock(FooSerializer::class);
 
         $manager = $this->createMock(ManagerInterface::class);
         $manager->expects($this->once())

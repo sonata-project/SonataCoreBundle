@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace Sonata\CoreBundle;
 
 use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
+use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
 
 final class SonataCoreBundle extends Bundle
 {

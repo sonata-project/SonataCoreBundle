@@ -24,7 +24,7 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
 {
     public function testBuildForm(): void
     {
-        $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
+        $formBuilder = $this->createMock(FormBuilder::class);
         $formBuilder
             ->expects($this->any())
             ->method('add')
