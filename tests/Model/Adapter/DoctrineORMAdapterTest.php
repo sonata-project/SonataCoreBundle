@@ -58,7 +58,7 @@ class DoctrineORMAdapterTest extends TestCase
 
     public function testNormalizedIdentifierWithNotManaged(): void
     {
-        $unitOfWork = $this->getMockBuilder(UnitOfWork::class)->disableOriginalConstructor()->getMock();
+        $unitOfWork = $this->createMock(UnitOfWork::class);
         $unitOfWork->expects($this->once())->method('isInIdentityMap')->will($this->returnValue(false));
 
         $manager = $this->createMock(EntityManagerInterface::class);
@@ -77,7 +77,7 @@ class DoctrineORMAdapterTest extends TestCase
      */
     public function testNormalizedIdentifierWithValidObject($data, $expected): void
     {
-        $unitOfWork = $this->getMockBuilder(UnitOfWork::class)->disableOriginalConstructor()->getMock();
+        $unitOfWork = $this->createMock(UnitOfWork::class);
         $unitOfWork->expects($this->once())->method('isInIdentityMap')->will($this->returnValue(true));
         $unitOfWork->expects($this->once())->method('getEntityIdentifier')->will($this->returnValue($data));
 

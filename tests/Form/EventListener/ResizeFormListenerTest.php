@@ -41,7 +41,7 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], false, null);
 
-        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
+        $form = $this->createMock(Form::class);
         $form->expects($this->once())
             ->method('getIterator')
             ->willReturn(new \ArrayIterator());
@@ -57,7 +57,7 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], false, null);
 
-        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
+        $form = $this->createMock(Form::class);
 
         $event = new FormEvent($form, '');
 
@@ -80,7 +80,7 @@ class ResizeFormListenerTest extends TestCase
             'default' => 'option',
         ];
 
-        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
+        $form = $this->createMock(Form::class);
         $form->expects($this->once())
             ->method('getIterator')
             ->willReturn(new \ArrayIterator(['foo' => 'bar']));
@@ -102,7 +102,7 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], false, null);
 
-        $event = $this->getMockBuilder(FormEvent::class)->disableOriginalConstructor()->getMock();
+        $event = $this->createMock(FormEvent::class);
         $event->expects($this->never())
             ->method('getForm');
 
@@ -113,7 +113,7 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
-        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
+        $form = $this->createMock(Form::class);
         $form->expects($this->once())
             ->method('getIterator')
             ->willReturn(new \ArrayIterator(['foo' => 'bar']));
@@ -129,8 +129,7 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
-        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
-
+        $form = $this->createMock(Form::class);
         $event = new FormEvent($form, 123);
 
         $this->expectException(UnexpectedTypeException::class);
@@ -151,7 +150,7 @@ class ResizeFormListenerTest extends TestCase
             'default' => 'option',
         ];
 
-        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
+        $form = $this->createMock(Form::class);
         $form->expects($this->once())
             ->method('getIterator')
             ->willReturn(new \ArrayIterator(['foo' => 'bar']));
@@ -189,7 +188,7 @@ class ResizeFormListenerTest extends TestCase
             'data' => 'caz',
         ];
 
-        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
+        $form = $this->createMock(Form::class);
         $form->expects($this->once())
             ->method('getIterator')
             ->willReturn(new \ArrayIterator(['foo' => 'bar']));
@@ -209,7 +208,7 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], false, null);
 
-        $event = $this->getMockBuilder(FormEvent::class)->disableOriginalConstructor()->getMock();
+        $event = $this->createMock(FormEvent::class);
         $event->expects($this->never())
             ->method('getForm');
 
@@ -220,7 +219,7 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
-        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
+        $form = $this->createMock(Form::class);
         $form->expects($this->never())
             ->method('has');
 
@@ -233,7 +232,7 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
-        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
+        $form = $this->createMock(Form::class);
 
         $event = new FormEvent($form, 123);
 
@@ -251,7 +250,7 @@ class ResizeFormListenerTest extends TestCase
         $reflectedMethod->setAccessible(true);
         $reflectedMethod->setValue($listener, ['foo']);
 
-        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
+        $form = $this->createMock(Form::class);
         $form->expects($this->at(2))
             ->method('has')
             ->with('baz')
@@ -267,7 +266,7 @@ class ResizeFormListenerTest extends TestCase
             'baz' => 'baz-value',
         ];
 
-        $event = $this->getMockBuilder(FormEvent::class)->disableOriginalConstructor()->getMock();
+        $event = $this->createMock(FormEvent::class);
         $event->expects($this->once())
             ->method('getForm')
             ->willReturn($form);

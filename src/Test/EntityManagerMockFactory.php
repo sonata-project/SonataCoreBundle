@@ -26,15 +26,14 @@ final class EntityManagerMockFactory
 {
     public static function create(TestCase $test, \Closure $queryBuilderCallback, $fields): EntityManagerInterface
     {
-        $query = $test->getMockBuilder(AbstractQuery::class)
-            ->disableOriginalConstructor()->getMock();
+        $query = $test->createMock(AbstractQuery::class);
         $query->expects($test->any())->method('execute')->will($test->returnValue(true));
 
         if (Version::compare('2.5.0') < 1) {
-            $entityManager = $test->getMockBuilder(EntityManagerInterface::class)->getMock();
+            $entityManager = $test->createMock(EntityManagerInterface::class);
             $queryBuilder = $test->getMockBuilder(QueryBuilder::class)->setConstructorArgs([$entityManager])->getMock();
         } else {
-            $queryBuilder = $test->getMockBuilder(QueryBuilder::class)->disableOriginalConstructor()->getMock();
+            $queryBuilder = $test->createMock(QueryBuilder::class);
         }
 
         $queryBuilder->expects($test->any())->method('select')->will($test->returnValue($queryBuilder));
@@ -46,14 +45,14 @@ final class EntityManagerMockFactory
 
         $queryBuilderCallback($queryBuilder);
 
-        $repository = $test->getMockBuilder(EntityRepository::class)->disableOriginalConstructor()->getMock();
+        $repository = $test->createMock(EntityRepository::class);
         $repository->expects($test->any())->method('createQueryBuilder')->will($test->returnValue($queryBuilder));
 
-        $metadata = $test->getMockBuilder(ClassMetadata::class)->getMock();
+        $metadata = $test->createMock(ClassMetadata::class);
         $metadata->expects($test->any())->method('getFieldNames')->will($test->returnValue($fields));
         $metadata->expects($test->any())->method('getName')->will($test->returnValue('className'));
 
-        $entityManager = $test->getMockBuilder(EntityManager::class)->disableOriginalConstructor()->getMock();
+        $entityManager = $test->createMock(EntityManager::class);
         $entityManager->expects($test->any())->method('getRepository')->will($test->returnValue($repository));
         $entityManager->expects($test->any())->method('getClassMetadata')->will($test->returnValue($metadata));
 
