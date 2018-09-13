@@ -4,6 +4,9 @@
 /Resources/public/vendor/select2-bootstrap-css/*
 !/Resources/public/vendor/select2-bootstrap-css/select2-bootstrap.min.css
 /vendor
+/node_modules
 .php_cs.cache
 composer.lock
+yarn.lock
+package-lock.json
 phpunit.xml
