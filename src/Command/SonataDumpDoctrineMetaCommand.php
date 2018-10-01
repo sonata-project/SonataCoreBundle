@@ -21,6 +21,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Return useful data on the database schema.
+ *
+ * @deprecated since 3.x, to be removed in 4.0.
  */
 class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
 {
@@ -62,6 +64,11 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
 
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
+        @trigger_error(
+            'The '.__CLASS__.' class is deprecated since version 3.x and will be removed in 4.0.',
+            E_USER_DEPRECATED
+        );
+
         $output->writeln('Initialising Doctrine metadata.');
         $manager = $this->getContainer()->get('doctrine')->getManager();
         $metadata = $manager->getMetadataFactory()->getAllMetadata();
