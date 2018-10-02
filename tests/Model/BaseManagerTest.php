@@ -41,6 +41,9 @@ class ManagerTest extends BaseManager
  */
 class BaseManagerTest extends TestCase
 {
+    /**
+     * @group legacy
+     */
     public function testCheckObject()
     {
         $this->expectException(\InvalidArgumentException::class);

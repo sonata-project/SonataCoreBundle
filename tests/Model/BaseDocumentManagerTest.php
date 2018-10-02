@@ -30,6 +30,9 @@ class BaseDocumentManagerTest extends TestCase
         return $manager;
     }
 
+    /**
+     * @group legacy
+     */
     public function test()
     {
         $this->assertSame('classname', $this->getManager()->getClass());
