@@ -11,34 +11,14 @@
 
 namespace Sonata\CoreBundle\Model\Adapter;
 
-class AdapterChain implements AdapterInterface
+@trigger_error(
+    'The '.__NAMESPACE__.'\AdapterInterface class is deprecated since version 3.x and will be removed in 4.0.',
+    E_USER_DEPRECATED
+);
+
+/**
+ * @deprecated since 3.x, to be removed in 4.0.
+ */
+class AdapterChain extends \Sonata\Doctrine\Adapter\AdapterChain implements AdapterInterface
 {
-    protected $adapters = [];
-
-    public function addAdapter(AdapterInterface $adapter)
-    {
-        $this->adapters[] = $adapter;
-    }
-
-    public function getNormalizedIdentifier($model)
-    {
-        foreach ($this->adapters as $adapter) {
-            $identifier = $adapter->getNormalizedIdentifier($model);
-
-            if ($identifier) {
-                return $identifier;
-            }
-        }
-    }
-
-    public function getUrlsafeIdentifier($model)
-    {
-        foreach ($this->adapters as $adapter) {
-            $safeIdentifier = $adapter->getUrlsafeIdentifier($model);
-
-            if ($safeIdentifier) {
-                return $safeIdentifier;
-            }
-        }
-    }
 }

@@ -11,58 +11,16 @@
 
 namespace Sonata\CoreBundle\Model\Adapter;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ORM\EntityManagerInterface;
+@trigger_error(
+    'The '.__NAMESPACE__.'\AdapterInterface class is deprecated since version 3.x and will be removed in 4.0.',
+    E_USER_DEPRECATED
+);
 
 /**
  * This is a port of the DoctrineORMAdminBundle / ModelManager class.
+ *
+ * @deprecated since 3.x, to be removed in 4.0.
  */
-class DoctrineORMAdapter implements AdapterInterface
+class DoctrineORMAdapter extends \Sonata\Doctrine\Adapter\ORM\DoctrineORMAdapter implements AdapterInterface
 {
-    /**
-     * @var ManagerRegistry
-     */
-    protected $registry;
-
-    /**
-     * @param ManagerRegistry $registry
-     */
-    public function __construct(ManagerRegistry $registry)
-    {
-        $this->registry = $registry;
-    }
-
-    public function getNormalizedIdentifier($entity)
-    {
-        if (is_scalar($entity)) {
-            throw new \RuntimeException('Invalid argument, object or null required');
-        }
-
-        if (!$entity) {
-            return;
-        }
-
-        $manager = $this->registry->getManagerForClass(\get_class($entity));
-
-        if (!$manager instanceof EntityManagerInterface) {
-            return;
-        }
-
-        if (!$manager->getUnitOfWork()->isInIdentityMap($entity)) {
-            return;
-        }
-
-        return implode(self::ID_SEPARATOR, $manager->getUnitOfWork()->getEntityIdentifier($entity));
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * The ORM implementation does nothing special but you still should use
-     * this method when using the id in a URL to allow for future improvements.
-     */
-    public function getUrlsafeIdentifier($entity)
-    {
-        return $this->getNormalizedIdentifier($entity);
-    }
 }

@@ -11,37 +11,16 @@
 
 namespace Sonata\CoreBundle\Model;
 
-use Doctrine\ODM\MongoDB\DocumentManager;
+@trigger_error(
+    'The '.__NAMESPACE__.'\BaseDocumentManager class is deprecated since version 3.x and will be removed in 4.0.',
+    E_USER_DEPRECATED
+);
 
 /**
  * @author Hugo Briand <briand@ekino.com>
+ *
+ * @deprecated since 3.x, to be removed in 4.0.
  */
-abstract class BaseDocumentManager extends BaseManager
+abstract class BaseDocumentManager extends \Sonata\Doctrine\Document\BaseDocumentManager implements ManagerInterface
 {
-    /**
-     * Make sure the code is compatible with legacy code.
-     *
-     * @return mixed
-     */
-    public function __get($name)
-    {
-        if ('dm' === $name) {
-            return $this->getObjectManager();
-        }
-
-        throw new \RuntimeException(sprintf('The property %s does not exists', $name));
-    }
-
-    public function getConnection()
-    {
-        return $this->getObjectManager()->getConnection();
-    }
-
-    /**
-     * @return DocumentManager
-     */
-    public function getDocumentManager()
-    {
-        return $this->getObjectManager();
-    }
 }

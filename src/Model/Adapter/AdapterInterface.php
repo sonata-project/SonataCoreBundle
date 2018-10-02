@@ -11,28 +11,14 @@
 
 namespace Sonata\CoreBundle\Model\Adapter;
 
-interface AdapterInterface
+@trigger_error(
+    'The '.__NAMESPACE__.'\AdapterInterface class is deprecated since version 3.x and will be removed in 4.0.',
+    E_USER_DEPRECATED
+);
+
+/**
+ * @deprecated since 3.x, to be removed in 4.0.
+ */
+interface AdapterInterface extends \Sonata\Doctrine\Adapter\AdapterInterface
 {
-    const ID_SEPARATOR = '~';
-
-    /**
-     * Get the identifiers for this model class as a string.
-     *
-     * @param object $model
-     *
-     * @return string a string representation of the identifiers for this instance
-     */
-    public function getNormalizedIdentifier($model);
-
-    /**
-     * Get the identifiers as a string that is save to use in an url.
-     *
-     * This is similar to getNormalizedIdentifier but guarantees an id that can
-     * be used in an URL.
-     *
-     * @param object $model
-     *
-     * @return string string representation of the id that is save to use in an url
-     */
-    public function getUrlsafeIdentifier($model);
 }
