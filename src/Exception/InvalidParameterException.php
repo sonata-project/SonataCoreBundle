@@ -13,6 +13,14 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Exception;
 
+@trigger_error(
+    'The '.__NAMESPACE__.'\InvalidParameterException class is deprecated since version 3.x and will be removed in 4.0.',
+    E_USER_DEPRECATED
+);
+
+/**
+ * @deprecated since 3.x, to be removed in 4.0.
+ */
 class InvalidParameterException extends \RuntimeException
 {
 }
