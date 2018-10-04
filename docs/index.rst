@@ -18,6 +18,5 @@ The ``SonataCoreBundle`` provided defaults elements required by the different So
    reference/serialization
    reference/api
    reference/conditional_validation
-   reference/command
    reference/testing
 
