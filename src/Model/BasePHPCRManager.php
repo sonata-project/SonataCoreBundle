@@ -12,7 +12,8 @@
 namespace Sonata\CoreBundle\Model;
 
 @trigger_error(
-    'The '.__NAMESPACE__.'\BasePHPCRManager class is deprecated since version 3.x and will be removed in 4.0.',
+    'The '.__NAMESPACE__.'\BasePHPCRManager class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Doctrine\Document\BasePHPCRManager instead.',
     E_USER_DEPRECATED
 );
 
