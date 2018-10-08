@@ -34,6 +34,9 @@ class DoctrinePHPCRAdapterTest extends TestCase
         }
     }
 
+    /**
+     * @group legacy
+     */
     public function testNormalizedIdentifierWithScalar(): void
     {
         $this->expectException(\RuntimeException::class);
@@ -44,6 +47,9 @@ class DoctrinePHPCRAdapterTest extends TestCase
         $adapter->getNormalizedIdentifier(1);
     }
 
+    /**
+     * @group legacy
+     */
     public function testNormalizedIdentifierWithNull(): void
     {
         $registry = $this->createMock(ManagerRegistry::class);
@@ -52,6 +58,9 @@ class DoctrinePHPCRAdapterTest extends TestCase
         $this->assertNull($adapter->getNormalizedIdentifier(null));
     }
 
+    /**
+     * @group legacy
+     */
     public function testNormalizedIdentifierWithNoManager(): void
     {
         $registry = $this->createMock(ManagerRegistry::class);
@@ -62,6 +71,9 @@ class DoctrinePHPCRAdapterTest extends TestCase
         $this->assertNull($adapter->getNormalizedIdentifier(new \stdClass()));
     }
 
+    /**
+     * @group legacy
+     */
     public function testNormalizedIdentifierWithNotManaged(): void
     {
         $manager = $this->createMock(DocumentManager::class);
@@ -77,6 +89,8 @@ class DoctrinePHPCRAdapterTest extends TestCase
 
     /**
      * @dataProvider getFixtures
+     *
+     * @group legacy
      */
     public function testNormalizedIdentifierWithValidObject($data, $expected): void
     {

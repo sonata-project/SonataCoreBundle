@@ -13,35 +13,17 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Model;
 
-use Doctrine\DBAL\Connection;
-use Doctrine\ORM\EntityManagerInterface;
+@trigger_error(
+    'The '.__NAMESPACE__.'\BaseEntityManager class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Doctrine\Entity\BaseEntityManager instead.',
+    E_USER_DEPRECATED
+);
 
 /**
  * @author Sylvain Deloux <sylvain.deloux@ekino.com>
+ *
+ * @deprecated since 3.x, to be removed in 4.0.
  */
-abstract class BaseEntityManager extends BaseManager
+abstract class BaseEntityManager extends \Sonata\Doctrine\Entity\BaseEntityManager implements ManagerInterface
 {
-    /**
-     * Make sure the code is compatible with legacy code.
-     *
-     * @return mixed
-     */
-    public function __get($name)
-    {
-        if ('em' === $name) {
-            return $this->getObjectManager();
-        }
-
-        throw new \RuntimeException(sprintf('The property %s does not exists', $name));
-    }
-
-    public function getConnection(): Connection
-    {
-        return $this->getEntityManager()->getConnection();
-    }
-
-    public function getEntityManager(): EntityManagerInterface
-    {
-        return $this->getObjectManager();
-    }
 }

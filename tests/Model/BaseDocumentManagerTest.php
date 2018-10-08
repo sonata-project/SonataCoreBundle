@@ -15,11 +15,7 @@ namespace Sonata\CoreBundle\Tests\Entity;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Model\BaseDocumentManager;
-
-class DocumentManager extends BaseDocumentManager
-{
-}
+use Sonata\CoreBundle\Tests\Fixtures\Model\DocumentManager;
 
 class BaseDocumentManagerTest extends TestCase
 {
@@ -32,6 +28,9 @@ class BaseDocumentManagerTest extends TestCase
         return $manager;
     }
 
+    /**
+     * @group legacy
+     */
     public function test(): void
     {
         $this->assertSame('classname', $this->getManager()->getClass());

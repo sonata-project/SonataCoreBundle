@@ -13,17 +13,17 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Model;
 
-use Sonata\DatagridBundle\Pager\PagerInterface;
+@trigger_error(
+    'The '.__NAMESPACE__.'\PageableManagerInterface class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\DatagridBundle\Pager\PageableInterface instead.',
+    E_USER_DEPRECATED
+);
 
 /**
  * @author Raphaël Benitte <benitteraphael@gmail.com>
+ *
+ * @deprecated since 3.x, to be removed in 4.0.
  */
-interface PageableManagerInterface
+interface PageableManagerInterface extends \Sonata\Doctrine\Model\PageableManagerInterface
 {
-    public function getPager(
-        array $criteria,
-        int $page,
-        int $limit = 10,
-        array $sort = []
-    ): PagerInterface;
 }
