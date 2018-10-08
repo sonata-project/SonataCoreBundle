@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Fixtures\Bundle\Serializer;
 
-use Sonata\CoreBundle\Model\ManagerInterface;
 use Sonata\CoreBundle\Serializer\BaseSerializerHandler;
+use Sonata\Doctrine\Model\ManagerInterface;
 
 /**
  * @author Ahmet Akbana <ahmetakbana@gmail.com>

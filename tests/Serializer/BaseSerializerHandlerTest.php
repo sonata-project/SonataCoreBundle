@@ -17,8 +17,8 @@ use JMS\Serializer\Context;
 use JMS\Serializer\GraphNavigator;
 use JMS\Serializer\VisitorInterface;
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Model\ManagerInterface;
 use Sonata\CoreBundle\Tests\Fixtures\Bundle\Serializer\FooSerializer;
+use Sonata\Doctrine\Model\ManagerInterface;
 
 /**
  * @author Ahmet Akbana <ahmetakbana@gmail.com>
