@@ -26,6 +26,9 @@ class DoctrineORMAdapterTest extends TestCase
         }
     }
 
+    /**
+     * @group legacy
+     */
     public function testNormalizedIdentifierWithScalar()
     {
         $this->expectException(\RuntimeException::class);
@@ -36,6 +39,9 @@ class DoctrineORMAdapterTest extends TestCase
         $adapter->getNormalizedIdentifier(1);
     }
 
+    /**
+     * @group legacy
+     */
     public function testNormalizedIdentifierWithNull()
     {
         $registry = $this->createMock(ManagerRegistry::class);
@@ -44,6 +50,9 @@ class DoctrineORMAdapterTest extends TestCase
         $this->assertNull($adapter->getNormalizedIdentifier(null));
     }
 
+    /**
+     * @group legacy
+     */
     public function testNormalizedIdentifierWithNoManager()
     {
         $registry = $this->createMock(ManagerRegistry::class);
@@ -54,6 +63,9 @@ class DoctrineORMAdapterTest extends TestCase
         $this->assertNull($adapter->getNormalizedIdentifier(new \stdClass()));
     }
 
+    /**
+     * @group legacy
+     */
     public function testNormalizedIdentifierWithNotManaged()
     {
         $unitOfWork = $this->getMockBuilder(UnitOfWork::class)->disableOriginalConstructor()->getMock();
@@ -72,6 +84,8 @@ class DoctrineORMAdapterTest extends TestCase
 
     /**
      * @dataProvider getFixtures
+     *
+     * @group legacy
      */
     public function testNormalizedIdentifierWithValidObject($data, $expected)
     {

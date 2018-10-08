@@ -11,49 +11,15 @@
 
 namespace Sonata\CoreBundle\Model;
 
-use Doctrine\Common\Persistence\ObjectManager;
+@trigger_error(
+    'The '.__NAMESPACE__.'\BasePHPCRManager class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Doctrine\Document\BasePHPCRManager instead.',
+    E_USER_DEPRECATED
+);
 
-abstract class BasePHPCRManager extends BaseManager
+/**
+ * @deprecated since 3.x, to be removed in 4.0.
+ */
+abstract class BasePHPCRManager extends \Sonata\Doctrine\Document\BasePHPCRManager implements ManagerInterface
 {
-    /**
-     * Make sure the code is compatible with legacy code.
-     *
-     * @return mixed
-     */
-    public function __get($name)
-    {
-        if ('dm' === $name) {
-            return $this->getObjectManager();
-        }
-
-        throw new \RuntimeException(sprintf('The property %s does not exists', $name));
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @throws \LogicException Each call
-     */
-    public function getConnection()
-    {
-        throw new \LogicException('PHPCR does not use a database connection.');
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @throws \LogicException Each call
-     */
-    public function getTableName()
-    {
-        throw new \LogicException('PHPCR does not use a reference name for a list of data.');
-    }
-
-    /**
-     * @return ObjectManager
-     */
-    public function getDocumentManager()
-    {
-        return $this->getObjectManager();
-    }
 }

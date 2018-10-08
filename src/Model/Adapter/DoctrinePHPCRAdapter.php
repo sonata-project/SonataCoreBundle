@@ -11,65 +11,17 @@
 
 namespace Sonata\CoreBundle\Model\Adapter;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ODM\PHPCR\DocumentManager;
+@trigger_error(
+    'The '.__NAMESPACE__.'\AdapterInterface class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Doctrine\Adapter\PHPCR\DoctrinePHPCRAdapter instead.',
+    E_USER_DEPRECATED
+);
 
 /**
  * This is a port of the DoctrineORMAdminBundle / ModelManager class.
+ *
+ * @deprecated since 3.x, to be removed in 4.0.
  */
-class DoctrinePHPCRAdapter implements AdapterInterface
+class DoctrinePHPCRAdapter extends \Sonata\Doctrine\Adapter\PHPCR\DoctrinePHPCRAdapter implements AdapterInterface
 {
-    /**
-     * @var ManagerRegistry
-     */
-    protected $registry;
-
-    /**
-     * @param ManagerRegistry $registry
-     */
-    public function __construct(ManagerRegistry $registry)
-    {
-        $this->registry = $registry;
-    }
-
-    public function getNormalizedIdentifier($document)
-    {
-        if (is_scalar($document)) {
-            throw new \RuntimeException('Invalid argument, object or null required');
-        }
-
-        if (!$document) {
-            return;
-        }
-
-        $manager = $this->registry->getManagerForClass($document);
-
-        if (!$manager instanceof DocumentManager) {
-            return;
-        }
-
-        if (!$manager->contains($document)) {
-            return;
-        }
-
-        $class = $manager->getClassMetadata(\get_class($document));
-
-        return $class->getIdentifierValue($document);
-    }
-
-    /**
-     * Currently only the leading slash is removed.
-     *
-     * TODO: do we also have to encode certain characters like spaces or does that happen automatically?
-     *
-     * {@inheritdoc}
-     */
-    public function getUrlsafeIdentifier($document)
-    {
-        $id = $this->getNormalizedIdentifier($document);
-
-        if (null !== $id) {
-            return substr($id, 1);
-        }
-    }
 }

@@ -14,6 +14,20 @@ A runtime has been introduced to lazy-load some extensions dependencies:
 
 Instead, use the associated runtimes: `FlashMessageRuntime` and `StatusRuntime`.
 
+### Doctrine deprecations
+
+All doctrine classes have been deprecated and were moved to `sonata-project/doctrine-extensions`:
+ - `Model/Adapter/AdapterChain`
+ - `Model/Adapter/AdapterInterface`
+ - `Model/Adapter/DoctrineORMAdapter`
+ - `Model/Adapter/DoctrinePHPCRAdapter`
+ - `Model/BaseDocumentManager`
+ - `Model/BaseEntityManager`
+ - `Model/BaseManager`
+ - `Model/BasePHPCRManager`
+ - `Model/ManagerInterface`
+ - `Model/PageableManagerInterface`
+
 UPGRADE FROM 3.6 to 3.7
 =======================
 
