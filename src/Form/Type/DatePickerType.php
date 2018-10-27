@@ -36,6 +36,8 @@ class DatePickerType extends BasePickerType
             'dp_pick_time' => false,
             'format' => DateType::DEFAULT_FORMAT,
         ]));
+
+        parent::configureOptions($resolver);
     }
 
     public function getParent()
