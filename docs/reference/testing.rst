@@ -11,7 +11,7 @@ You can write unit tests for twig form rendering with the following code.
 
 .. code-block:: php
 
-    use Sonata\CoreBundle\Test\AbstractWidgetTestCase;
+    use Sonata\Form\Test\AbstractWidgetTestCase;
 
     class CustomTest extends AbstractWidgetTestCase
     {
