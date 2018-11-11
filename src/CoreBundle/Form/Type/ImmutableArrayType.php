@@ -11,72 +11,15 @@
 
 namespace Sonata\CoreBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+@trigger_error(
+    'The '.__NAMESPACE__.'\ImmutableArrayType class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Form\Type\ImmutableArrayType instead.',
+    E_USER_DEPRECATED
+);
 
-class ImmutableArrayType extends AbstractType
+/**
+ * @deprecated Since version 3.x, to be removed in 4.0.
+ */
+class ImmutableArrayType extends \Sonata\Form\Type\ImmutableArrayType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        foreach ($options['keys'] as $infos) {
-            if ($infos instanceof FormBuilderInterface) {
-                $builder->add($infos);
-            } else {
-                list($name, $type, $options) = $infos;
-
-                if (\is_callable($options)) {
-                    $extra = \array_slice($infos, 3);
-
-                    $options = $options($builder, $name, $type, $extra);
-
-                    if (null === $options) {
-                        $options = [];
-                    } elseif (!\is_array($options)) {
-                        throw new \RuntimeException('the closure must return null or an array');
-                    }
-                }
-
-                $builder->add($name, $type, $options);
-            }
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @todo Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'keys' => [],
-        ]);
-
-        $resolver->setAllowedValues('keys', function ($value) {
-            foreach ($value as $subValue) {
-                if (!$subValue instanceof FormBuilderInterface && (!\is_array($subValue) || 3 !== \count($subValue))) {
-                    return false;
-                }
-            }
-
-            return true;
-        });
-    }
-
-    public function getBlockPrefix()
-    {
-        return 'sonata_type_immutable_array';
-    }
-
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
 }

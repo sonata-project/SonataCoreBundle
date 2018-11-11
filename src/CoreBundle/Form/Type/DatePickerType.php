@@ -11,47 +11,15 @@
 
 namespace Sonata\CoreBundle\Form\Type;
 
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+@trigger_error(
+    'The '.__NAMESPACE__.'\DatePickerType class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Form\Type\DatePickerType instead.',
+    E_USER_DEPRECATED
+);
 
 /**
- * @author Hugo Briand <briand@ekino.com>
+ * @deprecated Since version 3.x, to be removed in 4.0.
  */
-class DatePickerType extends BasePickerType
+class DatePickerType extends \Sonata\Form\Type\DatePickerType
 {
-    /**
-     * {@inheritdoc}
-     *
-     * @todo Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array_merge($this->getCommonDefaults(), [
-            'dp_pick_time' => false,
-            'format' => DateType::DEFAULT_FORMAT,
-        ]));
-
-        parent::configureOptions($resolver);
-    }
-
-    public function getParent()
-    {
-        return DateType::class;
-    }
-
-    public function getBlockPrefix()
-    {
-        return 'sonata_type_date_picker';
-    }
-
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
 }

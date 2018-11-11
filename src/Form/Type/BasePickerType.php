@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Form\Type;
+namespace Sonata\Form\Type;
 
-use Sonata\CoreBundle\Date\MomentFormatConverter;
+use Sonata\Date\MomentFormatConverter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormInterface;
@@ -28,7 +28,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 abstract class BasePickerType extends AbstractType
 {
     /**
-     * @var TranslatorInterface|null
+     * @var TranslatorInterface
      */
     protected $translator;
 
@@ -80,16 +80,15 @@ abstract class BasePickerType extends AbstractType
             if (\is_int($format)) {
                 $timeFormat = \IntlDateFormatter::NONE;
                 if ($options['dp_pick_time']) {
-                    $timeFormat = $options['dp_use_seconds'] ?
-                        DateTimeType::DEFAULT_TIME_FORMAT :
-                        \IntlDateFormatter::SHORT;
+                    $timeFormat = $options['dp_use_seconds'] ? DateTimeType::DEFAULT_TIME_FORMAT : \IntlDateFormatter::SHORT;
                 }
                 $intlDateFormatter = new \IntlDateFormatter(
                     $this->locale,
                     $format,
                     $timeFormat,
                     null,
-                    \IntlDateFormatter::GREGORIAN
+                    \IntlDateFormatter::GREGORIAN,
+                    null
                 );
 
                 return $intlDateFormatter->getPattern();
@@ -134,9 +133,39 @@ abstract class BasePickerType extends AbstractType
         $view->vars['dp_options'] = $dpOptions;
     }
 
-/**
- * @deprecated Since version 3.x, to be removed in 4.0.
- */
-abstract class BasePickerType extends \Sonata\Form\Type\BasePickerType
-{
+    /**
+     * Gets base default options for the date pickers.
+     *
+     * @return array
+     */
+    protected function getCommonDefaults()
+    {
+        return [
+            'widget' => 'single_text',
+            'datepicker_use_button' => true,
+            'dp_pick_time' => true,
+            'dp_pick_date' => true,
+            'dp_use_current' => true,
+            'dp_min_date' => '1/1/1900',
+            'dp_max_date' => null,
+            'dp_show_today' => true,
+            'dp_language' => $this->locale,
+            'dp_default_date' => '',
+            'dp_disabled_dates' => [],
+            'dp_enabled_dates' => [],
+            'dp_icons' => [
+                'time' => 'fa fa-clock-o',
+                'date' => 'fa fa-calendar',
+                'up' => 'fa fa-chevron-up',
+                'down' => 'fa fa-chevron-down',
+            ],
+            'dp_use_strict' => false,
+            'dp_side_by_side' => false,
+            'dp_days_of_week_disabled' => [],
+            'dp_collapse' => true,
+            'dp_calendar_weeks' => false,
+            'dp_view_mode' => 'days',
+            'dp_min_view_mode' => 'days',
+        ];
+    }
 }

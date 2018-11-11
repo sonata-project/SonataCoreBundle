@@ -11,64 +11,15 @@
 
 namespace Sonata\CoreBundle\Form\Type;
 
-use Sonata\CoreBundle\Form\EventListener\ResizeFormListener;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+@trigger_error(
+    'The '.__NAMESPACE__.'\CollectionType class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Form\Type\CollectionType instead.',
+    E_USER_DEPRECATED
+);
 
-class CollectionType extends AbstractType
+/**
+ * @deprecated Since version 3.x, to be removed in 4.0.
+ */
+class CollectionType extends \Sonata\Form\Type\CollectionType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $listener = new ResizeFormListener(
-            $options['type'],
-            $options['type_options'],
-            $options['modifiable'],
-            $options['pre_bind_data_callback']
-        );
-
-        $builder->addEventSubscriber($listener);
-    }
-
-    public function buildView(FormView $view, FormInterface $form, array $options)
-    {
-        $view->vars['btn_add'] = $options['btn_add'];
-        $view->vars['btn_catalogue'] = $options['btn_catalogue'];
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @todo Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'modifiable' => false,
-            'type' => TextType::class,
-            'type_options' => [],
-            'pre_bind_data_callback' => null,
-            'btn_add' => 'link_add',
-            'btn_catalogue' => 'SonataCoreBundle',
-        ]);
-    }
-
-    public function getBlockPrefix()
-    {
-        return 'sonata_type_collection';
-    }
-
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
 }
