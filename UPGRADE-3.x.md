@@ -27,6 +27,16 @@ All doctrine classes have been deprecated and were moved to `sonata-project/doct
  - `Model/BasePHPCRManager`
  - `Model/ManagerInterface`
  - `Model/PageableManagerInterface`
+ 
+### Form deprecations
+
+All form classes have been deprecated and were moved to the `Sonata\Form\` subnamespace:
+ - `Sonata\CoreBundle\Date` => `Sonata\Form\Date`
+ - `Sonata\CoreBundle\Form\DataMapper` => `Sonata\Form\DataMapper`
+ - `Sonata\CoreBundle\Form\EventListener` => `Sonata\Form\EventListener`
+ - `Sonata\CoreBundle\Form\Type` => `Sonata\Form\Type`
+ - `Sonata\CoreBundle\Test\AbstractWidgetTestCase` => `Sonata\Form\Test\AbstractWidgetTestCase`
+ - `Sonata\CoreBundle\Validator` => `Sonata\Form\Validator`
 
 UPGRADE FROM 3.6 to 3.7
 =======================

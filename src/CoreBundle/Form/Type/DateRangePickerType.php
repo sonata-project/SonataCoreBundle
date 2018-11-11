@@ -11,34 +11,15 @@
 
 namespace Sonata\CoreBundle\Form\Type;
 
-use Symfony\Component\OptionsResolver\OptionsResolver;
+@trigger_error(
+    'The '.__NAMESPACE__.'\DateRangePickerType class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Form\Type\DateRangePickerType instead.',
+    E_USER_DEPRECATED
+);
 
 /**
- * DateRangePickerType.
- *
- * @author Andrej Hudec <pulzarraider@gmail.com>
+ * @deprecated Since version 3.x, to be removed in 4.0.
  */
-class DateRangePickerType extends DateRangeType
+class DateRangePickerType extends \Sonata\Form\Type\DateRangePickerType
 {
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'field_options' => [],
-            'field_options_start' => [],
-            'field_options_end' => [
-                'dp_use_current' => false,
-            ],
-            'field_type' => DatePickerType::class,
-        ]);
-    }
-
-    public function getBlockPrefix()
-    {
-        return 'sonata_type_date_range_picker';
-    }
-
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
 }

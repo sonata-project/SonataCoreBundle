@@ -11,50 +11,15 @@
 
 namespace Sonata\CoreBundle\Form\Type;
 
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+@trigger_error(
+    'The '.__NAMESPACE__.'\DateTimePickerType class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Form\Type\DateTimePickerType instead.',
+    E_USER_DEPRECATED
+);
 
 /**
- * @author Hugo Briand <briand@ekino.com>
+ * @deprecated Since version 3.x, to be removed in 4.0.
  */
-class DateTimePickerType extends BasePickerType
+class DateTimePickerType extends \Sonata\Form\Type\DateTimePickerType
 {
-    /**
-     * {@inheritdoc}
-     *
-     * @todo Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array_merge($this->getCommonDefaults(), [
-            'dp_use_minutes' => true,
-            'dp_use_seconds' => true,
-            'dp_minute_stepping' => 1,
-            'format' => DateTimeType::DEFAULT_DATE_FORMAT,
-            'date_format' => null,
-        ]));
-
-        parent::configureOptions($resolver);
-    }
-
-    public function getParent()
-    {
-        return DateTimeType::class;
-    }
-
-    public function getBlockPrefix()
-    {
-        return 'sonata_type_datetime_picker';
-    }
-
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
 }

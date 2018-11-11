@@ -11,60 +11,15 @@
 
 namespace Sonata\CoreBundle\Validator;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Validator\ConstraintValidator;
-use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
+@trigger_error(
+    'The '.__NAMESPACE__.'\InlineValidator class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Form\Validator\InlineValidator instead.',
+    E_USER_DEPRECATED
+);
 
-class InlineValidator extends ConstraintValidator
+/**
+ * @deprecated Since version 3.x, to be removed in 4.0.
+ */
+class InlineValidator extends \Sonata\Form\Validator\InlineValidator
 {
-    /**
-     * @var ContainerInterface
-     */
-    protected $container;
-
-    /**
-     * @var ConstraintValidatorFactoryInterface
-     */
-    protected $constraintValidatorFactory;
-
-    public function __construct(
-        ContainerInterface $container,
-        ConstraintValidatorFactoryInterface $constraintValidatorFactory
-    ) {
-        $this->container = $container;
-        $this->constraintValidatorFactory = $constraintValidatorFactory;
-    }
-
-    public function validate($value, Constraint $constraint)
-    {
-        if ($constraint->isClosure()) {
-            $function = $constraint->getClosure();
-        } else {
-            if (\is_string($constraint->getService())) {
-                $service = $this->container->get($constraint->getService());
-            } else {
-                $service = $constraint->getService();
-            }
-
-            $function = [$service, $constraint->getMethod()];
-        }
-
-        \call_user_func($function, $this->getErrorElement($value), $value);
-    }
-
-    /**
-     * @param mixed $value
-     *
-     * @return ErrorElement
-     */
-    protected function getErrorElement($value)
-    {
-        return new ErrorElement(
-            $value,
-            $this->constraintValidatorFactory,
-            $this->context,
-            $this->context->getGroup()
-        );
-    }
 }
