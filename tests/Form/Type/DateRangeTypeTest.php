@@ -9,20 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Form\Type;
+namespace Sonata\Form\Tests\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
-use Sonata\CoreBundle\Form\Type\DateTimeRangePickerType;
-use Sonata\Form\Type\DateTimePickerType;
+use Sonata\Form\Type\DateRangeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;
 
-/**
- * @group legacy
- */
-class DateTimeRangePickerTypeTest extends TypeTestCase
+class DateRangeTypeTest extends TypeTestCase
 {
     public function testBuildForm()
     {
@@ -36,18 +33,18 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
                 }
             }));
 
-        $type = new DateTimeRangePickerType($this->createMock(TranslatorInterface::class));
+        $type = new DateRangeType($this->createMock(TranslatorInterface::class));
         $type->buildForm($formBuilder, [
             'field_options' => [],
             'field_options_start' => [],
             'field_options_end' => [],
-            'field_type' => DateTimePickerType::class,
+            'field_type' => DateType::class,
         ]);
     }
 
     public function testGetParent()
     {
-        $form = new DateTimeRangePickerType($this->createMock(TranslatorInterface::class));
+        $form = new DateRangeType($this->createMock(TranslatorInterface::class));
 
         $parentRef = $form->getParent();
 
@@ -56,9 +53,9 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
 
     public function testGetDefaultOptions()
     {
-        $type = new DateTimeRangePickerType($this->createMock(TranslatorInterface::class));
+        $type = new DateRangeType($this->createMock(TranslatorInterface::class));
 
-        $this->assertSame('sonata_type_datetime_range_picker', $type->getName());
+        $this->assertSame('sonata_type_date_range', $type->getName());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
@@ -68,10 +65,8 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
             [
                 'field_options' => [],
                 'field_options_start' => [],
-                'field_options_end' => [
-                    'dp_use_current' => false,
-                ],
-                'field_type' => DateTimePickerType::class,
+                'field_options_end' => [],
+                'field_type' => DateType::class,
             ], $options);
     }
 }

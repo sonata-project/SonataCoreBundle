@@ -9,20 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Form\Type;
+namespace Sonata\Form\Tests\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
-use Sonata\CoreBundle\Form\Type\DateTimeRangePickerType;
-use Sonata\Form\Type\DateTimePickerType;
+use Sonata\Form\Type\EqualType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;
 
-/**
- * @group legacy
- */
-class DateTimeRangePickerTypeTest extends TypeTestCase
+class EqualTypeTest extends TypeTestCase
 {
     public function testBuildForm()
     {
@@ -36,18 +34,15 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
                 }
             }));
 
-        $type = new DateTimeRangePickerType($this->createMock(TranslatorInterface::class));
+        $type = new EqualType($this->createMock(TranslatorInterface::class));
         $type->buildForm($formBuilder, [
-            'field_options' => [],
-            'field_options_start' => [],
-            'field_options_end' => [],
-            'field_type' => DateTimePickerType::class,
+            'choices' => [],
         ]);
     }
 
     public function testGetParent()
     {
-        $form = new DateTimeRangePickerType($this->createMock(TranslatorInterface::class));
+        $form = new EqualType($this->createMock(TranslatorInterface::class));
 
         $parentRef = $form->getParent();
 
@@ -56,22 +51,34 @@ class DateTimeRangePickerTypeTest extends TypeTestCase
 
     public function testGetDefaultOptions()
     {
-        $type = new DateTimeRangePickerType($this->createMock(TranslatorInterface::class));
+        $mock = $this->createMock(TranslatorInterface::class);
 
-        $this->assertSame('sonata_type_datetime_range_picker', $type->getName());
+        $mock->expects($this->exactly(0))
+            ->method('trans')
+            ->will($this->returnCallback(function ($arg) {
+                return $arg;
+            })
+            );
+
+        $type = new EqualType($mock);
+
+        $this->assertSame('sonata_type_equal', $type->getName());
+        $this->assertSame(ChoiceType::class, $type->getParent());
 
         FormHelper::configureOptions($type, $resolver = new OptionsResolver());
 
         $options = $resolver->resolve();
 
-        $this->assertSame(
-            [
-                'field_options' => [],
-                'field_options_start' => [],
-                'field_options_end' => [
-                    'dp_use_current' => false,
-                ],
-                'field_type' => DateTimePickerType::class,
-            ], $options);
+        $expected = [
+            'choice_translation_domain' => 'SonataCoreBundle',
+            'choices' => ['label_type_equals' => 1, 'label_type_not_equals' => 2],
+            'choices_as_values' => true,
+        ];
+
+        if (!method_exists(FormTypeInterface::class, 'setDefaultOptions')) {
+            unset($expected['choices_as_values']);
+        }
+
+        $this->assertSame($expected, $options);
     }
 }

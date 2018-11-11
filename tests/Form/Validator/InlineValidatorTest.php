@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Validator;
+namespace Sonata\Form\Tests\Validator;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Tests\Fixtures\Bundle\Validator\FooValidatorService;
-use Sonata\CoreBundle\Validator\InlineValidator;
+use Sonata\Form\Tests\Fixtures\Bundle\Validator\FooValidatorService;
 use Sonata\Form\Validator\ErrorElement;
+use Sonata\Form\Validator\InlineValidator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
@@ -23,8 +23,6 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 
 /**
  * @author Ahmet Akbana <ahmetakbana@gmail.com>
- *
- * @group legacy
  */
 final class InlineValidatorTest extends TestCase
 {

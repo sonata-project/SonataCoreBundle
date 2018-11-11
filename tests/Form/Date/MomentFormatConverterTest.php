@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Date;
+namespace Sonata\Form\Tests\Date;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Date\MomentFormatConverter;
+use Sonata\Form\Date\MomentFormatConverter;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
