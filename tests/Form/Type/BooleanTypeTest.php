@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Form\Type;
+namespace Sonata\Form\Tests\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
-use Sonata\CoreBundle\Form\Type\BooleanType;
+use Sonata\Form\Type\BooleanType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormTypeInterface;
@@ -21,9 +21,6 @@ use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * @group legacy
- */
 class BooleanTypeTest extends TypeTestCase
 {
     public function testBuildForm()

@@ -21,6 +21,8 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
+ *
+ * @group legacy
  */
 class DatePickerTypeTest extends TypeTestCase
 {

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Fixtures\Bundle\Validator;
+namespace Sonata\Form\Tests\Fixtures\Bundle\Validator;
 
 use Sonata\Form\Validator\ErrorElement;
 use Symfony\Component\Validator\Exception\ValidatorException;

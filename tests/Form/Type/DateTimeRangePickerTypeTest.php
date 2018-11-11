@@ -9,19 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Form\Type;
+namespace Sonata\Form\Tests\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
-use Sonata\CoreBundle\Form\Type\DateTimeRangePickerType;
 use Sonata\Form\Type\DateTimePickerType;
+use Sonata\Form\Type\DateTimeRangePickerType;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;
 
-/**
- * @group legacy
- */
 class DateTimeRangePickerTypeTest extends TypeTestCase
 {
     public function testBuildForm()

@@ -20,6 +20,9 @@ use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;
 
+/**
+ * @group legacy
+ */
 class EqualTypeTest extends TypeTestCase
 {
     public function testBuildForm()

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Form\Type;
+namespace Sonata\Form\Tests\Type;
 
 use Sonata\Form\Test\AbstractWidgetTestCase;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -17,8 +17,6 @@ use Symfony\Component\Form\FormTypeInterface;
 
 /**
  * @author Christian Gripp <mail@core23.de>
- *
- * @group legacy
  */
 class FormChoiceWidgetTest extends AbstractWidgetTestCase
 {

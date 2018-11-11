@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Form\EventListener;
+namespace Sonata\Form\Tests\EventListener;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Form\EventListener\ResizeFormListener;
+use Sonata\Form\EventListener\ResizeFormListener;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormEvent;
@@ -20,8 +20,6 @@ use Symfony\Component\Form\FormEvents;
 
 /**
  * @author Ahmet Akbana <ahmetakbana@gmail.com>
- *
- * @group legacy
  */
 class ResizeFormListenerTest extends TestCase
 {
@@ -32,9 +30,9 @@ class ResizeFormListenerTest extends TestCase
         $this->assertArrayHasKey(FormEvents::PRE_SET_DATA, $events);
         $this->assertSame('preSetData', $events[FormEvents::PRE_SET_DATA]);
         $this->assertArrayHasKey(FormEvents::PRE_SUBMIT, $events);
-        $this->assertSame('preBind', $events[FormEvents::PRE_SUBMIT]);
+        $this->assertSame('preSubmit', $events[FormEvents::PRE_SUBMIT]);
         $this->assertArrayHasKey(FormEvents::SUBMIT, $events);
-        $this->assertSame('onBind', $events[FormEvents::SUBMIT]);
+        $this->assertSame('onSubmit', $events[FormEvents::SUBMIT]);
     }
 
     public function testPreSetDataWithNullData()
@@ -51,24 +49,6 @@ class ResizeFormListenerTest extends TestCase
         $event = new FormEvent($form, null);
 
         $listener->preSetData($event);
-    }
-
-    /**
-     * @group legacy
-     * NEXT_MAJOR: remove this method
-     */
-    public function testPreBindCallsPreSubmit()
-    {
-        $listener = new ResizeFormListener('form', [], true, null);
-
-        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
-        $form->expects($this->once())
-            ->method('getIterator')
-            ->willReturn(new \ArrayIterator());
-
-        $event = new FormEvent($form, null);
-
-        $listener->preBind($event);
     }
 
     public function testPreSetDataThrowsExceptionWithStringEventData()
@@ -223,30 +203,6 @@ class ResizeFormListenerTest extends TestCase
         $listener->preSubmit($event);
     }
 
-    /**
-     * @group legacy
-     * NEXT_MAJOR: remove this method
-     */
-    public function testOnBindCallsOnSubmit()
-    {
-        $listener = new ResizeFormListener('form', [], true, null);
-
-        $form = $this->getMockBuilder(Form::class)->disableOriginalConstructor()->getMock();
-
-        $event = $this->getMockBuilder(FormEvent::class)->disableOriginalConstructor()->getMock();
-        $event->expects($this->once())
-            ->method('getForm')
-            ->willReturn($form);
-        $event->expects($this->once())
-            ->method('getData')
-            ->willReturn(null);
-        $event->expects($this->once())
-            ->method('setData')
-            ->with([]);
-
-        $listener->onBind($event);
-    }
-
     public function testOnSubmitWithResizeOnBindFalse()
     {
         $listener = new ResizeFormListener('form', [], false, null);
@@ -288,7 +244,7 @@ class ResizeFormListenerTest extends TestCase
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
-        $reflector = new \ReflectionClass(\Sonata\Form\EventListener\ResizeFormListener::class);
+        $reflector = new \ReflectionClass(ResizeFormListener::class);
         $reflectedMethod = $reflector->getProperty('removed');
         $reflectedMethod->setAccessible(true);
         $reflectedMethod->setValue($listener, ['foo']);

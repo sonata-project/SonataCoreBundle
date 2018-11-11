@@ -112,16 +112,16 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
         // this is an workaround for different composer requirements and different TwigBridge installation directories
         $twigPaths = array_filter([
             // symfony/twig-bridge (running from this bundle)
-            __DIR__.'/../../vendor/symfony/twig-bridge/Resources/views/Form',
+            __DIR__.'/../../../vendor/symfony/twig-bridge/Resources/views/Form',
             // symfony/twig-bridge (running from other bundles)
-            __DIR__.'/../../../../symfony/twig-bridge/Resources/views/Form',
+            __DIR__.'/../../../../../symfony/twig-bridge/Resources/views/Form',
             // symfony/symfony (running from this bundle)
-            __DIR__.'/../../vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form',
+            __DIR__.'/../../../vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form',
             // symfony/symfony (running from other bundles)
-            __DIR__.'/../../../../symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form',
+            __DIR__.'/../../../../../symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form',
         ], 'is_dir');
 
-        $twigPaths[] = __DIR__.'/../Resources/views/Form';
+        $twigPaths[] = __DIR__.'/../../CoreBundle/Resources/views/Form';
 
         return $twigPaths;
     }

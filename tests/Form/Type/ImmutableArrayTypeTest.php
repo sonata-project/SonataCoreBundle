@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Form\Type;
+namespace Sonata\Form\Tests\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
-use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
+use Sonata\Form\Type\ImmutableArrayType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilder;
@@ -23,9 +23,6 @@ use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * @group legacy
- */
 class ImmutableArrayTypeTest extends TypeTestCase
 {
     public function testBuildForm()

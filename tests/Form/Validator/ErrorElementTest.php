@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Validator;
+namespace Sonata\Form\Tests\Validator;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Tests\Fixtures\Bundle\Entity\Foo;
-use Sonata\CoreBundle\Validator\ErrorElement;
+use Sonata\Form\Tests\Fixtures\Bundle\Entity\Foo;
+use Sonata\Form\Validator\ErrorElement;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -24,8 +24,6 @@ use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
 
 /**
  * @author Andrej Hudec <pulzarraider@gmail.com>
- *
- * @group legacy
  */
 class ErrorElementTest extends TestCase
 {
@@ -230,7 +228,7 @@ class ErrorElementTest extends TestCase
             'InvalidArgumentException'
         );
         $this->expectExceptionMessage(
-            'Argument 3 passed to Sonata\CoreBundle\Validator\ErrorElement::__construct() must be an instance of '.
+            'Argument 3 passed to Sonata\Form\Validator\ErrorElement::__construct() must be an instance of '.
             'Symfony\Component\Validator\ExecutionContextInterface or '.
             'Symfony\Component\Validator\Context\ExecutionContextInterface.'
         );
