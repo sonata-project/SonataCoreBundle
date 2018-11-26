@@ -89,8 +89,7 @@ abstract class BasePickerType extends AbstractType
                     $format,
                     $timeFormat,
                     null,
-                    \IntlDateFormatter::GREGORIAN,
-                    null
+                    \IntlDateFormatter::GREGORIAN
                 );
 
                 return $intlDateFormatter->getPattern();
