@@ -19,6 +19,9 @@ use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
 
 class AdapterChainTest extends TestCase
 {
+    /**
+     * @group legacy
+     */
     public function testEmptyAdapter(): void
     {
         $adapter = new AdapterChain();
@@ -27,6 +30,9 @@ class AdapterChainTest extends TestCase
         $this->assertNull($adapter->getUrlsafeIdentifier(new \stdClass()));
     }
 
+    /**
+     * @group legacy
+     */
     public function testUrlSafeIdentifier(): void
     {
         $adapter = new AdapterChain();
@@ -41,6 +47,9 @@ class AdapterChainTest extends TestCase
         $this->assertSame('voila', $adapter->getUrlsafeIdentifier(new \stdClass()));
     }
 
+    /**
+     * @group legacy
+     */
     public function testNormalizedIdentifier(): void
     {
         $adapter = new AdapterChain();

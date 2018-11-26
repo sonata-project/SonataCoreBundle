@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.12.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.11.2...3.13.0) - 2018-11-19
+
+### Fixed
+- fix `DateTimePickerType` format usage of `Intl` constants.
+- Make form type services public
+
+### Deprecated
+- Deprecated `SonataDumpDoctrineMetaCommand`
+- Deprecated `InvalidParameterException`
+- Deprecated `Model/Adapter/AdapterChain`
+- Deprecated `Model/Adapter/AdapterInterface`
+- Deprecated `Model/Adapter/DoctrineORMAdapter`
+- Deprecated `Model/Adapter/DoctrinePHPCRAdapter`
+- Deprecated `Model/BaseDocumentManager`
+- Deprecated `Model/BaseEntityManager`
+- Deprecated `Model/BaseManager`
+- Deprecated `Model/BasePHPCRManager`
+- Deprecated `Model/ManagerInterface`
+- Deprecated `Model/PageableManagerInterface`
+
 ## [3.11.2](https://github.com/sonata-project/SonataCoreBundle/compare/3.11.1...3.11.2) - 2018-07-19
 ### Fixed
 - Handle null values in BooleanTypeToBooleanTransformer

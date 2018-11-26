@@ -13,17 +13,18 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
-use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Date\MomentFormatConverter;
 use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\PreloadedExtension;
+use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
  */
-class DatePickerTypeTest extends TestCase
+class DatePickerTypeTest extends TypeTestCase
 {
     /**
      * @doesNotPerformAssertions
@@ -67,5 +68,30 @@ class DatePickerTypeTest extends TestCase
         $type = new DatePickerType(new MomentFormatConverter(), $this->createMock(TranslatorInterface::class));
 
         $this->assertSame('sonata_type_date_picker', $type->getBlockPrefix());
+    }
+
+    public function testSubmitValidData(): void
+    {
+        \Locale::setDefault('en');
+        $form = $this->factory->create(DatePickerType::class, new \DateTime('2018-06-03'), [
+            'format' => \IntlDateFormatter::LONG,
+        ]);
+
+        $this->assertSame('June 3, 2018', $form->getViewData());
+        $form->submit('June 5, 2018');
+        $this->assertSame('2018-06-05', $form->getData()->format('Y-m-d'));
+        $this->assertTrue($form->isSynchronized());
+    }
+
+    protected function getExtensions()
+    {
+        $translator = $this->createMock(TranslatorInterface::class);
+        $translator->method('getLocale')->willReturn('en');
+
+        $type = new DatePickerType(new MomentFormatConverter(), $translator);
+
+        return [
+            new PreloadedExtension([$type], []),
+        ];
     }
 }

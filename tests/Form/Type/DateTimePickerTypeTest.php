@@ -13,17 +13,18 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
-use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Date\MomentFormatConverter;
 use Sonata\CoreBundle\Form\Type\DateTimePickerType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\PreloadedExtension;
+use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
  */
-class DateTimePickerTypeTest extends TestCase
+class DateTimePickerTypeTest extends TypeTestCase
 {
     /**
      * @doesNotPerformAssertions
@@ -71,5 +72,46 @@ class DateTimePickerTypeTest extends TestCase
         $type = new DateTimePickerType(new MomentFormatConverter(), $this->createMock(TranslatorInterface::class));
 
         $this->assertSame('sonata_type_datetime_picker', $type->getBlockPrefix());
+    }
+
+    public function testSubmitUnmatchingDateFormat(): void
+    {
+        \Locale::setDefault('en');
+        $form = $this->factory->create(DateTimePickerType::class, new \DateTime('2018-06-03 20:02:03'), [
+            'format' => \IntlDateFormatter::NONE,
+            'dp_pick_date' => false,
+            'dp_use_seconds' => false,
+        ]);
+
+        $form->submit('05:23');
+        $this->assertFalse($form->isSynchronized());
+    }
+
+    public function testSubmitMatchingDateFormat(): void
+    {
+        \Locale::setDefault('en');
+        $form = $this->factory->create(DateTimePickerType::class, new \DateTime('2018-06-03 20:02:03'), [
+            'format' => \IntlDateFormatter::NONE,
+            'dp_pick_date' => false,
+            'dp_use_seconds' => false,
+        ]);
+
+        $this->assertSame('8:02 PM', $form->getViewData());
+
+        $form->submit('5:23 AM');
+        $this->assertSame('1970-01-01 05:23:00', $form->getData()->format('Y-m-d H:i:s'));
+        $this->assertTrue($form->isSynchronized());
+    }
+
+    protected function getExtensions()
+    {
+        $translator = $this->createMock(TranslatorInterface::class);
+        $translator->method('getLocale')->willReturn('en');
+
+        $type = new DateTimePickerType(new MomentFormatConverter(), $translator);
+
+        return [
+            new PreloadedExtension([$type], []),
+        ];
     }
 }

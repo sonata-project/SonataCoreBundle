@@ -16,11 +16,7 @@ namespace Sonata\CoreBundle\Tests\Entity;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectManager;
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Model\BaseEntityManager;
-
-class EntityManager extends BaseEntityManager
-{
-}
+use Sonata\CoreBundle\Tests\Fixtures\Entity\EntityManager;
 
 class BaseEntityManagerTest extends TestCase
 {
@@ -33,11 +29,17 @@ class BaseEntityManagerTest extends TestCase
         return $manager;
     }
 
+    /**
+     * @group legacy
+     */
     public function test(): void
     {
         $this->assertSame('classname', $this->getManager()->getClass());
     }
 
+    /**
+     * @group legacy
+     */
     public function testException(): void
     {
         $this->expectException(\RuntimeException::class);
@@ -46,6 +48,9 @@ class BaseEntityManagerTest extends TestCase
         $this->getManager()->exception;
     }
 
+    /**
+     * @group legacy
+     */
     public function testExceptionOnNonMappedEntity(): void
     {
         $this->expectException(\RuntimeException::class);
@@ -58,6 +63,9 @@ class BaseEntityManagerTest extends TestCase
         $manager->getObjectManager();
     }
 
+    /**
+     * @group legacy
+     */
     public function testGetEntityManager(): void
     {
         $objectManager = $this->createMock(ObjectManager::class);
