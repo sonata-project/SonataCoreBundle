@@ -80,7 +80,9 @@ abstract class BasePickerType extends AbstractType
             if (\is_int($format)) {
                 $timeFormat = \IntlDateFormatter::NONE;
                 if ($options['dp_pick_time']) {
-                    $timeFormat = $options['dp_use_seconds'] ? DateTimeType::DEFAULT_TIME_FORMAT : \IntlDateFormatter::SHORT;
+                    $timeFormat = $options['dp_use_seconds'] ?
+                        DateTimeType::DEFAULT_TIME_FORMAT :
+                        \IntlDateFormatter::SHORT;
                 }
                 $intlDateFormatter = new \IntlDateFormatter(
                     $this->locale,
