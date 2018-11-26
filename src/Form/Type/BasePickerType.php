@@ -28,7 +28,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 abstract class BasePickerType extends AbstractType
 {
     /**
-     * @var TranslatorInterface
+     * @var TranslatorInterface|null
      */
     protected $translator;
 
