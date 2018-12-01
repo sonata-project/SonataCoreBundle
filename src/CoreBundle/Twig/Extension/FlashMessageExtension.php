@@ -12,16 +12,23 @@
 namespace Sonata\CoreBundle\Twig\Extension;
 
 use Sonata\CoreBundle\FlashMessage\FlashManager;
-use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
+
+@trigger_error(
+    'The '.__NAMESPACE__.'\FlashMessageExtension class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Twig\Extension\FlashMessageExtension instead.',
+    E_USER_DEPRECATED
+);
 
 /**
  * This is the Sonata core flash message Twig extension.
  *
  * @author Vincent Composieux <composieux@ekino.com>
  * @author Titouan Galopin <galopintitouan@gmail.com>
+ *
+ * @deprecated Since version 3.x, to be removed in 4.0.
  */
-class FlashMessageExtension extends AbstractExtension
+class FlashMessageExtension extends \Sonata\Twig\Extension\FlashMessageExtension
 {
     /**
      * @var FlashManager
@@ -50,10 +57,7 @@ class FlashMessageExtension extends AbstractExtension
             ];
         }
 
-        return [
-            new TwigFunction('sonata_flashmessages_get', [FlashMessageRuntime::class, 'getFlashMessages']),
-            new TwigFunction('sonata_flashmessages_types', [FlashMessageRuntime::class, 'getFlashMessagesTypes']),
-        ];
+        parent::getFunctions();
     }
 
     /**
@@ -93,10 +97,5 @@ class FlashMessageExtension extends AbstractExtension
         );
 
         return $this->flashManager->getHandledTypes();
-    }
-
-    public function getName()
-    {
-        return 'sonata_core_flashmessage';
     }
 }

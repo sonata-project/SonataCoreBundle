@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Twig\Extension;
+namespace Sonata\Twig\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
@@ -17,9 +17,6 @@ use Sonata\Twig\Extension\StatusRuntime;
 
 class StatusRuntimeTest extends TestCase
 {
-    /**
-     * @group legacy
-     */
     public function testStatusClassDefaultValue()
     {
         $runtime = new StatusRuntime();

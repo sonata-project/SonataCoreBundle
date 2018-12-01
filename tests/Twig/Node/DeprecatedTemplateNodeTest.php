@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Twig\Node;
+namespace Sonata\Twig\Tests\Twig\Node;
 
 use Sonata\Twig\Node\DeprecatedTemplateNode;
 use Twig\Node\Expression\ConstantExpression;

@@ -11,29 +11,17 @@
 
 namespace Sonata\CoreBundle\Twig\Node;
 
-use Twig\Compiler;
-use Twig\Node\Expression\AbstractExpression;
-use Twig\Node\Node;
+@trigger_error(
+    'The '.__NAMESPACE__.'\DeprecatedTemplateNode class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Twig\Node\DeprecatedTemplateNode\FlashManager instead.',
+    E_USER_DEPRECATED
+);
 
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
+ *
+ * @deprecated Since version 3.x, to be removed in 4.0.
  */
-final class DeprecatedTemplateNode extends Node
+final class DeprecatedTemplateNode extends \Sonata\Twig\Node\DeprecatedTemplateNode
 {
-    public function __construct(AbstractExpression $newTemplate, $line, $tag = null)
-    {
-        parent::__construct(['newTemplate' => $newTemplate], [], $line, $tag);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function compile(Compiler $compiler)
-    {
-        @trigger_error(sprintf(
-            'The "%s" template is deprecated. Use "%s" instead.',
-            $this->getTemplateName(),
-            $this->getNode('newTemplate')->getAttribute('value')
-        ), E_USER_DEPRECATED);
-    }
 }

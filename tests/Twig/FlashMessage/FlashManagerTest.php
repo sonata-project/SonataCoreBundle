@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\FlashMessage;
+namespace Sonata\Twig\Tests\FlashMessage;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\FlashMessage\FlashManager;
+use Sonata\Twig\FlashMessage\FlashManager;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\HttpFoundation\Session\Session;

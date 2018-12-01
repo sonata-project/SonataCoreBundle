@@ -11,91 +11,15 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
-use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
-use Sonata\CoreBundle\Twig\TokenParser\TemplateBoxTokenParser;
-use Symfony\Component\Translation\TranslatorInterface;
-use Twig\Extension\AbstractExtension;
-use Twig\TwigFilter;
+@trigger_error(
+    'The '.__NAMESPACE__.'\TemplateExtension class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Twig\Extension\TemplateExtension instead.',
+    E_USER_DEPRECATED
+);
 
-class TemplateExtension extends AbstractExtension
+/**
+ * @deprecated Since version 3.x, to be removed in 4.0.
+ */
+class TemplateExtension extends \Sonata\Twig\Extension\TemplateExtension
 {
-    /**
-     * @var bool
-     */
-    protected $debug;
-
-    /**
-     * @var AdapterInterface
-     */
-    protected $modelAdapter;
-
-    /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
-
-    /**
-     * @param bool $debug Is Symfony debug enabled?
-     */
-    public function __construct($debug, TranslatorInterface $translator, AdapterInterface $modelAdapter)
-    {
-        $this->debug = $debug;
-        $this->translator = $translator;
-        $this->modelAdapter = $modelAdapter;
-    }
-
-    public function getFilters()
-    {
-        return [
-            new TwigFilter('sonata_slugify', [$this, 'slugify'], ['deprecated' => true, 'alternative' => 'slugify']),
-            new TwigFilter('sonata_urlsafeid', [$this, 'getUrlsafeIdentifier']),
-        ];
-    }
-
-    public function getTokenParsers()
-    {
-        return [
-            new TemplateBoxTokenParser($this->debug, $this->translator),
-        ];
-    }
-
-    /**
-     * Slugify a text.
-     *
-     * @return string
-     */
-    public function slugify($text)
-    {
-        // replace non letter or digits by -
-        $text = preg_replace('~[^\\pL\d]+~u', '-', $text);
-
-        // trim
-        $text = trim($text, '-');
-
-        // transliterate
-        if (\function_exists('iconv')) {
-            $text = iconv('UTF-8', 'ASCII//TRANSLIT', $text);
-        }
-
-        // lowercase
-        $text = strtolower($text);
-
-        // remove unwanted characters
-        $text = preg_replace('~[^-\w]+~', '', $text);
-
-        return $text;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUrlsafeIdentifier($model)
-    {
-        return $this->modelAdapter->getUrlsafeIdentifier($model);
-    }
-
-    public function getName()
-    {
-        return 'sonata_core_template';
-    }
 }
