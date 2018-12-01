@@ -1,0 +1,36 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of the Sonata Project package.
+ *
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Sonata\CoreBundle\Tests\Fixtures\Model;
+
+use Sonata\CoreBundle\Model\BaseManager;
+
+class Manager extends BaseManager
+{
+    /**
+     * Get the DB driver connection.
+     *
+     * @return Connection
+     */
+    public function getConnection()
+    {
+    }
+
+    /**
+     * @param $object
+     */
+    public function publicCheckObject($object)
+    {
+        return $this->checkObject($object);
+    }
+}

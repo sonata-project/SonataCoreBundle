@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Form\EventListener;
+namespace Sonata\Form\Tests\EventListener;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Form\EventListener\FixCheckboxDataListener;
+use Sonata\Form\EventListener\FixCheckboxDataListener;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Form\Extension\Core\DataTransformer\BooleanToStringTransformer;
 use Symfony\Component\Form\FormBuilder;

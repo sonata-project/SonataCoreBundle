@@ -17,7 +17,7 @@ All you have to do is to define a form type service for each entity for which yo
 
     .. code-block:: xml
 
-        <service id="my.custom.form.type.comment" class="Sonata\CoreBundle\Form\Type\DoctrineORMSerializationType">
+        <service id="my.custom.form.type.comment" class="Sonata\Form\Type\DoctrineORMSerializationType">
             <tag name="form.type" alias="my_custom_form_type_comment" />
 
             <argument type="service" id="jms_serializer.metadata_factory" />
@@ -89,7 +89,7 @@ Now, the property can be edited by setting a type for each type:
 
     <?php
     // src/AppBundle/Admin/PageAdmin.php
-    use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
+    use Sonata\Form\Type\ImmutableArrayType;
 
     class PageAdmin extends Admin
     {
@@ -153,7 +153,7 @@ The type has one extra parameter:
 
     <?php
     // src/AppBundle/Admin/DeliveryAdmin.php
-    use Sonata\CoreBundle\Form\Type\TranslatableChoiceType;
+    use Sonata\Form\Type\TranslatableChoiceType;
 
     class DeliveryAdmin extends Admin
     {
@@ -187,7 +187,7 @@ to the underlying forms.
 
     <?php
     // src/AppBundle/Entity/ProductAdmin.php
-    use Sonata\CoreBundle\Form\Type\CollectionType;
+    use Sonata\Form\Type\CollectionType;
 
     class ProductAdmin extends Admin
     {
@@ -262,7 +262,7 @@ This can be done by declaring a new service:
 
     .. code-block:: xml
 
-        <service id="sonata.order.form.status_type" class="Sonata\CoreBundle\Form\Type\StatusType">
+        <service id="sonata.order.form.status_type" class="Sonata\Form\Type\StatusType">
             <tag name="form.type" />
 
             <argument>%sonata.order.order.class%</argument>
@@ -345,8 +345,8 @@ Finally, in your form, you may use the form type as follows:
 
     <?php
     // src/AppBundle/Admin/PageAdmin.php
-    use Sonata\CoreBundle\Form\Type\DatePickerType;
-    use Sonata\CoreBundle\Form\Type\DateTimePickerType;
+    use Sonata\Form\Type\DatePickerType;
+    use Sonata\Form\Type\DateTimePickerType;
 
     class PageAdmin extends Admin
     {
@@ -369,8 +369,8 @@ Many of the `standard date picker options`_ are available by adding options with
 
     <?php
     // src/AppBundle/Admin/PageAdmin.php
-    use Sonata\CoreBundle\Form\Type\DatePickerType;
-    use Sonata\CoreBundle\Form\Type\DateTimePickerType;
+    use Sonata\Form\Type\DatePickerType;
+    use Sonata\Form\Type\DateTimePickerType;
 
     class PageAdmin extends Admin
     {
@@ -403,8 +403,8 @@ DateRangePickerType and DateTimeRangePickerType
 -----------------------------------------------
 
 Those types extend the basic range form field types
-(``Sonata\CoreBundle\Form\Type\DateRangeType`` and
-``Sonata\CoreBundle\Form\Type\DateTimeRangeType``).
+(``Sonata\Form\Type\DateRangeType`` and
+``Sonata\Form\Type\DateTimeRangeType``).
 You can use them if you need datetime picker in datetime range filters.
 
 Example with ``Sonata\DoctrineORMAdminBundle\Filter\DateRangeFilter`` filter:
@@ -413,7 +413,7 @@ Example with ``Sonata\DoctrineORMAdminBundle\Filter\DateRangeFilter`` filter:
 
     <?php
     // src/AppBundle/Admin/PostAdmin.php
-    use Sonata\CoreBundle\Form\Type\DateRangeType;
+    use Sonata\Form\Type\DateRangeType;
     use Sonata\DoctrineORMAdminBundle\Filter\DateRangeFilter;
 
     class PostAdmin extends Admin
@@ -456,7 +456,7 @@ Finally, in your form, you may use the form type as follows:
 
     <?php
     // src/AppBundle/Admin/PageAdmin.php
-    use Sonata\CoreBundle\Form\Type\ColorType;
+    use Sonata\Form\Type\ColorType;
 
     class PageAdmin extends Admin
     {

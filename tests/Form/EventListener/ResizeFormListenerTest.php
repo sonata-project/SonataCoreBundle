@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Form\EventListener;
+namespace Sonata\Form\Tests\EventListener;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Form\EventListener\ResizeFormListener;
+use Sonata\Form\EventListener\ResizeFormListener;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormEvent;

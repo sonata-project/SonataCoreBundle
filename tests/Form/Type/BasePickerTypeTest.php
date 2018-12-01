@@ -11,11 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Form\Type;
+namespace Sonata\Form\Tests\Type;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Date\MomentFormatConverter;
-use Sonata\CoreBundle\Form\Type\BasePickerType;
+use Sonata\Form\Date\MomentFormatConverter;
+use Sonata\Form\Type\BasePickerType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormConfigInterface;

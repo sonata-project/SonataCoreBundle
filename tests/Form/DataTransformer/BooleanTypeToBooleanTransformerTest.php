@@ -11,11 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Form\DataTransformer;
+namespace Sonata\Form\Tests\DataTransformer;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Form\DataTransformer\BooleanTypeToBooleanTransformer;
-use Sonata\CoreBundle\Form\Type\BooleanType;
+use Sonata\Form\DataTransformer\BooleanTypeToBooleanTransformer;
+use Sonata\Form\Type\BooleanType;
 
 class BooleanTypeToBooleanTransformerTest extends TestCase
 {

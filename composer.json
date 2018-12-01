@@ -58,12 +58,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Sonata\\CoreBundle\\": "src/"
+            "Sonata\\CoreBundle\\": "src/CoreBundle/",
+            "Sonata\\Doctrine\\": "src/Doctrine/",
+            "Sonata\\Form\\": "src/Form/",
+            "Sonata\\Twig\\": "src/Twig/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Sonata\\CoreBundle\\Tests\\": "tests/"
+            "Sonata\\CoreBundle\\Tests\\": "tests/CoreBundle/",
+            "Sonata\\Doctrine\\Tests\\": "tests/Doctrine/",
+            "Sonata\\Form\\Tests\\": "tests/Form/",
+            "Sonata\\Twig\\Tests\\": "tests/Twig/"
         }
     }
 }

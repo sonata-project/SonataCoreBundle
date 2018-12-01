@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Form\DataTransformer;
+namespace Sonata\Form\DataTransformer;
 
-use Sonata\CoreBundle\Form\Type\BooleanType;
+use Sonata\Form\Type\BooleanType;
 use Symfony\Component\Form\DataTransformerInterface;
 
 final class BooleanTypeToBooleanTransformer implements DataTransformerInterface
