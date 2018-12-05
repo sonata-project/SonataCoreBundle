@@ -44,9 +44,6 @@ class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
         parent::testCompile($node, $source, $environment, $isPattern);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTests()
     {
         $translator = $this->getTranslator('en');

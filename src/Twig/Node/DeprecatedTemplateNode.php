@@ -25,9 +25,6 @@ class DeprecatedTemplateNode extends Node
         parent::__construct(['newTemplate' => $newTemplate], [], $line, $tag);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function compile(Compiler $compiler)
     {
         @trigger_error(sprintf(

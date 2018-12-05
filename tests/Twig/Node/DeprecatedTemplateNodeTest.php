@@ -37,9 +37,6 @@ class DeprecatedTemplateNodeTest extends NodeTestCase
         parent::testCompile($node, $source, $environment, $isPattern);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTests()
     {
         return [

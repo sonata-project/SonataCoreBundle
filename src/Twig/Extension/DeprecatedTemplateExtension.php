@@ -19,9 +19,6 @@ use Twig\Extension\AbstractExtension;
  */
 class DeprecatedTemplateExtension extends AbstractExtension
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getTokenParsers()
     {
         return [
