@@ -35,6 +35,8 @@ class FakeMetadataClass
 
 /**
  * @author Vincent Composieux <vincent.composieux@gmail.com>
+ *
+ * @group legacy
  */
 class DoctrineORMSerializationTypeTest extends TypeTestCase
 {
