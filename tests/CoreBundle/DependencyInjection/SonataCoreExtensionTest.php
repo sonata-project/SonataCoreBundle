@@ -17,6 +17,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class SonataCoreExtensionTest extends AbstractExtensionTestCase
 {
+    /**
+     * @group legacy
+     */
     public function testAfterLoadingTheWrappingParameterIsSet()
     {
         $this->load(['form' => ['mapping' => ['enabled' => false]]]);
