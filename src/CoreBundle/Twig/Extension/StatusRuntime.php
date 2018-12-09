@@ -11,44 +11,18 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
-use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
+@trigger_error(
+    'The '.__NAMESPACE__.'\StatusRuntime class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Twig\Extension\StatusRuntime instead.',
+    E_USER_DEPRECATED
+);
 
 /**
  * @author Hugo Briand <briand@ekino.com>
  * @author Titouan Galopin <galopintitouan@gmail.com>
+ *
+ * @deprecated Since version 3.x, to be removed in 4.0.
  */
-final class StatusRuntime
+final class StatusRuntime extends \Sonata\Twig\Extension\StatusRuntime
 {
-    /**
-     * @var StatusClassRendererInterface[]
-     */
-    private $statusServices = [];
-
-    /**
-     * Adds a renderer to the status services list.
-     */
-    public function addStatusService(StatusClassRendererInterface $renderer)
-    {
-        $this->statusServices[] = $renderer;
-    }
-
-    /**
-     * @param mixed  $object
-     * @param mixed  $statusType
-     * @param string $default
-     *
-     * @return string
-     */
-    public function statusClass($object, $statusType = null, $default = '')
-    {
-        foreach ($this->statusServices as $statusService) {
-            \assert($statusService instanceof StatusClassRendererInterface);
-
-            if ($statusService->handlesObject($object, $statusType)) {
-                return $statusService->getStatusClass($object, $statusType, $default);
-            }
-        }
-
-        return $default;
-    }
 }

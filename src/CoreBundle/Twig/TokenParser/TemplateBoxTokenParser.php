@@ -11,54 +11,15 @@
 
 namespace Sonata\CoreBundle\Twig\TokenParser;
 
-use Sonata\CoreBundle\Twig\Node\TemplateBoxNode;
-use Symfony\Component\Translation\TranslatorInterface;
-use Twig\Node\Expression\ConstantExpression;
-use Twig\Token;
-use Twig\TokenParser\AbstractTokenParser;
+@trigger_error(
+    'The '.__NAMESPACE__.'\TemplateBoxTokenParser class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Twig\TokenParser\TemplateBoxTokenParser instead.',
+    E_USER_DEPRECATED
+);
 
-class TemplateBoxTokenParser extends AbstractTokenParser
+/**
+ * @deprecated Since version 3.x, to be removed in 4.0.
+ */
+class TemplateBoxTokenParser extends \Sonata\Twig\TokenParser\TemplateBoxTokenParser
 {
-    /**
-     * @var bool
-     */
-    protected $enabled;
-
-    /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
-
-    /**
-     * @param bool $enabled Is Symfony debug enabled?
-     */
-    public function __construct($enabled, TranslatorInterface $translator)
-    {
-        $this->enabled = $enabled;
-        $this->translator = $translator;
-    }
-
-    public function parse(Token $token)
-    {
-        if ($this->parser->getStream()->test(Token::STRING_TYPE)) {
-            $message = $this->parser->getExpressionParser()->parseExpression();
-        } else {
-            $message = new ConstantExpression('Template information', $token->getLine());
-        }
-
-        if ($this->parser->getStream()->test(Token::STRING_TYPE)) {
-            $translationBundle = $this->parser->getExpressionParser()->parseExpression();
-        } else {
-            $translationBundle = null;
-        }
-
-        $this->parser->getStream()->expect(Token::BLOCK_END_TYPE);
-
-        return new TemplateBoxNode($message, $translationBundle, $this->enabled, $this->translator, $token->getLine(), $this->getTag());
-    }
-
-    public function getTag()
-    {
-        return 'sonata_template_box';
-    }
 }

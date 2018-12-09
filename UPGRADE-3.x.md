@@ -37,6 +37,15 @@ All form classes have been deprecated and were moved to the `Sonata\Form\` subna
  - `Sonata\CoreBundle\Form\Type` => `Sonata\Form\Type`
  - `Sonata\CoreBundle\Test\AbstractWidgetTestCase` => `Sonata\Form\Test\AbstractWidgetTestCase`
  - `Sonata\CoreBundle\Validator` => `Sonata\Form\Validator`
+ 
+### Twig deprecations
+
+All twig classes have been deprecated and were moved to the `Sonata\Twig\` subnamespace:
+ - `Sonata\CoreBundle\Component\Status` => `Sonata\Twig\Status`
+ - `Sonata\CoreBundle\FlashMessage` => `Sonata\Twig\FlashMessage`
+ - `Sonata\CoreBundle\Twig\Extension` => `Sonata\Twig\Extension`
+ - `Sonata\CoreBundle\Twig\Node` => `Sonata\Twig\Node`
+ - `Sonata\CoreBundle\Twig\TokenParser` => `Sonata\Twig\TokenParser`
 
 UPGRADE FROM 3.6 to 3.7
 =======================

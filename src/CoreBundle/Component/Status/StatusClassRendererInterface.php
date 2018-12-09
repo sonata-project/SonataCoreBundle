@@ -11,29 +11,17 @@
 
 namespace Sonata\CoreBundle\Component\Status;
 
+@trigger_error(
+    'The '.__NAMESPACE__.'\StatusClassRendererInterface class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Twig\Status\StatusClassRendererInterface instead.',
+    E_USER_DEPRECATED
+);
+
 /**
  * @author Hugo Briand <briand@ekino.com>
+ *
+ * @deprecated Since version 3.x, to be removed in 4.0.
  */
-interface StatusClassRendererInterface
+interface StatusClassRendererInterface extends \Sonata\Twig\Status\StatusClassRendererInterface
 {
-    /**
-     * Tells if class may handle $object for status class rendering.
-     *
-     * @param mixed $object
-     * @param null  $statusName
-     *
-     * @return bool
-     */
-    public function handlesObject($object, $statusName = null);
-
-    /**
-     * Returns the status CSS class for $object.
-     *
-     * @param mixed  $object
-     * @param null   $statusName
-     * @param string $default
-     *
-     * @return string
-     */
-    public function getStatusClass($object, $statusName = null, $default = '');
 }

@@ -11,21 +11,17 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
-use Sonata\CoreBundle\Twig\TokenParser\DeprecatedTemplateTokenParser;
-use Twig\Extension\AbstractExtension;
+@trigger_error(
+    'The '.__NAMESPACE__.'\DeprecatedTemplateExtension class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Twig\Extension\DeprecatedTemplateExtension instead.',
+    E_USER_DEPRECATED
+);
 
 /**
  * @author Marko Kunic <kunicmarko20@gmail.com>
+ *
+ * @deprecated Since version 3.x, to be removed in 4.0.
  */
-final class DeprecatedTemplateExtension extends AbstractExtension
+final class DeprecatedTemplateExtension extends \Sonata\Twig\Extension\DeprecatedTemplateExtension
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getTokenParsers()
-    {
-        return [
-            new DeprecatedTemplateTokenParser(),
-        ];
-    }
 }

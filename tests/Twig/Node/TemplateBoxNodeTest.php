@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Twig\TokenParser;
+namespace Sonata\Twig\Tests\Twig\TokenParser;
 
 use Sonata\Twig\Node\TemplateBoxNode;
 use Symfony\Component\Translation\Formatter\MessageFormatterInterface;
@@ -44,9 +44,6 @@ class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
         parent::testCompile($node, $source, $environment, $isPattern);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTests()
     {
         $translator = $this->getTranslator('en');

@@ -11,30 +11,15 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
-use Twig\Extension\AbstractExtension;
-use Twig\Extension\GlobalsInterface;
+@trigger_error(
+    'The '.__NAMESPACE__.'\FormTypeExtension class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Twig\Extension\FormTypeExtension instead.',
+    E_USER_DEPRECATED
+);
 
-class FormTypeExtension extends AbstractExtension implements GlobalsInterface
+/**
+ * @deprecated Since version 3.x, to be removed in 4.0.
+ */
+class FormTypeExtension extends \Sonata\Twig\Extension\FormTypeExtension
 {
-    /**
-     * @var bool
-     */
-    private $wrapFieldsWithAddons;
-
-    public function __construct($formType)
-    {
-        $this->wrapFieldsWithAddons = (true === $formType || 'standard' === $formType);
-    }
-
-    public function getGlobals()
-    {
-        return [
-            'wrap_fields_with_addons' => $this->wrapFieldsWithAddons,
-        ];
-    }
-
-    public function getName()
-    {
-        return 'sonata_core_wrapping';
-    }
 }

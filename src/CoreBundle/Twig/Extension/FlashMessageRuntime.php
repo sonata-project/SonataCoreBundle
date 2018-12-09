@@ -11,43 +11,20 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
-use Sonata\CoreBundle\FlashMessage\FlashManager;
+@trigger_error(
+    'The '.__NAMESPACE__.'\FlashMessageRuntime class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Twig\Extension\FlashMessageRuntime instead.',
+    E_USER_DEPRECATED
+);
 
 /**
  * This is the Sonata core flash message Twig runtime.
  *
  * @author Vincent Composieux <composieux@ekino.com>
  * @author Titouan Galopin <galopintitouan@gmail.com>
+ *
+ * @deprecated Since version 3.x, to be removed in 4.0.
  */
-final class FlashMessageRuntime
+final class FlashMessageRuntime extends \Sonata\Twig\Extension\FlashMessageRuntime
 {
-    private $flashManager;
-
-    public function __construct(FlashManager $flashManager)
-    {
-        $this->flashManager = $flashManager;
-    }
-
-    /**
-     * Returns flash messages handled by Sonata core flash manager.
-     *
-     * @param string $type   Type of flash message
-     * @param string $domain Translation domain to use
-     *
-     * @return string
-     */
-    public function getFlashMessages($type, $domain = null)
-    {
-        return $this->flashManager->get($type, $domain);
-    }
-
-    /**
-     * Returns flash messages types handled by Sonata core flash manager.
-     *
-     * @return string
-     */
-    public function getFlashMessagesTypes()
-    {
-        return $this->flashManager->getHandledTypes();
-    }
 }
