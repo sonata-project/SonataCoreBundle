@@ -11,12 +11,16 @@
 
 namespace Sonata\CoreBundle\Serializer;
 
-use JMS\Serializer\Handler\SubscribingHandlerInterface;
+@trigger_error(
+    'The '.__NAMESPACE__.'\SerializerHandlerInterface class is deprecated since version 3.x and will be removed in 4.0.'
+    .' Use Sonata\Serializer\SerializerHandlerInterface instead.',
+    E_USER_DEPRECATED
+);
 
 /**
- * @author Sylvain Deloux <sylvain.deloux@ekino.com>
+ * @deprecated Since version 3.x, to be removed in 4.0.
  */
-interface SerializerHandlerInterface extends SubscribingHandlerInterface
+interface SerializerHandlerInterface extends \Sonata\Serializer\SerializerHandlerInterface
 {
     /**
      * @return string

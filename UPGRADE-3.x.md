@@ -52,6 +52,12 @@ All twig classes have been deprecated and were moved to the `Sonata\Twig\` subna
 All meta classes have been deprecated and were moved to the `SonataBlockBundle`:
  - `Sonata\CoreBundle\Model\Metadata` => `Sonata\BlockBundle\Meta\Metadata`
  - `Sonata\CoreBundle\Model\MetadataInterface` => `Sonata\BlockBundle\Meta\MetadataInterface`
+ 
+### Serializer deprecations
+
+All serializer classes have been deprecated and were moved to the `Sonata\Serializer\` subnamespace:
+ - `Sonata\CoreBundle\Serializer\BaseSerializerHandler` => `Sonata\Serializer\BaseSerializerHandler`
+ - `Sonata\CoreBundle\Serializer\SerializerHandlerInterface` => `Sonata\Serializer\SerializerHandlerInterface`
 
 UPGRADE FROM 3.6 to 3.7
 =======================

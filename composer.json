@@ -61,6 +61,7 @@
         "psr-4": {
             "Sonata\\CoreBundle\\": "src/CoreBundle/",
             "Sonata\\Form\\": "src/Form/",
+            "Sonata\\Serializer\\": "src/Serializer/",
             "Sonata\\Twig\\": "src/Twig/"
         }
     },
@@ -68,6 +69,7 @@
         "psr-4": {
             "Sonata\\CoreBundle\\Tests\\": "tests/CoreBundle/",
             "Sonata\\Form\\Tests\\": "tests/Form/",
+            "Sonata\\Serializer\\Tests\\": "tests/Serializer/",
             "Sonata\\Twig\\Tests\\": "tests/Twig/"
         }
     }
