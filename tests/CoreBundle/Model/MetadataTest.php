@@ -16,6 +16,8 @@ use Sonata\CoreBundle\Model\Metadata;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
+ *
+ * @group legacy
  */
 class MetadataTest extends TestCase
 {

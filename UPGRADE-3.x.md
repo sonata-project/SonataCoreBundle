@@ -46,6 +46,12 @@ All twig classes have been deprecated and were moved to the `Sonata\Twig\` subna
  - `Sonata\CoreBundle\Twig\Extension` => `Sonata\Twig\Extension`
  - `Sonata\CoreBundle\Twig\Node` => `Sonata\Twig\Node`
  - `Sonata\CoreBundle\Twig\TokenParser` => `Sonata\Twig\TokenParser`
+ 
+### Metadata deprecations
+
+All meta classes have been deprecated and were moved to the `SonataBlockBundle`:
+ - `Sonata\CoreBundle\Model\Metadata` => `Sonata\BlockBundle\Meta\Metadata`
+ - `Sonata\CoreBundle\Model\MetadataInterface` => `Sonata\BlockBundle\Meta\MetadataInterface`
 
 UPGRADE FROM 3.6 to 3.7
 =======================
