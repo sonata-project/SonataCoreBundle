@@ -2,7 +2,31 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [3.12.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.11.2...3.13.0) - 2018-11-19
+## [3.13.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.12.0...3.13.0) - 2018-12-10
+
+### Added
+- Added `Form\` subnamespace for all form components
+- Added `Serializer\` subnamespace for all serializer components
+- Added `Twig\` subnamespace for all twig components
+
+### Deprecated
+- Deprecated `Sonata\CoreBundle\Component\Status` class
+- Deprecated `Sonata\CoreBundle\Date\*` classes
+- Deprecated `Sonata\CoreBundle\FlashMessage` classes
+- Deprecated `Sonata\CoreBundle\Form\DataMapper\*` classes
+- Deprecated `Sonata\CoreBundle\Form\EventListener\*` classes
+- Deprecated `Sonata\CoreBundle\Form\Type\*` classes
+- Deprecated `Sonata\CoreBundle\Model\MetadataInterface` interface
+- Deprecated `Sonata\CoreBundle\Model\Metadata` class
+- Deprecated `Sonata\CoreBundle\Serializer\BaseSerializerHandler` class
+- Deprecated `Sonata\CoreBundle\Serializer\SerializerHandlerInterface` interface
+- Deprecated `Sonata\CoreBundle\Test\AbstractWidgetTestCase` class
+- Deprecated `Sonata\CoreBundle\Twig\Extension` classes
+- Deprecated `Sonata\CoreBundle\Twig\Node` classes
+- Deprecated `Sonata\CoreBundle\Twig\TokenParser` classes
+- Deprecated `Sonata\CoreBundle\Validator\*` classes
+
+## [3.12.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.11.2...3.12.0) - 2018-11-19
 
 ### Fixed
 - fix `DateTimePickerType` format usage of `Intl` constants.
