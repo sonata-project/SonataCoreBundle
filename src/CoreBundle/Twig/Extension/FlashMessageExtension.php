@@ -57,7 +57,7 @@ class FlashMessageExtension extends \Sonata\Twig\Extension\FlashMessageExtension
             ];
         }
 
-        parent::getFunctions();
+        return parent::getFunctions();
     }
 
     /**
