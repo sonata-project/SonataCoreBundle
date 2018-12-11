@@ -18,7 +18,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * @author Vincent Composieux <composieux@ekino.com>
  */
-class FlashManager implements StatusClassRendererInterface
+class FlashManager implements StatusClassRendererInterface, \Sonata\CoreBundle\Component\Status\StatusClassRendererInterface
 {
     /**
      * @var SessionInterface
