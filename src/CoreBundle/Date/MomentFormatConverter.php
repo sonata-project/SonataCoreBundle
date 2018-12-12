@@ -17,9 +17,7 @@ namespace Sonata\CoreBundle\Date;
     E_USER_DEPRECATED
 );
 
-/**
- * @deprecated Since version 3.x, to be removed in 4.0.
- */
-class MomentFormatConverter extends \Sonata\Form\Date\MomentFormatConverter
-{
-}
+class_alias(
+    \Sonata\Form\Date\MomentFormatConverter::class,
+    __NAMESPACE__.'\MomentFormatConverter'
+);

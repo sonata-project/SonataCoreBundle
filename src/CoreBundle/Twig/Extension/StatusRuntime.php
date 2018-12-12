@@ -17,12 +17,7 @@ namespace Sonata\CoreBundle\Twig\Extension;
     E_USER_DEPRECATED
 );
 
-/**
- * @author Hugo Briand <briand@ekino.com>
- * @author Titouan Galopin <galopintitouan@gmail.com>
- *
- * @deprecated Since version 3.x, to be removed in 4.0.
- */
-final class StatusRuntime extends \Sonata\Twig\Extension\StatusRuntime
-{
-}
+class_alias(
+    \Sonata\Twig\Extension\StatusRuntime::class,
+    __NAMESPACE__.'\StatusRuntime'
+);

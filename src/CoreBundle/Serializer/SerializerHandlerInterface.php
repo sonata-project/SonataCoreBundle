@@ -17,13 +17,7 @@ namespace Sonata\CoreBundle\Serializer;
     E_USER_DEPRECATED
 );
 
-/**
- * @deprecated Since version 3.x, to be removed in 4.0.
- */
-interface SerializerHandlerInterface extends \Sonata\Serializer\SerializerHandlerInterface
-{
-    /**
-     * @return string
-     */
-    public static function getType();
-}
+class_alias(
+    \Sonata\Serializer\SerializerHandlerInterface::class,
+    __NAMESPACE__.'\SerializerHandlerInterface'
+);

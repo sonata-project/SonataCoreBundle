@@ -17,11 +17,7 @@ namespace Sonata\CoreBundle\Twig\Node;
     E_USER_DEPRECATED
 );
 
-/**
- * @author Marko Kunic <kunicmarko20@gmail.com>
- *
- * @deprecated Since version 3.x, to be removed in 4.0.
- */
-final class DeprecatedTemplateNode extends \Sonata\Twig\Node\DeprecatedTemplateNode
-{
-}
+class_alias(
+    \Sonata\Twig\Node\DeprecatedTemplateNode::class,
+    __NAMESPACE__.'\DeprecatedTemplateNode'
+);

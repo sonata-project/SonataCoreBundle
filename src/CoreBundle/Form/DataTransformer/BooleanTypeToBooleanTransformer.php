@@ -17,9 +17,7 @@ namespace Sonata\CoreBundle\Form\DataTransformer;
     E_USER_DEPRECATED
 );
 
-/**
- * @deprecated Since version 3.x, to be removed in 4.0.
- */
-class BooleanTypeToBooleanTransformer extends \Sonata\Form\DataTransformer\BooleanTypeToBooleanTransformer
-{
-}
+class_alias(
+    \Sonata\Form\DataTransformer\BooleanTypeToBooleanTransformer::class,
+    __NAMESPACE__.'\BooleanTypeToBooleanTransformer'
+);

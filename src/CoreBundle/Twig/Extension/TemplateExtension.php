@@ -17,9 +17,7 @@ namespace Sonata\CoreBundle\Twig\Extension;
     E_USER_DEPRECATED
 );
 
-/**
- * @deprecated Since version 3.x, to be removed in 4.0.
- */
-class TemplateExtension extends \Sonata\Twig\Extension\TemplateExtension
-{
-}
+class_alias(
+    \Sonata\Twig\Extension\TemplateExtension::class,
+    __NAMESPACE__.'\TemplateExtension'
+);

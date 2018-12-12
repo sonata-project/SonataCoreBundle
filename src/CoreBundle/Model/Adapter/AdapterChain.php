@@ -17,9 +17,7 @@ namespace Sonata\CoreBundle\Model\Adapter;
     E_USER_DEPRECATED
 );
 
-/**
- * @deprecated since 3.x, to be removed in 4.0.
- */
-class AdapterChain extends \Sonata\Doctrine\Adapter\AdapterChain implements AdapterInterface
-{
-}
+class_alias(
+    \Sonata\Doctrine\Adapter\AdapterChain::class,
+    __NAMESPACE__.'\AdapterChain'
+);

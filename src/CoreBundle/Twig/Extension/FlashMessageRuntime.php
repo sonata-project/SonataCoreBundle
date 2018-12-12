@@ -17,14 +17,7 @@ namespace Sonata\CoreBundle\Twig\Extension;
     E_USER_DEPRECATED
 );
 
-/**
- * This is the Sonata core flash message Twig runtime.
- *
- * @author Vincent Composieux <composieux@ekino.com>
- * @author Titouan Galopin <galopintitouan@gmail.com>
- *
- * @deprecated Since version 3.x, to be removed in 4.0.
- */
-final class FlashMessageRuntime extends \Sonata\Twig\Extension\FlashMessageRuntime
-{
-}
+class_alias(
+    \Sonata\Twig\Extension\FlashMessageRuntime::class,
+    __NAMESPACE__.'\FlashMessageRuntime'
+);
