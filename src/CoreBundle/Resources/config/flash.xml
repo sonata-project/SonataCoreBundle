@@ -12,7 +12,7 @@
             <argument/>
             <argument/>
         </service>
-        <service id="sonata.core.flashmessage.twig.runtime" class="Sonata\CoreBundle\Twig\Extension\FlashMessageRuntime">
+        <service id="sonata.core.flashmessage.twig.runtime" class="Sonata\Twig\Extension\FlashMessageRuntime">
             <tag name="twig.runtime"/>
             <argument type="service" id="sonata.core.flashmessage.manager"/>
         </service>
