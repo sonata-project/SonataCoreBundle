@@ -76,7 +76,7 @@ class InlineConstraintTest extends TestCase
         $constraint = new InlineConstraint(['service' => 'foo', 'method' => function () {
         }, 'serializingWarning' => true]);
 
-        $expected = 'O:56:"Sonata\CoreBundle\Validator\Constraints\InlineConstraint":0:{}';
+        $expected = 'O:50:"Sonata\Form\Validator\Constraints\InlineConstraint":0:{}';
 
         $this->assertSame($expected, serialize($constraint));
 

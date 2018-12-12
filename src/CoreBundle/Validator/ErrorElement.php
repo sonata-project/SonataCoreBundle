@@ -17,9 +17,7 @@ namespace Sonata\CoreBundle\Validator;
     E_USER_DEPRECATED
 );
 
-/**
- * @deprecated Since version 3.x, to be removed in 4.0.
- */
-class ErrorElement extends \Sonata\Form\Validator\ErrorElement
-{
-}
+class_alias(
+    \Sonata\Form\Validator\ErrorElement::class,
+    __NAMESPACE__.'\ErrorElement'
+);

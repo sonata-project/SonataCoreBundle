@@ -17,11 +17,7 @@ namespace Sonata\CoreBundle\Model;
     E_USER_DEPRECATED
 );
 
-/**
- * @author Sylvain Deloux <sylvain.deloux@ekino.com>
- *
- * @deprecated since 3.x, to be removed in 4.0.
- */
-interface ManagerInterface extends \Sonata\Doctrine\Model\ManagerInterface
-{
-}
+class_alias(
+    \Sonata\Doctrine\Model\ManagerInterface::class,
+    __NAMESPACE__.'\ManagerInterface'
+);

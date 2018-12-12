@@ -17,11 +17,7 @@ namespace Sonata\CoreBundle\Twig\Extension;
     E_USER_DEPRECATED
 );
 
-/**
- * @author Marko Kunic <kunicmarko20@gmail.com>
- *
- * @deprecated Since version 3.x, to be removed in 4.0.
- */
-final class DeprecatedTemplateExtension extends \Sonata\Twig\Extension\DeprecatedTemplateExtension
-{
-}
+class_alias(
+    \Sonata\Twig\Extension\DeprecatedTemplateExtension::class,
+    __NAMESPACE__.'\DeprecatedTemplateExtension'
+);

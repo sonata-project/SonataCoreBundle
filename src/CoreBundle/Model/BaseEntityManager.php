@@ -17,11 +17,7 @@ namespace Sonata\CoreBundle\Model;
     E_USER_DEPRECATED
 );
 
-/**
- * @author Sylvain Deloux <sylvain.deloux@ekino.com>
- *
- * @deprecated since 3.x, to be removed in 4.0.
- */
-abstract class BaseEntityManager extends \Sonata\Doctrine\Entity\BaseEntityManager implements ManagerInterface
-{
-}
+class_alias(
+    \Sonata\Doctrine\Entity\BaseEntityManager::class,
+    __NAMESPACE__.'\BaseEntityManager'
+);
