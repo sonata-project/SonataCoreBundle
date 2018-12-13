@@ -17,11 +17,7 @@ namespace Sonata\CoreBundle\Model\Adapter;
     E_USER_DEPRECATED
 );
 
-/**
- * This is a port of the DoctrineORMAdminBundle / ModelManager class.
- *
- * @deprecated since 3.x, to be removed in 4.0.
- */
-class DoctrineORMAdapter extends \Sonata\Doctrine\Adapter\ORM\DoctrineORMAdapter implements AdapterInterface
-{
-}
+class_alias(
+    \Sonata\Doctrine\Adapter\ORM\DoctrineORMAdapter::class,
+    __NAMESPACE__.'\DoctrineORMAdapter'
+);

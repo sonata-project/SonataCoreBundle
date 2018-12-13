@@ -17,11 +17,7 @@ namespace Sonata\CoreBundle\Twig\TokenParser;
     E_USER_DEPRECATED
 );
 
-/**
- * @author Marko Kunic <kunicmarko20@gmail.com>
- *
- * @deprecated Since version 3.x, to be removed in 4.0.
- */
-final class DeprecatedTemplateTokenParser extends \Sonata\Twig\TokenParser\DeprecatedTemplateTokenParser
-{
-}
+class_alias(
+    \Sonata\Twig\TokenParser\DeprecatedTemplateTokenParser::class,
+    __NAMESPACE__.'\DeprecatedTemplateTokenParser'
+);

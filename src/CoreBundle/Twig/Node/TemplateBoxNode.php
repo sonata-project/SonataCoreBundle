@@ -17,9 +17,7 @@ namespace Sonata\CoreBundle\Twig\Node;
     E_USER_DEPRECATED
 );
 
-/**
- * @deprecated Since version 3.x, to be removed in 4.0.
- */
-class TemplateBoxNode extends \Sonata\Twig\Node\TemplateBoxNode
-{
-}
+class_alias(
+    \Sonata\Twig\Node\TemplateBoxNode::class,
+    __NAMESPACE__.'\TemplateBoxNode'
+);

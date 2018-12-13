@@ -17,11 +17,7 @@ namespace Sonata\CoreBundle\Model;
     E_USER_DEPRECATED
 );
 
-/**
- * @author Raphaël Benitte <benitteraphael@gmail.com>
- *
- * @deprecated since 3.x, to be removed in 4.0.
- */
-interface PageableManagerInterface extends \Sonata\Doctrine\Model\PageableManagerInterface
-{
-}
+class_alias(
+    \Sonata\Doctrine\Model\PageableManagerInterface::class,
+    __NAMESPACE__.'\PageableManagerInterface'
+);

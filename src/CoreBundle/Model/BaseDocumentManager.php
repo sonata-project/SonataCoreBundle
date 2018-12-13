@@ -17,11 +17,7 @@ namespace Sonata\CoreBundle\Model;
     E_USER_DEPRECATED
 );
 
-/**
- * @author Hugo Briand <briand@ekino.com>
- *
- * @deprecated since 3.x, to be removed in 4.0.
- */
-abstract class BaseDocumentManager extends \Sonata\Doctrine\Document\BaseDocumentManager implements ManagerInterface
-{
-}
+class_alias(
+    \Sonata\Doctrine\Document\BaseDocumentManager::class,
+    __NAMESPACE__.'\BaseDocumentManager'
+);

@@ -230,7 +230,7 @@ class ErrorElementTest extends TestCase
             'InvalidArgumentException'
         );
         $this->expectExceptionMessage(
-            'Argument 3 passed to Sonata\CoreBundle\Validator\ErrorElement::__construct() must be an instance of '.
+            'Argument 3 passed to Sonata\Form\Validator\ErrorElement::__construct() must be an instance of '.
             'Symfony\Component\Validator\ExecutionContextInterface or '.
             'Symfony\Component\Validator\Context\ExecutionContextInterface.'
         );

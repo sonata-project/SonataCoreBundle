@@ -17,9 +17,7 @@ namespace Sonata\CoreBundle\Test;
     E_USER_DEPRECATED
 );
 
-/**
- * @deprecated since 3.x, to be removed in 4.0.
- */
-class EntityManagerMockFactory extends \Sonata\Doctrine\Test\EntityManagerMockFactory
-{
-}
+class_alias(
+    \Sonata\Doctrine\Test\EntityManagerMockFactory::class,
+    __NAMESPACE__.'\EntityManagerMockFactory'
+);

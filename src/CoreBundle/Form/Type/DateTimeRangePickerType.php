@@ -17,9 +17,7 @@ namespace Sonata\CoreBundle\Form\Type;
     E_USER_DEPRECATED
 );
 
-/**
- * @deprecated Since version 3.x, to be removed in 4.0.
- */
-class DateTimeRangePickerType extends \Sonata\Form\Type\DateTimeRangePickerType
-{
-}
+class_alias(
+    \Sonata\Form\Type\DateTimeRangePickerType::class,
+    __NAMESPACE__.'\DateTimeRangePickerType'
+);
