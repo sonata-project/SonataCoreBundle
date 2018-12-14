@@ -11,7 +11,7 @@
 
 namespace Sonata\Twig\Extension;
 
-use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
+use Sonata\Doctrine\Adapter\AdapterChain;
 use Sonata\Twig\TokenParser\TemplateBoxTokenParser;
 use Symfony\Component\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
@@ -37,7 +37,7 @@ class TemplateExtension extends AbstractExtension
     /**
      * @param bool $debug Is Symfony debug enabled?
      */
-    public function __construct($debug, TranslatorInterface $translator, AdapterInterface $modelAdapter)
+    public function __construct($debug, TranslatorInterface $translator, AdapterChain $modelAdapter)
     {
         $this->debug = $debug;
         $this->translator = $translator;
