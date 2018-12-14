@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.13.2](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.1...3.13.2) - 2018-12-14
+
+### Fixed
+- Several crashes about type hinting issues
+
 ## [3.13.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.0...3.13.1) - 2018-12-11
 
 ### Fixed
