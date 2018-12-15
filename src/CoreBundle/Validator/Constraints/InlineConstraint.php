@@ -21,3 +21,17 @@ class_alias(
     \Sonata\Form\Validator\Constraints\InlineConstraint::class,
     __NAMESPACE__.'\InlineConstraint'
 );
+
+if (false) {
+    /**
+     * Constraint which allows inline-validation inside services.
+     *
+     * @Annotation
+     * @Target({"CLASS"})
+     *
+     * @deprecated Since version 3.x, to be removed in 4.0.
+     */
+    class InlineConstraint extends \Sonata\Form\Validator\Constraints\InlineConstraint
+    {
+    }
+}

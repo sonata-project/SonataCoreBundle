@@ -21,3 +21,12 @@ class_alias(
     \Sonata\Form\Validator\InlineValidator::class,
     __NAMESPACE__.'\InlineValidator'
 );
+
+if (false) {
+    /**
+     * @deprecated Since version 3.x, to be removed in 4.0.
+     */
+    class InlineValidator extends \Sonata\Form\Validator\InlineValidator
+    {
+    }
+}

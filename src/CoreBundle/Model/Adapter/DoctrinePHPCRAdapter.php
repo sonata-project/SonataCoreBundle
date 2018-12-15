@@ -21,3 +21,14 @@ class_alias(
     \Sonata\Doctrine\Adapter\PHPCR\DoctrinePHPCRAdapter::class,
     __NAMESPACE__.'\DoctrinePHPCRAdapter'
 );
+
+if (false) {
+    /**
+     * This is a port of the DoctrineORMAdminBundle / ModelManager class.
+     *
+     * @deprecated since 3.x, to be removed in 4.0.
+     */
+    class DoctrinePHPCRAdapter extends \Sonata\Doctrine\Adapter\PHPCR\DoctrinePHPCRAdapter implements AdapterInterface
+    {
+    }
+}

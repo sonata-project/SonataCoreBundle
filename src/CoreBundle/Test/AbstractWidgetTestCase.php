@@ -21,3 +21,12 @@ class_alias(
     \Sonata\Form\Test\AbstractWidgetTestCase::class,
     __NAMESPACE__.'\AbstractWidgetTestCase'
 );
+
+if (false) {
+    /**
+     * @deprecated Since version 3.x, to be removed in 4.0.
+     */
+    abstract class AbstractWidgetTestCase extends \Sonata\Form\Test\AbstractWidgetTestCase
+    {
+    }
+}

@@ -21,3 +21,12 @@ class_alias(
     \Sonata\Form\Type\BaseDoctrineORMSerializationType::class,
     __NAMESPACE__.'\BaseDoctrineORMSerializationType'
 );
+
+if (false) {
+    /**
+     * @deprecated Since version 3.x, to be removed in 4.0.
+     */
+    class BaseDoctrineORMSerializationType extends \Sonata\Form\Type\BaseDoctrineORMSerializationType
+    {
+    }
+}

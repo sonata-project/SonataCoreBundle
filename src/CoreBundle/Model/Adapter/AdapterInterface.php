@@ -21,3 +21,12 @@ class_alias(
     \Sonata\Doctrine\Adapter\AdapterInterface::class,
     __NAMESPACE__.'\AdapterInterface'
 );
+
+if (false) {
+    /**
+     * @deprecated since 3.x, to be removed in 4.0.
+     */
+    interface AdapterInterface extends \Sonata\Doctrine\Adapter\AdapterInterface
+    {
+    }
+}

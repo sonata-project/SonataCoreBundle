@@ -21,3 +21,12 @@ class_alias(
     \Sonata\Doctrine\Adapter\AdapterChain::class,
     __NAMESPACE__.'\AdapterChain'
 );
+
+if (false) {
+    /**
+     * @deprecated since 3.x, to be removed in 4.0.
+     */
+    class AdapterChain extends \Sonata\Doctrine\Adapter\AdapterChain implements AdapterInterface
+    {
+    }
+}

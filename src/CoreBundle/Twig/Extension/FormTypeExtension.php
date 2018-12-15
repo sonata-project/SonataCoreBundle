@@ -21,3 +21,12 @@ class_alias(
     \Sonata\Twig\Extension\FormTypeExtension::class,
     __NAMESPACE__.'\FormTypeExtension'
 );
+
+if (false) {
+    /**
+     * @deprecated Since version 3.x, to be removed in 4.0.
+     */
+    class FormTypeExtension extends \Sonata\Twig\Extension\FormTypeExtension
+    {
+    }
+}
