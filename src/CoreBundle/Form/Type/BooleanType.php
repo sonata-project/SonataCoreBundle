@@ -21,3 +21,12 @@ class_alias(
     \Sonata\Form\Type\BooleanType::class,
     __NAMESPACE__.'\BooleanType'
 );
+
+if (false) {
+    /**
+     * @deprecated Since version 3.x, to be removed in 4.0.
+     */
+    class BooleanType extends \Sonata\Form\Type\BooleanType
+    {
+    }
+}

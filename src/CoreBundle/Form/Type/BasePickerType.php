@@ -21,3 +21,12 @@ class_alias(
     \Sonata\Form\Type\BasePickerType::class,
     __NAMESPACE__.'\BasePickerType'
 );
+
+if (false) {
+    /**
+     * @deprecated Since version 3.x, to be removed in 4.0.
+     */
+    abstract class BasePickerType extends \Sonata\Form\Type\BasePickerType
+    {
+    }
+}

@@ -21,3 +21,12 @@ class_alias(
     \Sonata\Form\Type\CollectionType::class,
     __NAMESPACE__.'\CollectionType'
 );
+
+if (false) {
+    /**
+     * @deprecated Since version 3.x, to be removed in 4.0.
+     */
+    class CollectionType extends \Sonata\Form\Type\CollectionType
+    {
+    }
+}

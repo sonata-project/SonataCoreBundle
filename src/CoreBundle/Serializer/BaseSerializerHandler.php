@@ -21,3 +21,12 @@ class_alias(
     \Sonata\Serializer\BaseSerializerHandler::class,
     __NAMESPACE__.'\BaseSerializerHandler'
 );
+
+if (false) {
+    /**
+     * @deprecated Since version 3.x, to be removed in 4.0.
+     */
+    abstract class BaseSerializerHandler extends \Sonata\Serializer\BaseSerializerHandler implements SerializerHandlerInterface
+    {
+    }
+}

@@ -21,3 +21,14 @@ class_alias(
     \Sonata\Doctrine\Model\ManagerInterface::class,
     __NAMESPACE__.'\ManagerInterface'
 );
+
+if (false) {
+    /**
+     * @author Sylvain Deloux <sylvain.deloux@ekino.com>
+     *
+     * @deprecated since 3.x, to be removed in 4.0.
+     */
+    interface ManagerInterface extends \Sonata\Doctrine\Model\ManagerInterface
+    {
+    }
+}

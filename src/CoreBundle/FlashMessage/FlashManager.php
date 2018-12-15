@@ -21,3 +21,14 @@ class_alias(
     \Sonata\Twig\FlashMessage\FlashManager::class,
     __NAMESPACE__.'\FlashManager'
 );
+
+if (false) {
+    /**
+     * @author Vincent Composieux <composieux@ekino.com>
+     *
+     * @deprecated Since version 3.x, to be removed in 4.0.
+     */
+    class FlashManager extends \Sonata\Twig\FlashMessage\FlashManager
+    {
+    }
+}

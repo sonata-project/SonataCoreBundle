@@ -21,3 +21,14 @@ class_alias(
     '\Sonata\Twig\Status\StatusClassRendererInterface',
     '\Sonata\CoreBundle\Component\Status\StatusClassRendererInterface'
 );
+
+if (false) {
+    /**
+     * @author Hugo Briand <briand@ekino.com>
+     *
+     * @deprecated Since version 3.x, to be removed in 4.0.
+     */
+    interface StatusClassRendererInterface extends \Sonata\Twig\Status\StatusClassRendererInterface
+    {
+    }
+}

@@ -21,3 +21,12 @@ class_alias(
     \Sonata\Doctrine\Document\BasePHPCRManager::class,
     __NAMESPACE__.'\BasePHPCRManager'
 );
+
+if (false) {
+    /**
+     * @deprecated since 3.x, to be removed in 4.0.
+     */
+    abstract class BasePHPCRManager extends \Sonata\Doctrine\Document\BasePHPCRManager implements ManagerInterface
+    {
+    }
+}

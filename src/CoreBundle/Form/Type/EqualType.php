@@ -21,3 +21,12 @@ class_alias(
     \Sonata\Form\Type\EqualType::class,
     __NAMESPACE__.'\EqualType'
 );
+
+if (false) {
+    /**
+     * @deprecated Since version 3.x, to be removed in 4.0.
+     */
+    class EqualType extends \Sonata\Form\Type\EqualType
+    {
+    }
+}
