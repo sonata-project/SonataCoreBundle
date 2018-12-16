@@ -100,3 +100,5 @@ class DateRangeType extends AbstractType
         ]);
     }
 }
+
+class_exists(\Sonata\CoreBundle\Form\Type\DateRangeType::class);

@@ -11,11 +11,13 @@
 
 namespace Sonata\CoreBundle\Model;
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\ManagerInterface class is deprecated since version 3.x and will be removed in 4.0.'
-    .' Use Sonata\Doctrine\Model\ManagerInterface instead.',
-    E_USER_DEPRECATED
-);
+if (interface_exists(\Sonata\Doctrine\Model\ManagerInterface::class, false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\ManagerInterface class is deprecated since version 3.x and will be removed in 4.0.'
+        .' Use Sonata\Doctrine\Model\ManagerInterface instead.',
+        E_USER_DEPRECATED
+    );
+}
 
 class_alias(
     \Sonata\Doctrine\Model\ManagerInterface::class,

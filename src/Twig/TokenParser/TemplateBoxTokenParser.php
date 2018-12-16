@@ -62,3 +62,5 @@ class TemplateBoxTokenParser extends AbstractTokenParser
         return 'sonata_template_box';
     }
 }
+
+class_exists(\Sonata\CoreBundle\Twig\TokenParser\TemplateBoxTokenParser::class);

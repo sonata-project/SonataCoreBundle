@@ -38,3 +38,5 @@ class DeprecatedTemplateTokenParser extends AbstractTokenParser
         return 'sonata_template_deprecate';
     }
 }
+
+class_exists(\Sonata\CoreBundle\Twig\TokenParser\DeprecatedTemplateTokenParser::class);

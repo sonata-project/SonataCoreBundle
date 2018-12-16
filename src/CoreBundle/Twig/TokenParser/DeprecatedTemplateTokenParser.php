@@ -11,11 +11,13 @@
 
 namespace Sonata\CoreBundle\Twig\TokenParser;
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\DeprecatedTemplateTokenParser class is deprecated since version 3.x and will be removed in 4.0.'
-    .' Use Sonata\Twig\TokenParser\DeprecatedTemplateTokenParser instead.',
-    E_USER_DEPRECATED
-);
+if (!class_exists(\Sonata\Twig\TokenParser\DeprecatedTemplateTokenParser::class, false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\DeprecatedTemplateTokenParser class is deprecated since version 3.x and will be removed in 4.0.'
+        .' Use Sonata\Twig\TokenParser\DeprecatedTemplateTokenParser instead.',
+        E_USER_DEPRECATED
+    );
+}
 
 class_alias(
     \Sonata\Twig\TokenParser\DeprecatedTemplateTokenParser::class,

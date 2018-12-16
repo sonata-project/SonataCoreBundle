@@ -89,3 +89,5 @@ CODE;
             ->write("echo $message;");
     }
 }
+
+class_exists(\Sonata\CoreBundle\Twig\Node\TemplateBoxNode::class);

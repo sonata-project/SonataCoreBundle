@@ -11,11 +11,13 @@
 
 namespace Sonata\CoreBundle\Test;
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\AbstractWidgetTestCase class is deprecated since version 3.x and will be removed in 4.0.'
-    .' Use Sonata\Form\Test\AbstractWidgetTestCase instead.',
-    E_USER_DEPRECATED
-);
+if (!class_exists(\Sonata\Form\Test\AbstractWidgetTestCase::class, false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\AbstractWidgetTestCase class is deprecated since version 3.x and will be removed in 4.0.'
+        .' Use Sonata\Form\Test\AbstractWidgetTestCase instead.',
+        E_USER_DEPRECATED
+    );
+}
 
 class_alias(
     \Sonata\Form\Test\AbstractWidgetTestCase::class,

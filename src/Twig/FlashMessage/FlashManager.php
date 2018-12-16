@@ -155,3 +155,5 @@ class FlashManager implements StatusClassRendererInterface
         }
     }
 }
+
+class_exists(\Sonata\CoreBundle\FlashMessage\FlashManager::class);

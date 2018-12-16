@@ -11,11 +11,13 @@
 
 namespace Sonata\CoreBundle\Form\Type;
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\BaseDoctrineORMSerializationType class is deprecated since version 3.x and will be removed in 4.0.'
-    .' Use Sonata\Form\Type\BaseDoctrineORMSerializationType instead.',
-    E_USER_DEPRECATED
-);
+if (!class_exists(\Sonata\Form\Type\BaseDoctrineORMSerializationType::class, false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\BaseDoctrineORMSerializationType class is deprecated since version 3.x and will be removed in 4.0.'
+        .' Use Sonata\Form\Type\BaseDoctrineORMSerializationType instead.',
+        E_USER_DEPRECATED
+    );
+}
 
 class_alias(
     \Sonata\Form\Type\BaseDoctrineORMSerializationType::class,

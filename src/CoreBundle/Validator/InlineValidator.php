@@ -11,11 +11,13 @@
 
 namespace Sonata\CoreBundle\Validator;
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\InlineValidator class is deprecated since version 3.x and will be removed in 4.0.'
-    .' Use Sonata\Form\Validator\InlineValidator instead.',
-    E_USER_DEPRECATED
-);
+if (!class_exists(\Sonata\Form\Validator\InlineValidator::class, false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\InlineValidator class is deprecated since version 3.x and will be removed in 4.0.'
+        .' Use Sonata\Form\Validator\InlineValidator instead.',
+        E_USER_DEPRECATED
+    );
+}
 
 class_alias(
     \Sonata\Form\Validator\InlineValidator::class,

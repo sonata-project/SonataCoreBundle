@@ -80,3 +80,5 @@ class ImmutableArrayType extends AbstractType
         return $this->getBlockPrefix();
     }
 }
+
+class_exists(\Sonata\CoreBundle\Form\Type\ImmutableArrayType::class);

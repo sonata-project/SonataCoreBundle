@@ -52,3 +52,5 @@ class StatusRuntime
         return $default;
     }
 }
+
+class_exists(\Sonata\CoreBundle\Twig\Extension\StatusRuntime::class);

@@ -23,3 +23,5 @@ interface SerializerHandlerInterface extends SubscribingHandlerInterface
      */
     public static function getType();
 }
+
+interface_exists(\Sonata\CoreBundle\Serializer\SerializerHandlerInterface::class);

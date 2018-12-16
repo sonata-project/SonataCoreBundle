@@ -11,11 +11,13 @@
 
 namespace Sonata\CoreBundle\Serializer;
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\BaseSerializerHandler class is deprecated since version 3.x and will be removed in 4.0.'
-    .' Use Sonata\Serializer\BaseSerializerHandler instead.',
-    E_USER_DEPRECATED
-);
+if (!class_exists(\Sonata\Serializer\BaseSerializerHandler::class, false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\BaseSerializerHandler class is deprecated since version 3.x and will be removed in 4.0.'
+        .' Use Sonata\Serializer\BaseSerializerHandler instead.',
+        E_USER_DEPRECATED
+    );
+}
 
 class_alias(
     \Sonata\Serializer\BaseSerializerHandler::class,

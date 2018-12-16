@@ -11,11 +11,13 @@
 
 namespace Sonata\CoreBundle\Model;
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\BaseManager class is deprecated since version 3.x and will be removed in 4.0.'
-    .' Use Sonata\Doctrine\Model\BaseManager instead.',
-    E_USER_DEPRECATED
-);
+if (!class_exists(\Sonata\Doctrine\Model\BaseManager::class, false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\BaseManager class is deprecated since version 3.x and will be removed in 4.0.'
+        .' Use Sonata\Doctrine\Model\BaseManager instead.',
+        E_USER_DEPRECATED
+    );
+}
 
 class_alias(
     \Sonata\Doctrine\Model\BaseManager::class,

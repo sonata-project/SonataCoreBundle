@@ -99,3 +99,5 @@ class TemplateExtension extends AbstractExtension
         return 'sonata_core_template';
     }
 }
+
+class_exists(\Sonata\CoreBundle\Twig\Extension\TemplateExtension::class);
