@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.13.4](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.3...3.13.4) - 2018-12-16
+### Fixed
+- crashes when a class type hints against an old type, but receives a new one
+- Fix deprecation for symfony/config 4.2+
+
 ## [3.13.3](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.2...3.13.3) - 2018-12-16
 ### Fixed
 - crashes when using `composer install --classmap-authoritative`
