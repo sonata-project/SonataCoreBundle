@@ -51,3 +51,5 @@ class FlashMessageRuntime
         return $this->flashManager->getHandledTypes();
     }
 }
+
+class_exists(\Sonata\CoreBundle\Twig\Extension\FlashMessageRuntime::class);

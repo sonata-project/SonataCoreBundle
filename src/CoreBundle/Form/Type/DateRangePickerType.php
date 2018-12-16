@@ -11,11 +11,13 @@
 
 namespace Sonata\CoreBundle\Form\Type;
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\DateRangePickerType class is deprecated since version 3.x and will be removed in 4.0.'
-    .' Use Sonata\Form\Type\DateRangePickerType instead.',
-    E_USER_DEPRECATED
-);
+if (!class_exists(\Sonata\Form\Type\DateRangePickerType::class, false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\DateRangePickerType class is deprecated since version 3.x and will be removed in 4.0.'
+        .' Use Sonata\Form\Type\DateRangePickerType instead.',
+        E_USER_DEPRECATED
+    );
+}
 
 class_alias(
     \Sonata\Form\Type\DateRangePickerType::class,

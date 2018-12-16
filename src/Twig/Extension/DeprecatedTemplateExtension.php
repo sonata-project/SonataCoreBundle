@@ -26,3 +26,5 @@ class DeprecatedTemplateExtension extends AbstractExtension
         ];
     }
 }
+
+class_exists(\Sonata\CoreBundle\Twig\Extension\DeprecatedTemplateExtension::class);

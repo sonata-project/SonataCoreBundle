@@ -163,3 +163,5 @@ class BaseDoctrineORMSerializationType extends AbstractType
         ]);
     }
 }
+
+class_exists(\Sonata\CoreBundle\Form\Type\BaseDoctrineORMSerializationType::class);

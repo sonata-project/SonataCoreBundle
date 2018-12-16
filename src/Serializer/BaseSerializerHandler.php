@@ -118,3 +118,5 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
         return $this->manager->findOneBy(['id' => $data]);
     }
 }
+
+class_exists(\Sonata\CoreBundle\Serializer\BaseSerializerHandler::class);

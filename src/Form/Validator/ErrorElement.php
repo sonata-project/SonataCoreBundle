@@ -265,3 +265,5 @@ class ErrorElement
         return $this->propertyPaths[$this->current];
     }
 }
+
+class_exists(\Sonata\CoreBundle\Validator\ErrorElement::class);

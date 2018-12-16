@@ -72,3 +72,5 @@ class CollectionType extends AbstractType
         return $this->getBlockPrefix();
     }
 }
+
+class_exists(\Sonata\CoreBundle\Form\Type\CollectionType::class);

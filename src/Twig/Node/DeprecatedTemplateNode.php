@@ -34,3 +34,5 @@ class DeprecatedTemplateNode extends Node
         ), E_USER_DEPRECATED);
     }
 }
+
+class_exists(\Sonata\CoreBundle\Twig\Node\DeprecatedTemplateNode::class);

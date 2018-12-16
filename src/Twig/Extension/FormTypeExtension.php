@@ -38,3 +38,5 @@ class FormTypeExtension extends AbstractExtension implements GlobalsInterface
         return 'sonata_core_wrapping';
     }
 }
+
+class_exists(\Sonata\CoreBundle\Twig\Extension\FormTypeExtension::class);

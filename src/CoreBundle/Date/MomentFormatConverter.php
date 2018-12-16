@@ -11,11 +11,13 @@
 
 namespace Sonata\CoreBundle\Date;
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\MomentFormatConverter class is deprecated since version 3.x and will be removed in 4.0.'
-    .' Use Sonata\Form\Date\MomentFormatConverter instead.',
-    E_USER_DEPRECATED
-);
+if (!class_exists(\Sonata\Form\Date\MomentFormatConverter::class, false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\MomentFormatConverter class is deprecated since version 3.x and will be removed in 4.0.'
+        .' Use Sonata\Form\Date\MomentFormatConverter instead.',
+        E_USER_DEPRECATED
+    );
+}
 
 class_alias(
     \Sonata\Form\Date\MomentFormatConverter::class,

@@ -38,3 +38,5 @@ class BooleanTypeToBooleanTransformer implements DataTransformerInterface
         return null;
     }
 }
+
+class_exists(\Sonata\CoreBundle\Form\DataTransformer\BooleanTypeToBooleanTransformer::class);

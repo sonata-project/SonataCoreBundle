@@ -11,11 +11,13 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\StatusRuntime class is deprecated since version 3.x and will be removed in 4.0.'
-    .' Use Sonata\Twig\Extension\StatusRuntime instead.',
-    E_USER_DEPRECATED
-);
+if (!class_exists(\Sonata\Twig\Extension\StatusRuntime::class, false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\StatusRuntime class is deprecated since version 3.x and will be removed in 4.0.'
+        .' Use Sonata\Twig\Extension\StatusRuntime instead.',
+        E_USER_DEPRECATED
+    );
+}
 
 class_alias(
     \Sonata\Twig\Extension\StatusRuntime::class,

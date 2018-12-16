@@ -11,11 +11,13 @@
 
 namespace Sonata\CoreBundle\Component\Status;
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\StatusClassRendererInterface class is deprecated since version 3.x and will be removed in 4.0.'
-    .' Use Sonata\Twig\Status\StatusClassRendererInterface instead.',
-    E_USER_DEPRECATED
-);
+if (!interface_exists('\Sonata\Twig\Status\StatusClassRendererInterface', false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\StatusClassRendererInterface class is deprecated since version 3.x and will be removed in 4.0.'
+        .' Use Sonata\Twig\Status\StatusClassRendererInterface instead.',
+        E_USER_DEPRECATED
+    );
+}
 
 class_alias(
     '\Sonata\Twig\Status\StatusClassRendererInterface',

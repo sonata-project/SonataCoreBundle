@@ -11,11 +11,13 @@
 
 namespace Sonata\CoreBundle\Twig\Extension;
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\FlashMessageRuntime class is deprecated since version 3.x and will be removed in 4.0.'
-    .' Use Sonata\Twig\Extension\FlashMessageRuntime instead.',
-    E_USER_DEPRECATED
-);
+if (!class_exists(\Sonata\Twig\Extension\FlashMessageRuntime::class, false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\FlashMessageRuntime class is deprecated since version 3.x and will be removed in 4.0.'
+        .' Use Sonata\Twig\Extension\FlashMessageRuntime instead.',
+        E_USER_DEPRECATED
+    );
+}
 
 class_alias(
     \Sonata\Twig\Extension\FlashMessageRuntime::class,
