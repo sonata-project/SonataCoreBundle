@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.13.3](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.2...3.13.3) - 2018-12-16
+### Fixed
+- crashes when using `composer install --classmap-authoritative`
+
 ## [3.13.2](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.1...3.13.2) - 2018-12-14
 
 ### Fixed
