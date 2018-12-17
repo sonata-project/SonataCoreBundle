@@ -23,7 +23,12 @@
             <tag name="form.type" alias="sonata_type_datetime_range"/>
             <argument type="service" id="translator"/>
         </service>
-        <service id="sonata.core.form.type.date_picker" class="Sonata\CoreBundle\Form\Type\DatePickerType" public="true">
+        <service id="sonata.core.form.type.date_picker_legacy" class="Sonata\CoreBundle\Form\Type\DatePickerType" public="true">
+            <tag name="form.type" alias="sonata_type_date_picker"/>
+            <argument type="service" id="sonata.core.date.moment_format_converter"/>
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="sonata.core.form.type.date_picker" class="Sonata\Form\Type\DatePickerType" public="true">
             <tag name="form.type" alias="sonata_type_date_picker"/>
             <argument type="service" id="sonata.core.date.moment_format_converter"/>
             <argument type="service" id="translator"/>
