@@ -19,16 +19,13 @@ if (!class_exists(\Sonata\Form\Type\BooleanType::class, false)) {
     );
 }
 
-class_alias(
-    \Sonata\Form\Type\BooleanType::class,
-    __NAMESPACE__.'\BooleanType'
-);
-
-if (false) {
-    /**
-     * @deprecated Since version 3.x, to be removed in 4.0.
-     */
-    class BooleanType extends \Sonata\Form\Type\BooleanType
+/**
+ * @deprecated Since version 3.x, to be removed in 4.0.
+ */
+class BooleanType extends \Sonata\Form\Type\BooleanType
+{
+    public function getBlockPrefix()
     {
+        return 'sonata_type_boolean_legacy';
     }
 }
