@@ -19,16 +19,13 @@ if (!class_exists(\Sonata\Form\Type\DateRangeType::class, false)) {
     );
 }
 
-class_alias(
-    \Sonata\Form\Type\DateRangeType::class,
-    __NAMESPACE__.'\DateRangeType'
-);
-
-if (false) {
-    /**
-     * @deprecated Since version 3.x, to be removed in 4.0.
-     */
-    class DateRangeType extends \Sonata\Form\Type\DateRangeType
+/**
+ * @deprecated Since version 3.x, to be removed in 4.0.
+ */
+class DateRangeType extends \Sonata\Form\Type\DateRangeType
+{
+    public function getBlockPrefix()
     {
+        return 'sonata_type_date_range_legacy';
     }
 }

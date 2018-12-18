@@ -19,16 +19,13 @@ if (!class_exists(\Sonata\Form\Type\CollectionType::class, false)) {
     );
 }
 
-class_alias(
-    \Sonata\Form\Type\CollectionType::class,
-    __NAMESPACE__.'\CollectionType'
-);
-
-if (false) {
-    /**
-     * @deprecated Since version 3.x, to be removed in 4.0.
-     */
-    class CollectionType extends \Sonata\Form\Type\CollectionType
+/**
+ * @deprecated Since version 3.x, to be removed in 4.0.
+ */
+class CollectionType extends \Sonata\Form\Type\CollectionType
+{
+    public function getBlockPrefix()
     {
+        return 'sonata_type_collection_legacy';
     }
 }

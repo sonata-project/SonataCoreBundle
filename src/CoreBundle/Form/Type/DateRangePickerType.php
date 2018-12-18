@@ -19,16 +19,13 @@ if (!class_exists(\Sonata\Form\Type\DateRangePickerType::class, false)) {
     );
 }
 
-class_alias(
-    \Sonata\Form\Type\DateRangePickerType::class,
-    __NAMESPACE__.'\DateRangePickerType'
-);
-
-if (false) {
-    /**
-     * @deprecated Since version 3.x, to be removed in 4.0.
-     */
-    class DateRangePickerType extends \Sonata\Form\Type\DateRangePickerType
+/**
+ * @deprecated Since version 3.x, to be removed in 4.0.
+ */
+class DateRangePickerType extends \Sonata\Form\Type\DateRangePickerType
+{
+    public function getBlockPrefix()
     {
+        return 'sonata_type_date_range_picker_legacy';
     }
 }

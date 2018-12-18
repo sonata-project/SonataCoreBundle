@@ -19,16 +19,13 @@ if (!class_exists(\Sonata\Form\Type\EqualType::class, false)) {
     );
 }
 
-class_alias(
-    \Sonata\Form\Type\EqualType::class,
-    __NAMESPACE__.'\EqualType'
-);
-
-if (false) {
-    /**
-     * @deprecated Since version 3.x, to be removed in 4.0.
-     */
-    class EqualType extends \Sonata\Form\Type\EqualType
+/**
+ * @deprecated Since version 3.x, to be removed in 4.0.
+ */
+class EqualType extends \Sonata\Form\Type\EqualType
+{
+    public function getBlockPrefix()
     {
+        return 'sonata_type_equal_legacy';
     }
 }
