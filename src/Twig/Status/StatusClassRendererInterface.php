@@ -37,3 +37,5 @@ interface StatusClassRendererInterface
      */
     public function getStatusClass($object, $statusName = null, $default = '');
 }
+
+interface_exists(\Sonata\CoreBundle\Component\Status\StatusClassRendererInterface::class);
