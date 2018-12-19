@@ -24,7 +24,7 @@ if (!class_exists(\Sonata\Form\Type\BooleanType::class, false)) {
  */
 class BooleanType extends \Sonata\Form\Type\BooleanType
 {
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'sonata_type_boolean_legacy';
     }

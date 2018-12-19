@@ -24,7 +24,7 @@ if (!class_exists(\Sonata\Form\Type\DateRangePickerType::class, false)) {
  */
 class DateRangePickerType extends \Sonata\Form\Type\DateRangePickerType
 {
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'sonata_type_date_range_picker_legacy';
     }

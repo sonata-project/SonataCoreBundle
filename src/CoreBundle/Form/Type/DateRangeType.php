@@ -24,7 +24,7 @@ if (!class_exists(\Sonata\Form\Type\DateRangeType::class, false)) {
  */
 class DateRangeType extends \Sonata\Form\Type\DateRangeType
 {
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'sonata_type_date_range_legacy';
     }

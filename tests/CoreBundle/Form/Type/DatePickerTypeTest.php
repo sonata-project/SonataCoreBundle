@@ -64,7 +64,7 @@ class DatePickerTypeTest extends TypeTestCase
     {
         $type = new DatePickerType(new MomentFormatConverter(), $this->createMock(TranslatorInterface::class));
 
-        $this->assertSame('sonata_type_date_picker', $type->getName());
+        $this->assertSame('sonata_type_date_picker_legacy', $type->getName());
     }
 
     /**
@@ -74,7 +74,7 @@ class DatePickerTypeTest extends TypeTestCase
     {
         $type = new DatePickerType(new MomentFormatConverter());
 
-        $this->assertSame('sonata_type_date_picker', $type->getName());
+        $this->assertSame('sonata_type_date_picker_legacy', $type->getName());
     }
 
     public function testSubmitValidData()

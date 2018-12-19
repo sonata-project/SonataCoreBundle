@@ -59,7 +59,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
     {
         $type = new ImmutableArrayType();
 
-        $this->assertSame('sonata_type_immutable_array', $type->getName());
+        $this->assertSame('sonata_type_immutable_array_legacy', $type->getName());
 
         $this->assertSame(version_compare(Kernel::VERSION, '2.8', '<') ? 'form' : FormType::class, $type->getParent());
 
