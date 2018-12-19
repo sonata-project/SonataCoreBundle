@@ -22,7 +22,7 @@ namespace Sonata\CoreBundle\Form\Type;
  */
 class DatePickerType extends \Sonata\Form\Type\DatePickerType
 {
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'sonata_type_date_picker_legacy';
     }

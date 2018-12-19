@@ -24,7 +24,7 @@ if (!class_exists(\Sonata\Form\Type\ImmutableArrayType::class, false)) {
  */
 class ImmutableArrayType extends \Sonata\Form\Type\ImmutableArrayType
 {
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'sonata_type_immutable_array_legacy';
     }

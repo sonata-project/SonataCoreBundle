@@ -24,7 +24,7 @@ if (!class_exists(\Sonata\Form\Type\CollectionType::class, false)) {
  */
 class CollectionType extends \Sonata\Form\Type\CollectionType
 {
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'sonata_type_collection_legacy';
     }

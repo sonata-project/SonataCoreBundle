@@ -24,7 +24,7 @@ if (!class_exists(\Sonata\Form\Type\EqualType::class, false)) {
  */
 class EqualType extends \Sonata\Form\Type\EqualType
 {
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'sonata_type_equal_legacy';
     }
