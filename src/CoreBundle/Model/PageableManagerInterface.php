@@ -23,3 +23,9 @@ class_alias(
     \Sonata\Doctrine\Model\PageableManagerInterface::class,
     __NAMESPACE__.'\PageableManagerInterface'
 );
+
+if (false) {
+    interface PageableManagerInterface extends \Sonata\Doctrine\Model\PageableManagerInterface
+    {
+    }
+}
