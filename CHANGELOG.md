@@ -2,7 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [3.13.5](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.4...3.13.5) - 2018-12-15
+## [3.13.6](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.5...3.13.6) - 2018-12-20
+### Fixed
+- crash about `PageableManagerInterface` when using `composer install --authoritative-classmap`
+- crashes related to form types
+
+## [3.13.5](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.4...3.13.5) - 2018-12-19
 ### Fixed
 - crash about new `FlashManager` class not implementing old `StatusClassRendererInterface`
 
