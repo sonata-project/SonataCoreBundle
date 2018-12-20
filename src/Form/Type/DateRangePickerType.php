@@ -42,5 +42,3 @@ class DateRangePickerType extends DateRangeType
         return $this->getBlockPrefix();
     }
 }
-
-class_exists(\Sonata\CoreBundle\Form\Type\DateRangePickerType::class);

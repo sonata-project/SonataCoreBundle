@@ -98,5 +98,3 @@ class BooleanType extends AbstractType
         return 'sonata_type_boolean';
     }
 }
-
-class_exists(\Sonata\CoreBundle\Form\Type\BooleanType::class);

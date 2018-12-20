@@ -170,5 +170,3 @@ abstract class BasePickerType extends AbstractType
         ];
     }
 }
-
-class_exists(\Sonata\CoreBundle\Form\Type\BasePickerType::class);
