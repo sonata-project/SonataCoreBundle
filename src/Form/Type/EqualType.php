@@ -95,5 +95,3 @@ class EqualType extends AbstractType
         return $this->getBlockPrefix();
     }
 }
-
-class_exists(\Sonata\CoreBundle\Form\Type\EqualType::class);

@@ -111,5 +111,3 @@ abstract class BaseStatusType extends AbstractType
         ]);
     }
 }
-
-class_exists(\Sonata\CoreBundle\Form\Type\BaseStatusType::class);
