@@ -34,6 +34,11 @@ interface MetadataInterface
     public function getImage();
 
     /**
+     * @return boolean
+     */
+    public function isImageAvailable();
+
+    /**
      * @return string
      */
     public function getDomain();
