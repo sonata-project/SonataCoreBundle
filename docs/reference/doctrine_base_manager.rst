@@ -14,9 +14,9 @@ You just have to extend ``Sonata\CoreBundle\Model\BaseEntityManager``, ``Sonata\
 .. code-block:: php
 
     <?php
-    // src/AppBundle/Entity/ProductManager.php
+    // src/Entity/ProductManager.php
 
-    namespace AppBundle\Entity;
+    namespace App\Entity;
 
     use Sonata\CoreBundle\Model\BaseEntityManager;
 

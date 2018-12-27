@@ -23,7 +23,7 @@ All you have to do is to define a form type service for each entity for which yo
             <argument type="service" id="jms_serializer.metadata_factory" />
             <argument type="service" id="doctrine" />
             <argument>my_custom_form_type_comment</argument>
-            <argument>AppBundle\Entity\Comment</argument>
+            <argument>App\Entity\Comment</argument>
             <argument>a_serialization_group</argument>
         </service>
 
@@ -63,7 +63,7 @@ Each value has a different type: `integer`, `url`, or `string` for instance.
 .. code-block:: php
 
     <?php
-    // src/AppBundle/Entity/Page.php
+    // src/Entity/Page.php
 
     class Page
     {
@@ -88,7 +88,7 @@ Now, the property can be edited by setting a type for each type:
 .. code-block:: php
 
     <?php
-    // src/AppBundle/Admin/PageAdmin.php
+    // src/Admin/PageAdmin.php
     use Sonata\Form\Type\ImmutableArrayType;
 
     class PageAdmin extends Admin
@@ -130,7 +130,7 @@ The type has one extra parameter:
 .. code-block:: php
 
     <?php
-    // src/AppBundle/Entity/Delivery.php
+    // src/Entity/Delivery.php
 
     class Delivery
     {
@@ -152,7 +152,7 @@ The type has one extra parameter:
 .. code-block:: php
 
     <?php
-    // src/AppBundle/Admin/DeliveryAdmin.php
+    // src/Admin/DeliveryAdmin.php
     use Sonata\Form\Type\TranslatableChoiceType;
 
     class DeliveryAdmin extends Admin
@@ -186,7 +186,7 @@ to the underlying forms.
 .. code-block:: php
 
     <?php
-    // src/AppBundle/Entity/ProductAdmin.php
+    // src/Entity/ProductAdmin.php
     use Sonata\Form\Type\CollectionType;
 
     class ProductAdmin extends Admin
@@ -239,7 +239,7 @@ Let's say, you have a ``Delivery::getStatusList`` method which returns a list of
 .. code-block:: php
 
     <?php
-    // src/AppBundle/Entity/Delivery.php
+    // src/Entity/Delivery.php
 
     class Delivery
     {
@@ -275,7 +275,7 @@ And the type can now be used:
 .. code-block:: php
 
     <?php
-    // src/AppBundle/Admin/DeliveryAdmin.php
+    // src/Admin/DeliveryAdmin.php
     use App\Type\OrderStatusType;
 
     class DeliveryAdmin extends Admin
@@ -344,7 +344,7 @@ Finally, in your form, you may use the form type as follows:
 .. code-block:: php
 
     <?php
-    // src/AppBundle/Admin/PageAdmin.php
+    // src/Admin/PageAdmin.php
     use Sonata\Form\Type\DatePickerType;
     use Sonata\Form\Type\DateTimePickerType;
 
@@ -368,7 +368,7 @@ Many of the `standard date picker options`_ are available by adding options with
 .. code-block:: php
 
     <?php
-    // src/AppBundle/Admin/PageAdmin.php
+    // src/Admin/PageAdmin.php
     use Sonata\Form\Type\DatePickerType;
     use Sonata\Form\Type\DateTimePickerType;
 
@@ -412,7 +412,7 @@ Example with ``Sonata\DoctrineORMAdminBundle\Filter\DateRangeFilter`` filter:
 .. code-block:: php
 
     <?php
-    // src/AppBundle/Admin/PostAdmin.php
+    // src/Admin/PostAdmin.php
     use Sonata\Form\Type\DateRangeType;
     use Sonata\DoctrineORMAdminBundle\Filter\DateRangeFilter;
 
@@ -455,7 +455,7 @@ Finally, in your form, you may use the form type as follows:
 .. code-block:: php
 
     <?php
-    // src/AppBundle/Admin/PageAdmin.php
+    // src/Admin/PageAdmin.php
     use Sonata\Form\Type\ColorType;
 
     class PageAdmin extends Admin
