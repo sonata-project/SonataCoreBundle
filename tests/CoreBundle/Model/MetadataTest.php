@@ -60,18 +60,21 @@ class MetadataTest extends TestCase
     /**
      * @dataProvider isImageAvailableProvider
      */
-    public function testIsImageAvailable($title, $description, $image, $expected)
+    public function testIsImageAvailable($expected, $image)
     {
         $metadata = new Metadata('title', 'description', $image);
-        $this->assertEquals($expected, $metadata->isImageAvailable());
+        $this->assertEquals(
+            $expected,
+            (new Metadata('title', 'description', $image))->isImageAvailable()
+        );
     }
 
     public function isImageAvailableProvider()
     {
         return [
-            'image is null' => ['title', 'description', null, false],
-            'image is false' => ['title', 'description', false, false],
-            'image is available' => ['title', 'description', 'image.png', true]
+            'image is null' => [false, null],
+            'image is false' => [false, false],
+            'image is available' => [true, 'image.png']
         ];
     }
 }
