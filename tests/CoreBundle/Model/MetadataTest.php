@@ -73,7 +73,7 @@ class MetadataTest extends TestCase
         return [
             'image is null' => [false, null],
             'image is false' => [false, false],
-            'image is available' => [true, 'image.png']
+            'image is available' => [true, 'image.png'],
         ];
     }
 }
