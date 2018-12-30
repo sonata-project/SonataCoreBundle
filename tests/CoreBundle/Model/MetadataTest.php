@@ -56,4 +56,14 @@ class MetadataTest extends TestCase
         $metadata = new Metadata('title', 'description', false);
         $this->assertFalse($metadata->getImage());
     }
+
+    public function testIsImageAvailable()
+    {
+        $metadata = new Metadata('title', 'description');
+        $this->assertFalse($metadata->isImageAvailable());
+        $metadata = new Metadata('title', 'description', false);
+        $this->assertFalse($metadata->isImageAvailable());
+        $metadata = new Metadata('title', 'description', 'image.png');
+        $this->assertTrue($metadata->isImageAvailable());
+    }
 }
