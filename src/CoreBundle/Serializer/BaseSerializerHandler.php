@@ -98,7 +98,7 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
     /**
      * Deserialize object from its id.
      *
-     * @return null|object
+     * @return object|null
      */
     public function deserializeObjectFromId(VisitorInterface $visitor, int $data, array $type)
     {
