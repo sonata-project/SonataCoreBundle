@@ -14,7 +14,6 @@ The ``SonataCoreBundle`` provided defaults elements required by the different So
    reference/status_helper
    reference/flash_messages
    reference/twig_helpers
-   reference/doctrine_base_manager
    reference/serialization
    reference/api
    reference/conditional_validation

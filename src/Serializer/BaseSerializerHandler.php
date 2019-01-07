@@ -16,7 +16,7 @@ namespace Sonata\Serializer;
 use JMS\Serializer\Context;
 use JMS\Serializer\GraphNavigator;
 use JMS\Serializer\VisitorInterface;
-use Sonata\CoreBundle\Model\ManagerInterface;
+use Sonata\Doctrine\Model\ManagerInterface;
 
 /**
  * @author Sylvain Deloux <sylvain.deloux@ekino.com>
