@@ -141,3 +141,5 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
         }, $html);
     }
 }
+
+class_exists(\Sonata\CoreBundle\Test\AbstractWidgetTestCase::class);

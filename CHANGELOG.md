@@ -2,7 +2,64 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [3.12.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.11.2...3.13.0) - 2018-11-19
+## [3.13.7](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.6...3.13.7) - 2018-12-20
+### Fixed
+- Fixed wrong form namespaces
+
+## [3.13.6](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.5...3.13.6) - 2018-12-20
+### Fixed
+- crash about `PageableManagerInterface` when using `composer install --authoritative-classmap`
+- crashes related to form types
+
+## [3.13.5](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.4...3.13.5) - 2018-12-19
+### Fixed
+- crash about new `FlashManager` class not implementing old `StatusClassRendererInterface`
+
+## [3.13.4](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.3...3.13.4) - 2018-12-16
+### Fixed
+- crashes when a class type hints against an old type, but receives a new one
+- Fix deprecation for symfony/config 4.2+
+
+## [3.13.3](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.2...3.13.3) - 2018-12-16
+### Fixed
+- crashes when using `composer install --classmap-authoritative`
+
+## [3.13.2](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.1...3.13.2) - 2018-12-14
+
+### Fixed
+- Several crashes about type hinting issues
+
+## [3.13.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.0...3.13.1) - 2018-12-11
+
+### Fixed
+- Crash when no flash manager is present
+- Crash about `FlashManager` not being an instance of `StatusClassRendererInterface`
+
+## [3.13.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.12.0...3.13.0) - 2018-12-10
+
+### Added
+- Added `Form\` subnamespace for all form components
+- Added `Serializer\` subnamespace for all serializer components
+- Added `Twig\` subnamespace for all twig components
+
+### Deprecated
+- Deprecated `Sonata\CoreBundle\Component\Status` class
+- Deprecated `Sonata\CoreBundle\Date\*` classes
+- Deprecated `Sonata\CoreBundle\FlashMessage` classes
+- Deprecated `Sonata\CoreBundle\Form\DataMapper\*` classes
+- Deprecated `Sonata\CoreBundle\Form\EventListener\*` classes
+- Deprecated `Sonata\CoreBundle\Form\Type\*` classes
+- Deprecated `Sonata\CoreBundle\Model\MetadataInterface` interface
+- Deprecated `Sonata\CoreBundle\Model\Metadata` class
+- Deprecated `Sonata\CoreBundle\Serializer\BaseSerializerHandler` class
+- Deprecated `Sonata\CoreBundle\Serializer\SerializerHandlerInterface` interface
+- Deprecated `Sonata\CoreBundle\Test\AbstractWidgetTestCase` class
+- Deprecated `Sonata\CoreBundle\Twig\Extension` classes
+- Deprecated `Sonata\CoreBundle\Twig\Node` classes
+- Deprecated `Sonata\CoreBundle\Twig\TokenParser` classes
+- Deprecated `Sonata\CoreBundle\Validator\*` classes
+
+## [3.12.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.11.2...3.12.0) - 2018-11-19
 
 ### Fixed
 - fix `DateTimePickerType` format usage of `Intl` constants.

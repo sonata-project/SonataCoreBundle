@@ -13,15 +13,24 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Model\Adapter;
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\AdapterInterface class is deprecated since version 3.x and will be removed in 4.0.'
-    .' Use Sonata\Doctrine\Adapter\AdapterChain instead.',
-    E_USER_DEPRECATED
+if (!class_exists(\Sonata\Doctrine\Adapter\AdapterChain::class, false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\AdapterChain class is deprecated since version 3.x and will be removed in 4.0.'
+        .' Use Sonata\Doctrine\Adapter\AdapterChain instead.',
+        E_USER_DEPRECATED
+    );
+}
+
+class_alias(
+    \Sonata\Doctrine\Adapter\AdapterChain::class,
+    __NAMESPACE__.'\AdapterChain'
 );
 
-/**
- * @deprecated since 3.x, to be removed in 4.0.
- */
-class AdapterChain extends \Sonata\Doctrine\Adapter\AdapterChain implements AdapterInterface
-{
+if (false) {
+    /**
+     * @deprecated since 3.x, to be removed in 4.0.
+     */
+    class AdapterChain extends \Sonata\Doctrine\Adapter\AdapterChain implements AdapterInterface
+    {
+    }
 }

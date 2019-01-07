@@ -30,7 +30,7 @@ You can define your handler like this:
 
 .. code-block:: xml
 
-        <service id="app.serializer.post" class="AppBundle\Serializer\PostSerializerHandler">
+        <service id="app.serializer.post" class="App\Serializer\PostSerializerHandler">
             <tag name="jms_serializer.subscribing_handler" />
             <argument type="service" id="app.manager.post" />
         </service>
@@ -46,9 +46,9 @@ And your handler need to specify the type name:
 .. code-block:: php
 
         <?php
-        // src/AppBundle/Serializer/PostSerializerHandler.php
+        // src/Serializer/PostSerializerHandler.php
 
-        namespace AppBundle\Serializer;
+        namespace App\Serializer;
 
         use Sonata\CoreBundle\Serializer\BaseSerializerHandler;
 

@@ -19,6 +19,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class SonataCoreExtensionTest extends AbstractExtensionTestCase
 {
+    /**
+     * @group legacy
+     */
     public function testAfterLoadingTheWrappingParameterIsSet(): void
     {
         $this->container->setParameter('kernel.bundles', []);

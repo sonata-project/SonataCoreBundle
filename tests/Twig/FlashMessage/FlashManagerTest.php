@@ -25,6 +25,8 @@ use Symfony\Component\Translation\Translator;
 
 /**
  * @author Vincent Composieux <composieux@ekino.com>
+ *
+ * @group legacy
  */
 class FlashManagerTest extends TestCase
 {

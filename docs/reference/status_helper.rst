@@ -8,7 +8,7 @@ The bundle comes with a `Twig` helper allowing you to generate CSS class names, 
 
 Define a service
 ----------------
-Each service you want to define must implement the ``Sonata\CoreBundle\Component\Status\StatusClassRendererInterface`` interface. For instance:
+Each service you want to define must implement the ``Sonata\Twig\Status\StatusClassRendererInterface`` interface. For instance:
 
 .. code-block:: php
 
@@ -16,7 +16,7 @@ Each service you want to define must implement the ``Sonata\CoreBundle\Component
 
     namespace Sonata\Component\Order;
 
-    use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
+    use Sonata\Twig\Status\StatusClassRendererInterface;
 
     class OrderStatusRenderer implements StatusClassRendererInterface
     {
