@@ -32,7 +32,7 @@ class TemplateBoxNode extends Node
      * @param AbstractExpression $message           Node message to display
      * @param AbstractExpression $translationBundle Node translation bundle to use for display
      * @param int                $enabled           Is Symfony debug enabled?
-     * @param null|string        $lineno            Symfony template line number
+     * @param string|null        $lineno            Symfony template line number
      * @param null               $tag               Symfony tag name
      */
     public function __construct(
