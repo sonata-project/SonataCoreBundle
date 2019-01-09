@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -20,7 +22,7 @@ class AdapterChainTest extends TestCase
     /**
      * @group legacy
      */
-    public function testEmptyAdapter()
+    public function testEmptyAdapter(): void
     {
         $adapter = new AdapterChain();
 
@@ -31,7 +33,7 @@ class AdapterChainTest extends TestCase
     /**
      * @group legacy
      */
-    public function testUrlSafeIdentifier()
+    public function testUrlSafeIdentifier(): void
     {
         $adapter = new AdapterChain();
 
@@ -48,7 +50,7 @@ class AdapterChainTest extends TestCase
     /**
      * @group legacy
      */
-    public function testNormalizedIdentifier()
+    public function testNormalizedIdentifier(): void
     {
         $adapter = new AdapterChain();
 

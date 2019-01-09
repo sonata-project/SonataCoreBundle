@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -20,7 +22,7 @@ use Symfony\Component\Form\FormTypeInterface;
 
 class DependencyInjectionExtensionTest extends TestCase
 {
-    public function testValidType()
+    public function testValidType(): void
     {
         $type = $this->createMock(FormTypeInterface::class);
         $formName = \get_class($type);
@@ -45,7 +47,7 @@ class DependencyInjectionExtensionTest extends TestCase
         $f->getType($formName);
     }
 
-    public function testTypeWithoutService()
+    public function testTypeWithoutService(): void
     {
         $container = $this->createMock(ContainerInterface::class);
 
@@ -54,7 +56,7 @@ class DependencyInjectionExtensionTest extends TestCase
         $this->assertInstanceOf(HiddenType::class, $f->getType(HiddenType::class));
     }
 
-    public function testTypeExtensionsValid()
+    public function testTypeExtensionsValid(): void
     {
         $container = $this->createMock(ContainerInterface::class);
         $container->expects($this->any())->method('has')->will($this->returnValue(true));

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -70,7 +72,7 @@ abstract class BasePickerType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setNormalizer('format', function (Options $options, $format) {
             if (isset($options['date_format']) && \is_string($options['date_format'])) {
@@ -99,7 +101,7 @@ abstract class BasePickerType extends AbstractType
         });
     }
 
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         $format = $options['format'];
 

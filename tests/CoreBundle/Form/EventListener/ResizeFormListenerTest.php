@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -25,7 +27,7 @@ use Symfony\Component\Form\FormEvents;
  */
 class ResizeFormListenerTest extends TestCase
 {
-    public function testGetSubscribedEvents()
+    public function testGetSubscribedEvents(): void
     {
         $events = ResizeFormListener::getSubscribedEvents();
 
@@ -37,7 +39,7 @@ class ResizeFormListenerTest extends TestCase
         $this->assertSame('onBind', $events[FormEvents::SUBMIT]);
     }
 
-    public function testPreSetDataWithNullData()
+    public function testPreSetDataWithNullData(): void
     {
         $listener = new ResizeFormListener('form', [], false, null);
 
@@ -57,7 +59,7 @@ class ResizeFormListenerTest extends TestCase
      * @group legacy
      * NEXT_MAJOR: remove this method
      */
-    public function testPreBindCallsPreSubmit()
+    public function testPreBindCallsPreSubmit(): void
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
@@ -71,7 +73,7 @@ class ResizeFormListenerTest extends TestCase
         $listener->preBind($event);
     }
 
-    public function testPreSetDataThrowsExceptionWithStringEventData()
+    public function testPreSetDataThrowsExceptionWithStringEventData(): void
     {
         $listener = new ResizeFormListener('form', [], false, null);
 
@@ -84,7 +86,7 @@ class ResizeFormListenerTest extends TestCase
         $listener->preSetData($event);
     }
 
-    public function testPreSetData()
+    public function testPreSetData(): void
     {
         $typeOptions = [
             'default' => 'option',
@@ -116,7 +118,7 @@ class ResizeFormListenerTest extends TestCase
         $listener->preSetData($event);
     }
 
-    public function testPreSubmitWithResizeOnBindFalse()
+    public function testPreSubmitWithResizeOnBindFalse(): void
     {
         $listener = new ResizeFormListener('form', [], false, null);
 
@@ -127,7 +129,7 @@ class ResizeFormListenerTest extends TestCase
         $listener->preSubmit($event);
     }
 
-    public function testPreSubmitDataWithNullData()
+    public function testPreSubmitDataWithNullData(): void
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
@@ -143,7 +145,7 @@ class ResizeFormListenerTest extends TestCase
         $listener->preSubmit($event);
     }
 
-    public function testPreSubmitThrowsExceptionWithIntEventData()
+    public function testPreSubmitThrowsExceptionWithIntEventData(): void
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
@@ -156,7 +158,7 @@ class ResizeFormListenerTest extends TestCase
         $listener->preSubmit($event);
     }
 
-    public function testPreSubmitData()
+    public function testPreSubmitData(): void
     {
         $typeOptions = [
             'default' => 'option',
@@ -187,7 +189,7 @@ class ResizeFormListenerTest extends TestCase
         $listener->preSubmit($event);
     }
 
-    public function testPreSubmitDataWithClosure()
+    public function testPreSubmitDataWithClosure(): void
     {
         $typeOptions = [
             'default' => 'option',
@@ -227,7 +229,7 @@ class ResizeFormListenerTest extends TestCase
      * @group legacy
      * NEXT_MAJOR: remove this method
      */
-    public function testOnBindCallsOnSubmit()
+    public function testOnBindCallsOnSubmit(): void
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
@@ -247,7 +249,7 @@ class ResizeFormListenerTest extends TestCase
         $listener->onBind($event);
     }
 
-    public function testOnSubmitWithResizeOnBindFalse()
+    public function testOnSubmitWithResizeOnBindFalse(): void
     {
         $listener = new ResizeFormListener('form', [], false, null);
 
@@ -258,7 +260,7 @@ class ResizeFormListenerTest extends TestCase
         $listener->onSubmit($event);
     }
 
-    public function testOnSubmitDataWithNullData()
+    public function testOnSubmitDataWithNullData(): void
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
@@ -271,7 +273,7 @@ class ResizeFormListenerTest extends TestCase
         $listener->onSubmit($event);
     }
 
-    public function testOnSubmitThrowsExceptionWithIntEventData()
+    public function testOnSubmitThrowsExceptionWithIntEventData(): void
     {
         $listener = new ResizeFormListener('form', [], true, null);
 
@@ -284,7 +286,7 @@ class ResizeFormListenerTest extends TestCase
         $listener->onSubmit($event);
     }
 
-    public function testOnSubmit()
+    public function testOnSubmit(): void
     {
         $listener = new ResizeFormListener('form', [], true, null);
 

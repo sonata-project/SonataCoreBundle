@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -34,13 +36,13 @@ class StatusType extends BaseStatusType
 
 class StatusTypeTest extends TypeTestCase
 {
-    public function testBuildForm()
+    public function testBuildForm(): void
     {
         $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
-            ->will($this->returnCallback(function ($name, $type = null) {
+            ->will($this->returnCallback(function ($name, $type = null): void {
                 if (null !== $type) {
                     $this->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
                 }
@@ -52,7 +54,7 @@ class StatusTypeTest extends TypeTestCase
         ]);
     }
 
-    public function testGetParent()
+    public function testGetParent(): void
     {
         $form = new StatusType(Choice::class, 'getList', 'choice_type');
 
@@ -64,7 +66,7 @@ class StatusTypeTest extends TypeTestCase
     /**
      * @group legacy
      */
-    public function testGetDefaultOptionsLegacy()
+    public function testGetDefaultOptionsLegacy(): void
     {
         Choice::$list = [
             1 => 'salut',
@@ -84,7 +86,7 @@ class StatusTypeTest extends TypeTestCase
         $this->assertSame($options['choices'], [1 => 'salut']);
     }
 
-    public function testGetDefaultOptions()
+    public function testGetDefaultOptions(): void
     {
         Choice::$list = [
             1 => 'salut',
@@ -104,7 +106,7 @@ class StatusTypeTest extends TypeTestCase
         $this->assertSame($options['choices'], ['salut' => 1]);
     }
 
-    public function testGetDefaultOptionsWithValidFlip()
+    public function testGetDefaultOptionsWithValidFlip(): void
     {
         Choice::$list = [
             1 => 'salut',
@@ -124,7 +126,7 @@ class StatusTypeTest extends TypeTestCase
         $this->assertSame($options['choices'], ['salut' => 1, 'toi!' => 2]);
     }
 
-    public function testGetDefaultOptionsWithValidInvalidFlip()
+    public function testGetDefaultOptionsWithValidInvalidFlip(): void
     {
         $this->expectException(\RuntimeException::class);
 

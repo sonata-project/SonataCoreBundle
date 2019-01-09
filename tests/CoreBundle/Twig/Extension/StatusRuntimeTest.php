@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -20,7 +22,7 @@ class StatusRuntimeTest extends TestCase
     /**
      * @group legacy
      */
-    public function testStatusClassDefaultValue()
+    public function testStatusClassDefaultValue(): void
     {
         $runtime = new StatusRuntime();
         $statusService = $this->getMockBuilder(StatusClassRendererInterface::class)

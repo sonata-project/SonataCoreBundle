@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -16,13 +18,13 @@ use Sonata\Twig\Extension\FormTypeExtension;
 
 class FormTypeExtensionTest extends TestCase
 {
-    public function testGetName()
+    public function testGetName(): void
     {
         $extension = new FormTypeExtension(true);
         $this->assertSame('sonata_core_wrapping', $extension->getName());
     }
 
-    public function testGetGlobals()
+    public function testGetGlobals(): void
     {
         $extension = new FormTypeExtension(true);
 

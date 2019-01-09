@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -35,7 +37,7 @@ class StatusExtension extends AbstractExtension
      *
      * @deprecated since 3.x, to be removed in 4.0. Use the StatusRuntime instead.
      */
-    public function addStatusService(StatusClassRendererInterface $renderer)
+    public function addStatusService(StatusClassRendererInterface $renderer): void
     {
         @trigger_error(
             'Method "StatusExtension::addStatusService()" is deprecated since SonataCoreBundle 3.x and will'.

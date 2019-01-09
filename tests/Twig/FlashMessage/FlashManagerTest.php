@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -46,7 +48,7 @@ class FlashManagerTest extends TestCase
     /**
      * Set up units tests.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->session = $this->getSession();
         $this->translator = $this->getTranslator();
@@ -69,7 +71,7 @@ class FlashManagerTest extends TestCase
     /**
      * Test the flash manager getSession() method.
      */
-    public function testGetSession()
+    public function testGetSession(): void
     {
         // When
         $session = $this->flashManager->getSession();
@@ -78,12 +80,12 @@ class FlashManagerTest extends TestCase
         $this->assertInstanceOf(Session::class, $session);
     }
 
-    public function testGetHandledTypes()
+    public function testGetHandledTypes(): void
     {
         $this->assertSame(['success', 'warning', 'error'], $this->flashManager->getHandledTypes());
     }
 
-    public function testGetStatus()
+    public function testGetStatus(): void
     {
         $this->assertSame('danger', $this->flashManager->getStatusClass('error'));
     }
@@ -91,7 +93,7 @@ class FlashManagerTest extends TestCase
     /**
      * Test the flash manager getTypes() method.
      */
-    public function testGetTypes()
+    public function testGetTypes(): void
     {
         // When
         $types = $this->flashManager->getTypes();
@@ -117,7 +119,7 @@ class FlashManagerTest extends TestCase
     /**
      * Test the flash manager handle() method with registered types.
      */
-    public function testHandlingRegisteredTypes()
+    public function testHandlingRegisteredTypes(): void
     {
         // Given
         $this->session->getFlashBag()->set('my_bundle_success', 'hey, success dude!');
@@ -157,7 +159,7 @@ class FlashManagerTest extends TestCase
     /**
      * Test the flash manager handle() method with non-registered types.
      */
-    public function testHandlingNonRegisteredTypes()
+    public function testHandlingNonRegisteredTypes(): void
     {
         // Given
         $this->session->getFlashBag()->set('non_registered_success', 'hey, success dude!');
@@ -179,7 +181,7 @@ class FlashManagerTest extends TestCase
     /**
      * Test the flash manager get() method with a specified domain.
      */
-    public function testFlashMessageWithCustomDomain()
+    public function testFlashMessageWithCustomDomain(): void
     {
         // Given
         $translator = $this->flashManager->getTranslator();

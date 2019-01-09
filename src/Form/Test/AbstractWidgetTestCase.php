@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -46,7 +48,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      */
     private $renderer;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

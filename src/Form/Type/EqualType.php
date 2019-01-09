@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -20,9 +22,9 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 class EqualType extends AbstractType
 {
-    const TYPE_IS_EQUAL = 1;
+    public const TYPE_IS_EQUAL = 1;
 
-    const TYPE_IS_NOT_EQUAL = 2;
+    public const TYPE_IS_NOT_EQUAL = 2;
 
     /**
      * NEXT_MAJOR: remove this property.
@@ -57,12 +59,12 @@ class EqualType extends AbstractType
      *
      * @todo Remove it when bumping requirements to SF 2.7+
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver): void
     {
         $this->configureOptions($resolver);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $defaultOptions = [
             'choice_translation_domain' => 'SonataCoreBundle',

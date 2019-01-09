@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -22,7 +24,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CollectionType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $listener = new ResizeFormListener(
             $options['type'],
@@ -34,7 +36,7 @@ class CollectionType extends AbstractType
         $builder->addEventSubscriber($listener);
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['btn_add'] = $options['btn_add'];
         $view->vars['btn_catalogue'] = $options['btn_catalogue'];
@@ -45,12 +47,12 @@ class CollectionType extends AbstractType
      *
      * @todo Remove it when bumping requirements to SF 2.7+
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver): void
     {
         $this->configureOptions($resolver);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'modifiable' => false,

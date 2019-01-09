@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -25,7 +27,7 @@ class DeprecatedTemplateNode extends Node
         parent::__construct(['newTemplate' => $newTemplate], [], $line, $tag);
     }
 
-    public function compile(Compiler $compiler)
+    public function compile(Compiler $compiler): void
     {
         @trigger_error(sprintf(
             'The "%s" template is deprecated. Use "%s" instead.',

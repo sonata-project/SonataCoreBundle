@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -26,7 +28,7 @@ class FixCheckboxDataListenerTest extends TestCase
     /**
      * @dataProvider valuesProvider
      */
-    public function testFixCheckbox($data, $expected, $suscriber, $transformer)
+    public function testFixCheckbox($data, $expected, $suscriber, $transformer): void
     {
         $dispatcher = new EventDispatcher();
 

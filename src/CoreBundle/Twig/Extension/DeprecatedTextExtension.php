@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -35,7 +37,7 @@ final class DeprecatedTextExtension extends TextExtension
         return twig_wordwrap_filter($env, $value, $length, $separator, $preserve);
     }
 
-    private function notifyDeprecation()
+    private function notifyDeprecation(): void
     {
         @trigger_error(
             'Using the sonata.core.twig.extension.text service is deprecated since 3.2 and will be removed in 4.0',

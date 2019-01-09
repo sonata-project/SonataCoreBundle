@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -34,7 +36,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class SonataCoreExtension extends Extension implements PrependExtensionInterface
 {
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         $configs = $container->getExtensionConfig('sonata_admin');
 
@@ -48,7 +50,7 @@ class SonataCoreExtension extends Extension implements PrependExtensionInterface
         }
     }
 
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $processor = new Processor();
         $configuration = new Configuration();
@@ -95,7 +97,7 @@ EOT
         $this->configureSerializerFormats($config);
     }
 
-    public function configureClassesToCompile()
+    public function configureClassesToCompile(): void
     {
         $this->addClassesToCompile([
             BooleanType::class,
@@ -108,7 +110,7 @@ EOT
         ]);
     }
 
-    public function configureFormFactory(ContainerBuilder $container, array $config)
+    public function configureFormFactory(ContainerBuilder $container, array $config): void
     {
         if (!$config['form']['mapping']['enabled'] || !class_exists(FormPass::class)) {
             $container->removeDefinition('sonata.core.form.extension.dependency');
@@ -139,7 +141,7 @@ EOT
     /**
      * Registers flash message types defined in configuration to flash manager.
      */
-    public function registerFlashTypes(ContainerBuilder $container, array $config)
+    public function registerFlashTypes(ContainerBuilder $container, array $config): void
     {
         $mergedConfig = array_merge_recursive($config['flashmessage'], [
             'success' => ['types' => [
@@ -178,14 +180,14 @@ EOT
     /**
      * @param array $config
      */
-    public function configureSerializerFormats($config)
+    public function configureSerializerFormats($config): void
     {
         if (interface_exists(SubscribingHandlerInterface::class)) {
             BaseSerializerHandler::setFormats($config['serializer']['formats']);
         }
     }
 
-    protected function deprecateSlugify(ContainerBuilder $container)
+    protected function deprecateSlugify(ContainerBuilder $container): void
     {
         $container->getDefinition('sonata.core.slugify.cocur')->setDeprecated(true);
         $container->getDefinition('sonata.core.slugify.native')->setDeprecated(true);

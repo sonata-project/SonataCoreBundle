@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -17,7 +19,7 @@ use Sonata\Twig\Extension\StatusRuntime;
 
 class StatusRuntimeTest extends TestCase
 {
-    public function testStatusClassDefaultValue()
+    public function testStatusClassDefaultValue(): void
     {
         $runtime = new StatusRuntime();
         $statusService = $this->getMockBuilder(StatusClassRendererInterface::class)

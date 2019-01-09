@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -66,7 +68,7 @@ class Exporter
                 throw new \RuntimeException('Invalid format');
         }
 
-        $callback = function () use ($source, $writer) {
+        $callback = function () use ($source, $writer): void {
             $handler = Handler::create($source, $writer);
             $handler->export();
         };

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -26,13 +28,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class BooleanTypeTest extends TypeTestCase
 {
-    public function testBuildForm()
+    public function testBuildForm(): void
     {
         $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
-            ->will($this->returnCallback(function ($name, $type = null) {
+            ->will($this->returnCallback(function ($name, $type = null): void {
                 if (null !== $type) {
                     $this->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
                 }
@@ -60,7 +62,7 @@ class BooleanTypeTest extends TypeTestCase
         ]);
     }
 
-    public function testGetParent()
+    public function testGetParent(): void
     {
         $form = new BooleanType();
 
@@ -69,7 +71,7 @@ class BooleanTypeTest extends TypeTestCase
         $this->assertTrue(class_exists($parentRef), sprintf('Unable to ensure %s is a FQCN', $parentRef));
     }
 
-    public function testGetDefaultOptions()
+    public function testGetDefaultOptions(): void
     {
         $type = new BooleanType();
 
@@ -82,7 +84,7 @@ class BooleanTypeTest extends TypeTestCase
         $this->assertCount(2, $options['choices']);
     }
 
-    public function testAddTransformerCall()
+    public function testAddTransformerCall(): void
     {
         $type = new BooleanType();
 
@@ -99,7 +101,7 @@ class BooleanTypeTest extends TypeTestCase
     /**
      * The default behavior is not to transform to real boolean value .... don't ask.
      */
-    public function testDefaultBehavior()
+    public function testDefaultBehavior(): void
     {
         $type = new BooleanType();
 
@@ -111,7 +113,7 @@ class BooleanTypeTest extends TypeTestCase
         $type->buildForm($builder, $optionResolver->resolve([]));
     }
 
-    public function testOptions()
+    public function testOptions(): void
     {
         $type = new BooleanType();
 
@@ -146,7 +148,7 @@ class BooleanTypeTest extends TypeTestCase
     /**
      * @group legacy
      */
-    public function testDeprecatedCatalogueOptionLegacy()
+    public function testDeprecatedCatalogueOptionLegacy(): void
     {
         $type = new BooleanType();
 

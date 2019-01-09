@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -27,7 +29,7 @@ class Foo
         return $this->bar;
     }
 
-    public function setBar($bar)
+    public function setBar($bar): void
     {
         $this->bar = $bar;
     }
@@ -37,7 +39,7 @@ class Foo
         return $this->baz;
     }
 
-    public function setBaz($baz)
+    public function setBaz($baz): void
     {
         $this->baz = $baz;
     }

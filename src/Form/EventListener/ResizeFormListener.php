@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -77,7 +79,7 @@ class ResizeFormListener implements EventSubscriberInterface
     /**
      * @throws UnexpectedTypeException
      */
-    public function preSetData(FormEvent $event)
+    public function preSetData(FormEvent $event): void
     {
         $form = $event->getForm();
         $data = $event->getData();
@@ -109,7 +111,7 @@ class ResizeFormListener implements EventSubscriberInterface
     /**
      * @throws UnexpectedTypeException
      */
-    public function preSubmit(FormEvent $event)
+    public function preSubmit(FormEvent $event): void
     {
         if (!$this->resizeOnSubmit) {
             return;
@@ -156,7 +158,7 @@ class ResizeFormListener implements EventSubscriberInterface
     /**
      * @throws UnexpectedTypeException
      */
-    public function onSubmit(FormEvent $event)
+    public function onSubmit(FormEvent $event): void
     {
         if (!$this->resizeOnSubmit) {
             return;

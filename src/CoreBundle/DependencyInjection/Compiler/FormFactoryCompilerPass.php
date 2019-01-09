@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -20,7 +22,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 class FormFactoryCompilerPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $typeIdx = [];
         foreach ($container->findTaggedServiceIds('form.type') as $id => $tags) {
@@ -55,7 +57,7 @@ class FormFactoryCompilerPass implements CompilerPassInterface
         $container->setDefinition('form.extension', $factory);
     }
 
-    private function processFormPass(ContainerBuilder $container)
+    private function processFormPass(ContainerBuilder $container): void
     {
         $formPass = new FormPass();
         $formPass->process($container);

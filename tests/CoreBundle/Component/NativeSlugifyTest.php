@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -19,7 +21,7 @@ use Sonata\CoreBundle\Component\NativeSlugify;
  */
 class NativeSlugifyTest extends TestCase
 {
-    public function testSlugify()
+    public function testSlugify(): void
     {
         setlocale(LC_ALL, 'en_US.utf8');
         setlocale(LC_CTYPE, 'en_US.utf8');

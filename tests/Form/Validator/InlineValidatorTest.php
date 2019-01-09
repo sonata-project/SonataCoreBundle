@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -30,14 +32,14 @@ final class InlineValidatorTest extends TestCase
     private $constraintValidatorFactory;
     private $context;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->container = $this->createMock(ContainerInterface::class);
         $this->constraintValidatorFactory = $this->createMock(ConstraintValidatorFactoryInterface::class);
         $this->context = $this->createMock(ExecutionContextInterface::class);
     }
 
-    public function testGetErrorElement()
+    public function testGetErrorElement(): void
     {
         $inlineValidator = new InlineValidator($this->container, $this->constraintValidatorFactory);
 
@@ -53,7 +55,7 @@ final class InlineValidatorTest extends TestCase
         $this->assertSame('foo', $errorElement->getSubject());
     }
 
-    public function testValidateWithConstraintIsClosure()
+    public function testValidateWithConstraintIsClosure(): void
     {
         $this->expectException(ValidatorException::class);
         $this->expectExceptionMessage('foo is equal to foo');
@@ -68,7 +70,7 @@ final class InlineValidatorTest extends TestCase
 
         $constraint->expects($this->once())
             ->method('getClosure')
-            ->willReturn(function (ErrorElement $errorElement, $value) {
+            ->willReturn(function (ErrorElement $errorElement, $value): void {
                 throw new ValidatorException($errorElement->getSubject().' is equal to '.$value);
             });
 
@@ -79,7 +81,7 @@ final class InlineValidatorTest extends TestCase
         $inlineValidator->validate('foo', $constraint);
     }
 
-    public function testValidateWithConstraintGetServiceIsString()
+    public function testValidateWithConstraintGetServiceIsString(): void
     {
         $constraint = $this->getMockBuilder(Constraint::class)
             ->setMethods([
@@ -116,7 +118,7 @@ final class InlineValidatorTest extends TestCase
         $inlineValidator->validate('foo', $constraint);
     }
 
-    public function testValidateWithConstraintGetServiceIsNotString()
+    public function testValidateWithConstraintGetServiceIsNotString(): void
     {
         $constraint = $this->getMockBuilder(Constraint::class)
             ->setMethods([

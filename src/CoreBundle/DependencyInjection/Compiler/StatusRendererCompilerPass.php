@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -21,7 +23,7 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class StatusRendererCompilerPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         // NEXT_MAJOR : remove this check when dropping support for Symfony 2.8.
         if (class_exists(RuntimeLoaderPass::class)) {

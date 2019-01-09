@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -27,7 +29,7 @@ final class FooValidatorService
      *
      * @throws ValidatorException
      */
-    public function fooValidatorMethod(ErrorElement $errorElement, $value)
+    public function fooValidatorMethod(ErrorElement $errorElement, $value): void
     {
         throw new ValidatorException($errorElement->getSubject().' is equal to '.$value);
     }

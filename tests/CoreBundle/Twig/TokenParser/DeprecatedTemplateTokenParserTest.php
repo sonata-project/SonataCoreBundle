@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -25,7 +27,7 @@ use Twig\Source;
  */
 class DeprecatedTemplateTokenParserTest extends TestCase
 {
-    public function testCompileValid()
+    public function testCompileValid(): void
     {
         $source = new Source('{% sonata_template_deprecate "new.html.twig" %}', 'test');
         $expected = new DeprecatedTemplateNode(
@@ -45,7 +47,7 @@ class DeprecatedTemplateTokenParserTest extends TestCase
         $this->assertSame($expected->count(), $actual->count());
     }
 
-    public function testCompileException()
+    public function testCompileException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 

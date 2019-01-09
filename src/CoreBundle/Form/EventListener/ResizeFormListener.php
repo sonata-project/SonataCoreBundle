@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -40,7 +42,7 @@ class ResizeFormListener extends \Sonata\Form\EventListener\ResizeFormListener
      * @deprecated Since version 2.3, to be renamed in 4.0.
      *             Use {@link preSubmit} instead
      */
-    public function preBind(FormEvent $event)
+    public function preBind(FormEvent $event): void
     {
         // BC prevention for class extending this one.
         if (self::class !== \get_called_class()) {
@@ -60,7 +62,7 @@ class ResizeFormListener extends \Sonata\Form\EventListener\ResizeFormListener
      * @deprecated Since version 2.3, to be removed in 4.0.
      *             Use {@link onSubmit} instead
      */
-    public function onBind(FormEvent $event)
+    public function onBind(FormEvent $event): void
     {
         // BC prevention for class extending this one.
         if (self::class !== \get_called_class()) {

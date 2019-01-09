@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -21,7 +23,7 @@ class TemplateExtensionTest extends TestCase
     /**
      * @group legacy
      */
-    public function testSlugify()
+    public function testSlugify(): void
     {
         setlocale(LC_ALL, 'en_US.utf8');
         setlocale(LC_CTYPE, 'en_US.utf8');
@@ -41,7 +43,7 @@ class TemplateExtensionTest extends TestCase
         $this->assertSame($extension->slugify(urldecode('%2Fc\'est+bientôt+l\'été')), 'c-est-bientot-l-ete');
     }
 
-    public function testSafeUrl()
+    public function testSafeUrl(): void
     {
         $translator = $this->createMock(TranslatorInterface::class);
 

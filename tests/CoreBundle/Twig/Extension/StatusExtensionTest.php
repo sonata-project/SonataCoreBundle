@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -17,13 +19,13 @@ use Sonata\CoreBundle\Twig\Extension\StatusExtension;
 
 class StatusExtensionTest extends TestCase
 {
-    public function testGetName()
+    public function testGetName(): void
     {
         $extension = new StatusExtension();
         $this->assertSame('sonata_core_status', $extension->getName());
     }
 
-    public function testGetFilters()
+    public function testGetFilters(): void
     {
         $extension = new StatusExtension();
         $filters = $extension->getFilters();
@@ -34,7 +36,7 @@ class StatusExtensionTest extends TestCase
     /**
      * @group legacy
      */
-    public function testStatusClassDefaultValue()
+    public function testStatusClassDefaultValue(): void
     {
         $extension = new StatusExtension();
         $statusService = $this->getMockBuilder(StatusClassRendererInterface::class)

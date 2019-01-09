@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -22,12 +24,12 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 final class StatusRendererCompilerPassTest extends AbstractCompilerPassTestCase
 {
-    public function registerCompilerPass(ContainerBuilder $container)
+    public function registerCompilerPass(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new StatusRendererCompilerPass());
     }
 
-    public function testProcess()
+    public function testProcess(): void
     {
         $statusRenderer = new Definition();
         $statusRenderer->addTag('sonata.status.renderer');

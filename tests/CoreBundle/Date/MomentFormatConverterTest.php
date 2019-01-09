@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -21,7 +23,7 @@ use Sonata\CoreBundle\Date\MomentFormatConverter;
  */
 class MomentFormatConverterTest extends TestCase
 {
-    public function testPhpToMoment()
+    public function testPhpToMoment(): void
     {
         $mfc = new MomentFormatConverter();
 

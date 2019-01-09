@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -59,13 +61,13 @@ class InlineConstraint extends Constraint
         return array_keys(get_object_vars($this));
     }
 
-    public function __wakeup()
+    public function __wakeup(): void
     {
         if (\is_string($this->service) && \is_string($this->method)) {
             return;
         }
 
-        $this->method = function () {
+        $this->method = function (): void {
         };
 
         $this->serializingWarning = true;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -38,7 +40,7 @@ class BasePickerTest extends BasePickerType
  */
 class BasePickerTypeTest extends TestCase
 {
-    public function testFinishView()
+    public function testFinishView(): void
     {
         $type = new BasePickerTest(
             new MomentFormatConverter(),
@@ -70,7 +72,7 @@ class BasePickerTypeTest extends TestCase
         $this->assertSame('text', $view->vars['type']);
     }
 
-    public function testTimePickerIntlFormater()
+    public function testTimePickerIntlFormater(): void
     {
         $translator = $this->createMock(TranslatorInterface::class);
         $translator->method('getLocale')->willReturn('ru');
@@ -98,7 +100,7 @@ class BasePickerTypeTest extends TestCase
      *
      * @group legacy
      */
-    public function testConstructorLegacy()
+    public function testConstructorLegacy(): void
     {
         new BasePickerTest(new MomentFormatConverter());
     }

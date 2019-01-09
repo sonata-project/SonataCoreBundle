@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -23,7 +25,7 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class FlashMessageCompilerPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if (!class_exists(RuntimeLoaderPass::class) && $container->hasDefinition('sonata.core.flashmessage.twig.extension')) {
             $container->getDefinition('sonata.core.flashmessage.twig.extension')

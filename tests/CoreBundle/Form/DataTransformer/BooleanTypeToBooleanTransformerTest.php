@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -23,14 +25,14 @@ class BooleanTypeToBooleanTransformerTest extends TestCase
     /**
      * @dataProvider getReverseTransformData
      */
-    public function testReverseTransform($value, $expected)
+    public function testReverseTransform($value, $expected): void
     {
         $transformer = new BooleanTypeToBooleanTransformer();
 
         $this->assertSame($expected, $transformer->transform($value));
     }
 
-    public function testTransform()
+    public function testTransform(): void
     {
         $transformer = new BooleanTypeToBooleanTransformer();
         $this->assertTrue($transformer->reverseTransform(BooleanType::TYPE_YES));

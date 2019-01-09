@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -19,7 +21,7 @@ use Sonata\CoreBundle\Model\Adapter\DoctrineORMAdapter;
 
 class DoctrineORMAdapterTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         if (!class_exists(UnitOfWork::class)) {
             $this->markTestSkipped('Doctrine ORM not installed');
@@ -29,7 +31,7 @@ class DoctrineORMAdapterTest extends TestCase
     /**
      * @group legacy
      */
-    public function testNormalizedIdentifierWithScalar()
+    public function testNormalizedIdentifierWithScalar(): void
     {
         $this->expectException(\RuntimeException::class);
 
@@ -42,7 +44,7 @@ class DoctrineORMAdapterTest extends TestCase
     /**
      * @group legacy
      */
-    public function testNormalizedIdentifierWithNull()
+    public function testNormalizedIdentifierWithNull(): void
     {
         $registry = $this->createMock(ManagerRegistry::class);
         $adapter = new DoctrineORMAdapter($registry);
@@ -53,7 +55,7 @@ class DoctrineORMAdapterTest extends TestCase
     /**
      * @group legacy
      */
-    public function testNormalizedIdentifierWithNoManager()
+    public function testNormalizedIdentifierWithNoManager(): void
     {
         $registry = $this->createMock(ManagerRegistry::class);
         $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue(null));
@@ -66,7 +68,7 @@ class DoctrineORMAdapterTest extends TestCase
     /**
      * @group legacy
      */
-    public function testNormalizedIdentifierWithNotManaged()
+    public function testNormalizedIdentifierWithNotManaged(): void
     {
         $unitOfWork = $this->getMockBuilder(UnitOfWork::class)->disableOriginalConstructor()->getMock();
         $unitOfWork->expects($this->once())->method('isInIdentityMap')->will($this->returnValue(false));
@@ -87,7 +89,7 @@ class DoctrineORMAdapterTest extends TestCase
      *
      * @group legacy
      */
-    public function testNormalizedIdentifierWithValidObject($data, $expected)
+    public function testNormalizedIdentifierWithValidObject($data, $expected): void
     {
         $unitOfWork = $this->getMockBuilder(UnitOfWork::class)->disableOriginalConstructor()->getMock();
         $unitOfWork->expects($this->once())->method('isInIdentityMap')->will($this->returnValue(true));

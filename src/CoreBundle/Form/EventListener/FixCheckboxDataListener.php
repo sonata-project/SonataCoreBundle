@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -36,7 +38,7 @@ class FixCheckboxDataListener extends \Sonata\Form\EventListener\FixCheckboxData
      * @deprecated Since version 2.3, to be renamed in 4.0.
      *             Use {@link preSubmit} instead
      */
-    public function preBind(FormEvent $event)
+    public function preBind(FormEvent $event): void
     {
         // BC prevention for class extending this one.
         if (self::class !== \get_called_class()) {

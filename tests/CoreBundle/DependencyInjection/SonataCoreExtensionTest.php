@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -20,7 +22,7 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
     /**
      * @group legacy
      */
-    public function testAfterLoadingTheWrappingParameterIsSet()
+    public function testAfterLoadingTheWrappingParameterIsSet(): void
     {
         $this->load(['form' => ['mapping' => ['enabled' => false]]]);
         $this->assertContainerBuilderHasParameter(
@@ -34,7 +36,7 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testHorizontalFormTypeMeansNoWrapping()
+    public function testHorizontalFormTypeMeansNoWrapping(): void
     {
         $this->load([
             'form' => ['mapping' => ['enabled' => false]],
@@ -51,7 +53,7 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
         );
     }
 
-    public function testPrepend()
+    public function testPrepend(): void
     {
         $containerBuilder = $this->prophesize(ContainerBuilder::class);
 

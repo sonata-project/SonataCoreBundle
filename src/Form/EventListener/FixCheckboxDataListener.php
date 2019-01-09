@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -30,7 +32,7 @@ class FixCheckboxDataListener implements EventSubscriberInterface
         return [FormEvents::PRE_SUBMIT => 'preSubmit'];
     }
 
-    public function preSubmit(FormEvent $event)
+    public function preSubmit(FormEvent $event): void
     {
         $data = $event->getData();
         $transformers = $event->getForm()->getConfig()->getViewTransformers();

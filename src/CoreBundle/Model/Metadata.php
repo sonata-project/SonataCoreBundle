@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -115,12 +117,12 @@ class Metadata implements MetadataInterface
         return array_key_exists($name, $this->options) ? $this->options[$name] : $default;
     }
 
-    public function setOption($name, $option)
+    public function setOption($name, $option): void
     {
         $this->options[$name] = $option;
     }
 
-    public function setOptions(array $options)
+    public function setOptions(array $options): void
     {
         $this->options = $options;
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -18,12 +20,12 @@ class FlashMessageExtensionTest extends TestCase
 {
     private $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->extension = new FlashMessageExtension();
     }
 
-    public function testFunctionsArePrefixed()
+    public function testFunctionsArePrefixed(): void
     {
         foreach ($this->extension->getFunctions() as $function) {
             $this->assertTrue(

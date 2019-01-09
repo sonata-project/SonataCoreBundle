@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -25,13 +27,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImmutableArrayTypeTest extends TypeTestCase
 {
-    public function testBuildForm()
+    public function testBuildForm(): void
     {
         $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
-            ->will($this->returnCallback(function ($name, $type = null) {
+            ->will($this->returnCallback(function ($name, $type = null): void {
                 if (null !== $type) {
                     $this->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
                 }
@@ -43,7 +45,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
         ]);
     }
 
-    public function testGetParent()
+    public function testGetParent(): void
     {
         $form = new ImmutableArrayType();
 
@@ -52,7 +54,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
         $this->assertTrue(class_exists($parentRef), sprintf('Unable to ensure %s is a FQCN', $parentRef));
     }
 
-    public function testGetDefaultOptions()
+    public function testGetDefaultOptions(): void
     {
         $type = new ImmutableArrayType();
 
@@ -71,7 +73,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
         $this->assertSame($expected, $options);
     }
 
-    public function testCallback()
+    public function testCallback(): void
     {
         $type = new ImmutableArrayType();
 
@@ -107,7 +109,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
         $type->buildForm($builder, $options);
     }
 
-    public function testWithIncompleteOptions()
+    public function testWithIncompleteOptions(): void
     {
         $optionsResolver = new OptionsResolver();
 
@@ -122,7 +124,7 @@ class ImmutableArrayTypeTest extends TypeTestCase
         $optionsResolver->resolve(['keys' => [['test']]]);
     }
 
-    public function testFormBuilderIsAValidElement()
+    public function testFormBuilderIsAValidElement(): void
     {
         $optionsResolver = new OptionsResolver();
 

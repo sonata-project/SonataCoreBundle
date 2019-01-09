@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -24,13 +26,13 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 class DateTimePickerTypeTest extends TypeTestCase
 {
-    public function testBuildForm()
+    public function testBuildForm(): void
     {
         $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
             ->method('add')
-            ->will($this->returnCallback(function ($name, $type = null) {
+            ->will($this->returnCallback(function ($name, $type = null): void {
                 if (null !== $type) {
                     $this->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
                 }
@@ -50,7 +52,7 @@ class DateTimePickerTypeTest extends TypeTestCase
         ]);
     }
 
-    public function testGetParent()
+    public function testGetParent(): void
     {
         $form = new DateTimePickerType(
             $this->createMock(MomentFormatConverter::class),
@@ -62,7 +64,7 @@ class DateTimePickerTypeTest extends TypeTestCase
         $this->assertTrue(class_exists($parentRef), sprintf('Unable to ensure %s is a FQCN', $parentRef));
     }
 
-    public function testGetName()
+    public function testGetName(): void
     {
         $type = new DateTimePickerType(new MomentFormatConverter(), $this->createMock(TranslatorInterface::class));
 
@@ -72,14 +74,14 @@ class DateTimePickerTypeTest extends TypeTestCase
     /**
      * @group legacy
      */
-    public function testConstructorLegacy()
+    public function testConstructorLegacy(): void
     {
         $type = new DateTimePickerType(new MomentFormatConverter());
 
         $this->assertSame('sonata_type_datetime_picker', $type->getName());
     }
 
-    public function testSubmitUnmatchingDateFormat()
+    public function testSubmitUnmatchingDateFormat(): void
     {
         \Locale::setDefault('en');
         $form = $this->factory->create(DateTimePickerType::class, new \DateTime('2018-06-03 20:02:03'), [
@@ -92,7 +94,7 @@ class DateTimePickerTypeTest extends TypeTestCase
         $this->assertFalse($form->isSynchronized());
     }
 
-    public function testSubmitMatchingDateFormat()
+    public function testSubmitMatchingDateFormat(): void
     {
         \Locale::setDefault('en');
         $form = $this->factory->create(DateTimePickerType::class, new \DateTime('2018-06-03 20:02:03'), [

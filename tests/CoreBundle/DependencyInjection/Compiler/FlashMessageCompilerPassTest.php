@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -23,12 +25,12 @@ use Symfony\Component\DependencyInjection\Definition;
  */
 final class FlashMessageCompilerPassTest extends AbstractCompilerPassTestCase
 {
-    public function registerCompilerPass(ContainerBuilder $container)
+    public function registerCompilerPass(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new FlashMessageCompilerPass());
     }
 
-    public function testProcess()
+    public function testProcess(): void
     {
         $this->setDefinition('sonata.core.flashmessage.twig.extension', new Definition());
 

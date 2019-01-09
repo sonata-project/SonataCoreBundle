@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -28,7 +30,7 @@ final class BaseSerializerHandlerTest extends TestCase
      *
      * NEXT_MAJOR : this should call setFormats method
      */
-    public function testGetSubscribingMethodsWithDefaultFormats()
+    public function testGetSubscribingMethodsWithDefaultFormats(): void
     {
         $manager = $this->createMock(ManagerInterface::class);
 
@@ -78,7 +80,7 @@ final class BaseSerializerHandlerTest extends TestCase
         $this->assertSame($methods, $expectedMethods);
     }
 
-    public function testSetFormats()
+    public function testSetFormats(): void
     {
         $manager = $this->createMock(ManagerInterface::class);
 
@@ -106,7 +108,7 @@ final class BaseSerializerHandlerTest extends TestCase
         $this->assertSame($methods, $expectedMethods);
     }
 
-    public function testAddFormats()
+    public function testAddFormats(): void
     {
         $manager = $this->createMock(ManagerInterface::class);
 
@@ -148,7 +150,7 @@ final class BaseSerializerHandlerTest extends TestCase
         $this->assertSame($methods, $expectedMethods);
     }
 
-    public function testSerializeObjectToIdWithDataIsInstanceOfManager()
+    public function testSerializeObjectToIdWithDataIsInstanceOfManager(): void
     {
         $modelInstance = $this->getMockBuilder(FooSerializer::class)
             ->disableOriginalConstructor()
@@ -177,7 +179,7 @@ final class BaseSerializerHandlerTest extends TestCase
         $this->assertTrue($serializer->serializeObjectToId($visitor, $modelInstance, ['foo'], $context));
     }
 
-    public function testSerializeObjectToIdWithDataIsNotInstanceOfManager()
+    public function testSerializeObjectToIdWithDataIsNotInstanceOfManager(): void
     {
         $modelInstance = $this->getMockBuilder(FooSerializer::class)
             ->disableOriginalConstructor()
@@ -199,7 +201,7 @@ final class BaseSerializerHandlerTest extends TestCase
         $serializer->serializeObjectToId($visitor, $modelInstance, ['foo'], $context);
     }
 
-    public function testDeserializeObjectFromId()
+    public function testDeserializeObjectFromId(): void
     {
         $manager = $this->createMock(ManagerInterface::class);
         $manager->expects($this->once())
