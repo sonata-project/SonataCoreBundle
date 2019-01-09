@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -11,11 +13,13 @@
 
 namespace Sonata\CoreBundle\Tests\DependencyInjection;
 
-use Matthias\SymfonyConfigTest\PhpUnit\AbstractConfigurationTestCase;
+use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use Sonata\CoreBundle\DependencyInjection\Configuration;
 
-class ConfigurationTest extends AbstractConfigurationTestCase
+class ConfigurationTest
 {
+    use ConfigurationTestCaseTrait;
+
     public function getConfiguration()
     {
         return new Configuration();
