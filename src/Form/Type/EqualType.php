@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -20,9 +22,9 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 class EqualType extends AbstractType
 {
-    const TYPE_IS_EQUAL = 1;
+    public const TYPE_IS_EQUAL = 1;
 
-    const TYPE_IS_NOT_EQUAL = 2;
+    public const TYPE_IS_NOT_EQUAL = 2;
 
     /**
      * NEXT_MAJOR: remove this property.
