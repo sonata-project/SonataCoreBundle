@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -22,9 +24,9 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class BooleanType extends AbstractType
 {
-    const TYPE_YES = 1;
+    public const TYPE_YES = 1;
 
-    const TYPE_NO = 2;
+    public const TYPE_NO = 2;
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

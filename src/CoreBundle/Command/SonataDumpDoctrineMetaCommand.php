@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -173,7 +175,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
         $normalizedMeta['table'] = $meta->table['name'];
 
         foreach ($fieldMappings as $field) {
-            $normalizedMeta['fields'][$field['fieldName']] = isset($field['columnName']) ? $field['columnName'] : null;
+            $normalizedMeta['fields'][$field['fieldName']] = $field['columnName'] ?? null;
         }
 
         return $normalizedMeta;

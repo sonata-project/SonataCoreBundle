@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -98,7 +100,7 @@ class ErrorElement
     public function __call($name, array $arguments = [])
     {
         if ('assert' === substr($name, 0, 6)) {
-            $this->validate($this->newConstraint(substr($name, 6), isset($arguments[0]) ? $arguments[0] : []));
+            $this->validate($this->newConstraint(substr($name, 6), $arguments[0] ?? []));
         } else {
             throw new \RuntimeException('Unable to recognize the command');
         }
@@ -178,9 +180,9 @@ class ErrorElement
     public function addViolation($message, $parameters = [], $value = null)
     {
         if (\is_array($message)) {
-            $value = isset($message[2]) ? $message[2] : $value;
+            $value = $message[2] ?? $value;
             $parameters = isset($message[1]) ? (array) $message[1] : [];
-            $message = isset($message[0]) ? $message[0] : 'error';
+            $message = $message[0] ?? 'error';
         }
 
         $subPath = (string) $this->getCurrentPropertyPath();
