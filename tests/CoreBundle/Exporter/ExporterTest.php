@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Exporter;
 
-use Exporter\Source\ArraySourceIterator;
-use Exporter\Source\SourceIteratorInterface;
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Exporter\Exporter;
+use Sonata\Exporter\Source\ArraySourceIterator;
+use Sonata\Exporter\Source\SourceIteratorInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

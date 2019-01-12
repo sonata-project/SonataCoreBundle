@@ -13,17 +13,17 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Exporter;
 
-use Exporter\Handler;
-use Exporter\Source\SourceIteratorInterface;
-use Exporter\Writer\CsvWriter;
-use Exporter\Writer\JsonWriter;
-use Exporter\Writer\XlsWriter;
-use Exporter\Writer\XmlWriter;
+use Sonata\Exporter\Handler;
+use Sonata\Exporter\Source\SourceIteratorInterface;
+use Sonata\Exporter\Writer\CsvWriter;
+use Sonata\Exporter\Writer\JsonWriter;
+use Sonata\Exporter\Writer\XlsWriter;
+use Sonata\Exporter\Writer\XmlWriter;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 @trigger_error(
     'The '.__NAMESPACE__.'\Exporter class is deprecated since version 3.1 and will be removed in 4.0.'.
-    ' Use Exporter\Exporter instead',
+    ' Use Sonata\Exporter\Exporter instead',
     E_USER_DEPRECATED
 );
 
