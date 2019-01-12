@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Model;
 
-if (interface_exists(\Sonata\Doctrine\Model\PageableManagerInterface::class, false)) {
+if (!interface_exists(\Sonata\Doctrine\Model\PageableManagerInterface::class, false)) {
     @trigger_error(
         'The '.__NAMESPACE__.'\PageableManagerInterface class is deprecated since version 3.x and will be removed in 4.0.'
         .' Use Sonata\DatagridBundle\Pager\PageableInterface instead.',
