@@ -13,11 +13,13 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Validator\Constraints;
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\InlineConstraint class is deprecated since version 3.x and will be removed in 4.0.'
-    .' Use Sonata\Form\Validator\Constraint\InlineConstraint instead.',
-    E_USER_DEPRECATED
-);
+if (!class_exists(Sonata\Form\Validator\Constraints\InlineConstraint::class, false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\InlineConstraint class is deprecated since version 3.x and will be removed in 4.0.'
+        .' Use Sonata\Form\Validator\Constraint\InlineConstraint instead.',
+        E_USER_DEPRECATED
+    );
+}
 
 class_alias(
     \Sonata\Form\Validator\Constraints\InlineConstraint::class,
