@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.14.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.7...3.14.0) - 2019-01-13
+
+### Fixed
+- crash caused by an incompatibilty with sonata-project/exporter 2
+- deprecation wrongly triggered when using the new interface or classes
+
+### Removed
+- support for php 5 and php 7.0
+
 ## [3.13.7](https://github.com/sonata-project/SonataCoreBundle/compare/3.13.6...3.13.7) - 2018-12-20
 ### Fixed
 - Fixed wrong form namespaces
