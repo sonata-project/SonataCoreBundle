@@ -15,21 +15,12 @@ namespace Sonata\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\TranslatorInterface;
-
-@trigger_error(
-    sprintf(
-        'Form type "%s" is deprecated since SonataCoreBundle 2.2.0 and will be'
-        .' removed in 4.0. Use form type "%s" with "translation_domain" option instead.',
-        TranslatableChoiceType::class,
-        ChoiceType::class
-    ),
-    E_USER_DEPRECATED
-);
 
 /**
  * NEXT_MAJOR: remove this class.
@@ -64,6 +55,21 @@ class TranslatableChoiceType extends AbstractType
         $resolver->setDefaults([
             'catalogue' => 'messages',
         ]);
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        @trigger_error(
+            sprintf(
+                'Form type "%s" is deprecated since SonataCoreBundle 2.2.0 and will be'
+                .' removed in 4.0. Use form type "%s" with "translation_domain" option instead.',
+                TranslatableChoiceType::class,
+                ChoiceType::class
+            ),
+            E_USER_DEPRECATED
+        );
+
+        parent::buildForm($builder, $options);
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)

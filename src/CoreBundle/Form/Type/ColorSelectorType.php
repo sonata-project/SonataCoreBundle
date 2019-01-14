@@ -16,14 +16,9 @@ namespace Sonata\CoreBundle\Form\Type;
 use Sonata\CoreBundle\Color\Colors;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
-@trigger_error(
-    'The '.__NAMESPACE__.'\ColorSelectorType class is deprecated since version 3.5 and will be removed in 4.0.'
-    .' Use '.__NAMESPACE__.'\ColorType instead.',
-    E_USER_DEPRECATED
-);
 
 /**
  * NEXT_MAJOR: remove this class.
@@ -32,6 +27,17 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class ColorSelectorType extends AbstractType
 {
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        @trigger_error(
+            'The '.__NAMESPACE__.'\ColorSelectorType class is deprecated since version 3.5 and will be removed in 4.0.'
+            .' Use '.__NAMESPACE__.'\ColorType instead.',
+            E_USER_DEPRECATED
+        );
+
+        parent::buildForm($builder, $options);
+    }
+
     /**
      * {@inheritdoc}
      *

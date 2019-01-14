@@ -32,11 +32,19 @@ class ColorTypeTest extends TypeTestCase
             $this->markTestSkipped('< Symfony 3.4');
         }
 
-        $type = new ColorType();
+        $this->factory->create(ColorType::class);
     }
 
+    /**
+     * @group legacy
+     * @expectedDeprecation The Sonata\CoreBundle\Form\Type\ColorType class is deprecated since version 3.10 and will be removed in 4.0. Use Symfony\Component\Form\Extension\Core\Type\ColorType instead.
+     */
     public function testBuildForm()
     {
+        if (!class_exists('Symfony\Component\Form\Extension\Core\Type\ColorType')) {
+            $this->markTestSkipped('< Symfony 3.4');
+        }
+
         $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
         $formBuilder
             ->expects($this->any())
@@ -51,8 +59,16 @@ class ColorTypeTest extends TypeTestCase
         $type->buildForm($formBuilder, []);
     }
 
+    /**
+     * @group legacy
+     * @expectedDeprecation The Sonata\CoreBundle\Form\Type\ColorType class is deprecated since version 3.10 and will be removed in 4.0. Use Symfony\Component\Form\Extension\Core\Type\ColorType instead.
+     */
     public function testSubmitValidData()
     {
+        if (!class_exists('Symfony\Component\Form\Extension\Core\Type\ColorType')) {
+            $this->markTestSkipped('< Symfony 3.4');
+        }
+
         $form = $this->factory->create(ColorType::class);
         $form->submit('#556b2f');
         $this->assertTrue($form->isSynchronized());

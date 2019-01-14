@@ -13,17 +13,24 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Form\Type;
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\DateTimePickerType class is deprecated since version 3.x and will be removed in 4.0.'
-    .' Use Sonata\Form\Type\DateTimePickerType instead.',
-    E_USER_DEPRECATED
-);
+use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * @deprecated Since version 3.x, to be removed in 4.0.
  */
 class DateTimePickerType extends \Sonata\Form\Type\DateTimePickerType
 {
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        @trigger_error(
+            'The '.__NAMESPACE__.'\DateTimePickerType class is deprecated since version 3.x and will be removed in 4.0.'
+            .' Use Sonata\Form\Type\DateTimePickerType instead.',
+            E_USER_DEPRECATED
+        );
+
+        parent::buildForm($builder, $options);
+    }
+
     public function getName()
     {
         return 'sonata_type_datetime_picker_legacy';
