@@ -63,7 +63,7 @@ class TranslatableChoiceType extends AbstractType
             sprintf(
                 'Form type "%s" is deprecated since SonataCoreBundle 2.2.0 and will be'
                 .' removed in 4.0. Use form type "%s" with "translation_domain" option instead.',
-                TranslatableChoiceType::class,
+                self::class,
                 ChoiceType::class
             ),
             E_USER_DEPRECATED
