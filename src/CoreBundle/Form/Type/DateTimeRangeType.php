@@ -13,19 +13,24 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Form\Type;
 
-if (!class_exists(\Sonata\Form\Type\DateTimeRangeType::class, false)) {
-    @trigger_error(
-        'The '.__NAMESPACE__.'\DateTimeRangeType class is deprecated since version 3.x and will be removed in 4.0.'
-        .' Use Sonata\Form\Type\DateTimeRangeType instead.',
-        E_USER_DEPRECATED
-    );
-}
+use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * @deprecated Since version 3.x, to be removed in 4.0.
  */
 class DateTimeRangeType extends \Sonata\Form\Type\DateTimeRangeType
 {
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        @trigger_error(
+            'The '.__NAMESPACE__.'\DateTimeRangeType class is deprecated since version 3.x and will be removed in 4.0.'
+            .' Use Sonata\Form\Type\DateTimeRangeType instead.',
+            E_USER_DEPRECATED
+        );
+
+        parent::buildForm($builder, $options);
+    }
+
     public function getName()
     {
         return 'sonata_type_datetime_range_legacy';
