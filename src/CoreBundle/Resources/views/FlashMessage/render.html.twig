@@ -8,18 +8,35 @@ For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 
 #}
+
 {% for type in sonata_flashmessages_types() %}
     {% set domain = domain is defined ? domain : null %}
-    {% for message in sonata_flashmessages_get(type, domain) %}
+    {% set messages = sonata_flashmessages_get(type, domain) %}
+    {% if messages|length > 1 %}
+        <div class="alert alert-{{ type|sonata_status_class }} alert-dismissible collapsed-box">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true" aria-label="{{ 'message_close'|trans({}, 'SonataCoreBundle') }}">×</button>
+            <h4>
+                <button class="btn btn-link" style="color: unset; padding: 0;" data-toggle="collapse" data-target="#alert-body-{{ loop.index }}">
+                    {{ type|trans({}, 'SonataCoreBundle')|upper }}
+                    <span>&#x25BE;</span>
+                </button>
+            </h4>
+            <div id="alert-body-{{ loop.index }}" class="collapse">
+                {% for message in messages %}
+                    {{ message|raw }} </br>
+                {% endfor %}
+            </div>
+        </div>
+    {% elseif messages|length != 0 %}
         <div class="alert alert-{{ type|sonata_status_class }} alert-dismissable">
             <button
-                type="button"
-                class="close"
-                data-dismiss="alert"
-                aria-hidden="true"
-                aria-label="{{ 'message_close'|trans({}, 'SonataCoreBundle') }}"
+                    type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-hidden="true"
+                    aria-label="{{ 'message_close'|trans({}, 'SonataCoreBundle') }}"
             >&times;</button>
-            {{ message|raw }}
+            {{ messages|first|raw }}
         </div>
-    {% endfor %}
+    {% endif %}
 {% endfor %}
