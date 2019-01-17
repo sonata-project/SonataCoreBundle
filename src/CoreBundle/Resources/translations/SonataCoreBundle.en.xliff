@@ -602,18 +602,6 @@
                 <source>message_close</source>
                 <target>Close</target>
             </trans-unit>
-            <trans-unit id="success">
-                <source>success</source>
-                <target>Success</target>
-            </trans-unit>
-            <trans-unit id="warning">
-                <source>warning</source>
-                <target>Warning</target>
-            </trans-unit>
-            <trans-unit id="danger">
-                <source>danger</source>
-                <target>Danger</target>
-            </trans-unit>
         </body>
     </file>
 </xliff>
