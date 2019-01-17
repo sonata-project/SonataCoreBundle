@@ -17,14 +17,15 @@ All you have to do is to define a form type service for each entity for which yo
 
     .. code-block:: xml
 
-        <service id="my.custom.form.type.comment" class="Sonata\Form\Type\DoctrineORMSerializationType">
-            <tag name="form.type" alias="my_custom_form_type_comment" />
+        <!-- config/services.xml -->
 
-            <argument type="service" id="jms_serializer.metadata_factory" />
-            <argument type="service" id="doctrine" />
+        <service id="my.custom.form.type.comment" class="Sonata\Form\Type\DoctrineORMSerializationType">
+            <argument type="service" id="jms_serializer.metadata_factory"/>
+            <argument type="service" id="doctrine"/>
             <argument>my_custom_form_type_comment</argument>
             <argument>App\Entity\Comment</argument>
             <argument>a_serialization_group</argument>
+            <tag name="form.type" alias="my_custom_form_type_comment"/>
         </service>
 
 The service definition should contain the following arguments:
@@ -35,15 +36,12 @@ The service definition should contain the following arguments:
 * The entity class name for which you want to build form,
 * The serialization group you want serialization fields have.
 
-
 .. warning::
 
     ``DoctrineORMSerializationType`` cannot be used directly with
     Symfony3.0, you need to extend the class
     ``BaseDoctrineORMSerializationType`` with an empty class to have a
     unique FQCN.
-
-
 
 ImmutableArrayType
 ------------------
@@ -58,19 +56,16 @@ A definition is either a ``FormBuilder`` instance or an array with 3 options:
 * related type parameters: please refer to the related form documentation.
 
 Let's say a ``Page`` has options property with some fixed key-value pairs.
-Each value has a different type: `integer`, `url`, or `string` for instance.
+Each value has a different type: `integer`, `url`, or `string` for instance::
 
-.. code-block:: php
-
-    <?php
     // src/Entity/Page.php
 
     class Page
     {
-        protected $options = array(
-            'ttl'       => 1,
-            'redirect'  => ''
-        );
+        protected $options = [
+            'ttl' => 1,
+            'redirect' => '',
+        [;
 
         public function setOptions(array $options)
         {
@@ -83,30 +78,24 @@ Each value has a different type: `integer`, `url`, or `string` for instance.
         }
     }
 
-Now, the property can be edited by setting a type for each type:
+Now, the property can be edited by setting a type for each type::
 
-.. code-block:: php
-
-    <?php
     // src/Admin/PageAdmin.php
+    
     use Sonata\Form\Type\ImmutableArrayType;
 
-    class PageAdmin extends Admin
+    final class PageAdmin extends AbstractAdmin
     {
         protected function configureFormFields(FormMapper $formMapper)
         {
             $formMapper
-                ->add('options', ImmutableArrayType::class, array(
-                    'keys' => array(
-                        array('ttl', 'text', array('required' => false)),
-                        array('redirect', 'url', array('required' => true)),
-                    )
-                ))
-                // ...
-            ;
+                ->add('options', ImmutableArrayType::class, [
+                    'keys' => [
+                        ['ttl', 'text', ['required' => false]],
+                        ['redirect', 'url', ['required' => true]],
+                    ]
+                ]);
         }
-
-        // ...
     }
 
 BooleanType
@@ -126,49 +115,41 @@ The type has one extra parameter:
 
  * ``catalogue``: the catalogue name to translate the value.
 
-
 .. code-block:: php
 
-    <?php
     // src/Entity/Delivery.php
 
     class Delivery
     {
         public static function getStatusList()
         {
-            return array(
+            return [
                 self::STATUS_OPEN      => 'status_open',
                 self::STATUS_PENDING   => 'status_pending',
                 self::STATUS_VALIDATED => 'status_validated',
                 self::STATUS_CANCELLED => 'status_cancelled',
                 self::STATUS_ERROR     => 'status_error',
                 self::STATUS_STOPPED   => 'status_stopped',
-            );
+            ];
         }
-
-        // ...
     }
 
 .. code-block:: php
 
-    <?php
     // src/Admin/DeliveryAdmin.php
+
     use Sonata\Form\Type\TranslatableChoiceType;
 
-    class DeliveryAdmin extends Admin
+    final class DeliveryAdmin extends AbstractAdmin
     {
         protected function configureFormFields(FormMapper $formMapper)
         {
             $formMapper
-                ->add('deliveryStatus', TranslatableChoiceType::class, array(
+                ->add('deliveryStatus', TranslatableChoiceType::class, [
                     'choices' => Delivery::getStatusList(),
                     'catalogue' => 'SonataOrderBundle'
-                ))
-                // ...
-            ;
+                ]);
         }
-
-        // ...
     }
 
 .. note::
@@ -181,33 +162,27 @@ CollectionType
 The ``Collection Type`` is meant to handle creation and editing of model
 collections. Rows can be added and deleted, and your model abstraction layer may
 allow you to edit fields inline. You can use ``type_options`` to pass values
-to the underlying forms.
+to the underlying forms::
 
-.. code-block:: php
-
-    <?php
     // src/Entity/ProductAdmin.php
+
     use Sonata\Form\Type\CollectionType;
 
-    class ProductAdmin extends Admin
+    final class ProductAdmin extends AbstractAdmin
     {
         protected function configureFormFields(FormMapper $formMapper)
         {
             $formMapper
-                ->add('sales', CollectionType::class, array(
+                ->add('sales', CollectionType::class, [
 
                     // Prevents the "Delete" option from being displayed
-                    'type_options' => array('delete' => false)
-                ), array(
+                    'type_options' => ['delete' => false]
+                ], [
                     'edit' => 'inline',
                     'inline' => 'table',
                     'sortable' => 'position',
-                ))
-                // ...
-            ;
+                ]);
         }
-
-        // ...
     }
 
 The available options (which can be passed as a third parameter to ``FormMapper::add()``) are:
@@ -226,33 +201,35 @@ pre_bind_data_callback:
   to build the data given to the form based on the value retrieved. Use this if you need to generate your forms based
   on the submitted data.
 
-**TIP**: A jQuery event is fired after a row has been added (``sonata-admin-append-form-element``).
-You can listen to this event to trigger custom javascript (eg: add a calendar widget to a newly added date field)
+.. tip::
+
+    A jQuery event is fired after a row has been added (``sonata-admin-append-form-element``).
+    You can listen to this event to trigger custom javascript (eg: add a calendar widget to a
+    newly added date field)
 
 StatusType
 ----------
 
-The ``StatusType`` is not available as a service. However, you can use it to declare your own type to render a choice of status.
+The ``StatusType`` is not available as a service. However, you can use it to declare
+your own type to render a choice of status.
 
-Let's say, you have a ``Delivery::getStatusList`` method which returns a list of status. Now, you want to create a form type to expose those values.
+Let's say, you have a ``Delivery::getStatusList`` method which returns a list of status.
+Now, you want to create a form type to expose those values::
 
-.. code-block:: php
-
-    <?php
     // src/Entity/Delivery.php
 
     class Delivery
     {
         public static function getStatusList()
         {
-            return array(
+            return [
                 self::STATUS_OPEN      => 'status_open',
                 self::STATUS_PENDING   => 'status_pending',
                 self::STATUS_VALIDATED => 'status_validated',
                 self::STATUS_CANCELLED => 'status_cancelled',
                 self::STATUS_ERROR     => 'status_error',
                 self::STATUS_STOPPED   => 'status_stopped',
-            );
+            ];
         }
     }
 
@@ -263,22 +240,20 @@ This can be done by declaring a new service:
     .. code-block:: xml
 
         <service id="sonata.order.form.status_type" class="Sonata\Form\Type\StatusType">
-            <tag name="form.type" />
+            <tag name="form.type"/>
 
             <argument>%sonata.order.order.class%</argument>
             <argument>getStatusList</argument>
             <argument>sonata_order_status</argument>
         </service>
 
-And the type can now be used:
+And the type can now be used::
 
-.. code-block:: php
-
-    <?php
     // src/Admin/DeliveryAdmin.php
+
     use App\Type\OrderStatusType;
 
-    class DeliveryAdmin extends Admin
+    final class DeliveryAdmin extends AbstractAdmin
     {
         protected function configureFormFields(FormMapper $formMapper)
         {
@@ -295,10 +270,8 @@ And the type can now be used:
     extend the class ``BaseStatusType`` with an empty class to have a
     unique FQCN.
 
-
-
-DatePickerType and DateTimePickerType
--------------------------------------
+DatePickerType / DateTimePickerType
+-----------------------------------
 
 Those types integrate `Eonasdan's Bootstrap datetimepicker`_ into a
 Symfony form. They both are available as services and inherit from
@@ -318,7 +291,7 @@ In order to use them, you'll need to perform a bit of setup:
 
     .. code-block:: yaml
 
-        # app/config/config.yml
+        # config/packages/twig.yaml.yml
 
         twig:
             form_themes:
@@ -335,69 +308,64 @@ adapt this to your needs, for instance, to use with assetic):
         <script type="text/javascript" src="/bundles/sonatacore/vendor/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="path_to_bootstrap.min.js"></script>
         <script type="text/javascript" src="/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-        <link rel="stylesheet" href="path_to_bootstrap.min.css" />
-        <link rel="stylesheet" href="/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+        <link rel="stylesheet" href="path_to_bootstrap.min.css"/>
+        <link rel="stylesheet" href="/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"/>
     </head>
 
-Finally, in your form, you may use the form type as follows:
+Finally, in your form, you may use the form type as follows::
 
-.. code-block:: php
-
-    <?php
     // src/Admin/PageAdmin.php
+
     use Sonata\Form\Type\DatePickerType;
     use Sonata\Form\Type\DateTimePickerType;
 
-    class PageAdmin extends Admin
+    final class PageAdmin extends AbstractAdmin
     {
         protected function configureFormFields(FormMapper $formMapper)
         {
             $formMapper
                 ->add('publicationDateStart', DateTimePickerType::class)
 
-                // or sonata_type_date_picker if you don't need the time
-                ->add('publicationDateStart', DatePickerType::class)
-
-                // ...
-            ;
+                // or DatePickerType if you don't need the time
+                ->add('publicationDateStart', DatePickerType::class);
         }
     }
 
-Many of the `standard date picker options`_ are available by adding options with a ``dp_`` prefix:
+Many of the `standard date picker options`_ are available by adding options with a ``dp_`` prefix::
 
-.. code-block:: php
-
-    <?php
     // src/Admin/PageAdmin.php
+
     use Sonata\Form\Type\DatePickerType;
     use Sonata\Form\Type\DateTimePickerType;
 
-    class PageAdmin extends Admin
+    final class PageAdmin extends AbstractAdmin
     {
         protected function configureFormFields(FormMapper $formMapper)
         {
             $formMapper
-                ->add('publicationDateStart', DateTimePickerType::class, array(
-                        'dp_side_by_side'       => true,
-                        'dp_use_current'        => false,
-                        'dp_use_seconds'        => false,
-                        'dp_collapse'           => true,
-                        'dp_calendar_weeks'     => false,
-                        'dp_view_mode'          => 'days',
-                        'dp_min_view_mode'      => 'days',
-                ))
+                ->add('publicationDateStart', DateTimePickerType::class, [
+                    'dp_side_by_side'       => true,
+                    'dp_use_current'        => false,
+                    'dp_use_seconds'        => false,
+                    'dp_collapse'           => true,
+                    'dp_calendar_weeks'     => false,
+                    'dp_view_mode'          => 'days',
+                    'dp_min_view_mode'      => 'days',
+                ])
 
-                // or sonata_type_date_picker if you don't need the time
-                ->add('publicationDateStart', DatePickerType::class, array(
-                        'dp_use_current'        => false,
-                ))
-            ;
+                // or DatePickerType if you don't need the time
+                ->add('publicationDateStart', DatePickerType::class, [
+                    'dp_use_current' => false,
+                ]);
         }
     }
 
-If you look in the classes ``DateTimePickerType.php`` and ``BasePickerType.php`` you can see all the currently available options.
+If you look in the classes ``DateTimePickerType.php`` and ``BasePickerType.php``
+you can see all the currently available options.
 
-In addition to these standard options, there is also the option ``datepicker_use_button`` which, when used, will change the widget so that the datepicker icon is not shown and the pop-up datepicker is invoked simply by clicking on the date input.
+In addition to these standard options, there is also the option ``datepicker_use_button``
+which, when used, will change the widget so that the datepicker icon is not shown and the
+pop-up datepicker is invoked simply by clicking on the date input.
 
 DateRangePickerType and DateTimeRangePickerType
 -----------------------------------------------
@@ -405,31 +373,25 @@ DateRangePickerType and DateTimeRangePickerType
 Those types extend the basic range form field types
 (``Sonata\Form\Type\DateRangeType`` and
 ``Sonata\Form\Type\DateTimeRangeType``).
+
 You can use them if you need datetime picker in datetime range filters.
 
-Example with ``Sonata\DoctrineORMAdminBundle\Filter\DateRangeFilter`` filter:
+Example with ``Sonata\DoctrineORMAdminBundle\Filter\DateRangeFilter`` filter::
 
-.. code-block:: php
-
-    <?php
     // src/Admin/PostAdmin.php
+
     use Sonata\Form\Type\DateRangeType;
     use Sonata\DoctrineORMAdminBundle\Filter\DateRangeFilter;
 
-    class PostAdmin extends Admin
+    final class PostAdmin extends AbstractAdmin
     {
         protected function configureDatagridFilters(DatagridMapper $datagridMapper)
         {
-
             $datagridMapper
-                ->add('createdAt', DateRangeFilter::class, array(
+                ->add('createdAt', DateRangeFilter::class, [
                     'field_type' => DateRangeType::class,
-                ))
-                // ...
-            ;
+                ]);
         }
-
-        // ...
     }
 
 ColorType
@@ -445,30 +407,25 @@ In order to use it, you'll need to perform a bit of setup:
 
     .. code-block:: yaml
 
-        # app/config/config.yml
+        # config/packages/twig.yaml
+
         twig:
             form_themes:
                 - '@SonataCore/Form/color.html.twig'
 
-Finally, in your form, you may use the form type as follows:
+Finally, in your form, you may use the form type as follows::
 
-.. code-block:: php
-
-    <?php
     // src/Admin/PageAdmin.php
+
     use Sonata\Form\Type\ColorType;
 
-    class PageAdmin extends Admin
+    final class PageAdmin extends AbstractAdmin
     {
         protected function configureFormFields(FormMapper $formMapper)
         {
             $formMapper
-                ->add('color', ColorType::class)
-                // ...
-            ;
+                ->add('color', ColorType::class);
         }
-
-        // ...
     }
 
 .. _`ChoiceType documentation`: http://symfony.com/doc/current/reference/forms/types/choice.html

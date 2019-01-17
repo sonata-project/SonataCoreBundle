@@ -9,27 +9,22 @@ while to code for complex rules. As rules must be a set of a
 ``Constraint`` and a ``Validator`` instances.
 
 The inline validation tries to provide a nice solution by introducing an ``ErrorElement``
-object. The object can be used to check assertions against the model :
-
-.. code-block:: php
-
-    <?php
+object. The object can be used to check assertions against the model::
 
     $errorElement
         ->with('settings.url')
-            ->assertNotNull(array())
+            ->assertNotNull([])
             ->assertNotBlank()
         ->end()
         ->with('settings.title')
-            ->assertNotNull(array())
+            ->assertNotNull([])
             ->assertNotBlank()
             // for minimum length constraint
-            ->assertLength(array('min' => 50))
+            ->assertLength(['min' => 50])
             // for maximum length constraint
-            ->assertLength(array('max' => 100))
+            ->assertLength(['max' => 100])
             ->addViolation('ho yeah!')
-        ->end()
-    ;
+        ->end();
 
     // ...
 
@@ -37,8 +32,7 @@ object. The object can be used to check assertions against the model :
         $errorElement
             ->with('value')
                 ->addViolation('Fail to check the complex rules')
-            ->end()
-        ;
+            ->end();
     }
 
     // ...
@@ -49,8 +43,7 @@ object. The object can be used to check assertions against the model :
             ->with('enabled')
                 ->assertNotNull()
                 ->assertTrue()
-            ->end()
-        ;
+            ->end();
     }
 
 .. note::
@@ -63,13 +56,13 @@ object. The object can be used to check assertions against the model :
     You can also use ``$errorElement->addConstraint(new \Symfony\Component\Validator\Constraints\NotBlank())``
     instead of calling ``assertNotBlank()``.
 
-    You can also use ``$errorElement->addConstraint(new \Symfony\Component\Validator\Constraints\Length(array('min'=>5, 'max'=>100))``
+    You can also use ``$errorElement->addConstraint(new \Symfony\Component\Validator\Constraints\Length(['min'=>5, 'max'=>100])``
     instead of calling ``assertLength()``.
 
 Using this Validator
 --------------------
 
-Add the ``InlineConstraint`` class constraint to your bundle's validation configuration, for example:
+Add the ``InlineConstraint`` class constraint to your bundle's validation configuration:
 
 .. configuration-block::
 
@@ -121,8 +114,6 @@ Example from the ``SonataPageBundle``
 
 .. code-block:: php
 
-    <?php
-
     namespace Sonata\PageBundle\Block;
 
     use Sonata\PageBundle\Model\PageInterface;
@@ -138,22 +129,19 @@ Example from the ``SonataPageBundle``
         {
             $errorElement
                 ->with('settings.url')
-                    ->assertNotNull(array())
+                    ->assertNotNull([])
                     ->assertNotBlank()
                 ->end()
                 ->with('settings.title')
-                    ->assertNotNull(array())
+                    ->assertNotNull([])
                     ->assertNotBlank()
 
                     // for minimum length constraint
-                    ->assertLength(array('min' => 50))
+                    ->assertLength(['min' => 50])
 
                     // for maximum length constraint
-                    ->assertLength(array('max' => 100))
+                    ->assertLength(['max' => 100])
                     ->addViolation('ho yeah!')
-                ->end()
-            ;
+                ->end();
         }
-
-        // ...
     }
