@@ -22,21 +22,18 @@ file that was distributed with this source code.
                     aria-label="{{ 'message_close'|trans({}, 'SonataCoreBundle') }}">
                 &times;
             </button>
-            <h4>
-                <button
-                        class="btn btn-link"
-                        style="color: unset; padding: 0;"
-                        data-toggle="collapse"
-                        data-target="#alert-body-{{ loop.index }}">
-                    {{ type|trans({}, 'SonataCoreBundle')|upper }}
-                    <span>&#x25BE;</span>
-                </button>
-            </h4>
-            <div id="alert-body-{{ loop.index }}" class="collapse">
+            <input type="checkbox" class="read-more-state" id="toggle-more" />
+            <script>$(document).ready(()=> {$('#toggle-more').iCheck('destroy')})</script>
+            <div class="read-more-wrap">
                 {% for message in messages %}
-                    {{ message|raw }} </br>
+                    {% if loop.index >= 2 %}
+                        <span class="read-more-target">{{ message|raw }}</span>
+                    {% else %}
+                        {{ message|raw }}
+                    {% endif %}
                 {% endfor %}
             </div>
+            <label for="toggle-more" class="read-more-trigger"></label>
         </div>
     {% elseif messages|length == 1 %}
         <div class="alert alert-{{ type|sonata_status_class }} alert-dismissable">
@@ -52,3 +49,42 @@ file that was distributed with this source code.
         </div>
     {% endif %}
 {% endfor %}
+
+<style>
+    .read-more-state {
+        display: none;
+    }
+
+    .read-more-target {
+        opacity: 0;
+        display: none;
+        max-height: 0;
+        font-size: 0;
+        transition: .40s ease;
+    }
+
+    .read-more-state:checked ~ .read-more-wrap .read-more-target {
+        opacity: 1;
+        display: block;
+        font-size: inherit;
+        max-height: 999em;
+    }
+
+    .read-more-state ~ .read-more-trigger:before {
+        content: "more \25bc";
+    }
+
+    .read-more-state:checked ~ .read-more-trigger:before {
+        content: "less \25b2";
+    }
+
+    .read-more-trigger {
+        cursor: pointer;
+        margin: auto;
+    }
+
+    .alert .read-more-trigger {
+        position: relative;
+        left: calc(50% - 1rem);
+    }
+</style>
