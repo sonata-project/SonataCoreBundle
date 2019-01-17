@@ -15,9 +15,11 @@ The serializer default formats are configurable. You can change them from the co
 
 .. code-block:: yaml
 
-        sonata_core:
-            serializer:
-                formats: ['json', 'xml', 'yml']
+    # config/packages/sonata_core.yaml
+
+    sonata_core:
+        serializer:
+            formats: ['json', 'xml', 'yml']
 
 You can set these formats to a different array or you can add another format to these formats by using
 ``BaseSerializerHandler`` methods ``setFormats`` and ``addFormat``
@@ -30,32 +32,31 @@ You can define your handler like this:
 
 .. code-block:: xml
 
-        <service id="app.serializer.post" class="App\Serializer\PostSerializerHandler">
-            <tag name="jms_serializer.subscribing_handler" />
-            <argument type="service" id="app.manager.post" />
-        </service>
+    <!-- config/services.xml -->
+
+    <service id="app.serializer.post" class="App\Serializer\PostSerializerHandler">
+        <argument type="service" id="app.manager.post"/>
+        <tag name="jms_serializer.subscribing_handler"/>
+    </service>
 
 To call your handler, you can use a custom type used by `JMS Serializer`, like this:
 
 .. code-block:: xml
 
-        <property name="post" serialized-name="entity_id" type="post_type" />
+    <property name="post" serialized-name="entity_id" type="post_type"/>
 
-And your handler need to specify the type name:
+And your handler need to specify the type name::
 
-.. code-block:: php
+    // src/Serializer/PostSerializerHandler.php
 
-        <?php
-        // src/Serializer/PostSerializerHandler.php
+    namespace App\Serializer;
 
-        namespace App\Serializer;
+    use Sonata\CoreBundle\Serializer\BaseSerializerHandler;
 
-        use Sonata\CoreBundle\Serializer\BaseSerializerHandler;
-
-        class PostSerializerHandler extends BaseSerializerHandler
+    class PostSerializerHandler extends BaseSerializerHandler
+    {
+        public static function getType()
         {
-            public static function getType()
-            {
-                return 'post_type';
-            }
+            return 'post_type';
         }
+    }

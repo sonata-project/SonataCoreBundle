@@ -5,15 +5,17 @@
 Doctrine base entity manager
 ============================
 
-The bundle comes with an abstract class for your entities and documents managers ``Sonata\CoreBundle\Model\BaseEntityManager``,``Sonata\CoreBundle\Model\BaseDocumentManager`` and ``Sonata\CoreBundle\Model\BasePHPCRManager``.
+The bundle comes with an abstract class for your entities and documents managers:
+
+* ``Sonata\CoreBundle\Model\BaseEntityManager``
+* ``Sonata\CoreBundle\Model\BaseDocumentManager``
+* ``Sonata\CoreBundle\Model\BasePHPCRManager``
 
 Use it in your managers
 -----------------------
-You just have to extend ``Sonata\CoreBundle\Model\BaseEntityManager``, ``Sonata\CoreBundle\Model\BaseDocumentManager`` or ``Sonata\CoreBundle\Model\BasePHPCRManager`` in your managers, for instance:
 
-.. code-block:: php
+You just have to extend one of the managers::
 
-    <?php
     // src/Entity/ProductManager.php
 
     namespace App\Entity;

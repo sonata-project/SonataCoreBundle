@@ -8,11 +8,8 @@ The bundle comes with a `Twig` helper allowing you to generate CSS class names, 
 
 Define a service
 ----------------
-Each service you want to define must implement the ``Sonata\Twig\Status\StatusClassRendererInterface`` interface. For instance:
 
-.. code-block:: php
-
-    <?php
+Each service you want to define must implement the ``Sonata\Twig\Status\StatusClassRendererInterface`` interface::
 
     namespace Sonata\Component\Order;
 
@@ -33,21 +30,27 @@ Each service you want to define must implement the ``Sonata\Twig\Status\StatusCl
 
 Now that we have defined our service, we will add it using the ``sonata.status.renderer`` tag, just as follow:
 
-.. code-block:: xml
+.. configuration-block::
 
-    <service id="sonata.order.status.renderer" class="Sonata\Component\Order\OrderStatusRenderer">
-        <tag name="sonata.status.renderer" />
-    </service>
+    .. code-block:: xml
 
-.. code-block:: yaml
+        <service id="sonata.order.status.renderer" class="Sonata\Component\Order\OrderStatusRenderer">
+            <tag name="sonata.status.renderer"/>
+        </service>
 
-    services:
-        sonata.order.status.renderer:
-            class:  Sonata\Component\Order\OrderStatusRenderer
-            tags:
-                - { name: sonata.status.renderer }
+    .. code-block:: yaml
+
+        services:
+            sonata.order.status.renderer:
+                class:  Sonata\Component\Order\OrderStatusRenderer
+                tags:
+                    - { name: sonata.status.renderer }
 
 Use the service
 ---------------
 
-You can now call your helper in your twig views using the following code: ``{{ my_object|sonata_status_class(status_name, 'default_value') }}``
+You can now call your helper in your twig views using the following code:
+
+.. code-block:: jinja
+
+    {{ my_object|sonata_status_class(status_name, 'default_value') }}
