@@ -33,7 +33,10 @@ file that was distributed with this source code.
                     {% endif %}
                 {% endfor %}
             </div>
-            <label for="toggle-more" class="read-more-trigger"></label>
+
+            <label for="toggle-more" class="read-more-trigger">
+                <span class="badge badge-default">{{ messages|length }}</span>
+            </label>
         </div>
     {% elseif messages|length == 1 %}
         <div class="alert alert-{{ type|sonata_status_class }} alert-dismissable">
@@ -51,40 +54,11 @@ file that was distributed with this source code.
 {% endfor %}
 
 <style>
-    .read-more-state {
-        display: none;
-    }
-
-    .read-more-target {
-        opacity: 0;
-        display: none;
-        max-height: 0;
-        font-size: 0;
-        transition: .40s ease;
-    }
-
-    .read-more-state:checked ~ .read-more-wrap .read-more-target {
-        opacity: 1;
-        display: block;
-        font-size: inherit;
-        max-height: 999em;
-    }
-
     .read-more-state ~ .read-more-trigger:before {
-        content: "more \25bc";
+        content: "{{ 'more'|trans({}, 'SonataCoreBundle') }} \25bc";
     }
 
     .read-more-state:checked ~ .read-more-trigger:before {
-        content: "less \25b2";
-    }
-
-    .read-more-trigger {
-        cursor: pointer;
-        margin: auto;
-    }
-
-    .alert .read-more-trigger {
-        position: relative;
-        left: calc(50% - 1rem);
+        content: "{{ 'less'|trans({}, 'SonataCoreBundle') }} \25b2";
     }
 </style>
