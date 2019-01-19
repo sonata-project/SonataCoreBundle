@@ -22,7 +22,7 @@ file that was distributed with this source code.
                     aria-label="{{ 'message_close'|trans({}, 'SonataCoreBundle') }}">
                 &times;
             </button>
-            <input type="checkbox" class="read-more-state" id="toggle-more" />
+            <input type="checkbox" class="read-more-state" id="toggle-more-{{ loop.index }}" />
             <div class="read-more-wrap">
                 {% for message in messages %}
                     {% if loop.index >= 2 %}
@@ -33,7 +33,7 @@ file that was distributed with this source code.
                 {% endfor %}
             </div>
 
-            <label for="toggle-more" class="read-more-trigger">
+            <label for="toggle-more-{{ loop.index }}" class="read-more-trigger">
                 <span class="badge badge-default">{{ messages|length }}</span>
             </label>
         </div>

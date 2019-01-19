@@ -38,6 +38,6 @@ var SonataCore = {
         });
     },
     remove_iCheck_in_flashmessage: () => {
-        jQuery('#toggle-more').iCheck('destroy');
+        jQuery('.read-more-state').iCheck('destroy');
     }
 };
