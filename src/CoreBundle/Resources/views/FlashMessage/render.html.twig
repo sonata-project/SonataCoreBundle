@@ -23,7 +23,6 @@ file that was distributed with this source code.
                 &times;
             </button>
             <input type="checkbox" class="read-more-state" id="toggle-more" />
-            <script>$(document).ready(()=> {$('#toggle-more').iCheck('destroy')})</script>
             <div class="read-more-wrap">
                 {% for message in messages %}
                     {% if loop.index >= 2 %}

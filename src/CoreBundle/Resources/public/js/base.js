@@ -1,5 +1,6 @@
 jQuery(document).ready(function() {
     SonataCore.setup_select2(document);
+    SonataCore.remove_iCheck_in_flashmessage();
 });
 
 var SonataCore = {
@@ -35,6 +36,8 @@ var SonataCore = {
                 ;
             }
         });
+    },
+    remove_iCheck_in_flashmessage: () => {
+        jQuery('#toggle-more').iCheck('destroy');
     }
-
 };
