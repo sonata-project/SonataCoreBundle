@@ -602,6 +602,14 @@
                 <source>message_close</source>
                 <target>Schließen</target>
             </trans-unit>
+            <trans-unit id="more">
+                <source>more</source>
+                <target>mehr</target>
+            </trans-unit>
+            <trans-unit id="less">
+                <source>less</source>
+                <target>weniger</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

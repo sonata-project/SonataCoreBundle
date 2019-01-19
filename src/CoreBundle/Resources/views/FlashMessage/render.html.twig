@@ -8,18 +8,48 @@ For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 
 #}
+
 {% for type in sonata_flashmessages_types() %}
     {% set domain = domain is defined ? domain : null %}
-    {% for message in sonata_flashmessages_get(type, domain) %}
+    {% set messages = sonata_flashmessages_get(type, domain) %}
+    {% if messages|length > 1 %}
+        <div class="alert alert-{{ type|sonata_status_class }} alert-dismissible collapsed-box">
+            <button
+                    type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-hidden="true"
+                    aria-label="{{ 'message_close'|trans({}, 'SonataCoreBundle') }}">
+                &times;
+            </button>
+            <input type="checkbox" class="read-more-state" id="toggle-more-{{ loop.index }}" />
+            <div class="read-more-wrap">
+                {% for message in messages %}
+                    {% if loop.index >= 2 %}
+                        <span class="read-more-target">{{ message|raw }}</span>
+                    {% else %}
+                        {{ message|raw }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <label for="toggle-more-{{ loop.index }}" class="read-more-trigger">
+                <span class="more">{{ 'more'|trans({}, 'SonataCoreBundle') }} &#9660;</span>
+                <span class="less hide">{{ 'less'|trans({}, 'SonataCoreBundle') }} &#9650;</span>
+                <span class="badge badge-default">{{ messages|length }}</span>
+            </label>
+        </div>
+    {% elseif messages|length == 1 %}
         <div class="alert alert-{{ type|sonata_status_class }} alert-dismissable">
             <button
-                type="button"
-                class="close"
-                data-dismiss="alert"
-                aria-hidden="true"
-                aria-label="{{ 'message_close'|trans({}, 'SonataCoreBundle') }}"
-            >&times;</button>
-            {{ message|raw }}
+                    type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-hidden="true"
+                    aria-label="{{ 'message_close'|trans({}, 'SonataCoreBundle') }}">
+                &times;
+            </button>
+            {{ messages|first|raw }}
         </div>
-    {% endfor %}
+    {% endif %}
 {% endfor %}
