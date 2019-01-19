@@ -34,6 +34,8 @@ file that was distributed with this source code.
             </div>
 
             <label for="toggle-more-{{ loop.index }}" class="read-more-trigger">
+                <span class="more">{{ 'more'|trans({}, 'SonataCoreBundle') }} &#9660;</span>
+                <span class="less hide">{{ 'less'|trans({}, 'SonataCoreBundle') }} &#9650;</span>
                 <span class="badge badge-default">{{ messages|length }}</span>
             </label>
         </div>
@@ -51,13 +53,3 @@ file that was distributed with this source code.
         </div>
     {% endif %}
 {% endfor %}
-
-<style>
-    .read-more-state ~ .read-more-trigger:before {
-        content: "{{ 'more'|trans({}, 'SonataCoreBundle') }} \25bc";
-    }
-
-    .read-more-state:checked ~ .read-more-trigger:before {
-        content: "{{ 'less'|trans({}, 'SonataCoreBundle') }} \25b2";
-    }
-</style>
