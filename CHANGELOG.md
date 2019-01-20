@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.15.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.14.1...3.15.0) - 2019-01-20
+
+### Added
+- support for many grouped flash messages
+
 ## [3.14.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.14.0...3.14.1) - 2019-01-17
 
 ### Fixed
