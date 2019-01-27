@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -100,8 +102,8 @@ class BaseDoctrineORMSerializationType extends AbstractType
 
             if (isset($doctrineMetadata->fieldMappings[$name])) {
                 $fieldMetadata = $doctrineMetadata->fieldMappings[$name];
-                $type = isset($fieldMetadata['type']) ? $fieldMetadata['type'] : null;
-                $nullable = isset($fieldMetadata['nullable']) ? $fieldMetadata['nullable'] : false;
+                $type = $fieldMetadata['type'] ?? null;
+                $nullable = $fieldMetadata['nullable'] ?? false;
             } elseif (isset($doctrineMetadata->associationMappings[$name])) {
                 $associationMetadata = $doctrineMetadata->associationMappings[$name];
 

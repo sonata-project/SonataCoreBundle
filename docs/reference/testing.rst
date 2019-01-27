@@ -7,9 +7,7 @@ Testing
 Test Widgets
 ~~~~~~~~~~~~
 
-You can write unit tests for twig form rendering with the following code.
-
-.. code-block:: php
+You can write unit tests for Twig form rendering with the following code::
 
     use Sonata\Form\Test\AbstractWidgetTestCase;
 
@@ -17,13 +15,13 @@ You can write unit tests for twig form rendering with the following code.
     {
         public function testAcmeWidget()
         {
-            $options = array(
+            $options = [
                 'foo' => 'bar',
-            );
+            ];
 
             $form     = $this->factory->create('Acme\Form\CustomType', null, $options);
             $html     = $this->renderWidget($form->createView());
-            $expected = '<input foo="bar" />';
+            $expected = '<input foo="bar"/>';
 
             $this->assertContains($expected, $this->cleanHtmlWhitespace($html));
         }
