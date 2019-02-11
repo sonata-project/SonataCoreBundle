@@ -1,6 +1,9 @@
 UPGRADE 3.x
 ===========
 
+A new bundle named `Sonata\Doctrine\Bridge\Symfony\Bundle\SonataDoctrineBundle`
+should be registered in the kernel of your application.
+
 The `ColorType` class is deprecated. Use 
 `Symfony\Component\Form\Extension\Core\Type\ColorType` instead.
 

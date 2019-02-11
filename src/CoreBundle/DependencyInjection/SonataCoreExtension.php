@@ -15,6 +15,7 @@ namespace Sonata\CoreBundle\DependencyInjection;
 
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
 use Sonata\CoreBundle\Serializer\BaseSerializerHandler;
+use Sonata\Doctrine\Bridge\Symfony\Bundle\SonataDoctrineBundle;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -47,6 +48,20 @@ final class SonataCoreExtension extends Extension implements PrependExtensionInt
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
         $bundles = $container->getParameter('kernel.bundles');
+
+        $bundles = $container->getParameter('kernel.bundles');
+
+        if (!isset($bundles['SonataDoctrineBundle'])) {
+            // NEXT_MAJOR remove the alias, throw an exception
+            @trigger_error(sprintf(
+                'Not registering bundle "%s" is deprecated since 3.x, registering it will be mandatory in 4.0',
+                SonataDoctrineBundle::class
+            ), E_USER_DEPRECATED);
+            $container->setAlias(
+                'sonata.doctrine.model.adapter.chain',
+                'sonata.core.model.adapter.chain'
+            );
+        }
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('date.xml');
@@ -92,7 +107,7 @@ final class SonataCoreExtension extends Extension implements PrependExtensionInt
 
         foreach ($mergedConfig as $typeKey => $typeConfig) {
             $types[$typeKey] = $typeConfig['types'];
-            $cssClasses[$typeKey] = array_key_exists('css_class', $typeConfig) ? $typeConfig['css_class'] : $typeKey;
+            $cssClasses[$typeKey] = \array_key_exists('css_class', $typeConfig) ? $typeConfig['css_class'] : $typeKey;
         }
 
         $identifier = 'sonata.core.flashmessage.manager';

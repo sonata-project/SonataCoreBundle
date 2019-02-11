@@ -19,6 +19,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class SonataCoreExtensionTest extends AbstractExtensionTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->container->setParameter('kernel.bundles', ['SonataDoctrineBundle' => true]);
+    }
+
     /**
      * @group legacy
      */
@@ -41,7 +47,6 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
 
     public function testHorizontalFormTypeMeansNoWrapping(): void
     {
-        $this->container->setParameter('kernel.bundles', []);
         $this->load([
             'form' => ['mapping' => ['enabled' => false]],
             'form_type' => 'horizontal',
@@ -79,6 +84,17 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
 
         $extension = new SonataCoreExtension();
         $extension->prepend($containerBuilder->reveal());
+    }
+
+    /**
+     * @group legacy
+     * @expectedDeprecation Not registering bundle "Sonata\Doctrine\Bridge\Symfony\Bundle\SonataDoctrineBundle" is deprecated since 3.x, registering it will be mandatory in 4.0
+     */
+    public function testItLoadsProperlyWithoutDoctrineBundle()
+    {
+        $this->container->setParameter('kernel.bundles', []);
+        $this->load();
+        $this->assertContainerBuilderHasService('sonata.doctrine.model.adapter.chain');
     }
 
     protected function getContainerExtensions()
