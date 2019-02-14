@@ -594,6 +594,18 @@
                 <source>yellowgreen</source>
                 <target>Verde amarelado</target>
             </trans-unit>
+            <trans-unit id="message_close">
+                <source>message_close</source>
+                <target>Fechar</target>
+            </trans-unit>
+            <trans-unit id="more">
+                <source>more</source>
+                <target>Mais</target>
+            </trans-unit>
+            <trans-unit id="less">
+                <source>less</source>
+                <target>Menos</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
