@@ -180,7 +180,7 @@ EOT
 
         foreach ($mergedConfig as $typeKey => $typeConfig) {
             $types[$typeKey] = $typeConfig['types'];
-            $cssClasses[$typeKey] = array_key_exists('css_class', $typeConfig) ? $typeConfig['css_class'] : $typeKey;
+            $cssClasses[$typeKey] = \array_key_exists('css_class', $typeConfig) ? $typeConfig['css_class'] : $typeKey;
         }
 
         $identifier = 'sonata.core.flashmessage.manager';
