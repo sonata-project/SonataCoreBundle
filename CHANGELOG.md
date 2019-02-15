@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.16.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.15.1...3.16.0) - 2019-02-14
+### Added
+- The ids of the services deprecated services should be replaced with now appear in deprecation messages
+
+### Deprecated
+- not registering `Sonata\Doctrine\Bridge\Symfony\Bundle\SonataDoctrineBundle` in the kernel of your app
+
+### Fixed
+- several deprecations about services
+
 ## [3.15.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.15.0...3.15.1) - 2019-01-26
 ## Fixed
 - tests extending `Sonata\CoreBundle\Test\XliffValidatorTestCase` are no longer risky
