@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\CoreBundle\Twig\Extension;
 
 use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
+use Sonata\Twig\Extension\StatusRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
