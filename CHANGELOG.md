@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.16.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.16.0...3.16.1) - 2019-02-16
+
+### Fixed
+- error message about being unable to load the `StatusRuntime`
+
 ## [3.16.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.15.1...3.16.0) - 2019-02-14
 ### Added
 - The ids of the services deprecated services should be replaced with now appear in deprecation messages
