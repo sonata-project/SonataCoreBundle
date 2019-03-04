@@ -31,8 +31,8 @@ final class AdapterCompilerPassTest extends AbstractCompilerPassTestCase
 
     public function testDefinitionsAdded()
     {
-        $coreModelAdapterChain = new Definition();
-        $this->setDefinition('sonata.core.model.adapter.chain', $coreModelAdapterChain);
+        $adapterChain = new Definition();
+        $this->setDefinition('sonata.doctrine.model.adapter.chain', $adapterChain);
 
         $this->registerService('doctrine', 'foo');
         $this->registerService('doctrine_phpcr', 'foo');
@@ -40,29 +40,29 @@ final class AdapterCompilerPassTest extends AbstractCompilerPassTestCase
         $this->compile();
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
-            'sonata.core.model.adapter.chain',
+            'sonata.doctrine.model.adapter.chain',
             'addAdapter',
-            [new Reference('sonata.core.model.adapter.doctrine_orm')]
+            [new Reference('sonata.doctrine.adapter.doctrine_orm')]
         );
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
-            'sonata.core.model.adapter.chain',
+            'sonata.doctrine.model.adapter.chain',
             'addAdapter',
-            [new Reference('sonata.core.model.adapter.doctrine_phpcr')]
+            [new Reference('sonata.doctrine.adapter.doctrine_phpcr')]
         );
     }
 
     public function testDefinitionsRemoved()
     {
-        $coreModelAdapterChain = new Definition();
-        $this->setDefinition('sonata.core.model.adapter.chain', $coreModelAdapterChain);
+        $adapterChain = new Definition();
+        $this->setDefinition('sonata.doctrine.model.adapter.chain', $adapterChain);
 
-        $this->registerService('sonata.core.model.adapter.doctrine_orm', 'foo');
-        $this->registerService('sonata.core.model.adapter.doctrine_phpcr', 'foo');
+        $this->registerService('sonata.doctrine.adapter.doctrine_orm', 'foo');
+        $this->registerService('sonata.doctrine.adapter.doctrine_phpcr', 'foo');
 
         $this->compile();
 
-        $this->assertContainerBuilderNotHasService('sonata.core.model.adapter.doctrine_orm');
-        $this->assertContainerBuilderNotHasService('sonata.core.model.adapter.doctrine_phpcr');
+        $this->assertContainerBuilderNotHasService('sonata.doctrine.adapter.doctrine_orm');
+        $this->assertContainerBuilderNotHasService('sonata.doctrine.adapter.doctrine_phpcr');
     }
 }
