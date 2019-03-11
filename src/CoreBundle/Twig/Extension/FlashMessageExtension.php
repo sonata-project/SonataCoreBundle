@@ -17,7 +17,7 @@ use Sonata\CoreBundle\FlashMessage\FlashManager;
 use Twig\TwigFunction;
 
 @trigger_error(
-    'The '.__NAMESPACE__.'\FlashMessageExtension class is deprecated since version 3.x and will be removed in 4.0.'
+    'The '.__NAMESPACE__.'\FlashMessageExtension class is deprecated since version 3.13.0 and will be removed in 4.0.'
     .' Use Sonata\Twig\Extension\FlashMessageExtension instead.',
     E_USER_DEPRECATED
 );
@@ -28,7 +28,7 @@ use Twig\TwigFunction;
  * @author Vincent Composieux <composieux@ekino.com>
  * @author Titouan Galopin <galopintitouan@gmail.com>
  *
- * @deprecated Since version 3.x, to be removed in 4.0.
+ * @deprecated Since version 3.13.0, to be removed in 4.0.
  */
 class FlashMessageExtension extends \Sonata\Twig\Extension\FlashMessageExtension
 {
@@ -43,7 +43,7 @@ class FlashMessageExtension extends \Sonata\Twig\Extension\FlashMessageExtension
 
         if ($this->flashManager) {
             @trigger_error(
-                'Argument "flashManager" in FlashMessageExtension is deprecated since SonataCoreBundle 3.x and will'.
+                'Argument "flashManager" in FlashMessageExtension is deprecated since SonataCoreBundle 3.11.0 and will'.
                 ' be removed in 4.0. Use the FlashMessageRuntime instead.',
                 E_USER_DEPRECATED
             );
@@ -70,12 +70,12 @@ class FlashMessageExtension extends \Sonata\Twig\Extension\FlashMessageExtension
      *
      * @return string
      *
-     * @deprecated since 3.x, to be removed in 4.0. Use the FlashMessageRuntime instead.
+     * @deprecated since 3.11.0, to be removed in 4.0. Use the FlashMessageRuntime instead.
      */
     public function getFlashMessages($type, $domain = null)
     {
         @trigger_error(
-            'Method "FlashMessageExtension::getFlashMessages()" is deprecated since SonataCoreBundle 3.x and will'.
+            'Method "FlashMessageExtension::getFlashMessages()" is deprecated since SonataCoreBundle 3.11.0 and will'.
             ' be removed in 4.0. Use the FlashMessageRuntime instead.',
             E_USER_DEPRECATED
         );
@@ -88,12 +88,12 @@ class FlashMessageExtension extends \Sonata\Twig\Extension\FlashMessageExtension
      *
      * @return string
      *
-     * @deprecated since 3.x, to be removed in 4.0. Use the FlashMessageRuntime instead.
+     * @deprecated since 3.11.0, to be removed in 4.0. Use the FlashMessageRuntime instead.
      */
     public function getFlashMessagesTypes()
     {
         @trigger_error(
-            'Method "FlashMessageExtension::getFlashMessagesTypes()" is deprecated since SonataCoreBundle 3.x and will'.
+            'Method "FlashMessageExtension::getFlashMessagesTypes()" is deprecated since SonataCoreBundle 3.11.0 and will'.
             ' be removed in 4.0. Use the FlashMessageRuntime instead.',
             E_USER_DEPRECATED
         );

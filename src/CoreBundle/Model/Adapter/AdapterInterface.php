@@ -15,7 +15,7 @@ namespace Sonata\CoreBundle\Model\Adapter;
 
 if (!interface_exists(\Sonata\Doctrine\Adapter\AdapterInterface::class, false)) {
     @trigger_error(
-        'The '.__NAMESPACE__.'\AdapterInterface class is deprecated since version 3.x and will be removed in 4.0.'
+        'The '.__NAMESPACE__.'\AdapterInterface class is deprecated since version 3.12.0 and will be removed in 4.0.'
         .' Use Sonata\Doctrine\Adapter\AdapterInterface instead.',
         E_USER_DEPRECATED
     );
@@ -28,7 +28,7 @@ class_alias(
 
 if (false) {
     /**
-     * @deprecated since 3.x, to be removed in 4.0.
+     * @deprecated since 3.12.0, to be removed in 4.0.
      */
     interface AdapterInterface extends \Sonata\Doctrine\Adapter\AdapterInterface
     {

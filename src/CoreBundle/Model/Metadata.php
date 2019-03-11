@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\CoreBundle\Model;
 
 @trigger_error(
-    'The '.__NAMESPACE__.'\Metadata class is deprecated since version 3.x and will be removed in 4.0.'
+    'The '.__NAMESPACE__.'\Metadata class is deprecated since version 3.13.0 and will be removed in 4.0.'
     .' Use Sonata\BlockBundle\Meta\Metadata instead.',
     E_USER_DEPRECATED
 );
@@ -22,7 +22,7 @@ namespace Sonata\CoreBundle\Model;
 /**
  * @author Hugo Briand <briand@ekino.com>
  *
- * @deprecated since version 3.x, to be removed in 4.0. Use Sonata\BlockBundle\Meta\Metadata instead.
+ * @deprecated since version 3.13.0, to be removed in 4.0. Use Sonata\BlockBundle\Meta\Metadata instead.
  */
 class Metadata implements MetadataInterface
 {

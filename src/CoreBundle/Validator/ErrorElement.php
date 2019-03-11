@@ -15,7 +15,7 @@ namespace Sonata\CoreBundle\Validator;
 
 if (!class_exists(\Sonata\Form\Validator\ErrorElement::class, false)) {
     @trigger_error(
-        'The '.__NAMESPACE__.'\ErrorElement class is deprecated since version 3.x and will be removed in 4.0.'
+        'The '.__NAMESPACE__.'\ErrorElement class is deprecated since version 3.13.0 and will be removed in 4.0.'
         .' Use Sonata\Form\Validator\ErrorElement instead.',
         E_USER_DEPRECATED
     );
@@ -28,7 +28,7 @@ class_alias(
 
 if (false) {
     /**
-     * @deprecated Since version 3.x, to be removed in 4.0.
+     * @deprecated Since version 3.13.0, to be removed in 4.0.
      */
     class ErrorElement extends \Sonata\Form\Validator\ErrorElement
     {

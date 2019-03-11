@@ -15,7 +15,7 @@ namespace Sonata\CoreBundle\Model;
 
 if (!class_exists(\Sonata\Doctrine\Entity\BaseEntityManager::class, false)) {
     @trigger_error(
-        'The '.__NAMESPACE__.'\BaseEntityManager class is deprecated since version 3.x and will be removed in 4.0.'
+        'The '.__NAMESPACE__.'\BaseEntityManager class is deprecated since version 3.12.0 and will be removed in 4.0.'
         .' Use Sonata\Doctrine\Entity\BaseEntityManager instead.',
         E_USER_DEPRECATED
     );
@@ -30,7 +30,7 @@ if (false) {
     /**
      * @author Sylvain Deloux <sylvain.deloux@ekino.com>
      *
-     * @deprecated since 3.x, to be removed in 4.0.
+     * @deprecated since 3.12.0, to be removed in 4.0.
      */
     abstract class BaseEntityManager extends \Sonata\Doctrine\Entity\BaseEntityManager implements ManagerInterface
     {

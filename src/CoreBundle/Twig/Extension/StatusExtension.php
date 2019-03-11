@@ -22,7 +22,7 @@ use Twig\TwigFilter;
  * @author Hugo Briand <briand@ekino.com>
  * @author Titouan Galopin <galopintitouan@gmail.com>
  *
- * @deprecated Since version 3.x, to be removed in 4.0.
+ * @deprecated Since version 3.13.0, to be removed in 4.0.
  */
 class StatusExtension extends AbstractExtension
 {
@@ -36,12 +36,12 @@ class StatusExtension extends AbstractExtension
      *
      * @param StatusClassRendererInterface $renderer
      *
-     * @deprecated since 3.x, to be removed in 4.0. Use the StatusRuntime instead.
+     * @deprecated since 3.13.0, to be removed in 4.0. Use the StatusRuntime instead.
      */
     public function addStatusService(StatusClassRendererInterface $renderer)
     {
         @trigger_error(
-            'Method "StatusExtension::addStatusService()" is deprecated since SonataCoreBundle 3.x and will'.
+            'Method "StatusExtension::addStatusService()" is deprecated since SonataCoreBundle 3.13.0 and will'.
             ' be removed in 4.0. Use the StatusRuntime instead.',
             E_USER_DEPRECATED
         );
@@ -69,12 +69,12 @@ class StatusExtension extends AbstractExtension
      *
      * @return string
      *
-     * @deprecated since 3.x, to be removed in 4.0. Use the StatusRuntime instead.
+     * @deprecated since 3.13.0, to be removed in 4.0. Use the StatusRuntime instead.
      */
     public function statusClass($object, $statusType = null, $default = '')
     {
         @trigger_error(
-            'Method "StatusExtension::statusClass()" is deprecated since SonataCoreBundle 3.x and will'.
+            'Method "StatusExtension::statusClass()" is deprecated since SonataCoreBundle 3.13.0 and will'.
             ' be removed in 4.0. Use the StatusRuntime instead.',
             E_USER_DEPRECATED
         );

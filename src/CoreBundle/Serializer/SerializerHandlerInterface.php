@@ -15,7 +15,7 @@ namespace Sonata\CoreBundle\Serializer;
 
 if (!interface_exists(\Sonata\Serializer\SerializerHandlerInterface::class, false)) {
     @trigger_error(
-        'The '.__NAMESPACE__.'\SerializerHandlerInterface class is deprecated since version 3.x and will be removed in 4.0.'
+        'The '.__NAMESPACE__.'\SerializerHandlerInterface class is deprecated since version 3.13.0 and will be removed in 4.0.'
         .' Use Sonata\Serializer\SerializerHandlerInterface instead.',
         E_USER_DEPRECATED
     );
@@ -28,7 +28,7 @@ class_alias(
 
 if (false) {
     /**
-     * @deprecated Since version 3.x, to be removed in 4.0.
+     * @deprecated Since version 3.13.0, to be removed in 4.0.
      */
     interface SerializerHandlerInterface extends \Sonata\Serializer\SerializerHandlerInterface
     {

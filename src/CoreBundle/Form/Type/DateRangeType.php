@@ -16,14 +16,14 @@ namespace Sonata\CoreBundle\Form\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * @deprecated Since version 3.x, to be removed in 4.0.
+ * @deprecated Since version 3.13.0, to be removed in 4.0.
  */
 class DateRangeType extends \Sonata\Form\Type\DateRangeType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         @trigger_error(
-            'The '.__NAMESPACE__.'\DateRangeType class is deprecated since version 3.x and will be removed in 4.0.'
+            'The '.__NAMESPACE__.'\DateRangeType class is deprecated since version 3.13.0 and will be removed in 4.0.'
             .' Use Sonata\Form\Type\DateRangeType instead.',
             E_USER_DEPRECATED
         );

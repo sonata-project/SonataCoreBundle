@@ -15,7 +15,7 @@ namespace Sonata\CoreBundle\Model\Adapter;
 
 if (!class_exists(\Sonata\Doctrine\Adapter\ORM\DoctrineORMAdapter::class, false)) {
     @trigger_error(
-        'The '.__NAMESPACE__.'\DoctrineORMAdapter class is deprecated since version 3.x and will be removed in 4.0.'
+        'The '.__NAMESPACE__.'\DoctrineORMAdapter class is deprecated since version 3.12.0 and will be removed in 4.0.'
         .' Use Sonata\Doctrine\Adapter\ORM\DoctrineORMAdapter instead.',
         E_USER_DEPRECATED
     );
@@ -30,7 +30,7 @@ if (false) {
     /**
      * This is a port of the DoctrineORMAdminBundle / ModelManager class.
      *
-     * @deprecated since 3.x, to be removed in 4.0.
+     * @deprecated since 3.12.0, to be removed in 4.0.
      */
     class DoctrineORMAdapter extends \Sonata\Doctrine\Adapter\ORM\DoctrineORMAdapter implements AdapterInterface
     {
