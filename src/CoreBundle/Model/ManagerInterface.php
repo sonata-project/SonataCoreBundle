@@ -15,7 +15,7 @@ namespace Sonata\CoreBundle\Model;
 
 if (!interface_exists(\Sonata\Doctrine\Model\ManagerInterface::class, false)) {
     @trigger_error(
-        'The '.__NAMESPACE__.'\ManagerInterface class is deprecated since version 3.x and will be removed in 4.0.'
+        'The '.__NAMESPACE__.'\ManagerInterface class is deprecated since version 3.12.0 and will be removed in 4.0.'
         .' Use Sonata\Doctrine\Model\ManagerInterface instead.',
         E_USER_DEPRECATED
     );
@@ -30,7 +30,7 @@ if (false) {
     /**
      * @author Sylvain Deloux <sylvain.deloux@ekino.com>
      *
-     * @deprecated since 3.x, to be removed in 4.0.
+     * @deprecated since 3.12.0, to be removed in 4.0.
      */
     interface ManagerInterface extends \Sonata\Doctrine\Model\ManagerInterface
     {

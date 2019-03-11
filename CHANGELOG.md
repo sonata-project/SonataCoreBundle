@@ -2,8 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [3.16.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.16.0...3.16.1) - 2019-02-16
+## [3.16.2](https://github.com/sonata-project/SonataCoreBundle/compare/3.16.1...3.16.2) - 2019-03-11
+### Fixed
+- do not initialize select2 twice
+- some deprecations
 
+## [3.16.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.16.0...3.16.1) - 2019-02-16
 ### Fixed
 - error message about being unable to load the `StatusRuntime`
 

@@ -80,7 +80,7 @@ EOT
         if (!isset($bundles['SonataDoctrineBundle'])) {
             // NEXT_MAJOR remove the alias, throw an exception
             @trigger_error(sprintf(
-                'Not registering bundle "%s" is deprecated since 3.x, registering it will be mandatory in 4.0',
+                'Not registering bundle "%s" is deprecated since 3.12.0, registering it will be mandatory in 4.0',
                 SonataDoctrineBundle::class
             ), E_USER_DEPRECATED);
             $container->setAlias(

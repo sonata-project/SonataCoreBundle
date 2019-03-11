@@ -17,13 +17,13 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
 @trigger_error(
-    'The '.__NAMESPACE__.'\FixCheckboxDataListener class is deprecated since version 3.x and will be removed in 4.0.'
+    'The '.__NAMESPACE__.'\FixCheckboxDataListener class is deprecated since version 3.13.0 and will be removed in 4.0.'
     .' Use Sonata\Form\EventListener\FixCheckboxDataListener instead.',
     E_USER_DEPRECATED
 );
 
 /**
- * @deprecated Since version 3.x, to be removed in 4.0.
+ * @deprecated Since version 3.13.0, to be removed in 4.0.
  */
 class FixCheckboxDataListener extends \Sonata\Form\EventListener\FixCheckboxDataListener
 {
