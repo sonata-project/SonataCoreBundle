@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Sonata\CoreBundle\DependencyInjection;
 
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
-use Sonata\CoreBundle\Serializer\BaseSerializerHandler;
 use Sonata\Doctrine\Bridge\Symfony\Bundle\SonataDoctrineBundle;
+use Sonata\Serializer\BaseSerializerHandler;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -54,7 +54,7 @@ final class SonataCoreExtension extends Extension implements PrependExtensionInt
         if (!isset($bundles['SonataDoctrineBundle'])) {
             // NEXT_MAJOR remove the alias, throw an exception
             @trigger_error(sprintf(
-                'Not registering bundle "%s" is deprecated since 3.x, registering it will be mandatory in 4.0',
+                'Not registering bundle "%s" is deprecated since 3.12.0, registering it will be mandatory in 4.0',
                 SonataDoctrineBundle::class
             ), E_USER_DEPRECATED);
             $container->setAlias(

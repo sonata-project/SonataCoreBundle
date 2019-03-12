@@ -88,7 +88,7 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
 
     /**
      * @group legacy
-     * @expectedDeprecation Not registering bundle "Sonata\Doctrine\Bridge\Symfony\Bundle\SonataDoctrineBundle" is deprecated since 3.x, registering it will be mandatory in 4.0
+     * @expectedDeprecation Not registering bundle "Sonata\Doctrine\Bridge\Symfony\Bundle\SonataDoctrineBundle" is deprecated since 3.12.0, registering it will be mandatory in 4.0
      */
     public function testItLoadsProperlyWithoutDoctrineBundle()
     {
