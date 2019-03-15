@@ -43,22 +43,21 @@ Configuration
             flashmessage:
                 success:
                     types:
-                        - { type: my_custom_bundle_success, domain: MyCustomBundle }
-                        - { type: my_other_bundle_success, domain: MyOtherBundle }
+                        - { type: my_custom_bundle_success }
+                        - { type: my_other_bundle_success }
 
                 warning:
                     types:
-                        - { type: my_custom_bundle_warning, domain: MyCustomBundle }
-                        - { type: my_other_bundle_warning } # if nothing is specified, sets SonataCoreBundle by default
+                        - { type: my_custom_bundle_warning }
 
                 error:
                     css_class: danger # optionally, a CSS class can be defined
                     types:
-                        - { type: my_custom_bundle, domain: MyCustomBundle }
+                        - { type: my_custom_bundle }
 
                 custom_type: # You can add custom types too
                     types:
-                        - { type: custom_bundle_type, domain: MyCustomBundle }
+                        - { type: custom_bundle_type }
 
 You can specify multiple *flash messages types* you want to manage here.
 
@@ -71,16 +70,8 @@ To use this feature in your PHP classes/controllers::
 
     $messages = $flashManager->get('success');
 
-To use this feature in your templates, include the following template (with an optional domain parameter):
+To use this feature in your templates, include the following template:
 
 .. code-block:: jinja
 
     {% include '@SonataCore/FlashMessage/render.html.twig' %}
-
-.. note::
-
-    If necessary, you can also specify a translation domain to override configuration here:
-
-    .. code-block:: jinja
-
-        {% include '@SonataCore/FlashMessage/render.html.twig' with { domain: 'MyCustomBundle' } %}

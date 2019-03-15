@@ -36,12 +36,11 @@ final class FlashMessageRuntime
     /**
      * Returns flash messages handled by Sonata core flash manager.
      *
-     * @param string $type   Type of flash message
-     * @param string $domain Translation domain to use
+     * @param string $type Type of flash message
      */
-    public function getFlashMessages(string $type, string $domain = null): array
+    public function getFlashMessages(string $type): array
     {
-        return $this->flashManager->get($type, $domain);
+        return $this->flashManager->get($type);
     }
 
     /**

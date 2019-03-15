@@ -10,8 +10,7 @@ file that was distributed with this source code.
 #}
 
 {% for type in sonata_flashmessages_types() %}
-    {% set domain = domain is defined ? domain : null %}
-    {% set messages = sonata_flashmessages_get(type, domain) %}
+    {% set messages = sonata_flashmessages_get(type) %}
     {% if messages|length > 1 %}
         <div class="alert alert-{{ type|sonata_status_class }} alert-dismissible collapsed-box">
             <button

@@ -1,6 +1,10 @@
 UPGRADE FROM 3.X to 4.0
 =======================
 
+### Removed translation for flashmessages
+
+The translation ability was removed on the flashmessages component.
+
 ### Own implementation of the Slugify was removed
 
 * NativeSlugify class was removed

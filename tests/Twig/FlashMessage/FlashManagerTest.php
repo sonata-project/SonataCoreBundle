@@ -20,8 +20,6 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
-use Symfony\Component\Translation\Loader\ArrayLoader;
-use Symfony\Component\Translation\Translator;
 
 /**
  * @author Vincent Composieux <composieux@ekino.com>
@@ -36,11 +34,6 @@ class FlashManagerTest extends TestCase
     protected $session;
 
     /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
-
-    /**
      * @var FlashManager
      */
     protected $flashManager;
@@ -51,19 +44,18 @@ class FlashManagerTest extends TestCase
     public function setUp(): void
     {
         $this->session = $this->getSession();
-        $this->translator = $this->getTranslator();
         $this->flashManager = $this->getFlashManager([
             'success' => [
-                'my_bundle_success' => ['domain' => 'MySuccessBundle'],
-                'my_second_bundle_success' => ['domain' => 'SonataCoreBundle'],
+                'my_bundle_success' => [],
+                'my_second_bundle_success' => [],
             ],
             'warning' => [
-                'my_bundle_warning' => ['domain' => 'MyWarningBundle'],
-                'my_second_bundle_warning' => ['domain' => 'SonataCoreBundle'],
+                'my_bundle_warning' => [],
+                'my_second_bundle_warning' => [],
             ],
             'error' => [
-                'my_bundle_error' => ['domain' => 'MyErrorBundle'],
-                'my_second_bundle_error' => ['domain' => 'SonataCoreBundle'],
+                'my_bundle_error' => [],
+                'my_second_bundle_error' => [],
             ],
         ]);
     }
@@ -102,16 +94,16 @@ class FlashManagerTest extends TestCase
         $this->assertCount(3, $types);
         $this->assertSame([
             'success' => [
-                'my_bundle_success' => ['domain' => 'MySuccessBundle'],
-                'my_second_bundle_success' => ['domain' => 'SonataCoreBundle'],
+                'my_bundle_success' => [],
+                'my_second_bundle_success' => [],
             ],
             'warning' => [
-                'my_bundle_warning' => ['domain' => 'MyWarningBundle'],
-                'my_second_bundle_warning' => ['domain' => 'SonataCoreBundle'],
+                'my_bundle_warning' => [],
+                'my_second_bundle_warning' => [],
             ],
             'error' => [
-                'my_bundle_error' => ['domain' => 'MyErrorBundle'],
-                'my_second_bundle_error' => ['domain' => 'SonataCoreBundle'],
+                'my_bundle_error' => [],
+                'my_second_bundle_error' => [],
             ],
         ], $types);
     }
@@ -183,16 +175,9 @@ class FlashManagerTest extends TestCase
      */
     public function testFlashMessageWithCustomDomain(): void
     {
-        // Given
-        $translator = $this->flashManager->getTranslator();
-        $translator->addLoader('array', new ArrayLoader());
-        $translator->addResource('array', [
-            'my_bundle_success_message' => 'My bundle success message!',
-        ], 'en', 'MyCustomDomain');
-
         // When
         $this->session->getFlashBag()->set('my_bundle_success', 'my_bundle_success_message');
-        $messages = $this->flashManager->get('success', 'MyCustomDomain');
+        $messages = $this->flashManager->get('success');
 
         $this->session->getFlashBag()->set('my_bundle_success', 'my_bundle_success_message');
         $messagesWithoutDomain = $this->flashManager->get('success');
@@ -202,7 +187,7 @@ class FlashManagerTest extends TestCase
         $this->assertCount(1, $messagesWithoutDomain);
 
         foreach ($messages as $message) {
-            $this->assertSame($message, 'My bundle success message!');
+            $this->assertSame($message, 'my_bundle_success_message');
         }
 
         foreach ($messagesWithoutDomain as $message) {
@@ -221,16 +206,6 @@ class FlashManagerTest extends TestCase
     }
 
     /**
-     * Returns a Symfony translator service.
-     *
-     * @return \Symfony\Component\Translation\Translator
-     */
-    protected function getTranslator()
-    {
-        return new Translator('en');
-    }
-
-    /**
      * Returns Sonata core flash manager.
      *
      * @param array $types
@@ -241,6 +216,6 @@ class FlashManagerTest extends TestCase
     {
         $classes = ['error' => 'danger'];
 
-        return new FlashManager($this->session, $this->translator, $types, $classes);
+        return new FlashManager($this->session, $types, $classes);
     }
 }
