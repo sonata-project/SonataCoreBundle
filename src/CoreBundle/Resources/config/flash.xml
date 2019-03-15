@@ -5,7 +5,7 @@
         <parameter key="sonata.twig.extension.flashmessage.class">Sonata\Twig\Extension\FlashMessageExtension</parameter>
     </parameters>
     <services>
-        <service id="sonata.twig.flashmessage.manager" class="%sonata.twig.flashmessage.manager.class%" public="true">
+        <service id="sonata.twig.flashmessage.manager" class="%sonata.twig.flashmessage.manager.class%">
             <tag name="sonata.status.renderer"/>
             <argument type="service" id="session"/>
             <argument type="service" id="translator"/>
@@ -16,7 +16,7 @@
             <tag name="twig.runtime"/>
             <argument type="service" id="sonata.twig.flashmessage.manager"/>
         </service>
-        <service id="sonata.flashmessage.twig.extension" class="%sonata.twig.extension.flashmessage.class%" public="true">
+        <service id="sonata.flashmessage.twig.extension" class="%sonata.twig.extension.flashmessage.class%">
             <tag name="twig.extension"/>
         </service>
     </services>
