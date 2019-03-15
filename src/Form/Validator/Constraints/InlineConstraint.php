@@ -128,5 +128,3 @@ final class InlineConstraint extends Constraint
         return $this->serializingWarning;
     }
 }
-
-class_exists(\Sonata\CoreBundle\Validator\Constraints\InlineConstraint::class);

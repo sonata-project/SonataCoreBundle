@@ -68,5 +68,3 @@ final class InlineValidator extends ConstraintValidator
         );
     }
 }
-
-class_exists(\Sonata\CoreBundle\Validator\InlineValidator::class);

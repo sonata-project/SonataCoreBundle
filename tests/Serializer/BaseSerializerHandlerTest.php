@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Serializer;
+namespace Sonata\Serializer\Tests;
 
 use JMS\Serializer\Context;
 use JMS\Serializer\GraphNavigator;

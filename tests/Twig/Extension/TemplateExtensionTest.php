@@ -14,13 +14,14 @@ declare(strict_types=1);
 namespace Sonata\Twig\Tests\Extension;
 
 use PHPUnit\Framework\TestCase;
+use Sonata\Doctrine\Adapter\AdapterInterface;
 use Sonata\Twig\Extension\TemplateExtension;
 
 class TemplateExtensionTest extends TestCase
 {
     public function testSafeUrl(): void
     {
-        $adapter = $this->createMock('Sonata\CoreBundle\Model\Adapter\AdapterInterface');
+        $adapter = $this->createMock(AdapterInterface::class);
         $adapter->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue('safe-parameter'));
 
         $extension = new TemplateExtension(true, $adapter);

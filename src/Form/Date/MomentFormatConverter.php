@@ -105,5 +105,3 @@ class MomentFormatConverter
         return $output;
     }
 }
-
-class_exists(\Sonata\CoreBundle\Date\MomentFormatConverter::class);
