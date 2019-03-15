@@ -75,7 +75,7 @@ final class InlineConstraint extends Constraint
 
     public function validatedBy(): string
     {
-        return 'sonata.core.validator.inline';
+        return 'sonata.form.validator.inline';
     }
 
     public function isClosure(): bool

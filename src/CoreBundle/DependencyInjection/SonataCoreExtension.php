@@ -56,7 +56,7 @@ final class SonataCoreExtension extends Extension implements PrependExtensionInt
         $loader->load('twig.xml');
 
         $this->registerFlashTypes($container, $config);
-        $container->setParameter('sonata.core.form_type', $config['form_type']);
+        $container->setParameter('sonata.form.form_type', $config['form_type']);
 
         if (isset($bundles['JMSSerializerBundle'])) {
             $this->configureSerializerFormats($config);
@@ -93,7 +93,7 @@ final class SonataCoreExtension extends Extension implements PrependExtensionInt
             $cssClasses[$typeKey] = \array_key_exists('css_class', $typeConfig) ? $typeConfig['css_class'] : $typeKey;
         }
 
-        $identifier = 'sonata.core.flashmessage.manager';
+        $identifier = 'sonata.twig.flashmessage.manager';
 
         $definition = $container->getDefinition($identifier);
         $definition->replaceArgument(2, $types);

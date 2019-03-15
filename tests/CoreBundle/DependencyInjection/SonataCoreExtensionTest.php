@@ -35,12 +35,12 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
             'form' => ['mapping' => ['enabled' => false]],
         ]);
         $this->assertContainerBuilderHasParameter(
-            'sonata.core.form_type'
+            'sonata.form.form_type'
         );
         $this->assertSame(
             'standard',
             $this->container->getParameter(
-                'sonata.core.form_type'
+                'sonata.form.form_type'
             )
         );
     }
@@ -52,12 +52,12 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
             'form_type' => 'horizontal',
         ]);
         $this->assertContainerBuilderHasParameter(
-            'sonata.core.form_type'
+            'sonata.form.form_type'
         );
         $this->assertSame(
             'horizontal',
             $this->container->getParameter(
-                'sonata.core.form_type'
+                'sonata.form.form_type'
             )
         );
     }

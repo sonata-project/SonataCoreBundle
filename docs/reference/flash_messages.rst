@@ -67,7 +67,7 @@ Usage
 
 To use this feature in your PHP classes/controllers::
 
-    $flashManager = $this->get('sonata.core.flashmessage.manager');
+    $flashManager = $this->get('sonata.twig.flashmessage.manager');
 
     $messages = $flashManager->get('success');
 
