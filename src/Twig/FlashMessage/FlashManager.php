@@ -15,7 +15,6 @@ namespace Sonata\Twig\FlashMessage;
 
 use Sonata\Twig\Status\StatusClassRendererInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * @author Vincent Composieux <composieux@ekino.com>
@@ -26,11 +25,6 @@ final class FlashManager implements StatusClassRendererInterface
      * @var SessionInterface
      */
     private $session;
-
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
 
     /**
      * @var array
@@ -46,14 +40,9 @@ final class FlashManager implements StatusClassRendererInterface
      * @param array $types      Sonata core types array (defined in configuration)
      * @param array $cssClasses Css classes associated with $types
      */
-    public function __construct(
-        SessionInterface $session,
-        TranslatorInterface $translator,
-        array $types,
-        array $cssClasses
-    ) {
+    public function __construct(SessionInterface $session, array $types, array $cssClasses)
+    {
         $this->session = $session;
-        $this->translator = $translator;
         $this->types = $types;
         $this->cssClasses = $cssClasses;
     }
@@ -87,19 +76,11 @@ final class FlashManager implements StatusClassRendererInterface
     }
 
     /**
-     * Returns Symfony translator service.
-     */
-    public function getTranslator(): TranslatorInterface
-    {
-        return $this->translator;
-    }
-
-    /**
      * Returns flash bag messages for correct type after renaming with Sonata core type.
      */
-    public function get(string $type, ?string $domain = null): array
+    public function get(string $type): array
     {
-        $this->handle($domain);
+        $this->handle();
 
         return $this->getSession()->getFlashBag()->get($type);
     }
@@ -115,12 +96,11 @@ final class FlashManager implements StatusClassRendererInterface
     /**
      * Handles flash bag types renaming.
      */
-    private function handle(string $domain = null): void
+    private function handle(): void
     {
         foreach ($this->getTypes() as $type => $values) {
             foreach ($values as $value => $options) {
-                $domainType = $domain ?: $options['domain'];
-                $this->rename($type, $value, $domainType);
+                $this->rename($type, $value);
             }
         }
     }
@@ -128,16 +108,14 @@ final class FlashManager implements StatusClassRendererInterface
     /**
      * Process flash message type rename.
      *
-     * @param string $type   Sonata core flash message type
-     * @param string $value  Original flash message type
-     * @param string $domain Translation domain to use
+     * @param string $type  Sonata core flash message type
+     * @param string $value Original flash message type
      */
-    private function rename(string $type, string $value, string $domain): void
+    private function rename(string $type, string $value): void
     {
         $flashBag = $this->getSession()->getFlashBag();
 
         foreach ($flashBag->get($value) as $message) {
-            $message = $this->getTranslator()->trans($message, [], $domain);
             $flashBag->add($type, $message);
         }
     }
