@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\CoreBundle\Tests\Twig\TokenParser;
+namespace Sonata\Twig\Tests\Node;
 
 use Sonata\Twig\Node\TemplateBoxNode;
 

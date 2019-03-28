@@ -35,12 +35,12 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
             'form' => ['mapping' => ['enabled' => false]],
         ]);
         $this->assertContainerBuilderHasParameter(
-            'sonata.core.form_type'
+            'sonata.form.form_type'
         );
         $this->assertSame(
             'standard',
             $this->container->getParameter(
-                'sonata.core.form_type'
+                'sonata.form.form_type'
             )
         );
     }
@@ -52,12 +52,12 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
             'form_type' => 'horizontal',
         ]);
         $this->assertContainerBuilderHasParameter(
-            'sonata.core.form_type'
+            'sonata.form.form_type'
         );
         $this->assertSame(
             'horizontal',
             $this->container->getParameter(
-                'sonata.core.form_type'
+                'sonata.form.form_type'
             )
         );
     }
@@ -84,17 +84,6 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
 
         $extension = new SonataCoreExtension();
         $extension->prepend($containerBuilder->reveal());
-    }
-
-    /**
-     * @group legacy
-     * @expectedDeprecation Not registering bundle "Sonata\Doctrine\Bridge\Symfony\Bundle\SonataDoctrineBundle" is deprecated since 3.12.0, registering it will be mandatory in 4.0
-     */
-    public function testItLoadsProperlyWithoutDoctrineBundle()
-    {
-        $this->container->setParameter('kernel.bundles', []);
-        $this->load();
-        $this->assertContainerBuilderHasService('sonata.doctrine.model.adapter.chain');
     }
 
     protected function getContainerExtensions()

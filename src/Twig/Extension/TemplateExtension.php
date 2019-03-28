@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Extension;
 
-use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
+use Sonata\Doctrine\Adapter\AdapterInterface;
 use Sonata\Twig\TokenParser\TemplateBoxTokenParser;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;

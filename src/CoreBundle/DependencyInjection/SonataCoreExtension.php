@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Sonata\CoreBundle\DependencyInjection;
 
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
-use Sonata\Doctrine\Bridge\Symfony\Bundle\SonataDoctrineBundle;
 use Sonata\Serializer\BaseSerializerHandler;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
@@ -49,31 +48,15 @@ final class SonataCoreExtension extends Extension implements PrependExtensionInt
         $config = $processor->processConfiguration($configuration, $configs);
         $bundles = $container->getParameter('kernel.bundles');
 
-        $bundles = $container->getParameter('kernel.bundles');
-
-        if (!isset($bundles['SonataDoctrineBundle'])) {
-            // NEXT_MAJOR remove the alias, throw an exception
-            @trigger_error(sprintf(
-                'Not registering bundle "%s" is deprecated since 3.12.0, registering it will be mandatory in 4.0',
-                SonataDoctrineBundle::class
-            ), E_USER_DEPRECATED);
-            $container->setAlias(
-                'sonata.doctrine.model.adapter.chain',
-                'sonata.core.model.adapter.chain'
-            );
-        }
-
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('date.xml');
         $loader->load('flash.xml');
         $loader->load('form_types.xml');
         $loader->load('validator.xml');
         $loader->load('twig.xml');
-        $loader->load('model_adapter.xml');
-        $loader->load('commands.xml');
 
         $this->registerFlashTypes($container, $config);
-        $container->setParameter('sonata.core.form_type', $config['form_type']);
+        $container->setParameter('sonata.form.form_type', $config['form_type']);
 
         if (isset($bundles['JMSSerializerBundle'])) {
             $this->configureSerializerFormats($config);
@@ -110,7 +93,7 @@ final class SonataCoreExtension extends Extension implements PrependExtensionInt
             $cssClasses[$typeKey] = \array_key_exists('css_class', $typeConfig) ? $typeConfig['css_class'] : $typeKey;
         }
 
-        $identifier = 'sonata.core.flashmessage.manager';
+        $identifier = 'sonata.twig.flashmessage.manager';
 
         $definition = $container->getDefinition($identifier);
         $definition->replaceArgument(2, $types);
