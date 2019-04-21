@@ -37,6 +37,14 @@ object. The object can be used to check assertions against the model::
 
     // ...
 
+    /* Specify the translation domain */
+    $errorElement
+        ->with('value')
+            ->addViolation('translation_key_with_{var}', ['%var%' => 'value'], null, 'translation_domain')
+        ->end();
+
+    // ...
+
     /* conditional validation */
     if ($this->getSubject()->getState() == Post::STATUS_ONLINE) {
         $errorElement

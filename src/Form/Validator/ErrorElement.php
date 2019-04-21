@@ -21,6 +21,8 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 final class ErrorElement
 {
+    private const DEFAULT_TRANSLATION_DOMAIN = 'validators';
+
     /**
      * @var ExecutionContextInterface
      */
@@ -146,6 +148,11 @@ final class ErrorElement
 
     /**
      * @param string|array $message
+     * @param array        $parameters
+     * @param null         $value
+     * @param string       $translationDomain
+     *
+     * @return ErrorElement
      */
     public function addViolation($message, array $parameters = [], $value = null): self
     {
@@ -155,11 +162,27 @@ final class ErrorElement
             $message = $message[0] ?? 'error';
         }
 
-        $this->context->buildViolation($message)
-           ->atPath((string) $this->getCurrentPropertyPath())
-           ->setParameters($parameters)
-           ->setInvalidValue($value)
-           ->addViolation();
+        $subPath = (string) $this->getCurrentPropertyPath();
+        $translationDomain = self::DEFAULT_TRANSLATION_DOMAIN;
+
+        // NEXT_MAJOR: Remove this hack
+        if (\func_num_args() >= 4) {
+            $arg = func_get_arg(3);
+            if ((\is_string($arg))) {
+                $translationDomain = $arg;
+            }
+        }
+
+        if ($this->context instanceof LegacyExecutionContextInterface) {
+            $this->context->addViolationAt($subPath, $message, $parameters, $value);
+        } else {
+            $this->context->buildViolation($message)
+               ->atPath($subPath)
+               ->setParameters($parameters)
+               ->setTranslationDomain($translationDomain)
+               ->setInvalidValue($value)
+               ->addViolation();
+        }
 
         $this->errors[] = [$message, $parameters, $value];
 

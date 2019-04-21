@@ -104,7 +104,16 @@ class ErrorElementTest extends TestCase
     /**
      * @group legacy
      */
-    public function testAddConstraint(): void
+    public function testAddViolationWithTranslationDomain()
+    {
+        $this->errorElement->addViolation(['Foo error message', ['bar_param' => 'bar_param_lvalue'], 'BAR'], [], null, 'translation_domain');
+        $this->assertSame([['Foo error message', ['bar_param' => 'bar_param_lvalue'], 'BAR']], $this->errorElement->getErrors());
+    }
+
+    /**
+     * @group legacy
+     */
+    public function testAddConstraint()
     {
         $constraint = new NotNull();
         if ($this->context instanceof LegacyExecutionContextInterface) {
