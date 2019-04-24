@@ -166,7 +166,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      */
     final protected function cleanHtmlWhitespace($html)
     {
-        return preg_replace_callback('/\s*>([^<]+)</', function ($value) {
+        return preg_replace_callback('/\s*>([^<]+)</', static function ($value) {
             return '>'.trim($value[1]).'<';
         }, $html);
     }
@@ -178,7 +178,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      */
     final protected function cleanHtmlAttributeWhitespace($html)
     {
-        return preg_replace_callback('~<([A-Z0-9]+) \K(.*?)>~i', function ($m) {
+        return preg_replace_callback('~<([A-Z0-9]+) \K(.*?)>~i', static function ($m) {
             return preg_replace('~\s*~', '', $m[0]);
         }, $html);
     }
