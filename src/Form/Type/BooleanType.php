@@ -68,7 +68,7 @@ class BooleanType extends AbstractType
                 'label_type_no' => self::TYPE_NO,
             ],
             // Use directly translation_domain in SonataCoreBundle 4.0
-            'translation_domain' => function (Options $options) {
+            'translation_domain' => static function (Options $options) {
                 if ($options['catalogue']) {
                     return $options['catalogue'];
                 }

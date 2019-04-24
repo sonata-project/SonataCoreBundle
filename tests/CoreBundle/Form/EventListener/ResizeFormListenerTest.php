@@ -197,7 +197,7 @@ class ResizeFormListenerTest extends TestCase
 
         $data = ['baz' => 'caz'];
 
-        $closure = function () use ($data) {
+        $closure = static function () use ($data) {
             return $data['baz'];
         };
 

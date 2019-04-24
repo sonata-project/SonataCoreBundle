@@ -67,7 +67,7 @@ class InlineConstraint extends Constraint
             return;
         }
 
-        $this->method = function () {
+        $this->method = static function () {
         };
 
         $this->serializingWarning = true;

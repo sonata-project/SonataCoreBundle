@@ -124,7 +124,7 @@ abstract class BasePickerType extends AbstractType
             if (false !== strpos($key, 'dp_')) {
                 // We remove 'dp_' and camelize the options names
                 $dpKey = substr($key, 3);
-                $dpKey = preg_replace_callback('/_([a-z])/', function ($c) {
+                $dpKey = preg_replace_callback('/_([a-z])/', static function ($c) {
                     return strtoupper($c[1]);
                 }, $dpKey);
 

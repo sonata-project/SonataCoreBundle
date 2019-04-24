@@ -144,7 +144,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
         if ($baseEntity) {
             $allowedMeta = array_filter(
                 $metadata,
-                function ($meta) use ($baseEntity) {
+                static function ($meta) use ($baseEntity) {
                     /* @var \Doctrine\ORM\Mapping\ClassMetadata $meta */
                     return $meta->rootEntityName === $baseEntity;
                 }
@@ -152,7 +152,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
         } elseif ($regex) {
             $allowedMeta = array_filter(
                 $metadata,
-                function ($meta) use ($regex) {
+                static function ($meta) use ($regex) {
                     /* @var \Doctrine\ORM\Mapping\ClassMetadata $meta */
                     return preg_match($regex, $meta->rootEntityName);
                 }
