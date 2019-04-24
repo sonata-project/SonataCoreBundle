@@ -68,7 +68,7 @@ class Exporter
                 throw new \RuntimeException('Invalid format');
         }
 
-        $callback = function () use ($source, $writer) {
+        $callback = static function () use ($source, $writer) {
             $handler = Handler::create($source, $writer);
             $handler->export();
         };

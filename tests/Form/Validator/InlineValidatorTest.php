@@ -70,7 +70,7 @@ final class InlineValidatorTest extends TestCase
 
         $constraint->expects($this->once())
             ->method('getClosure')
-            ->willReturn(function (ErrorElement $errorElement, $value) {
+            ->willReturn(static function (ErrorElement $errorElement, $value) {
                 throw new ValidatorException($errorElement->getSubject().' is equal to '.$value);
             });
 

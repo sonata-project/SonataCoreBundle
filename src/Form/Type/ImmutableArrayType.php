@@ -61,7 +61,7 @@ class ImmutableArrayType extends AbstractType
             'keys' => [],
         ]);
 
-        $resolver->setAllowedValues('keys', function ($value) {
+        $resolver->setAllowedValues('keys', static function ($value) {
             foreach ($value as $subValue) {
                 if (!$subValue instanceof FormBuilderInterface && (!\is_array($subValue) || 3 !== \count($subValue))) {
                     return false;

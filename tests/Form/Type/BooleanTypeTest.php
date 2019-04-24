@@ -49,7 +49,7 @@ class BooleanTypeTest extends TypeTestCase
             'catalogue' => 'SonataCoreBundle',
 
             // Use directly translation_domain in SonataCoreBundle 4.0
-            'translation_domain' => function (Options $options) {
+            'translation_domain' => static function (Options $options) {
                 if ($options['catalogue']) {
                     return $options['catalogue'];
                 }
