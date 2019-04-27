@@ -154,7 +154,7 @@ final class ErrorElement
      *
      * @return ErrorElement
      */
-    public function addViolation($message, array $parameters = [], $value = null): self
+    public function addViolation($message, array $parameters = [], $value = null, string $translationDomain = self::DEFAULT_TRANSLATION_DOMAIN): self
     {
         if (\is_array($message)) {
             $value = $message[2] ?? $value;
@@ -163,15 +163,6 @@ final class ErrorElement
         }
 
         $subPath = (string) $this->getCurrentPropertyPath();
-        $translationDomain = self::DEFAULT_TRANSLATION_DOMAIN;
-
-        // NEXT_MAJOR: Remove this hack
-        if (\func_num_args() >= 4) {
-            $arg = func_get_arg(3);
-            if ((\is_string($arg))) {
-                $translationDomain = $arg;
-            }
-        }
 
         if ($this->context instanceof LegacyExecutionContextInterface) {
             $this->context->addViolationAt($subPath, $message, $parameters, $value);
