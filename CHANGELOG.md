@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.17.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.16.2...3.17.0) - 2019-04-24
+### Added
+- ability to set a translation domain for form validators
+
 ## [3.16.2](https://github.com/sonata-project/SonataCoreBundle/compare/3.16.1...3.16.2) - 2019-03-11
 ### Fixed
 - do not initialize select2 twice

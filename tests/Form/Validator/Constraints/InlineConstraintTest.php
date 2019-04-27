@@ -32,14 +32,14 @@ class InlineConstraintTest extends TestCase
         $constraint = new InlineConstraint(['service' => 'foo', 'method' => 'bar']);
         $this->assertFalse($constraint->isClosure());
 
-        $constraint = new InlineConstraint(['service' => 'foo', 'method' => function (): void {
+        $constraint = new InlineConstraint(['service' => 'foo', 'method' => static function (): void {
         }, 'serializingWarning' => true]);
         $this->assertTrue($constraint->isClosure());
     }
 
     public function testGetClosure(): void
     {
-        $closure = function () {
+        $closure = static function () {
             return 'FOO';
         };
 
@@ -73,7 +73,7 @@ class InlineConstraintTest extends TestCase
 
     public function testClosureSerialization(): void
     {
-        $constraint = new InlineConstraint(['service' => 'foo', 'method' => function (): void {
+        $constraint = new InlineConstraint(['service' => 'foo', 'method' => static function (): void {
         }, 'serializingWarning' => true]);
 
         $expected = 'O:50:"Sonata\Form\Validator\Constraints\InlineConstraint":0:{}';

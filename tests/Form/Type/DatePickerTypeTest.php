@@ -35,7 +35,7 @@ class DatePickerTypeTest extends TypeTestCase
         $formBuilder
             ->expects($this->any())
             ->method('add')
-            ->will($this->returnCallback(function ($name, $type = null): void {
+            ->will($this->returnCallback(static function ($name, $type = null): void {
                 if (null !== $type) {
                     $that->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
                 }

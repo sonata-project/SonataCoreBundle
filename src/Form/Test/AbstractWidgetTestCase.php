@@ -129,14 +129,14 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      */
     final protected function cleanHtmlWhitespace(string $html): string
     {
-        return preg_replace_callback('/\s*>([^<]+)</', function (array $value): string {
+        return preg_replace_callback('/\s*>([^<]+)</', static function ($value): string {
             return '>'.trim($value[1]).'<';
         }, $html);
     }
 
     final protected function cleanHtmlAttributeWhitespace(string $html): string
     {
-        return preg_replace_callback('~<([A-Z0-9]+) \K(.*?)>~i', function (array $m): string {
+        return preg_replace_callback('~<([A-Z0-9]+) \K(.*?)>~i', static function ($m): string {
             return preg_replace('~\s*~', '', $m[0]);
         }, $html);
     }
