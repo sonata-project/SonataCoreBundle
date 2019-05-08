@@ -31,11 +31,11 @@ class EqualTypeTest extends TypeTestCase
         $formBuilder
             ->expects($this->any())
             ->method('add')
-            ->will($this->returnCallback(function ($name, $type = null): void {
+            ->willReturnCallback(function ($name, $type = null): void {
                 if (null !== $type) {
                     $this->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
                 }
-            }));
+            });
 
         $type = new EqualType($this->createMock(TranslatorInterface::class));
         $type->buildForm($formBuilder, [
@@ -58,9 +58,9 @@ class EqualTypeTest extends TypeTestCase
 
         $mock->expects($this->exactly(0))
             ->method('trans')
-            ->will($this->returnCallback(static function ($arg) {
+            ->willReturnCallback(static function ($arg) {
                 return $arg;
-            })
+            }
             );
 
         $type = new EqualType($mock);
