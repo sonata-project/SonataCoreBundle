@@ -42,11 +42,11 @@ class StatusTypeTest extends TypeTestCase
         $formBuilder
             ->expects($this->any())
             ->method('add')
-            ->will($this->returnCallback(function ($name, $type = null) {
+            ->willReturnCallback(function ($name, $type = null) {
                 if (null !== $type) {
                     $this->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
                 }
-            }));
+            });
 
         $type = new StatusType(Choice::class, 'getList', 'choice_type');
         $type->buildForm($formBuilder, [

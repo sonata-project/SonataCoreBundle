@@ -48,7 +48,7 @@ class TemplateExtensionTest extends TestCase
         $translator = $this->createMock(TranslatorInterface::class);
 
         $adapter = $this->createMock(AdapterInterface::class);
-        $adapter->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue('safe-parameter'));
+        $adapter->expects($this->once())->method('getUrlsafeIdentifier')->willReturn('safe-parameter');
 
         $extension = new TemplateExtension(true, $translator, $adapter);
 
