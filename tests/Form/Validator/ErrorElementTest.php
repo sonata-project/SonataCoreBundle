@@ -41,13 +41,13 @@ class ErrorElementTest extends TestCase
         $this->context = $this->createMock(ExecutionContextInterface::class);
         $this->context->expects($this->once())
                 ->method('getPropertyPath')
-                ->will($this->returnValue('bar'));
+                ->willReturn('bar');
 
         if ($this->context instanceof ExecutionContextInterface) {
             $builder = $this->createMock(ConstraintViolationBuilderInterface::class);
             $builder->expects($this->any())
                 ->method($this->anything())
-                ->will($this->returnSelf());
+                ->willReturnSelf();
 
             $this->context->expects($this->any())
                 ->method('buildViolation')
@@ -58,7 +58,7 @@ class ErrorElementTest extends TestCase
             $this->contextualValidator = $this->createMock(ContextualValidatorInterface::class);
             $this->contextualValidator->expects($this->any())
                 ->method($this->anything())
-                ->will($this->returnSelf());
+                ->willReturnSelf();
             $validator->expects($this->any())
                 ->method('inContext')
                 ->willReturn($this->contextualValidator);
@@ -120,7 +120,7 @@ class ErrorElementTest extends TestCase
             $this->context->expects($this->once())
                 ->method('validateValue')
                 ->with($this->equalTo($this->subject), $this->equalTo($constraint), $this->equalTo(''), $this->equalTo('foo_core'))
-                ->will($this->returnValue(null));
+                ->willReturn(null);
         } else {
             $this->contextualValidator->expects($this->once())
                 ->method('atPath')
@@ -144,7 +144,7 @@ class ErrorElementTest extends TestCase
             $this->context->expects($this->once())
                 ->method('validateValue')
                 ->with($this->equalTo(null), $this->equalTo($constraint), $this->equalTo('bar'), $this->equalTo('foo_core'))
-                ->will($this->returnValue(null));
+                ->willReturn(null);
         } else {
             $this->contextualValidator->expects($this->once())
                 ->method('atPath')
@@ -170,7 +170,7 @@ class ErrorElementTest extends TestCase
             $this->context->expects($this->once())
                 ->method('validateValue')
                 ->with($this->equalTo(null), $this->equalTo($constraint), $this->equalTo('bar'), $this->equalTo('foo_core'))
-                ->will($this->returnValue(null));
+                ->willReturn(null);
         } else {
             $this->contextualValidator->expects($this->once())
                 ->method('atPath')
@@ -214,7 +214,7 @@ class ErrorElementTest extends TestCase
             $this->context->expects($this->any())
                 ->method('validateValue')
                 ->with($this->equalTo($this->subject), $this->equalTo($constraint), $this->equalTo(''), $this->equalTo('foo_core'))
-                ->will($this->returnValue(null));
+                ->willReturn(null);
         } else {
             $this->contextualValidator->expects($this->any())
                 ->method('atPath')

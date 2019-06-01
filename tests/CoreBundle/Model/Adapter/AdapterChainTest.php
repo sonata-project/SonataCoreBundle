@@ -38,11 +38,11 @@ class AdapterChainTest extends TestCase
         $adapter = new AdapterChain();
 
         $adapter->addAdapter($fake1 = $this->createMock(AdapterInterface::class));
-        $fake1->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue(null));
+        $fake1->expects($this->once())->method('getUrlsafeIdentifier')->willReturn(null);
 
         $adapter->addAdapter($fake2 = $this->createMock(AdapterInterface::class));
 
-        $fake2->expects($this->once())->method('getUrlsafeIdentifier')->will($this->returnValue('voila'));
+        $fake2->expects($this->once())->method('getUrlsafeIdentifier')->willReturn('voila');
 
         $this->assertSame('voila', $adapter->getUrlsafeIdentifier(new \stdClass()));
     }
@@ -55,11 +55,11 @@ class AdapterChainTest extends TestCase
         $adapter = new AdapterChain();
 
         $adapter->addAdapter($fake1 = $this->createMock(AdapterInterface::class));
-        $fake1->expects($this->once())->method('getNormalizedIdentifier')->will($this->returnValue(null));
+        $fake1->expects($this->once())->method('getNormalizedIdentifier')->willReturn(null);
 
         $adapter->addAdapter($fake2 = $this->createMock(AdapterInterface::class));
 
-        $fake2->expects($this->once())->method('getNormalizedIdentifier')->will($this->returnValue('voila'));
+        $fake2->expects($this->once())->method('getNormalizedIdentifier')->willReturn('voila');
 
         $this->assertSame('voila', $adapter->getNormalizedIdentifier(new \stdClass()));
     }

@@ -98,11 +98,11 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $formBuilder
             ->expects($this->any())
             ->method('add')
-            ->will($this->returnCallback(function ($name, $type = null) {
+            ->willReturnCallback(function ($name, $type = null) {
                 if (null !== $type) {
                     $this->assertTrue(class_exists($type), sprintf('Unable to ensure %s is a FQCN', $type));
                 }
-            }));
+            });
 
         $type = new DoctrineORMSerializationType(
             $this->getMetadataFactoryMock(), // $this->createMock(MetadataFactoryInterface::class),
@@ -198,7 +198,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         $classMetadata->addPropertyMetadata($comments);
 
         $metadataFactory = $this->createMock(MetadataFactoryInterface::class);
-        $metadataFactory->expects($this->once())->method('getMetadataForClass')->will($this->returnValue($classMetadata));
+        $metadataFactory->expects($this->once())->method('getMetadataForClass')->willReturn($classMetadata);
 
         return $metadataFactory;
     }
@@ -229,10 +229,10 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
         ];
 
         $entityManager = $this->createMock(EntityManagerInterface::class);
-        $entityManager->expects($this->once())->method('getClassMetadata')->will($this->returnValue($classMetadata));
+        $entityManager->expects($this->once())->method('getClassMetadata')->willReturn($classMetadata);
 
         $registry = $this->createMock(ManagerRegistry::class);
-        $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($entityManager));
+        $registry->expects($this->once())->method('getManagerForClass')->willReturn($entityManager);
 
         return $registry;
     }

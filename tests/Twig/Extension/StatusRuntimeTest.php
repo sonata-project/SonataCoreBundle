@@ -26,7 +26,7 @@ class StatusRuntimeTest extends TestCase
             ->getMock();
         $statusService->expects($this->once())
             ->method('handlesObject')
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $runtime->addStatusService($statusService);
         $this->assertSame('test-value', $runtime->statusClass(new \stdClass(), 'getStatus', 'test-value'));

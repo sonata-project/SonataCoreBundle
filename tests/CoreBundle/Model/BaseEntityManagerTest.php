@@ -57,7 +57,7 @@ class BaseEntityManagerTest extends TestCase
         $this->expectExceptionMessage('Unable to find the mapping information for the class classname. Please check the `auto_mapping` option (http://symfony.com/doc/current/reference/configuration/doctrine.html#configuration-overview) or add the bundle to the `mappings` section in the doctrine configuration');
 
         $registry = $this->createMock(ManagerRegistry::class);
-        $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue(null));
+        $registry->expects($this->once())->method('getManagerForClass')->willReturn(null);
 
         $manager = new EntityManager('classname', $registry);
         $manager->getObjectManager();
@@ -71,7 +71,7 @@ class BaseEntityManagerTest extends TestCase
         $objectManager = $this->createMock(ObjectManager::class);
 
         $registry = $this->createMock(ManagerRegistry::class);
-        $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($objectManager));
+        $registry->expects($this->once())->method('getManagerForClass')->willReturn($objectManager);
 
         $manager = new EntityManager('classname', $registry);
 
