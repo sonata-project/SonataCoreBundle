@@ -21,7 +21,7 @@ file that was distributed with this source code.
 {% endblock sonata_type_date_picker_widget_html %}
 
 {% block sonata_type_date_picker_widget %}
-    {% spaceless %}
+    {% apply spaceless %}
         {% if wrap_fields_with_addons %}
             <div class="input-group">
                 {{ block('sonata_type_date_picker_widget_html') }}
@@ -34,7 +34,7 @@ file that was distributed with this source code.
                 $('#{{ datepicker_use_button ? 'dp_' : '' }}{{ id }}').datetimepicker({{ dp_options|json_encode|raw }});
             });
         </script>
-    {% endspaceless %}
+    {% endapply %}
 {% endblock sonata_type_date_picker_widget %}
 
 {% block sonata_type_datetime_picker_widget_html %}
@@ -52,7 +52,7 @@ file that was distributed with this source code.
 {% endblock sonata_type_datetime_picker_widget_html %}
 
 {% block sonata_type_datetime_picker_widget %}
-    {% spaceless %}
+    {% apply spaceless %}
         {% if wrap_fields_with_addons %}
             <div class="input-group">
                 {{ block('sonata_type_datetime_picker_widget_html') }}
@@ -65,11 +65,11 @@ file that was distributed with this source code.
                 $('#{{ datepicker_use_button ? 'dtp_' : '' }}{{ id }}').datetimepicker({{ dp_options|json_encode|raw }});
             });
         </script>
-    {% endspaceless %}
+    {% endapply %}
 {% endblock sonata_type_datetime_picker_widget %}
 
 {% block sonata_type_datetime_range_script_block %}
-    {% spaceless %}
+    {% apply spaceless %}
         {{ block('form_widget') }}
         <script type="text/javascript">
             jQuery(function ($) {
@@ -83,7 +83,7 @@ file that was distributed with this source code.
                 });
             });
         </script>
-    {% endspaceless %}
+    {% endapply %}
 {% endblock sonata_type_datetime_range_script_block %}
 
 {% block sonata_type_datetime_range_picker_widget %}

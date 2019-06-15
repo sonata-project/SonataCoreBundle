@@ -9,7 +9,7 @@ file that was distributed with this source code.
 
 #}
 {% block sonata_type_color_widget %}
-    {% spaceless %}
+    {% apply spaceless %}
         <input type="color" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-    {% endspaceless %}
+    {% endapply %}
 {% endblock sonata_type_color_widget %}
