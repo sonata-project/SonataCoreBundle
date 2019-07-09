@@ -50,7 +50,7 @@
         "matthiasnoback/symfony-dependency-injection-test": "^3.1",
         "nelmio/api-doc-bundle": "^2.11",
         "sonata-project/exporter": "^1.11.0 || ^2.0",
-        "symfony/phpunit-bridge": "^4.2"
+        "symfony/phpunit-bridge": "^4.3"
     },
     "config": {
         "sort-packages": true

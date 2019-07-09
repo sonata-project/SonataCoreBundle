@@ -43,7 +43,7 @@ class StatusExtensionTest extends TestCase
             ->getMock();
         $statusService->expects($this->once())
             ->method('handlesObject')
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $extension->addStatusService($statusService);
         $this->assertSame('test-value', $extension->statusClass(new \stdClass(), 'getStatus', 'test-value'));

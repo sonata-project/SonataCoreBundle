@@ -26,14 +26,14 @@ class FormHelperTest extends TestCase
         $dataMapper = $this->createMock(DataMapperInterface::class);
 
         $config = $this->createMock(FormConfigInterface::class);
-        $config->expects($this->any())->method('getName')->will($this->returnValue('root'));
-        $config->expects($this->any())->method('getCompound')->will($this->returnValue(true));
-        $config->expects($this->any())->method('getDataMapper')->will($this->returnValue($dataMapper));
+        $config->expects($this->any())->method('getName')->willReturn('root');
+        $config->expects($this->any())->method('getCompound')->willReturn(true);
+        $config->expects($this->any())->method('getDataMapper')->willReturn($dataMapper);
 
         $form = new Form($config);
 
         $config = $this->createMock(FormConfigInterface::class);
-        $config->expects($this->any())->method('getName')->will($this->returnValue('child'));
+        $config->expects($this->any())->method('getName')->willReturn('child');
 
         $form->add(new Form($config));
 

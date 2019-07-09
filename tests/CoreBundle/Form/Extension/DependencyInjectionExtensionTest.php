@@ -28,11 +28,11 @@ class DependencyInjectionExtensionTest extends TestCase
         $formName = \get_class($type);
 
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->any())->method('has')->will($this->returnValue(true));
+        $container->expects($this->any())->method('has')->willReturn(true);
         $container->expects($this->any())
             ->method('get')
             ->with($this->equalTo($formName))
-            ->will($this->returnValue($type));
+            ->willReturn($type);
 
         $f = new DependencyInjectionExtension(
             $container,
@@ -59,7 +59,7 @@ class DependencyInjectionExtensionTest extends TestCase
     public function testTypeExtensionsValid()
     {
         $container = $this->createMock(ContainerInterface::class);
-        $container->expects($this->any())->method('has')->will($this->returnValue(true));
+        $container->expects($this->any())->method('has')->willReturn(true);
         $container->expects($this->any())
             ->method('get')
             ->withConsecutive(

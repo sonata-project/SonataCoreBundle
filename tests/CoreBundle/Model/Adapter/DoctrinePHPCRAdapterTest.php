@@ -64,7 +64,7 @@ class DoctrinePHPCRAdapterTest extends TestCase
     public function testNormalizedIdentifierWithNoManager()
     {
         $registry = $this->createMock(ManagerRegistry::class);
-        $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue(null));
+        $registry->expects($this->once())->method('getManagerForClass')->willReturn(null);
 
         $adapter = new DoctrinePHPCRAdapter($registry);
 
@@ -77,10 +77,10 @@ class DoctrinePHPCRAdapterTest extends TestCase
     public function testNormalizedIdentifierWithNotManaged()
     {
         $manager = $this->getMockBuilder(DocumentManager::class)->disableOriginalConstructor()->getMock();
-        $manager->expects($this->once())->method('contains')->will($this->returnValue(false));
+        $manager->expects($this->once())->method('contains')->willReturn(false);
 
         $registry = $this->createMock(ManagerRegistry::class);
-        $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($manager));
+        $registry->expects($this->once())->method('getManagerForClass')->willReturn($manager);
 
         $adapter = new DoctrinePHPCRAdapter($registry);
 
@@ -99,11 +99,11 @@ class DoctrinePHPCRAdapterTest extends TestCase
         $metadata->reflFields['path'] = new \ReflectionProperty(MyDocument::class, 'path');
 
         $manager = $this->getMockBuilder(DocumentManager::class)->disableOriginalConstructor()->getMock();
-        $manager->expects($this->any())->method('contains')->will($this->returnValue(true));
-        $manager->expects($this->any())->method('getClassMetadata')->will($this->returnValue($metadata));
+        $manager->expects($this->any())->method('contains')->willReturn(true);
+        $manager->expects($this->any())->method('getClassMetadata')->willReturn($metadata);
 
         $registry = $this->createMock(ManagerRegistry::class);
-        $registry->expects($this->any())->method('getManagerForClass')->will($this->returnValue($manager));
+        $registry->expects($this->any())->method('getManagerForClass')->willReturn($manager);
 
         $adapter = new DoctrinePHPCRAdapter($registry);
 

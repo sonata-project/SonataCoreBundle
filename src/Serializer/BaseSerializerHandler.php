@@ -33,9 +33,6 @@ abstract class BaseSerializerHandler implements SerializerHandlerInterface
      */
     protected static $formats;
 
-    /**
-     * @param ManagerInterface $manager
-     */
     public function __construct(ManagerInterface $manager)
     {
         $this->manager = $manager;

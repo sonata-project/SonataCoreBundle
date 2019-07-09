@@ -81,7 +81,7 @@ final class SonataCoreBundleTest extends TestCase
 
         $containerBuilder->expects($this->any())
             ->method('addCompilerPass')
-            ->will($this->returnCallback(function (CompilerPassInterface $pass) {
+            ->willReturnCallback(function (CompilerPassInterface $pass) {
                 if ($pass instanceof StatusRendererCompilerPass) {
                     return;
                 }
@@ -105,7 +105,7 @@ final class SonataCoreBundleTest extends TestCase
                     "Sonata\AdminBundle\DependencyInjection\Compiler\FormFactoryCompilerPass", but got "%s".',
                     \get_class($pass)
                 ));
-            }));
+            });
 
         $bundle = new SonataCoreBundle();
         $bundle->build($containerBuilder);

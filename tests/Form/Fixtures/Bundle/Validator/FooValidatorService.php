@@ -24,8 +24,7 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 final class FooValidatorService
 {
     /**
-     * @param ErrorElement $errorElement
-     * @param string       $value
+     * @param string $value
      *
      * @throws ValidatorException
      */
