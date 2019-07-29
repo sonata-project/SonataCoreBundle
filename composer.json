@@ -49,7 +49,7 @@
         "matthiasnoback/symfony-config-test": "^4.0",
         "matthiasnoback/symfony-dependency-injection-test": "^3.1",
         "sonata-project/exporter": "^1.11.0 || ^2.0",
-        "symfony/phpunit-bridge": "^4.2"
+        "symfony/phpunit-bridge": "^4.3"
     },
     "config": {
         "sort-packages": true

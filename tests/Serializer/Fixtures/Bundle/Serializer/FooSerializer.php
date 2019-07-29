@@ -21,9 +21,6 @@ use Sonata\Serializer\BaseSerializerHandler;
  */
 class FooSerializer extends BaseSerializerHandler
 {
-    /**
-     * @param ManagerInterface $manager
-     */
     public function __construct(ManagerInterface $manager)
     {
         parent::__construct($manager);
