@@ -1,4 +1,8 @@
 <!-- THE PR TEMPLATE IS NOT AN OPTION. DO NOT DELETE IT, MAKE SURE YOU READ AND EDIT IT! -->
+<!--
+    WARNING:
+    This package is deprecated and only accepts bugfixes.
+-->
 ## Subject
 
 <!-- Describe your Pull Request content here -->
@@ -28,7 +32,7 @@ Closes #{put_issue_number_here}
     please keep it short and clear and to the point
 -->
 
-<!-- 
+<!--
     If you are updating something that doesn't require
     a release, you can delete the whole Changelog section.
     (eg. update to docs, tests)
@@ -54,9 +58,9 @@ Closes #{put_issue_number_here}
     If this is a work in progress, uncomment this section.
     You can add as many tasks as you want.
     If some are not relevant, just remove them.
-    
+
     ## To do
-    
+
     - [ ] Update the tests
     - [ ] Update the documentation
     - [ ] Add an upgrade note
