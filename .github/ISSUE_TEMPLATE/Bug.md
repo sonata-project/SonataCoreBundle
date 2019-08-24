@@ -1,3 +1,8 @@
+<!--
+    WARNING:
+    This package is deprecated and only accepts bugfixes.
+-->
+
 ---
 name: 🐞 Bug Report
 about: Something is broken? 🔨
