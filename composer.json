@@ -1,7 +1,7 @@
 {
     "name": "sonata-project/core-bundle",
     "type": "symfony-bundle",
-    "description": "Symfony SonataCoreBundle",
+    "description": "Symfony SonataCoreBundle (abandoned)",
     "keywords": [
         "sonata"
     ],
@@ -51,6 +51,11 @@
         "sonata-project/exporter": "^1.11.0 || ^2.0",
         "symfony/phpunit-bridge": "^4.3"
     },
+    "suggest": {
+        "sonata-project/doctrine-extensions": "Direct replacement for Doctrine behavioral extensions",
+        "sonata-project/form-extensions": "Direct replacement for Symfony form extensions",
+        "sonata-project/twig-extensions": "Direct replacement for Twig Extensions"
+    },
     "config": {
         "sort-packages": true
     },
@@ -74,5 +79,6 @@
             "Sonata\\Serializer\\Tests\\": "tests/Serializer/",
             "Sonata\\Twig\\Tests\\": "tests/Twig/"
         }
-    }
+    },
+    "abandoned": true
 }
