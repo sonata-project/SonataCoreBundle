@@ -49,7 +49,7 @@ class InlineConstraint extends Constraint
         }
     }
 
-    public function __sleep()
+    public function __sleep(): array
     {
         if (!\is_string($this->service) || !\is_string($this->method)) {
             return [];
