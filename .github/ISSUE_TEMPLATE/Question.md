@@ -1,3 +1,8 @@
+<!--
+    WARNING:
+    This package is deprecated and only accepts bugfixes.
+-->
+
 ---
 name: ⛔ NO support questions
 about: If you have a question, please check out our Slack or StackOverflow!
