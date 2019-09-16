@@ -15,14 +15,6 @@ Branch | Travis | Coveralls | Scrutinizer |
 3.x   | [![Build Status][travis_stable_badge]][travis_stable_link]     | [![Coverage Status][coveralls_stable_badge]][coveralls_stable_link]     | [![Scrutinizer Status][scrutinizer_stable_badge]][scrutinizer_stable_link] |
 master | [![Build Status][travis_unstable_badge]][travis_unstable_link] | [![Coverage Status][coveralls_unstable_badge]][coveralls_unstable_link] | [![Scrutinizer Status][scrutinizer_unstable_badge]][scrutinizer_unstable_link] |
 
-## WARNING: This bundle is deprecated
-
-The features provided by this bundle were moved to the following packages:
-
-* [sonata-project/doctrine-extensions](https://github.com/sonata-project/sonata-doctrine-extensions)
-* [sonata-project/form-extensions](https://github.com/sonata-project/form-extensions)
-* [sonata-project/twig-extensions](https://github.com/sonata-project/twig-extensions)
-
 ## Documentation
 
 Check out the documentation on the [official website](https://sonata-project.org/bundles/core).
