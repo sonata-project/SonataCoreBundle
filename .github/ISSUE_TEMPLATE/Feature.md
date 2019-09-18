@@ -1,9 +1,14 @@
+<!--
+    WARNING:
+    This package is deprecated and only accepts bugfixes.
+-->
+
 ---
-name: 🚀 Feature Request
-about: I have a suggestion (and may want to implement it 🙂)!
+name: ⛔ NO feature requests
+about: This package is deprecated and isn't accepting feature requests
 labels: feature
 ---
 
-## Feature Request
-
-<!-- Provide a summary of the feature. -->
+This package is deprecated and isn't accepting feature requests. Please, try to
+find the [replacement package](https://github.com/sonata-project) which could
+match the feature you are trying to propose.
