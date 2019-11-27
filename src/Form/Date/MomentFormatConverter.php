@@ -18,7 +18,6 @@ namespace Sonata\Form\Date;
  *
  * Inspired by https://github.com/fightbulc/moment.php/blob/master/src/Moment/CustomFormats/MomentJs.php
  *
- *
  * @author Hugo Briand <briand@ekino.com>
  * @author Andrej Hudec <pulzarraider@gmail.com>
  */

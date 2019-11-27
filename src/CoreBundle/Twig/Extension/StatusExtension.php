@@ -34,7 +34,6 @@ class StatusExtension extends AbstractExtension
     /**
      * Adds a renderer to the status services list.
      *
-     *
      * @deprecated since 3.13.0, to be removed in 4.0. Use the StatusRuntime instead.
      */
     public function addStatusService(StatusClassRendererInterface $renderer)

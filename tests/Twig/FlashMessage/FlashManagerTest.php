@@ -233,7 +233,6 @@ class FlashManagerTest extends TestCase
     /**
      * Returns Sonata core flash manager.
      *
-     *
      * @return FlashManager
      */
     protected function getFlashManager(array $types)
