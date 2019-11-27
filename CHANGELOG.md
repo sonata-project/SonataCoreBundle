@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.17.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.17.0...3.17.1) - 2019-11-27
+### Fixed
+- Symfony 4.4 compatibility: Fixed signature of InlineConstraint::__sleep
+
 ## [3.17.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.16.2...3.17.0) - 2019-04-24
 ### Added
 - ability to set a translation domain for form validators
