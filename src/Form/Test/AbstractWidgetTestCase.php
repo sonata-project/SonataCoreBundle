@@ -20,15 +20,15 @@ use Symfony\Bridge\Twig\Form\TwigRenderer;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
 use Symfony\Bridge\Twig\Form\TwigRendererEngineInterface;
 use Symfony\Bridge\Twig\Form\TwigRendererInterface;
-use Symfony\Bridge\Twig\Tests\Extension\Fixtures\StubFilesystemLoader;
-use Symfony\Bundle\FrameworkBundle\Tests\Templating\Helper\Fixtures\StubTranslator;
 use Symfony\Component\Form\FormExtensionInterface;
 use Symfony\Component\Form\FormRenderer;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 use Twig\Extension\InitRuntimeInterface;
+use Twig\Loader\FilesystemLoader;
 use Twig\RuntimeLoader\FactoryRuntimeLoader;
 
 /**
@@ -93,12 +93,17 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      */
     protected function getEnvironment()
     {
-        $loader = new StubFilesystemLoader($this->getTemplatePaths());
+        $loader = new FilesystemLoader($this->getTemplatePaths());
 
         $environment = new Environment($loader, [
             'strict_variables' => true,
         ]);
-        $environment->addExtension(new TranslationExtension(new StubTranslator()));
+        $environment->addExtension(new TranslationExtension(new class() implements TranslatorInterface {
+            public function trans(string $id, array $parameters = [], string $domain = null, string $locale = null)
+            {
+                return '[trans]'.strtr($id, $parameters).'[/trans]';
+            }
+        }));
         $environment->addExtension($this->extension);
 
         return $environment;
