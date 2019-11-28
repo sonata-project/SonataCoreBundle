@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Sonata\Form\Test;
 
+use Sonata\Form\Fixtures\StubFilesystemLoader;
+use Sonata\Form\Fixtures\StubTranslator;
 use Symfony\Bridge\Twig\AppVariable;
 use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
@@ -20,8 +22,6 @@ use Symfony\Bridge\Twig\Form\TwigRenderer;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
 use Symfony\Bridge\Twig\Form\TwigRendererEngineInterface;
 use Symfony\Bridge\Twig\Form\TwigRendererInterface;
-use Symfony\Bridge\Twig\Tests\Extension\Fixtures\StubFilesystemLoader;
-use Symfony\Bundle\FrameworkBundle\Tests\Templating\Helper\Fixtures\StubTranslator;
 use Symfony\Component\Form\FormExtensionInterface;
 use Symfony\Component\Form\FormRenderer;
 use Symfony\Component\Form\FormView;
