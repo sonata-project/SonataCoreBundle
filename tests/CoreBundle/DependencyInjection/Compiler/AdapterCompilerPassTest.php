@@ -37,6 +37,7 @@ final class AdapterCompilerPassTest extends AbstractCompilerPassTestCase
         $this->registerService('doctrine', 'foo');
         $this->registerService('doctrine_phpcr', 'foo');
 
+        $this->container->getCompilerPassConfig()->setAfterRemovingPasses([]);
         $this->compile();
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
