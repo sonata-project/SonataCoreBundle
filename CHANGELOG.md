@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.17.2](https://github.com/sonata-project/SonataCoreBundle/compare/3.17.1...3.17.2) - 2019-11-29
+### Fixed
+- Compatibility with `symfony/twig-bridge` 4.4
+- Compatibility with `symfony/dependency-injection` 4.4
+
 ## [3.17.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.17.0...3.17.1) - 2019-11-27
 ### Fixed
 - Symfony 4.4 compatibility: Fixed signature of InlineConstraint::__sleep
