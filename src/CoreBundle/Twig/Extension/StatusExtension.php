@@ -22,7 +22,7 @@ use Twig\TwigFilter;
  * @author Hugo Briand <briand@ekino.com>
  * @author Titouan Galopin <galopintitouan@gmail.com>
  *
- * @deprecated Since version 3.13.0, to be removed in 4.0.
+ * @deprecated since sonata-project/core-bundle 3.13.0, to be removed in 4.0.
  */
 class StatusExtension extends AbstractExtension
 {
@@ -34,7 +34,7 @@ class StatusExtension extends AbstractExtension
     /**
      * Adds a renderer to the status services list.
      *
-     * @deprecated since 3.13.0, to be removed in 4.0. Use the StatusRuntime instead.
+     * @deprecated since sonata-project/core-bundle 3.13.0, to be removed in 4.0. Use the StatusRuntime instead.
      */
     public function addStatusService(StatusClassRendererInterface $renderer)
     {
@@ -67,7 +67,7 @@ class StatusExtension extends AbstractExtension
      *
      * @return string
      *
-     * @deprecated since 3.13.0, to be removed in 4.0. Use the StatusRuntime instead.
+     * @deprecated since sonata-project/core-bundle 3.13.0, to be removed in 4.0. Use the StatusRuntime instead.
      */
     public function statusClass($object, $statusType = null, $default = '')
     {

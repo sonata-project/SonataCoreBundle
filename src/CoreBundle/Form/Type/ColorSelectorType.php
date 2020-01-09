@@ -23,7 +23,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 /**
  * NEXT_MAJOR: remove this class.
  *
- * @deprecated since version 3.5, to be removed in 4.0. Use ColorType instead
+ * @deprecated since sonata-project/core-bundle 3.5, to be removed in 4.0. Use ColorType instead
  */
 class ColorSelectorType extends AbstractType
 {

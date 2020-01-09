@@ -21,7 +21,7 @@ namespace Sonata\CoreBundle\Color;
 /**
  * NEXT_MAJOR: remove this class.
  *
- * @deprecated since version 3.10, to be removed in 4.0.
+ * @deprecated since sonata-project/core-bundle 3.10, to be removed in 4.0.
  *
  * Handles A list of all HTML colors.
  * @see http://www.w3schools.com/HTML/html_colornames.asp

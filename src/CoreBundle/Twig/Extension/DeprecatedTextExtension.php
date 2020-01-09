@@ -19,7 +19,7 @@ use Twig\Extensions\TextExtension;
 /**
  * NEXT_MAJOR : remove this class and the twig/extensions dependency.
  *
- * @deprecated since version 3.2, to be removed in 4.0.
+ * @deprecated since sonata-project/core-bundle 3.2, to be removed in 4.0.
  */
 final class DeprecatedTextExtension extends TextExtension
 {

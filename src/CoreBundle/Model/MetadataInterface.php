@@ -16,7 +16,7 @@ namespace Sonata\CoreBundle\Model;
 /**
  * @author Hugo Briand <briand@ekino.com>
  *
- * @deprecated since version 3.13.0, to be removed in 4.0. Use Sonata\BlockBundle\Meta\MetadataInterface instead.
+ * @deprecated since sonata-project/core-bundle 3.13.0, to be removed in 4.0. Use Sonata\BlockBundle\Meta\MetadataInterface instead.
  */
 interface MetadataInterface
 {

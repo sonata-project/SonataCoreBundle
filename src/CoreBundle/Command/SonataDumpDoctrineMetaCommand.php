@@ -24,7 +24,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Return useful data on the database schema.
  *
- * @deprecated since 3.12.0, to be removed in 4.0.
+ * @deprecated since sonata-project/core-bundle 3.12.0, to be removed in 4.0.
  */
 class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
 {

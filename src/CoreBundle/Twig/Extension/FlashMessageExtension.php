@@ -28,7 +28,7 @@ use Twig\TwigFunction;
  * @author Vincent Composieux <composieux@ekino.com>
  * @author Titouan Galopin <galopintitouan@gmail.com>
  *
- * @deprecated Since version 3.13.0, to be removed in 4.0.
+ * @deprecated since sonata-project/core-bundle 3.13.0, to be removed in 4.0.
  */
 class FlashMessageExtension extends \Sonata\Twig\Extension\FlashMessageExtension
 {
@@ -70,7 +70,7 @@ class FlashMessageExtension extends \Sonata\Twig\Extension\FlashMessageExtension
      *
      * @return string
      *
-     * @deprecated since 3.11.0, to be removed in 4.0. Use the FlashMessageRuntime instead.
+     * @deprecated since sonata-project/core-bundle 3.11.0, to be removed in 4.0. Use the FlashMessageRuntime instead.
      */
     public function getFlashMessages($type, $domain = null)
     {
@@ -88,7 +88,7 @@ class FlashMessageExtension extends \Sonata\Twig\Extension\FlashMessageExtension
      *
      * @return string
      *
-     * @deprecated since 3.11.0, to be removed in 4.0. Use the FlashMessageRuntime instead.
+     * @deprecated since sonata-project/core-bundle 3.11.0, to be removed in 4.0. Use the FlashMessageRuntime instead.
      */
     public function getFlashMessagesTypes()
     {

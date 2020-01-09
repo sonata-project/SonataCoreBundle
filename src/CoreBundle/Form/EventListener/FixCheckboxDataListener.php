@@ -23,7 +23,7 @@ use Symfony\Component\Form\FormEvents;
 );
 
 /**
- * @deprecated Since version 3.13.0, to be removed in 4.0.
+ * @deprecated since sonata-project/core-bundle 3.13.0, to be removed in 4.0.
  */
 class FixCheckboxDataListener extends \Sonata\Form\EventListener\FixCheckboxDataListener
 {
@@ -35,7 +35,7 @@ class FixCheckboxDataListener extends \Sonata\Form\EventListener\FixCheckboxData
     /**
      * NEXT_MAJOR: remove this method.
      *
-     * @deprecated Since version 2.3, to be renamed in 4.0.
+     * @deprecated since sonata-project/core-bundle 2.3, to be renamed in 4.0.
      *             Use {@link preSubmit} instead
      */
     public function preBind(FormEvent $event)
