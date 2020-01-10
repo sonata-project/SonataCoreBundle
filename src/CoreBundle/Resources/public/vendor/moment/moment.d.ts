@@ -196,11 +196,11 @@ declare namespace moment {
     toJSON(): string;
 
     /**
-     * @deprecated since sonata-project/core-bundle 2.8.0
+     * @deprecated since version 2.8.0
      */
     lang(locale: LocaleSpecifier): Moment;
     /**
-     * @deprecated since sonata-project/core-bundle 2.8.0
+     * @deprecated since version 2.8.0
      */
     lang(): Locale;
     /**
@@ -562,11 +562,11 @@ declare namespace moment {
     isBetween(a: MomentInput, b: MomentInput, granularity?: unitOfTime.StartOf, inclusivity?: "()" | "[)" | "(]" | "[]"): boolean;
 
     /**
-     * @deprecated since sonata-project/core-bundle 2.8.0, use locale
+     * @deprecated as of 2.8.0, use locale
      */
     lang(language: LocaleSpecifier): Moment;
     /**
-     * @deprecated since sonata-project/core-bundle 2.8.0, use locale
+     * @deprecated as of 2.8.0, use locale
      */
     lang(): Locale;
 
@@ -582,21 +582,21 @@ declare namespace moment {
 
     // NOTE(constructor): Same as moment constructor
     /**
-     * @deprecated since sonata-project/core-bundle 2.7.0, use moment.min/max
+     * @deprecated as of 2.7.0, use moment.min/max
      */
     max(inp?: MomentInput, format?: MomentFormatSpecification, strict?: boolean): Moment;
     /**
-     * @deprecated since sonata-project/core-bundle 2.7.0, use moment.min/max
+     * @deprecated as of 2.7.0, use moment.min/max
      */
     max(inp?: MomentInput, format?: MomentFormatSpecification, language?: string, strict?: boolean): Moment;
 
     // NOTE(constructor): Same as moment constructor
     /**
-     * @deprecated since sonata-project/core-bundle 2.7.0, use moment.min/max
+     * @deprecated as of 2.7.0, use moment.min/max
      */
     min(inp?: MomentInput, format?: MomentFormatSpecification, strict?: boolean): Moment;
     /**
-     * @deprecated since sonata-project/core-bundle 2.7.0, use moment.min/max
+     * @deprecated as of 2.7.0, use moment.min/max
      */
     min(inp?: MomentInput, format?: MomentFormatSpecification, language?: string, strict?: boolean): Moment;
 
@@ -622,11 +622,11 @@ declare namespace moment {
   export function isDuration(d: any): d is Duration;
 
   /**
-   * @deprecated since sonata-project/core-bundle 2.8.0
+   * @deprecated in 2.8.0
    */
   export function lang(language?: string): string;
   /**
-   * @deprecated since sonata-project/core-bundle 2.8.0
+   * @deprecated in 2.8.0
    */
   export function lang(language?: string, definition?: Locale): string;
 
