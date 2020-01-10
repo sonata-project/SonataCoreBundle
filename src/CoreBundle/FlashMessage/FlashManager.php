@@ -30,7 +30,7 @@ if (false) {
     /**
      * @author Vincent Composieux <composieux@ekino.com>
      *
-     * @deprecated Since version 3.13.0, to be removed in 4.0.
+     * @deprecated since sonata-project/core-bundle 3.13.0, to be removed in 4.0.
      */
     class FlashManager extends \Sonata\Twig\FlashMessage\FlashManager
     {

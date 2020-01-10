@@ -31,14 +31,14 @@ class EqualType extends AbstractType
      *
      * @var TranslatorInterface|null
      *
-     * @deprecated translator property is deprecated since version 3.1, to be removed in 4.0
+     * @deprecated translator property is deprecated since sonata-project/core-bundle 3.1, to be removed in 4.0
      */
     protected $translator;
 
     /**
      * NEXT_MAJOR: remove this method.
      *
-     * @deprecated translator property is deprecated since version 3.1, to be removed in 4.0
+     * @deprecated translator property is deprecated since sonata-project/core-bundle 3.1, to be removed in 4.0
      */
     public function __construct(TranslatorInterface $translator = null)
     {

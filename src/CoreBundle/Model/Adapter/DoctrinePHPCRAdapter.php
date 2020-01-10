@@ -30,7 +30,7 @@ if (false) {
     /**
      * This is a port of the DoctrineORMAdminBundle / ModelManager class.
      *
-     * @deprecated since 3.12.0, to be removed in 4.0.
+     * @deprecated since sonata-project/core-bundle 3.12.0, to be removed in 4.0.
      */
     class DoctrinePHPCRAdapter extends \Sonata\Doctrine\Adapter\PHPCR\DoctrinePHPCRAdapter implements AdapterInterface
     {

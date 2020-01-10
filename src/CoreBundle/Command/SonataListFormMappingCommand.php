@@ -20,7 +20,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
 /**
- * @deprecated since 3.7, to be removed in 4.0, the form mapping feature should be disabled.
+ * @deprecated since sonata-project/core-bundle 3.7, to be removed in 4.0, the form mapping feature should be disabled.
  */
 class SonataListFormMappingCommand extends ContainerAwareCommand
 {

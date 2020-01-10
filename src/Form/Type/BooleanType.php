@@ -59,7 +59,7 @@ class BooleanType extends AbstractType
             'transform' => false,
             /*
              * NEXT_MAJOR: remove this block.
-             * @deprecated Deprecated as of SonataCoreBundle 2.3.10, to be removed in 4.0.
+             * @deprecated since sonata-project/core-bundle 2.3.10, to be removed in 4.0.
              */
             'catalogue' => 'SonataCoreBundle',
             'choice_translation_domain' => 'SonataCoreBundle',

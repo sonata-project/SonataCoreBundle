@@ -30,7 +30,7 @@ if (false) {
     /**
      * @author Sylvain Deloux <sylvain.deloux@ekino.com>
      *
-     * @deprecated since 3.12.0, to be removed in 4.0.
+     * @deprecated since sonata-project/core-bundle 3.12.0, to be removed in 4.0.
      */
     abstract class BaseEntityManager extends \Sonata\Doctrine\Entity\BaseEntityManager implements ManagerInterface
     {

@@ -20,7 +20,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 /**
  * NEXT_MAJOR: remove this class.
  *
- * @deprecated since version 3.10, to be removed in 4.0. Use Symfony\Component\Form\Extension\Core\Type\ColorType instead
+ * @deprecated since sonata-project/core-bundle 3.10, to be removed in 4.0. Use Symfony\Component\Form\Extension\Core\Type\ColorType instead
  */
 final class ColorType extends AbstractType
 {

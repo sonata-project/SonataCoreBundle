@@ -30,7 +30,7 @@ if (false) {
     /**
      * @author Marko Kunic <kunicmarko20@gmail.com>
      *
-     * @deprecated Since version 3.13.0, to be removed in 4.0.
+     * @deprecated since sonata-project/core-bundle 3.13.0, to be removed in 4.0.
      */
     final class DeprecatedTemplateExtension extends \Sonata\Twig\Extension\DeprecatedTemplateExtension
     {

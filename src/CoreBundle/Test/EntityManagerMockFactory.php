@@ -28,7 +28,7 @@ class_alias(
 
 if (false) {
     /**
-     * @deprecated since 3.13.0, to be removed in 4.0.
+     * @deprecated since sonata-project/core-bundle 3.13.0, to be removed in 4.0.
      */
     class EntityManagerMockFactory extends \Sonata\Doctrine\Test\EntityManagerMockFactory
     {
