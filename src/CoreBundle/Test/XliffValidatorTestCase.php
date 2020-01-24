@@ -29,7 +29,7 @@ abstract class XliffValidatorTestCase extends TestCase
      */
     protected $errors = [];
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->loader = new XliffFileLoader();
     }

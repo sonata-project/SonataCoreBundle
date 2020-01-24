@@ -50,7 +50,7 @@ class DoctrineORMSerializationTypeTest extends TypeTestCase
     /**
      * Set up test.
      */
-    public function setUp()
+    protected function setUp(): void
     {
         if (!interface_exists(MetadataFactoryInterface::class) or !interface_exists(EntityManagerInterface::class)) {
             $this->markTestSkipped('Serializer and Doctrine has to be loaded to run this test');

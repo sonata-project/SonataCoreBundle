@@ -26,7 +26,7 @@ use Sonata\Serializer\Tests\Fixtures\Bundle\Serializer\FooSerializer;
  */
 final class BaseSerializerHandlerTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
         BaseSerializerHandler::setFormats(['json', 'xml', 'yml']);
     }

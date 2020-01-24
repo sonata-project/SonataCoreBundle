@@ -34,7 +34,7 @@ final class InlineValidatorTest extends TestCase
     private $constraintValidatorFactory;
     private $context;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->container = $this->createMock(ContainerInterface::class);
         $this->constraintValidatorFactory = $this->createMock(ConstraintValidatorFactoryInterface::class);

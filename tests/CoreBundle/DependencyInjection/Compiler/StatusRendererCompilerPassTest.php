@@ -24,7 +24,7 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 final class StatusRendererCompilerPassTest extends AbstractCompilerPassTestCase
 {
-    public function registerCompilerPass(ContainerBuilder $container)
+    public function registerCompilerPass(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new StatusRendererCompilerPass());
     }
@@ -36,23 +36,14 @@ final class StatusRendererCompilerPassTest extends AbstractCompilerPassTestCase
         $this->setDefinition('sonata.status.renderer', $statusRenderer);
 
         $statusExtension = new Definition();
-        $this->setDefinition('sonata.core.twig.status_extension', $statusExtension);
         $this->setDefinition('sonata.core.twig.status_runtime', $statusExtension);
 
         $this->compile();
 
-        if (!class_exists(RuntimeLoaderPass::class)) {
-            $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
-                'sonata.core.twig.status_extension',
-                'addStatusService',
-                [new Reference('sonata.status.renderer')]
-            );
-        } else {
-            $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
-                'sonata.core.twig.status_runtime',
-                'addStatusService',
-                [new Reference('sonata.status.renderer')]
-            );
-        }
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
+            'sonata.core.twig.status_runtime',
+            'addStatusService',
+            [new Reference('sonata.status.renderer')]
+        );
     }
 }

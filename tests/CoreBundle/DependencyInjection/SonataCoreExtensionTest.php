@@ -94,7 +94,7 @@ class SonataCoreExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasService('sonata.doctrine.model.adapter.chain');
     }
 
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
         return [
             new SonataCoreExtension(),
