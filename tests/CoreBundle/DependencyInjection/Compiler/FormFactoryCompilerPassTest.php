@@ -25,7 +25,7 @@ use Symfony\Component\DependencyInjection\Definition;
  */
 final class FormFactoryCompilerPassTest extends AbstractCompilerPassTestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
         if (!class_exists(FormPass::class)) {
             $this->markTestSkipped();
@@ -36,7 +36,7 @@ final class FormFactoryCompilerPassTest extends AbstractCompilerPassTestCase
     /**
      * {@inheritdoc}
      */
-    public function registerCompilerPass(ContainerBuilder $container)
+    public function registerCompilerPass(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new FormFactoryCompilerPass());
     }

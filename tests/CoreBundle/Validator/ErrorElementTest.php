@@ -36,7 +36,7 @@ class ErrorElementTest extends TestCase
     private $contextualValidator;
     private $subject;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $constraintValidatorFactory = $this->createMock(ConstraintValidatorFactoryInterface::class);
 

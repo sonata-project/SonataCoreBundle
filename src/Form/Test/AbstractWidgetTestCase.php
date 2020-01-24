@@ -48,7 +48,7 @@ abstract class AbstractWidgetTestCase extends TypeTestCase
      */
     private $renderer;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
