@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.18.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.17.2...3.18.0) - 2020-01-28
+### Changed
+- Switch to phpunit 8 setUp signature in tests
+
+### Fixed
+- Compatibility with "cocur/slugify:^4.0".
+
 ## [3.17.2](https://github.com/sonata-project/SonataCoreBundle/compare/3.17.1...3.17.2) - 2019-11-29
 ### Fixed
 - Compatibility with `symfony/twig-bridge` 4.4
