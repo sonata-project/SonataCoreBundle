@@ -15,7 +15,7 @@ namespace Sonata\Twig\Extension;
 
 use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
 use Sonata\Twig\TokenParser\TemplateBoxTokenParser;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 

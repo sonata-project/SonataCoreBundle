@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle;
 
+use Nelmio\ApiDocBundle\Form\Extension\DocumentationExtension;
 use Nelmio\ApiDocBundle\Form\Extension\DescriptionFormTypeExtension;
 use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass;
@@ -148,6 +149,10 @@ class SonataCoreBundle extends Bundle
 
         if (class_exists(DescriptionFormTypeExtension::class)) {
             $formTypes[] = 'nelmio_api_doc.form.extension.description_form_type_extension';
+        }
+
+        if (class_exists(DocumentationExtension::class)) {
+            $formTypes[] = 'nelmio_api_doc.form.documentation_extension';
         }
 
         FormHelper::registerFormExtensionMapping('form', $formTypes);

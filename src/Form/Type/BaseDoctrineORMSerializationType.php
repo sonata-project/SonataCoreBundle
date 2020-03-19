@@ -13,15 +13,13 @@ declare(strict_types=1);
 
 namespace Sonata\Form\Type;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Metadata\MetadataFactoryInterface;
 use Sonata\Form\EventListener\FixCheckboxDataListener;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * This is a doctrine serialization form type that generates a form type from class serialization metadata
@@ -32,7 +30,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class BaseDoctrineORMSerializationType extends AbstractType
 {
     /**
-     * @var RegistryInterface
+     * @var ManagerRegistry
      */
     protected $registry;
 
@@ -146,16 +144,6 @@ class BaseDoctrineORMSerializationType extends AbstractType
     public function getName()
     {
         return $this->getBlockPrefix();
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @todo Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
     }
 
     public function configureOptions(OptionsResolver $resolver)

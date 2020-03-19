@@ -18,9 +18,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class BasePickerType (to factorize DatePickerType and DateTimePickerType code.
@@ -61,12 +62,11 @@ abstract class BasePickerType extends AbstractType
                 is deprecated since 2.4 and will be removed in 4.0.',
                 E_USER_DEPRECATED
             );
-            $this->locale = \Locale::getDefault();
 
             return;
         }
 
-        $this->locale = $this->translator->getLocale();
+        $this->locale = \Locale::getDefault();
     }
 
     /**

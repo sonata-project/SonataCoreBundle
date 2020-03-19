@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Node;
 
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Compiler;
 use Twig\Node\Expression\AbstractExpression;
 use Twig\Node\Node;

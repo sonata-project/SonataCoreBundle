@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Sonata\CoreBundle\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Nelmio\ApiDocBundle\Form\Extension\DocumentationExtension;
+use Nelmio\ApiDocBundle\Form\Extension\DescriptionFormTypeExtension;
 use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
@@ -196,15 +198,24 @@ final class SonataCoreBundleTest extends TestCase
 
     public function getRegisteredFormMappingAndExtensions()
     {
-        return [
+        $extensions = [
             ['form', 'form.type_extension.form.http_foundation'],
             ['form', 'form.type_extension.form.validator'],
             ['form', 'form.type_extension.csrf'],
             ['form', 'form.type_extension.form.data_collector'],
-            ['form', 'nelmio_api_doc.form.extension.description_form_type_extension'],
             ['repeated', 'form.type_extension.repeated.validator'],
             ['submit', 'form.type_extension.submit.validator'],
         ];
+
+        if (class_exists(DescriptionFormTypeExtension::class)) {
+            $extensions[] = ['form', 'nelmio_api_doc.form.extension.description_form_type_extension'];
+        }
+
+        if (class_exists(DocumentationExtension::class)) {
+            $extensions[] = ['form', 'nelmio_api_doc.form.documentation_extension'];
+        }
+
+        return $extensions;
     }
 
     public function testRegisterFormMappingWithContainer()

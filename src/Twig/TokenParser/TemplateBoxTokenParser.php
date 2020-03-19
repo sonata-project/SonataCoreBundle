@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\Twig\TokenParser;
 
 use Sonata\Twig\Node\TemplateBoxNode;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Node\Expression\ConstantExpression;
 use Twig\Token;
 use Twig\TokenParser\AbstractTokenParser;
