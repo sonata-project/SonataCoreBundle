@@ -113,7 +113,7 @@ class DateTimePickerTypeTest extends TypeTestCase
     protected function getExtensions()
     {
         $translator = $this->createMock(TranslatorInterface::class);
-        $translator->method('getLocale')->willReturn('en');
+        //$translator->method('getLocale')->willReturn('en');
 
         $type = new DateTimePickerType(new MomentFormatConverter(), $translator);
 

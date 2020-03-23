@@ -77,7 +77,7 @@ class BasePickerTypeTest extends TestCase
     public function testTimePickerIntlFormater()
     {
         $translator = $this->createMock(TranslatorInterface::class);
-        $translator->method('getLocale')->willReturn('ru');
+        //$translator->method('getLocale')->willReturn('ru');
 
         $type = new BasePickerTest(new MomentFormatConverter(), $translator);
 
