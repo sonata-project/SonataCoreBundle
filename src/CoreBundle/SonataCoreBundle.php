@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle;
 
-use Nelmio\ApiDocBundle\Form\Extension\DocumentationExtension;
 use Nelmio\ApiDocBundle\Form\Extension\DescriptionFormTypeExtension;
+use Nelmio\ApiDocBundle\Form\Extension\DocumentationExtension;
 use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
