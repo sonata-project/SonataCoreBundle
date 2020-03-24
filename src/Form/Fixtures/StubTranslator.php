@@ -17,7 +17,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class StubTranslator implements TranslatorInterface
 {
-    public function trans(string $id, array $parameters = [], string $domain = null, string $locale = null): string
+    // Do not add type hints in order to remain compatible with Symfony 4.
+    public function trans($id, array $parameters = [], $domain = null, $locale = null): string
     {
         return '[trans]'.strtr($id, $parameters).'[/trans]';
     }
