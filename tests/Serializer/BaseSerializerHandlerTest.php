@@ -15,6 +15,7 @@ namespace Sonata\Serializer\Tests;
 
 use JMS\Serializer\Context;
 use JMS\Serializer\GraphNavigator;
+use JMS\Serializer\Visitor\SerializationVisitorInterface;
 use JMS\Serializer\VisitorInterface;
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Model\ManagerInterface;
@@ -174,7 +175,11 @@ final class BaseSerializerHandlerTest extends TestCase
 
         $context = $this->createMock(Context::class);
 
-        $visitor = $this->createMock(VisitorInterface::class);
+        if (interface_exists(SerializationVisitorInterface::class)) {
+            $visitor = $this->createMock(SerializationVisitorInterface::class);
+        } else {
+            $visitor = $this->createMock(VisitorInterface::class);
+        }
         $visitor->expects($this->once())
             ->method('visitInteger')
             ->with(1, ['foo'], $context)
@@ -198,7 +203,11 @@ final class BaseSerializerHandlerTest extends TestCase
 
         $context = $this->createMock(Context::class);
 
-        $visitor = $this->createMock(VisitorInterface::class);
+        if (interface_exists(SerializationVisitorInterface::class)) {
+            $visitor = $this->createMock(SerializationVisitorInterface::class);
+        } else {
+            $visitor = $this->createMock(VisitorInterface::class);
+        }
         $visitor->expects($this->never())
             ->method('visitInteger');
 
