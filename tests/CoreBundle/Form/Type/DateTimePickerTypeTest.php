@@ -85,11 +85,11 @@ class DateTimePickerTypeTest extends TypeTestCase
 
     public function testSubmitUnmatchingDateFormat()
     {
-        \Locale::setDefault('en');
         $form = $this->factory->create(DateTimePickerType::class, new \DateTime('2018-06-03 20:02:03'), [
             'format' => \IntlDateFormatter::NONE,
             'dp_pick_date' => false,
             'dp_use_seconds' => false,
+            'html5' => false,
         ]);
 
         $form->submit('05:23');
@@ -98,11 +98,11 @@ class DateTimePickerTypeTest extends TypeTestCase
 
     public function testSubmitMatchingDateFormat()
     {
-        \Locale::setDefault('en');
         $form = $this->factory->create(DateTimePickerType::class, new \DateTime('2018-06-03 20:02:03'), [
             'format' => \IntlDateFormatter::NONE,
             'dp_pick_date' => false,
             'dp_use_seconds' => false,
+            'html5' => false,
         ]);
 
         $this->assertSame('8:02 PM', $form->getViewData());
@@ -114,8 +114,8 @@ class DateTimePickerTypeTest extends TypeTestCase
 
     protected function getExtensions()
     {
+        \Locale::setDefault('en');
         $translator = $this->createMock(TranslatorInterface::class);
-        //$translator->method('getLocale')->willReturn('en');
 
         $type = new DateTimePickerType(new MomentFormatConverter(), $translator);
 

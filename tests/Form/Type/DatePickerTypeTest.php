@@ -79,9 +79,9 @@ class DatePickerTypeTest extends TypeTestCase
 
     public function testSubmitValidData()
     {
-        \Locale::setDefault('en');
         $form = $this->factory->create(DatePickerType::class, new \DateTime('2018-06-03'), [
             'format' => \IntlDateFormatter::LONG,
+            'html5' => false,
         ]);
 
         $this->assertSame('June 3, 2018', $form->getViewData());
@@ -92,8 +92,8 @@ class DatePickerTypeTest extends TypeTestCase
 
     protected function getExtensions()
     {
+        \Locale::setDefault('en');
         $translator = $this->createMock(TranslatorInterface::class);
-        //$translator->method('getLocale')->willReturn('en');
 
         $type = new DatePickerType(new MomentFormatConverter(), $translator);
 
