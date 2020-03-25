@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Entity;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Tests\Fixtures\Model\DocumentManager;
 

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Model\Adapter;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ODM\PHPCR\DocumentManager;
 use Doctrine\ODM\PHPCR\Mapping\ClassMetadata;
 use Doctrine\ODM\PHPCR\UnitOfWork;

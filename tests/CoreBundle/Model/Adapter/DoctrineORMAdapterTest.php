@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Model\Adapter;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\UnitOfWork;
 use PHPUnit\Framework\TestCase;
