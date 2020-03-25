@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
-use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadataInfo as DoctrineMetadata;
+use Doctrine\Persistence\ManagerRegistry;
 use JMS\Serializer\Metadata\ClassMetadata as SerializerMetadata;
 use JMS\Serializer\Metadata\PropertyMetadata;
 use Metadata\MetadataFactoryInterface;

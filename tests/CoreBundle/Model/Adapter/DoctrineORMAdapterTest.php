@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Model\Adapter;
 
-use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\UnitOfWork;
+use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Model\Adapter\DoctrineORMAdapter;
 
