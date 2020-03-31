@@ -14,9 +14,10 @@ declare(strict_types=1);
 namespace Sonata\CoreBundle\Command;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\Persistence\ManagerRegistry;
 use Gaufrette\Adapter\Local as LocalAdapter;
 use Gaufrette\Filesystem;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -26,12 +27,24 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @deprecated since sonata-project/core-bundle 3.12.0, to be removed in 4.0.
  */
-class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
+class SonataDumpDoctrineMetaCommand extends Command
 {
+    /**
+     * @var ManagerRegistry
+     */
+    protected $doctrine;
+
     /**
      * @var array
      */
     protected $metadata;
+
+    public function __construct(ManagerRegistry $doctrine, string $name = null)
+    {
+        parent::__construct($name);
+
+        $this->doctrine = $doctrine;
+    }
 
     protected function configure()
     {
@@ -60,7 +73,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
                     null
                 ),
             ])
-            ->setDescription('Get information on the current Doctrine\'s schema')
+            ->setDescription('Get information on the current Doctrine\'s schema!')
         ;
     }
 
@@ -72,7 +85,7 @@ class SonataDumpDoctrineMetaCommand extends ContainerAwareCommand
         );
 
         $output->writeln('Initialising Doctrine metadata.');
-        $manager = $this->getContainer()->get('doctrine')->getManager();
+        $manager = $this->doctrine->getManager();
         $metadata = $manager->getMetadataFactory()->getAllMetadata();
 
         $allowedMeta = $this->filterMetadata($metadata, $input, $output);

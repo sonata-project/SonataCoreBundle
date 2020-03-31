@@ -13,21 +13,34 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * @deprecated since sonata-project/core-bundle 3.7, to be removed in 4.0, the form mapping feature should be disabled.
  */
-class SonataListFormMappingCommand extends ContainerAwareCommand
+class SonataListFormMappingCommand extends Command
 {
+    /**
+     * @var ContainerInterface
+     */
+    protected $container;
+
     /**
      * @var array
      */
     protected $metadata;
+
+    public function __construct(ContainerInterface $container, string $name = null)
+    {
+        parent::__construct($name);
+
+        $this->container = $container;
+    }
 
     public function isEnabled()
     {
@@ -52,9 +65,9 @@ class SonataListFormMappingCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('Getting form types:');
-        foreach ($this->getContainer()->getParameter('sonata.core.form.types') as $id) {
+        foreach ($this->container->getParameter('sonata.core.form.types') as $id) {
             try {
-                $instance = $this->getContainer()->get($id);
+                $instance = $this->container->get($id);
 
                 if ('yaml' === $input->getOption('format')) {
                     $output->writeln(sprintf('              %s: %s', $instance->getName(), \get_class($instance)));
@@ -68,9 +81,9 @@ class SonataListFormMappingCommand extends ContainerAwareCommand
 
         $output->writeln("\n\n\nGetting form type extensions:");
         $types = [];
-        foreach ($this->getContainer()->getParameter('sonata.core.form.type_extensions') as $id) {
+        foreach ($this->container->getParameter('sonata.core.form.type_extensions') as $id) {
             try {
-                $instance = $this->getContainer()->get($id);
+                $instance = $this->container->get($id);
                 if (!isset($types[$instance->getExtendedType()])) {
                     $types[$instance->getExtendedType()] = [];
                 }
