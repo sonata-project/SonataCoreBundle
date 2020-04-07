@@ -20,7 +20,6 @@
     "require": {
         "php": "^7.2",
         "cocur/slugify": "^1.4 || ^2.0 || ^3.0 || ^4.0",
-        "sonata-project/datagrid-bundle": "^2.0",
         "sonata-project/doctrine-extensions": "^1.1",
         "symfony/config": "^4.3",
         "symfony/dependency-injection": "^4.3",
