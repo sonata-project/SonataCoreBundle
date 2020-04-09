@@ -13,24 +13,26 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Serializer;
 
-if (!class_exists(\Sonata\Serializer\BaseSerializerHandler::class, false)) {
+use Sonata\CoreBundle\Serializer\SerializerHandlerInterface as LegacySerializerHandlerInterface;
+
+if (!class_exists(\Sonata\Form\Serializer\BaseSerializerHandler::class, false)) {
     @trigger_error(
-        'The '.__NAMESPACE__.'\BaseSerializerHandler class is deprecated since version 3.13.0 and will be removed in 4.0.'
-        .' Use Sonata\Serializer\BaseSerializerHandler instead.',
+        'The '.__NAMESPACE__.'\BaseSerializerHandler class is deprecated since sonata-project/core-bundle 3.19.0 and will be removed in version 4.0.'
+        .' Use Sonata\Form\Serializer\BaseSerializerHandler instead.',
         E_USER_DEPRECATED
     );
 }
 
 class_alias(
-    \Sonata\Serializer\BaseSerializerHandler::class,
+    \Sonata\Form\Serializer\BaseSerializerHandler::class,
     __NAMESPACE__.'\BaseSerializerHandler'
 );
 
 if (false) {
     /**
-     * @deprecated since sonata-project/core-bundle 3.13.0, to be removed in 4.0.
+     * @deprecated since sonata-project/core-bundle 3.19.0, to be removed in 4.0.
      */
-    abstract class BaseSerializerHandler extends \Sonata\Serializer\BaseSerializerHandler implements SerializerHandlerInterface
+    abstract class BaseSerializerHandler extends \Sonata\Serializer\BaseSerializerHandler implements LegacySerializerHandlerInterface
     {
     }
 }
