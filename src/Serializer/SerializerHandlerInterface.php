@@ -13,17 +13,30 @@ declare(strict_types=1);
 
 namespace Sonata\Serializer;
 
-use JMS\Serializer\Handler\SubscribingHandlerInterface;
+if (!interface_exists(\Sonata\Form\Serializer\SerializerHandlerInterface::class, false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\SerializerHandlerInterface class is deprecated since sonata-project/core-bundle 3.19.0 and will be removed in version 4.0.'
+        .' Use Sonata\Form\Serializer\SerializerHandlerInterface instead.',
+        E_USER_DEPRECATED
+    );
+}
 
-/**
- * @author Sylvain Deloux <sylvain.deloux@ekino.com>
- */
-interface SerializerHandlerInterface extends SubscribingHandlerInterface
-{
+class_alias(
+    \Sonata\Form\Serializer\SerializerHandlerInterface::class,
+    __NAMESPACE__.'\SerializerHandlerInterface'
+);
+
+if (false) {
     /**
-     * @return string
+     * @deprecated since sonata-project/core-bundle 3.19.0, to be removed in 4.0.
      */
-    public static function getType();
+    interface SerializerHandlerInterface extends \Sonata\Form\Serializer\SerializerHandlerInterface
+    {
+        /**
+         * @return string
+         */
+        public static function getType();
+    }
 }
 
 interface_exists(\Sonata\CoreBundle\Serializer\SerializerHandlerInterface::class);

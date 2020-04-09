@@ -13,108 +13,27 @@ declare(strict_types=1);
 
 namespace Sonata\Serializer;
 
-use JMS\Serializer\Context;
-use JMS\Serializer\GraphNavigator;
-use JMS\Serializer\VisitorInterface;
-use Sonata\CoreBundle\Model\ManagerInterface;
+use Sonata\CoreBundle\Serializer\SerializerHandlerInterface as LegacySerializerHandlerInterface;
 
-/**
- * @author Sylvain Deloux <sylvain.deloux@ekino.com>
- */
-abstract class BaseSerializerHandler implements SerializerHandlerInterface
-{
+if (!class_exists(\Sonata\Form\Serializer\BaseSerializerHandler::class, false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\BaseSerializerHandler class is deprecated since sonata-project/core-bundle 3.19.0 and will be removed in version 4.0.'
+        .' Use Sonata\Form\Serializer\BaseSerializerHandler instead.',
+        E_USER_DEPRECATED
+    );
+}
+
+class_alias(
+    \Sonata\Form\Serializer\BaseSerializerHandler::class,
+    __NAMESPACE__.'\BaseSerializerHandler'
+);
+
+if (false) {
     /**
-     * @var ManagerInterface
+     * @deprecated since sonata-project/core-bundle 3.19.0, to be removed in 4.0.
      */
-    protected $manager;
-
-    /**
-     * @var string[]
-     */
-    protected static $formats;
-
-    public function __construct(ManagerInterface $manager)
+    abstract class BaseSerializerHandler extends \Sonata\Form\Serializer\BaseSerializerHandler implements LegacySerializerHandlerInterface
     {
-        $this->manager = $manager;
-    }
-
-    /**
-     * @param string[] $formats
-     */
-    final public static function setFormats(array $formats)
-    {
-        static::$formats = $formats;
-    }
-
-    /**
-     * @param string $format
-     */
-    final public static function addFormat($format)
-    {
-        static::$formats[] = $format;
-    }
-
-    public static function getSubscribingMethods()
-    {
-        // NEXT_MAJOR : remove this block
-        if (null === static::$formats) {
-            static::$formats = ['json', 'xml', 'yml'];
-            @trigger_error(
-                '$formats has been set to default array("json", "xml", "yml"). Setting $formats to a
-                default array is deprecated since version 3.0 and will be removed in 4.0. Use SonataCoreBundle
-                configuration to add default serializer formats.',
-                E_USER_DEPRECATED
-            );
-        }
-
-        $type = static::getType();
-        $methods = [];
-
-        foreach (static::$formats as $format) {
-            $methods[] = [
-                'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
-                'format' => $format,
-                'type' => $type,
-                'method' => 'serializeObjectToId',
-            ];
-
-            $methods[] = [
-                'direction' => GraphNavigator::DIRECTION_DESERIALIZATION,
-                'format' => $format,
-                'type' => $type,
-                'method' => 'deserializeObjectFromId',
-            ];
-        }
-
-        return $methods;
-    }
-
-    /**
-     * Serialize data object to id.
-     *
-     * @param object $data
-     *
-     * @return int|null
-     */
-    public function serializeObjectToId(VisitorInterface $visitor, $data, array $type, Context $context)
-    {
-        $className = $this->manager->getClass();
-
-        if ($data instanceof $className) {
-            return $visitor->visitInteger($data->getId(), $type, $context);
-        }
-    }
-
-    /**
-     * Deserialize object from its id.
-     *
-     * @param int $data
-     *
-     * @return object|null
-     */
-    public function deserializeObjectFromId(VisitorInterface $visitor, $data, array $type)
-    {
-        return $this->manager->findOneBy(['id' => $data]);
     }
 }
 
