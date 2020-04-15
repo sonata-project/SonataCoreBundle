@@ -128,7 +128,7 @@ class StatusTypeTest extends TypeTestCase
 
     public function testGetDefaultOptionsWithValidInvalidFlip()
     {
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(\LengthException::class);
 
         Choice::$list = [
             1 => 'error',

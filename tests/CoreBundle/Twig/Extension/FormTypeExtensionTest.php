@@ -21,7 +21,7 @@ class FormTypeExtensionTest extends TestCase
     public function testGetName()
     {
         $extension = new FormTypeExtension(true);
-        $this->assertSame('sonata_core_wrapping', $extension->getName());
+        $this->assertSame('sonata_twig_wrapping', $extension->getName());
     }
 
     public function testGetGlobals()

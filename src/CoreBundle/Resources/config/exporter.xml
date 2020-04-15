@@ -2,6 +2,8 @@
 <!-- NEXT_MAJOR : remove this file -->
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="sonata.core.exporter" class="Sonata\CoreBundle\Exporter\Exporter"/>
+        <service id="sonata.core.exporter" class="Sonata\CoreBundle\Exporter\Exporter">
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0. Use "sonata.exporter.exporter" instead.</deprecated>
+        </service>
     </services>
 </container>

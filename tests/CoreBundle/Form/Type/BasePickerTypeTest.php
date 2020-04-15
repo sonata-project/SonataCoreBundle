@@ -20,7 +20,10 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormConfigInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Translation\TranslatorInterface as LegacyTranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class BasePickerTest extends BasePickerType
 {
@@ -44,9 +47,15 @@ class BasePickerTypeTest extends TestCase
 {
     public function testFinishView()
     {
+        $request = new Request();
+
+        $requestStack = new RequestStack();
+        $requestStack->push($request);
+
         $type = new BasePickerTest(
             new MomentFormatConverter(),
-            $this->createMock(TranslatorInterface::class)
+            $this->createMock(TranslatorInterface::class),
+            $requestStack
         );
 
         $view = new FormView();
@@ -72,6 +81,29 @@ class BasePickerTypeTest extends TestCase
         }
 
         $this->assertSame('text', $view->vars['type']);
+    }
+
+    public function testTimePickerIntlFormaterWithLegacyTranslator(): void
+    {
+        $translator = $this->createMock(LegacyTranslatorInterface::class);
+        $translator->method('getLocale')->willReturn('ru');
+
+        $type = new BasePickerTest(new MomentFormatConverter(), $translator);
+
+        $view = new FormView();
+        $form = new Form($this->createMock(FormConfigInterface::class));
+
+        $type->finishView($view, $form, [
+            'format' => 'H:mm',
+            'dp_min_date' => '1900-01-01',
+            'dp_max_date' => new \DateTime('2001-03-01'),
+            'dp_pick_time' => true,
+            'dp_pick_date' => false,
+        ]);
+
+        $this->assertFalse($view->vars['dp_options']['useSeconds']);
+        $this->assertSame('H:mm', $view->vars['moment_format']);
+        $this->assertSame('0:00', $view->vars['dp_options']['maxDate']);
     }
 
     public function testTimePickerIntlFormater()
