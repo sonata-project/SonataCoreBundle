@@ -19,6 +19,8 @@ use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
+ *
+ * @deprecated since sonata-project/core-bundle 3.x, to be removed in 4.0.
  */
 class StatusRendererCompilerPass implements CompilerPassInterface
 {

@@ -38,7 +38,7 @@
         "twig/twig": "^1.34 || ^2.0"
     },
     "conflict": {
-        "sonata-project/exporter": "< 1.11.0"
+        "sonata-project/exporter": "< 1.11"
     },
     "require-dev": {
         "doctrine/orm": "^2.4",
@@ -48,7 +48,8 @@
         "matthiasnoback/symfony-config-test": "^4.0",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "nelmio/api-doc-bundle": "^2.11",
-        "sonata-project/exporter": "^1.11.0 || ^2.0",
+        "phpspec/prophecy": "^1.0",
+        "sonata-project/exporter": "^1.11 || ^2.0",
         "symfony/phpunit-bridge": "^4.3"
     },
     "suggest": {

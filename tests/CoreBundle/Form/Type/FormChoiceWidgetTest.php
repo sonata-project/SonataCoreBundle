@@ -42,7 +42,7 @@ class FormChoiceWidgetTest extends AbstractWidgetTestCase
 
         $html = $this->renderWidget($choice->createView());
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<div id="choice"><input type="checkbox" id="choice_0" name="choice[]" value="0" /><label for="choice_0">[trans]some[/trans]</label><input type="checkbox" id="choice_1" name="choice[]" value="1" /><label for="choice_1">[trans]choices[/trans]</label></div>',
             $this->cleanHtmlWhitespace($html)
         );
@@ -58,7 +58,7 @@ class FormChoiceWidgetTest extends AbstractWidgetTestCase
 
         $html = $this->renderWidget($choice->createView());
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<option value="" selected="selected">[trans]Choose an option[/trans]</option>',
             $this->cleanHtmlWhitespace($html)
         );
@@ -74,7 +74,7 @@ class FormChoiceWidgetTest extends AbstractWidgetTestCase
 
         $html = $this->renderWidget($choice->createView());
 
-        $this->assertNotContains(
+        $this->assertStringNotContainsString(
             'required="required"',
             $this->cleanHtmlWhitespace($html)
         );
@@ -90,7 +90,7 @@ class FormChoiceWidgetTest extends AbstractWidgetTestCase
 
         $html = $this->renderWidget($choice->createView());
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             'required="required"',
             $this->cleanHtmlWhitespace($html)
         );

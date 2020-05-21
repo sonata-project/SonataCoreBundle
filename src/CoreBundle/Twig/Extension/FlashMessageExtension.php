@@ -37,7 +37,7 @@ class FlashMessageExtension extends \Sonata\Twig\Extension\FlashMessageExtension
      */
     protected $flashManager;
 
-    public function __construct(FlashManager $flashManager = null)
+    public function __construct(?FlashManager $flashManager = null)
     {
         $this->flashManager = $flashManager;
 

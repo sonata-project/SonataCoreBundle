@@ -34,6 +34,8 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * @deprecated since sonata-project/core-bundle 3.x, to be removed in 4.0.
  */
 class SonataCoreExtension extends Extension implements PrependExtensionInterface
 {

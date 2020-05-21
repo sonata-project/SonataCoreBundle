@@ -78,7 +78,7 @@ final class FormFactoryCompilerPassTest extends AbstractCompilerPassTestCase
 
         $this->assertSame($sonataFormExtension, $this->container->getDefinition('form.extension'));
 
-        $this->assertContains('foo', $sonataFormExtension->getArgument(1));
+        $this->assertStringContainsString('foo', $sonataFormExtension->getArgument(1));
         $this->assertSame([], $sonataFormExtension->getArgument(2));
         $this->assertSame([], $sonataFormExtension->getArgument(3));
     }

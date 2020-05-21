@@ -19,6 +19,8 @@ use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * @deprecated since sonata-project/core-bundle 3.x, to be removed in 4.0.
  */
 class AdapterCompilerPass implements CompilerPassInterface
 {
