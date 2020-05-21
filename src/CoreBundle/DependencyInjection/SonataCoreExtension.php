@@ -92,14 +92,20 @@ EOT
         }
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('date.xml');
-        $loader->load('flash.xml');
-        $loader->load('form_types.xml');
-        $loader->load('validator.xml');
-        $loader->load('twig.xml');
-        $loader->load('model_adapter.xml');
-        $loader->load('core.xml');
         $loader->load('commands.xml');
+        $loader->load('core.xml');
+        $loader->load('core_form_types.xml');
+        $loader->load('core_date.xml');
+        $loader->load('flash.xml');
+        $loader->load('model_adapter.xml');
+        $loader->load('twig.xml');
+        $loader->load('core_validator.xml');
+
+        if (!isset($bundles['SonataFormBundle'])) {
+            $loader->load('form_types.xml');
+            $loader->load('date.xml');
+            $loader->load('validator.xml');
+        }
 
         $this->registerFlashTypes($container, $config);
         $container->setParameter('sonata.core.form_type', $config['form_type']);
@@ -108,8 +114,6 @@ EOT
         if (\PHP_VERSION_ID < 70000) {
             $this->configureClassesToCompile();
         }
-
-        $this->deprecateSlugify($container);
 
         $this->configureSerializerFormats($config);
     }
@@ -202,11 +206,5 @@ EOT
         if (interface_exists(SubscribingHandlerInterface::class)) {
             BaseSerializerHandler::setFormats($config['serializer']['formats']);
         }
-    }
-
-    protected function deprecateSlugify(ContainerBuilder $container)
-    {
-        $container->getDefinition('sonata.core.slugify.cocur')->setDeprecated(true);
-        $container->getDefinition('sonata.core.slugify.native')->setDeprecated(true);
     }
 }
