@@ -29,6 +29,8 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * NEXT_MAJOR: remove this class, and the dev dependency.
+ *
+ * @deprecated since sonata-project/core-bundle 3.x, to be removed in 4.0.
  */
 class Exporter
 {

@@ -2,6 +2,7 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="sonata.core.validator.inline" class="Sonata\Form\Validator\InlineValidator">
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0. Use "sonata.form.validator.inline" instead.</deprecated>
             <argument type="service" id="service_container"/>
             <argument type="service" id="validator.validator_factory"/>
             <tag name="validator.constraint_validator" alias="sonata.core.validator.inline"/>

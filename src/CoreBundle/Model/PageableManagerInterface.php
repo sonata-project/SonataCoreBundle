@@ -27,6 +27,9 @@ class_alias(
 );
 
 if (false) {
+    /**
+     * @deprecated since sonata-project/core-bundle 3.x, to be removed in 4.0.
+     */
     interface PageableManagerInterface extends \Sonata\Doctrine\Model\PageableManagerInterface
     {
     }
