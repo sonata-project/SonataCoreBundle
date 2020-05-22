@@ -69,11 +69,34 @@ class ResizeFormListener implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
+        /*
+         * NEXT_MAJOR: change preBind to preSubmit and onBind to onSubmit
+         */
         return [
             FormEvents::PRE_SET_DATA => 'preSetData',
-            FormEvents::PRE_SUBMIT => 'preSubmit',
-            FormEvents::SUBMIT => 'onSubmit',
+            FormEvents::PRE_SUBMIT => 'preBind',
+            FormEvents::SUBMIT => 'onBind',
         ];
+    }
+
+    /**
+     * NEXT_MAJOR: remove this method.
+     *
+     * @deprecated since sonata-project/core-bundle 2.3, to be renamed in 4.0. Use {@link preSubmit} instead.
+     */
+    public function preBind(FormEvent $event)
+    {
+        $this->preSubmit($event);
+    }
+
+    /**
+     * NEXT_MAJOR: remove this method.
+     *
+     * @deprecated since sonata-project/core-bundle 2.3, to be removed in 4.0. Use {@link onSubmit} instead.
+     */
+    public function onBind(FormEvent $event)
+    {
+        $this->onSubmit($event);
     }
 
     /**
