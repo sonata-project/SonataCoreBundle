@@ -27,7 +27,7 @@ use Twig\Source;
  */
 class DeprecatedTemplateTokenParserTest extends TestCase
 {
-    public function testCompileValid()
+    public function testCompileValid(): void
     {
         $source = new Source('{% sonata_template_deprecate "new.html.twig" %}', 'test');
         $expected = new DeprecatedTemplateNode(
@@ -47,7 +47,7 @@ class DeprecatedTemplateTokenParserTest extends TestCase
         $this->assertSame($expected->count(), $actual->count());
     }
 
-    public function testCompileException()
+    public function testCompileException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -64,6 +64,8 @@ class DeprecatedTemplateTokenParserTest extends TestCase
         $stream = $env->tokenize($source);
         $parser = new Parser($env);
 
-        return $parser->parse($stream)->getNode('body')->getNode(0);
+        // "0" is passed as string due an issue with the allowed node name types.
+        // @see https://github.com/twigphp/Twig/issues/3294
+        return $parser->parse($stream)->getNode('body')->getNode('0');
     }
 }

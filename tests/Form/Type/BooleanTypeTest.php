@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\Form\Tests\Type;
 
-use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\Form\Type\BooleanType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilder;
@@ -74,7 +73,7 @@ class BooleanTypeTest extends TypeTestCase
 
         $this->assertSame(ChoiceType::class, $type->getParent());
 
-        FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
+        $type->configureOptions($optionResolver = new OptionsResolver());
 
         $options = $optionResolver->resolve();
 
@@ -85,7 +84,7 @@ class BooleanTypeTest extends TypeTestCase
     {
         $type = new BooleanType();
 
-        FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
+        $type->configureOptions($optionResolver = new OptionsResolver());
 
         $builder = $this->createMock(FormBuilderInterface::class);
         $builder->expects($this->once())->method('addModelTransformer');
@@ -102,7 +101,7 @@ class BooleanTypeTest extends TypeTestCase
     {
         $type = new BooleanType();
 
-        FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
+        $type->configureOptions($optionResolver = new OptionsResolver());
 
         $builder = $this->createMock(FormBuilderInterface::class);
         $builder->expects($this->never())->method('addModelTransformer');
@@ -114,7 +113,7 @@ class BooleanTypeTest extends TypeTestCase
     {
         $type = new BooleanType();
 
-        FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
+        $type->configureOptions($optionResolver = new OptionsResolver());
 
         $builder = $this->createMock(FormBuilderInterface::class);
         $builder->expects($this->never())->method('addModelTransformer');
@@ -149,7 +148,7 @@ class BooleanTypeTest extends TypeTestCase
     {
         $type = new BooleanType();
 
-        FormHelper::configureOptions($type, $optionResolver = new OptionsResolver());
+        $type->configureOptions($optionResolver = new OptionsResolver());
 
         $builder = $this->createMock(FormBuilderInterface::class);
         $builder->expects($this->never())->method('addModelTransformer');

@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\Twig\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
+use Sonata\Doctrine\Adapter\AdapterInterface;
 use Sonata\Twig\Extension\TemplateExtension;
 use Symfony\Component\Translation\TranslatorInterface;
 

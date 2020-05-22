@@ -29,7 +29,7 @@ class TemplateBoxTokenParserTest extends TestCase
      *
      * @throws \Twig_Error_Syntax
      */
-    public function testCompile($enabled, $source, $expected)
+    public function testCompile($enabled, $source, $expected): void
     {
         $translator = $this->createMock(TranslatorInterface::class);
 
@@ -41,7 +41,9 @@ class TemplateBoxTokenParserTest extends TestCase
         $stream = $env->tokenize($source);
         $parser = new \Twig_Parser($env);
 
-        $actual = $parser->parse($stream)->getNode('body')->getNode(0);
+        // "0" is passed as string due an issue with the allowed node name types.
+        // @see https://github.com/twigphp/Twig/issues/3294
+        $actual = $parser->parse($stream)->getNode('body')->getNode('0');
         $this->assertSame(
             $expected->getIterator()->getFlags(),
             $actual->getIterator()->getFlags()

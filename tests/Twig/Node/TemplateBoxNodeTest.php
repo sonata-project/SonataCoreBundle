@@ -21,7 +21,7 @@ use Symfony\Component\Translation\Translator;
 
 class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $translator = $this->getTranslator('en');
 
@@ -41,11 +41,14 @@ class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
      * @covers \Twig_Node_Block::compile
      * @dataProvider getTests
      */
-    public function testCompile($node, $source, $environment = null, $isPattern = false)
+    public function testCompile($node, $source, $environment = null, $isPattern = false): void
     {
         parent::testCompile($node, $source, $environment, $isPattern);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getTests()
     {
         $translator = $this->getTranslator('en');
