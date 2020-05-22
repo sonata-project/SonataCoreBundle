@@ -96,15 +96,20 @@ EOT
         $loader->load('core.xml');
         $loader->load('core_form_types.xml');
         $loader->load('core_date.xml');
-        $loader->load('flash.xml');
+        $loader->load('core_flash.xml');
         $loader->load('model_adapter.xml');
-        $loader->load('twig.xml');
+        $loader->load('core_twig.xml');
         $loader->load('core_validator.xml');
 
         if (!isset($bundles['SonataFormBundle'])) {
             $loader->load('form_types.xml');
             $loader->load('date.xml');
             $loader->load('validator.xml');
+        }
+
+        if (!isset($bundles['SonataTwigBundle'])) {
+            $loader->load('flash.xml');
+            $loader->load('twig.xml');
         }
 
         $this->registerFlashTypes($container, $config);
@@ -189,7 +194,7 @@ EOT
             $cssClasses[$typeKey] = \array_key_exists('css_class', $typeConfig) ? $typeConfig['css_class'] : $typeKey;
         }
 
-        $identifier = 'sonata.core.flashmessage.manager';
+        $identifier = 'sonata.twig.flashmessage.manager';
 
         $definition = $container->getDefinition($identifier);
         $definition->replaceArgument(2, $types);

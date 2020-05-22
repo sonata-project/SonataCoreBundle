@@ -15,7 +15,8 @@ namespace Sonata\Twig\FlashMessage;
 
 use Sonata\Twig\Status\StatusClassRendererInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Translation\TranslatorInterface as LegacyTranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @author Vincent Composieux <composieux@ekino.com>
@@ -28,7 +29,7 @@ class FlashManager implements StatusClassRendererInterface
     protected $session;
 
     /**
-     * @var TranslatorInterface
+     * @var LegacyTranslatorInterface|TranslatorInterface
      */
     protected $translator;
 
@@ -43,15 +44,27 @@ class FlashManager implements StatusClassRendererInterface
     protected $cssClasses;
 
     /**
-     * @param array $types      Sonata core types array (defined in configuration)
-     * @param array $cssClasses Css classes associated with $types
+     * @param LegacyTranslatorInterface|TranslatorInterface $translator
+     * @param array                                         $types      Sonata core types array (defined in configuration)
+     * @param array                                         $cssClasses Css classes associated with $types
      */
     public function __construct(
         SessionInterface $session,
-        TranslatorInterface $translator,
+        $translator,
         array $types,
         array $cssClasses
     ) {
+        if (
+            !$translator instanceof LegacyTranslatorInterface &&
+            !$translator instanceof TranslatorInterface
+        ) {
+            throw new \InvalidArgumentException(sprintf(
+                'Argument 2 should be an instance of %s or %s',
+                LegacyTranslatorInterface::class,
+                TranslatorInterface::class
+            ));
+        }
+
         $this->session = $session;
         $this->translator = $translator;
         $this->types = $types;
@@ -93,7 +106,7 @@ class FlashManager implements StatusClassRendererInterface
     /**
      * Returns Symfony translator service.
      *
-     * @return TranslatorInterface
+     * @return LegacyTranslatorInterface|TranslatorInterface
      */
     public function getTranslator()
     {
