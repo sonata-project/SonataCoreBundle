@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Extension;
 
+use Sonata\Twig\FlashMessage\FlashManager;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -24,6 +25,26 @@ use Twig\TwigFunction;
  */
 class FlashMessageExtension extends AbstractExtension
 {
+    /**
+     * @deprecated since sonata-project/core-bundle 3.11.0, to be removed in 4.0.
+     *
+     * @var FlashManager
+     */
+    protected $flashManager;
+
+    public function __construct(?FlashManager $flashManager = null)
+    {
+        $this->flashManager = $flashManager;
+
+        if ($this->flashManager) {
+            @trigger_error(
+                'Argument "flashManager" in FlashMessageExtension is deprecated since SonataCoreBundle 3.11.0 and will'.
+                ' be removed in 4.0.',
+                E_USER_DEPRECATED
+            );
+        }
+    }
+
     public function getFunctions()
     {
         return [

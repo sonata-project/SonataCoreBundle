@@ -13,66 +13,24 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Form\EventListener;
 
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
+if (!class_exists(\Sonata\Form\EventListener\ResizeFormListener::class, false)) {
+    @trigger_error(
+        'The '.__NAMESPACE__.'\ResizeFormListener class is deprecated since version 3.13.0 and will be removed in 4.0.'
+        .' Use Sonata\Form\EventListener\ResizeFormListener instead.',
+        E_USER_DEPRECATED
+    );
+}
 
-@trigger_error(
-    'The '.__NAMESPACE__.'\ResizeFormListener class is deprecated since version 3.13.0 and will be removed in 4.0.'
-    .' Use Sonata\Form\EventListener\ResizeFormListener instead.',
-    E_USER_DEPRECATED
+class_alias(
+    \Sonata\Form\EventListener\ResizeFormListener::class,
+    __NAMESPACE__.'\ResizeFormListener'
 );
 
-/**
- * @deprecated since sonata-project/core-bundle 3.13.0, to be removed in 4.0.
- */
-class ResizeFormListener extends \Sonata\Form\EventListener\ResizeFormListener
-{
-    public static function getSubscribedEvents()
-    {
-        return [
-            FormEvents::PRE_SET_DATA => 'preSetData',
-            FormEvents::PRE_SUBMIT => 'preBind',
-            FormEvents::SUBMIT => 'onBind',
-        ];
-    }
-
+if (false) {
     /**
-     * NEXT_MAJOR: remove this method.
-     *
-     * @deprecated since sonata-project/core-bundle 2.3, to be renamed in 4.0.
-     *             Use {@link preSubmit} instead
+     * @deprecated since sonata-project/core-bundle 3.13.0, to be removed in 4.0.
      */
-    public function preBind(FormEvent $event)
+    class ResizeFormListener extends \Sonata\Form\EventListener\ResizeFormListener
     {
-        // BC prevention for class extending this one.
-        if (self::class !== static::class) {
-            @trigger_error(
-                __METHOD__.' method is deprecated since 2.3 and will be renamed in 4.0.'
-                .' Use '.__CLASS__.'::preSubmit instead.',
-                E_USER_DEPRECATED
-            );
-        }
-
-        $this->preSubmit($event);
-    }
-
-    /**
-     * NEXT_MAJOR: remove this method.
-     *
-     * @deprecated since sonata-project/core-bundle 2.3, to be removed in 4.0.
-     *             Use {@link onSubmit} instead
-     */
-    public function onBind(FormEvent $event)
-    {
-        // BC prevention for class extending this one.
-        if (self::class !== static::class) {
-            @trigger_error(
-                __METHOD__.' is deprecated since 2.3 and will be renamed in 4.0.'
-                .' Use '.__CLASS__.'::onSubmit instead.',
-                E_USER_DEPRECATED
-            );
-        }
-
-        $this->onSubmit($event);
     }
 }

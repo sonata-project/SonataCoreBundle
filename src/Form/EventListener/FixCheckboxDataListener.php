@@ -29,7 +29,20 @@ class FixCheckboxDataListener implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()
     {
-        return [FormEvents::PRE_SUBMIT => 'preSubmit'];
+        /*
+         * NEXT_MAJOR: change preBind to preSubmit
+         */
+        return [FormEvents::PRE_SUBMIT => 'preBind'];
+    }
+
+    /**
+     * NEXT_MAJOR: remove this method.
+     *
+     * @deprecated since sonata-project/core-bundle 3.x, to be removed in 4.0. Use Use {@link preSubmit} instead.
+     */
+    public function preBind(FormEvent $event)
+    {
+        $this->preSubmit($event);
     }
 
     public function preSubmit(FormEvent $event)

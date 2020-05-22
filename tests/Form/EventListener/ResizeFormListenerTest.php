@@ -32,9 +32,9 @@ class ResizeFormListenerTest extends TestCase
         $this->assertArrayHasKey(FormEvents::PRE_SET_DATA, $events);
         $this->assertSame('preSetData', $events[FormEvents::PRE_SET_DATA]);
         $this->assertArrayHasKey(FormEvents::PRE_SUBMIT, $events);
-        $this->assertSame('preSubmit', $events[FormEvents::PRE_SUBMIT]);
+        $this->assertSame('preBind', $events[FormEvents::PRE_SUBMIT]);
         $this->assertArrayHasKey(FormEvents::SUBMIT, $events);
-        $this->assertSame('onSubmit', $events[FormEvents::SUBMIT]);
+        $this->assertSame('onBind', $events[FormEvents::SUBMIT]);
     }
 
     public function testPreSetDataWithNullData()
