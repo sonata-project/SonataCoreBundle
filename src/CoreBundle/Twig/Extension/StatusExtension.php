@@ -14,17 +14,17 @@ declare(strict_types=1);
 namespace Sonata\CoreBundle\Twig\Extension;
 
 use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
+use Sonata\Twig\Extension\StatusExtension as BaseStatusExtension;
 use Sonata\Twig\Extension\StatusRuntime;
-use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 /**
  * @author Hugo Briand <briand@ekino.com>
  * @author Titouan Galopin <galopintitouan@gmail.com>
  *
- * @deprecated since sonata-project/core-bundle 3.13.0, to be removed in 4.0.
+ * @deprecated since sonata-project/core-bundle 3.13.0, to be removed in 4.0. Use "Sonata\Twig\Extension\StatusExtension" instead.
  */
-class StatusExtension extends AbstractExtension
+class StatusExtension extends BaseStatusExtension
 {
     /**
      * @var StatusClassRendererInterface[]

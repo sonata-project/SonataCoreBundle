@@ -1,0 +1,11 @@
+framework:
+    secret: secret
+    test: true
+    session:
+        handler_id: ~
+        storage_id: session.storage.mock_file
+        name: 'MOCKSESSID'
+
+twig:
+    paths:
+        - '%kernel.project_dir%/templates'

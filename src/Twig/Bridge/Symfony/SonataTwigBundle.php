@@ -17,6 +17,9 @@ use Sonata\Twig\Bridge\Symfony\DependencyInjection\Compiler\StatusRendererCompil
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
+/**
+ * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ */
 final class SonataTwigBundle extends Bundle
 {
     public function build(ContainerBuilder $container): void

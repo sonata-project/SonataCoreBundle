@@ -19,7 +19,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -38,16 +37,6 @@ class TranslatableChoiceType extends AbstractType
     public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @todo Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
     }
 
     public function configureOptions(OptionsResolver $resolver)

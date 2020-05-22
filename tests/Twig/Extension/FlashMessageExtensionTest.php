@@ -25,7 +25,7 @@ class FlashMessageExtensionTest extends TestCase
         $this->extension = new FlashMessageExtension();
     }
 
-    public function testFunctionsArePrefixed()
+    public function testFunctionsArePrefixed(): void
     {
         foreach ($this->extension->getFunctions() as $function) {
             $this->assertTrue(

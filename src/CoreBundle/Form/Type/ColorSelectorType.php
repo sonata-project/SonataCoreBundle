@@ -18,7 +18,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * NEXT_MAJOR: remove this class.
@@ -36,16 +35,6 @@ class ColorSelectorType extends AbstractType
         );
 
         parent::buildForm($builder, $options);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @todo Remove it when bumping requirements to SF 2.7+
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
     }
 
     public function configureOptions(OptionsResolver $resolver)

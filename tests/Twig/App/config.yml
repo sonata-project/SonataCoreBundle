@@ -1,0 +1,17 @@
+framework:
+    secret: secret
+    test: true
+    session:
+        handler_id: ~
+        storage_id: session.storage.mock_file
+        name: 'MOCKSESSID'
+
+    default_locale: en
+    translator:
+        default_path: '%kernel.project_dir%/translations'
+        fallbacks:
+            - en
+
+twig:
+    paths:
+        - '%kernel.project_dir%/templates'

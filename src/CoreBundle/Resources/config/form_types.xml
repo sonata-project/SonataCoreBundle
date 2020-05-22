@@ -1,44 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="sonata.form.type.array" class="Sonata\Form\Type\ImmutableArrayType">
-            <tag name="form.type" alias="sonata_type_immutable_array"/>
+        <service id="sonata.core.form.type.array_legacy" class="Sonata\CoreBundle\Form\Type\ImmutableArrayType" public="true">
+            <deprecated>The "%service_id%" service is deprecated since 3.x and will be removed in 4.0. Use "sonata.form.type.array" instead.</deprecated>
+            <tag name="form.type" alias="sonata_type_immutable_array_legacy"/>
         </service>
-        <service id="sonata.form.type.boolean" class="Sonata\Form\Type\BooleanType">
-            <tag name="form.type" alias="sonata_type_boolean"/>
+        <service id="sonata.core.form.type.boolean_legacy" class="Sonata\CoreBundle\Form\Type\BooleanType" public="true">
+            <deprecated>The "%service_id%" service is deprecated since 3.x and will be removed in 4.0. Use "sonata.form.type.boolean" instead.</deprecated>
+            <tag name="form.type" alias="sonata_type_boolean_legacy"/>
         </service>
-        <service id="sonata.form.type.collection" class="Sonata\Form\Type\CollectionType">
-            <tag name="form.type" alias="sonata_type_collection"/>
+        <service id="sonata.core.form.type.collection_legacy" class="Sonata\CoreBundle\Form\Type\CollectionType" public="true">
+            <deprecated>The "%service_id%" service is deprecated since 3.x and will be removed in 4.0. Use "sonata.form.type.collection" instead.</deprecated>
+            <tag name="form.type" alias="sonata_type_collection_legacy"/>
         </service>
-        <service id="sonata.form.type.date_range" class="Sonata\Form\Type\DateRangeType">
-            <tag name="form.type" alias="sonata_type_date_range"/>
+        <service id="sonata.core.form.type.translatable_choice" class="Sonata\CoreBundle\Form\Type\TranslatableChoiceType" public="true">
+            <deprecated>The "%service_id%" service is deprecated since 2.2.0 and will be removed in 4.0.</deprecated>
+            <tag name="form.type" alias="sonata_type_translatable_choice"/>
             <argument type="service" id="translator"/>
         </service>
-        <service id="sonata.form.type.datetime_range" class="Sonata\Form\Type\DateTimeRangeType">
-            <tag name="form.type" alias="sonata_type_datetime_range"/>
+        <service id="sonata.core.form.type.date_range_legacy" class="Sonata\CoreBundle\Form\Type\DateRangeType" public="true">
+            <deprecated>The "%service_id%" service is deprecated since 3.x and will be removed in 4.0. Use "sonata.form.type.date_range" instead.</deprecated>
+            <tag name="form.type" alias="sonata_type_date_range_legacy"/>
             <argument type="service" id="translator"/>
         </service>
-        <service id="sonata.form.type.date_picker" class="Sonata\Form\Type\DatePickerType">
-            <tag name="form.type" alias="sonata_type_date_picker"/>
-            <argument type="service" id="sonata.form.date.moment_format_converter"/>
+        <service id="sonata.core.form.type.datetime_range_legacy" class="Sonata\CoreBundle\Form\Type\DateTimeRangeType" public="true">
+            <deprecated>The "%service_id%" service is deprecated since 3.x and will be removed in 4.0. Use "sonata.form.type.datetime_range" instead.</deprecated>
+            <tag name="form.type" alias="sonata_type_datetime_range_legacy"/>
             <argument type="service" id="translator"/>
         </service>
-        <service id="sonata.form.type.datetime_picker" class="Sonata\Form\Type\DateTimePickerType">
-            <tag name="form.type" alias="sonata_type_datetime_picker"/>
-            <argument type="service" id="sonata.form.date.moment_format_converter"/>
+        <service id="sonata.core.form.type.date_picker_legacy" class="Sonata\CoreBundle\Form\Type\DatePickerType" public="true">
+            <deprecated>The "%service_id%" service is deprecated since 3.x and will be removed in 4.0. Use "sonata.form.type.date_picker" instead.</deprecated>
+            <tag name="form.type" alias="sonata_type_date_picker_legacy"/>
+            <argument type="service" id="sonata.core.date.moment_format_converter"/>
             <argument type="service" id="translator"/>
         </service>
-        <service id="sonata.form.type.date_range_picker" class="Sonata\Form\Type\DateRangePickerType">
-            <tag name="form.type" alias="sonata_type_date_range_picker"/>
+        <service id="sonata.core.form.type.datetime_picker_legacy" class="Sonata\CoreBundle\Form\Type\DateTimePickerType" public="true">
+            <deprecated>The "%service_id%" service is deprecated since 3.x and will be removed in 4.0. Use "sonata.form.type.datetime_picker" instead.</deprecated>
+            <tag name="form.type" alias="sonata_type_datetime_picker_legacy"/>
+            <argument type="service" id="sonata.core.date.moment_format_converter"/>
             <argument type="service" id="translator"/>
         </service>
-        <service id="sonata.form.type.datetime_range_picker" class="Sonata\Form\Type\DateTimeRangePickerType">
-            <tag name="form.type" alias="sonata_type_datetime_range_picker"/>
+        <service id="sonata.core.form.type.date_range_picker_legacy" class="Sonata\CoreBundle\Form\Type\DateRangePickerType" public="true">
+            <deprecated>The "%service_id%" service is deprecated since 3.x and will be removed in 4.0. Use "sonata.form.type.date_range_picker" instead.</deprecated>
+            <tag name="form.type" alias="sonata_type_date_range_picker_legacy"/>
             <argument type="service" id="translator"/>
         </service>
-        <service id="sonata.form.type.equal" class="Sonata\Form\Type\EqualType">
-            <tag name="form.type" alias="sonata_type_equal"/>
+        <service id="sonata.core.form.type.datetime_range_picker_legacy" class="Sonata\CoreBundle\Form\Type\DateTimeRangePickerType" public="true">
+            <deprecated>The "%service_id%" service is deprecated since 3.x and will be removed in 4.0. Use "sonata.form.type.datetime_range_picker" instead.</deprecated>
+            <tag name="form.type" alias="sonata_type_datetime_range_picker_legacy"/>
             <argument type="service" id="translator"/>
+        </service>
+        <service id="sonata.core.form.type.equal_legacy" class="Sonata\CoreBundle\Form\Type\EqualType" public="true">
+            <deprecated>The "%service_id%" service is deprecated since 3.x and will be removed in 4.0. Use "sonata.form.type.equal" instead.</deprecated>
+            <tag name="form.type" alias="sonata_type_equal_legacy"/>
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="sonata.core.form.type.color_selector" class="Sonata\CoreBundle\Form\Type\ColorSelectorType" public="true">
+            <deprecated>The "%service_id%" service is deprecated since 3.5 and will be removed in 4.0.</deprecated>
+            <tag name="form.type" alias="sonata_type_color_selector"/>
+        </service>
+        <service id="sonata.core.form.type.color_legacy" class="Sonata\CoreBundle\Form\Type\ColorType" public="true">
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0.</deprecated>
+            <tag name="form.type" alias="sonata_type_color"/>
+        </service>
+        <service id="sonata.core.form.type.array" alias="sonata.form.type.array" public="true">
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0. Use "%alias_id%" instead.</deprecated>
+        </service>
+        <service id="sonata.core.form.type.boolean" alias="sonata.form.type.boolean" public="true">
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0. Use "%alias_id%" instead.</deprecated>
+        </service>
+        <service id="sonata.core.form.type.collection" alias="sonata.form.type.collection" public="true">
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0. Use "%alias_id%" instead.</deprecated>
+        </service>
+        <service id="sonata.core.form.type.date_range" alias="sonata.form.type.date_range" public="true">
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0. Use "%alias_id%" instead.</deprecated>
+        </service>
+        <service id="sonata.core.form.type.datetime_range" alias="sonata.form.type.datetime_range" public="true">
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0. Use "%alias_id%" instead.</deprecated>
+        </service>
+        <service id="sonata.core.form.type.date_picker" alias="sonata.form.type.date_picker" public="true">
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0. Use "%alias_id%" instead.</deprecated>
+        </service>
+        <service id="sonata.core.form.type.datetime_picker" alias="sonata.form.type.datetime_picker" public="true">
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0. Use "%alias_id%" instead.</deprecated>
+        </service>
+        <service id="sonata.core.form.type.date_range_picker" alias="sonata.form.type.date_range_picker" public="true">
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0. Use "%alias_id%" instead.</deprecated>
+        </service>
+        <service id="sonata.core.form.type.datetime_range_picker" alias="sonata.form.type.datetime_range_picker" public="true">
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0. Use "%alias_id%" instead.</deprecated>
+        </service>
+        <service id="sonata.core.form.type.equal" class="Sonata\Form\Type\EqualType" public="true">
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0. Use "%alias_id%" instead.</deprecated>
         </service>
     </services>
 </container>

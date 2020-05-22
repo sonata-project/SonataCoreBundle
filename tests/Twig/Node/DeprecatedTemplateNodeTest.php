@@ -22,7 +22,7 @@ use Twig\Test\NodeTestCase;
  */
 class DeprecatedTemplateNodeTest extends NodeTestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $body = $this->getNode();
 
@@ -34,7 +34,7 @@ class DeprecatedTemplateNodeTest extends NodeTestCase
      * @group legacy
      * @dataProvider getTests
      */
-    public function testCompile($node, $source, $environment = null, $isPattern = false)
+    public function testCompile($node, $source, $environment = null, $isPattern = false): void
     {
         parent::testCompile($node, $source, $environment, $isPattern);
     }

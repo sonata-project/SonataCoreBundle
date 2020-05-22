@@ -13,8 +13,13 @@ declare(strict_types=1);
 
 namespace Sonata\Form\Bridge\Symfony;
 
+use Sonata\Form\Bridge\Symfony\DependencyInjection\SonataFormExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 final class SonataFormBundle extends Bundle
 {
+    protected function getContainerExtensionClass()
+    {
+        return SonataFormExtension::class;
+    }
 }

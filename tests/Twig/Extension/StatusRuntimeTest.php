@@ -14,16 +14,16 @@ declare(strict_types=1);
 namespace Sonata\Twig\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
 use Sonata\Twig\Extension\StatusRuntime;
+use Sonata\Twig\Status\StatusClassRendererInterface;
 
 class StatusRuntimeTest extends TestCase
 {
-    public function testStatusClassDefaultValue()
+    public function testStatusClassDefaultValue(): void
     {
         $runtime = new StatusRuntime();
-        $statusService = $this->getMockBuilder(StatusClassRendererInterface::class)
-            ->getMock();
+        $statusService = $this->createMock(StatusClassRendererInterface::class);
+
         $statusService->expects($this->once())
             ->method('handlesObject')
             ->willReturn(false);
