@@ -3,7 +3,7 @@
     <services>
         <service id="sonata.twig.extension.wrapping" class="Sonata\Twig\Extension\FormTypeExtension">
             <tag name="twig.extension"/>
-            <argument>%sonata.core.form_type%</argument>
+            <argument>%sonata.twig.form_type%</argument>
         </service>
         <service id="sonata.twig.status_runtime" class="Sonata\Twig\Extension\StatusRuntime">
             <tag name="twig.runtime"/>

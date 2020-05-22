@@ -13,9 +13,10 @@ declare(strict_types=1);
 
 namespace Sonata\Twig\Extension;
 
-use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
+use Sonata\Doctrine\Adapter\AdapterInterface;
 use Sonata\Twig\TokenParser\TemplateBoxTokenParser;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Translation\TranslatorInterface as LegacyTranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -32,15 +33,27 @@ class TemplateExtension extends AbstractExtension
     protected $modelAdapter;
 
     /**
-     * @var TranslatorInterface
+     * @var LegacyTranslatorInterface|TranslatorInterface
      */
     protected $translator;
 
     /**
-     * @param bool $debug Is Symfony debug enabled?
+     * @param bool                                          $debug      Is Symfony debug enabled?
+     * @param LegacyTranslatorInterface|TranslatorInterface $translator
      */
-    public function __construct($debug, TranslatorInterface $translator, AdapterInterface $modelAdapter)
+    public function __construct($debug, $translator, AdapterInterface $modelAdapter)
     {
+        if (
+            !$translator instanceof LegacyTranslatorInterface &&
+            !$translator instanceof TranslatorInterface
+        ) {
+            throw new \ErrorType(sprintf(
+                'Argument 2 should be an instance of %s or %s',
+                LegacyTranslatorInterface::class,
+                TranslatorInterface::class
+            ));
+        }
+
         $this->debug = $debug;
         $this->translator = $translator;
         $this->modelAdapter = $modelAdapter;
