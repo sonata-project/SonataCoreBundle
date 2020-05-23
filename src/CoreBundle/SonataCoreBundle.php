@@ -66,7 +66,7 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * @deprecated since sonata-project/core-bundle 3.x, to be removed in 4.0.
+ * @deprecated since sonata-project/core-bundle 3.19, to be removed in 4.0.
  * Use
  *  sonata-project/doctrine-extensions,
  *  sonata-project/form-extensions,

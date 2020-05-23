@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.19.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.18.0...3.19.0) - 2020-05-23
+### Added
+- Added `Sonata\Form\Serializer\BaseSerializerHandler`
+- Added `Sonata\Form\Serializer\BaseSerializerHandlerInterface`
+
+### Deprecated
+- Deprecated `Sonata\Serializer\BaseSerializerHandler`
+- Deprecated `Sonata\Serializer\BaseSerializerHandlerInterface`
+
+### Remove
+- Remove SonataDatagridBundle dependency
+
 ## [3.18.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.17.2...3.18.0) - 2020-01-28
 ### Changed
 - Switch to phpunit 8 setUp signature in tests

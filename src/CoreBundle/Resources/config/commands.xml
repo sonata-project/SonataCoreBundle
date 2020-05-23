@@ -2,11 +2,11 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="Sonata\CoreBundle\Command\SonataDumpDoctrineMetaCommand" class="Sonata\CoreBundle\Command\SonataDumpDoctrineMetaCommand">
-            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0.</deprecated>
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.19 and will be removed in 4.0.</deprecated>
             <tag name="console.command"/>
         </service>
         <service id="Sonata\CoreBundle\Command\SonataListFormMappingCommand" class="Sonata\CoreBundle\Command\SonataListFormMappingCommand">
-            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0.</deprecated>
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.19 and will be removed in 4.0.</deprecated>
             <tag name="console.command"/>
         </service>
     </services>

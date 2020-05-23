@@ -18,7 +18,7 @@ use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @deprecated since sonata-project/core-bundle 3.x, to be removed in 4.0.
+ * @deprecated since sonata-project/core-bundle 3.19, to be removed in 4.0.
  */
 class FormHelper
 {

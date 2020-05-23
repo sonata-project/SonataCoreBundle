@@ -2,13 +2,13 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="sonata.core.slugify.cocur" class="Cocur\Slugify\Slugify" public="true">
-            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0. Use "sonata.twig.slugify.cocur" instead.</deprecated>
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.19 and will be removed in 4.0. Use "sonata.twig.slugify.cocur" instead.</deprecated>
         </service>
         <service id="sonata.core.slugify.native" class="Sonata\CoreBundle\Component\NativeSlugify" public="true">
             <deprecated>The "%service_id%" service is deprecated since 2.3 and will be removed in 4.0.</deprecated>
         </service>
         <service id="sonata.core.form.extension.dependency" class="Sonata\CoreBundle\Form\Extension\DependencyInjectionExtension">
-            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.x and will be removed in 4.0.</deprecated>
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.19 and will be removed in 4.0.</deprecated>
             <argument type="service" id="service_container"/>
             <argument type="collection"/>
             <argument type="collection"/>

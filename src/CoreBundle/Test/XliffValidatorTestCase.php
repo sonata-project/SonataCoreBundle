@@ -18,7 +18,7 @@ use Symfony\Component\Translation\Exception\InvalidResourceException;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
 
 /**
- * @deprecated since sonata-project/core-bundle 3.x, to be removed in 4.0.
+ * @deprecated since sonata-project/core-bundle 3.19, to be removed in 4.0.
  */
 abstract class XliffValidatorTestCase extends TestCase
 {

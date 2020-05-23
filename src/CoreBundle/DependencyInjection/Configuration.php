@@ -23,7 +23,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  * @author Alexander <iam.asm89@gmail.com>
  *
- * @deprecated since sonata-project/core-bundle 3.x, to be removed in 4.0.
+ * @deprecated since sonata-project/core-bundle 3.19, to be removed in 4.0.
  */
 class Configuration implements ConfigurationInterface
 {
