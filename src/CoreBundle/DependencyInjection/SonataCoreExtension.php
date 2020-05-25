@@ -194,7 +194,7 @@ EOT
             $cssClasses[$typeKey] = \array_key_exists('css_class', $typeConfig) ? $typeConfig['css_class'] : $typeKey;
         }
 
-        $identifier = 'sonata.core.flashmessage.manager';
+        $identifier = 'sonata.twig.flashmessage.manager';
 
         $definition = $container->getDefinition($identifier);
         $definition->replaceArgument(2, $types);
