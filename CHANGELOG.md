@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.19.1](https://github.com/sonata-project/SonataCoreBundle/compare/3.19.0...3.19.1) - 2020-05-26
+## Fixed
+- Display again flash message
+
 ## [3.19.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.18.0...3.19.0) - 2020-05-23
 ### Added
 - Added `Sonata\Form\Serializer\BaseSerializerHandler`
