@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="sonata.core.twig.extension.wrapping" alias="sonata.twig.extension.wrapping">
-            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.19 and will be removed in 4.0. Use "%alias_id%" instead.</deprecated>
-        </service>
         <service id="sonata.core.twig.extension.text" class="Sonata\CoreBundle\Twig\Extension\DeprecatedTextExtension">
             <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.19 and will be removed in 4.0.</deprecated>
             <tag name="twig.extension"/>
         </service>
-        <service id="sonata.core.twig.status_runtime" alias="sonata.twig.status_runtime">
-            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.19 and will be removed in 4.0. Use "%alias_id%" instead.</deprecated>
-        </service>
         <service id="sonata.core.twig.status_extension" class="Sonata\CoreBundle\Twig\Extension\StatusExtension">
             <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.19 and will be removed in 4.0. Use "sonata.twig.status_extension" instead.</deprecated>
             <tag name="twig.extension"/>
-        </service>
-        <service id="sonata.core.twig.deprecated_template_extension" alias="sonata.twig.deprecated_template_extension">
-            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.19 and will be removed in 4.0. Use "%alias_id%" instead.</deprecated>
-        </service>
-        <service id="sonata.core.twig.template_extension" alias="sonata.twig.template_extension">
-            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.19 and will be removed in 4.0. Use "%alias_id%" instead.</deprecated>
         </service>
     </services>
 </container>

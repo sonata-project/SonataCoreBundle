@@ -15,8 +15,10 @@ namespace Sonata\CoreBundle;
 
 use Nelmio\ApiDocBundle\Form\Extension\DescriptionFormTypeExtension;
 use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
+use Sonata\CoreBundle\DependencyInjection\Compiler\FormCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
+use Sonata\CoreBundle\DependencyInjection\Compiler\TwigCompilerPass;
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\ColorSelectorType;
 use Sonata\CoreBundle\Form\Type\ColorType;
@@ -80,6 +82,8 @@ class SonataCoreBundle extends Bundle
         $container->addCompilerPass(new StatusRendererCompilerPass());
         $container->addCompilerPass(new AdapterCompilerPass());
         $container->addCompilerPass(new FormFactoryCompilerPass());
+        $container->addCompilerPass(new FormCompilerPass());
+        $container->addCompilerPass(new TwigCompilerPass());
 
         $this->registerFormMapping();
     }

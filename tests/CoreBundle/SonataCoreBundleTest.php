@@ -15,8 +15,10 @@ namespace Sonata\CoreBundle\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass;
+use Sonata\CoreBundle\DependencyInjection\Compiler\FormCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass;
 use Sonata\CoreBundle\DependencyInjection\Compiler\StatusRendererCompilerPass;
+use Sonata\CoreBundle\DependencyInjection\Compiler\TwigCompilerPass;
 use Sonata\CoreBundle\Form\FormHelper;
 use Sonata\CoreBundle\Form\Type\ColorSelectorType;
 use Sonata\CoreBundle\Form\Type\ColorType;
@@ -93,11 +95,21 @@ final class SonataCoreBundleTest extends TestCase
                     return;
                 }
 
+                if ($pass instanceof FormCompilerPass) {
+                    return;
+                }
+
+                if ($pass instanceof TwigCompilerPass) {
+                    return;
+                }
+
                 $this->fail(sprintf(
                     'Compiler pass is not one of the expected types.
                     Expects "Sonata\AdminBundle\DependencyInjection\Compiler\StatusRendererCompilerPass",
-                    "Sonata\AdminBundle\DependencyInjection\Compiler\AdapterCompilerPass" or
-                    "Sonata\AdminBundle\DependencyInjection\Compiler\FormFactoryCompilerPass", but got "%s".',
+                    "Sonata\CoreBundle\DependencyInjection\Compiler\AdapterCompilerPass" or
+                    "Sonata\CoreBundle\DependencyInjection\Compiler\FormFactoryCompilerPass or
+                    "Sonata\CoreBundle\DependencyInjection\Compiler\FormCompilerPass or
+                    "Sonata\CoreBundle\DependencyInjection\Compiler\TwigCompilerPass", but got "%s".',
                     \get_class($pass)
                 ));
             });

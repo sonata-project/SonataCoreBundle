@@ -94,12 +94,10 @@ EOT
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('commands.xml');
         $loader->load('core.xml');
-        $loader->load('date.xml');
-        $loader->load('flash.xml');
         $loader->load('form_types.xml');
         $loader->load('model_adapter.xml');
-        $loader->load('twig.xml');
         $loader->load('validator.xml');
+        $loader->load('twig.xml');
 
         if (!isset($bundles['SonataFormBundle'])) {
             $loader->load('form/date.xml');
@@ -110,10 +108,14 @@ EOT
         if (!isset($bundles['SonataTwigBundle'])) {
             $loader->load('twig/flash.xml');
             $loader->load('twig/twig.xml');
+
+            $this->registerFlashTypes($container, $config);
         }
 
-        $this->registerFlashTypes($container, $config);
+        $container->setParameter('sonata.core.form', $config['form']);
         $container->setParameter('sonata.core.form_type', $config['form_type']);
+        $container->setParameter('sonata.core.flashmessage', $config['flashmessage']);
+        $container->setParameter('sonata.core.serializer', $config['serializer']);
 
         $this->configureFormFactory($container, $config);
         if (\PHP_VERSION_ID < 70000) {

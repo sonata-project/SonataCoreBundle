@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-    <services>
-        <service id="sonata.core.date.moment_format_converter" alias="sonata.form.date.moment_format_converter">
-            <deprecated>The "%service_id%" service is deprecated since sonata-project/core-bundle 3.19 and will be removed in 4.0. Use "%alias_id%" instead.</deprecated>
-        </service>
-    </services>
-</container>
