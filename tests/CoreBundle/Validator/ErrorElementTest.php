@@ -229,12 +229,7 @@ class ErrorElementTest extends TestCase
         $constraintValidatorFactory = $this->createMock(ConstraintValidatorFactoryInterface::class);
 
         $this->expectException(
-            'InvalidArgumentException'
-        );
-        $this->expectExceptionMessage(
-            'Argument 3 passed to Sonata\Form\Validator\ErrorElement::__construct() must be an instance of '.
-            'Symfony\Component\Validator\ExecutionContextInterface or '.
-            'Symfony\Component\Validator\Context\ExecutionContextInterface.'
+            \TypeError::class
         );
 
         $this->errorElement = new ErrorElement($this->subject, $constraintValidatorFactory, 'foo', 'foo_core');

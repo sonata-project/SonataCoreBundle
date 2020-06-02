@@ -15,6 +15,8 @@ namespace Sonata\CoreBundle\Tests\App;
 
 use Sonata\CoreBundle\SonataCoreBundle;
 use Sonata\Doctrine\Bridge\Symfony\Bundle\SonataDoctrineBundle;
+use Sonata\Form\Bridge\Symfony\SonataFormBundle;
+use Sonata\Twig\Bridge\Symfony\SonataTwigBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\TemplateController;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
@@ -41,6 +43,8 @@ final class AppKernel extends Kernel
             new TwigBundle(),
             new SonataDoctrineBundle(),
             new SonataCoreBundle(),
+            new SonataFormBundle(),
+            new SonataTwigBundle(),
         ];
     }
 

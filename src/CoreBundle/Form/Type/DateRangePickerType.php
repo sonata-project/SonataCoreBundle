@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\CoreBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @deprecated since sonata-project/core-bundle 3.13.0, to be removed in 4.0.
@@ -34,5 +35,17 @@ class DateRangePickerType extends \Sonata\Form\Type\DateRangePickerType
     public function getName()
     {
         return 'sonata_type_date_range_picker_legacy';
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'field_options' => [],
+            'field_options_start' => [],
+            'field_options_end' => [
+                'dp_use_current' => false,
+            ],
+            'field_type' => DatePickerType::class,
+        ]);
     }
 }

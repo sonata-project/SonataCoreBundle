@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Tests\Fixtures\Bundle\Validator;
 
-use Sonata\Form\Validator\ErrorElement;
+use Sonata\CoreBundle\Validator\ErrorElement;
 use Symfony\Component\Validator\Exception\ValidatorException;
 
 /**

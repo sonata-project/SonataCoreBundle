@@ -101,7 +101,9 @@ final class TwigCompilerPass implements CompilerPassInterface
         }
 
         if (!empty($container->getParameter('sonata.core.flashmessage'))) {
-            throw new \Exception('Move bundle config from sonata_core.flashmessage to sonata_twig.flashmessage');
+            throw new \Exception('You are register SonataTwigBundle (sonata-project/twig-extensions bridge). '.
+                'For now SonataCoreBundle will be use sonata_twig configuration. '.
+                'Keep sonata_core.flashmessage section clear and use sonata_form.flashmessage instead.');
         }
     }
 }

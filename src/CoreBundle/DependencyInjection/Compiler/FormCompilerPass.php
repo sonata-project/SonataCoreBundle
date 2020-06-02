@@ -132,13 +132,6 @@ final class FormCompilerPass implements CompilerPassInterface
             return;
         }
 
-        $defaultForm = [
-                'mapping' => [
-                    'enabled' => true,
-                    'type' => [],
-                    'extension' => [],
-                ],
-            ];
         $defaultSerializer = [
                 'formats' => [
                     0 => 'json',
@@ -147,12 +140,9 @@ final class FormCompilerPass implements CompilerPassInterface
                 ],
             ];
 
-        if ($container->getParameter('sonata.core.form') !== $defaultForm) {
-            throw new \Exception('Move bundle config from sonata_core.form to sonata_form.form');
-        }
-
         if ($container->getParameter('sonata.core.serializer') !== $defaultSerializer) {
-            throw new \Exception('Move bundle config from sonata_core.serializer to sonata_form.serializer');
+            throw new \Exception('You are register SonataFormBundle (sonata-project/form-extensions bridge). For now '.
+                'SonataCoreBundle will be use sonata_form configuration. Keep sonata_core.serializer section clear and use sonata_form.serializer instead.');
         }
     }
 }

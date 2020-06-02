@@ -55,7 +55,7 @@ class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
 
         $nodeEn = new TemplateBoxNode(
             new \Twig_Node_Expression_Constant('This is the default message', 1),
-            new \Twig_Node_Expression_Constant('SonataCoreBundle', 1),
+            new \Twig_Node_Expression_Constant('SonataTwigBundle', 1),
             true,
             $translator,
             1,
@@ -66,7 +66,7 @@ class TemplateBoxNodeTest extends \Twig_Test_NodeTestCase
 
         $nodeFr = new TemplateBoxNode(
             new \Twig_Node_Expression_Constant('Ceci est le message par défaut', 1),
-            new \Twig_Node_Expression_Constant('SonataCoreBundle', 1),
+            new \Twig_Node_Expression_Constant('SonataTwigBundle', 1),
             true,
             $translator,
             1,
@@ -111,10 +111,10 @@ EOF
         );
         $translator->addLoader('array', new ArrayLoader());
 
-        $translator->addResource('array', ['sonata_template_box_media_gallery_block' => 'This is the default message'], 'en', 'SonataCoreBundle');
-        $translator->addResource('array', ['sonata_template_box_media_gallery_block' => 'Ceci est le message par défaut'], 'fr', 'SonataCoreBundle');
-        $translator->addResource('array', ['sonata_core_template_box_file_found_in' => 'This file can be found in'], 'en', 'SonataCoreBundle');
-        $translator->addResource('array', ['sonata_core_template_box_file_found_in' => "Ce fichier peut être trouvé à l'emplacement"], 'fr', 'SonataCoreBundle');
+        $translator->addResource('array', ['sonata_template_box_media_gallery_block' => 'This is the default message'], 'en', 'SonataTwigBundle');
+        $translator->addResource('array', ['sonata_template_box_media_gallery_block' => 'Ceci est le message par défaut'], 'fr', 'SonataTwigBundle');
+        $translator->addResource('array', ['sonata_core_template_box_file_found_in' => 'This file can be found in'], 'en', 'SonataTwigBundle');
+        $translator->addResource('array', ['sonata_core_template_box_file_found_in' => "Ce fichier peut être trouvé à l'emplacement"], 'fr', 'SonataTwigBundle');
 
         return $translator;
     }
