@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Sonata\CoreBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\FormHelper;
+use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Sonata\CoreBundle\Form\Type\DateRangePickerType;
-use Sonata\Form\Type\DatePickerType;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\OptionsResolver\OptionsResolver;

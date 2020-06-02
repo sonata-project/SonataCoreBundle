@@ -15,7 +15,7 @@ namespace Sonata\CoreBundle\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Component\Status\StatusClassRendererInterface;
-use Sonata\Twig\Extension\StatusRuntime;
+use Sonata\CoreBundle\Twig\Extension\StatusRuntime;
 
 class StatusRuntimeTest extends TestCase
 {

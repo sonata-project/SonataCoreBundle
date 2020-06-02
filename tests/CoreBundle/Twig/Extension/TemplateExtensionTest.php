@@ -15,7 +15,7 @@ namespace Sonata\CoreBundle\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Model\Adapter\AdapterInterface;
-use Sonata\Twig\Extension\TemplateExtension;
+use Sonata\CoreBundle\Twig\Extension\TemplateExtension;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class TemplateExtensionTest extends TestCase

@@ -15,8 +15,8 @@ namespace Sonata\CoreBundle\Tests\Validator;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\CoreBundle\Tests\Fixtures\Bundle\Validator\FooValidatorService;
+use Sonata\CoreBundle\Validator\ErrorElement;
 use Sonata\CoreBundle\Validator\InlineValidator;
-use Sonata\Form\Validator\ErrorElement;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;

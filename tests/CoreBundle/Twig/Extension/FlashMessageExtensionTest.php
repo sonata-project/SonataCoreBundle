@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\CoreBundle\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\Twig\Extension\FlashMessageExtension;
+use Sonata\CoreBundle\Twig\Extension\FlashMessageExtension;
 
 class FlashMessageExtensionTest extends TestCase
 {

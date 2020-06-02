@@ -26,7 +26,7 @@ class InlineConstraintTest extends TestCase
     public function testValidatedBy()
     {
         $constraint = new InlineConstraint(['service' => 'foo', 'method' => 'bar']);
-        $this->assertSame('sonata.core.validator.inline', $constraint->validatedBy());
+        $this->assertSame('sonata.form.validator.inline', $constraint->validatedBy());
     }
 
     public function testIsClosure()

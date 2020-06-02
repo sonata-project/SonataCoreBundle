@@ -14,14 +14,14 @@ declare(strict_types=1);
 namespace Sonata\CoreBundle\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\Twig\Extension\FormTypeExtension;
+use Sonata\CoreBundle\Twig\Extension\FormTypeExtension;
 
 class FormTypeExtensionTest extends TestCase
 {
     public function testGetName()
     {
         $extension = new FormTypeExtension(true);
-        $this->assertSame('sonata_core_wrapping', $extension->getName());
+        $this->assertSame('sonata_twig_wrapping', $extension->getName());
     }
 
     public function testGetGlobals()

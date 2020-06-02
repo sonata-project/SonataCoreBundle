@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Sonata\CoreBundle\Tests\Twig\TokenParser;
 
 use PHPUnit\Framework\TestCase;
+use Sonata\CoreBundle\Twig\TokenParser\DeprecatedTemplateTokenParser;
 use Sonata\Twig\Node\DeprecatedTemplateNode;
-use Sonata\Twig\TokenParser\DeprecatedTemplateTokenParser;
 use Twig\Environment;
 use Twig\Loader\ArrayLoader;
 use Twig\Node\Expression\ConstantExpression;

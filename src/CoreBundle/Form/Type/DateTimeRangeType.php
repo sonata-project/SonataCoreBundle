@@ -13,7 +13,9 @@ declare(strict_types=1);
 
 namespace Sonata\CoreBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @deprecated since sonata-project/core-bundle 3.13.0, to be removed in 4.0.
@@ -34,5 +36,15 @@ class DateTimeRangeType extends \Sonata\Form\Type\DateTimeRangeType
     public function getName()
     {
         return 'sonata_type_datetime_range_legacy';
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'field_options' => [],
+            'field_options_start' => [],
+            'field_options_end' => [],
+            'field_type' => DateTimeType::class,
+        ]);
     }
 }
