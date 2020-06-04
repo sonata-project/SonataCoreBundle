@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.20.0](https://github.com/sonata-project/SonataCoreBundle/compare/3.19.2...3.20.0) - 2020-06-04
+### Removed
+- remove Form and Twig sub-namespaces from CoreBundle and get them back from
+  `form-extensions` 0.x and `twig-extensions` 0.x
+
 ## [3.19.2](https://github.com/sonata-project/SonataCoreBundle/compare/3.19.1...3.19.2) - 2020-06-03
 ### Changed
 - change register aliases from bundle configuration to compiler pass
