@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" datatype="plaintext" original="SonataFormBundle.en.xliff">
+        <body>
+            <trans-unit id="link_add">
+                <source>link_add</source>
+                <target>Neu</target>
+            </trans-unit>
+            <trans-unit id="label_type_yes">
+                <source>label_type_yes</source>
+                <target>ja</target>
+            </trans-unit>
+            <trans-unit id="label_type_no">
+                <source>label_type_no</source>
+                <target>nein</target>
+            </trans-unit>
+            <trans-unit id="label_type_equals">
+                <source>label_type_equals</source>
+                <target>ist gleich</target>
+            </trans-unit>
+            <trans-unit id="label_type_not_equals">
+                <source>label_type_not_equals</source>
+                <target>ist nicht gleich</target>
+            </trans-unit>
+            <trans-unit id="date_range_start">
+                <source>date_range_start</source>
+                <target>Von</target>
+            </trans-unit>
+            <trans-unit id="date_range_end">
+                <source>date_range_end</source>
+                <target>Bis</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
