@@ -14,6 +14,9 @@
         <service id="sonata.twig.deprecated_template_extension" class="Sonata\Twig\Extension\DeprecatedTemplateExtension">
             <tag name="twig.extension"/>
         </service>
+        <service id="sonata.twig.deprecated_text_extension" class="Sonata\Twig\Extension\DeprecatedTextExtension">
+            <tag name="twig.extension"/>
+        </service>
         <service id="sonata.twig.template_extension" class="Sonata\Twig\Extension\TemplateExtension">
             <tag name="twig.extension"/>
             <argument>%kernel.debug%</argument>
