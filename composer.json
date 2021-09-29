@@ -5,7 +5,7 @@
     "keywords": [
         "sonata"
     ],
-    "homepage": "https://sonata-project.org/bundles/core",
+    "homepage": "https://github.com/sonata-project/SonataCoreBundle",
     "license": "MIT",
     "authors": [
         {
